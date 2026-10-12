@@ -14,7 +14,6 @@ import os
 import random
 import sys
 
-sys.path.insert(0, os.path.expanduser("~/project/src"))
 from src.ga_core import run_islands
 
 BASELINE = os.path.expanduser("~/project/data/baseline_team.txt")

@@ -56,7 +56,7 @@ echo "[$(date)] RUN 2 finished rc=$?"
 
 echo ""
 echo "===== $(date) FINAL EVAL ====="
-python ~/project/src/eval_head_to_head.py \
+python -m src.eval \
     ~/project/data/baseline_team.txt \
     ~/project/output/champions/ga_run1_island_A.txt \
     ~/project/output/champions/ga_run1_island_B.txt \

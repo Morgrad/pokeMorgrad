@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pokemorgrad"
+version = "0.1.0"
+description = "Counter-meta Pokémon VGC team search with a behavior-cloned neural pilot"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Morgrad", email = "morgrad@duck.com" }]
+
+dependencies = [
+    "torch>=2.0",
+    "numpy",
+    "poke-env>=0.8",
+]
+
+[project.optional-dependencies]
+dev = ["ruff", "pytest"]
+
+[tool.setuptools]
+packages = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+ignore = ["E501"]
