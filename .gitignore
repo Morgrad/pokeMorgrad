@@ -1,4 +1,4 @@
-data/
+# --- Data: track the small canonical files, ignore the rest ---
 data/*
 !data/baseline_team.txt
 !data/meta_items.json
@@ -7,13 +7,43 @@ data/*
 !data/regmc_db.json
 !data/showdown_replays_meta/
 !data/regional_teams/
+
+# --- Generated / runtime output ---
 output/
-# runtime output only — do NOT ignore run/*.py or run/*.sh
 run/*.log
 run/*.pid
 run/*.out
 run/nohup.out
+
+# --- Python ---
 __pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+build/
+dist/
+
+# --- ML artifacts ---
 *.pt
-*.pyc
-nohup.out
+*.pth
+*.ckpt
+*.onnx
+*.h5
+*.jsonl
+
+# --- Backups / temp ---
+*.bak
+*.tmp
+*.swp
+*~
+
+# --- OS / editors ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# --- Secrets ---
+.env
+.env.*
