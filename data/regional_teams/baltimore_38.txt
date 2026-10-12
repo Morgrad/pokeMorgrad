@@ -1,0 +1,59 @@
+Farigiraf @ Sitrus Berry
+Ability: Armor Tail
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Helping Hand
+- Protect
+- Expanding Force
+- Trick Room
+
+Hatterene @ Focus Sash
+Ability: Magic Bounce
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Expanding Force
+- Protect
+- Dazzling Gleam
+- Trick Room
+
+Incineroar @ White Herb
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Throat Chop
+- Flare Blitz
+- Fake Out
+- Close Combat
+
+Camerupt @ Cameruptite
+Ability: Solid Rock
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Heat Wave
+- Ancient Power
+- Earth Power
+- Protect
+
+Kingambit @ Black Glasses
+Ability: Defiant
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Kowtow Cleave
+- Sucker Punch
+- Protect
+- Iron Head
+
+Indeedee-F @ Psychic Seed
+Ability: Psychic Surge
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Follow Me
+- Trick Room
+- Psychic
+- Helping Hand

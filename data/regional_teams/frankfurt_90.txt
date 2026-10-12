@@ -1,0 +1,59 @@
+Sinistcha @ Occa Berry
+Ability: Hospitality
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Matcha Gotcha
+- Rage Powder
+- Life Dew
+
+Maushold @ Chople Berry
+Ability: Friend Guard
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Protect
+- Super Fang
+- Feint
+- Follow Me
+
+Blastoise @ Blastoisinite
+Ability: Rain Dish
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Water Spout
+- Dark Pulse
+- Shell Smash
+
+Delphox @ Delphoxite
+Ability: Blaze
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Heat Wave
+- Psychic
+- Nasty Plot
+
+Sneasler @ Focus Sash
+Ability: Poison Touch
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Fake Out
+- Close Combat
+- Poison Jab
+- Quick Guard
+
+Incineroar @ Sitrus Berry
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Fake Out
+- Flare Blitz
+- Throat Chop
+- Parting Shot

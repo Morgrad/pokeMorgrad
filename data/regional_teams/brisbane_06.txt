@@ -1,0 +1,59 @@
+Salamence @ Salamencite
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Double-Edge
+- Tailwind
+- Roost
+- Rain Dance
+
+Armarouge @ Focus Sash
+Ability: Weak Armor
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Armor Cannon
+- Expanding Force
+- Wide Guard
+- Sunny Day
+
+Sneasler @ White Herb
+Ability: Unburden
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Protect
+- Swords Dance
+- Close Combat
+- Throat Chop
+
+Indeedee-F @ Psychic Seed
+Ability: Psychic Surge
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Psyshock
+- Follow Me
+- Baton Pass
+- Trick Room
+
+Politoed @ Choice Scarf
+Ability: Drizzle
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Weather Ball
+- Muddy Water
+- Ice Beam
+- Icy Wind
+
+Archaludon @ Leftovers
+Ability: Stamina
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Electro Shot
+- Dragon Pulse
+- Snarl

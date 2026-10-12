@@ -1,0 +1,59 @@
+Sneasler @ Psychic Seed
+Ability: Unburden
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Gunk Shot
+- Close Combat
+- Rock Slide
+- Protect
+
+Armarouge @ Kasib Berry
+Ability: Flash Fire
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Armor Cannon
+- Expanding Force
+- Wide Guard
+- Protect
+
+Dragonite @ Dragoninite
+Ability: Multiscale
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Dragon Pulse
+- Heat Wave
+- Tailwind
+- Protect
+
+Gengar @ Gengarite
+Ability: Cursed Body
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Sludge Bomb
+- Shadow Ball
+- Protect
+- Disable
+
+Indeedee @ Focus Sash
+Ability: Psychic Surge
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Expanding Force
+- Mystical Fire
+- Encore
+- Protect
+
+Sylveon @ Fairy Feather
+Ability: Pixilate
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Hyper Voice
+- Hyper Beam
+- Yawn
+- Detect

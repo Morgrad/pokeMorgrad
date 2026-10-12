@@ -1,0 +1,59 @@
+Gholdengo @ Life Orb
+Ability: Good as Gold
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Shadow Ball
+- Make It Rain
+- Nasty Plot
+
+Gardevoir @ Gardevoirite
+Ability: Synchronize
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Expanding Force
+- Hyper Voice
+- Calm Mind
+
+Sneasler @ Psychic Seed
+Ability: Unburden
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Protect
+- Close Combat
+- Dire Claw
+- Throat Chop
+
+Salamence @ Salamencite
+Ability: Intimidate
+Level: 50
+Calm Nature
+EVs: 32 HP / 20 DEF / 14 SPD
+- Protect
+- Tailwind
+- Double-Edge
+- Draco Meteor
+
+Incineroar @ Sitrus Berry
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Fake Out
+- Parting Shot
+- Flare Blitz
+- Darkest Lariat
+
+Indeedee-F @ Colbur Berry
+Ability: Psychic Surge
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Follow Me
+- Psychic
+- Helping Hand
+- Protect

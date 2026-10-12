@@ -57,25 +57,58 @@ class BCModel(nn.Module):
 
 
 def build_move_mask(priors, encoder, verbose=True):
-    """Build (species × move) 0/1 mask from real usage priors. Returns CPU tensor."""
-    mask = np.ones((encoder.n_species, encoder.n_moves), dtype=np.float32)
+    """Build (species × move) 0/1 mask from real usage priors.
+
+    Default is 0 (nothing legal). Only prior entries open cells.
+    Struggle and index 0 are always zeroed — pseudo-moves, never real choices.
+    Species not in priors get an all-zero row, which forces the pilot to
+    fall back to live-moveset masking at inference time.
+    """
+    mask = np.zeros((encoder.n_species, encoder.n_moves), dtype=np.float32)
     matched = 0
     for sp_name, entries in priors.items():
         sid = encoder.species_idx.get(sp_name)
         if not sid:
             continue
         matched += 1
-        mask[sid, :] = 0.0
         for e in entries:
             mid = encoder.move_idx.get(e["move"])
             if mid:
                 mask[sid, mid] = 1.0
+    struggle_mid = encoder.move_idx.get("Struggle")
+    if struggle_mid:
+        mask[:, struggle_mid] = 0.0
+    mask[:, 0] = 0.0
     if verbose:
         covered = mask[1:].sum(1)
         covered = covered[covered > 0]
         if covered.size:
             print(f"Move mask: {matched} species, avg={covered.mean():.1f} moves/species")
     return torch.from_numpy(mask)
+
+
+def live_move_mask(battle_mon, encoder, device="cpu"):
+    """Build a (1 × n_moves) mask from a live poke_env Pokemon's current moves.
+
+    Strictly more accurate than priors — we know exactly which 4 moves the
+    mon has right now. Includes PP>0 filter so we never propose an exhausted
+    move (Showdown would reject and re-ask, causing an infinite loop).
+    """
+    mask = torch.zeros((1, encoder.n_moves), dtype=torch.float32, device=device)
+    if battle_mon is None or not battle_mon.moves:
+        return mask
+    for mv in battle_mon.moves.values():
+        if mv is None or not mv.id:
+            continue
+        if getattr(mv, "current_pp", 1) <= 0:
+            continue
+        sd = "".join(c for c in mv.id.lower() if c.isalnum())
+        for canonical, idx in encoder.move_idx.items():
+            canon_sd = "".join(c for c in canonical.lower() if c.isalnum())
+            if canon_sd == sd:
+                mask[0, idx] = 1.0
+                break
+    return mask
 
 
 def save_checkpoint(path, model, *, epoch, val_loss, val_acc,

@@ -1,0 +1,59 @@
+Sinistcha @ Coba Berry
+Ability: Hospitality
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Matcha Gotcha
+- Protect
+- Rage Powder
+- Trick Room
+
+Milotic @ Leftovers
+Ability: Competitive
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Scald
+- Ice Beam
+- Icy Wind
+- Protect
+
+Delphox @ Delphoxite
+Ability: Blaze
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Heat Wave
+- Psychic
+- Nasty Plot
+- Protect
+
+Sneasler @ Focus Sash
+Ability: Poison Touch
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Close Combat
+- Coaching
+- Dire Claw
+- Fake Out
+
+Incineroar @ Passho Berry
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Flare Blitz
+- Parting Shot
+- Throat Chop
+- Fake Out
+
+Baxcalibur @ Baxcalibrite
+Ability: Thermal Exchange
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Protect
+- Glaive Rush
+- High Horsepower
+- Ice Shard

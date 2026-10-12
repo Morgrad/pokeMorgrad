@@ -1,0 +1,59 @@
+Volcarona @ Rocky Helmet
+Ability: Flame Body
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Rage Powder
+- Overheat
+- Tailwind
+
+Kingambit @ Chople Berry
+Ability: Defiant
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Protect
+- Sucker Punch
+- Kowtow Cleave
+- Iron Head
+
+Dragapult @ Life Orb
+Ability: Clear Body
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Draco Meteor
+- Shadow Ball
+- Thunderbolt
+
+Rillaboom @ Miracle Seed
+Ability: Grassy Surge
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Fake Out
+- Grassy Glide
+- Wood Hammer
+- High Horsepower
+
+Tauros-Paldea-Aqua @ Focus Sash
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Protect
+- Aqua Jet
+- Raging Bull
+- Close Combat
+
+Glimmora @ Glimmoranite
+Ability: Toxic Debris
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Spiky Shield
+- Power Gem
+- Sludge Bomb
+- Earth Power

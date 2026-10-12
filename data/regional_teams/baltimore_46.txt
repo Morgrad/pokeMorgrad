@@ -1,0 +1,59 @@
+Indeedee-F @ Rocky Helmet
+Ability: Psychic Surge
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Psychic
+- Follow Me
+- Helping Hand
+- Trick Room
+
+Golisopod @ Golisopite
+Ability: Emergency Exit
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Leech Life
+- Iron Head
+- Swords Dance
+- Sucker Punch
+
+Staraptor @ Staraptite
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Brave Bird
+- Close Combat
+- Roost
+- Protect
+
+Armarouge @ Twisted Spoon
+Ability: Flash Fire
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Armor Cannon
+- Expanding Force
+- Wide Guard
+- Trick Room
+
+Dragapult @ Life Orb
+Ability: Infiltrator
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Draco Meteor
+- Shadow Ball
+- Will-O-Wisp
+- Protect
+
+Milotic @ Psychic Seed
+Ability: Competitive
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Muddy Water
+- Coil
+- Hypnosis
+- Recover

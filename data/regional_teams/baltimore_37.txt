@@ -1,0 +1,59 @@
+Garchomp @ Life Orb
+Ability: Rough Skin
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Dragon Claw
+- Earthquake
+- Stomping Tantrum
+- Protect
+
+Venusaur @ Wide Lens
+Ability: Chlorophyll
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Leaf Storm
+- Sludge Bomb
+- Sleep Powder
+- Protect
+
+Incineroar @ Sitrus Berry
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Fake Out
+- Flare Blitz
+- Snarl
+- Parting Shot
+
+Noivern @ Focus Sash
+Ability: Infiltrator
+Level: 50
+Calm Nature
+EVs: 32 HP / 20 DEF / 14 SPD
+- Draco Meteor
+- Super Fang
+- Tailwind
+- Protect
+
+Charizard @ Charizardite Y
+Ability: Blaze
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Heat Wave
+- Weather Ball
+- Solar Beam
+- Protect
+
+Gholdengo @ White Herb
+Ability: Good as Gold
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Make It Rain
+- Shadow Ball
+- Focus Blast
+- Protect

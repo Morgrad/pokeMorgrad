@@ -1,0 +1,59 @@
+Grapploct @ Life Orb
+Ability: Technician
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Storm Throw
+- Stomping Tantrum
+- Mach Punch
+- Detect
+
+Pelipper @ Damp Rock
+Ability: Drizzle
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Weather Ball
+- Hurricane
+- Tailwind
+- Protect
+
+Mawile @ Mawilite
+Ability: Hyper Cutter
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Iron Head
+- Play Rough
+- Sucker Punch
+- Protect
+
+Farigiraf @ Sitrus Berry
+Ability: Armor Tail
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Psychic
+- Rain Dance
+- Helping Hand
+- Trick Room
+
+Kangaskhan @ Kangaskhanite
+Ability: Scrappy
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Double-Edge
+- Hammer Arm
+- Crunch
+- Fake Out
+
+Archaludon @ Leftovers
+Ability: Stamina
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Flash Cannon
+- Dragon Pulse
+- Electro Shot
+- Protect

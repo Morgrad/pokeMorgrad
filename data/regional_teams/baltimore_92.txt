@@ -1,0 +1,59 @@
+Kingambit @ Chople Berry
+Ability: Defiant
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Protect
+- Sucker Punch
+- Kowtow Cleave
+- Low Kick
+
+Whimsicott @ Fairy Feather
+Ability: Prankster
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Moonblast
+- Encore
+- Tailwind
+
+Kommo-o @ Life Orb
+Ability: Soundproof
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Clanging Scales
+- Aura Sphere
+- Flamethrower
+
+Basculegion @ Mystic Water
+Ability: Adaptability
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Protect
+- Wave Crash
+- Last Respects
+- Aqua Jet
+
+Metagross @ Metagrossite
+Ability: Clear Body
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Protect
+- Iron Head
+- Psychic Fangs
+- Ice Punch
+
+Kleavor @ Focus Sash
+Ability: Sharpness
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Protect
+- Stone Axe
+- X-Scissor
+- Feint
