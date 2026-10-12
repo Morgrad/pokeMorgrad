@@ -15,7 +15,7 @@ import random
 import sys
 
 sys.path.insert(0, os.path.expanduser("~/project/src"))
-from ga_core_v6 import run_islands
+from src.ga_core import run_islands
 
 BASELINE = os.path.expanduser("~/project/data/baseline_team.txt")
 CHAMP_DIR = os.path.expanduser("~/project/output/champions")

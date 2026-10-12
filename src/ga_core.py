@@ -1,31 +1,56 @@
 """
 GA core engine for counter-meta team search.
 
+Entry points:
+  run_ga(...)        single-population generational GA (debug/fast)
+  run_islands(...)   multi-island GA with migration + checkpointing (production)
+
 Genome = 6 mons, each {species, item, ability, nature, evs, moves}.
 Constraints = {slot_idx: species_name} — locked slots don't mutate.
 """
-import asyncio, copy, glob, json, os, random, sys, time
-sys.path.insert(0, os.path.expanduser("~/project/src"))
+from __future__ import annotations
+
+import asyncio
+import copy
+import glob
+import json
+import os
+import random
+import subprocess
+import time
+import urllib.request
+
 from poke_env.player import SimpleHeuristicsPlayer
 from poke_env import AccountConfiguration
-import regmc_db as DB
-import showdown_validator as SV
+
+from src import regmc_db as DB
+from src import showdown_validator as SV
 
 FORMAT = "gen9championsvgc2026regmc"
+
+# Repo root = parent of this file's directory (src/)
+_REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+def _p(*parts):
+    """Path relative to repo root."""
+    return os.path.join(_REPO_ROOT, *parts)
+
 
 # ============= CACHED ROSTER =============
 _BASE_SPECIES = [s for s in DB.all_species_base() if s["moves"]]
 _SPECIES_BY_NAME = {s["name"]: s for s in _BASE_SPECIES}
 _ITEMS = list(DB.all_items())
 _NATURES = [n["name"] for n in DB.all_natures()]
-_REGIONAL_DIR = os.path.expanduser("~/project/data/regional_teams")
+_REGIONAL_DIR = _p("data", "regional_teams")
+
 
 _META_ITEMS = None
 def meta_items_for(species_name):
-    """Return list of (item_name, weight) for a species, or None if unknown."""
+    """List of (item_name, weight) for a species, from real tournament data."""
     global _META_ITEMS
     if _META_ITEMS is None:
-        path = os.path.expanduser("~/project/data/meta_items.json")
+        path = _p("data", "meta_items.json")
         _META_ITEMS = json.load(open(path)) if os.path.exists(path) else {}
     entries = _META_ITEMS.get(species_name, [])
     return [(e["item"], e["count"]) for e in entries] if entries else None
@@ -33,16 +58,24 @@ def meta_items_for(species_name):
 
 _REGIONAL = None
 def regional_pool():
-    """Training pool (300 teams)."""
+    """Training pool of team strings."""
     global _REGIONAL
     if _REGIONAL is None:
-        split_path = os.path.expanduser("~/project/data/pool_split.json")
+        split_path = _p("data", "pool_split.json")
         if os.path.exists(split_path):
             split = json.load(open(split_path))
             files = split.get("train", [])
         else:
             files = sorted(glob.glob(os.path.join(_REGIONAL_DIR, "*.txt")))
-        _REGIONAL = [open(f).read().strip() for f in files if open(f).read().strip()]
+        teams = []
+        for f in files:
+            try:
+                text = open(f).read().strip()
+                if text:
+                    teams.append(text)
+            except Exception:
+                pass
+        _REGIONAL = teams
     return _REGIONAL
 
 
@@ -51,25 +84,22 @@ def heldout_pool():
     """Held-out pool (100 teams). Used for final eval only."""
     global _HELDOUT
     if _HELDOUT is None:
-        split_path = os.path.expanduser("~/project/data/pool_split.json")
+        split_path = _p("data", "pool_split.json")
         if os.path.exists(split_path):
             split = json.load(open(split_path))
             files = split.get("holdout", [])
-            _HELDOUT = [open(f).read().strip() for f in files if open(f).read().strip()]
+            teams = []
+            for f in files:
+                try:
+                    text = open(f).read().strip()
+                    if text:
+                        teams.append(text)
+                except Exception:
+                    pass
+            _HELDOUT = teams
         else:
-            _HELDOUT = regional_pool()  # fallback
+            _HELDOUT = regional_pool()
     return _HELDOUT
-
-
-_META_ITEMS = None
-def meta_items_for(species_name):
-    """List of (item_name, weight) for a species, from real tournament data."""
-    global _META_ITEMS
-    if _META_ITEMS is None:
-        path = os.path.expanduser("~/project/data/meta_items.json")
-        _META_ITEMS = json.load(open(path)) if os.path.exists(path) else {}
-    entries = _META_ITEMS.get(species_name, [])
-    return [(e["item"], e["count"]) for e in entries] if entries else None
 
 
 # ============= SET GENERATION =============
@@ -82,7 +112,8 @@ def _legal_items_for(species_name):
     for it in _ITEMS:
         name = it["name"]
         if name in stones:
-            out.append(name); continue
+            out.append(name)
+            continue
         if it.get("megaStone"):
             continue  # wrong species's stone
         users = it.get("itemUser")
@@ -122,11 +153,9 @@ def _pick_item_for(species_name, used_items):
     sp = _SPECIES_BY_NAME.get(species_name)
     if not sp:
         return "Leftovers"
-    # Mega stones always take priority if species can mega
     for stone in sp["megaStones"]:
         if stone not in used_items:
             return stone
-    # Meta prior: 70% chance to pull from empirical item distribution
     meta = meta_items_for(species_name)
     if meta and random.random() < 0.70:
         legal_set = set(_legal_items_for(species_name)) - used_items
@@ -134,26 +163,31 @@ def _pick_item_for(species_name, used_items):
         if candidates:
             items, weights = zip(*candidates)
             return random.choices(items, weights=weights, k=1)[0]
-    # Fallback: uniform random from legal pool
     legal = [i for i in _legal_items_for(species_name) if i not in used_items]
     return random.choice(legal) if legal else "Leftovers"
+
+
+def _fresh_mon(species_name, used_items):
+    """Build one mon with a proper item. Used for locked slots."""
+    mon = _random_mon(species_name)
+    if mon is None:
+        return None
+    mon["item"] = _pick_item_for(species_name, used_items)
+    return mon
 
 
 def build_random_genome(constraints):
     mons = [None] * 6
     used_bases, used_items = set(), set()
-    # Locked slots first
     for slot, sp_name in constraints.items():
         if sp_name not in _SPECIES_BY_NAME:
             raise ValueError(f"unknown species for lock: {sp_name}")
-        mon = _random_mon(sp_name)
+        mon = _fresh_mon(sp_name, used_items)
         if mon is None:
             raise ValueError(f"cannot build locked slot {slot}: {sp_name}")
-        mon["item"] = _pick_item_for(sp_name, used_items)
         mons[slot] = mon
         used_items.add(mon["item"])
         used_bases.add(DB.norm(_SPECIES_BY_NAME[sp_name]["baseSpecies"]))
-    # Free slots
     pool = [s["name"] for s in _BASE_SPECIES]
     for slot in range(6):
         if mons[slot] is not None:
@@ -163,10 +197,9 @@ def build_random_genome(constraints):
             sp = _SPECIES_BY_NAME[cand]
             if DB.norm(sp["baseSpecies"]) in used_bases:
                 continue
-            mon = _random_mon(cand)
+            mon = _fresh_mon(cand, used_items)
             if mon is None:
                 continue
-            mon["item"] = _pick_item_for(cand, used_items)
             mons[slot] = mon
             used_items.add(mon["item"])
             used_bases.add(DB.norm(sp["baseSpecies"]))
@@ -204,7 +237,7 @@ def text_to_genome(text):
 
 # ============= SHOWDOWN LEGALITY GATE =============
 def filter_legal_genomes(genomes, constraints):
-    """Take a list of genomes; return only those Showdown accepts. Rebuild invalid ones."""
+    """Return only Showdown-legal genomes. Rebuild invalid ones (up to 20 tries each)."""
     texts = [genome_to_text(g) for g in genomes]
     verdicts = SV.check_teams(texts)
     out = []
@@ -212,7 +245,6 @@ def filter_legal_genomes(genomes, constraints):
         if ok:
             out.append(g)
             continue
-        # Try to rebuild; up to 20 attempts
         for _ in range(20):
             fresh = build_random_genome(constraints)
             if fresh is None:
@@ -237,7 +269,8 @@ def _used_bases(mons, exclude_slot=None):
 
 
 def _used_items(mons, exclude_slot=None):
-    return {m["item"] for i, m in enumerate(mons) if i != exclude_slot and m}
+    return {m["item"] for i, m in enumerate(mons)
+            if i != exclude_slot and m and m.get("item")}
 
 
 def mutate_species(mons, slot, constraints):
@@ -289,7 +322,8 @@ def mutate_evs(mons, slot):
         s = random.choice(stats)
         if evs[s] < 32:
             add = min(budget, 32 - evs[s])
-            evs[s] += add; budget -= add
+            evs[s] += add
+            budget -= add
     mons[slot]["evs"] = {s: v for s, v in evs.items() if v > 0}
     return mons
 
@@ -324,20 +358,19 @@ def crossover(p1, p2, constraints):
     for i in range(6):
         if i in constraints:
             want = constraints[i]
-            # Force the constrained species, even if parent was wrong
             if p1[i] and p1[i].get("species") == want:
                 child.append(copy.deepcopy(p1[i]))
             elif p2[i] and p2[i].get("species") == want:
                 child.append(copy.deepcopy(p2[i]))
             else:
-                # Neither parent has the locked species — rebuild it
-                mon = _random_mon(want)
+                # Neither parent has locked species — rebuild with proper item
+                mon = _fresh_mon(want, set())
                 if mon is None:
                     raise ValueError(f"cannot build locked slot {i}: {want}")
                 child.append(mon)
         else:
             child.append(copy.deepcopy(random.choice([p1[i], p2[i]])))
-    # Fix species clause
+    # Species clause
     seen = set()
     for i, m in enumerate(child):
         if i in constraints:
@@ -358,7 +391,7 @@ def crossover(p1, p2, constraints):
                 seen.add(DB.norm(sp2["baseSpecies"]))
         else:
             seen.add(base)
-    # Fix item clause
+    # Item clause
     seen_items = set()
     for m in child:
         if m["item"] in seen_items:
@@ -369,6 +402,7 @@ def crossover(p1, p2, constraints):
 
 # ============= BATTLE =============
 _SEM = None
+
 
 async def _run_battle(team_str, opp_str, uid):
     async with _SEM:
@@ -395,8 +429,10 @@ async def _run_battle(team_str, opp_str, uid):
         finally:
             for p in (bot, opp):
                 try:
-                    if p: await p.ps_client.stop_listening()
-                except Exception: pass
+                    if p:
+                        await p.ps_client.stop_listening()
+                except Exception:
+                    pass
 
 
 async def evaluate(mons, opponents, idx, total):
@@ -414,11 +450,14 @@ async def evaluate(mons, opponents, idx, total):
     fit = wins / len(valid)
     ts = time.strftime("%H:%M:%S")
     species = ' / '.join(m['species'] for m in mons)
-    print(f"  [{ts}] {idx+1:>2}/{total}  {fit*100:5.1f}%  ({wins}W/{len(valid)})  {species}", flush=True)
+    print(f"  [{ts}] {idx+1:>2}/{total}  {fit*100:5.1f}%  ({wins}W/{len(valid)})  {species}",
+          flush=True)
     return fit
 
 
-async def run_ga(locked, pop_size, generations, battles_per_genome, concurrency, seed_path=None, label="latest"):
+# ============= SIMPLE GA (single population) =============
+async def run_ga(locked, pop_size, generations, battles_per_genome, concurrency,
+                 seed_path=None, label="latest"):
     global _SEM
     _SEM = asyncio.Semaphore(concurrency)
     random.seed(42)
@@ -441,14 +480,12 @@ async def run_ga(locked, pop_size, generations, battles_per_genome, concurrency,
         g = text_to_genome(text)
         if not g:
             continue
-        # Enforce lock: if a locked slot's species doesn't match, rebuild it
         for slot, want in locked.items():
             sp = _SPECIES_BY_NAME.get(g[slot]["species"]) if g[slot] else None
             if not sp or sp["baseSpecies"] != _SPECIES_BY_NAME[want]["baseSpecies"]:
-                mon = _random_mon(want)
+                mon = _fresh_mon(want, {m["item"] for m in g if m})
                 if mon is None:
                     continue
-                mon["item"] = _pick_item_for(want, {m["item"] for m in g if m})
                 g[slot] = mon
         population.append(g)
     while len(population) < pop_size:
@@ -456,24 +493,20 @@ async def run_ga(locked, pop_size, generations, battles_per_genome, concurrency,
         if g:
             population.append(g)
 
-    # Gate initial population through Showdown
     population = filter_legal_genomes(population, locked)
     print(f"After legality gate: {len(population)} valid genomes")
 
     history = []
     all_time_best = {"fit": -1, "genome": None, "gen": None}
     t0 = time.time()
-    ranked = []
     for gen in range(generations):
-        print(f"\n[{time.strftime('%H:%M:%S')}] === GEN {gen+1}/{generations}  ({(time.time()-t0)/60:.1f} min) ===")
+        print(f"\n[{time.strftime('%H:%M:%S')}] === GEN {gen+1}/{generations}  "
+              f"({(time.time()-t0)/60:.1f} min) ===")
         gen_opps = random.sample(opponents, min(len(opponents), battles_per_genome))
         fits = await asyncio.gather(*[evaluate(g, gen_opps, i, len(population))
                                        for i, g in enumerate(population)])
         ranked = sorted(zip(fits, population), key=lambda x: -x[0])
         print(f"  -> Best: {ranked[0][0]*100:.1f}%  Avg: {sum(fits)/len(fits)*100:.1f}%")
-        if ranked[0][0] > all_time_best["fit"]:
-            all_time_best = {"fit": ranked[0][0], "genome": ranked[0][1], "gen": gen+1}
-            print(f"     NEW ALL-TIME BEST: {ranked[0][0]*100:.1f}% (gen {gen+1})")
         if ranked[0][0] > all_time_best["fit"]:
             all_time_best = {"fit": ranked[0][0], "genome": ranked[0][1], "gen": gen+1}
             print(f"     NEW ALL-TIME BEST: {ranked[0][0]*100:.1f}% (gen {gen+1})")
@@ -483,11 +516,10 @@ async def run_ga(locked, pop_size, generations, battles_per_genome, concurrency,
             "avg": sum(fits)/len(fits),
             "species": [m["species"] for m in ranked[0][1]],
         })
-        champ = os.path.expanduser(f"~/project/output/champions/ga_{label}.txt")
+        champ = _p("output", "champions", f"ga_{label}.txt")
         os.makedirs(os.path.dirname(champ), exist_ok=True)
-        # Save the all-time best, not this generation's best
         open(champ, "w").write(genome_to_text(all_time_best["genome"]))
-        json.dump(history, open(os.path.expanduser("~/project/output/ga_history.json"), "w"), indent=2)
+        json.dump(history, open(_p("output", "ga_history.json"), "w"), indent=2)
 
         if gen == generations - 1:
             break
@@ -502,3 +534,338 @@ async def run_ga(locked, pop_size, generations, battles_per_genome, concurrency,
     print(f"\n=== DONE ===")
     print(f"All-time best: {all_time_best['fit']*100:.1f}% (gen {all_time_best['gen']})")
     print(genome_to_text(all_time_best["genome"]))
+
+
+# ============= ISLAND MODEL =============
+CHECKPOINT_DIR = _p("output", "checkpoints", "v6")
+CHAMPION_DIR = _p("output", "champions")
+SHOWDOWN_DIR = os.path.expanduser("~/pokemon-showdown")
+SHOWDOWN_PORT = 8000
+
+
+def enforce_constraints(genome, constraints):
+    """Rebuild any locked slot whose species doesn't match. Returns a new genome."""
+    if not constraints or not genome:
+        return genome
+    g = copy.deepcopy(genome)
+    used_items = {m["item"] for m in g if m and m.get("item")}
+    for slot, want in constraints.items():
+        current = g[slot].get("species") if slot < len(g) else None
+        if current != want:
+            mon = _fresh_mon(want, used_items)
+            if mon and slot < len(g):
+                g[slot] = mon
+                used_items.add(mon["item"])
+    return g
+
+
+class Island:
+    def __init__(self, name, constraints=None, seed_paths=None):
+        self.name = name
+        self.constraints = constraints or {}
+        self.population = []
+        self.fitness = []
+        self.best_ever = {"fit": -1, "genome": None, "gen": None}
+        self.stagnation = 0
+        self.history = []
+        self.seed_paths = seed_paths or []
+
+    def init_population(self, size):
+        self.population = []
+        for path in self.seed_paths:
+            if os.path.exists(path):
+                try:
+                    g = text_to_genome(open(path).read())
+                    if g:
+                        g = enforce_constraints(g, self.constraints)
+                        self.population.append(g)
+                        print(f"  [{self.name}] seeded with {os.path.basename(path)}")
+                except Exception:
+                    pass
+        while len(self.population) < size:
+            g = build_random_genome(self.constraints)
+            if g:
+                self.population.append(g)
+        self.population = filter_legal_genomes(self.population, self.constraints)
+        while len(self.population) < size:
+            g = build_random_genome(self.constraints)
+            if g:
+                self.population.append(g)
+        self.fitness = [0.0] * len(self.population)
+
+    def to_dict(self):
+        return {
+            "name": self.name,
+            "constraints": {str(k): v for k, v in self.constraints.items()},
+            "population": self.population,
+            "fitness": self.fitness,
+            "best_ever": self.best_ever,
+            "stagnation": self.stagnation,
+            "history": self.history,
+        }
+
+    @classmethod
+    def from_dict(cls, d):
+        isl = cls(d["name"], {int(k): v for k, v in d.get("constraints", {}).items()})
+        isl.population = d["population"]
+        isl.fitness = d.get("fitness", [0.0] * len(isl.population))
+        isl.best_ever = d["best_ever"]
+        isl.stagnation = d.get("stagnation", 0)
+        isl.history = d.get("history", [])
+        return isl
+
+
+def count_unique_species(island):
+    seen = set()
+    for g in island.population:
+        if not g:
+            continue
+        for m in g:
+            sp = _SPECIES_BY_NAME.get(m["species"])
+            if sp:
+                seen.add(DB.norm(sp["baseSpecies"]))
+    return len(seen)
+
+
+def inject_immigrants(island, n):
+    if not island.fitness:
+        return 0
+    ranked = sorted(range(len(island.population)), key=lambda i: island.fitness[i])
+    added = 0
+    for idx in ranked[:n]:
+        fresh = build_random_genome(island.constraints)
+        if fresh:
+            island.population[idx] = fresh
+            island.fitness[idx] = 0.0
+            added += 1
+    return added
+
+
+def ring_migrate(islands, n=2):
+    tops = []
+    for isl in islands:
+        if not isl.fitness:
+            tops.append([])
+            continue
+        ranked = sorted(range(len(isl.population)), key=lambda i: -isl.fitness[i])
+        tops.append([copy.deepcopy(isl.population[i]) for i in ranked[:n]])
+    for i, isl in enumerate(islands):
+        incoming = tops[(i - 1) % len(islands)]
+        if not incoming:
+            continue
+        ranked = sorted(range(len(isl.population)), key=lambda j: isl.fitness[j])
+        for j, genome in enumerate(incoming):
+            if j >= len(ranked):
+                break
+            fixed = enforce_constraints(genome, isl.constraints)
+            isl.population[ranked[-1 - j]] = fixed
+            isl.fitness[ranked[-1 - j]] = 0.0
+
+
+def restart_showdown():
+    print(f"  [showdown] restarting on :{SHOWDOWN_PORT}...")
+    subprocess.run(["pkill", "-9", "-f", f"pokemon-showdown start {SHOWDOWN_PORT}"],
+                   stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    time.sleep(1)
+    subprocess.Popen(
+        ["node", "pokemon-showdown", "start", str(SHOWDOWN_PORT), "--no-security"],
+        cwd=SHOWDOWN_DIR,
+        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+    )
+    for _ in range(15):
+        try:
+            urllib.request.urlopen(f"http://localhost:{SHOWDOWN_PORT}", timeout=2)
+            print(f"  [showdown] back up")
+            return True
+        except Exception:
+            time.sleep(1)
+    print(f"  [showdown] FAILED")
+    return False
+
+
+def save_checkpoint(generation, islands, run_id="run1"):
+    base = os.path.join(CHECKPOINT_DIR, run_id)
+    os.makedirs(base, exist_ok=True)
+    path = os.path.join(base, f"gen_{generation:04d}.json")
+    state = {
+        "generation": generation,
+        "saved": time.strftime("%Y-%m-%d %H:%M:%S"),
+        "islands": [isl.to_dict() for isl in islands],
+    }
+    with open(path, "w") as f:
+        json.dump(state, f, indent=2)
+    all_ckpts = sorted(f for f in os.listdir(base) if f.startswith("gen_"))
+    for f in all_ckpts[:-1]:
+        try:
+            gen = int(f.split("_")[1].split(".")[0])
+            if gen % 5 != 0:
+                os.remove(os.path.join(base, f))
+        except Exception:
+            pass
+    return path
+
+
+def load_latest_checkpoint(run_id="run1"):
+    base = os.path.join(CHECKPOINT_DIR, run_id)
+    if not os.path.isdir(base):
+        return None
+    files = sorted(f for f in os.listdir(base) if f.startswith("gen_"))
+    if not files:
+        return None
+    return os.path.join(base, files[-1])
+
+
+def breed(island, immigration_rate=0.20):
+    n = len(island.population)
+    if n < 4:
+        return
+    ranked = sorted(range(n), key=lambda i: -island.fitness[i])
+    n_elites = max(2, n // 3)
+    elites = [enforce_constraints(copy.deepcopy(island.population[i]), island.constraints)
+              for i in ranked[:n_elites]]
+    new_pop = list(elites)
+    while len(new_pop) < n:
+        if random.random() < immigration_rate:
+            fresh = build_random_genome(island.constraints)
+            if fresh:
+                new_pop.append(fresh)
+            continue
+        p1, p2 = random.sample(elites, 2)
+        child = mutate(crossover(p1, p2, island.constraints), island.constraints)
+        new_pop.append(child)
+    new_pop = filter_legal_genomes(new_pop, island.constraints)
+    while len(new_pop) < n:
+        fresh = build_random_genome(island.constraints)
+        if fresh:
+            new_pop.append(fresh)
+    island.population = new_pop[:n]
+    island.fitness = [0.0] * len(island.population)
+
+
+async def run_islands(
+    island_specs,
+    pop_per_island=10,
+    generations=999,
+    battles_per_genome=800,
+    concurrency=3,
+    immigration_rate=0.20,
+    stagnation_limit=5,
+    diversity_floor=15,
+    migration_every=5,
+    showdown_restart_every=10,
+    max_hours=None,
+    run_id="run1",
+):
+    global _SEM
+    _SEM = asyncio.Semaphore(concurrency)
+
+    islands = []
+    start_gen = 0
+    ckpt = load_latest_checkpoint(run_id)
+    if ckpt:
+        try:
+            state = json.load(open(ckpt))
+            islands = [Island.from_dict(d) for d in state["islands"]]
+            start_gen = state["generation"]
+            print(f"RESUMED from {ckpt} at gen {start_gen}")
+        except Exception as e:
+            print(f"checkpoint load failed ({e}); fresh start")
+            islands = []
+
+    if not islands:
+        print("Initializing islands...")
+        for spec in island_specs:
+            isl = Island(
+                spec["name"],
+                constraints=spec.get("constraints", {}),
+                seed_paths=spec.get("seed_paths", []),
+            )
+            isl.init_population(pop_per_island)
+            islands.append(isl)
+            print(f"  [{isl.name}] {len(isl.population)} genomes, "
+                  f"constraints={isl.constraints}")
+
+    print(f"=== GA: {len(islands)} islands × {pop_per_island} ===")
+    print(f"Gens {start_gen}..{generations}, {battles_per_genome} battles/genome")
+
+    opp_pool = regional_pool()
+    t0 = time.time()
+    time_budget_seconds = (max_hours * 3600) if max_hours else None
+
+    for gen in range(start_gen, generations):
+        if time_budget_seconds and (time.time() - t0) > time_budget_seconds:
+            print(f"\n=== TIME BUDGET REACHED ({max_hours}h) at gen {gen} ===")
+            break
+        if gen > start_gen and (gen - start_gen) % showdown_restart_every == 0 and gen > 0:
+            restart_showdown()
+
+        print(f"\n[{time.strftime('%H:%M:%S')}] === GEN {gen+1}/{generations}  "
+              f"({(time.time()-t0)/60:.1f} min) ===")
+
+        for isl in islands:
+            gen_opps = random.sample(opp_pool, min(battles_per_genome, len(opp_pool)))
+            fits = await asyncio.gather(*[
+                evaluate(g, gen_opps, i, len(isl.population))
+                for i, g in enumerate(isl.population)
+            ])
+            isl.fitness = list(fits)
+            best_idx = max(range(len(fits)), key=lambda i: fits[i])
+            gen_best = fits[best_idx]
+
+            if gen_best > isl.best_ever["fit"]:
+                isl.best_ever = {
+                    "fit": gen_best,
+                    "genome": copy.deepcopy(isl.population[best_idx]),
+                    "gen": gen + 1,
+                }
+                isl.stagnation = 0
+                print(f"  [{isl.name}] NEW ALL-TIME: {gen_best*100:.1f}%")
+            else:
+                isl.stagnation += 1
+
+            isl.history.append({
+                "gen": gen + 1,
+                "best": gen_best,
+                "avg": sum(fits) / len(fits) if fits else 0,
+                "all_time": isl.best_ever["fit"],
+                "stag": isl.stagnation,
+            })
+
+            uniq = count_unique_species(isl)
+            if uniq < diversity_floor:
+                added = inject_immigrants(isl, 3)
+                print(f"  [{isl.name}] diversity low ({uniq}): injected {added}")
+
+            if isl.stagnation >= stagnation_limit:
+                n_restart = len(isl.population) // 2
+                ranked = sorted(range(len(isl.fitness)), key=lambda i: isl.fitness[i])
+                for j in ranked[:n_restart]:
+                    fresh = build_random_genome(isl.constraints)
+                    if fresh:
+                        isl.population[j] = fresh
+                        isl.fitness[j] = 0.0
+                print(f"  [{isl.name}] STAGNATION: restarted {n_restart}")
+                isl.stagnation = 0
+
+            if gen < generations - 1:
+                breed(isl, immigration_rate=immigration_rate)
+
+            print(f"  [{isl.name}] gen {gen+1}: best={gen_best*100:5.1f}%  "
+                  f"all-time={isl.best_ever['fit']*100:5.1f}%  stag={isl.stagnation}  "
+                  f"uniq={uniq}")
+
+        if (gen + 1) % migration_every == 0 and gen < generations - 1:
+            ring_migrate(islands, n=2)
+            print(f"  >> migration done at gen {gen+1}")
+
+        ckpt_path = save_checkpoint(gen + 1, islands, run_id)
+        print(f"  >> checkpoint: {os.path.basename(ckpt_path)}")
+
+    os.makedirs(CHAMPION_DIR, exist_ok=True)
+    print(f"\n=== DONE ===")
+    for isl in islands:
+        if isl.best_ever["genome"]:
+            path = os.path.join(CHAMPION_DIR, f"ga_{run_id}_island_{isl.name}.txt")
+            open(path, "w").write(genome_to_text(isl.best_ever["genome"]))
+            print(f"  [{isl.name}] champion: {isl.best_ever['fit']*100:.1f}% "
+                  f"(gen {isl.best_ever['gen']}) -> {path}")
