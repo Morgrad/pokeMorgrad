@@ -1,29 +1,35 @@
-"""BC pilot: wraps trained v4 model as a poke_env Player."""
+"""BC pilot — wraps a trained BC model as a poke_env Player."""
 import json
 import os
-import sys
 
 import numpy as np
 import torch
 import torch.nn.functional as F
 
-sys.path.insert(0, os.path.expanduser("~/project/tools"))
-sys.path.insert(0, os.path.expanduser("~/project/src"))
-
 from poke_env.player import Player
 from poke_env.battle import DoubleBattle
-from src.state_encoder import StateEncoder, N_SLOTS, N_MOVES_PER, CONT_DIM
-from src.bc_train import BCModel, TYPE_MOVE, TYPE_SWITCH, TYPE_NONE, NEG_INF
 
-MODEL_PATH = os.path.expanduser("~/project/output/models/bc_v4_best.pt")
-PRIORS_PATH = os.path.expanduser("~/project/data/species_move_priors.json")
+from src.state_encoder import StateEncoder
+from src.bc_model import (
+    BCModel, build_move_mask, load_checkpoint,
+    NEG_INF, TYPE_MOVE, TYPE_SWITCH,
+)
+
+_REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MODEL_PATH = os.path.join(_REPO_ROOT, "output", "models", "bc_v4_best.pt")
+PRIORS_PATH = os.path.join(_REPO_ROOT, "data", "species_move_priors.json")
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
+
+
+def _to_sd_id(name: str) -> str:
+    """Match Pokémon Showdown's toID(): lowercase, alphanumeric only."""
+    return "".join(c for c in name.lower() if c.isalnum())
 
 
 class BCPlayer(Player):
     def __init__(self, *args, **kwargs):
-        # Load everything BEFORE super().__init__() so no async handler
-        # fires against a half-constructed object.
+        # Build everything BEFORE super().__init__() so the async listener
+        # never fires against a half-constructed object.
         self.encoder = StateEncoder()
         self.priors = json.load(open(PRIORS_PATH))
 
@@ -31,55 +37,35 @@ class BCPlayer(Player):
             self.encoder.n_species, self.encoder.n_moves,
             self.encoder.n_items, self.encoder.n_abilities,
         ).to(DEVICE)
-        ckpt = torch.load(MODEL_PATH, map_location=DEVICE)
-        self.model.load_state_dict(ckpt["model_state"])
-        self.model.eval()
+        ckpt = load_checkpoint(MODEL_PATH, self.model, DEVICE)
         print(f"BC pilot loaded: epoch={ckpt.get('epoch')} "
               f"vlm={ckpt.get('val_move_acc'):.3f}", flush=True)
 
-        self.move_mask = self._build_move_mask()
+        self.move_mask = build_move_mask(self.priors, self.encoder, verbose=False).to(DEVICE)
 
-        # Now safe to start the async listener
+        # Reverse maps for name lookup (id -> canonical name)
+        self._move_by_idx = {v: k for k, v in self.encoder.move_idx.items()}
+        self._species_by_idx = {v: k for k, v in self.encoder.species_idx.items()}
+
         super().__init__(*args, **kwargs)
 
-    def _build_move_mask(self):
-        mask = np.ones((self.encoder.n_species, self.encoder.n_moves),
-                       dtype=np.float32)
-        for sp_name, entries in self.priors.items():
-            sid = self.encoder.species_idx.get(sp_name)
-            if not sid:
-                continue
-            mask[sid, :] = 0.0
-            for e in entries:
-                mid = self.encoder.move_idx.get(e["move"])
-                if mid:
-                    mask[sid, mid] = 1.0
-        return torch.from_numpy(mask).to(DEVICE)
-
     def _state_to_dict(self, battle: DoubleBattle):
-        """Convert live battle to the encoder's expected state format."""
         def mon_view(mon, is_opp=False):
             if mon is None or mon.species is None:
                 return None
-            moves = []
-            if not is_opp:
-                # Own moves: full set is known
-                for mv in mon.moves.values():
-                    if mv is not None and mv.id:
-                        moves.append(mv.id.capitalize())  # best-effort; encoder uses names
-            else:
-                # Opp moves: only revealed
-                for mv in mon.moves.values():
-                    if mv is not None and mv.id:
-                        moves.append(mv.id.capitalize())
+            revealed = []
+            for mv in mon.moves.values():
+                if mv is not None and mv.id:
+                    revealed.append(mv.id.capitalize())
             return {
                 "species": str(mon.species).replace(" ", "-"),
                 "gender": getattr(mon, "gender", None),
-                "hp_now": int(mon.current_hp_fraction * 100) if mon.current_hp_fraction is not None else None,
+                "hp_now": int(mon.current_hp_fraction * 100)
+                          if mon.current_hp_fraction is not None else None,
                 "hp_max": 100,
                 "status": mon.status.name.lower() if mon.status else None,
                 "boosts": {k: v for k, v in mon.boosts.items() if v != 0},
-                "revealed_moves": moves[:4],
+                "revealed_moves": revealed[:4],
                 "item": None,
                 "ability": None,
                 "is_mega": False,
@@ -91,7 +77,6 @@ class BCPlayer(Player):
         opp_active = [mon_view(m, True) for m in battle.opponent_active_pokemon]
         opp_seen = [mon_view(m, True) for m in battle.opponent_team.values()]
 
-        # Field
         weather = None
         if battle.weather:
             weather = list(battle.weather.keys())[0].name
@@ -113,40 +98,31 @@ class BCPlayer(Player):
             "field": field,
         }
 
-    def _predict_action(self, state_dict, slot_idx, battle):
+    def _predict_action(self, state_dict, slot_idx):
         enc = self.encoder.encode(state_dict)
-        batch = {
-            "species_ids": enc["species_ids"].unsqueeze(0).to(DEVICE),
-            "move_ids": enc["move_ids"].unsqueeze(0).to(DEVICE),
-            "item_ids": enc["item_ids"].unsqueeze(0).to(DEVICE),
-            "ability_ids": enc["ability_ids"].unsqueeze(0).to(DEVICE),
-            "continuous": enc["continuous"].unsqueeze(0).to(DEVICE),
-            "field": enc["field"].unsqueeze(0).to(DEVICE),
-        }
         with torch.no_grad():
             ta, ma, sa, tb, mb, sb = self.model(
-                batch["species_ids"], batch["move_ids"], batch["item_ids"],
-                batch["ability_ids"], batch["continuous"], batch["field"],
+                enc["species_ids"].unsqueeze(0).to(DEVICE),
+                enc["move_ids"].unsqueeze(0).to(DEVICE),
+                enc["item_ids"].unsqueeze(0).to(DEVICE),
+                enc["ability_ids"].unsqueeze(0).to(DEVICE),
+                enc["continuous"].unsqueeze(0).to(DEVICE),
+                enc["field"].unsqueeze(0).to(DEVICE),
             )
 
-        # Pick head for this slot
         if slot_idx == 0:
             type_logits, move_logits, switch_logits = ta, ma, sa
         else:
             type_logits, move_logits, switch_logits = tb, mb, sb
 
-        # Get acting mon's species for mask
         my_active = state_dict["my_active"]
         acting = my_active[slot_idx] if slot_idx < len(my_active) else None
         if acting is None:
             return None
         sid = self.encoder.species_idx.get(acting["species"], 0)
 
-        # Mask move logits
-        m_mask = self.move_mask[sid]
-        m_masked = move_logits + (1 - m_mask) * NEG_INF
+        m_masked = move_logits + (1 - self.move_mask[sid]) * NEG_INF
 
-        # Mask switch logits to bench only
         bench = state_dict["my_bench"]
         bench_mask = torch.zeros(self.encoder.n_species, device=DEVICE)
         for m in bench:
@@ -157,25 +133,18 @@ class BCPlayer(Player):
                 bench_mask[bid] = 1.0
         s_masked = switch_logits + (1 - bench_mask) * NEG_INF
 
-        # Pick argmax across (type, move, switch) — score each type by best option
         type_probs = F.softmax(type_logits, dim=-1)[0]
         p_move = type_probs[TYPE_MOVE].item() * F.softmax(m_masked, dim=-1).max().item()
         p_switch = type_probs[TYPE_SWITCH].item() * F.softmax(s_masked, dim=-1).max().item()
 
         if p_move >= p_switch:
-            chosen_type = TYPE_MOVE
-        else:
-            chosen_type = TYPE_SWITCH
-
-        if chosen_type == TYPE_MOVE:
             mid = m_masked.argmax().item()
-            # Reverse-lookup from encoder: idx -> name
-            move_name = self.encoder.move_list[mid - 1] if mid > 0 else None
-            return ("move", move_name)
+            name = self._move_by_idx.get(mid)
+            return ("move", name) if name else None
 
         sid_target = s_masked.argmax().item()
-        species = self.encoder.species_list[sid_target - 1] if sid_target > 0 else None
-        return ("switch", species)
+        name = self._species_by_idx.get(sid_target)
+        return ("switch", name) if name else None
 
     def choose_move(self, battle):
         if not isinstance(battle, DoubleBattle):
@@ -188,54 +157,35 @@ class BCPlayer(Player):
             if mon is None or mon.fainted:
                 orders.append(self.choose_random_move(battle))
                 continue
-            action = self._predict_action(state, slot_idx, battle)
+            action = self._predict_action(state, slot_idx)
             if action is None:
                 orders.append(self.choose_random_move(battle))
                 continue
+
             kind, name = action
             if kind == "move":
-                # Find matching move id
-                chosen = None
-                for mv in mon.moves.values():
-                    if mv is None or mv.id is None:
-                        continue
-                    real_name = self.encoder.move_list[0] if False else None
-                    # match by comparing to encoder's canonical name for this id
-                    mid = self.encoder.move_idx.get(name)
-                    if mid is None:
-                        continue
-                    # poke_env's mv.id is the lowercase id; check if our encoder has it
-                    for canon_name, canon_idx in self.encoder.move_idx.items():
-                        if canon_idx == mid and canon_name.lower().replace(" ", "").replace("-", "") == mv.id:
-                            chosen = mv
-                            break
-                    if chosen:
-                        break
+                sd_id = _to_sd_id(name)
+                chosen = next(
+                    (mv for mv in mon.moves.values() if mv is not None and mv.id == sd_id),
+                    None,
+                )
                 if chosen is None:
-                    # Fall back to first available
                     avail = [mv for mv in mon.moves.values() if mv is not None]
                     chosen = avail[0] if avail else None
-                if chosen is not None:
-                    orders.append(self.create_order(chosen))
-                else:
-                    orders.append(self.choose_random_move(battle))
+                orders.append(self.create_order(chosen) if chosen
+                              else self.choose_random_move(battle))
             else:
-                # switch
-                chosen_mon = None
-                for m in battle.team.values():
-                    if m.species and str(m.species).replace(" ", "-") == name:
-                        chosen_mon = m
-                        break
-                if chosen_mon is not None:
-                    orders.append(self.create_order(chosen_mon))
-                else:
-                    orders.append(self.choose_random_move(battle))
+                target = next(
+                    (m for m in battle.team.values()
+                     if m.species and str(m.species).replace(" ", "-") == name),
+                    None,
+                )
+                orders.append(self.create_order(target) if target
+                              else self.choose_random_move(battle))
 
-        # Combine — DoubleBattleOrder
         from poke_env.player.battle_order import DoubleBattleOrder
         if len(orders) == 2:
             return DoubleBattleOrder(orders[0], orders[1])
-        elif len(orders) == 1:
+        if len(orders) == 1:
             return orders[0]
-        else:
-            return self.choose_random_move(battle)
+        return self.choose_random_move(battle)

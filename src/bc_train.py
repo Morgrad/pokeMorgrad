@@ -1,18 +1,31 @@
-"""BC v4: per-turn, two-headed (slot A + slot B)."""
-import json, os, random, sys, time
+"""BC trainer — per-turn, two-headed (slot A + slot B)."""
+import json
+import os
+import random
+import time
+
 import numpy as np
 import torch
-import torch.nn as nn
 import torch.nn.functional as F
 from torch.utils.data import Dataset, DataLoader
 
-sys.path.insert(0, os.path.expanduser("~/project/tools"))
-from src.state_encoder import StateEncoder, N_SLOTS, N_MOVES_PER, CONT_DIM
+from src.state_encoder import StateEncoder
+from src.bc_model import (
+    BCModel, build_move_mask, save_checkpoint,
+    NEG_INF, TYPE_MOVE, TYPE_SWITCH, TYPE_NONE,
+)
 
-DATA = os.path.expanduser("~/project/data/training_data.jsonl")
-PRIORS_PATH = os.path.expanduser("~/project/data/species_move_priors.json")
-MODEL_DIR = os.path.expanduser("~/project/output/models")
-os.makedirs(MODEL_DIR, exist_ok=True)
+_REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+def _p(*parts):
+    return os.path.join(_REPO_ROOT, *parts)
+
+
+DATA = _p("data", "training_data.jsonl")
+PRIORS_PATH = _p("data", "species_move_priors.json")
+MODEL_DIR = _p("output", "models")
+BEST_MODEL_PATH = os.path.join(MODEL_DIR, "bc_v4_best.pt")
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 BATCH = 256
@@ -24,24 +37,12 @@ SEED = 42
 NUM_WORKERS = 0
 PATIENCE = 3
 
-EMB_SPECIES = 32
-EMB_MOVE = 16
-EMB_ITEM = 16
-EMB_ABILITY = 16
-
-NEG_INF = -1e4
-TYPE_MOVE, TYPE_SWITCH, TYPE_NONE = 0, 1, 2
-
-random.seed(SEED); np.random.seed(SEED); torch.manual_seed(SEED)
-
 
 class BCDataset(Dataset):
     def __init__(self, decisions, encoder, priors):
         self.encoder = encoder
         self.samples = []
-        allowed = {}
-        for sp, entries in priors.items():
-            allowed[sp] = {e["move"] for e in entries}
+        allowed = {sp: {e["move"] for e in entries} for sp, entries in priors.items()}
         self.allowed_moves = allowed
 
         for o in decisions:
@@ -104,60 +105,6 @@ class BCDataset(Dataset):
             acting_sid = self.encoder.species_idx.get(mon.get("species"), 0) if mon else 0
             out.append(torch.tensor([t, mv, sw, acting_sid], dtype=torch.long))
         return tuple(out)
-
-
-class BCModel(nn.Module):
-    def __init__(self, n_species, n_moves, n_items, n_abilities):
-        super().__init__()
-        self.sp_emb = nn.Embedding(n_species, EMB_SPECIES, padding_idx=0)
-        self.mv_emb = nn.Embedding(n_moves, EMB_MOVE, padding_idx=0)
-        self.it_emb = nn.Embedding(n_items, EMB_ITEM, padding_idx=0)
-        self.ab_emb = nn.Embedding(n_abilities, EMB_ABILITY, padding_idx=0)
-
-        per_mon = EMB_SPECIES + EMB_MOVE * N_MOVES_PER + EMB_ITEM + EMB_ABILITY + CONT_DIM
-        flat = per_mon * N_SLOTS + 17
-
-        self.trunk = nn.Sequential(
-            nn.Linear(flat, 512), nn.ReLU(), nn.Dropout(0.3),
-            nn.Linear(512, 256), nn.ReLU(), nn.Dropout(0.3),
-        )
-        self.type_head_a   = nn.Linear(256, 3)
-        self.move_head_a   = nn.Linear(256, n_moves)
-        self.switch_head_a = nn.Linear(256, n_species)
-        self.type_head_b   = nn.Linear(256, 3)
-        self.move_head_b   = nn.Linear(256, n_moves)
-        self.switch_head_b = nn.Linear(256, n_species)
-
-    def forward(self, sp, mv, it, ab, cont, field):
-        B = sp.size(0)
-        sp_e = self.sp_emb(sp)
-        mv_e = self.mv_emb(mv).view(B, N_SLOTS, N_MOVES_PER * EMB_MOVE)
-        it_e = self.it_emb(it)
-        ab_e = self.ab_emb(ab)
-        per = torch.cat([sp_e, mv_e, it_e, ab_e, cont], dim=-1)
-        flat = torch.cat([per.view(B, -1), field], dim=-1)
-        h = self.trunk(flat)
-        return (self.type_head_a(h), self.move_head_a(h), self.switch_head_a(h),
-                self.type_head_b(h), self.move_head_b(h), self.switch_head_b(h))
-
-
-def build_move_mask(priors, encoder, n_species, n_moves):
-    mask = np.ones((n_species, n_moves), dtype=np.float32)
-    matched = 0
-    for sp_name, entries in priors.items():
-        sid = encoder.species_idx.get(sp_name)
-        if not sid:
-            continue
-        matched += 1
-        mask[sid, :] = 0.0
-        for e in entries:
-            mid = encoder.move_idx.get(e["move"])
-            if mid:
-                mask[sid, mid] = 1.0
-    covered = mask[1:].sum(1)
-    covered = covered[covered > 0]
-    print(f"Move mask: {matched} species, avg={covered.mean():.1f} moves/species")
-    return torch.from_numpy(mask)
 
 
 def slot_loss(type_logits, move_logits, switch_logits, targets, move_mask, bench_mask):
@@ -236,13 +183,17 @@ def run_epoch(model, loader, opt, train, move_mask):
 
 
 def main():
+    random.seed(SEED)
+    np.random.seed(SEED)
+    torch.manual_seed(SEED)
+
     print(f"Device: {DEVICE}")
     enc = StateEncoder()
     print(f"Vocab: species={enc.n_species}, moves={enc.n_moves}")
 
     print("Loading priors...")
     priors = json.load(open(PRIORS_PATH))
-    move_mask = build_move_mask(priors, enc, enc.n_species, enc.n_moves).to(DEVICE)
+    move_mask = build_move_mask(priors, enc).to(DEVICE)
 
     print("Loading decisions...")
     decisions = []
@@ -285,10 +236,11 @@ def main():
             best_val_loss = vll
             best_val_acc = vla
             noimp = 0
-            torch.save({"model_state": model.state_dict(), "epoch": epoch,
-                        "val_loss": vll, "val_acc": vla,
-                        "val_move_acc": vlm, "val_switch_acc": vls,
-                        "encoder_v": 2}, os.path.join(MODEL_DIR, "bc_v4_best.pt"))
+            save_checkpoint(
+                BEST_MODEL_PATH, model,
+                epoch=epoch, val_loss=vll, val_acc=vla,
+                val_move_acc=vlm, val_switch_acc=vls,
+            )
             marker = " *"
         else:
             noimp += 1
@@ -303,7 +255,7 @@ def main():
             break
 
     print(f"\nBest val_loss={best_val_loss:.4f}  val_acc={best_val_acc:.3f}")
-    print(f"Saved: {MODEL_DIR}/bc_v4_best.pt")
+    print(f"Saved: {BEST_MODEL_PATH}")
 
 
 if __name__ == "__main__":
