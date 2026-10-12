@@ -169,19 +169,12 @@ class BCPlayer(Player):
 
         if chosen_type == TYPE_MOVE:
             mid = m_masked.argmax().item()
-            move_name = None
-            for name, idx in self.encoder.move_idx.items():
-                if idx == mid:
-                    move_name = name
-                    break
+            # Reverse-lookup from encoder: idx -> name
+            move_name = self.encoder.move_list[mid - 1] if mid > 0 else None
             return ("move", move_name)
 
         sid_target = s_masked.argmax().item()
-        species = None
-        for name, idx in self.encoder.species_idx.items():
-            if idx == sid_target:
-                species = name
-                break
+        species = self.encoder.species_list[sid_target - 1] if sid_target > 0 else None
         return ("switch", species)
 
     def choose_move(self, battle):
@@ -204,8 +197,19 @@ class BCPlayer(Player):
                 # Find matching move id
                 chosen = None
                 for mv in mon.moves.values():
-                    if mv and mv.id and mv.id.capitalize() == name:
-                        chosen = mv
+                    if mv is None or mv.id is None:
+                        continue
+                    real_name = self.encoder.move_list[0] if False else None
+                    # match by comparing to encoder's canonical name for this id
+                    mid = self.encoder.move_idx.get(name)
+                    if mid is None:
+                        continue
+                    # poke_env's mv.id is the lowercase id; check if our encoder has it
+                    for canon_name, canon_idx in self.encoder.move_idx.items():
+                        if canon_idx == mid and canon_name.lower().replace(" ", "").replace("-", "") == mv.id:
+                            chosen = mv
+                            break
+                    if chosen:
                         break
                 if chosen is None:
                     # Fall back to first available
