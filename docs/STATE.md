@@ -8,12 +8,26 @@ Acronyms and terms: see GLOSSARY.md
 
 ---
 
+## Recent changes (2026-10-12)
+
+- `src/` is now a proper Python package — no `sys.path` hacks, no versioned filenames.
+- GA merged into one file: `src/ga_core.py` (single-pop + island model).
+- BC split into `src/bc_model.py` / `src/bc_train.py` / `src/bc_player.py`.
+- Eval unified: `python -m src.eval --pilot heuristic|bc|both`.
+- `data/` whitelisted in `.gitignore` — small canonical files tracked, big ones local-only.
+- Root `README.md` added; `docs/README.md` is now a pointer.
+- 43 MB of raw replays moved out of git (`archive/replays/` → `data/replays/`).
+- `pyproject.toml`, `LICENSE` (MIT), `.gitattributes` added.
+
 ## Mission
 Find a Reg M-C team that beats the elite tournament meta. Build reusable
 pipeline that adapts to new regulations in ~2 weeks.
 
-**STATUS: 10h run complete. Pilot is broken. Path 3 (BC + RL pilot) is the
-next project.**
+**STATUS (2026-10-12):** Repo consolidated into a clean `src/` package with a
+unified GA + BC + eval pipeline. BC v5 checkpoint (`bc_best.pt`) reaches **57.9%**
+move accuracy on validation. **Active bug:** the BC pilot's move mask is degenerate
+for species missing from `species_move_priors.json` → it can predict `Struggle` or
+off-list moves → Showdown rejects and re-asks → infinite loop. Fix in progress.
 
 ---
 
