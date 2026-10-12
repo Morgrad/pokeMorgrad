@@ -1,0 +1,59 @@
+Milotic @ Leftovers
+Ability: Competitive
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Scald
+- Icy Wind
+- Recover
+- Protect
+
+Baxcalibur @ Baxcalibrite
+Ability: Thermal Exchange
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Glaive Rush
+- Icicle Crash
+- High Horsepower
+- Protect
+
+Ninetales-Alola @ Light Clay
+Ability: Snow Warning
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Blizzard
+- Moonblast
+- Aurora Veil
+- Protect
+
+Sneasler @ White Herb
+Ability: Unburden
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Dire Claw
+- Close Combat
+- Fake Out
+- Coaching
+
+Gholdengo @ Life Orb
+Ability: Good as Gold
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Make It Rain
+- Shadow Ball
+- Nasty Plot
+- Protect
+
+Arcanine-Hisui @ Focus Sash
+Ability: Rock Head
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Flare Blitz
+- Head Smash
+- Extreme Speed
+- Protect

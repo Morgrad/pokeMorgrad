@@ -1,0 +1,59 @@
+Froslass @ Froslassite
+Ability: Cursed Body
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Blizzard
+- Shadow Ball
+- Aurora Veil
+- Protect
+
+Salamence @ Salamencite
+Ability: Intimidate
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Hyper Voice
+- Draco Meteor
+- Tailwind
+- Protect
+
+Kingambit @ Chople Berry
+Ability: Defiant
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Kowtow Cleave
+- Iron Head
+- Sucker Punch
+- Low Kick
+
+Armarouge @ Focus Sash
+Ability: Flash Fire
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Expanding Force
+- Armor Cannon
+- Wide Guard
+- Protect
+
+Sneasler @ Psychic Seed
+Ability: Unburden
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Close Combat
+- Gunk Shot
+- Throat Chop
+- Protect
+
+Indeedee-F @ Rocky Helmet
+Ability: Psychic Surge
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Psychic
+- Follow Me
+- Helping Hand
+- Protect

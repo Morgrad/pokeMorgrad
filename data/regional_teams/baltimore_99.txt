@@ -1,0 +1,59 @@
+Excadrill @ Chople Berry
+Ability: Sand Rush
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- High Horsepower
+- Iron Head
+- Rock Tomb
+- Protect
+
+Kommo-o @ Dragon Fang
+Ability: Soundproof
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Clanging Scales
+- Aura Sphere
+- Vacuum Wave
+- Protect
+
+Pidgeot @ Pidgeotite
+Ability: Big Pecks
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Hurricane
+- Heat Wave
+- Tailwind
+- Protect
+
+Aegislash @ Life Orb
+Ability: Stance Change
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Shadow Ball
+- Flash Cannon
+- King’s Shield
+- Wide Guard
+
+Tyranitar @ Tyranitarite
+Ability: Sand Stream
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Rock Slide
+- Knock Off
+- Low Kick
+- Protect
+
+Tsareena @ Choice Scarf
+Ability: Queenly Majesty
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Trop Kick
+- Low Kick
+- U-turn
+- Triple Axel

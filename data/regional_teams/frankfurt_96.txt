@@ -1,0 +1,59 @@
+Incineroar @ Sitrus Berry
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Flare Blitz
+- Throat Chop
+- Fake Out
+- Parting Shot
+
+Espathra @ Grassy Seed
+Ability: Speed Boost
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Lumina Crash
+- Calm Mind
+- Baton Pass
+- Protect
+
+Goodra-Hisui @ Leftovers
+Ability: Shell Armor
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Dragon Pulse
+- Flash Cannon
+- Flamethrower
+- Protect
+
+Floette-Eternal @ Floettite
+Ability: Flower Veil
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Dazzling Gleam
+- Draining Kiss
+- Calm Mind
+- Protect
+
+Absol @ Absolite Z
+Ability: Justified
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Shadow Claw
+- Night Slash
+- Close Combat
+- Detect
+
+Rillaboom @ Miracle Seed
+Ability: Grassy Surge
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Wood Hammer
+- Grassy Glide
+- Fake Out
+- High Horsepower

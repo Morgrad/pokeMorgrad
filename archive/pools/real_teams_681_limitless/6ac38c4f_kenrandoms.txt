@@ -1,0 +1,59 @@
+Kleavor @ Choice Scarf
+Ability: Sharpness
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Stone Axe
+- X-Scissor
+- U-turn
+- Close Combat
+
+Sylveon @ Fairy Feather
+Ability: Pixilate
+Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
+Modest Nature
+- Hyper Voice
+- Quick Attack
+- Hyper Beam
+- Detect
+
+Dragapult @ Expert Belt
+Ability: Clear Body
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Dragon Claw
+- Will-O-Wisp
+- Psychic Fangs
+- Sucker Punch
+
+Charizard @ Charizardite Y
+Ability: Solar Power
+Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
+Modest Nature
+- Ancient Power
+- Heat Wave
+- Weather Ball
+- Protect
+
+Venusaur @ Life Orb
+Ability: Chlorophyll
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Earth Power
+- Giga Drain
+- Sleep Powder
+- Sludge Bomb
+
+Incineroar @ Sitrus Berry
+Ability: Intimidate
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Flare Blitz
+- Parting Shot
+- Fake Out
+- Throat Chop

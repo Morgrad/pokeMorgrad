@@ -1,0 +1,59 @@
+Venusaur @ Life Orb
+Ability: Chlorophyll
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Leaf Storm
+- Sludge Bomb
+- Earth Power
+- Protect
+
+Incineroar @ Sitrus Berry
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Flare Blitz
+- Darkest Lariat
+- Parting Shot
+- Fake Out
+
+Aegislash @ Focus Sash
+Ability: Stance Change
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Poltergeist
+- Close Combat
+- Shadow Sneak
+- Wide Guard
+
+Sylveon @ Fairy Feather
+Ability: Pixilate
+Level: 50
+Calm Nature
+EVs: 32 HP / 20 DEF / 14 SPD
+- Hyper Voice
+- Quick Attack
+- Yawn
+- Protect
+
+Charizard @ Charizardite Y
+Ability: Blaze
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Heat Wave
+- Weather Ball
+- Ancient Power
+- Protect
+
+Garchomp @ Choice Scarf
+Ability: Rough Skin
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Earthquake
+- Stomping Tantrum
+- Rock Slide
+- Dragon Claw

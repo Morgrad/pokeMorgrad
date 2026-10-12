@@ -1,0 +1,59 @@
+Farigiraf @ Sitrus Berry
+Ability: Armor Tail
+Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
+Modest Nature
+- Psychic
+- Helping Hand
+- Trick Room
+- Protect
+
+Lucario @ Lucarionite Z
+Ability: Inner Focus
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Steel Beam
+- Aura Sphere
+- Dark Pulse
+- Protect
+
+Torkoal @ Charcoal
+Ability: Drought
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Eruption
+- Helping Hand
+- Weather Ball
+- Protect
+
+Primarina @ Life Orb
+Ability: Liquid Voice
+Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
+Modest Nature
+- Hyper Voice
+- Moonblast
+- Aqua Jet
+- Protect
+
+Vileplume @ Focus Sash
+Ability: Chlorophyll
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Sleep Powder
+- Sludge Bomb
+- Leaf Storm
+- After You
+
+Kingambit @ Chople Berry
+Ability: Defiant
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Kowtow Cleave
+- Sucker Punch
+- Iron Head
+- Protect

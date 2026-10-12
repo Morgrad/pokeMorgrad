@@ -1,0 +1,5408 @@
+[
+  {
+    "gen": 1,
+    "best_fitness": 0.7317073170731707,
+    "rankings": [
+      {
+        "fitness": 0.7317073170731707,
+        "wins": 30,
+        "games": 41,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Incineroar": {
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Life Orb",
+            "ability": "Good As Gold",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.6097560975609756,
+        "wins": 25,
+        "games": 41,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Incineroar": {
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Life Orb",
+            "ability": "Good As Gold",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.1,
+        "wins": 4,
+        "games": 40,
+        "species": [
+          "Umbreon",
+          "Baxcalibur",
+          "Polteageist",
+          "Banette",
+          "Greninja",
+          "Morpeko"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Wide Lens",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "atk": 32,
+              "def": 32,
+              "spd": 2
+            },
+            "moves": [
+              "Foul Play",
+              "Weather Ball",
+              "Dark Pulse",
+              "Quick Attack"
+            ]
+          },
+          "Baxcalibur": {
+            "item": "Baxcalibrite",
+            "ability": "Thermal Exchange",
+            "nature": "Hasty",
+            "evs": {
+              "hp": 32,
+              "atk": 32,
+              "spd": 2
+            },
+            "moves": [
+              "Rest",
+              "Aerial Ace",
+              "Stomping Tantrum",
+              "Focus Energy"
+            ]
+          },
+          "Polteageist": {
+            "item": "Colbur Berry",
+            "ability": "Cursed Body",
+            "nature": "Mild",
+            "evs": {
+              "atk": 32,
+              "def": 2,
+              "spd": 32
+            },
+            "moves": [
+              "Curse",
+              "Substitute",
+              "Confuse Ray",
+              "Trick"
+            ]
+          },
+          "Banette": {
+            "item": "Shuca Berry",
+            "ability": "Insomnia",
+            "nature": "Impish",
+            "evs": {
+              "def": 32,
+              "spa": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Skill Swap",
+              "Substitute",
+              "Role Play",
+              "Imprison"
+            ]
+          },
+          "Greninja": {
+            "item": "Leftovers",
+            "ability": "Protean",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spd": 32
+            },
+            "moves": [
+              "Snore",
+              "Toxic Spikes",
+              "Trailblaze",
+              "Fling"
+            ]
+          },
+          "Morpeko": {
+            "item": "Icy Rock",
+            "ability": "Hunger Switch",
+            "nature": "Modest",
+            "evs": {
+              "hp": 32,
+              "def": 32,
+              "spd": 2
+            },
+            "moves": [
+              "Bite",
+              "Thief",
+              "Stomping Tantrum",
+              "Baton Pass"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.09523809523809523,
+        "wins": 4,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Pikachu",
+          "Mr. Rime",
+          "Glalie",
+          "Camerupt",
+          "Aggron"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Binding Band",
+            "ability": "Inner Focus",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spd": 32
+            },
+            "moves": [
+              "Endure",
+              "Dark Pulse",
+              "Crunch",
+              "Sunny Day"
+            ]
+          },
+          "Pikachu": {
+            "item": "Shuca Berry",
+            "ability": "Static",
+            "nature": "Careful",
+            "evs": {
+              "def": 2,
+              "spa": 32,
+              "spd": 32
+            },
+            "moves": [
+              "Quick Attack",
+              "Electric Terrain",
+              "Surf",
+              "Round"
+            ]
+          },
+          "Mr. Rime": {
+            "item": "Leftovers",
+            "ability": "Ice Body",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 32,
+              "spa": 2
+            },
+            "moves": [
+              "After You",
+              "Future Sight",
+              "Snore",
+              "Reflect"
+            ]
+          },
+          "Glalie": {
+            "item": "Black Belt",
+            "ability": "Moody",
+            "nature": "Timid",
+            "evs": {
+              "hp": 32,
+              "spa": 32,
+              "spd": 2
+            },
+            "moves": [
+              "Chilling Water",
+              "Hex",
+              "Scary Face",
+              "Foul Play"
+            ]
+          },
+          "Camerupt": {
+            "item": "Air Balloon",
+            "ability": "Magma Armor",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 32,
+              "atk": 32,
+              "spa": 2
+            },
+            "moves": [
+              "Mud-Slap",
+              "Sandstorm",
+              "Giga Impact",
+              "Dig"
+            ]
+          },
+          "Aggron": {
+            "item": "Aggronite",
+            "ability": "Rock Head",
+            "nature": "Impish",
+            "evs": {
+              "hp": 2,
+              "def": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Fire Punch",
+              "Metal Burst",
+              "Rock Tomb",
+              "Sunny Day"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.09523809523809523,
+        "wins": 4,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Steelix",
+          "Furfrou",
+          "Grimmsnarl",
+          "Camerupt",
+          "Slowking"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Magnet",
+            "ability": "Inner Focus",
+            "nature": "Careful",
+            "evs": {
+              "hp": 32,
+              "def": 32,
+              "spa": 2
+            },
+            "moves": [
+              "Thunder Wave",
+              "Sleep Talk",
+              "Payback",
+              "Lash Out"
+            ]
+          },
+          "Steelix": {
+            "item": "Steelixite",
+            "ability": "Sheer Force",
+            "nature": "Brave",
+            "evs": {
+              "atk": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Facade",
+              "Body Slam",
+              "Dragon Tail",
+              "Rock Polish"
+            ]
+          },
+          "Furfrou": {
+            "item": "Shell Bell",
+            "ability": "Fur Coat",
+            "nature": "Sassy",
+            "evs": {
+              "def": 2,
+              "spa": 32,
+              "spd": 32
+            },
+            "moves": [
+              "Hyper Voice",
+              "Double-Edge",
+              "Helping Hand",
+              "Trailblaze"
+            ]
+          },
+          "Grimmsnarl": {
+            "item": "Chesto Berry",
+            "ability": "Frisk",
+            "nature": "Timid",
+            "evs": {
+              "atk": 32,
+              "spa": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Fling",
+              "Endure",
+              "Power Swap",
+              "Play Rough"
+            ]
+          },
+          "Camerupt": {
+            "item": "Leftovers",
+            "ability": "Solid Rock",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 32,
+              "spd": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Dig",
+              "Self-Destruct",
+              "Scorching Sands",
+              "Substitute"
+            ]
+          },
+          "Slowking": {
+            "item": "Metal Coat",
+            "ability": "Oblivious",
+            "nature": "Hasty",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spa": 32
+            },
+            "moves": [
+              "Stored Power",
+              "Heal Pulse",
+              "Substitute",
+              "Scald"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.025,
+        "wins": 1,
+        "games": 40,
+        "species": [
+          "Umbreon",
+          "Gardevoir",
+          "Aegislash",
+          "Meganium",
+          "Hatterene",
+          "Gholdengo"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Chilan Berry",
+            "ability": "Inner Focus",
+            "nature": "Sassy",
+            "evs": {
+              "def": 32,
+              "spa": 32,
+              "spe": 2
+            },
+            "moves": [
+              "Tickle",
+              "Mean Look",
+              "Stored Power",
+              "Guard Swap"
+            ]
+          },
+          "Gardevoir": {
+            "item": "Metal Coat",
+            "ability": "Synchronize",
+            "nature": "Careful",
+            "evs": {
+              "atk": 32,
+              "spa": 2,
+              "spd": 32
+            },
+            "moves": [
+              "Dazzling Gleam",
+              "Endure",
+              "Destiny Bond",
+              "Shadow Ball"
+            ]
+          },
+          "Aegislash": {
+            "item": "Quick Claw",
+            "ability": "Stance Change",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spd": 32
+            },
+            "moves": [
+              "Double Hit",
+              "Rest",
+              "Flash Cannon",
+              "Iron Head"
+            ]
+          },
+          "Meganium": {
+            "item": "Aspear Berry",
+            "ability": "Leaf Guard",
+            "nature": "Calm",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spa": 32
+            },
+            "moves": [
+              "Bulldoze",
+              "Pollen Puff",
+              "Leech Seed",
+              "Substitute"
+            ]
+          },
+          "Hatterene": {
+            "item": "Psychic Seed",
+            "ability": "Healer",
+            "nature": "Sassy",
+            "evs": {
+              "spa": 2,
+              "spd": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Expanding Force",
+              "Misty Explosion",
+              "After You",
+              "Healing Wish"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Bright Powder",
+            "ability": "Good as Gold",
+            "nature": "Relaxed",
+            "evs": {
+              "hp": 32,
+              "spa": 2,
+              "spd": 32
+            },
+            "moves": [
+              "Endure",
+              "Focus Blast",
+              "Light Screen",
+              "Trick"
+            ]
+          }
+        }
+      }
+    ]
+  },
+  {
+    "gen": 2,
+    "best_fitness": 0.6666666666666666,
+    "rankings": [
+      {
+        "fitness": 0.6666666666666666,
+        "wins": 28,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Incineroar": {
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Life Orb",
+            "ability": "Good As Gold",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.6428571428571429,
+        "wins": 27,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 32,
+              "atk": 32,
+              "spd": 2
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Incineroar": {
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Passho Berry",
+            "ability": "Good As Gold",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.5476190476190477,
+        "wins": 23,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Incineroar": {
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Life Orb",
+            "ability": "Good As Gold",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.5238095238095238,
+        "wins": 22,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Watchog",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Incineroar": {
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 32,
+              "spa": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          },
+          "Watchog": {
+            "item": "Coba Berry",
+            "ability": "Keen Eye",
+            "nature": "Bold",
+            "evs": {
+              "spa": 2,
+              "spd": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Gunk Shot",
+              "Fling",
+              "Giga Impact",
+              "Screech"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.5,
+        "wins": 21,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Roost",
+              "Protect"
+            ]
+          },
+          "Incineroar": {
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Facade"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Life Orb",
+            "ability": "Good As Gold",
+            "nature": "Relaxed",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.42857142857142855,
+        "wins": 18,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Morpeko",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Life Orb",
+            "ability": "Good As Gold",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Overgrow",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          },
+          "Morpeko": {
+            "item": "Expert Belt",
+            "ability": "Hunger Switch",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 32,
+              "spa": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Outrage",
+              "Taunt",
+              "Fling",
+              "Agility"
+            ]
+          }
+        }
+      }
+    ]
+  },
+  {
+    "gen": 3,
+    "best_fitness": 0.7619047619047619,
+    "rankings": [
+      {
+        "fitness": 0.7619047619047619,
+        "wins": 32,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Incineroar": {
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Life Orb",
+            "ability": "Good As Gold",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.6904761904761905,
+        "wins": 29,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 32,
+              "atk": 32,
+              "spd": 2
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Incineroar": {
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Passho Berry",
+            "ability": "Good As Gold",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.6428571428571429,
+        "wins": 27,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 32,
+              "atk": 32,
+              "spd": 2
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Incineroar": {
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Rash",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Life Orb",
+            "ability": "Good As Gold",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Thunder"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.5952380952380952,
+        "wins": 25,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Grimmsnarl",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 32,
+              "atk": 32,
+              "spd": 2
+            },
+            "moves": [
+              "Helping Hand",
+              "Dragon Claw",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Incineroar": {
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 2,
+              "spd": 32
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          "Garchomp": {
+            "item": "Air Balloon",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          },
+          "Grimmsnarl": {
+            "item": "Silk Scarf",
+            "ability": "Prankster",
+            "nature": "Timid",
+            "evs": {
+              "hp": 32,
+              "def": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Wonder Room",
+              "Bite",
+              "Imprison",
+              "Body Press"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.5714285714285714,
+        "wins": 24,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Sableye",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 32,
+              "atk": 32,
+              "spd": 2
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Incineroar": {
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Shadow Claw"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Overgrow",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          },
+          "Sableye": {
+            "item": "Leek",
+            "ability": "Prankster",
+            "nature": "Relaxed",
+            "evs": {
+              "hp": 2,
+              "spd": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Detect",
+              "Foul Play",
+              "Reflect",
+              "Gravity"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.07317073170731707,
+        "wins": 3,
+        "games": 41,
+        "species": [
+          "Umbreon",
+          "Politoed",
+          "Gholdengo",
+          "Garbodor",
+          "Aurorus",
+          "Appletun"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Hard Stone",
+            "ability": "Synchronize",
+            "nature": "Adamant",
+            "evs": {
+              "atk": 2,
+              "def": 32,
+              "spa": 32
+            },
+            "moves": [
+              "Thunder Wave",
+              "Dark Pulse",
+              "Taunt",
+              "Swagger"
+            ]
+          },
+          "Politoed": {
+            "item": "Terrain Extender",
+            "ability": "Damp",
+            "nature": "Hasty",
+            "evs": {
+              "atk": 32,
+              "spd": 32,
+              "spe": 2
+            },
+            "moves": [
+              "Screech",
+              "Ice Punch",
+              "Dive",
+              "Muddy Water"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Oran Berry",
+            "ability": "Good as Gold",
+            "nature": "Brave",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spa": 32
+            },
+            "moves": [
+              "Electro Ball",
+              "Power Gem",
+              "Thunderbolt",
+              "Shadow Ball"
+            ]
+          },
+          "Garbodor": {
+            "item": "Charti Berry",
+            "ability": "Stench",
+            "nature": "Careful",
+            "evs": {
+              "hp": 32,
+              "def": 2,
+              "spd": 32
+            },
+            "moves": [
+              "Explosion",
+              "Rock Blast",
+              "Rain Dance",
+              "Pain Split"
+            ]
+          },
+          "Aurorus": {
+            "item": "Red Card",
+            "ability": "Refrigerate",
+            "nature": "Relaxed",
+            "evs": {
+              "hp": 32,
+              "def": 2,
+              "spa": 32
+            },
+            "moves": [
+              "Snore",
+              "Light Screen",
+              "Reflect",
+              "Icy Wind"
+            ]
+          },
+          "Appletun": {
+            "item": "Yache Berry",
+            "ability": "Gluttony",
+            "nature": "Impish",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spd": 32
+            },
+            "moves": [
+              "Hyper Beam",
+              "Light Screen",
+              "Protect",
+              "Earthquake"
+            ]
+          }
+        }
+      }
+    ]
+  },
+  {
+    "gen": 4,
+    "best_fitness": 0.7380952380952381,
+    "rankings": [
+      {
+        "fitness": 0.7380952380952381,
+        "wins": 31,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Incineroar": {
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Life Orb",
+            "ability": "Good As Gold",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Psyshock"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.7142857142857143,
+        "wins": 30,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Incineroar": {
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Life Orb",
+            "ability": "Good As Gold",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.6904761904761905,
+        "wins": 29,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 32,
+              "atk": 32,
+              "spd": 2
+            },
+            "moves": [
+              "Fly",
+              "Dragon Claw",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Incineroar": {
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Life Orb",
+            "ability": "Good As Gold",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Thunderbolt"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Sunny Day"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.6428571428571429,
+        "wins": 27,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 32,
+              "atk": 32,
+              "spd": 2
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Incineroar": {
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Passho Berry",
+            "ability": "Good As Gold",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.4523809523809524,
+        "wins": 19,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 32,
+              "atk": 32,
+              "spd": 2
+            },
+            "moves": [
+              "Double-Edge",
+              "Fly",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Incineroar": {
+            "item": "Sitrus Berry",
+            "ability": "Blaze",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Passho Berry",
+            "ability": "Good As Gold",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "Scary Face"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "spd": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.40476190476190477,
+        "wins": 17,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Heracross",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 32,
+              "atk": 32,
+              "spd": 2
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Passho Berry",
+            "ability": "Good As Gold",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "atk": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          },
+          "Heracross": {
+            "item": "Air Balloon",
+            "ability": "Moxie",
+            "nature": "Mild",
+            "evs": {
+              "spa": 32,
+              "spd": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Endure",
+              "Knock Off",
+              "Protect",
+              "Rock Blast"
+            ]
+          }
+        }
+      }
+    ]
+  },
+  {
+    "gen": 5,
+    "best_fitness": 0.7380952380952381,
+    "rankings": [
+      {
+        "fitness": 0.7380952380952381,
+        "wins": 31,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Incineroar": {
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Life Orb",
+            "ability": "Good As Gold",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.6428571428571429,
+        "wins": 27,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Incineroar": {
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Life Orb",
+            "ability": "Good As Gold",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "atk": 32,
+              "def": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.5952380952380952,
+        "wins": 25,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Incineroar": {
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Life Orb",
+            "ability": "Good As Gold",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Psyshock"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.5952380952380952,
+        "wins": 25,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Incineroar": {
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Rest",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Focus Band",
+            "ability": "Good As Gold",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Overgrow",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.5714285714285714,
+        "wins": 24,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Diggersby",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Tailwind",
+              "Bulldoze"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Life Orb",
+            "ability": "Good As Gold",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Psyshock"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "atk": 32,
+              "spa": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          },
+          "Diggersby": {
+            "item": "Big Root",
+            "ability": "Cheek Pouch",
+            "nature": "Quiet",
+            "evs": {
+              "hp": 32,
+              "atk": 32,
+              "spe": 2
+            },
+            "moves": [
+              "Fling",
+              "Stomping Tantrum",
+              "Dig",
+              "Wild Charge"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.025,
+        "wins": 1,
+        "games": 40,
+        "species": [
+          "Umbreon",
+          "Incineroar",
+          "Kommo-o",
+          "Vanilluxe",
+          "Dragalge",
+          "Pikachu"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Silver Powder",
+            "ability": "Synchronize",
+            "nature": "Calm",
+            "evs": {
+              "hp": 32,
+              "spa": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Light Screen",
+              "Hyper Voice",
+              "Moonlight",
+              "Spite"
+            ]
+          },
+          "Incineroar": {
+            "item": "Sitrus Berry",
+            "ability": "Blaze",
+            "nature": "Jolly",
+            "evs": {
+              "atk": 2,
+              "spd": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Facade",
+              "Trailblaze",
+              "Thunder Punch",
+              "Cross Chop"
+            ]
+          },
+          "Kommo-o": {
+            "item": "Cheri Berry",
+            "ability": "Soundproof",
+            "nature": "Impish",
+            "evs": {
+              "hp": 2,
+              "def": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Swords Dance",
+              "Dragon Claw",
+              "Stomping Tantrum",
+              "Throat Chop"
+            ]
+          },
+          "Vanilluxe": {
+            "item": "Light Ball",
+            "ability": "Weak Armor",
+            "nature": "Relaxed",
+            "evs": {
+              "hp": 32,
+              "def": 32,
+              "spa": 2
+            },
+            "moves": [
+              "Protect",
+              "Hyper Beam",
+              "Uproar",
+              "Self-Destruct"
+            ]
+          },
+          "Dragalge": {
+            "item": "Dragalgite",
+            "ability": "Adaptability",
+            "nature": "Rash",
+            "evs": {
+              "def": 32,
+              "spa": 2,
+              "spd": 32
+            },
+            "moves": [
+              "Toxic",
+              "Focus Blast",
+              "Sleep Talk",
+              "Endure"
+            ]
+          },
+          "Pikachu": {
+            "item": "Charti Berry",
+            "ability": "Static",
+            "nature": "Brave",
+            "evs": {
+              "atk": 32,
+              "spa": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Thunder Punch",
+              "Rising Voltage",
+              "Helping Hand",
+              "Draining Kiss"
+            ]
+          }
+        }
+      }
+    ]
+  },
+  {
+    "gen": 6,
+    "best_fitness": 0.7619047619047619,
+    "rankings": [
+      {
+        "fitness": 0.7619047619047619,
+        "wins": 32,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Incineroar": {
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Life Orb",
+            "ability": "Good As Gold",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.7619047619047619,
+        "wins": 32,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Incineroar": {
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Life Orb",
+            "ability": "Good As Gold",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "atk": 32,
+              "def": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.6428571428571429,
+        "wins": 27,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Moxie",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Incineroar": {
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Focus Punch",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Life Orb",
+            "ability": "Good As Gold",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "atk": 32,
+              "def": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "Seed Bomb"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.5853658536585366,
+        "wins": 24,
+        "games": 41,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Incineroar": {
+            "item": "Babiri Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Life Orb",
+            "ability": "Good As Gold",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Surf",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "Protect"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Thrash",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.5714285714285714,
+        "wins": 24,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Incineroar": {
+            "item": "Sitrus Berry",
+            "ability": "Blaze",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Life Orb",
+            "ability": "Good As Gold",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Psychic Seed",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "atk": 32,
+              "def": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Crunch"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.5238095238095238,
+        "wins": 22,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "atk": 2,
+              "def": 32,
+              "spa": 32
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Incineroar": {
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Life Orb",
+            "ability": "Good As Gold",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "atk": 32,
+              "def": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        }
+      }
+    ]
+  },
+  {
+    "gen": 7,
+    "best_fitness": 0.7619047619047619,
+    "rankings": [
+      {
+        "fitness": 0.7619047619047619,
+        "wins": 32,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Incineroar": {
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Life Orb",
+            "ability": "Good As Gold",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.6904761904761905,
+        "wins": 29,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Incineroar": {
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Life Orb",
+            "ability": "Good As Gold",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "atk": 32,
+              "def": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.47619047619047616,
+        "wins": 20,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Qwilfish",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Moxie",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Incineroar": {
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Overgrow",
+            "nature": "Adamant",
+            "evs": {
+              "atk": 32,
+              "def": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Mild",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          },
+          "Qwilfish": {
+            "item": "Quick Claw",
+            "ability": "Poison Point",
+            "nature": "Sassy",
+            "evs": {
+              "hp": 32,
+              "atk": 32,
+              "spa": 2
+            },
+            "moves": [
+              "Substitute",
+              "Facade",
+              "Flail",
+              "Barb Barrage"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.4523809523809524,
+        "wins": 19,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Incineroar": {
+            "item": "Sitrus Berry",
+            "ability": "Blaze",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Life Orb",
+            "ability": "Good As Gold",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "atk": 32,
+              "def": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "atk": 32,
+              "def": 2,
+              "spd": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.38095238095238093,
+        "wins": 16,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 32,
+              "def": 32,
+              "spa": 2
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Incineroar": {
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Life Orb",
+            "ability": "Good As Gold",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Flash Cannon",
+              "Protect"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "atk": 2,
+              "def": 32,
+              "spa": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.09523809523809523,
+        "wins": 4,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Houndoom",
+          "Espeon",
+          "Zoroark",
+          "Persian",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Expert Belt",
+            "ability": "Synchronize",
+            "nature": "Hasty",
+            "evs": {
+              "hp": 32,
+              "atk": 32,
+              "def": 2
+            },
+            "moves": [
+              "Roar",
+              "Quick Attack",
+              "Protect",
+              "Assurance"
+            ]
+          },
+          "Houndoom": {
+            "item": "Shed Shell",
+            "ability": "Early Bird",
+            "nature": "Adamant",
+            "evs": {
+              "spa": 32,
+              "spd": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Mud-Slap",
+              "Howl",
+              "Burning Jealousy",
+              "Roar"
+            ]
+          },
+          "Espeon": {
+            "item": "Yache Berry",
+            "ability": "Magic Bounce",
+            "nature": "Brave",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Yawn",
+              "Alluring Voice",
+              "Skill Swap",
+              "Grass Knot"
+            ]
+          },
+          "Zoroark": {
+            "item": "Focus Sash",
+            "ability": "Illusion",
+            "nature": "Lonely",
+            "evs": {
+              "atk": 32,
+              "def": 32,
+              "spd": 2
+            },
+            "moves": [
+              "Lash Out",
+              "Round",
+              "Sucker Punch",
+              "Sleep Talk"
+            ]
+          },
+          "Persian": {
+            "item": "Air Balloon",
+            "ability": "Limber",
+            "nature": "Timid",
+            "evs": {
+              "hp": 32,
+              "atk": 32,
+              "spe": 2
+            },
+            "moves": [
+              "Roar",
+              "Feint",
+              "Rest",
+              "Water Pulse"
+            ]
+          },
+          "Garchomp": {
+            "item": "Garchompite Z",
+            "ability": "Sand Veil",
+            "nature": "Relaxed",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Dragon Cheer",
+              "Rock Tomb",
+              "Spikes",
+              "Poison Jab"
+            ]
+          }
+        }
+      }
+    ]
+  },
+  {
+    "gen": 8,
+    "best_fitness": 0.7380952380952381,
+    "rankings": [
+      {
+        "fitness": 0.7380952380952381,
+        "wins": 31,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Incineroar": {
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Life Orb",
+            "ability": "Good As Gold",
+            "nature": "Gentle",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Thief",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Mild",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.6097560975609756,
+        "wins": 25,
+        "games": 41,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Incineroar": {
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Life Orb",
+            "ability": "Good As Gold",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "atk": 32,
+              "def": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.5714285714285714,
+        "wins": 24,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Incineroar": {
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Life Orb",
+            "ability": "Good As Gold",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.5476190476190477,
+        "wins": 23,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Moxie",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Incineroar": {
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "atk": 2,
+              "spa": 32
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Life Orb",
+            "ability": "Good As Gold",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Overgrow",
+            "nature": "Adamant",
+            "evs": {
+              "atk": 32,
+              "def": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Endure"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.42857142857142855,
+        "wins": 18,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Sharpedo"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Incineroar": {
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Life Orb",
+            "ability": "Good As Gold",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Quick Claw",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "atk": 32,
+              "def": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          "Sharpedo": {
+            "item": "Air Balloon",
+            "ability": "Rough Skin",
+            "nature": "Relaxed",
+            "evs": {
+              "atk": 32,
+              "spa": 32,
+              "spe": 2
+            },
+            "moves": [
+              "Double-Edge",
+              "Waterfall",
+              "Ice Fang",
+              "Earthquake"
+            ]
+          }
+        }
+      },
+      {
+        "fitness": 0.3333333333333333,
+        "wins": 14,
+        "games": 42,
+        "species": [
+          "Umbreon",
+          "Salamence",
+          "Gallade",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ],
+        "sets": {
+          "Umbreon": {
+            "item": "Leftovers",
+            "ability": "Inner Focus",
+            "nature": "Bold",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Foul Play",
+              "Snarl",
+              "Yawn",
+              "Taunt"
+            ]
+          },
+          "Salamence": {
+            "item": "Salamencite",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Breaking Swipe",
+              "Tailwind",
+              "Protect"
+            ]
+          },
+          "Gholdengo": {
+            "item": "Life Orb",
+            "ability": "Good As Gold",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          "Rillaboom": {
+            "item": "Miracle Seed",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Double Hit",
+              "High Horsepower"
+            ]
+          },
+          "Garchomp": {
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 32,
+              "spa": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          },
+          "Gallade": {
+            "item": "Air Balloon",
+            "ability": "Justified",
+            "nature": "Careful",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spa": 32
+            },
+            "moves": [
+              "Wonder Room",
+              "Destiny Bond",
+              "Magic Room",
+              "Light Screen"
+            ]
+          }
+        }
+      }
+    ]
+  }
+]

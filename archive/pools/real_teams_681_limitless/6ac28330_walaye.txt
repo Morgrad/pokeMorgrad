@@ -1,0 +1,59 @@
+Grapploct @ Life Orb
+Ability: Technician
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Storm Throw
+- Payback
+- Detect
+- Octolock
+
+Malamar @ Malamarite
+Ability: Contrary
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Superpower
+- Knock Off
+- Protect
+- Trick Room
+
+Gardevoir @ Gardevoirite
+Ability: Trace
+Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
+Modest Nature
+- Expanding Force
+- Hyper Voice
+- Protect
+- Calm Mind
+
+Basculegion @ Choice Scarf
+Ability: Adaptability
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Aqua Jet
+- Flip Turn
+- Last Respects
+- Wave Crash
+
+Indeedee-F @ Psychic Seed
+Ability: Psychic Surge
+Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
+Modest Nature
+- Psychic
+- Helping Hand
+- Follow Me
+- Trick Room
+
+Reuniclus @ Twisted Spoon
+Ability: Regenerator
+Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
+Modest Nature
+- Shadow Ball
+- Expanding Force
+- Protect
+- Trick Room

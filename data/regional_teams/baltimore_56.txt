@@ -1,0 +1,59 @@
+Farigiraf @ Sitrus Berry
+Ability: Armor Tail
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Expanding Force
+- Thunderbolt
+- Helping Hand
+- Trick Room
+
+Glimmora @ Glimmoranite
+Ability: Toxic Debris
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Power Gem
+- Sludge Bomb
+- Earth Power
+- Spiky Shield
+
+Gholdengo @ Life Orb
+Ability: Good as Gold
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Nasty Plot
+- Shadow Ball
+- Make It Rain
+- Protect
+
+Charizard @ Charizardite Y
+Ability: Blaze
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Weather Ball
+- Protect
+- Heat Wave
+- Solar Beam
+
+Kommo-o @ Dragon Fang
+Ability: Soundproof
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Clanging Scales
+- Aura Sphere
+- Vacuum Wave
+- Protect
+
+Whimsicott @ Focus Sash
+Ability: Prankster
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Moonblast
+- Tailwind
+- Encore
+- Protect

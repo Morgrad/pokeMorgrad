@@ -1,0 +1,59 @@
+Raichu @ Raichunite Y
+Ability: Lightning Rod
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Zap Cannon
+- Focus Blast
+- Fake Out
+- Protect
+
+Milotic @ Leftovers
+Ability: Competitive
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Scald
+- Ice Beam
+- Icy Wind
+- Protect
+
+Staraptor @ Staraptite
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Close Combat
+- Brave Bird
+- Tailwind
+- Protect
+
+Gholdengo @ Life Orb
+Ability: Good as Gold
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Make It Rain
+- Shadow Ball
+- Nasty Plot
+- Protect
+
+Arcanine-Hisui @ Focus Sash
+Ability: Rock Head
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Flare Blitz
+- Head Smash
+- Protect
+- Extreme Speed
+
+Rillaboom @ Miracle Seed
+Ability: Grassy Surge
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Wood Hammer
+- Grassy Glide
+- Fake Out
+- High Horsepower

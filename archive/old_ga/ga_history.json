@@ -1,0 +1,197 @@
+[
+  {
+    "gen": 1,
+    "best": 0.6598639455782312,
+    "avg": 0.14721357789823275,
+    "species": [
+      "Salamence",
+      "Arcanine-Hisui",
+      "Indeedee",
+      "Milotic",
+      "Metagross",
+      "Sneasler"
+    ]
+  },
+  {
+    "gen": 2,
+    "best": 0.7027027027027027,
+    "avg": 0.4397338584989592,
+    "species": [
+      "Excadrill",
+      "Salamence",
+      "Tyranitar",
+      "Indeedee",
+      "Corviknight",
+      "Sneasler"
+    ]
+  },
+  {
+    "gen": 3,
+    "best": 0.7181208053691275,
+    "avg": 0.48737069955861906,
+    "species": [
+      "Excadrill",
+      "Salamence",
+      "Tyranitar",
+      "Indeedee",
+      "Corviknight",
+      "Sneasler"
+    ]
+  },
+  {
+    "gen": 4,
+    "best": 0.6959459459459459,
+    "avg": 0.5821286565294236,
+    "species": [
+      "Salamence",
+      "Arcanine-Hisui",
+      "Tyranitar",
+      "Indeedee",
+      "Corviknight",
+      "Sneasler"
+    ]
+  },
+  {
+    "gen": 5,
+    "best": 0.7,
+    "avg": 0.5559754149437754,
+    "species": [
+      "Excadrill",
+      "Salamence",
+      "Tyranitar",
+      "Indeedee",
+      "Corviknight",
+      "Sneasler"
+    ]
+  },
+  {
+    "gen": 6,
+    "best": 0.722972972972973,
+    "avg": 0.5599885654727458,
+    "species": [
+      "Salamence",
+      "Arcanine-Hisui",
+      "Tyranitar",
+      "Indeedee",
+      "Corviknight",
+      "Sneasler"
+    ]
+  },
+  {
+    "gen": 7,
+    "best": 0.6891891891891891,
+    "avg": 0.5985180240813527,
+    "species": [
+      "Salamence",
+      "Arcanine-Hisui",
+      "Tyranitar",
+      "Indeedee",
+      "Corviknight",
+      "Sneasler"
+    ]
+  },
+  {
+    "gen": 8,
+    "best": 0.7315436241610739,
+    "avg": 0.5988968910408382,
+    "species": [
+      "Salamence",
+      "Arcanine-Hisui",
+      "Indeedee",
+      "Milotic",
+      "Metagross",
+      "Sneasler"
+    ]
+  },
+  {
+    "gen": 9,
+    "best": 0.7346938775510204,
+    "avg": 0.5493116982206149,
+    "species": [
+      "Salamence",
+      "Arcanine-Hisui",
+      "Tyranitar",
+      "Indeedee",
+      "Corviknight",
+      "Sneasler"
+    ]
+  },
+  {
+    "gen": 10,
+    "best": 0.7181208053691275,
+    "avg": 0.5842673359566937,
+    "species": [
+      "Salamence",
+      "Arcanine-Hisui",
+      "Tyranitar",
+      "Indeedee",
+      "Corviknight",
+      "Sneasler"
+    ]
+  },
+  {
+    "gen": 11,
+    "best": 0.7516778523489933,
+    "avg": 0.6118572493874507,
+    "species": [
+      "Salamence",
+      "Arcanine-Hisui",
+      "Tyranitar",
+      "Indeedee",
+      "Corviknight",
+      "Sneasler"
+    ]
+  },
+  {
+    "gen": 12,
+    "best": 0.6778523489932886,
+    "avg": 0.5817127860636969,
+    "species": [
+      "Salamence",
+      "Arcanine-Hisui",
+      "Tyranitar",
+      "Indeedee",
+      "Corviknight",
+      "Sneasler"
+    ]
+  },
+  {
+    "gen": 13,
+    "best": 0.668918918918919,
+    "avg": 0.5697283638294158,
+    "species": [
+      "Salamence",
+      "Arcanine-Hisui",
+      "Tyranitar",
+      "Indeedee",
+      "Corviknight",
+      "Sneasler"
+    ]
+  },
+  {
+    "gen": 14,
+    "best": 0.6711409395973155,
+    "avg": 0.5952872060537252,
+    "species": [
+      "Salamence",
+      "Arcanine-Hisui",
+      "Tyranitar",
+      "Indeedee",
+      "Corviknight",
+      "Sneasler"
+    ]
+  },
+  {
+    "gen": 15,
+    "best": 0.6666666666666666,
+    "avg": 0.5795207084437091,
+    "species": [
+      "Salamence",
+      "Arcanine-Hisui",
+      "Tyranitar",
+      "Indeedee",
+      "Corviknight",
+      "Sneasler"
+    ]
+  }
+]

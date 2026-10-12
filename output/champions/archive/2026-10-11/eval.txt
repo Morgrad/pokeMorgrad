@@ -1,0 +1,4 @@
+Opponents: 400 regional teams, seeds [100, 200, 300]
+  baseline_team.txt                682/1200 =  56.8%
+  ga_umbreon.txt                   843/1200 =  70.2%
+  ga_free.txt                      787/1200 =  65.6%

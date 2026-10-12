@@ -1,0 +1,59 @@
+Incineroar @ Sitrus Berry
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Fake Out
+- Flare Blitz
+- Darkest Lariat
+- Parting Shot
+
+Rillaboom @ Life Orb
+Ability: Grassy Surge
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Fake Out
+- Grassy Glide
+- High Horsepower
+- Wood Hammer
+
+Sneasler @ Grassy Seed
+Ability: Unburden
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Dire Claw
+- Close Combat
+- Rock Slide
+- Protect
+
+Toxapex @ Leftovers
+Ability: Regenerator
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Toxic
+- Infestation
+- Recover
+- Baneful Bunker
+
+Gholdengo @ Focus Sash
+Ability: Good as Gold
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Make It Rain
+- Shadow Ball
+- Power Gem
+- Protect
+
+Floette-Eternal @ Floettite
+Ability: Flower Veil
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Moonblast
+- Dazzling Gleam
+- Light of Ruin
+- Protect

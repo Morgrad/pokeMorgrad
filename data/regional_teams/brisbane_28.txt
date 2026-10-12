@@ -1,0 +1,59 @@
+Sneasler @ Focus Sash
+Ability: Poison Touch
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Dire Claw
+- Close Combat
+- Quick Guard
+- Fake Out
+
+Incineroar @ Sitrus Berry
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Flare Blitz
+- Throat Chop
+- Fake Out
+- Parting Shot
+
+Delphox @ Delphoxite
+Ability: Blaze
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Heat Wave
+- Psychic
+- Nasty Plot
+- Protect
+
+Kingambit @ Life Orb
+Ability: Defiant
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Kowtow Cleave
+- Protect
+- Sucker Punch
+- Swords Dance
+
+Floette-Eternal @ Floettite
+Ability: Flower Veil
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Dazzling Gleam
+- Moonblast
+- Calm Mind
+- Protect
+
+Sinistcha @ Colbur Berry
+Ability: Hospitality
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Matcha Gotcha
+- Trick Room
+- Protect
+- Rage Powder

@@ -1,0 +1,59 @@
+Archaludon @ Leftovers
+Ability: Stamina
+Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
+Modest Nature
+- Protect
+- Electro Shot
+- Dragon Pulse
+- Snarl
+
+Pelipper @ Sitrus Berry
+Ability: Drizzle
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Hurricane
+- Weather Ball
+- Tailwind
+- Soak
+
+Golisopod @ Golisopite
+Ability: Emergency Exit
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Leech Life
+- Iron Head
+- Swords Dance
+- Sucker Punch
+
+Farigiraf @ Mental Herb
+Ability: Armor Tail
+Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
+Modest Nature
+- Thunderbolt
+- Trick Room
+- Helping Hand
+- Expanding Force
+
+Grimmsnarl @ Rocky Helmet
+Ability: Prankster
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Light Screen
+- Reflect
+- Spirit Break
+- Fake Out
+
+Charizard @ Charizardite Y
+Ability: Blaze
+Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
+Modest Nature
+- Weather Ball
+- Heat Wave
+- Hurricane
+- Protect

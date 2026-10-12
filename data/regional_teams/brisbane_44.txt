@@ -1,0 +1,59 @@
+Empoleon @ Sitrus Berry
+Ability: Competitive
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Flash Cannon
+- Ice Beam
+- Surf
+
+Tsareena @ Wide Lens
+Ability: Queenly Majesty
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Power Whip
+- Triple Axel
+- Zen Headbutt
+- Protect
+
+Garchomp @ Life Orb
+Ability: Rough Skin
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Sunny Day
+- Dragon Claw
+- Earthquake
+- Protect
+
+Charizard @ Charizardite Y
+Ability: Blaze
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Heat Wave
+- Protect
+- Weather Ball
+- Solar Beam
+
+Wyrdeer @ Colbur Berry
+Ability: Intimidate
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Skill Swap
+- Expanding Force
+- Trick Room
+- Helping Hand
+
+Aerodactyl @ Focus Sash
+Ability: Unnerve
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Rock Slide
+- Dual Wingbeat
+- Wide Guard
+- Tailwind

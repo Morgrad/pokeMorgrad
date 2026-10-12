@@ -1,0 +1,59 @@
+Umbreon @ Leftovers
+Ability: Inner Focus
+Level: 50
+Bold Nature
+EVs: 32 HP / 20 DEF / 14 SPD
+- Foul Play
+- Snarl
+- Yawn
+- Taunt
+
+Salamence @ Salamencite
+Ability: Moxie
+Level: 50
+Jolly Nature
+EVs: 1 HP / 21 ATK / 15 SPA / 29 SPE
+- Double-Edge
+- Dragon Claw
+- Tailwind
+- Protect
+
+Incineroar @ Sitrus Berry
+Ability: Blaze
+Level: 50
+Impish Nature
+EVs: 32 ATK / 32 DEF / 2 SPD
+- Darkest Lariat
+- Fling
+- Throat Chop
+- Parting Shot
+
+Gholdengo @ Life Orb
+Ability: Good As Gold
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Make It Rain
+- Shadow Ball
+- Nasty Plot
+- Trick
+
+Rillaboom @ Miracle Seed
+Ability: Overgrow
+Level: 50
+Adamant Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Endure
+- Wood Hammer
+- Fake Out
+- High Horsepower
+
+Garchomp @ Rocky Helmet
+Ability: Rough Skin
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Stomping Tantrum
+- Dragon Rush
+- Rock Slide
+- Outrage

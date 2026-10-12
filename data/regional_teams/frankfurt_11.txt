@@ -1,0 +1,59 @@
+Raichu @ Raichunite Y
+Ability: Lightning Rod
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Fake Out
+- Zap Cannon
+- Focus Blast
+- Protect
+
+Pelipper @ Life Orb
+Ability: Drizzle
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Weather Ball
+- Hurricane
+- Tailwind
+- Protect
+
+Golisopod @ Golisopite
+Ability: Emergency Exit
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Leech Life
+- Iron Head
+- Drill Run
+- Protect
+
+Kingambit @ Focus Sash
+Ability: Defiant
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Sucker Punch
+- Kowtow Cleave
+- Iron Head
+- Low Kick
+
+Archaludon @ Leftovers
+Ability: Stamina
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Electro Shot
+- Dragon Pulse
+- Snarl
+- Protect
+
+Farigiraf @ Sitrus Berry
+Ability: Armor Tail
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Twin Beam
+- Helping Hand
+- Trick Room
+- Protect

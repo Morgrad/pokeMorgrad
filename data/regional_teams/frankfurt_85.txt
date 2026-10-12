@@ -1,0 +1,59 @@
+Incineroar @ Sitrus Berry
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Flare Blitz
+- Taunt
+- Fake Out
+- Parting Shot
+
+Floette-Eternal @ Floettite
+Ability: Flower Veil
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Moonblast
+- Dazzling Gleam
+- Calm Mind
+- Protect
+
+Garchomp @ Choice Scarf
+Ability: Rough Skin
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Dragon Claw
+- Stomping Tantrum
+- Rock Slide
+- Rock Tomb
+
+Rillaboom @ Miracle Seed
+Ability: Grassy Surge
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Wood Hammer
+- Grassy Glide
+- Fake Out
+- U-turn
+
+Staraptor @ Staraptite
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Close Combat
+- Brave Bird
+- Tailwind
+- Protect
+
+Gholdengo @ Life Orb
+Ability: Good as Gold
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Make It Rain
+- Shadow Ball
+- Nasty Plot
+- Protect

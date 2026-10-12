@@ -1,0 +1,8 @@
+Opponents: 100 regional teams, seeds [100, 200, 300]
+  baseline_team.txt                175/ 300 =  58.3%
+  ga_run1_island_A.txt             222/ 300 =  74.0%
+  ga_run1_island_B.txt             230/ 300 =  76.7%
+  ga_run1_island_C.txt             233/ 300 =  77.7%
+  ga_run2_island_A.txt             236/ 300 =  78.7%
+  ga_run2_island_B.txt             224/ 300 =  74.7%
+  ga_run2_island_C.txt             222/ 300 =  74.0%

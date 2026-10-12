@@ -1,0 +1,59 @@
+Umbreon @ Leftovers
+Ability: Inner Focus
+Level: 50
+Bold Nature
+EVs: 32 HP / 20 DEF / 14 SPD
+- Foul Play
+- Snarl
+- Yawn
+- Taunt
+
+Salamence @ Salamencite
+Ability: Intimidate
+Level: 50
+Naive Nature
+EVs: 1 HP / 21 ATK / 15 SPA / 29 SPE
+- Aerial Ace
+- Dragon Claw
+- Tailwind
+- Protect
+
+Whimsicott @ Focus Sash
+Ability: Prankster
+Level: 50
+Calm Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Moonblast
+- Tailwind
+- Encore
+- Protect
+
+Gholdengo @ Choice Scarf
+Ability: Good as Gold
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Make It Rain
+- Shadow Ball
+- Nasty Plot
+- Psyshock
+
+Sneasler @ Psychic Seed
+Ability: Unburden
+Level: 50
+Bashful Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Dire Claw
+- Close Combat
+- Throat Chop
+- Rest
+
+Garchomp @ Rocky Helmet
+Ability: Rough Skin
+Level: 50
+Hasty Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Stomping Tantrum
+- Dragon Claw
+- Rock Slide
+- Protect

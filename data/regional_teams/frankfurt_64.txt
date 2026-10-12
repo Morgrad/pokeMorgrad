@@ -1,0 +1,59 @@
+Indeedee-F @ Rocky Helmet
+Ability: Psychic Surge
+Level: 50
+Calm Nature
+EVs: 32 HP / 20 DEF / 14 SPD
+- Follow Me
+- Trick Room
+- Helping Hand
+- Safeguard
+
+Camerupt @ Cameruptite
+Ability: Solid Rock
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Heat Wave
+- Flamethrower
+- Earth Power
+- Ancient Power
+
+Gardevoir @ Gardevoirite
+Ability: Synchronize
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Expanding Force
+- Hyper Voice
+- Calm Mind
+- Protect
+
+Sneasler @ Psychic Seed
+Ability: Unburden
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Dire Claw
+- Throat Chop
+- Close Combat
+- Protect
+
+Farigiraf @ Sitrus Berry
+Ability: Armor Tail
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Expanding Force
+- Thunderbolt
+- Trick Room
+- Nasty Plot
+
+Incineroar @ White Herb
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Fake Out
+- Close Combat
+- Throat Chop
+- Flare Blitz

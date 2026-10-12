@@ -1,0 +1,62 @@
+"""Process all scraped replays → training_data.jsonl.
+
+Each line is a decision point with state + chosen action.
+Skips decisions where chosen action is incomplete.
+"""
+import sys
+import glob
+import json
+import os
+
+sys.path.insert(0, os.path.expanduser("~/project/tools"))
+from replay_tracker import Tracker
+
+REPLAY_DIR = os.path.expanduser("~/project/data/showdown_replays")
+OUT_PATH = os.path.expanduser("~/project/data/training_data.jsonl")
+
+files = sorted(f for f in glob.glob(os.path.join(REPLAY_DIR, "*.json"))
+               if not f.endswith(".meta.json"))
+
+print(f"Processing {len(files)} replays → {OUT_PATH}")
+
+n_replays_ok = 0
+n_replays_fail = 0
+n_decisions = 0
+n_decisions_skipped = 0
+n_preview_actions = 0  # future
+
+with open(OUT_PATH, "w") as fout:
+    for i, fpath in enumerate(files, 1):
+        try:
+            d = json.load(open(fpath))
+            t = Tracker(d)
+            outputs = t.run()
+            n_replays_ok += 1
+        except Exception as e:
+            n_replays_fail += 1
+            if n_replays_fail <= 5:
+                print(f"  fail: {os.path.basename(fpath)}: {e}")
+            continue
+
+        for o in outputs:
+            chosen = o.get("chosen", {})
+            # Require at least one side to have an action
+            p1_has = bool(chosen.get("p1"))
+            p2_has = bool(chosen.get("p2"))
+            if not (p1_has or p2_has):
+                n_decisions_skipped += 1
+                continue
+            fout.write(json.dumps(o, default=str) + "\n")
+            n_decisions += 1
+
+        if i % 250 == 0:
+            print(f"  {i}/{len(files)}  ok={n_replays_ok}  fail={n_replays_fail}  decisions={n_decisions}")
+
+print()
+print(f"DONE")
+print(f"  replays OK:       {n_replays_ok}")
+print(f"  replays failed:   {n_replays_fail}")
+print(f"  decisions kept:   {n_decisions}")
+print(f"  decisions skipped: {n_decisions_skipped}")
+print(f"  output: {OUT_PATH}")
+print(f"  size: {os.path.getsize(OUT_PATH) / 1024 / 1024:.1f} MB")

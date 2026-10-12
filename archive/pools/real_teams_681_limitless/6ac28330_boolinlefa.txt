@@ -1,0 +1,59 @@
+Araquanid @ Sitrus Berry
+Ability: Water Bubble
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Wide Guard
+- Leech Life
+- Liquidation
+- Entrainment
+
+Volcarona @ Leftovers
+Ability: Flame Body
+Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
+Modest Nature
+- Rage Powder
+- Bug Buzz
+- Heat Wave
+- Tailwind
+
+Gardevoir @ Gardevoirite
+Ability: Trace
+Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
+Modest Nature
+- Hyper Voice
+- Trick Room
+- Protect
+- Expanding Force
+
+Whimsicott @ Focus Sash
+Ability: Prankster
+Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
+Modest Nature
+- Protect
+- Tailwind
+- Worry Seed
+- Moonblast
+
+Mamoswine @ Life Orb
+Ability: Oblivious
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Protect
+- High Horsepower
+- Ice Shard
+- Icicle Crash
+
+Gyarados @ Gyaradosite
+Ability: Intimidate
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Protect
+- Waterfall
+- Crunch
+- Dragon Dance

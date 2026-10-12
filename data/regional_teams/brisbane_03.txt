@@ -1,0 +1,59 @@
+Garchomp @ Garchompite
+Ability: Rough Skin
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Stomping Tantrum
+- Scale Shot
+- Protect
+- Rock Slide
+
+Sneasler @ Focus Sash
+Ability: Poison Touch
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Dire Claw
+- Fake Out
+- Close Combat
+- Coaching
+
+Floette-Eternal @ Floettite
+Ability: Flower Veil
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Dazzling Gleam
+- Draining Kiss
+- Calm Mind
+- Protect
+
+Incineroar @ Sitrus Berry
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Flare Blitz
+- Fake Out
+- Parting Shot
+- Helping Hand
+
+Rillaboom @ Miracle Seed
+Ability: Grassy Surge
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Wood Hammer
+- High Horsepower
+- Fake Out
+- Grassy Glide
+
+Kingambit @ Life Orb
+Ability: Defiant
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Kowtow Cleave
+- Swords Dance
+- Sucker Punch
+- Protect

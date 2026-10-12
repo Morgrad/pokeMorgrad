@@ -1,0 +1,59 @@
+Incineroar @ Sitrus Berry
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Flare Blitz
+- Taunt
+- Fake Out
+- Parting Shot
+
+Gholdengo @ Life Orb
+Ability: Good as Gold
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Make It Rain
+- Shadow Ball
+- Nasty Plot
+- Protect
+
+Sneasler @ White Herb
+Ability: Unburden
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Dire Claw
+- Close Combat
+- Rock Tomb
+- Protect
+
+Dragonite @ Dragoninite
+Ability: Inner Focus
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Dragon Pulse
+- Heat Wave
+- Tailwind
+- Protect
+
+Rillaboom @ Miracle Seed
+Ability: Grassy Surge
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Wood Hammer
+- Grassy Glide
+- High Horsepower
+- Fake Out
+
+Floette-Eternal @ Floettite
+Ability: Flower Veil
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Dazzling Gleam
+- Draining Kiss
+- Calm Mind
+- Protect

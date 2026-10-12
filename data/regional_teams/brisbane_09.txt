@@ -1,0 +1,59 @@
+Sinistcha @ Sitrus Berry
+Ability: Hospitality
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Matcha Gotcha
+- Rage Powder
+- Shadow Ball
+- Trick Room
+
+Mawile @ Mawilite
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Iron Head
+- Play Rough
+- Sucker Punch
+- Protect
+
+Sableye @ Roseli Berry
+Ability: Prankster
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Fake Out
+- Rain Dance
+- Will-O-Wisp
+- Light Screen
+
+Pelipper @ Focus Sash
+Ability: Drizzle
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Hurricane
+- Wide Guard
+- Soak
+- Tailwind
+
+Swampert @ Swampertite
+Ability: Torrent
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Wave Crash
+- Earthquake
+- Ice Punch
+- Protect
+
+Archaludon @ Leftovers
+Ability: Stamina
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Electro Shot
+- Dragon Pulse
+- Flash Cannon
+- Protect

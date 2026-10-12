@@ -1,0 +1,59 @@
+Indeedee-F @ Sitrus Berry
+Ability: Psychic Surge
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Psychic
+- Follow Me
+- Trick Room
+
+Pelipper @ Focus Sash
+Ability: Drizzle
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Hurricane
+- Weather Ball
+- Tailwind
+
+Gholdengo @ Life Orb
+Ability: Good as Gold
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Make It Rain
+- Shadow Ball
+- Nasty Plot
+
+Archaludon @ Leftovers
+Ability: Stamina
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Dragon Pulse
+- Aura Sphere
+- Electro Shot
+
+Swampert @ Swampertite
+Ability: Damp
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Protect
+- Wave Crash
+- Earthquake
+- Ice Punch
+
+Golisopod @ Golisopite
+Ability: Emergency Exit
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Protect
+- Liquidation
+- Leech Life
+- Swords Dance

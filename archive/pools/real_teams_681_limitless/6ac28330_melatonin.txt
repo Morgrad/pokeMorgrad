@@ -1,0 +1,59 @@
+Mr. Rime @ Bright Powder
+Ability: Tangled Feet
+Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
+Modest Nature
+- Psychic
+- Ice Beam
+- Fake Out
+- Protect
+
+Lopunny @ Lopunnite
+Ability: Cute Charm
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Protect
+- Close Combat
+- Draining Kiss
+- Teeter Dance
+
+Alcremie @ Sitrus Berry
+Ability: Aroma Veil
+Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
+Modest Nature
+- Psychic
+- Decorate
+- Protect
+- Dazzling Gleam
+
+Mimikyu @ Spell Tag
+Ability: Disguise
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Trick Room
+- Protect
+- Shadow Claw
+- Play Rough
+
+Gholdengo @ White Herb
+Ability: Good as Gold
+Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
+Modest Nature
+- Protect
+- Shadow Ball
+- Make It Rain
+- Surf
+
+Banette @ Banettite
+Ability: Frisk
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Protect
+- Shadow Claw
+- Phantom Force
+- Gunk Shot

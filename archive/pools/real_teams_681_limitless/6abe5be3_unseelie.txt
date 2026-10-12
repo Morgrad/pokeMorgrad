@@ -1,0 +1,59 @@
+Baxcalibur @ Sitrus Berry
+Ability: Thermal Exchange
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Glaive Rush
+- Stomping Tantrum
+- Protect
+- Ice Shard
+
+Milotic @ Leftovers
+Ability: Competitive
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Scald
+- Icy Wind
+- Life Dew
+- Recover
+
+Kleavor @ Life Orb
+Ability: Sheer Force
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Rock Slide
+- Lunge
+- Close Combat
+- Protect
+
+Delphox @ Delphoxite
+Ability: Blaze
+Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
+Modest Nature
+- Heat Wave
+- Protect
+- Nasty Plot
+- Psychic
+
+Froslass @ Froslassite
+Ability: Cursed Body
+Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
+Modest Nature
+- Blizzard
+- Shadow Ball
+- Aurora Veil
+- Protect
+
+Whimsicott @ Focus Sash
+Ability: Prankster
+Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
+Modest Nature
+- Tailwind
+- Moonblast
+- Energy Ball
+- Protect

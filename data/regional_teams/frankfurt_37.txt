@@ -1,0 +1,59 @@
+Kingambit @ Occa Berry
+Ability: Defiant
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Protect
+- Iron Head
+- Sucker Punch
+- Kowtow Cleave
+
+Whimsicott @ Coba Berry
+Ability: Prankster
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Encore
+- Tailwind
+- Moonblast
+
+Basculegion @ Life Orb
+Ability: Adaptability
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Protect
+- Wave Crash
+- Last Respects
+- Aqua Jet
+
+Glimmora @ Focus Sash
+Ability: Toxic Debris
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Spiky Shield
+- Power Gem
+- Sludge Bomb
+- Earth Power
+
+Volcarona @ Rocky Helmet
+Ability: Flame Body
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Rage Powder
+- Struggle Bug
+- Fiery Dance
+
+Garchomp @ Garchompite Z
+Ability: Rough Skin
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Draco Meteor
+- Earth Power
+- Flamethrower

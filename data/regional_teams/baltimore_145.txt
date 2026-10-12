@@ -1,0 +1,59 @@
+Pelipper @ Focus Sash
+Ability: Drizzle
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Wide Guard
+- Tailwind
+- Weather Ball
+- Hurricane
+
+Archaludon @ Leftovers
+Ability: Stamina
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Electro Shot
+- Flash Cannon
+- Dragon Pulse
+
+Kingambit @ Life Orb
+Ability: Defiant
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Sucker Punch
+- Kowtow Cleave
+- Iron Head
+- Low Kick
+
+Farigiraf @ Sitrus Berry
+Ability: Armor Tail
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Helping Hand
+- Trick Room
+- Thunderbolt
+- Psychic
+
+Golisopod @ Golisopite
+Ability: Emergency Exit
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Protect
+- Sucker Punch
+- Leech Life
+- Iron Head
+
+Sneasler @ White Herb
+Ability: Unburden
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Fake Out
+- Rock Slide
+- Dire Claw
+- Close Combat

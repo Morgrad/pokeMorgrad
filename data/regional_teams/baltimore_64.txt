@@ -1,0 +1,59 @@
+Floette-Eternal @ Floettite
+Ability: Flower Veil
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Draining Kiss
+- Dazzling Gleam
+- Calm Mind
+
+Rillaboom @ Miracle Seed
+Ability: Grassy Surge
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Fake Out
+- Wood Hammer
+- Grassy Glide
+- U-turn
+
+Kingambit @ Life Orb
+Ability: Defiant
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Protect
+- Kowtow Cleave
+- Sucker Punch
+- Swords Dance
+
+Volcarona @ Rocky Helmet
+Ability: Flame Body
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Overheat
+- Struggle Bug
+- Rage Powder
+
+Incineroar @ Sitrus Berry
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Fake Out
+- Darkest Lariat
+- Helping Hand
+- Parting Shot
+
+Lucario @ Lucarionite Z
+Ability: Inner Focus
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Flash Cannon
+- Aura Sphere
+- Nasty Plot

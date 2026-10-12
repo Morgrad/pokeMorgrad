@@ -1,0 +1,59 @@
+Rillaboom @ Miracle Seed
+Ability: Grassy Surge
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Fake Out
+- Grassy Glide
+- Wood Hammer
+- U-turn
+
+Golisopod @ Golisopite
+Ability: Emergency Exit
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Leech Life
+- Sucker Punch
+- Swords Dance
+- Protect
+
+Glimmora @ Focus Sash
+Ability: Toxic Debris
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Power Gem
+- Sludge Bomb
+- Earth Power
+- Spiky Shield
+
+Farigiraf @ Sitrus Berry
+Ability: Armor Tail
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Psychic
+- Helping Hand
+- Ally Switch
+- Trick Room
+
+Milotic @ Grassy Seed
+Ability: Competitive
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Scald
+- Ice Beam
+- Life Dew
+- Protect
+
+Staraptor @ Staraptite
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Close Combat
+- Brave Bird
+- Tailwind
+- Protect

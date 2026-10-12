@@ -1,0 +1,59 @@
+Arcanine-Hisui @ Focus Sash
+Ability: Rock Head
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Flare Blitz
+- Head Smash
+- Extreme Speed
+- Protect
+
+Milotic @ Sitrus Berry
+Ability: Competitive
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Muddy Water
+- Hypnosis
+- Coil
+- Ice Beam
+
+Staraptor @ Staraptite
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Close Combat
+- Brave Bird
+- Tailwind
+- Protect
+
+Rillaboom @ Life Orb
+Ability: Grassy Surge
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Grassy Glide
+- Wood Hammer
+- High Horsepower
+- Fake Out
+
+Raichu @ Raichunite Y
+Ability: Lightning Rod
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Zap Cannon
+- Focus Blast
+- Fake Out
+- Protect
+
+Gholdengo @ Grassy Seed
+Ability: Good as Gold
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Shadow Ball
+- Make It Rain
+- Nasty Plot
+- Protect

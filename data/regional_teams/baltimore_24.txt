@@ -1,0 +1,59 @@
+Kingambit @ Occa Berry
+Ability: Defiant
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Kowtow Cleave
+- Sucker Punch
+- Low Kick
+- Protect
+
+Torkoal @ Charcoal
+Ability: Drought
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Eruption
+- Weather Ball
+- Helping Hand
+
+Hatterene @ Life Orb
+Ability: Magic Bounce
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Dazzling Gleam
+- Expanding Force
+- Protect
+- Trick Room
+
+Glimmora @ Focus Sash
+Ability: Toxic Debris
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Sludge Bomb
+- Power Gem
+- Earth Power
+- Spiky Shield
+
+Blaziken @ Blazikenite
+Ability: Speed Boost
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Close Combat
+- Flare Blitz
+- Rock Slide
+- Protect
+
+Indeedee-F @ Psychic Seed
+Ability: Psychic Surge
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Trick Room
+- Helping Hand
+- Psychic
+- Follow Me

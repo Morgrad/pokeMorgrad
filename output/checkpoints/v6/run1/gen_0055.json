@@ -1,0 +1,4700 @@
+{
+  "generation": 55,
+  "saved": "2026-10-11 13:46:56",
+  "islands": [
+    {
+      "name": "A",
+      "constraints": {
+        "0": "Umbreon"
+      },
+      "population": [
+        [
+          {
+            "species": "Noivern",
+            "item": "Focus Sash",
+            "ability": "Frisk",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Taunt",
+              "Bite",
+              "Uproar",
+              "Hurricane"
+            ]
+          },
+          {
+            "species": "Salamence",
+            "item": "Misty Seed",
+            "ability": "Moxie",
+            "nature": "Hasty",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Flamethrower",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Incineroar",
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Quiet",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          {
+            "species": "Gholdengo",
+            "item": "Life Orb",
+            "ability": "Good as Gold",
+            "nature": "Timid",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Rillaboom",
+            "item": "Choice Scarf",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          {
+            "species": "Garchomp",
+            "item": "Rocky Helmet",
+            "ability": "Sand Veil",
+            "nature": "Jolly",
+            "evs": {
+              "def": 32,
+              "spd": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        ],
+        [
+          {
+            "species": "Vivillon",
+            "item": "Focus Sash",
+            "ability": "Friend Guard",
+            "nature": "Hasty",
+            "evs": {
+              "atk": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Air Cutter",
+              "Protect",
+              "Skitter Smack",
+              "Hurricane"
+            ]
+          },
+          {
+            "species": "Salamence",
+            "item": "Misty Seed",
+            "ability": "Moxie",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Flamethrower",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Incineroar",
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Quiet",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          {
+            "species": "Gholdengo",
+            "item": "Life Orb",
+            "ability": "Good as Gold",
+            "nature": "Timid",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Rillaboom",
+            "item": "Choice Scarf",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          {
+            "species": "Garchomp",
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "def": 32,
+              "spd": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        ],
+        [
+          {
+            "species": "Noivern",
+            "item": "Focus Sash",
+            "ability": "Frisk",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Taunt",
+              "Bite",
+              "Uproar",
+              "Hurricane"
+            ]
+          },
+          {
+            "species": "Salamence",
+            "item": "Misty Seed",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Earthquake",
+              "Flamethrower",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Incineroar",
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Quiet",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          {
+            "species": "Gholdengo",
+            "item": "Life Orb",
+            "ability": "Good as Gold",
+            "nature": "Timid",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Rillaboom",
+            "item": "Choice Scarf",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          {
+            "species": "Garchomp",
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "def": 32,
+              "spd": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Pulse",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        ],
+        [
+          {
+            "species": "Umbreon",
+            "item": "Poison Barb",
+            "ability": "Inner Focus",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Baby-Doll Eyes",
+              "Giga Impact",
+              "Swagger",
+              "Thief"
+            ]
+          },
+          {
+            "species": "Salamence",
+            "item": "Misty Seed",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Earthquake",
+              "Flamethrower",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Incineroar",
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Quiet",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          {
+            "species": "Gholdengo",
+            "item": "Life Orb",
+            "ability": "Good as Gold",
+            "nature": "Timid",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Rillaboom",
+            "item": "Choice Scarf",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "Earth Power"
+            ]
+          },
+          {
+            "species": "Garchomp",
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "def": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        ],
+        [
+          {
+            "species": "Umbreon",
+            "item": "Quick Claw",
+            "ability": "Inner Focus",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Helping Hand",
+              "Calm Mind",
+              "Skill Swap",
+              "Snore"
+            ]
+          },
+          {
+            "species": "Flapple",
+            "item": "Psychic Seed",
+            "ability": "Ripen",
+            "nature": "Calm",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Dragon Pulse",
+              "Aerial Ace",
+              "Endure",
+              "Dragon Dance"
+            ]
+          },
+          {
+            "species": "Barbaracle",
+            "item": "Barbaracite",
+            "ability": "Tough Claws",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Icy Wind",
+              "Payback",
+              "Sludge Wave",
+              "Whirlpool"
+            ]
+          },
+          {
+            "species": "Tinkaton",
+            "item": "Colbur Berry",
+            "ability": "Pickpocket",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Encore",
+              "Stealth Rock",
+              "Hard Press",
+              "Sweet Kiss"
+            ]
+          },
+          {
+            "species": "Skeledirge",
+            "item": "Leppa Berry",
+            "ability": "Unaware",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Imprison",
+              "Seed Bomb",
+              "Giga Impact",
+              "Shadow Claw"
+            ]
+          },
+          {
+            "species": "Persian",
+            "item": "Oran Berry",
+            "ability": "Technician",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Thunder Wave",
+              "Dig",
+              "Thunder",
+              "Snarl"
+            ]
+          }
+        ],
+        [
+          {
+            "species": "Umbreon",
+            "item": "Persim Berry",
+            "ability": "Inner Focus",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Giga Impact",
+              "Sunny Day",
+              "Crunch",
+              "Dig"
+            ]
+          },
+          {
+            "species": "Salamence",
+            "item": "Misty Seed",
+            "ability": "Moxie",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Flamethrower",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Incineroar",
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Bashful",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          {
+            "species": "Gholdengo",
+            "item": "Life Orb",
+            "ability": "Good as Gold",
+            "nature": "Timid",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Rillaboom",
+            "item": "Choice Scarf",
+            "ability": "Overgrow",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          {
+            "species": "Garchomp",
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "def": 32,
+              "spd": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        ],
+        [
+          {
+            "species": "Umbreon",
+            "item": "Lum Berry",
+            "ability": "Inner Focus",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Reflect",
+              "Thief",
+              "Endure",
+              "Baton Pass"
+            ]
+          },
+          {
+            "species": "Salamence",
+            "item": "Payapa Berry",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Earthquake",
+              "Flamethrower",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Incineroar",
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Quiet",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          {
+            "species": "Gholdengo",
+            "item": "Damp Rock",
+            "ability": "Good as Gold",
+            "nature": "Bashful",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Rillaboom",
+            "item": "Choice Scarf",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          {
+            "species": "Garchomp",
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "def": 32,
+              "spd": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        ],
+        [
+          {
+            "species": "Umbreon",
+            "item": "Iron Ball",
+            "ability": "Synchronize",
+            "nature": "Calm",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Assurance",
+              "Tickle",
+              "Copycat",
+              "Snarl"
+            ]
+          },
+          {
+            "species": "Salamence",
+            "item": "Misty Seed",
+            "ability": "Moxie",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Flamethrower",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Incineroar",
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Quiet",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          {
+            "species": "Gholdengo",
+            "item": "Life Orb",
+            "ability": "Good as Gold",
+            "nature": "Timid",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Reflect",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Rillaboom",
+            "item": "Miracle Seed",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          {
+            "species": "Garchomp",
+            "item": "Rocky Helmet",
+            "ability": "Sand Veil",
+            "nature": "Jolly",
+            "evs": {
+              "def": 32,
+              "spd": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Flamethrower",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        ],
+        [
+          {
+            "species": "Noivern",
+            "item": "Focus Sash",
+            "ability": "Frisk",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Taunt",
+              "Bite",
+              "Uproar",
+              "Hurricane"
+            ]
+          },
+          {
+            "species": "Salamence",
+            "item": "Oran Berry",
+            "ability": "Intimidate",
+            "nature": "Hasty",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Flamethrower",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Incineroar",
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flamethrower",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          {
+            "species": "Gholdengo",
+            "item": "Life Orb",
+            "ability": "Good as Gold",
+            "nature": "Timid",
+            "evs": {
+              "spa": 32,
+              "spd": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Rillaboom",
+            "item": "Choice Scarf",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          {
+            "species": "Garchomp",
+            "item": "Rocky Helmet",
+            "ability": "Sand Veil",
+            "nature": "Naughty",
+            "evs": {
+              "def": 32,
+              "spd": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        ],
+        [
+          {
+            "species": "Noivern",
+            "item": "Focus Sash",
+            "ability": "Frisk",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Taunt",
+              "Bite",
+              "Uproar",
+              "Hurricane"
+            ]
+          },
+          {
+            "species": "Salamence",
+            "item": "Misty Seed",
+            "ability": "Moxie",
+            "nature": "Hasty",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Flamethrower",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Incineroar",
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flamethrower",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          {
+            "species": "Gholdengo",
+            "item": "Life Orb",
+            "ability": "Good as Gold",
+            "nature": "Timid",
+            "evs": {
+              "spa": 32,
+              "spd": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Rillaboom",
+            "item": "Choice Scarf",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          {
+            "species": "Garchomp",
+            "item": "Rocky Helmet",
+            "ability": "Sand Veil",
+            "nature": "Jolly",
+            "evs": {
+              "def": 32,
+              "spd": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        ]
+      ],
+      "fitness": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "best_ever": {
+        "fit": 0.7407407407407407,
+        "genome": [
+          {
+            "species": "Noivern",
+            "item": "Focus Sash",
+            "ability": "Frisk",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Taunt",
+              "Bite",
+              "Uproar",
+              "Hurricane"
+            ]
+          },
+          {
+            "species": "Salamence",
+            "item": "Misty Seed",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Earthquake",
+              "Flamethrower",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Incineroar",
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Quiet",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          {
+            "species": "Gholdengo",
+            "item": "Life Orb",
+            "ability": "Good as Gold",
+            "nature": "Timid",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Rillaboom",
+            "item": "Choice Scarf",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          {
+            "species": "Garchomp",
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "def": 32,
+              "spd": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Pulse",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        ],
+        "gen": 48
+      },
+      "stagnation": 2,
+      "history": [
+        {
+          "gen": 1,
+          "best": 0.5886287625418061,
+          "avg": 0.10457623355606216,
+          "all_time": 0.5886287625418061,
+          "stag": 0
+        },
+        {
+          "gen": 2,
+          "best": 0.57,
+          "avg": 0.2301214114161298,
+          "all_time": 0.5886287625418061,
+          "stag": 1
+        },
+        {
+          "gen": 3,
+          "best": 0.5633333333333334,
+          "avg": 0.2634672794500782,
+          "all_time": 0.5886287625418061,
+          "stag": 2
+        },
+        {
+          "gen": 4,
+          "best": 0.61,
+          "avg": 0.38415985697018673,
+          "all_time": 0.61,
+          "stag": 0
+        },
+        {
+          "gen": 5,
+          "best": 0.5618729096989966,
+          "avg": 0.4368779825368678,
+          "all_time": 0.61,
+          "stag": 1
+        },
+        {
+          "gen": 6,
+          "best": 0.5939597315436241,
+          "avg": 0.3831744841067864,
+          "all_time": 0.61,
+          "stag": 2
+        },
+        {
+          "gen": 7,
+          "best": 0.5521885521885522,
+          "avg": 0.4039536834681276,
+          "all_time": 0.61,
+          "stag": 3
+        },
+        {
+          "gen": 8,
+          "best": 0.5536912751677853,
+          "avg": 0.34806311588891103,
+          "all_time": 0.61,
+          "stag": 4
+        },
+        {
+          "gen": 9,
+          "best": 0.5852842809364549,
+          "avg": 0.43953528642969636,
+          "all_time": 0.61,
+          "stag": 5
+        },
+        {
+          "gen": 10,
+          "best": 0.5633333333333334,
+          "avg": 0.5176876001150876,
+          "all_time": 0.61,
+          "stag": 1
+        },
+        {
+          "gen": 11,
+          "best": 0.5719063545150501,
+          "avg": 0.45383601818876534,
+          "all_time": 0.61,
+          "stag": 2
+        },
+        {
+          "gen": 12,
+          "best": 0.5366666666666666,
+          "avg": 0.45431094700455654,
+          "all_time": 0.61,
+          "stag": 3
+        },
+        {
+          "gen": 13,
+          "best": 0.5604026845637584,
+          "avg": 0.44512732096820323,
+          "all_time": 0.61,
+          "stag": 4
+        },
+        {
+          "gen": 14,
+          "best": 0.58,
+          "avg": 0.46701710427663673,
+          "all_time": 0.61,
+          "stag": 5
+        },
+        {
+          "gen": 15,
+          "best": 0.5353535353535354,
+          "avg": 0.336977259898182,
+          "all_time": 0.61,
+          "stag": 1
+        },
+        {
+          "gen": 16,
+          "best": 0.6464646464646465,
+          "avg": 0.43636081540268873,
+          "all_time": 0.6464646464646465,
+          "stag": 0
+        },
+        {
+          "gen": 17,
+          "best": 0.610738255033557,
+          "avg": 0.45097898353701665,
+          "all_time": 0.6464646464646465,
+          "stag": 1
+        },
+        {
+          "gen": 18,
+          "best": 0.6220735785953178,
+          "avg": 0.4503391941611786,
+          "all_time": 0.6464646464646465,
+          "stag": 2
+        },
+        {
+          "gen": 19,
+          "best": 0.6033333333333334,
+          "avg": 0.4393241361411773,
+          "all_time": 0.6464646464646465,
+          "stag": 3
+        },
+        {
+          "gen": 20,
+          "best": 0.6182432432432432,
+          "avg": 0.50903520986261,
+          "all_time": 0.6464646464646465,
+          "stag": 4
+        },
+        {
+          "gen": 21,
+          "best": 0.6387959866220736,
+          "avg": 0.5456154092380654,
+          "all_time": 0.6464646464646465,
+          "stag": 5
+        },
+        {
+          "gen": 22,
+          "best": 0.6912751677852349,
+          "avg": 0.5442124456615265,
+          "all_time": 0.6912751677852349,
+          "stag": 0
+        },
+        {
+          "gen": 23,
+          "best": 0.6397306397306397,
+          "avg": 0.48052663685794184,
+          "all_time": 0.6912751677852349,
+          "stag": 1
+        },
+        {
+          "gen": 24,
+          "best": 0.6442953020134228,
+          "avg": 0.48768290350156684,
+          "all_time": 0.6912751677852349,
+          "stag": 2
+        },
+        {
+          "gen": 25,
+          "best": 0.6566666666666666,
+          "avg": 0.4660517609032345,
+          "all_time": 0.6912751677852349,
+          "stag": 3
+        },
+        {
+          "gen": 26,
+          "best": 0.6555183946488294,
+          "avg": 0.5884106080671591,
+          "all_time": 0.6912751677852349,
+          "stag": 4
+        },
+        {
+          "gen": 27,
+          "best": 0.6354515050167224,
+          "avg": 0.44725625623174503,
+          "all_time": 0.6912751677852349,
+          "stag": 5
+        },
+        {
+          "gen": 28,
+          "best": 0.6397306397306397,
+          "avg": 0.5045001527776549,
+          "all_time": 0.6912751677852349,
+          "stag": 1
+        },
+        {
+          "gen": 29,
+          "best": 0.67,
+          "avg": 0.4708867319736886,
+          "all_time": 0.6912751677852349,
+          "stag": 2
+        },
+        {
+          "gen": 30,
+          "best": 0.6543624161073825,
+          "avg": 0.47148788684635995,
+          "all_time": 0.6912751677852349,
+          "stag": 3
+        },
+        {
+          "gen": 31,
+          "best": 0.705685618729097,
+          "avg": 0.5114622649850046,
+          "all_time": 0.705685618729097,
+          "stag": 0
+        },
+        {
+          "gen": 32,
+          "best": 0.6354515050167224,
+          "avg": 0.5087693761342134,
+          "all_time": 0.705685618729097,
+          "stag": 1
+        },
+        {
+          "gen": 33,
+          "best": 0.6254180602006689,
+          "avg": 0.5636154562617942,
+          "all_time": 0.705685618729097,
+          "stag": 2
+        },
+        {
+          "gen": 34,
+          "best": 0.6555183946488294,
+          "avg": 0.556717282738876,
+          "all_time": 0.705685618729097,
+          "stag": 3
+        },
+        {
+          "gen": 35,
+          "best": 0.6442953020134228,
+          "avg": 0.5059304785144961,
+          "all_time": 0.705685618729097,
+          "stag": 4
+        },
+        {
+          "gen": 36,
+          "best": 0.6644295302013423,
+          "avg": 0.5151271912299868,
+          "all_time": 0.705685618729097,
+          "stag": 5
+        },
+        {
+          "gen": 37,
+          "best": 0.7013422818791947,
+          "avg": 0.3535468321895226,
+          "all_time": 0.705685618729097,
+          "stag": 1
+        },
+        {
+          "gen": 38,
+          "best": 0.6533333333333333,
+          "avg": 0.3993411808252777,
+          "all_time": 0.705685618729097,
+          "stag": 2
+        },
+        {
+          "gen": 39,
+          "best": 0.6812080536912751,
+          "avg": 0.47615590372082933,
+          "all_time": 0.705685618729097,
+          "stag": 3
+        },
+        {
+          "gen": 40,
+          "best": 0.6733333333333333,
+          "avg": 0.5384991779179116,
+          "all_time": 0.705685618729097,
+          "stag": 4
+        },
+        {
+          "gen": 41,
+          "best": 0.6822742474916388,
+          "avg": 0.6088689666524507,
+          "all_time": 0.705685618729097,
+          "stag": 5
+        },
+        {
+          "gen": 42,
+          "best": 0.6866666666666666,
+          "avg": 0.5018042881803101,
+          "all_time": 0.705685618729097,
+          "stag": 1
+        },
+        {
+          "gen": 43,
+          "best": 0.68561872909699,
+          "avg": 0.5073953692234988,
+          "all_time": 0.705685618729097,
+          "stag": 2
+        },
+        {
+          "gen": 44,
+          "best": 0.6666666666666666,
+          "avg": 0.5157411875483076,
+          "all_time": 0.705685618729097,
+          "stag": 3
+        },
+        {
+          "gen": 45,
+          "best": 0.68561872909699,
+          "avg": 0.49219768355368004,
+          "all_time": 0.705685618729097,
+          "stag": 4
+        },
+        {
+          "gen": 46,
+          "best": 0.7123745819397993,
+          "avg": 0.5375366820590297,
+          "all_time": 0.7123745819397993,
+          "stag": 0
+        },
+        {
+          "gen": 47,
+          "best": 0.697986577181208,
+          "avg": 0.4371957614195724,
+          "all_time": 0.7123745819397993,
+          "stag": 1
+        },
+        {
+          "gen": 48,
+          "best": 0.7407407407407407,
+          "avg": 0.4787723232914362,
+          "all_time": 0.7407407407407407,
+          "stag": 0
+        },
+        {
+          "gen": 49,
+          "best": 0.725752508361204,
+          "avg": 0.5383290236657613,
+          "all_time": 0.7407407407407407,
+          "stag": 1
+        },
+        {
+          "gen": 50,
+          "best": 0.71,
+          "avg": 0.4947867616178092,
+          "all_time": 0.7407407407407407,
+          "stag": 2
+        },
+        {
+          "gen": 51,
+          "best": 0.725752508361204,
+          "avg": 0.5825373541933215,
+          "all_time": 0.7407407407407407,
+          "stag": 3
+        },
+        {
+          "gen": 52,
+          "best": 0.7023411371237458,
+          "avg": 0.5071497459840033,
+          "all_time": 0.7407407407407407,
+          "stag": 4
+        },
+        {
+          "gen": 53,
+          "best": 0.697986577181208,
+          "avg": 0.469311089714212,
+          "all_time": 0.7407407407407407,
+          "stag": 5
+        },
+        {
+          "gen": 54,
+          "best": 0.6923076923076923,
+          "avg": 0.516251162837098,
+          "all_time": 0.7407407407407407,
+          "stag": 1
+        },
+        {
+          "gen": 55,
+          "best": 0.6868686868686869,
+          "avg": 0.517396652048826,
+          "all_time": 0.7407407407407407,
+          "stag": 2
+        }
+      ]
+    },
+    {
+      "name": "B",
+      "constraints": {},
+      "population": [
+        [
+          {
+            "species": "Noivern",
+            "item": "Focus Sash",
+            "ability": "Frisk",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Taunt",
+              "Bite",
+              "Uproar",
+              "Hurricane"
+            ]
+          },
+          {
+            "species": "Salamence",
+            "item": "Misty Seed",
+            "ability": "Moxie",
+            "nature": "Hasty",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Flamethrower",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Incineroar",
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Quiet",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          {
+            "species": "Gholdengo",
+            "item": "Life Orb",
+            "ability": "Good as Gold",
+            "nature": "Timid",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Rillaboom",
+            "item": "Choice Scarf",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          {
+            "species": "Garchomp",
+            "item": "Rocky Helmet",
+            "ability": "Sand Veil",
+            "nature": "Jolly",
+            "evs": {
+              "def": 32,
+              "spd": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        ],
+        [
+          {
+            "species": "Noivern",
+            "item": "Focus Sash",
+            "ability": "Frisk",
+            "nature": "Lax",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Taunt",
+              "Bite",
+              "Uproar",
+              "Hurricane"
+            ]
+          },
+          {
+            "species": "Salamence",
+            "item": "Red Card",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Flamethrower",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Incineroar",
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Quiet",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          {
+            "species": "Gholdengo",
+            "item": "Life Orb",
+            "ability": "Good as Gold",
+            "nature": "Timid",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Rillaboom",
+            "item": "Choice Scarf",
+            "ability": "Overgrow",
+            "nature": "Mild",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          {
+            "species": "Garchomp",
+            "item": "Rocky Helmet",
+            "ability": "Sand Veil",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Substitute",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        ],
+        [
+          {
+            "species": "Noivern",
+            "item": "Focus Sash",
+            "ability": "Infiltrator",
+            "nature": "Lax",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Boomburst",
+              "Bite",
+              "Uproar",
+              "Hurricane"
+            ]
+          },
+          {
+            "species": "Salamence",
+            "item": "Misty Seed",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Flamethrower",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Incineroar",
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          {
+            "species": "Gholdengo",
+            "item": "Life Orb",
+            "ability": "Good as Gold",
+            "nature": "Timid",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Rillaboom",
+            "item": "Choice Scarf",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          {
+            "species": "Garchomp",
+            "item": "Rocky Helmet",
+            "ability": "Sand Veil",
+            "nature": "Jolly",
+            "evs": {
+              "def": 32,
+              "spd": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        ],
+        [
+          {
+            "species": "Persian",
+            "item": "Poison Barb",
+            "ability": "Limber",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Iron Tail",
+              "Bite",
+              "Body Slam",
+              "Chilling Water"
+            ]
+          },
+          {
+            "species": "Salamence",
+            "item": "Misty Seed",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Flamethrower",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Incineroar",
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          {
+            "species": "Gholdengo",
+            "item": "Psychic Seed",
+            "ability": "Good as Gold",
+            "nature": "Timid",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Rillaboom",
+            "item": "Choice Scarf",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          {
+            "species": "Garchomp",
+            "item": "Spell Tag",
+            "ability": "Sand Veil",
+            "nature": "Jolly",
+            "evs": {
+              "def": 32,
+              "spd": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        ],
+        [
+          {
+            "species": "Noivern",
+            "item": "Focus Sash",
+            "ability": "Frisk",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Taunt",
+              "Bite",
+              "Uproar",
+              "Hurricane"
+            ]
+          },
+          {
+            "species": "Salamence",
+            "item": "Red Card",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Fly",
+              "Dragon Claw",
+              "Flamethrower",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Incineroar",
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Quiet",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          {
+            "species": "Gholdengo",
+            "item": "Life Orb",
+            "ability": "Good as Gold",
+            "nature": "Timid",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Thievul",
+            "item": "Payapa Berry",
+            "ability": "Stakeout",
+            "nature": "Calm",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Torment",
+              "Attract",
+              "Shadow Ball",
+              "First Impression"
+            ]
+          },
+          {
+            "species": "Garchomp",
+            "item": "Rocky Helmet",
+            "ability": "Sand Veil",
+            "nature": "Jolly",
+            "evs": {
+              "def": 32,
+              "spd": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Fling"
+            ]
+          }
+        ],
+        [
+          {
+            "species": "Noivern",
+            "item": "Focus Sash",
+            "ability": "Frisk",
+            "nature": "Lax",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Taunt",
+              "Bite",
+              "Uproar",
+              "Hurricane"
+            ]
+          },
+          {
+            "species": "Salamence",
+            "item": "Misty Seed",
+            "ability": "Moxie",
+            "nature": "Hasty",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Flamethrower",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Incineroar",
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Quiet",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          {
+            "species": "Gholdengo",
+            "item": "Life Orb",
+            "ability": "Good as Gold",
+            "nature": "Timid",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Rillaboom",
+            "item": "Choice Scarf",
+            "ability": "Overgrow",
+            "nature": "Lax",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          {
+            "species": "Garchomp",
+            "item": "Rocky Helmet",
+            "ability": "Sand Veil",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Sand Tomb",
+              "Rock Slide",
+              "Sandstorm"
+            ]
+          }
+        ],
+        [
+          {
+            "species": "Toxtricity",
+            "item": "Dragon Fang",
+            "ability": "Technician",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Snore",
+              "Scary Face",
+              "Thief",
+              "Hex"
+            ]
+          },
+          {
+            "species": "Salamence",
+            "item": "Heat Rock",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Air Slash",
+              "Flamethrower",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Incineroar",
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Quiet",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          {
+            "species": "Gholdengo",
+            "item": "Life Orb",
+            "ability": "Good as Gold",
+            "nature": "Timid",
+            "evs": {
+              "hp": 2,
+              "def": 32,
+              "spa": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Rillaboom",
+            "item": "Choice Scarf",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          {
+            "species": "Garchomp",
+            "item": "Rocky Helmet",
+            "ability": "Sand Veil",
+            "nature": "Jolly",
+            "evs": {
+              "def": 32,
+              "spd": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        ],
+        [
+          {
+            "species": "Florges",
+            "item": "Silver Powder",
+            "ability": "Symbiosis",
+            "nature": "Calm",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Petal Blizzard",
+              "Sleep Talk",
+              "Rest",
+              "Solar Beam"
+            ]
+          },
+          {
+            "species": "Indeedee",
+            "item": "Choice Scarf",
+            "ability": "Psychic Surge",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Rest",
+              "After You",
+              "Psych Up",
+              "Fake Out"
+            ]
+          },
+          {
+            "species": "Rampardos",
+            "item": "Expert Belt",
+            "ability": "Mold Breaker",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Dragon Cheer",
+              "Meteor Beam",
+              "Fire Punch",
+              "Endeavor"
+            ]
+          },
+          {
+            "species": "Vanilluxe",
+            "item": "Iron Ball",
+            "ability": "Weak Armor",
+            "nature": "Calm",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Rain Dance",
+              "Facade",
+              "Flash Cannon",
+              "Ally Switch"
+            ]
+          },
+          {
+            "species": "Malamar",
+            "item": "Malamarite",
+            "ability": "Contrary",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Spite",
+              "Poison Jab",
+              "Skill Swap",
+              "Liquidation"
+            ]
+          },
+          {
+            "species": "Toxtricity",
+            "item": "Chople Berry",
+            "ability": "Plus",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Protect",
+              "Sludge Wave",
+              "Hex",
+              "Discharge"
+            ]
+          }
+        ],
+        [
+          {
+            "species": "Vivillon",
+            "item": "Focus Sash",
+            "ability": "Friend Guard",
+            "nature": "Hasty",
+            "evs": {
+              "atk": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Air Cutter",
+              "Protect",
+              "Skitter Smack",
+              "Hurricane"
+            ]
+          },
+          {
+            "species": "Salamence",
+            "item": "Misty Seed",
+            "ability": "Moxie",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Flamethrower",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Incineroar",
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Quiet",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          {
+            "species": "Gholdengo",
+            "item": "Life Orb",
+            "ability": "Good as Gold",
+            "nature": "Timid",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Rillaboom",
+            "item": "Choice Scarf",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          {
+            "species": "Garchomp",
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "def": 32,
+              "spd": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        ],
+        [
+          {
+            "species": "Noivern",
+            "item": "Focus Sash",
+            "ability": "Frisk",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Taunt",
+              "Bite",
+              "Uproar",
+              "Hurricane"
+            ]
+          },
+          {
+            "species": "Salamence",
+            "item": "Misty Seed",
+            "ability": "Moxie",
+            "nature": "Hasty",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Flamethrower",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Incineroar",
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Quiet",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          {
+            "species": "Gholdengo",
+            "item": "Life Orb",
+            "ability": "Good as Gold",
+            "nature": "Timid",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Rillaboom",
+            "item": "Choice Scarf",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          {
+            "species": "Garchomp",
+            "item": "Rocky Helmet",
+            "ability": "Sand Veil",
+            "nature": "Jolly",
+            "evs": {
+              "def": 32,
+              "spd": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        ]
+      ],
+      "fitness": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "best_ever": {
+        "fit": 0.78,
+        "genome": [
+          {
+            "species": "Noivern",
+            "item": "Focus Sash",
+            "ability": "Telepathy",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Taunt",
+              "Bite",
+              "Uproar",
+              "Hurricane"
+            ]
+          },
+          {
+            "species": "Salamence",
+            "item": "Misty Seed",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Flamethrower",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Incineroar",
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          {
+            "species": "Gholdengo",
+            "item": "Life Orb",
+            "ability": "Good as Gold",
+            "nature": "Naive",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Rillaboom",
+            "item": "Choice Scarf",
+            "ability": "Grassy Surge",
+            "nature": "Mild",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          {
+            "species": "Garchomp",
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Substitute",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        ],
+        "gen": 47
+      },
+      "stagnation": 3,
+      "history": [
+        {
+          "gen": 1,
+          "best": 0.6026936026936027,
+          "avg": 0.10439892803550788,
+          "all_time": 0.6026936026936027,
+          "stag": 0
+        },
+        {
+          "gen": 2,
+          "best": 0.52,
+          "avg": 0.13828793365717013,
+          "all_time": 0.6026936026936027,
+          "stag": 1
+        },
+        {
+          "gen": 3,
+          "best": 0.5536912751677853,
+          "avg": 0.21985789173637788,
+          "all_time": 0.6026936026936027,
+          "stag": 2
+        },
+        {
+          "gen": 4,
+          "best": 0.6120401337792643,
+          "avg": 0.3413903125759984,
+          "all_time": 0.6120401337792643,
+          "stag": 0
+        },
+        {
+          "gen": 5,
+          "best": 0.6120401337792643,
+          "avg": 0.45927067897712776,
+          "all_time": 0.6120401337792643,
+          "stag": 1
+        },
+        {
+          "gen": 6,
+          "best": 0.6013513513513513,
+          "avg": 0.4806136845647715,
+          "all_time": 0.6120401337792643,
+          "stag": 2
+        },
+        {
+          "gen": 7,
+          "best": 0.6161616161616161,
+          "avg": 0.4410470732021528,
+          "all_time": 0.6161616161616161,
+          "stag": 0
+        },
+        {
+          "gen": 8,
+          "best": 0.6140939597315436,
+          "avg": 0.3525062402160227,
+          "all_time": 0.6161616161616161,
+          "stag": 1
+        },
+        {
+          "gen": 9,
+          "best": 0.5551839464882943,
+          "avg": 0.34387326338998225,
+          "all_time": 0.6161616161616161,
+          "stag": 2
+        },
+        {
+          "gen": 10,
+          "best": 0.6241610738255033,
+          "avg": 0.40340260822650664,
+          "all_time": 0.6241610738255033,
+          "stag": 0
+        },
+        {
+          "gen": 11,
+          "best": 0.63,
+          "avg": 0.4797190360353477,
+          "all_time": 0.63,
+          "stag": 0
+        },
+        {
+          "gen": 12,
+          "best": 0.6498316498316499,
+          "avg": 0.5448505005461527,
+          "all_time": 0.6498316498316499,
+          "stag": 0
+        },
+        {
+          "gen": 13,
+          "best": 0.6510067114093959,
+          "avg": 0.5128786674625551,
+          "all_time": 0.6510067114093959,
+          "stag": 0
+        },
+        {
+          "gen": 14,
+          "best": 0.6622073578595318,
+          "avg": 0.49579119689332707,
+          "all_time": 0.6622073578595318,
+          "stag": 0
+        },
+        {
+          "gen": 15,
+          "best": 0.6409395973154363,
+          "avg": 0.5408000977504918,
+          "all_time": 0.6622073578595318,
+          "stag": 1
+        },
+        {
+          "gen": 16,
+          "best": 0.6845637583892618,
+          "avg": 0.4241031119427485,
+          "all_time": 0.6845637583892618,
+          "stag": 0
+        },
+        {
+          "gen": 17,
+          "best": 0.6956521739130435,
+          "avg": 0.494738885822703,
+          "all_time": 0.6956521739130435,
+          "stag": 0
+        },
+        {
+          "gen": 18,
+          "best": 0.6442953020134228,
+          "avg": 0.5667985689444691,
+          "all_time": 0.6956521739130435,
+          "stag": 1
+        },
+        {
+          "gen": 19,
+          "best": 0.62,
+          "avg": 0.4944888330228278,
+          "all_time": 0.6956521739130435,
+          "stag": 2
+        },
+        {
+          "gen": 20,
+          "best": 0.6140939597315436,
+          "avg": 0.44789271585011303,
+          "all_time": 0.6956521739130435,
+          "stag": 3
+        },
+        {
+          "gen": 21,
+          "best": 0.6789297658862876,
+          "avg": 0.5335429428399957,
+          "all_time": 0.6956521739130435,
+          "stag": 4
+        },
+        {
+          "gen": 22,
+          "best": 0.6385135135135135,
+          "avg": 0.45561924479651356,
+          "all_time": 0.6956521739130435,
+          "stag": 5
+        },
+        {
+          "gen": 23,
+          "best": 0.6633333333333333,
+          "avg": 0.4634394601212441,
+          "all_time": 0.6956521739130435,
+          "stag": 1
+        },
+        {
+          "gen": 24,
+          "best": 0.6321070234113713,
+          "avg": 0.46139955555041634,
+          "all_time": 0.6956521739130435,
+          "stag": 2
+        },
+        {
+          "gen": 25,
+          "best": 0.64,
+          "avg": 0.4732154440033051,
+          "all_time": 0.6956521739130435,
+          "stag": 3
+        },
+        {
+          "gen": 26,
+          "best": 0.6321070234113713,
+          "avg": 0.4472395848377757,
+          "all_time": 0.6956521739130435,
+          "stag": 4
+        },
+        {
+          "gen": 27,
+          "best": 0.6354515050167224,
+          "avg": 0.5192644983651695,
+          "all_time": 0.6956521739130435,
+          "stag": 5
+        },
+        {
+          "gen": 28,
+          "best": 0.6454849498327759,
+          "avg": 0.4336286828357355,
+          "all_time": 0.6956521739130435,
+          "stag": 1
+        },
+        {
+          "gen": 29,
+          "best": 0.6430976430976431,
+          "avg": 0.45988259690083444,
+          "all_time": 0.6956521739130435,
+          "stag": 2
+        },
+        {
+          "gen": 30,
+          "best": 0.6599326599326599,
+          "avg": 0.5252312170964053,
+          "all_time": 0.6956521739130435,
+          "stag": 3
+        },
+        {
+          "gen": 31,
+          "best": 0.6666666666666666,
+          "avg": 0.4822564931628451,
+          "all_time": 0.6956521739130435,
+          "stag": 4
+        },
+        {
+          "gen": 32,
+          "best": 0.6543624161073825,
+          "avg": 0.5385543711225065,
+          "all_time": 0.6956521739130435,
+          "stag": 5
+        },
+        {
+          "gen": 33,
+          "best": 0.6321070234113713,
+          "avg": 0.4989597152797998,
+          "all_time": 0.6956521739130435,
+          "stag": 1
+        },
+        {
+          "gen": 34,
+          "best": 0.6521739130434783,
+          "avg": 0.5198145519233935,
+          "all_time": 0.6956521739130435,
+          "stag": 2
+        },
+        {
+          "gen": 35,
+          "best": 0.65,
+          "avg": 0.5558184380067432,
+          "all_time": 0.6956521739130435,
+          "stag": 3
+        },
+        {
+          "gen": 36,
+          "best": 0.6363636363636364,
+          "avg": 0.4758586590418877,
+          "all_time": 0.6956521739130435,
+          "stag": 4
+        },
+        {
+          "gen": 37,
+          "best": 0.6354515050167224,
+          "avg": 0.5236695968385493,
+          "all_time": 0.6956521739130435,
+          "stag": 5
+        },
+        {
+          "gen": 38,
+          "best": 0.6543624161073825,
+          "avg": 0.46141129502187994,
+          "all_time": 0.6956521739130435,
+          "stag": 1
+        },
+        {
+          "gen": 39,
+          "best": 0.6564625850340136,
+          "avg": 0.4724175683033076,
+          "all_time": 0.6956521739130435,
+          "stag": 2
+        },
+        {
+          "gen": 40,
+          "best": 0.6542372881355932,
+          "avg": 0.579309248885248,
+          "all_time": 0.6956521739130435,
+          "stag": 3
+        },
+        {
+          "gen": 41,
+          "best": 0.64,
+          "avg": 0.5432281479395573,
+          "all_time": 0.6956521739130435,
+          "stag": 4
+        },
+        {
+          "gen": 42,
+          "best": 0.6868686868686869,
+          "avg": 0.5286236709274601,
+          "all_time": 0.6956521739130435,
+          "stag": 5
+        },
+        {
+          "gen": 43,
+          "best": 0.7013422818791947,
+          "avg": 0.5572185501112543,
+          "all_time": 0.7013422818791947,
+          "stag": 0
+        },
+        {
+          "gen": 44,
+          "best": 0.7281879194630873,
+          "avg": 0.6380808828064446,
+          "all_time": 0.7281879194630873,
+          "stag": 0
+        },
+        {
+          "gen": 45,
+          "best": 0.734006734006734,
+          "avg": 0.4985268059977718,
+          "all_time": 0.734006734006734,
+          "stag": 0
+        },
+        {
+          "gen": 46,
+          "best": 0.6833333333333333,
+          "avg": 0.5895824110060345,
+          "all_time": 0.734006734006734,
+          "stag": 1
+        },
+        {
+          "gen": 47,
+          "best": 0.78,
+          "avg": 0.5949646504042254,
+          "all_time": 0.78,
+          "stag": 0
+        },
+        {
+          "gen": 48,
+          "best": 0.7263513513513513,
+          "avg": 0.5219483604119814,
+          "all_time": 0.78,
+          "stag": 1
+        },
+        {
+          "gen": 49,
+          "best": 0.6966666666666667,
+          "avg": 0.5206644447513815,
+          "all_time": 0.78,
+          "stag": 2
+        },
+        {
+          "gen": 50,
+          "best": 0.6790540540540541,
+          "avg": 0.4526858094950826,
+          "all_time": 0.78,
+          "stag": 3
+        },
+        {
+          "gen": 51,
+          "best": 0.7224080267558528,
+          "avg": 0.5932851429902504,
+          "all_time": 0.78,
+          "stag": 4
+        },
+        {
+          "gen": 52,
+          "best": 0.6956521739130435,
+          "avg": 0.4560279815377865,
+          "all_time": 0.78,
+          "stag": 5
+        },
+        {
+          "gen": 53,
+          "best": 0.73,
+          "avg": 0.5164161460776576,
+          "all_time": 0.78,
+          "stag": 1
+        },
+        {
+          "gen": 54,
+          "best": 0.7366666666666667,
+          "avg": 0.6415969175265936,
+          "all_time": 0.78,
+          "stag": 2
+        },
+        {
+          "gen": 55,
+          "best": 0.6879194630872483,
+          "avg": 0.5176753086788103,
+          "all_time": 0.78,
+          "stag": 3
+        }
+      ]
+    },
+    {
+      "name": "C",
+      "constraints": {},
+      "population": [
+        [
+          {
+            "species": "Noivern",
+            "item": "Focus Sash",
+            "ability": "Frisk",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Taunt",
+              "Bite",
+              "Uproar",
+              "Hurricane"
+            ]
+          },
+          {
+            "species": "Salamence",
+            "item": "Misty Seed",
+            "ability": "Moxie",
+            "nature": "Hasty",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Flamethrower",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Incineroar",
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flamethrower",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          {
+            "species": "Gholdengo",
+            "item": "Life Orb",
+            "ability": "Good as Gold",
+            "nature": "Timid",
+            "evs": {
+              "spa": 32,
+              "spd": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Rillaboom",
+            "item": "Choice Scarf",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          {
+            "species": "Garchomp",
+            "item": "Rocky Helmet",
+            "ability": "Sand Veil",
+            "nature": "Jolly",
+            "evs": {
+              "def": 32,
+              "spd": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        ],
+        [
+          {
+            "species": "Noivern",
+            "item": "Focus Sash",
+            "ability": "Frisk",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Taunt",
+              "Bite",
+              "Uproar",
+              "Hurricane"
+            ]
+          },
+          {
+            "species": "Salamence",
+            "item": "Oran Berry",
+            "ability": "Intimidate",
+            "nature": "Hasty",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Flamethrower",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Incineroar",
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flamethrower",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          {
+            "species": "Gholdengo",
+            "item": "Life Orb",
+            "ability": "Good as Gold",
+            "nature": "Timid",
+            "evs": {
+              "spa": 32,
+              "spd": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Rillaboom",
+            "item": "Choice Scarf",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          {
+            "species": "Garchomp",
+            "item": "Rocky Helmet",
+            "ability": "Sand Veil",
+            "nature": "Naughty",
+            "evs": {
+              "def": 32,
+              "spd": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        ],
+        [
+          {
+            "species": "Noivern",
+            "item": "Focus Sash",
+            "ability": "Frisk",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Taunt",
+              "Bite",
+              "Uproar",
+              "Hurricane"
+            ]
+          },
+          {
+            "species": "Salamence",
+            "item": "Oran Berry",
+            "ability": "Moxie",
+            "nature": "Hasty",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Flamethrower",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Incineroar",
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Hardy",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flamethrower",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          {
+            "species": "Gholdengo",
+            "item": "Life Orb",
+            "ability": "Good as Gold",
+            "nature": "Timid",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Rillaboom",
+            "item": "Choice Scarf",
+            "ability": "Overgrow",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          {
+            "species": "Garchomp",
+            "item": "Rocky Helmet",
+            "ability": "Sand Veil",
+            "nature": "Jolly",
+            "evs": {
+              "def": 32,
+              "spd": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        ],
+        [
+          {
+            "species": "Klefki",
+            "item": "Light Clay",
+            "ability": "Prankster",
+            "nature": "Calm",
+            "evs": {
+              "hp": 32,
+              "def": 20,
+              "spd": 14
+            },
+            "moves": [
+              "Protect",
+              "Psych Up",
+              "Sleep Talk",
+              "Thunder Wave"
+            ]
+          },
+          {
+            "species": "Salamence",
+            "item": "Oran Berry",
+            "ability": "Intimidate",
+            "nature": "Hasty",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Flamethrower",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Incineroar",
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flamethrower",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          {
+            "species": "Gholdengo",
+            "item": "Life Orb",
+            "ability": "Good as Gold",
+            "nature": "Timid",
+            "evs": {
+              "spa": 32,
+              "spd": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Rillaboom",
+            "item": "Choice Scarf",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          {
+            "species": "Garchomp",
+            "item": "Rocky Helmet",
+            "ability": "Sand Veil",
+            "nature": "Jolly",
+            "evs": {
+              "def": 32,
+              "spd": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        ],
+        [
+          {
+            "species": "Noivern",
+            "item": "Focus Sash",
+            "ability": "Frisk",
+            "nature": "Modest",
+            "evs": {
+              "spa": 32,
+              "spd": 32,
+              "spe": 2
+            },
+            "moves": [
+              "Taunt",
+              "Bite",
+              "Uproar",
+              "Hurricane"
+            ]
+          },
+          {
+            "species": "Salamence",
+            "item": "Grassy Seed",
+            "ability": "Moxie",
+            "nature": "Hasty",
+            "evs": {
+              "def": 32,
+              "spa": 32,
+              "spe": 2
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Flamethrower",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Incineroar",
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Hardy",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flamethrower",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          {
+            "species": "Gholdengo",
+            "item": "Life Orb",
+            "ability": "Good as Gold",
+            "nature": "Timid",
+            "evs": {
+              "spa": 32,
+              "spd": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Rillaboom",
+            "item": "Choice Scarf",
+            "ability": "Overgrow",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          {
+            "species": "Garchomp",
+            "item": "Rocky Helmet",
+            "ability": "Sand Veil",
+            "nature": "Jolly",
+            "evs": {
+              "def": 32,
+              "spd": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        ],
+        [
+          {
+            "species": "Noivern",
+            "item": "Focus Sash",
+            "ability": "Frisk",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Taunt",
+              "Bite",
+              "Uproar",
+              "Hurricane"
+            ]
+          },
+          {
+            "species": "Salamence",
+            "item": "Oran Berry",
+            "ability": "Intimidate",
+            "nature": "Hasty",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Flamethrower",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Incineroar",
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flamethrower",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          {
+            "species": "Gholdengo",
+            "item": "Life Orb",
+            "ability": "Good as Gold",
+            "nature": "Timid",
+            "evs": {
+              "spa": 32,
+              "spd": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Venusaur",
+            "item": "Venusaurite",
+            "ability": "Overgrow",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Charm",
+              "Snore",
+              "Grass Knot",
+              "Curse"
+            ]
+          },
+          {
+            "species": "Garchomp",
+            "item": "Rocky Helmet",
+            "ability": "Sand Veil",
+            "nature": "Naughty",
+            "evs": {
+              "def": 32,
+              "spd": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        ],
+        [
+          {
+            "species": "Glaceon",
+            "item": "Roseli Berry",
+            "ability": "Ice Body",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Protect",
+              "Weather Ball",
+              "Shadow Ball",
+              "Mud Shot"
+            ]
+          },
+          {
+            "species": "Salamence",
+            "item": "Misty Seed",
+            "ability": "Moxie",
+            "nature": "Hasty",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Flamethrower",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Incineroar",
+            "item": "Sitrus Berry",
+            "ability": "Blaze",
+            "nature": "Impish",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flamethrower",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          {
+            "species": "Gholdengo",
+            "item": "Life Orb",
+            "ability": "Good as Gold",
+            "nature": "Timid",
+            "evs": {
+              "spa": 32,
+              "spd": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Rillaboom",
+            "item": "Choice Scarf",
+            "ability": "Overgrow",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          {
+            "species": "Garchomp",
+            "item": "Rocky Helmet",
+            "ability": "Sand Veil",
+            "nature": "Jolly",
+            "evs": {
+              "def": 32,
+              "spd": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        ],
+        [
+          {
+            "species": "Noivern",
+            "item": "Damp Rock",
+            "ability": "Frisk",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Taunt",
+              "Bite",
+              "Uproar",
+              "Hurricane"
+            ]
+          },
+          {
+            "species": "Salamence",
+            "item": "Oran Berry",
+            "ability": "Moxie",
+            "nature": "Hasty",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Flamethrower",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Incineroar",
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Hardy",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flamethrower",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          {
+            "species": "Gholdengo",
+            "item": "Life Orb",
+            "ability": "Good as Gold",
+            "nature": "Timid",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Electro Ball",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Rillaboom",
+            "item": "Choice Scarf",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          {
+            "species": "Garchomp",
+            "item": "Rocky Helmet",
+            "ability": "Sand Veil",
+            "nature": "Jolly",
+            "evs": {
+              "def": 32,
+              "spd": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        ],
+        [
+          {
+            "species": "Noivern",
+            "item": "Focus Sash",
+            "ability": "Frisk",
+            "nature": "Lax",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Taunt",
+              "Bite",
+              "Uproar",
+              "Hurricane"
+            ]
+          },
+          {
+            "species": "Salamence",
+            "item": "Red Card",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Flamethrower",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Incineroar",
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Quiet",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          {
+            "species": "Gholdengo",
+            "item": "Life Orb",
+            "ability": "Good as Gold",
+            "nature": "Timid",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Rillaboom",
+            "item": "Choice Scarf",
+            "ability": "Overgrow",
+            "nature": "Mild",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          {
+            "species": "Garchomp",
+            "item": "Rocky Helmet",
+            "ability": "Sand Veil",
+            "nature": "Jolly",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Substitute",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        ],
+        [
+          {
+            "species": "Noivern",
+            "item": "Focus Sash",
+            "ability": "Frisk",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Taunt",
+              "Bite",
+              "Uproar",
+              "Hurricane"
+            ]
+          },
+          {
+            "species": "Salamence",
+            "item": "Misty Seed",
+            "ability": "Moxie",
+            "nature": "Hasty",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Dragon Claw",
+              "Flamethrower",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Incineroar",
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Quiet",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          {
+            "species": "Gholdengo",
+            "item": "Life Orb",
+            "ability": "Good as Gold",
+            "nature": "Timid",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Rillaboom",
+            "item": "Choice Scarf",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "hp": 2,
+              "atk": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          {
+            "species": "Garchomp",
+            "item": "Rocky Helmet",
+            "ability": "Sand Veil",
+            "nature": "Jolly",
+            "evs": {
+              "def": 32,
+              "spd": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Claw",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        ]
+      ],
+      "fitness": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "best_ever": {
+        "fit": 0.7466666666666667,
+        "genome": [
+          {
+            "species": "Noivern",
+            "item": "Focus Sash",
+            "ability": "Frisk",
+            "nature": "Modest",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Taunt",
+              "Bite",
+              "Uproar",
+              "Hurricane"
+            ]
+          },
+          {
+            "species": "Salamence",
+            "item": "Misty Seed",
+            "ability": "Intimidate",
+            "nature": "Naive",
+            "evs": {
+              "hp": 1,
+              "atk": 21,
+              "spa": 15,
+              "spe": 29
+            },
+            "moves": [
+              "Double-Edge",
+              "Earthquake",
+              "Flamethrower",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Incineroar",
+            "item": "Sitrus Berry",
+            "ability": "Intimidate",
+            "nature": "Quiet",
+            "evs": {
+              "hp": 32,
+              "def": 23,
+              "spd": 11
+            },
+            "moves": [
+              "Fake Out",
+              "Flare Blitz",
+              "Throat Chop",
+              "Parting Shot"
+            ]
+          },
+          {
+            "species": "Gholdengo",
+            "item": "Life Orb",
+            "ability": "Good as Gold",
+            "nature": "Timid",
+            "evs": {
+              "hp": 2,
+              "spa": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Make It Rain",
+              "Shadow Ball",
+              "Nasty Plot",
+              "Protect"
+            ]
+          },
+          {
+            "species": "Rillaboom",
+            "item": "Choice Scarf",
+            "ability": "Grassy Surge",
+            "nature": "Adamant",
+            "evs": {
+              "def": 2,
+              "spd": 32,
+              "spe": 32
+            },
+            "moves": [
+              "Grassy Glide",
+              "Wood Hammer",
+              "Fake Out",
+              "High Horsepower"
+            ]
+          },
+          {
+            "species": "Garchomp",
+            "item": "Rocky Helmet",
+            "ability": "Rough Skin",
+            "nature": "Jolly",
+            "evs": {
+              "def": 32,
+              "spd": 2,
+              "spe": 32
+            },
+            "moves": [
+              "Stomping Tantrum",
+              "Dragon Pulse",
+              "Rock Slide",
+              "Protect"
+            ]
+          }
+        ],
+        "gen": 44
+      },
+      "stagnation": 1,
+      "history": [
+        {
+          "gen": 1,
+          "best": 0.10367892976588629,
+          "avg": 0.0655073193903539,
+          "all_time": 0.10367892976588629,
+          "stag": 0
+        },
+        {
+          "gen": 2,
+          "best": 0.13333333333333333,
+          "avg": 0.07806405215441901,
+          "all_time": 0.13333333333333333,
+          "stag": 0
+        },
+        {
+          "gen": 3,
+          "best": 0.23411371237458195,
+          "avg": 0.1263999186714564,
+          "all_time": 0.23411371237458195,
+          "stag": 0
+        },
+        {
+          "gen": 4,
+          "best": 0.33666666666666667,
+          "avg": 0.17185198082956937,
+          "all_time": 0.33666666666666667,
+          "stag": 0
+        },
+        {
+          "gen": 5,
+          "best": 0.2866666666666667,
+          "avg": 0.2039958848660337,
+          "all_time": 0.33666666666666667,
+          "stag": 1
+        },
+        {
+          "gen": 6,
+          "best": 0.5585284280936454,
+          "avg": 0.2700505031994013,
+          "all_time": 0.5585284280936454,
+          "stag": 0
+        },
+        {
+          "gen": 7,
+          "best": 0.6266666666666667,
+          "avg": 0.31691522743142236,
+          "all_time": 0.6266666666666667,
+          "stag": 0
+        },
+        {
+          "gen": 8,
+          "best": 0.5671140939597316,
+          "avg": 0.46526575758530136,
+          "all_time": 0.6266666666666667,
+          "stag": 1
+        },
+        {
+          "gen": 9,
+          "best": 0.61,
+          "avg": 0.3797708033129044,
+          "all_time": 0.6266666666666667,
+          "stag": 2
+        },
+        {
+          "gen": 10,
+          "best": 0.569023569023569,
+          "avg": 0.4107585852261254,
+          "all_time": 0.6266666666666667,
+          "stag": 3
+        },
+        {
+          "gen": 11,
+          "best": 0.6333333333333333,
+          "avg": 0.5395705594618638,
+          "all_time": 0.6333333333333333,
+          "stag": 0
+        },
+        {
+          "gen": 12,
+          "best": 0.6354515050167224,
+          "avg": 0.4434703143074129,
+          "all_time": 0.6354515050167224,
+          "stag": 0
+        },
+        {
+          "gen": 13,
+          "best": 0.62751677852349,
+          "avg": 0.5167101940908876,
+          "all_time": 0.6354515050167224,
+          "stag": 1
+        },
+        {
+          "gen": 14,
+          "best": 0.65,
+          "avg": 0.4721519082998511,
+          "all_time": 0.65,
+          "stag": 0
+        },
+        {
+          "gen": 15,
+          "best": 0.6133333333333333,
+          "avg": 0.5182291426912087,
+          "all_time": 0.65,
+          "stag": 1
+        },
+        {
+          "gen": 16,
+          "best": 0.6722408026755853,
+          "avg": 0.5339787756498187,
+          "all_time": 0.6722408026755853,
+          "stag": 0
+        },
+        {
+          "gen": 17,
+          "best": 0.6375838926174496,
+          "avg": 0.4951534386280644,
+          "all_time": 0.6722408026755853,
+          "stag": 1
+        },
+        {
+          "gen": 18,
+          "best": 0.6577181208053692,
+          "avg": 0.44338698680439964,
+          "all_time": 0.6722408026755853,
+          "stag": 2
+        },
+        {
+          "gen": 19,
+          "best": 0.6879194630872483,
+          "avg": 0.5521525054288404,
+          "all_time": 0.6879194630872483,
+          "stag": 0
+        },
+        {
+          "gen": 20,
+          "best": 0.6833333333333333,
+          "avg": 0.48481032172336525,
+          "all_time": 0.6879194630872483,
+          "stag": 1
+        },
+        {
+          "gen": 21,
+          "best": 0.6333333333333333,
+          "avg": 0.5199992130231407,
+          "all_time": 0.6879194630872483,
+          "stag": 2
+        },
+        {
+          "gen": 22,
+          "best": 0.6354515050167224,
+          "avg": 0.535045105269208,
+          "all_time": 0.6879194630872483,
+          "stag": 3
+        },
+        {
+          "gen": 23,
+          "best": 0.6734006734006734,
+          "avg": 0.541564181314692,
+          "all_time": 0.6879194630872483,
+          "stag": 4
+        },
+        {
+          "gen": 24,
+          "best": 0.6308724832214765,
+          "avg": 0.5162197192836235,
+          "all_time": 0.6879194630872483,
+          "stag": 5
+        },
+        {
+          "gen": 25,
+          "best": 0.6333333333333333,
+          "avg": 0.4259761858527642,
+          "all_time": 0.6879194630872483,
+          "stag": 1
+        },
+        {
+          "gen": 26,
+          "best": 0.62751677852349,
+          "avg": 0.529803425409203,
+          "all_time": 0.6879194630872483,
+          "stag": 2
+        },
+        {
+          "gen": 27,
+          "best": 0.6020066889632107,
+          "avg": 0.554273132664437,
+          "all_time": 0.6879194630872483,
+          "stag": 3
+        },
+        {
+          "gen": 28,
+          "best": 0.6409395973154363,
+          "avg": 0.4748362845246417,
+          "all_time": 0.6879194630872483,
+          "stag": 4
+        },
+        {
+          "gen": 29,
+          "best": 0.6241610738255033,
+          "avg": 0.5026827692768749,
+          "all_time": 0.6879194630872483,
+          "stag": 5
+        },
+        {
+          "gen": 30,
+          "best": 0.62751677852349,
+          "avg": 0.45255753400279036,
+          "all_time": 0.6879194630872483,
+          "stag": 1
+        },
+        {
+          "gen": 31,
+          "best": 0.6354515050167224,
+          "avg": 0.46749352922846354,
+          "all_time": 0.6879194630872483,
+          "stag": 2
+        },
+        {
+          "gen": 32,
+          "best": 0.69,
+          "avg": 0.5840395942619462,
+          "all_time": 0.69,
+          "stag": 0
+        },
+        {
+          "gen": 33,
+          "best": 0.6688963210702341,
+          "avg": 0.42920505660830627,
+          "all_time": 0.69,
+          "stag": 1
+        },
+        {
+          "gen": 34,
+          "best": 0.6778523489932886,
+          "avg": 0.5308783637197975,
+          "all_time": 0.69,
+          "stag": 2
+        },
+        {
+          "gen": 35,
+          "best": 0.6822742474916388,
+          "avg": 0.5901241218415132,
+          "all_time": 0.69,
+          "stag": 3
+        },
+        {
+          "gen": 36,
+          "best": 0.67,
+          "avg": 0.5056907692328768,
+          "all_time": 0.69,
+          "stag": 4
+        },
+        {
+          "gen": 37,
+          "best": 0.7138047138047138,
+          "avg": 0.4981278535468789,
+          "all_time": 0.7138047138047138,
+          "stag": 0
+        },
+        {
+          "gen": 38,
+          "best": 0.7066666666666667,
+          "avg": 0.5307854577107267,
+          "all_time": 0.7138047138047138,
+          "stag": 1
+        },
+        {
+          "gen": 39,
+          "best": 0.74,
+          "avg": 0.41797829024704924,
+          "all_time": 0.74,
+          "stag": 0
+        },
+        {
+          "gen": 40,
+          "best": 0.7364864864864865,
+          "avg": 0.5501258588275971,
+          "all_time": 0.74,
+          "stag": 1
+        },
+        {
+          "gen": 41,
+          "best": 0.6989966555183946,
+          "avg": 0.6054880755963336,
+          "all_time": 0.74,
+          "stag": 2
+        },
+        {
+          "gen": 42,
+          "best": 0.7046979865771812,
+          "avg": 0.45481285391078946,
+          "all_time": 0.74,
+          "stag": 3
+        },
+        {
+          "gen": 43,
+          "best": 0.7090301003344481,
+          "avg": 0.5763975536958653,
+          "all_time": 0.74,
+          "stag": 4
+        },
+        {
+          "gen": 44,
+          "best": 0.7466666666666667,
+          "avg": 0.5579332756250691,
+          "all_time": 0.7466666666666667,
+          "stag": 0
+        },
+        {
+          "gen": 45,
+          "best": 0.6778523489932886,
+          "avg": 0.618294965284777,
+          "all_time": 0.7466666666666667,
+          "stag": 1
+        },
+        {
+          "gen": 46,
+          "best": 0.7181208053691275,
+          "avg": 0.5561989130680406,
+          "all_time": 0.7466666666666667,
+          "stag": 2
+        },
+        {
+          "gen": 47,
+          "best": 0.6766666666666666,
+          "avg": 0.6309211914435142,
+          "all_time": 0.7466666666666667,
+          "stag": 3
+        },
+        {
+          "gen": 48,
+          "best": 0.738255033557047,
+          "avg": 0.5636063328321864,
+          "all_time": 0.7466666666666667,
+          "stag": 4
+        },
+        {
+          "gen": 49,
+          "best": 0.7157190635451505,
+          "avg": 0.5284741839016716,
+          "all_time": 0.7466666666666667,
+          "stag": 5
+        },
+        {
+          "gen": 50,
+          "best": 0.705685618729097,
+          "avg": 0.5058730443761082,
+          "all_time": 0.7466666666666667,
+          "stag": 1
+        },
+        {
+          "gen": 51,
+          "best": 0.7181208053691275,
+          "avg": 0.526053723359263,
+          "all_time": 0.7466666666666667,
+          "stag": 2
+        },
+        {
+          "gen": 52,
+          "best": 0.7266666666666667,
+          "avg": 0.6585045599387589,
+          "all_time": 0.7466666666666667,
+          "stag": 3
+        },
+        {
+          "gen": 53,
+          "best": 0.7233333333333334,
+          "avg": 0.49381500276098433,
+          "all_time": 0.7466666666666667,
+          "stag": 4
+        },
+        {
+          "gen": 54,
+          "best": 0.7133333333333334,
+          "avg": 0.460883212498036,
+          "all_time": 0.7466666666666667,
+          "stag": 5
+        },
+        {
+          "gen": 55,
+          "best": 0.725752508361204,
+          "avg": 0.40707624994741315,
+          "all_time": 0.7466666666666667,
+          "stag": 1
+        }
+      ]
+    }
+  ]
+}

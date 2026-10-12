@@ -1,0 +1,59 @@
+Politoed @ Sitrus Berry
+Ability: Drizzle
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Weather Ball
+- Encore
+- Perish Song
+- Protect
+
+Gengar @ Gengarite
+Ability: Cursed Body
+Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
+Modest Nature
+- Shadow Ball
+- Disable
+- Perish Song
+- Protect
+
+Rillaboom @ Eject Button
+Ability: Grassy Surge
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Fake Out
+- Grassy Glide
+- U-turn
+- Protect
+
+Golisopod @ Golisopite
+Ability: Emergency Exit
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Swords Dance
+- Leech Life
+- Sucker Punch
+- Protect
+
+Incineroar @ Leftovers
+Ability: Intimidate
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Flare Blitz
+- Protect
+- Fake Out
+- Parting Shot
+
+Mr. Mime @ Colbur Berry
+Ability: Soundproof
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Fake Out
+- Ally Switch
+- Trick Room
+- Protect

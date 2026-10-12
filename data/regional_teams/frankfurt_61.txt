@@ -1,0 +1,59 @@
+Rillaboom @ Miracle Seed
+Ability: Grassy Surge
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Grassy Glide
+- Fake Out
+- Wood Hammer
+- Protect
+
+Hippowdon @ Leftovers
+Ability: Sand Stream
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Protect
+- Yawn
+- High Horsepower
+- Stone Edge
+
+Kingambit @ Black Glasses
+Ability: Defiant
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Kowtow Cleave
+- Protect
+- Sucker Punch
+- Swords Dance
+
+Gengar @ Gengarite
+Ability: Cursed Body
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Shadow Ball
+- Sludge Bomb
+- Substitute
+
+Incineroar @ Sitrus Berry
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Parting Shot
+- Fake Out
+- Flare Blitz
+- Darkest Lariat
+
+Sneasler @ Life Orb
+Ability: Poison Touch
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Protect
+- Close Combat
+- Fake Out
+- Dire Claw

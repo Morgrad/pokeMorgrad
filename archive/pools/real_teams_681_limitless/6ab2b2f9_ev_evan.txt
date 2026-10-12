@@ -1,0 +1,59 @@
+Farigiraf @ Sitrus Berry
+Ability: Armor Tail
+Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
+Modest Nature
+- Trick Room
+- Psychic
+- Helping Hand
+- Roar
+
+Scrafty @ Scraftinite
+Ability: Intimidate
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Fake Out
+- Bulk Up
+- Drain Punch
+- Knock Off
+
+Torkoal @ Charcoal
+Ability: Drought
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Eruption
+- Weather Ball
+- Earth Power
+- Protect
+
+Rillaboom @ Iron Ball
+Ability: Grassy Surge
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Fake Out
+- U-turn
+- Grassy Glide
+- Wood Hammer
+
+Annihilape @ Choice Scarf
+Ability: Defiant
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Gunk Shot
+- Close Combat
+- Ice Punch
+- Throat Chop
+
+Garchomp @ Garchompite Z
+Ability: Rough Skin
+Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
+Modest Nature
+- Draco Meteor
+- Power Gem
+- Earth Power
+- Protect

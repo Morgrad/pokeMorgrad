@@ -1,0 +1,59 @@
+Sylveon @ Fairy Feather
+Ability: Pixilate
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Hyper Beam
+- Hyper Voice
+- Mystical Fire
+
+Farigiraf @ Sitrus Berry
+Ability: Armor Tail
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Thunderbolt
+- Psychic Noise
+- Trick Room
+
+Charizard @ Charizardite Y
+Ability: Blaze
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Weather Ball
+- Heat Wave
+- Solar Beam
+
+Kingambit @ Focus Sash
+Ability: Defiant
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Kowtow Cleave
+- Low Sweep
+- Sucker Punch
+- Iron Head
+
+Garchomp @ Choice Scarf
+Ability: Rough Skin
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Rock Slide
+- Earthquake
+- Stomping Tantrum
+- Draco Meteor
+
+Raichu @ Raichunite Y
+Ability: Lightning Rod
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Fake Out
+- Zap Cannon
+- Focus Blast

@@ -1,0 +1,3422 @@
+[
+  {
+    "generation": 1,
+    "best_fitness": 0.2857142857142857,
+    "best_team": [
+      "Umbreon",
+      "Salamence",
+      "Incineroar",
+      "Gholdengo",
+      "Rillaboom",
+      "Sneasler"
+    ],
+    "rankings": [
+      {
+        "fitness": 0.2857142857142857,
+        "wins": 6,
+        "losses": 15,
+        "team": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Sneasler"
+        ]
+      },
+      {
+        "fitness": 0.19047619047619047,
+        "wins": 4,
+        "losses": 17,
+        "team": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ]
+      },
+      {
+        "fitness": 0.19047619047619047,
+        "wins": 4,
+        "losses": 17,
+        "team": [
+          "Umbreon",
+          "Basculegion",
+          "Dragonite",
+          "Volcarona",
+          "Staraptor",
+          "Sinistcha"
+        ]
+      },
+      {
+        "fitness": 0.19047619047619047,
+        "wins": 4,
+        "losses": 17,
+        "team": [
+          "Umbreon",
+          "Whimsicott",
+          "Golurk",
+          "Tyranitar",
+          "Corviknight",
+          "Garchomp"
+        ]
+      },
+      {
+        "fitness": 0.09523809523809523,
+        "wins": 2,
+        "losses": 19,
+        "team": [
+          "Umbreon",
+          "Farigiraf",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ]
+      },
+      {
+        "fitness": 0.09523809523809523,
+        "wins": 2,
+        "losses": 19,
+        "team": [
+          "Umbreon",
+          "Sneasler",
+          "Meowstic-F",
+          "Kingambit",
+          "Volcarona",
+          "Venusaur"
+        ]
+      },
+      {
+        "fitness": 0.047619047619047616,
+        "wins": 1,
+        "losses": 20,
+        "team": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Glimmora"
+        ]
+      },
+      {
+        "fitness": 0.047619047619047616,
+        "wins": 1,
+        "losses": 20,
+        "team": [
+          "Umbreon",
+          "Whimsicott",
+          "Salamence",
+          "Grimmsnarl",
+          "Incineroar",
+          "Corviknight"
+        ]
+      },
+      {
+        "fitness": 0.0,
+        "wins": 0,
+        "losses": 21,
+        "team": [
+          "Umbreon",
+          "Farigiraf",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ]
+      },
+      {
+        "fitness": 0.0,
+        "wins": 0,
+        "losses": 21,
+        "team": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Aerodactyl",
+          "Rillaboom",
+          "Garchomp"
+        ]
+      },
+      {
+        "fitness": 0.0,
+        "wins": 0,
+        "losses": 21,
+        "team": [
+          "Umbreon",
+          "Froslass",
+          "Farigiraf",
+          "Kommo-o",
+          "Meowstic-F",
+          "Indeedee-F"
+        ]
+      },
+      {
+        "fitness": 0.0,
+        "wins": 0,
+        "losses": 21,
+        "team": [
+          "Umbreon",
+          "Dragonite",
+          "Salamence",
+          "Basculegion",
+          "Grimmsnarl",
+          "Golisopod"
+        ]
+      }
+    ],
+    "time_sec": 3959.4560961723328
+  },
+  {
+    "generation": 2,
+    "best_fitness": 0.7142857142857143,
+    "best_team": [
+      "Umbreon",
+      "Typhlosion-Hisui",
+      "Volcarona",
+      "Sylveon",
+      "Garchomp",
+      "Salamence"
+    ],
+    "rankings": [
+      {
+        "fitness": 0.7142857142857143,
+        "wins": 15,
+        "losses": 6,
+        "team": [
+          "Umbreon",
+          "Typhlosion-Hisui",
+          "Volcarona",
+          "Sylveon",
+          "Garchomp",
+          "Salamence"
+        ]
+      },
+      {
+        "fitness": 0.6190476190476191,
+        "wins": 13,
+        "losses": 8,
+        "team": [
+          "Umbreon",
+          "Salamence",
+          "Delphox",
+          "Golurk",
+          "Garchomp",
+          "Gholdengo"
+        ]
+      },
+      {
+        "fitness": 0.38095238095238093,
+        "wins": 8,
+        "losses": 13,
+        "team": [
+          "Umbreon",
+          "Basculegion",
+          "Ninetales-Alola",
+          "Volcarona",
+          "Incineroar",
+          "Gholdengo"
+        ]
+      },
+      {
+        "fitness": 0.3333333333333333,
+        "wins": 7,
+        "losses": 14,
+        "team": [
+          "Umbreon",
+          "Meowstic-F",
+          "Gholdengo",
+          "Garchomp",
+          "Volcarona",
+          "Dragonite"
+        ]
+      },
+      {
+        "fitness": 0.23809523809523808,
+        "wins": 5,
+        "losses": 16,
+        "team": [
+          "Umbreon",
+          "Basculegion",
+          "Dragonite",
+          "Volcarona",
+          "Staraptor",
+          "Sinistcha"
+        ]
+      },
+      {
+        "fitness": 0.23809523809523808,
+        "wins": 5,
+        "losses": 16,
+        "team": [
+          "Umbreon",
+          "Staraptor",
+          "Basculegion",
+          "Volcarona",
+          "Rillaboom",
+          "Salamence"
+        ]
+      },
+      {
+        "fitness": 0.19047619047619047,
+        "wins": 4,
+        "losses": 17,
+        "team": [
+          "Umbreon",
+          "Volcarona",
+          "Dragonite",
+          "Whimsicott",
+          "Gholdengo",
+          "Incineroar"
+        ]
+      },
+      {
+        "fitness": 0.19047619047619047,
+        "wins": 4,
+        "losses": 17,
+        "team": [
+          "Umbreon",
+          "Garchomp",
+          "Blastoise",
+          "Salamence",
+          "Excadrill",
+          "Incineroar"
+        ]
+      },
+      {
+        "fitness": 0.19047619047619047,
+        "wins": 4,
+        "losses": 17,
+        "team": [
+          "Umbreon",
+          "Salamence",
+          "Garchomp",
+          "Incineroar",
+          "Gholdengo",
+          "Sneasler"
+        ]
+      },
+      {
+        "fitness": 0.09523809523809523,
+        "wins": 2,
+        "losses": 19,
+        "team": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Sneasler"
+        ]
+      },
+      {
+        "fitness": 0.09523809523809523,
+        "wins": 2,
+        "losses": 19,
+        "team": [
+          "Umbreon",
+          "Gholdengo",
+          "Rillaboom",
+          "Incineroar",
+          "Volcarona",
+          "Sneasler"
+        ]
+      },
+      {
+        "fitness": 0.047619047619047616,
+        "wins": 1,
+        "losses": 20,
+        "team": [
+          "Umbreon",
+          "Salamence",
+          "Incineroar",
+          "Gholdengo",
+          "Rillaboom",
+          "Garchomp"
+        ]
+      }
+    ],
+    "time_sec": 3567.1135396957397
+  },
+  {
+    "generation": 3,
+    "best_fitness": 0.6666666666666666,
+    "best_team": [
+      "Umbreon",
+      "Garchomp",
+      "Typhlosion-Hisui",
+      "Volcarona",
+      "Rillaboom",
+      "Gholdengo"
+    ],
+    "rankings": [
+      {
+        "fitness": 0.6666666666666666,
+        "wins": 14,
+        "losses": 7,
+        "team": [
+          "Umbreon",
+          "Garchomp",
+          "Typhlosion-Hisui",
+          "Volcarona",
+          "Rillaboom",
+          "Gholdengo"
+        ]
+      },
+      {
+        "fitness": 0.5714285714285714,
+        "wins": 12,
+        "losses": 9,
+        "team": [
+          "Umbreon",
+          "Salamence",
+          "Delphox",
+          "Golurk",
+          "Garchomp",
+          "Gholdengo"
+        ]
+      },
+      {
+        "fitness": 0.5714285714285714,
+        "wins": 12,
+        "losses": 9,
+        "team": [
+          "Umbreon",
+          "Basculegion",
+          "Ninetales-Alola",
+          "Volcarona",
+          "Incineroar",
+          "Gholdengo"
+        ]
+      },
+      {
+        "fitness": 0.5714285714285714,
+        "wins": 12,
+        "losses": 9,
+        "team": [
+          "Umbreon",
+          "Delphox",
+          "Golurk",
+          "Salamence",
+          "Sylveon",
+          "Typhlosion-Hisui"
+        ]
+      },
+      {
+        "fitness": 0.5714285714285714,
+        "wins": 12,
+        "losses": 9,
+        "team": [
+          "Umbreon",
+          "Sneasler",
+          "Salamence",
+          "Typhlosion-Hisui",
+          "Gholdengo",
+          "Delphox"
+        ]
+      },
+      {
+        "fitness": 0.5238095238095238,
+        "wins": 11,
+        "losses": 10,
+        "team": [
+          "Umbreon",
+          "Salamence",
+          "Blastoise",
+          "Typhlosion-Hisui",
+          "Delphox",
+          "Golurk"
+        ]
+      },
+      {
+        "fitness": 0.5238095238095238,
+        "wins": 11,
+        "losses": 10,
+        "team": [
+          "Umbreon",
+          "Incineroar",
+          "Basculegion",
+          "Volcarona",
+          "Sylveon",
+          "Delphox"
+        ]
+      },
+      {
+        "fitness": 0.47619047619047616,
+        "wins": 10,
+        "losses": 11,
+        "team": [
+          "Umbreon",
+          "Typhlosion-Hisui",
+          "Volcarona",
+          "Sylveon",
+          "Garchomp",
+          "Salamence"
+        ]
+      },
+      {
+        "fitness": 0.47619047619047616,
+        "wins": 10,
+        "losses": 11,
+        "team": [
+          "Umbreon",
+          "Volcarona",
+          "Floette-Eternal",
+          "Ninetales-Alola",
+          "Salamence",
+          "Kommo-o"
+        ]
+      },
+      {
+        "fitness": 0.47619047619047616,
+        "wins": 10,
+        "losses": 11,
+        "team": [
+          "Umbreon",
+          "Salamence",
+          "Gholdengo",
+          "Garchomp",
+          "Kommo-o",
+          "Pelipper"
+        ]
+      },
+      {
+        "fitness": 0.38095238095238093,
+        "wins": 8,
+        "losses": 13,
+        "team": [
+          "Umbreon",
+          "Golurk",
+          "Salamence",
+          "Gholdengo",
+          "Ninetales-Alola",
+          "Incineroar"
+        ]
+      },
+      {
+        "fitness": 0.2857142857142857,
+        "wins": 6,
+        "losses": 15,
+        "team": [
+          "Umbreon",
+          "Typhlosion-Hisui",
+          "Raichu",
+          "Golurk",
+          "Blastoise",
+          "Volcarona"
+        ]
+      }
+    ],
+    "time_sec": 2341.4454362392426
+  },
+  {
+    "generation": 4,
+    "best_fitness": 0.8571428571428571,
+    "best_team": [
+      "Umbreon",
+      "Arcanine-Hisui",
+      "Volcarona",
+      "Gholdengo",
+      "Garchomp",
+      "Typhlosion-Hisui"
+    ],
+    "rankings": [
+      {
+        "fitness": 0.8571428571428571,
+        "wins": 18,
+        "losses": 3,
+        "team": [
+          "Umbreon",
+          "Arcanine-Hisui",
+          "Volcarona",
+          "Gholdengo",
+          "Garchomp",
+          "Typhlosion-Hisui"
+        ]
+      },
+      {
+        "fitness": 0.7142857142857143,
+        "wins": 15,
+        "losses": 6,
+        "team": [
+          "Umbreon",
+          "Garchomp",
+          "Gholdengo",
+          "Delphox",
+          "Farigiraf",
+          "Ninetales-Alola"
+        ]
+      },
+      {
+        "fitness": 0.47619047619047616,
+        "wins": 10,
+        "losses": 11,
+        "team": [
+          "Umbreon",
+          "Garchomp",
+          "Typhlosion-Hisui",
+          "Volcarona",
+          "Rillaboom",
+          "Gholdengo"
+        ]
+      },
+      {
+        "fitness": 0.47619047619047616,
+        "wins": 10,
+        "losses": 11,
+        "team": [
+          "Umbreon",
+          "Gholdengo",
+          "Typhlosion-Hisui",
+          "Staraptor",
+          "Golurk",
+          "Froslass"
+        ]
+      },
+      {
+        "fitness": 0.42857142857142855,
+        "wins": 9,
+        "losses": 12,
+        "team": [
+          "Umbreon",
+          "Basculegion",
+          "Ninetales-Alola",
+          "Volcarona",
+          "Incineroar",
+          "Gholdengo"
+        ]
+      },
+      {
+        "fitness": 0.42857142857142855,
+        "wins": 9,
+        "losses": 12,
+        "team": [
+          "Umbreon",
+          "Typhlosion-Hisui",
+          "Gholdengo",
+          "Corviknight",
+          "Ninetales-Alola",
+          "Golurk"
+        ]
+      },
+      {
+        "fitness": 0.42857142857142855,
+        "wins": 9,
+        "losses": 12,
+        "team": [
+          "Umbreon",
+          "Farigiraf",
+          "Froslass",
+          "Delphox",
+          "Excadrill",
+          "Volcarona"
+        ]
+      },
+      {
+        "fitness": 0.38095238095238093,
+        "wins": 8,
+        "losses": 13,
+        "team": [
+          "Umbreon",
+          "Delphox",
+          "Indeedee-F",
+          "Golurk",
+          "Volcarona",
+          "Gholdengo"
+        ]
+      },
+      {
+        "fitness": 0.3333333333333333,
+        "wins": 7,
+        "losses": 14,
+        "team": [
+          "Umbreon",
+          "Salamence",
+          "Delphox",
+          "Golurk",
+          "Garchomp",
+          "Gholdengo"
+        ]
+      },
+      {
+        "fitness": 0.23809523809523808,
+        "wins": 5,
+        "losses": 16,
+        "team": [
+          "Umbreon",
+          "Rillaboom",
+          "Kommo-o",
+          "Incineroar",
+          "Golurk",
+          "Garchomp"
+        ]
+      },
+      {
+        "fitness": 0.19047619047619047,
+        "wins": 4,
+        "losses": 17,
+        "team": [
+          "Umbreon",
+          "Volcarona",
+          "Ninetales-Alola",
+          "Gholdengo",
+          "Rillaboom",
+          "Typhlosion-Hisui"
+        ]
+      },
+      {
+        "fitness": 0.19047619047619047,
+        "wins": 4,
+        "losses": 17,
+        "team": [
+          "Umbreon",
+          "Golisopod",
+          "Salamence",
+          "Gholdengo",
+          "Basculegion",
+          "Incineroar"
+        ]
+      }
+    ],
+    "time_sec": 2575.6286959648132
+  },
+  {
+    "generation": 5,
+    "best_fitness": 0.7619047619047619,
+    "best_team": [
+      "Umbreon",
+      "Arcanine-Hisui",
+      "Volcarona",
+      "Gholdengo",
+      "Garchomp",
+      "Typhlosion-Hisui"
+    ],
+    "rankings": [
+      {
+        "fitness": 0.7619047619047619,
+        "wins": 16,
+        "losses": 5,
+        "team": [
+          "Umbreon",
+          "Arcanine-Hisui",
+          "Volcarona",
+          "Gholdengo",
+          "Garchomp",
+          "Typhlosion-Hisui"
+        ]
+      },
+      {
+        "fitness": 0.7142857142857143,
+        "wins": 15,
+        "losses": 6,
+        "team": [
+          "Umbreon",
+          "Garchomp",
+          "Gholdengo",
+          "Delphox",
+          "Farigiraf",
+          "Ninetales-Alola"
+        ]
+      },
+      {
+        "fitness": 0.7142857142857143,
+        "wins": 15,
+        "losses": 6,
+        "team": [
+          "Umbreon",
+          "Garchomp",
+          "Ninetales-Alola",
+          "Gholdengo",
+          "Arcanine-Hisui",
+          "Typhlosion-Hisui"
+        ]
+      },
+      {
+        "fitness": 0.6666666666666666,
+        "wins": 14,
+        "losses": 7,
+        "team": [
+          "Umbreon",
+          "Typhlosion-Hisui",
+          "Garchomp",
+          "Farigiraf",
+          "Ninetales-Alola",
+          "Gholdengo"
+        ]
+      },
+      {
+        "fitness": 0.6666666666666666,
+        "wins": 14,
+        "losses": 7,
+        "team": [
+          "Umbreon",
+          "Gholdengo",
+          "Floette-Eternal",
+          "Golisopod",
+          "Delphox",
+          "Ninetales-Alola"
+        ]
+      },
+      {
+        "fitness": 0.6666666666666666,
+        "wins": 14,
+        "losses": 7,
+        "team": [
+          "Umbreon",
+          "Garchomp",
+          "Typhlosion-Hisui",
+          "Rillaboom",
+          "Gholdengo",
+          "Grimmsnarl"
+        ]
+      },
+      {
+        "fitness": 0.6190476190476191,
+        "wins": 13,
+        "losses": 8,
+        "team": [
+          "Umbreon",
+          "Typhlosion-Hisui",
+          "Volcarona",
+          "Excadrill",
+          "Arcanine-Hisui",
+          "Garchomp"
+        ]
+      },
+      {
+        "fitness": 0.6190476190476191,
+        "wins": 13,
+        "losses": 8,
+        "team": [
+          "Umbreon",
+          "Garchomp",
+          "Gholdengo",
+          "Typhlosion-Hisui",
+          "Ninetales-Alola",
+          "Farigiraf"
+        ]
+      },
+      {
+        "fitness": 0.5714285714285714,
+        "wins": 12,
+        "losses": 9,
+        "team": [
+          "Umbreon",
+          "Garchomp",
+          "Delphox",
+          "Gholdengo",
+          "Volcarona",
+          "Rillaboom"
+        ]
+      },
+      {
+        "fitness": 0.47619047619047616,
+        "wins": 10,
+        "losses": 11,
+        "team": [
+          "Umbreon",
+          "Garchomp",
+          "Typhlosion-Hisui",
+          "Volcarona",
+          "Rillaboom",
+          "Gholdengo"
+        ]
+      },
+      {
+        "fitness": 0.3333333333333333,
+        "wins": 7,
+        "losses": 14,
+        "team": [
+          "Umbreon",
+          "Corviknight",
+          "Typhlosion-Hisui",
+          "Arcanine-Hisui",
+          "Volcarona",
+          "Venusaur"
+        ]
+      },
+      {
+        "fitness": 0.3333333333333333,
+        "wins": 7,
+        "losses": 14,
+        "team": [
+          "Umbreon",
+          "Sinistcha",
+          "Gholdengo",
+          "Ninetales-Alola",
+          "Blastoise",
+          "Volcarona"
+        ]
+      }
+    ],
+    "time_sec": 2159.989406108856
+  },
+  {
+    "generation": 6,
+    "best_fitness": 0.8571428571428571,
+    "best_team": [
+      "Umbreon",
+      "Garchomp",
+      "Ninetales-Alola",
+      "Gholdengo",
+      "Arcanine-Hisui",
+      "Typhlosion-Hisui"
+    ],
+    "rankings": [
+      {
+        "fitness": 0.8571428571428571,
+        "wins": 18,
+        "losses": 3,
+        "team": [
+          "Umbreon",
+          "Garchomp",
+          "Ninetales-Alola",
+          "Gholdengo",
+          "Arcanine-Hisui",
+          "Typhlosion-Hisui"
+        ]
+      },
+      {
+        "fitness": 0.6666666666666666,
+        "wins": 14,
+        "losses": 7,
+        "team": [
+          "Umbreon",
+          "Arcanine-Hisui",
+          "Volcarona",
+          "Gholdengo",
+          "Garchomp",
+          "Typhlosion-Hisui"
+        ]
+      },
+      {
+        "fitness": 0.6666666666666666,
+        "wins": 14,
+        "losses": 7,
+        "team": [
+          "Umbreon",
+          "Delphox",
+          "Garchomp",
+          "Golisopod",
+          "Arcanine-Hisui",
+          "Froslass"
+        ]
+      },
+      {
+        "fitness": 0.6666666666666666,
+        "wins": 14,
+        "losses": 7,
+        "team": [
+          "Umbreon",
+          "Garchomp",
+          "Arcanine-Hisui",
+          "Gholdengo",
+          "Ninetales-Alola",
+          "Delphox"
+        ]
+      },
+      {
+        "fitness": 0.6190476190476191,
+        "wins": 13,
+        "losses": 8,
+        "team": [
+          "Umbreon",
+          "Farigiraf",
+          "Gholdengo",
+          "Delphox",
+          "Volcarona",
+          "Arcanine-Hisui"
+        ]
+      },
+      {
+        "fitness": 0.5714285714285714,
+        "wins": 12,
+        "losses": 9,
+        "team": [
+          "Umbreon",
+          "Garchomp",
+          "Gholdengo",
+          "Delphox",
+          "Farigiraf",
+          "Ninetales-Alola"
+        ]
+      },
+      {
+        "fitness": 0.5238095238095238,
+        "wins": 11,
+        "losses": 10,
+        "team": [
+          "Umbreon",
+          "Gholdengo",
+          "Arcanine-Hisui",
+          "Ninetales-Alola",
+          "Delphox",
+          "Farigiraf"
+        ]
+      },
+      {
+        "fitness": 0.47619047619047616,
+        "wins": 10,
+        "losses": 11,
+        "team": [
+          "Umbreon",
+          "Garchomp",
+          "Aerodactyl",
+          "Volcarona",
+          "Farigiraf",
+          "Ninetales-Alola"
+        ]
+      },
+      {
+        "fitness": 0.42857142857142855,
+        "wins": 9,
+        "losses": 12,
+        "team": [
+          "Umbreon",
+          "Kingambit",
+          "Ninetales-Alola",
+          "Gholdengo",
+          "Delphox",
+          "Farigiraf"
+        ]
+      },
+      {
+        "fitness": 0.38095238095238093,
+        "wins": 8,
+        "losses": 13,
+        "team": [
+          "Umbreon",
+          "Indeedee-F",
+          "Arcanine-Hisui",
+          "Gholdengo",
+          "Typhlosion-Hisui",
+          "Venusaur"
+        ]
+      },
+      {
+        "fitness": 0.2857142857142857,
+        "wins": 6,
+        "losses": 15,
+        "team": [
+          "Umbreon",
+          "Typhlosion-Hisui",
+          "Farigiraf",
+          "Garchomp",
+          "Blastoise",
+          "Ninetales-Alola"
+        ]
+      },
+      {
+        "fitness": 0.2857142857142857,
+        "wins": 6,
+        "losses": 15,
+        "team": [
+          "Umbreon",
+          "Ninetales-Alola",
+          "Salamence",
+          "Delphox",
+          "Golisopod",
+          "Aerodactyl"
+        ]
+      }
+    ],
+    "time_sec": 1944.1764397621155
+  },
+  {
+    "generation": 7,
+    "best_fitness": 0.7142857142857143,
+    "best_team": [
+      "Umbreon",
+      "Garchomp",
+      "Ninetales-Alola",
+      "Gholdengo",
+      "Arcanine-Hisui",
+      "Typhlosion-Hisui"
+    ],
+    "rankings": [
+      {
+        "fitness": 0.7142857142857143,
+        "wins": 15,
+        "losses": 6,
+        "team": [
+          "Umbreon",
+          "Garchomp",
+          "Ninetales-Alola",
+          "Gholdengo",
+          "Arcanine-Hisui",
+          "Typhlosion-Hisui"
+        ]
+      },
+      {
+        "fitness": 0.7142857142857143,
+        "wins": 15,
+        "losses": 6,
+        "team": [
+          "Umbreon",
+          "Golurk",
+          "Arcanine-Hisui",
+          "Garchomp",
+          "Delphox",
+          "Golisopod"
+        ]
+      },
+      {
+        "fitness": 0.6666666666666666,
+        "wins": 14,
+        "losses": 7,
+        "team": [
+          "Umbreon",
+          "Delphox",
+          "Garchomp",
+          "Golisopod",
+          "Arcanine-Hisui",
+          "Froslass"
+        ]
+      },
+      {
+        "fitness": 0.6666666666666666,
+        "wins": 14,
+        "losses": 7,
+        "team": [
+          "Umbreon",
+          "Gholdengo",
+          "Golurk",
+          "Garchomp",
+          "Volcarona",
+          "Typhlosion-Hisui"
+        ]
+      },
+      {
+        "fitness": 0.6666666666666666,
+        "wins": 14,
+        "losses": 7,
+        "team": [
+          "Umbreon",
+          "Excadrill",
+          "Arcanine-Hisui",
+          "Incineroar",
+          "Tyranitar",
+          "Froslass"
+        ]
+      },
+      {
+        "fitness": 0.6190476190476191,
+        "wins": 13,
+        "losses": 8,
+        "team": [
+          "Umbreon",
+          "Gholdengo",
+          "Typhlosion-Hisui",
+          "Garchomp",
+          "Ninetales-Alola",
+          "Arcanine-Hisui"
+        ]
+      },
+      {
+        "fitness": 0.5714285714285714,
+        "wins": 12,
+        "losses": 9,
+        "team": [
+          "Umbreon",
+          "Volcarona",
+          "Milotic",
+          "Gholdengo",
+          "Garchomp",
+          "Typhlosion-Hisui"
+        ]
+      },
+      {
+        "fitness": 0.5714285714285714,
+        "wins": 12,
+        "losses": 9,
+        "team": [
+          "Umbreon",
+          "Typhlosion-Hisui",
+          "Tyranitar",
+          "Pelipper",
+          "Delphox",
+          "Froslass"
+        ]
+      },
+      {
+        "fitness": 0.5238095238095238,
+        "wins": 11,
+        "losses": 10,
+        "team": [
+          "Umbreon",
+          "Arcanine-Hisui",
+          "Volcarona",
+          "Gholdengo",
+          "Garchomp",
+          "Typhlosion-Hisui"
+        ]
+      },
+      {
+        "fitness": 0.47619047619047616,
+        "wins": 10,
+        "losses": 11,
+        "team": [
+          "Umbreon",
+          "Venusaur",
+          "Garchomp",
+          "Typhlosion-Hisui",
+          "Golisopod",
+          "Gholdengo"
+        ]
+      },
+      {
+        "fitness": 0.47619047619047616,
+        "wins": 10,
+        "losses": 11,
+        "team": [
+          "Umbreon",
+          "Typhlosion-Hisui",
+          "Garchomp",
+          "Arcanine-Hisui",
+          "Delphox",
+          "Golisopod"
+        ]
+      },
+      {
+        "fitness": 0.3333333333333333,
+        "wins": 7,
+        "losses": 14,
+        "team": [
+          "Umbreon",
+          "Milotic",
+          "Indeedee-F",
+          "Gholdengo",
+          "Golisopod",
+          "Salamence"
+        ]
+      }
+    ],
+    "time_sec": 2138.5583670139313
+  },
+  {
+    "generation": 8,
+    "best_fitness": 0.6190476190476191,
+    "best_team": [
+      "Umbreon",
+      "Garchomp",
+      "Ninetales-Alola",
+      "Gholdengo",
+      "Arcanine-Hisui",
+      "Typhlosion-Hisui"
+    ],
+    "rankings": [
+      {
+        "fitness": 0.6190476190476191,
+        "wins": 13,
+        "losses": 8,
+        "team": [
+          "Umbreon",
+          "Garchomp",
+          "Ninetales-Alola",
+          "Gholdengo",
+          "Arcanine-Hisui",
+          "Typhlosion-Hisui"
+        ]
+      },
+      {
+        "fitness": 0.6190476190476191,
+        "wins": 13,
+        "losses": 8,
+        "team": [
+          "Umbreon",
+          "Golisopod",
+          "Golurk",
+          "Garchomp",
+          "Froslass",
+          "Arcanine-Hisui"
+        ]
+      },
+      {
+        "fitness": 0.5714285714285714,
+        "wins": 12,
+        "losses": 9,
+        "team": [
+          "Umbreon",
+          "Golurk",
+          "Arcanine-Hisui",
+          "Garchomp",
+          "Delphox",
+          "Golisopod"
+        ]
+      },
+      {
+        "fitness": 0.5714285714285714,
+        "wins": 12,
+        "losses": 9,
+        "team": [
+          "Umbreon",
+          "Golisopod",
+          "Delphox",
+          "Ninetales-Alola",
+          "Gholdengo",
+          "Sylveon"
+        ]
+      },
+      {
+        "fitness": 0.5714285714285714,
+        "wins": 12,
+        "losses": 9,
+        "team": [
+          "Umbreon",
+          "Sneasler",
+          "Golurk",
+          "Golisopod",
+          "Typhlosion-Hisui",
+          "Ninetales-Alola"
+        ]
+      },
+      {
+        "fitness": 0.5238095238095238,
+        "wins": 11,
+        "losses": 10,
+        "team": [
+          "Umbreon",
+          "Delphox",
+          "Garchomp",
+          "Golisopod",
+          "Arcanine-Hisui",
+          "Froslass"
+        ]
+      },
+      {
+        "fitness": 0.47619047619047616,
+        "wins": 10,
+        "losses": 11,
+        "team": [
+          "Umbreon",
+          "Garchomp",
+          "Delphox",
+          "Volcarona",
+          "Golisopod",
+          "Golurk"
+        ]
+      },
+      {
+        "fitness": 0.42857142857142855,
+        "wins": 9,
+        "losses": 12,
+        "team": [
+          "Umbreon",
+          "Froslass",
+          "Golisopod",
+          "Garchomp",
+          "Venusaur",
+          "Gholdengo"
+        ]
+      },
+      {
+        "fitness": 0.38095238095238093,
+        "wins": 8,
+        "losses": 13,
+        "team": [
+          "Umbreon",
+          "Arcanine-Hisui",
+          "Grimmsnarl",
+          "Incineroar",
+          "Froslass",
+          "Delphox"
+        ]
+      },
+      {
+        "fitness": 0.2857142857142857,
+        "wins": 6,
+        "losses": 15,
+        "team": [
+          "Umbreon",
+          "Sinistcha",
+          "Excadrill",
+          "Golisopod",
+          "Garchomp",
+          "Froslass"
+        ]
+      },
+      {
+        "fitness": 0.2857142857142857,
+        "wins": 6,
+        "losses": 15,
+        "team": [
+          "Umbreon",
+          "Ninetales-Alola",
+          "Garchomp",
+          "Arcanine-Hisui",
+          "Indeedee-F",
+          "Golurk"
+        ]
+      },
+      {
+        "fitness": 0.19047619047619047,
+        "wins": 4,
+        "losses": 17,
+        "team": [
+          "Umbreon",
+          "Glimmora",
+          "Golurk",
+          "Delphox",
+          "Froslass",
+          "Golisopod"
+        ]
+      }
+    ],
+    "time_sec": 2732.3913493156433
+  },
+  {
+    "generation": 9,
+    "best_fitness": 0.7142857142857143,
+    "best_team": [
+      "Umbreon",
+      "Garchomp",
+      "Ninetales-Alola",
+      "Gholdengo",
+      "Arcanine-Hisui",
+      "Typhlosion-Hisui"
+    ],
+    "rankings": [
+      {
+        "fitness": 0.7142857142857143,
+        "wins": 15,
+        "losses": 6,
+        "team": [
+          "Umbreon",
+          "Garchomp",
+          "Ninetales-Alola",
+          "Gholdengo",
+          "Arcanine-Hisui",
+          "Typhlosion-Hisui"
+        ]
+      },
+      {
+        "fitness": 0.7142857142857143,
+        "wins": 15,
+        "losses": 6,
+        "team": [
+          "Umbreon",
+          "Garchomp",
+          "Typhlosion-Hisui",
+          "Arcanine-Hisui",
+          "Golurk",
+          "Froslass"
+        ]
+      },
+      {
+        "fitness": 0.6666666666666666,
+        "wins": 14,
+        "losses": 7,
+        "team": [
+          "Umbreon",
+          "Delphox",
+          "Arcanine-Hisui",
+          "Golisopod",
+          "Gholdengo",
+          "Garchomp"
+        ]
+      },
+      {
+        "fitness": 0.5714285714285714,
+        "wins": 12,
+        "losses": 9,
+        "team": [
+          "Umbreon",
+          "Delphox",
+          "Garchomp",
+          "Arcanine-Hisui",
+          "Golisopod",
+          "Golurk"
+        ]
+      },
+      {
+        "fitness": 0.5238095238095238,
+        "wins": 11,
+        "losses": 10,
+        "team": [
+          "Umbreon",
+          "Typhlosion-Hisui",
+          "Arcanine-Hisui",
+          "Salamence",
+          "Corviknight",
+          "Garchomp"
+        ]
+      },
+      {
+        "fitness": 0.5238095238095238,
+        "wins": 11,
+        "losses": 10,
+        "team": [
+          "Umbreon",
+          "Indeedee-F",
+          "Arcanine-Hisui",
+          "Golurk",
+          "Golisopod",
+          "Froslass"
+        ]
+      },
+      {
+        "fitness": 0.47619047619047616,
+        "wins": 10,
+        "losses": 11,
+        "team": [
+          "Umbreon",
+          "Golurk",
+          "Arcanine-Hisui",
+          "Garchomp",
+          "Delphox",
+          "Golisopod"
+        ]
+      },
+      {
+        "fitness": 0.42857142857142855,
+        "wins": 9,
+        "losses": 12,
+        "team": [
+          "Umbreon",
+          "Rillaboom",
+          "Arcanine-Hisui",
+          "Incineroar",
+          "Typhlosion-Hisui",
+          "Gholdengo"
+        ]
+      },
+      {
+        "fitness": 0.42857142857142855,
+        "wins": 9,
+        "losses": 12,
+        "team": [
+          "Umbreon",
+          "Delphox",
+          "Golisopod",
+          "Whimsicott",
+          "Garchomp",
+          "Froslass"
+        ]
+      },
+      {
+        "fitness": 0.38095238095238093,
+        "wins": 8,
+        "losses": 13,
+        "team": [
+          "Umbreon",
+          "Golisopod",
+          "Golurk",
+          "Garchomp",
+          "Froslass",
+          "Arcanine-Hisui"
+        ]
+      },
+      {
+        "fitness": 0.38095238095238093,
+        "wins": 8,
+        "losses": 13,
+        "team": [
+          "Umbreon",
+          "Basculegion",
+          "Froslass",
+          "Garchomp",
+          "Golurk",
+          "Kommo-o"
+        ]
+      },
+      {
+        "fitness": 0.09523809523809523,
+        "wins": 2,
+        "losses": 19,
+        "team": [
+          "Umbreon",
+          "Ninetales-Alola",
+          "Raichu",
+          "Grimmsnarl",
+          "Golisopod",
+          "Archaludon"
+        ]
+      }
+    ],
+    "time_sec": 2500.447160959244
+  },
+  {
+    "generation": 10,
+    "best_fitness": 0.7142857142857143,
+    "best_team": [
+      "Umbreon",
+      "Delphox",
+      "Arcanine-Hisui",
+      "Golisopod",
+      "Gholdengo",
+      "Garchomp"
+    ],
+    "rankings": [
+      {
+        "fitness": 0.7142857142857143,
+        "wins": 15,
+        "losses": 6,
+        "team": [
+          "Umbreon",
+          "Delphox",
+          "Arcanine-Hisui",
+          "Golisopod",
+          "Gholdengo",
+          "Garchomp"
+        ]
+      },
+      {
+        "fitness": 0.7142857142857143,
+        "wins": 15,
+        "losses": 6,
+        "team": [
+          "Umbreon",
+          "Garchomp",
+          "Charizard",
+          "Arcanine-Hisui",
+          "Ninetales-Alola",
+          "Gholdengo"
+        ]
+      },
+      {
+        "fitness": 0.6666666666666666,
+        "wins": 14,
+        "losses": 7,
+        "team": [
+          "Umbreon",
+          "Garchomp",
+          "Ninetales-Alola",
+          "Gholdengo",
+          "Arcanine-Hisui",
+          "Typhlosion-Hisui"
+        ]
+      },
+      {
+        "fitness": 0.6666666666666666,
+        "wins": 14,
+        "losses": 7,
+        "team": [
+          "Umbreon",
+          "Golurk",
+          "Tyranitar",
+          "Garchomp",
+          "Typhlosion-Hisui",
+          "Arcanine-Hisui"
+        ]
+      },
+      {
+        "fitness": 0.6190476190476191,
+        "wins": 13,
+        "losses": 8,
+        "team": [
+          "Umbreon",
+          "Froslass",
+          "Typhlosion-Hisui",
+          "Golurk",
+          "Arcanine-Hisui",
+          "Gholdengo"
+        ]
+      },
+      {
+        "fitness": 0.6190476190476191,
+        "wins": 13,
+        "losses": 8,
+        "team": [
+          "Umbreon",
+          "Arcanine-Hisui",
+          "Raichu",
+          "Typhlosion-Hisui",
+          "Garchomp",
+          "Gholdengo"
+        ]
+      },
+      {
+        "fitness": 0.6190476190476191,
+        "wins": 13,
+        "losses": 8,
+        "team": [
+          "Umbreon",
+          "Kommo-o",
+          "Gholdengo",
+          "Arcanine-Hisui",
+          "Golurk",
+          "Froslass"
+        ]
+      },
+      {
+        "fitness": 0.5238095238095238,
+        "wins": 11,
+        "losses": 10,
+        "team": [
+          "Umbreon",
+          "Garchomp",
+          "Typhlosion-Hisui",
+          "Arcanine-Hisui",
+          "Golurk",
+          "Froslass"
+        ]
+      },
+      {
+        "fitness": 0.5238095238095238,
+        "wins": 11,
+        "losses": 10,
+        "team": [
+          "Umbreon",
+          "Meowstic-F",
+          "Typhlosion-Hisui",
+          "Gholdengo",
+          "Delphox",
+          "Golisopod"
+        ]
+      },
+      {
+        "fitness": 0.47619047619047616,
+        "wins": 10,
+        "losses": 11,
+        "team": [
+          "Umbreon",
+          "Typhlosion-Hisui",
+          "Gholdengo",
+          "Garchomp",
+          "Arcanine-Hisui",
+          "Salamence"
+        ]
+      },
+      {
+        "fitness": 0.42857142857142855,
+        "wins": 9,
+        "losses": 12,
+        "team": [
+          "Umbreon",
+          "Garchomp",
+          "Staraptor",
+          "Excadrill",
+          "Golurk",
+          "Froslass"
+        ]
+      },
+      {
+        "fitness": 0.19047619047619047,
+        "wins": 4,
+        "losses": 17,
+        "team": [
+          "Umbreon",
+          "Excadrill",
+          "Farigiraf",
+          "Milotic",
+          "Froslass",
+          "Archaludon"
+        ]
+      }
+    ],
+    "time_sec": 2033.9990355968475
+  },
+  {
+    "generation": 11,
+    "best_fitness": 0.6190476190476191,
+    "best_team": [
+      "Umbreon",
+      "Delphox",
+      "Arcanine-Hisui",
+      "Golisopod",
+      "Gholdengo",
+      "Garchomp"
+    ],
+    "rankings": [
+      {
+        "fitness": 0.6190476190476191,
+        "wins": 13,
+        "losses": 8,
+        "team": [
+          "Umbreon",
+          "Delphox",
+          "Arcanine-Hisui",
+          "Golisopod",
+          "Gholdengo",
+          "Garchomp"
+        ]
+      },
+      {
+        "fitness": 0.6190476190476191,
+        "wins": 13,
+        "losses": 8,
+        "team": [
+          "Umbreon",
+          "Garchomp",
+          "Charizard",
+          "Arcanine-Hisui",
+          "Ninetales-Alola",
+          "Gholdengo"
+        ]
+      },
+      {
+        "fitness": 0.6190476190476191,
+        "wins": 13,
+        "losses": 8,
+        "team": [
+          "Umbreon",
+          "Farigiraf",
+          "Corviknight",
+          "Arcanine-Hisui",
+          "Golurk",
+          "Charizard"
+        ]
+      },
+      {
+        "fitness": 0.6190476190476191,
+        "wins": 13,
+        "losses": 8,
+        "team": [
+          "Umbreon",
+          "Golisopod",
+          "Volcarona",
+          "Typhlosion-Hisui",
+          "Gholdengo",
+          "Dragonite"
+        ]
+      },
+      {
+        "fitness": 0.6190476190476191,
+        "wins": 13,
+        "losses": 8,
+        "team": [
+          "Umbreon",
+          "Gholdengo",
+          "Delphox",
+          "Garchomp",
+          "Arcanine-Hisui",
+          "Kommo-o"
+        ]
+      },
+      {
+        "fitness": 0.5714285714285714,
+        "wins": 12,
+        "losses": 9,
+        "team": [
+          "Umbreon",
+          "Golisopod",
+          "Volcarona",
+          "Garchomp",
+          "Typhlosion-Hisui",
+          "Ninetales-Alola"
+        ]
+      },
+      {
+        "fitness": 0.5238095238095238,
+        "wins": 11,
+        "losses": 10,
+        "team": [
+          "Umbreon",
+          "Garchomp",
+          "Ninetales-Alola",
+          "Gholdengo",
+          "Arcanine-Hisui",
+          "Typhlosion-Hisui"
+        ]
+      },
+      {
+        "fitness": 0.5238095238095238,
+        "wins": 11,
+        "losses": 10,
+        "team": [
+          "Umbreon",
+          "Arcanine-Hisui",
+          "Garchomp",
+          "Gholdengo",
+          "Kommo-o",
+          "Rillaboom"
+        ]
+      },
+      {
+        "fitness": 0.47619047619047616,
+        "wins": 10,
+        "losses": 11,
+        "team": [
+          "Umbreon",
+          "Delphox",
+          "Gholdengo",
+          "Golisopod",
+          "Garchomp",
+          "Grimmsnarl"
+        ]
+      },
+      {
+        "fitness": 0.42857142857142855,
+        "wins": 9,
+        "losses": 12,
+        "team": [
+          "Umbreon",
+          "Delphox",
+          "Garchomp",
+          "Golisopod",
+          "Ninetales-Alola",
+          "Arcanine-Hisui"
+        ]
+      },
+      {
+        "fitness": 0.38095238095238093,
+        "wins": 8,
+        "losses": 13,
+        "team": [
+          "Umbreon",
+          "Farigiraf",
+          "Arcanine-Hisui",
+          "Delphox",
+          "Gholdengo",
+          "Ninetales-Alola"
+        ]
+      },
+      {
+        "fitness": 0.14285714285714285,
+        "wins": 3,
+        "losses": 18,
+        "team": [
+          "Umbreon",
+          "Meowstic-F",
+          "Incineroar",
+          "Garchomp",
+          "Charizard",
+          "Ninetales-Alola"
+        ]
+      }
+    ],
+    "time_sec": 2626.455450296402
+  },
+  {
+    "generation": 12,
+    "best_fitness": 0.7619047619047619,
+    "best_team": [
+      "Umbreon",
+      "Pelipper",
+      "Gholdengo",
+      "Glimmora",
+      "Tyranitar",
+      "Charizard"
+    ],
+    "rankings": [
+      {
+        "fitness": 0.7619047619047619,
+        "wins": 16,
+        "losses": 5,
+        "team": [
+          "Umbreon",
+          "Pelipper",
+          "Gholdengo",
+          "Glimmora",
+          "Tyranitar",
+          "Charizard"
+        ]
+      },
+      {
+        "fitness": 0.7619047619047619,
+        "wins": 16,
+        "losses": 5,
+        "team": [
+          "Umbreon",
+          "Garchomp",
+          "Glimmora",
+          "Gholdengo",
+          "Delphox",
+          "Kommo-o"
+        ]
+      },
+      {
+        "fitness": 0.7142857142857143,
+        "wins": 15,
+        "losses": 6,
+        "team": [
+          "Umbreon",
+          "Delphox",
+          "Arcanine-Hisui",
+          "Golisopod",
+          "Gholdengo",
+          "Garchomp"
+        ]
+      },
+      {
+        "fitness": 0.6190476190476191,
+        "wins": 13,
+        "losses": 8,
+        "team": [
+          "Umbreon",
+          "Arcanine-Hisui",
+          "Golisopod",
+          "Gholdengo",
+          "Kommo-o",
+          "Corviknight"
+        ]
+      },
+      {
+        "fitness": 0.5714285714285714,
+        "wins": 12,
+        "losses": 9,
+        "team": [
+          "Umbreon",
+          "Garchomp",
+          "Charizard",
+          "Arcanine-Hisui",
+          "Golisopod",
+          "Delphox"
+        ]
+      },
+      {
+        "fitness": 0.5238095238095238,
+        "wins": 11,
+        "losses": 10,
+        "team": [
+          "Umbreon",
+          "Volcarona",
+          "Golisopod",
+          "Gholdengo",
+          "Charizard",
+          "Corviknight"
+        ]
+      },
+      {
+        "fitness": 0.5238095238095238,
+        "wins": 11,
+        "losses": 10,
+        "team": [
+          "Umbreon",
+          "Froslass",
+          "Garchomp",
+          "Golisopod",
+          "Ninetales-Alola",
+          "Raichu"
+        ]
+      },
+      {
+        "fitness": 0.47619047619047616,
+        "wins": 10,
+        "losses": 11,
+        "team": [
+          "Umbreon",
+          "Garchomp",
+          "Charizard",
+          "Arcanine-Hisui",
+          "Ninetales-Alola",
+          "Gholdengo"
+        ]
+      },
+      {
+        "fitness": 0.47619047619047616,
+        "wins": 10,
+        "losses": 11,
+        "team": [
+          "Umbreon",
+          "Arcanine-Hisui",
+          "Charizard",
+          "Farigiraf",
+          "Ninetales-Alola",
+          "Garchomp"
+        ]
+      },
+      {
+        "fitness": 0.42857142857142855,
+        "wins": 9,
+        "losses": 12,
+        "team": [
+          "Umbreon",
+          "Farigiraf",
+          "Corviknight",
+          "Arcanine-Hisui",
+          "Golurk",
+          "Charizard"
+        ]
+      },
+      {
+        "fitness": 0.42857142857142855,
+        "wins": 9,
+        "losses": 12,
+        "team": [
+          "Umbreon",
+          "Ninetales-Alola",
+          "Whimsicott",
+          "Charizard",
+          "Golurk",
+          "Corviknight"
+        ]
+      },
+      {
+        "fitness": 0.42857142857142855,
+        "wins": 9,
+        "losses": 12,
+        "team": [
+          "Umbreon",
+          "Arcanine-Hisui",
+          "Golurk",
+          "Charizard",
+          "Ninetales-Alola",
+          "Gholdengo"
+        ]
+      }
+    ],
+    "time_sec": 2231.422617673874
+  },
+  {
+    "generation": 13,
+    "best_fitness": 0.7619047619047619,
+    "best_team": [
+      "Umbreon",
+      "Delphox",
+      "Arcanine-Hisui",
+      "Golisopod",
+      "Gholdengo",
+      "Garchomp"
+    ],
+    "rankings": [
+      {
+        "fitness": 0.7619047619047619,
+        "wins": 16,
+        "losses": 5,
+        "team": [
+          "Umbreon",
+          "Delphox",
+          "Arcanine-Hisui",
+          "Golisopod",
+          "Gholdengo",
+          "Garchomp"
+        ]
+      },
+      {
+        "fitness": 0.6190476190476191,
+        "wins": 13,
+        "losses": 8,
+        "team": [
+          "Umbreon",
+          "Gholdengo",
+          "Glimmora",
+          "Golisopod",
+          "Charizard",
+          "Garchomp"
+        ]
+      },
+      {
+        "fitness": 0.5714285714285714,
+        "wins": 12,
+        "losses": 9,
+        "team": [
+          "Umbreon",
+          "Garchomp",
+          "Glimmora",
+          "Gholdengo",
+          "Delphox",
+          "Kommo-o"
+        ]
+      },
+      {
+        "fitness": 0.5714285714285714,
+        "wins": 12,
+        "losses": 9,
+        "team": [
+          "Umbreon",
+          "Gholdengo",
+          "Golisopod",
+          "Garchomp",
+          "Tyranitar",
+          "Glimmora"
+        ]
+      },
+      {
+        "fitness": 0.5238095238095238,
+        "wins": 11,
+        "losses": 10,
+        "team": [
+          "Umbreon",
+          "Pelipper",
+          "Gholdengo",
+          "Glimmora",
+          "Tyranitar",
+          "Charizard"
+        ]
+      },
+      {
+        "fitness": 0.5238095238095238,
+        "wins": 11,
+        "losses": 10,
+        "team": [
+          "Umbreon",
+          "Delphox",
+          "Arcanine-Hisui",
+          "Gholdengo",
+          "Kommo-o",
+          "Garchomp"
+        ]
+      },
+      {
+        "fitness": 0.5238095238095238,
+        "wins": 11,
+        "losses": 10,
+        "team": [
+          "Umbreon",
+          "Glimmora",
+          "Rillaboom",
+          "Gholdengo",
+          "Delphox",
+          "Arcanine-Hisui"
+        ]
+      },
+      {
+        "fitness": 0.5238095238095238,
+        "wins": 11,
+        "losses": 10,
+        "team": [
+          "Umbreon",
+          "Arcanine-Hisui",
+          "Delphox",
+          "Garchomp",
+          "Pelipper",
+          "Glimmora"
+        ]
+      },
+      {
+        "fitness": 0.42857142857142855,
+        "wins": 9,
+        "losses": 12,
+        "team": [
+          "Umbreon",
+          "Gholdengo",
+          "Glimmora",
+          "Pelipper",
+          "Arcanine-Hisui",
+          "Golisopod"
+        ]
+      },
+      {
+        "fitness": 0.42857142857142855,
+        "wins": 9,
+        "losses": 12,
+        "team": [
+          "Umbreon",
+          "Kommo-o",
+          "Excadrill",
+          "Meowstic-F",
+          "Golisopod",
+          "Arcanine-Hisui"
+        ]
+      },
+      {
+        "fitness": 0.3333333333333333,
+        "wins": 7,
+        "losses": 14,
+        "team": [
+          "Umbreon",
+          "Floette-Eternal",
+          "Arcanine-Hisui",
+          "Salamence",
+          "Kommo-o",
+          "Delphox"
+        ]
+      },
+      {
+        "fitness": 0.2857142857142857,
+        "wins": 6,
+        "losses": 15,
+        "team": [
+          "Umbreon",
+          "Delphox",
+          "Garchomp",
+          "Glimmora",
+          "Pelipper",
+          "Incineroar"
+        ]
+      }
+    ],
+    "time_sec": 2271.1403439044952
+  },
+  {
+    "generation": 14,
+    "best_fitness": 0.8571428571428571,
+    "best_team": [
+      "Umbreon",
+      "Milotic",
+      "Glimmora",
+      "Delphox",
+      "Golisopod",
+      "Arcanine-Hisui"
+    ],
+    "rankings": [
+      {
+        "fitness": 0.8571428571428571,
+        "wins": 18,
+        "losses": 3,
+        "team": [
+          "Umbreon",
+          "Milotic",
+          "Glimmora",
+          "Delphox",
+          "Golisopod",
+          "Arcanine-Hisui"
+        ]
+      },
+      {
+        "fitness": 0.7619047619047619,
+        "wins": 16,
+        "losses": 5,
+        "team": [
+          "Umbreon",
+          "Delphox",
+          "Arcanine-Hisui",
+          "Golisopod",
+          "Gholdengo",
+          "Garchomp"
+        ]
+      },
+      {
+        "fitness": 0.7142857142857143,
+        "wins": 15,
+        "losses": 6,
+        "team": [
+          "Umbreon",
+          "Delphox",
+          "Charizard",
+          "Glimmora",
+          "Garchomp",
+          "Golisopod"
+        ]
+      },
+      {
+        "fitness": 0.6190476190476191,
+        "wins": 13,
+        "losses": 8,
+        "team": [
+          "Umbreon",
+          "Garchomp",
+          "Glimmora",
+          "Gholdengo",
+          "Delphox",
+          "Kommo-o"
+        ]
+      },
+      {
+        "fitness": 0.6190476190476191,
+        "wins": 13,
+        "losses": 8,
+        "team": [
+          "Umbreon",
+          "Kommo-o",
+          "Gholdengo",
+          "Delphox",
+          "Garchomp",
+          "Arcanine-Hisui"
+        ]
+      },
+      {
+        "fitness": 0.6190476190476191,
+        "wins": 13,
+        "losses": 8,
+        "team": [
+          "Umbreon",
+          "Arcanine-Hisui",
+          "Gholdengo",
+          "Garchomp",
+          "Glimmora",
+          "Golisopod"
+        ]
+      },
+      {
+        "fitness": 0.6190476190476191,
+        "wins": 13,
+        "losses": 8,
+        "team": [
+          "Umbreon",
+          "Kommo-o",
+          "Garchomp",
+          "Gholdengo",
+          "Golisopod",
+          "Arcanine-Hisui"
+        ]
+      },
+      {
+        "fitness": 0.5238095238095238,
+        "wins": 11,
+        "losses": 10,
+        "team": [
+          "Umbreon",
+          "Gholdengo",
+          "Glimmora",
+          "Golisopod",
+          "Charizard",
+          "Garchomp"
+        ]
+      },
+      {
+        "fitness": 0.42857142857142855,
+        "wins": 9,
+        "losses": 12,
+        "team": [
+          "Umbreon",
+          "Gholdengo",
+          "Farigiraf",
+          "Golisopod",
+          "Glimmora",
+          "Staraptor"
+        ]
+      },
+      {
+        "fitness": 0.42857142857142855,
+        "wins": 9,
+        "losses": 12,
+        "team": [
+          "Umbreon",
+          "Delphox",
+          "Garchomp",
+          "Gholdengo",
+          "Floette-Eternal",
+          "Indeedee-F"
+        ]
+      },
+      {
+        "fitness": 0.23809523809523808,
+        "wins": 5,
+        "losses": 16,
+        "team": [
+          "Umbreon",
+          "Archaludon",
+          "Delphox",
+          "Kommo-o",
+          "Rillaboom",
+          "Golisopod"
+        ]
+      },
+      {
+        "fitness": 0.047619047619047616,
+        "wins": 1,
+        "losses": 20,
+        "team": [
+          "Umbreon",
+          "Salamence",
+          "Froslass",
+          "Glimmora",
+          "Dragonite",
+          "Ninetales-Alola"
+        ]
+      }
+    ],
+    "time_sec": 2547.2740626335144
+  },
+  {
+    "generation": 15,
+    "best_fitness": 0.7619047619047619,
+    "best_team": [
+      "Umbreon",
+      "Delphox",
+      "Arcanine-Hisui",
+      "Golisopod",
+      "Gholdengo",
+      "Garchomp"
+    ],
+    "rankings": [
+      {
+        "fitness": 0.7619047619047619,
+        "wins": 16,
+        "losses": 5,
+        "team": [
+          "Umbreon",
+          "Delphox",
+          "Arcanine-Hisui",
+          "Golisopod",
+          "Gholdengo",
+          "Garchomp"
+        ]
+      },
+      {
+        "fitness": 0.7142857142857143,
+        "wins": 15,
+        "losses": 6,
+        "team": [
+          "Umbreon",
+          "Arcanine-Hisui",
+          "Golisopod",
+          "Delphox",
+          "Milotic",
+          "Glimmora"
+        ]
+      },
+      {
+        "fitness": 0.6666666666666666,
+        "wins": 14,
+        "losses": 7,
+        "team": [
+          "Umbreon",
+          "Arcanine-Hisui",
+          "Sneasler",
+          "Garchomp",
+          "Aerodactyl",
+          "Dragonite"
+        ]
+      },
+      {
+        "fitness": 0.6190476190476191,
+        "wins": 13,
+        "losses": 8,
+        "team": [
+          "Umbreon",
+          "Delphox",
+          "Charizard",
+          "Glimmora",
+          "Garchomp",
+          "Golisopod"
+        ]
+      },
+      {
+        "fitness": 0.5714285714285714,
+        "wins": 12,
+        "losses": 9,
+        "team": [
+          "Umbreon",
+          "Arcanine-Hisui",
+          "Delphox",
+          "Golisopod",
+          "Garchomp",
+          "Glimmora"
+        ]
+      },
+      {
+        "fitness": 0.5714285714285714,
+        "wins": 12,
+        "losses": 9,
+        "team": [
+          "Umbreon",
+          "Floette-Eternal",
+          "Raichu",
+          "Delphox",
+          "Garchomp",
+          "Charizard"
+        ]
+      },
+      {
+        "fitness": 0.5238095238095238,
+        "wins": 11,
+        "losses": 10,
+        "team": [
+          "Umbreon",
+          "Gholdengo",
+          "Delphox",
+          "Arcanine-Hisui",
+          "Golisopod",
+          "Milotic"
+        ]
+      },
+      {
+        "fitness": 0.47619047619047616,
+        "wins": 10,
+        "losses": 11,
+        "team": [
+          "Umbreon",
+          "Milotic",
+          "Glimmora",
+          "Delphox",
+          "Golisopod",
+          "Arcanine-Hisui"
+        ]
+      },
+      {
+        "fitness": 0.42857142857142855,
+        "wins": 9,
+        "losses": 12,
+        "team": [
+          "Umbreon",
+          "Ninetales-Alola",
+          "Delphox",
+          "Garchomp",
+          "Milotic",
+          "Glimmora"
+        ]
+      },
+      {
+        "fitness": 0.38095238095238093,
+        "wins": 8,
+        "losses": 13,
+        "team": [
+          "Umbreon",
+          "Dragonite",
+          "Golisopod",
+          "Charizard",
+          "Gholdengo",
+          "Delphox"
+        ]
+      },
+      {
+        "fitness": 0.3333333333333333,
+        "wins": 7,
+        "losses": 14,
+        "team": [
+          "Umbreon",
+          "Arcanine-Hisui",
+          "Golisopod",
+          "Incineroar",
+          "Charizard",
+          "Garchomp"
+        ]
+      },
+      {
+        "fitness": 0.3333333333333333,
+        "wins": 7,
+        "losses": 14,
+        "team": [
+          "Umbreon",
+          "Golisopod",
+          "Garchomp",
+          "Dragonite",
+          "Charizard",
+          "Delphox"
+        ]
+      }
+    ],
+    "time_sec": 2870.2016339302063
+  },
+  {
+    "generation": 16,
+    "best_fitness": 0.7619047619047619,
+    "best_team": [
+      "Umbreon",
+      "Arcanine-Hisui",
+      "Golisopod",
+      "Delphox",
+      "Milotic",
+      "Glimmora"
+    ],
+    "rankings": [
+      {
+        "fitness": 0.7619047619047619,
+        "wins": 16,
+        "losses": 5,
+        "team": [
+          "Umbreon",
+          "Arcanine-Hisui",
+          "Golisopod",
+          "Delphox",
+          "Milotic",
+          "Glimmora"
+        ]
+      },
+      {
+        "fitness": 0.6190476190476191,
+        "wins": 13,
+        "losses": 8,
+        "team": [
+          "Umbreon",
+          "Garchomp",
+          "Typhlosion-Hisui",
+          "Staraptor",
+          "Arcanine-Hisui",
+          "Gholdengo"
+        ]
+      },
+      {
+        "fitness": 0.5238095238095238,
+        "wins": 11,
+        "losses": 10,
+        "team": [
+          "Umbreon",
+          "Delphox",
+          "Arcanine-Hisui",
+          "Golisopod",
+          "Gholdengo",
+          "Garchomp"
+        ]
+      },
+      {
+        "fitness": 0.5238095238095238,
+        "wins": 11,
+        "losses": 10,
+        "team": [
+          "Umbreon",
+          "Arcanine-Hisui",
+          "Golisopod",
+          "Charizard",
+          "Garchomp",
+          "Aerodactyl"
+        ]
+      },
+      {
+        "fitness": 0.5238095238095238,
+        "wins": 11,
+        "losses": 10,
+        "team": [
+          "Umbreon",
+          "Kommo-o",
+          "Delphox",
+          "Garchomp",
+          "Tyranitar",
+          "Aerodactyl"
+        ]
+      },
+      {
+        "fitness": 0.47619047619047616,
+        "wins": 10,
+        "losses": 11,
+        "team": [
+          "Umbreon",
+          "Sneasler",
+          "Arcanine-Hisui",
+          "Garchomp",
+          "Milotic",
+          "Delphox"
+        ]
+      },
+      {
+        "fitness": 0.47619047619047616,
+        "wins": 10,
+        "losses": 11,
+        "team": [
+          "Umbreon",
+          "Dragonite",
+          "Garchomp",
+          "Politoed",
+          "Delphox",
+          "Ninetales-Alola"
+        ]
+      },
+      {
+        "fitness": 0.42857142857142855,
+        "wins": 9,
+        "losses": 12,
+        "team": [
+          "Umbreon",
+          "Gholdengo",
+          "Golisopod",
+          "Arcanine-Hisui",
+          "Milotic",
+          "Glimmora"
+        ]
+      },
+      {
+        "fitness": 0.42857142857142855,
+        "wins": 9,
+        "losses": 12,
+        "team": [
+          "Umbreon",
+          "Farigiraf",
+          "Delphox",
+          "Golisopod",
+          "Sneasler",
+          "Aerodactyl"
+        ]
+      },
+      {
+        "fitness": 0.3333333333333333,
+        "wins": 7,
+        "losses": 14,
+        "team": [
+          "Umbreon",
+          "Arcanine-Hisui",
+          "Sneasler",
+          "Garchomp",
+          "Aerodactyl",
+          "Dragonite"
+        ]
+      },
+      {
+        "fitness": 0.2857142857142857,
+        "wins": 6,
+        "losses": 15,
+        "team": [
+          "Umbreon",
+          "Golisopod",
+          "Arcanine-Hisui",
+          "Garchomp",
+          "Aerodactyl",
+          "Sneasler"
+        ]
+      },
+      {
+        "fitness": 0.19047619047619047,
+        "wins": 4,
+        "losses": 17,
+        "team": [
+          "Umbreon",
+          "Milotic",
+          "Glimmora",
+          "Salamence",
+          "Farigiraf",
+          "Ninetales-Alola"
+        ]
+      }
+    ],
+    "time_sec": 2692.176147222519
+  },
+  {
+    "generation": 17,
+    "best_fitness": 0.7142857142857143,
+    "best_team": [
+      "Umbreon",
+      "Delphox",
+      "Arcanine-Hisui",
+      "Golisopod",
+      "Gholdengo",
+      "Garchomp"
+    ],
+    "rankings": [
+      {
+        "fitness": 0.7142857142857143,
+        "wins": 15,
+        "losses": 6,
+        "team": [
+          "Umbreon",
+          "Delphox",
+          "Arcanine-Hisui",
+          "Golisopod",
+          "Gholdengo",
+          "Garchomp"
+        ]
+      },
+      {
+        "fitness": 0.6190476190476191,
+        "wins": 13,
+        "losses": 8,
+        "team": [
+          "Umbreon",
+          "Arcanine-Hisui",
+          "Golisopod",
+          "Delphox",
+          "Milotic",
+          "Glimmora"
+        ]
+      },
+      {
+        "fitness": 0.6190476190476191,
+        "wins": 13,
+        "losses": 8,
+        "team": [
+          "Umbreon",
+          "Delphox",
+          "Glimmora",
+          "Charizard",
+          "Gholdengo",
+          "Sneasler"
+        ]
+      },
+      {
+        "fitness": 0.6190476190476191,
+        "wins": 13,
+        "losses": 8,
+        "team": [
+          "Umbreon",
+          "Sylveon",
+          "Delphox",
+          "Golisopod",
+          "Arcanine-Hisui",
+          "Glimmora"
+        ]
+      },
+      {
+        "fitness": 0.5714285714285714,
+        "wins": 12,
+        "losses": 9,
+        "team": [
+          "Umbreon",
+          "Gholdengo",
+          "Glimmora",
+          "Arcanine-Hisui",
+          "Golisopod",
+          "Garchomp"
+        ]
+      },
+      {
+        "fitness": 0.5238095238095238,
+        "wins": 11,
+        "losses": 10,
+        "team": [
+          "Umbreon",
+          "Garchomp",
+          "Typhlosion-Hisui",
+          "Staraptor",
+          "Arcanine-Hisui",
+          "Gholdengo"
+        ]
+      },
+      {
+        "fitness": 0.42857142857142855,
+        "wins": 9,
+        "losses": 12,
+        "team": [
+          "Umbreon",
+          "Arcanine-Hisui",
+          "Indeedee-F",
+          "Delphox",
+          "Garchomp",
+          "Charizard"
+        ]
+      },
+      {
+        "fitness": 0.42857142857142855,
+        "wins": 9,
+        "losses": 12,
+        "team": [
+          "Umbreon",
+          "Gholdengo",
+          "Golisopod",
+          "Arcanine-Hisui",
+          "Garchomp",
+          "Basculegion"
+        ]
+      },
+      {
+        "fitness": 0.42857142857142855,
+        "wins": 9,
+        "losses": 12,
+        "team": [
+          "Umbreon",
+          "Gholdengo",
+          "Typhlosion-Hisui",
+          "Rillaboom",
+          "Delphox",
+          "Golisopod"
+        ]
+      },
+      {
+        "fitness": 0.38095238095238093,
+        "wins": 8,
+        "losses": 13,
+        "team": [
+          "Umbreon",
+          "Volcarona",
+          "Golisopod",
+          "Arcanine-Hisui",
+          "Salamence",
+          "Garchomp"
+        ]
+      },
+      {
+        "fitness": 0.38095238095238093,
+        "wins": 8,
+        "losses": 13,
+        "team": [
+          "Umbreon",
+          "Delphox",
+          "Garchomp",
+          "Kommo-o",
+          "Arcanine-Hisui",
+          "Milotic"
+        ]
+      },
+      {
+        "fitness": 0.23809523809523808,
+        "wins": 5,
+        "losses": 16,
+        "team": [
+          "Umbreon",
+          "Garchomp",
+          "Aerodactyl",
+          "Milotic",
+          "Gholdengo",
+          "Golisopod"
+        ]
+      }
+    ],
+    "time_sec": 2734.432251214981
+  },
+  {
+    "generation": 18,
+    "best_fitness": 0.7619047619047619,
+    "best_team": [
+      "Umbreon",
+      "Delphox",
+      "Sneasler",
+      "Gholdengo",
+      "Arcanine-Hisui",
+      "Garchomp"
+    ],
+    "rankings": [
+      {
+        "fitness": 0.7619047619047619,
+        "wins": 16,
+        "losses": 5,
+        "team": [
+          "Umbreon",
+          "Delphox",
+          "Sneasler",
+          "Gholdengo",
+          "Arcanine-Hisui",
+          "Garchomp"
+        ]
+      },
+      {
+        "fitness": 0.7619047619047619,
+        "wins": 16,
+        "losses": 5,
+        "team": [
+          "Umbreon",
+          "Delphox",
+          "Typhlosion-Hisui",
+          "Glimmora",
+          "Gholdengo",
+          "Sneasler"
+        ]
+      },
+      {
+        "fitness": 0.7142857142857143,
+        "wins": 15,
+        "losses": 6,
+        "team": [
+          "Umbreon",
+          "Arcanine-Hisui",
+          "Milotic",
+          "Golisopod",
+          "Glimmora",
+          "Gholdengo"
+        ]
+      },
+      {
+        "fitness": 0.6666666666666666,
+        "wins": 14,
+        "losses": 7,
+        "team": [
+          "Umbreon",
+          "Politoed",
+          "Garchomp",
+          "Gholdengo",
+          "Delphox",
+          "Charizard"
+        ]
+      },
+      {
+        "fitness": 0.5714285714285714,
+        "wins": 12,
+        "losses": 9,
+        "team": [
+          "Umbreon",
+          "Delphox",
+          "Arcanine-Hisui",
+          "Golisopod",
+          "Gholdengo",
+          "Garchomp"
+        ]
+      },
+      {
+        "fitness": 0.5714285714285714,
+        "wins": 12,
+        "losses": 9,
+        "team": [
+          "Umbreon",
+          "Arcanine-Hisui",
+          "Golisopod",
+          "Delphox",
+          "Milotic",
+          "Glimmora"
+        ]
+      },
+      {
+        "fitness": 0.5714285714285714,
+        "wins": 12,
+        "losses": 9,
+        "team": [
+          "Umbreon",
+          "Delphox",
+          "Glimmora",
+          "Charizard",
+          "Gholdengo",
+          "Sneasler"
+        ]
+      },
+      {
+        "fitness": 0.5238095238095238,
+        "wins": 11,
+        "losses": 10,
+        "team": [
+          "Umbreon",
+          "Arcanine-Hisui",
+          "Gholdengo",
+          "Delphox",
+          "Sneasler",
+          "Glimmora"
+        ]
+      },
+      {
+        "fitness": 0.47619047619047616,
+        "wins": 10,
+        "losses": 11,
+        "team": [
+          "Umbreon",
+          "Gholdengo",
+          "Delphox",
+          "Golisopod",
+          "Milotic",
+          "Arcanine-Hisui"
+        ]
+      },
+      {
+        "fitness": 0.42857142857142855,
+        "wins": 9,
+        "losses": 12,
+        "team": [
+          "Umbreon",
+          "Typhlosion-Hisui",
+          "Gholdengo",
+          "Indeedee-F",
+          "Milotic",
+          "Garchomp"
+        ]
+      },
+      {
+        "fitness": 0.38095238095238093,
+        "wins": 8,
+        "losses": 13,
+        "team": [
+          "Umbreon",
+          "Delphox",
+          "Arcanine-Hisui",
+          "Milotic",
+          "Kingambit",
+          "Charizard"
+        ]
+      },
+      {
+        "fitness": 0.38095238095238093,
+        "wins": 8,
+        "losses": 13,
+        "team": [
+          "Umbreon",
+          "Arcanine-Hisui",
+          "Golisopod",
+          "Whimsicott",
+          "Garchomp",
+          "Gholdengo"
+        ]
+      }
+    ],
+    "time_sec": 2465.3637895584106
+  },
+  {
+    "generation": 19,
+    "best_fitness": 0.7142857142857143,
+    "best_team": [
+      "Umbreon",
+      "Delphox",
+      "Typhlosion-Hisui",
+      "Glimmora",
+      "Gholdengo",
+      "Sneasler"
+    ],
+    "rankings": [
+      {
+        "fitness": 0.7142857142857143,
+        "wins": 15,
+        "losses": 6,
+        "team": [
+          "Umbreon",
+          "Delphox",
+          "Typhlosion-Hisui",
+          "Glimmora",
+          "Gholdengo",
+          "Sneasler"
+        ]
+      },
+      {
+        "fitness": 0.6666666666666666,
+        "wins": 14,
+        "losses": 7,
+        "team": [
+          "Umbreon",
+          "Glimmora",
+          "Gholdengo",
+          "Typhlosion-Hisui",
+          "Milotic",
+          "Arcanine-Hisui"
+        ]
+      },
+      {
+        "fitness": 0.6190476190476191,
+        "wins": 13,
+        "losses": 8,
+        "team": [
+          "Umbreon",
+          "Arcanine-Hisui",
+          "Gholdengo",
+          "Delphox",
+          "Glimmora",
+          "Milotic"
+        ]
+      },
+      {
+        "fitness": 0.6190476190476191,
+        "wins": 13,
+        "losses": 8,
+        "team": [
+          "Umbreon",
+          "Gholdengo",
+          "Typhlosion-Hisui",
+          "Froslass",
+          "Glimmora",
+          "Arcanine-Hisui"
+        ]
+      },
+      {
+        "fitness": 0.5238095238095238,
+        "wins": 11,
+        "losses": 10,
+        "team": [
+          "Umbreon",
+          "Arcanine-Hisui",
+          "Milotic",
+          "Gholdengo",
+          "Sneasler",
+          "Delphox"
+        ]
+      },
+      {
+        "fitness": 0.5238095238095238,
+        "wins": 11,
+        "losses": 10,
+        "team": [
+          "Umbreon",
+          "Golisopod",
+          "Delphox",
+          "Sneasler",
+          "Arcanine-Hisui",
+          "Gholdengo"
+        ]
+      },
+      {
+        "fitness": 0.47619047619047616,
+        "wins": 10,
+        "losses": 11,
+        "team": [
+          "Umbreon",
+          "Delphox",
+          "Sneasler",
+          "Gholdengo",
+          "Arcanine-Hisui",
+          "Garchomp"
+        ]
+      },
+      {
+        "fitness": 0.47619047619047616,
+        "wins": 10,
+        "losses": 11,
+        "team": [
+          "Umbreon",
+          "Arcanine-Hisui",
+          "Milotic",
+          "Golisopod",
+          "Glimmora",
+          "Gholdengo"
+        ]
+      },
+      {
+        "fitness": 0.47619047619047616,
+        "wins": 10,
+        "losses": 11,
+        "team": [
+          "Umbreon",
+          "Sneasler",
+          "Garchomp",
+          "Delphox",
+          "Corviknight",
+          "Arcanine-Hisui"
+        ]
+      },
+      {
+        "fitness": 0.42857142857142855,
+        "wins": 9,
+        "losses": 12,
+        "team": [
+          "Umbreon",
+          "Golisopod",
+          "Glimmora",
+          "Milotic",
+          "Gholdengo",
+          "Typhlosion-Hisui"
+        ]
+      },
+      {
+        "fitness": 0.42857142857142855,
+        "wins": 9,
+        "losses": 12,
+        "team": [
+          "Umbreon",
+          "Dragonite",
+          "Rillaboom",
+          "Sneasler",
+          "Garchomp",
+          "Glimmora"
+        ]
+      },
+      {
+        "fitness": 0.2857142857142857,
+        "wins": 6,
+        "losses": 15,
+        "team": [
+          "Umbreon",
+          "Sneasler",
+          "Typhlosion-Hisui",
+          "Glimmora",
+          "Indeedee-F",
+          "Milotic"
+        ]
+      }
+    ],
+    "time_sec": 2737.5130462646484
+  },
+  {
+    "generation": 20,
+    "best_fitness": 0.7619047619047619,
+    "best_team": [
+      "Umbreon",
+      "Glimmora",
+      "Delphox",
+      "Sneasler",
+      "Arcanine-Hisui",
+      "Gholdengo"
+    ],
+    "rankings": [
+      {
+        "fitness": 0.7619047619047619,
+        "wins": 16,
+        "losses": 5,
+        "team": [
+          "Umbreon",
+          "Glimmora",
+          "Delphox",
+          "Sneasler",
+          "Arcanine-Hisui",
+          "Gholdengo"
+        ]
+      },
+      {
+        "fitness": 0.7142857142857143,
+        "wins": 15,
+        "losses": 6,
+        "team": [
+          "Umbreon",
+          "Glimmora",
+          "Gholdengo",
+          "Typhlosion-Hisui",
+          "Milotic",
+          "Arcanine-Hisui"
+        ]
+      },
+      {
+        "fitness": 0.5714285714285714,
+        "wins": 12,
+        "losses": 9,
+        "team": [
+          "Umbreon",
+          "Arcanine-Hisui",
+          "Gholdengo",
+          "Delphox",
+          "Glimmora",
+          "Milotic"
+        ]
+      },
+      {
+        "fitness": 0.5714285714285714,
+        "wins": 12,
+        "losses": 9,
+        "team": [
+          "Umbreon",
+          "Gholdengo",
+          "Glimmora",
+          "Delphox",
+          "Typhlosion-Hisui",
+          "Ninetales-Alola"
+        ]
+      },
+      {
+        "fitness": 0.5714285714285714,
+        "wins": 12,
+        "losses": 9,
+        "team": [
+          "Umbreon",
+          "Glimmora",
+          "Typhlosion-Hisui",
+          "Arcanine-Hisui",
+          "Gholdengo",
+          "Floette-Eternal"
+        ]
+      },
+      {
+        "fitness": 0.5714285714285714,
+        "wins": 12,
+        "losses": 9,
+        "team": [
+          "Umbreon",
+          "Milotic",
+          "Glimmora",
+          "Kommo-o",
+          "Typhlosion-Hisui",
+          "Arcanine-Hisui"
+        ]
+      },
+      {
+        "fitness": 0.5238095238095238,
+        "wins": 11,
+        "losses": 10,
+        "team": [
+          "Umbreon",
+          "Golisopod",
+          "Delphox",
+          "Gholdengo",
+          "Typhlosion-Hisui",
+          "Glimmora"
+        ]
+      },
+      {
+        "fitness": 0.47619047619047616,
+        "wins": 10,
+        "losses": 11,
+        "team": [
+          "Umbreon",
+          "Delphox",
+          "Typhlosion-Hisui",
+          "Glimmora",
+          "Gholdengo",
+          "Sneasler"
+        ]
+      },
+      {
+        "fitness": 0.47619047619047616,
+        "wins": 10,
+        "losses": 11,
+        "team": [
+          "Umbreon",
+          "Indeedee-F",
+          "Typhlosion-Hisui",
+          "Milotic",
+          "Glimmora",
+          "Delphox"
+        ]
+      },
+      {
+        "fitness": 0.38095238095238093,
+        "wins": 8,
+        "losses": 13,
+        "team": [
+          "Umbreon",
+          "Charizard",
+          "Gholdengo",
+          "Typhlosion-Hisui",
+          "Milotic",
+          "Salamence"
+        ]
+      },
+      {
+        "fitness": 0.38095238095238093,
+        "wins": 8,
+        "losses": 13,
+        "team": [
+          "Umbreon",
+          "Gholdengo",
+          "Glimmora",
+          "Milotic",
+          "Pelipper",
+          "Arcanine-Hisui"
+        ]
+      },
+      {
+        "fitness": 0.2857142857142857,
+        "wins": 6,
+        "losses": 15,
+        "team": [
+          "Umbreon",
+          "Sneasler",
+          "Typhlosion-Hisui",
+          "Corviknight",
+          "Pelipper",
+          "Gholdengo"
+        ]
+      }
+    ],
+    "time_sec": 2031.9920420646667
+  }
+]

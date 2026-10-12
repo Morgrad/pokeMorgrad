@@ -1,0 +1,59 @@
+Maushold @ Chople Berry
+Ability: Friend Guard
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Protect
+- Feint
+- Follow Me
+- Super Fang
+
+Blastoise @ Blastoisinite
+Ability: Rain Dish
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Dark Pulse
+- Protect
+- Water Spout
+- Shell Smash
+
+Sinistcha @ Occa Berry
+Ability: Hospitality
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Rage Powder
+- Protect
+- Trick Room
+- Matcha Gotcha
+
+Sneasler @ Focus Sash
+Ability: Poison Touch
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Quick Guard
+- Fake Out
+- Close Combat
+- Poison Jab
+
+Delphox @ Delphoxite
+Ability: Blaze
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Psychic
+- Nasty Plot
+- Protect
+- Heat Wave
+
+Incineroar @ Sitrus Berry
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Throat Chop
+- Parting Shot
+- Fake Out
+- Flare Blitz

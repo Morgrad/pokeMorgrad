@@ -1,0 +1,59 @@
+Salamence @ Salamencite
+Ability: Intimidate
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Dragon Dance
+- Double-Edge
+- Dragon Claw
+- Protect
+
+Sneasler @ White Herb
+Ability: Unburden
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Dire Claw
+- Close Combat
+- Coaching
+- Protect
+
+Clefable @ Kebia Berry
+Ability: Unaware
+Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
+Modest Nature
+- Moonblast
+- Follow Me
+- Helping Hand
+- Psychic
+
+Milotic @ Leftovers
+Ability: Competitive
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Coil
+- Muddy Water
+- Hypnosis
+- Protect
+
+Sableye @ Rocky Helmet
+Ability: Prankster
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Quash
+- Encore
+- Fake Out
+- Will-O-Wisp
+
+Volcarona @ Focus Sash
+Ability: Flame Body
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Struggle Bug
+- Tailwind
+- Fiery Dance
+- Protect

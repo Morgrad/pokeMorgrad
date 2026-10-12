@@ -1,0 +1,59 @@
+Ceruledge @ Focus Sash
+Ability: Flash Fire
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Poltergeist
+- Bitter Blade
+- Close Combat
+- Swords Dance
+
+Indeedee-F @ Colbur Berry
+Ability: Psychic Surge
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Mystical Fire
+- Follow Me
+- Helping Hand
+- Trick Room
+
+Dragonite @ Life Orb
+Ability: Inner Focus
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Scale Shot
+- Stomping Tantrum
+- Rock Slide
+- Dragon Dance
+
+Lopunny @ Lopunnite
+Ability: Limber
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Close Combat
+- Triple Axel
+- Thunder Punch
+- Fake Out
+
+Gardevoir @ Gardevoirite
+Ability: Trace
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Expanding Force
+- Hyper Voice
+- Calm Mind
+- Protect
+
+Sneasler @ Psychic Seed
+Ability: Unburden
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Close Combat
+- Dire Claw
+- Throat Chop
+- Fake Out

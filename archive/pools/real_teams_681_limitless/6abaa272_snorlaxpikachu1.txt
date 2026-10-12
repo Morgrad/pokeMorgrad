@@ -1,0 +1,59 @@
+Swalot @ Leftovers
+Ability: Liquid Ooze
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Stockpile
+- Body Press
+- Toxic
+- Protect
+
+Audino @ Audinite
+Ability: Regenerator
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Trick Room
+- Simple Beam
+- Heal Pulse
+- Protect
+
+Incineroar @ Passho Berry
+Ability: Intimidate
+Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
+Modest Nature
+- Fake Out
+- Throat Chop
+- Snarl
+- Parting Shot
+
+Volcarona @ Sitrus Berry
+Ability: Flame Body
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Fiery Dance
+- Giga Drain
+- Quiver Dance
+- Protect
+
+Slowbro @ Slowbronite
+Ability: Oblivious
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Stored Power
+- Calm Mind
+- Iron Defense
+- Slack Off
+
+Raichu @ Light Clay
+Ability: Lightning Rod
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Fake Out
+- Reflect
+- Light Screen
+- Protect

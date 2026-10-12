@@ -1,0 +1,59 @@
+Noivern @ Focus Sash
+Ability: Telepathy
+Level: 50
+Mild Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Taunt
+- Bite
+- Uproar
+- Hurricane
+
+Gliscor @ Scope Lens
+Ability: Hyper Cutter
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Rock Slide
+- X-Scissor
+- Night Slash
+- Dig
+
+Incineroar @ Sitrus Berry
+Ability: Intimidate
+Level: 50
+Bashful Nature
+EVs: 32 HP / 2 ATK / 32 DEF
+- Fake Out
+- Flamethrower
+- Throat Chop
+- Parting Shot
+
+Gholdengo @ Life Orb
+Ability: Good as Gold
+Level: 50
+Timid Nature
+EVs: 32 SPA / 2 SPD / 32 SPE
+- Make It Rain
+- Shadow Ball
+- Nasty Plot
+- Protect
+
+Rillaboom @ Choice Scarf
+Ability: Grassy Surge
+Level: 50
+Adamant Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Grassy Glide
+- Wood Hammer
+- Fake Out
+- High Horsepower
+
+Garchomp @ Haban Berry
+Ability: Rough Skin
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Stomping Tantrum
+- Dragon Claw
+- Rock Slide
+- Bite

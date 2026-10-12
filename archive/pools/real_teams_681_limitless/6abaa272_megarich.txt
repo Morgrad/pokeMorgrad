@@ -1,0 +1,59 @@
+Blaziken @ Blazikenite
+Ability: Speed Boost
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Protect
+- Flare Blitz
+- Close Combat
+- Rock Slide
+
+Milotic @ Leftovers
+Ability: Competitive
+Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
+Modest Nature
+- Protect
+- Muddy Water
+- Ice Beam
+- Scald
+
+Maushold @ Focus Sash
+Ability: Friend Guard
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Protect
+- Follow Me
+- Taunt
+- Population Bomb
+
+Torkoal @ Sitrus Berry
+Ability: Drought
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Protect
+- Eruption
+- Weather Ball
+- Solar Beam
+
+Farigiraf @ Rocky Helmet
+Ability: Armor Tail
+Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
+Modest Nature
+- Trick Room
+- Psychic
+- Helping Hand
+- Dazzling Gleam
+
+Salamence @ Salamencite
+Ability: Intimidate
+Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
+Modest Nature
+- Protect
+- Draco Meteor
+- Double-Edge
+- Hyper Voice

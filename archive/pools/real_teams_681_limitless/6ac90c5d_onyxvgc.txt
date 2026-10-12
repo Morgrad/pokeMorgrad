@@ -1,0 +1,59 @@
+Rillaboom @ Muscle Band
+Ability: Grassy Surge
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Fake Out
+- Superpower
+- Grassy Glide
+- U-turn
+
+Whimsicott @ Focus Sash
+Ability: Prankster
+Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
+Modest Nature
+- Tailwind
+- Moonblast
+- Sunny Day
+- Protect
+
+Indeedee @ Psychic Seed
+Ability: Psychic Surge
+Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
+Modest Nature
+- Expanding Force
+- Dazzling Gleam
+- Protect
+- Mystical Fire
+
+Blaziken @ Blazikenite
+Ability: Speed Boost
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Detect
+- Thunder Punch
+- Flare Blitz
+- Close Combat
+
+Lucario @ Lucarionite Z
+Ability: Inner Focus
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Calm Mind
+- Vacuum Wave
+- Flash Cannon
+- Detect
+
+Incineroar @ Sitrus Berry
+Ability: Intimidate
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Fake Out
+- Flare Blitz
+- Close Combat
+- Throat Chop

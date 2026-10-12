@@ -1,0 +1,59 @@
+Pincurchin @ Life Orb
+Ability: Electric Surge
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Discharge
+- Rising Voltage
+- Recover
+- Protect
+
+Klefki @ Mental Herb
+Ability: Prankster
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Rain Dance
+- Thief
+- Metal Sound
+- Protect
+
+Archaludon @ Leftovers
+Ability: Stamina
+Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
+Modest Nature
+- Aura Sphere
+- Draco Meteor
+- Electro Shot
+- Protect
+
+Blastoise @ Blastoisinite
+Ability: Torrent
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Dark Pulse
+- Water Spout
+- Shell Smash
+- Protect
+
+Toxicroak @ Focus Sash
+Ability: Poison Touch
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Close Combat
+- Gunk Shot
+- Fake Out
+- Protect
+
+Sceptile @ Sceptilite
+Ability: Overgrow
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Detect
+- Energy Ball
+- Frenzy Plant
+- Dragon Pulse

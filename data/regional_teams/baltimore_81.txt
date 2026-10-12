@@ -1,0 +1,59 @@
+Sneasler @ Grassy Seed
+Ability: Unburden
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Dire Claw
+- Rock Tomb
+- Close Combat
+- Protect
+
+Gholdengo @ Life Orb
+Ability: Good as Gold
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Nasty Plot
+- Shadow Ball
+- Make It Rain
+
+Raichu @ Raichunite Y
+Ability: Lightning Rod
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Substitute
+- Zap Cannon
+- Focus Blast
+- Protect
+
+Rillaboom @ Kebia Berry
+Ability: Grassy Surge
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Fake Out
+- Wood Hammer
+- Grassy Glide
+- High Horsepower
+
+Floette-Eternal @ Floettite
+Ability: Flower Veil
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Dazzling Gleam
+- Moonblast
+- Calm Mind
+- Protect
+
+Incineroar @ Sitrus Berry
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Fake Out
+- Throat Chop
+- Flare Blitz
+- Parting Shot

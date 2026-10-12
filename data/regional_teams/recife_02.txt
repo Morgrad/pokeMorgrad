@@ -1,0 +1,59 @@
+Garchomp @ Garchompite Z
+Ability: Rough Skin
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Dragon Pulse
+- Earth Power
+- Power Gem
+- Protect
+
+Politoed @ Mystic Water
+Ability: Drizzle
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Muddy Water
+- Ice Beam
+- Weather Ball
+- Protect
+
+Incineroar @ Chople Berry
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Flare Blitz
+- Darkest Lariat
+- Parting Shot
+- Fake Out
+
+Archaludon @ Leftovers
+Ability: Stamina
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Dragon Pulse
+- Electro Shot
+- Snarl
+- Protect
+
+Farigiraf @ Sitrus Berry
+Ability: Armor Tail
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Psychic
+- Trick Room
+- Protect
+- Helping Hand
+
+Golisopod @ Golisopite
+Ability: Emergency Exit
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Leech Life
+- Drill Run
+- Iron Head
+- Protect

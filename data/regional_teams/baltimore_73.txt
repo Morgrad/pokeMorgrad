@@ -1,0 +1,59 @@
+Incineroar @ Chople Berry
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Flare Blitz
+- Parting Shot
+- Fake Out
+- Protect
+
+Kommo-o @ Leftovers
+Ability: Soundproof
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Clanging Scales
+- Aura Sphere
+- Clangorous Soul
+- Protect
+
+Swampert @ Swampertite
+Ability: Torrent
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Wave Crash
+- High Horsepower
+- Ice Punch
+- Protect
+
+Gengar @ Gengarite
+Ability: Cursed Body
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Shadow Ball
+- Sludge Bomb
+- Perish Song
+- Protect
+
+Rillaboom @ Miracle Seed
+Ability: Grassy Surge
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Grassy Glide
+- U-turn
+- Fake Out
+- Protect
+
+Politoed @ Sitrus Berry
+Ability: Drizzle
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Weather Ball
+- Encore
+- Perish Song
+- Protect

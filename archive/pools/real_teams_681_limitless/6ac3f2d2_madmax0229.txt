@@ -1,0 +1,59 @@
+Azumarill @ Life Orb
+Ability: Huge Power
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Liquidation
+- Play Rough
+- Aqua Jet
+- Protect
+
+Meowscarada @ Focus Sash
+Ability: Protean
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Flower Trick
+- Knock Off
+- Sucker Punch
+- Protect
+
+Dragonite @ Dragon Fang
+Ability: Multiscale
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Dragon Pulse
+- Air Slash
+- Tailwind
+- Protect
+
+Pyroar @ Pyroarite
+Ability: Unnerve
+Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
+Modest Nature
+- Heat Wave
+- Overheat
+- Scorching Sands
+- Protect
+
+Manectric @ Manectite
+Ability: Lightning Rod
+Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
+Modest Nature
+- Thunderbolt
+- Volt Switch
+- Snarl
+- Protect
+
+Orthworm @ Leftovers
+Ability: Earth Eater
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Body Press
+- Iron Defense
+- Heavy Slam
+- Protect

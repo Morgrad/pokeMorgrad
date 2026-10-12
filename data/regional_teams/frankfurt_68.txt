@@ -1,0 +1,59 @@
+Pyroar @ Pyroarite
+Ability: Unnerve
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Heat Wave
+- Overheat
+- Solar Beam
+- Protect
+
+Gardevoir @ Gardevoirite
+Ability: Synchronize
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Hyper Voice
+- Expanding Force
+- Imprison
+- Protect
+
+Ninetales @ Choice Scarf
+Ability: Drought
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Heat Wave
+- Fake Tears
+- Overheat
+- Solar Beam
+
+Whimsicott @ Focus Sash
+Ability: Prankster
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Moonblast
+- Tailwind
+- Protect
+- Sunny Day
+
+Basculegion @ Life Orb
+Ability: Adaptability
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Last Respects
+- Wave Crash
+- Aqua Jet
+- Protect
+
+Indeedee-F @ Rocky Helmet
+Ability: Psychic Surge
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Psychic
+- Follow Me
+- Helping Hand
+- Trick Room

@@ -1,0 +1,59 @@
+Incineroar @ Sitrus Berry
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Parting Shot
+- Flare Blitz
+- Throat Chop
+- Fake Out
+
+Lucario @ Lucarionite Z
+Ability: Inner Focus
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Aura Sphere
+- Flash Cannon
+- Dark Pulse
+
+Rillaboom @ Eject Button
+Ability: Grassy Surge
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Protect
+- Grassy Glide
+- Fake Out
+- Wood Hammer
+
+Blastoise @ Leftovers
+Ability: Rain Dish
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Protect
+- Fake Out
+- Flip Turn
+- Body Press
+
+Gengar @ Gengarite
+Ability: Cursed Body
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Perish Song
+- Sludge Bomb
+- Shadow Ball
+
+Weavile @ Focus Sash
+Ability: Pressure
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Protect
+- Fake Out
+- Ice Spinner
+- Knock Off

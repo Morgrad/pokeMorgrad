@@ -1,0 +1,59 @@
+Malamar @ Malamarite
+Ability: Contrary
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Psych Up
+- Stored Power
+- Superpower
+- Rest
+
+Overqwil @ Bright Powder
+Ability: Intimidate
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Swords Dance
+- Stockpile
+- Minimize
+- Throat Chop
+
+Audino @ Red Card
+Ability: Regenerator
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Simple Beam
+- Trick Room
+- Draining Kiss
+- Helping Hand
+
+Rillaboom @ Miracle Seed
+Ability: Grassy Surge
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Grassy Glide
+- Wood Hammer
+- U-turn
+- Fake Out
+
+Milotic @ Sitrus Berry
+Ability: Competitive
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Coil
+- Hypnosis
+- Muddy Water
+- Protect
+
+Toxtricity @ Life Orb
+Ability: Punk Rock
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Overdrive
+- Boomburst
+- Sludge Bomb
+- Protect

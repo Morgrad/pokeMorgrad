@@ -1,0 +1,59 @@
+Excadrill @ Focus Sash
+Ability: Sand Rush
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Iron Head
+- High Horsepower
+- Rock Slide
+- Protect
+
+Arcanine-Hisui @ Leftovers
+Ability: Rock Head
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Flare Blitz
+- Head Smash
+- Extreme Speed
+- Protect
+
+Tyranitar @ Tyranitarite
+Ability: Sand Stream
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Rock Slide
+- Knock Off
+- Low Kick
+- Protect
+
+Indeedee @ Choice Scarf
+Ability: Synchronize
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Expanding Force
+- Mystical Fire
+- Trick
+- Protect
+
+Corviknight @ Psychic Seed
+Ability: Mirror Armor
+Level: 50
+Bashful Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Brave Bird
+- Power Trip
+- Bulk Up
+- Roost
+
+Sneasler @ White Herb
+Ability: Unburden
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Dire Claw
+- Close Combat
+- Coaching
+- Protect

@@ -1,0 +1,59 @@
+Archaludon @ Chople Berry
+Ability: Stamina
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Electro Shot
+- Flash Cannon
+- Dragon Pulse
+- Protect
+
+Golisopod @ Golisopite
+Ability: Emergency Exit
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Sucker Punch
+- Leech Life
+- Swords Dance
+- Protect
+
+Gengar @ Gengarite
+Ability: Cursed Body
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Sludge Bomb
+- Shadow Ball
+- Perish Song
+- Protect
+
+Politoed @ Sitrus Berry
+Ability: Drizzle
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Weather Ball
+- Perish Song
+- Helping Hand
+- Protect
+
+Rillaboom @ Eject Button
+Ability: Grassy Surge
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Fake Out
+- Grassy Glide
+- Wood Hammer
+- Protect
+
+Incineroar @ Lum Berry
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Fake Out
+- Throat Chop
+- Parting Shot
+- Protect

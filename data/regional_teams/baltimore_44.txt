@@ -1,0 +1,59 @@
+Charizard @ Charizardite Y
+Ability: Blaze
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Heat Wave
+- Weather Ball
+- Hurricane
+
+Swampert @ Swampertite
+Ability: Torrent
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Protect
+- Wave Crash
+- Earthquake
+- Ice Punch
+
+Pelipper @ Sitrus Berry
+Ability: Drizzle
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Hurricane
+- Weather Ball
+- Tailwind
+- Wide Guard
+
+Grimmsnarl @ Light Clay
+Ability: Prankster
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Spirit Break
+- Parting Shot
+- Reflect
+- Light Screen
+
+Archaludon @ Leftovers
+Ability: Stamina
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Electro Shot
+- Dragon Pulse
+- Flash Cannon
+
+Venusaur @ Focus Sash
+Ability: Chlorophyll
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Sleep Powder
+- Sludge Bomb
+- Leaf Storm

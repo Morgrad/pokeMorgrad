@@ -1,0 +1,59 @@
+Raichu @ Raichunite Y
+Ability: Lightning Rod
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Zap Cannon
+- Focus Blast
+- Encore
+- Protect
+
+Volcarona @ Grassy Seed
+Ability: Flame Body
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Fiery Dance
+- Struggle Bug
+- Quiver Dance
+- Protect
+
+Garchomp @ Garchompite Z
+Ability: Rough Skin
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Dragon Pulse
+- Earth Power
+- Power Gem
+- Protect
+
+Incineroar @ Sitrus Berry
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Fake Out
+- Flare Blitz
+- Throat Chop
+- Parting Shot
+
+Basculegion @ Choice Scarf
+Ability: Adaptability
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Wave Crash
+- Last Respects
+- Aqua Jet
+- Flip Turn
+
+Rillaboom @ Miracle Seed
+Ability: Grassy Surge
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Fake Out
+- Grassy Glide
+- Wood Hammer
+- High Horsepower

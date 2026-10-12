@@ -1,0 +1,7428 @@
+{
+  "Gholdengo": [
+    {
+      "move": "Shadow Ball",
+      "count": 867
+    },
+    {
+      "move": "Protect",
+      "count": 640
+    },
+    {
+      "move": "Make It Rain",
+      "count": 564
+    },
+    {
+      "move": "Nasty Plot",
+      "count": 530
+    },
+    {
+      "move": "Power Gem",
+      "count": 29
+    },
+    {
+      "move": "Substitute",
+      "count": 24
+    },
+    {
+      "move": "Focus Blast",
+      "count": 18
+    },
+    {
+      "move": "Thunderbolt",
+      "count": 8
+    },
+    {
+      "move": "Steel Beam",
+      "count": 7
+    },
+    {
+      "move": "Trick",
+      "count": 6
+    },
+    {
+      "move": "Recover",
+      "count": 1
+    },
+    {
+      "move": "Tailwind",
+      "count": 1
+    },
+    {
+      "move": "Flamethrower",
+      "count": 1
+    },
+    {
+      "move": "Draco Meteor",
+      "count": 1
+    }
+  ],
+  "Sableye": [
+    {
+      "move": "Light Screen",
+      "count": 32
+    },
+    {
+      "move": "Encore",
+      "count": 24
+    },
+    {
+      "move": "Rain Dance",
+      "count": 22
+    },
+    {
+      "move": "Will-O-Wisp",
+      "count": 21
+    },
+    {
+      "move": "Reflect",
+      "count": 20
+    },
+    {
+      "move": "Foul Play",
+      "count": 18
+    },
+    {
+      "move": "Disable",
+      "count": 15
+    },
+    {
+      "move": "Psych Up",
+      "count": 14
+    },
+    {
+      "move": "Mud-Slap",
+      "count": 12
+    },
+    {
+      "move": "Recover",
+      "count": 10
+    },
+    {
+      "move": "Protect",
+      "count": 8
+    },
+    {
+      "move": "Quash",
+      "count": 7
+    },
+    {
+      "move": "Helping Hand",
+      "count": 4
+    },
+    {
+      "move": "Night Shade",
+      "count": 4
+    },
+    {
+      "move": "Fake Out",
+      "count": 3
+    },
+    {
+      "move": "Struggle",
+      "count": 3
+    },
+    {
+      "move": "Gravity",
+      "count": 3
+    },
+    {
+      "move": "Yawn",
+      "count": 2
+    },
+    {
+      "move": "Hyper Voice",
+      "count": 2
+    },
+    {
+      "move": "Wave Crash",
+      "count": 1
+    },
+    {
+      "move": "Leech Seed",
+      "count": 1
+    },
+    {
+      "move": "Skill Swap",
+      "count": 1
+    },
+    {
+      "move": "Shadow Ball",
+      "count": 1
+    },
+    {
+      "move": "Icy Wind",
+      "count": 1
+    },
+    {
+      "move": "Dragon Pulse",
+      "count": 1
+    },
+    {
+      "move": "Flamethrower",
+      "count": 1
+    }
+  ],
+  "Swampert": [
+    {
+      "move": "Wave Crash",
+      "count": 150
+    },
+    {
+      "move": "Earthquake",
+      "count": 150
+    },
+    {
+      "move": "Protect",
+      "count": 91
+    },
+    {
+      "move": "Ice Punch",
+      "count": 50
+    },
+    {
+      "move": "High Horsepower",
+      "count": 43
+    },
+    {
+      "move": "Yawn",
+      "count": 15
+    },
+    {
+      "move": "Ice Beam",
+      "count": 10
+    },
+    {
+      "move": "Earth Power",
+      "count": 8
+    },
+    {
+      "move": "Wide Guard",
+      "count": 6
+    },
+    {
+      "move": "Icy Wind",
+      "count": 4
+    },
+    {
+      "move": "Bulk Up",
+      "count": 1
+    },
+    {
+      "move": "Flip Turn",
+      "count": 1
+    },
+    {
+      "move": "Heat Wave",
+      "count": 1
+    },
+    {
+      "move": "Weather Ball",
+      "count": 1
+    }
+  ],
+  "Salamence": [
+    {
+      "move": "Hyper Voice",
+      "count": 607
+    },
+    {
+      "move": "Protect",
+      "count": 322
+    },
+    {
+      "move": "Tailwind",
+      "count": 179
+    },
+    {
+      "move": "Draco Meteor",
+      "count": 172
+    },
+    {
+      "move": "Double-Edge",
+      "count": 69
+    },
+    {
+      "move": "Flamethrower",
+      "count": 63
+    },
+    {
+      "move": "Dragon Pulse",
+      "count": 11
+    },
+    {
+      "move": "Heat Wave",
+      "count": 8
+    },
+    {
+      "move": "Dragon Dance",
+      "count": 7
+    },
+    {
+      "move": "Dragon Claw",
+      "count": 3
+    },
+    {
+      "move": "Slash",
+      "count": 3
+    },
+    {
+      "move": "Air Slash",
+      "count": 3
+    },
+    {
+      "move": "Roost",
+      "count": 2
+    },
+    {
+      "move": "Sunny Day",
+      "count": 1
+    },
+    {
+      "move": "Hydro Pump",
+      "count": 1
+    },
+    {
+      "move": "Earthquake",
+      "count": 1
+    },
+    {
+      "move": "Bulldoze",
+      "count": 1
+    },
+    {
+      "move": "Hyper Beam",
+      "count": 1
+    },
+    {
+      "move": "Knock Off",
+      "count": 1
+    }
+  ],
+  "Archaludon": [
+    {
+      "move": "Electro Shot",
+      "count": 2491
+    },
+    {
+      "move": "Dragon Pulse",
+      "count": 1635
+    },
+    {
+      "move": "Protect",
+      "count": 1280
+    },
+    {
+      "move": "Snarl",
+      "count": 509
+    },
+    {
+      "move": "Flash Cannon",
+      "count": 266
+    },
+    {
+      "move": "Aura Sphere",
+      "count": 142
+    },
+    {
+      "move": "Draco Meteor",
+      "count": 83
+    },
+    {
+      "move": "Thunderbolt",
+      "count": 13
+    },
+    {
+      "move": "Sludge Bomb",
+      "count": 7
+    },
+    {
+      "move": "Struggle",
+      "count": 6
+    },
+    {
+      "move": "Heat Wave",
+      "count": 4
+    },
+    {
+      "move": "Weather Ball",
+      "count": 4
+    },
+    {
+      "move": "Encore",
+      "count": 3
+    },
+    {
+      "move": "Hurricane",
+      "count": 3
+    },
+    {
+      "move": "Fake Out",
+      "count": 2
+    },
+    {
+      "move": "Roar",
+      "count": 2
+    },
+    {
+      "move": "Drain Punch",
+      "count": 1
+    },
+    {
+      "move": "Icy Wind",
+      "count": 1
+    },
+    {
+      "move": "Dark Pulse",
+      "count": 1
+    },
+    {
+      "move": "Steel Beam",
+      "count": 1
+    },
+    {
+      "move": "Life Dew",
+      "count": 1
+    },
+    {
+      "move": "Rage Powder",
+      "count": 1
+    },
+    {
+      "move": "Sucker Punch",
+      "count": 1
+    }
+  ],
+  "Kingambit": [
+    {
+      "move": "Kowtow Cleave",
+      "count": 1106
+    },
+    {
+      "move": "Sucker Punch",
+      "count": 762
+    },
+    {
+      "move": "Protect",
+      "count": 474
+    },
+    {
+      "move": "Iron Head",
+      "count": 297
+    },
+    {
+      "move": "Swords Dance",
+      "count": 147
+    },
+    {
+      "move": "Low Kick",
+      "count": 136
+    },
+    {
+      "move": "Brick Break",
+      "count": 17
+    },
+    {
+      "move": "Will-O-Wisp",
+      "count": 7
+    },
+    {
+      "move": "Assurance",
+      "count": 6
+    },
+    {
+      "move": "Flamethrower",
+      "count": 5
+    },
+    {
+      "move": "Heat Wave",
+      "count": 4
+    },
+    {
+      "move": "Taunt",
+      "count": 3
+    },
+    {
+      "move": "Curse",
+      "count": 3
+    },
+    {
+      "move": "Struggle",
+      "count": 3
+    },
+    {
+      "move": "Memento",
+      "count": 2
+    },
+    {
+      "move": "Weather Ball",
+      "count": 1
+    },
+    {
+      "move": "Night Slash",
+      "count": 1
+    },
+    {
+      "move": "Psychic",
+      "count": 1
+    },
+    {
+      "move": "Psyshock",
+      "count": 1
+    },
+    {
+      "move": "Shadow Ball",
+      "count": 1
+    }
+  ],
+  "Espathra": [
+    {
+      "move": "Calm Mind",
+      "count": 217
+    },
+    {
+      "move": "Protect",
+      "count": 149
+    },
+    {
+      "move": "Lumina Crash",
+      "count": 131
+    },
+    {
+      "move": "Baton Pass",
+      "count": 8
+    },
+    {
+      "move": "Expanding Force",
+      "count": 4
+    },
+    {
+      "move": "Dazzling Gleam",
+      "count": 4
+    },
+    {
+      "move": "Skill Swap",
+      "count": 2
+    },
+    {
+      "move": "Heat Wave",
+      "count": 2
+    },
+    {
+      "move": "Weather Ball",
+      "count": 2
+    },
+    {
+      "move": "Sunny Day",
+      "count": 2
+    },
+    {
+      "move": "Hypnosis",
+      "count": 2
+    },
+    {
+      "move": "Roar",
+      "count": 1
+    },
+    {
+      "move": "Fake Out",
+      "count": 1
+    },
+    {
+      "move": "Hurricane",
+      "count": 1
+    },
+    {
+      "move": "Draco Meteor",
+      "count": 1
+    }
+  ],
+  "Annihilape": [
+    {
+      "move": "Rage Fist",
+      "count": 240
+    },
+    {
+      "move": "Drain Punch",
+      "count": 163
+    },
+    {
+      "move": "Protect",
+      "count": 115
+    },
+    {
+      "move": "Close Combat",
+      "count": 97
+    },
+    {
+      "move": "Bulk Up",
+      "count": 96
+    },
+    {
+      "move": "Phantom Force",
+      "count": 42
+    },
+    {
+      "move": "Shadow Claw",
+      "count": 30
+    },
+    {
+      "move": "Ice Punch",
+      "count": 25
+    },
+    {
+      "move": "Rock Slide",
+      "count": 24
+    },
+    {
+      "move": "Rock Tomb",
+      "count": 15
+    },
+    {
+      "move": "Coaching",
+      "count": 5
+    },
+    {
+      "move": "U-turn",
+      "count": 3
+    },
+    {
+      "move": "Taunt",
+      "count": 3
+    },
+    {
+      "move": "Gunk Shot",
+      "count": 2
+    },
+    {
+      "move": "Weather Ball",
+      "count": 1
+    },
+    {
+      "move": "Encore",
+      "count": 1
+    },
+    {
+      "move": "Storm Throw",
+      "count": 1
+    },
+    {
+      "move": "Volt Switch",
+      "count": 1
+    },
+    {
+      "move": "Poison Jab",
+      "count": 1
+    },
+    {
+      "move": "Acrobatics",
+      "count": 1
+    }
+  ],
+  "Armarouge": [
+    {
+      "move": "Expanding Force",
+      "count": 213
+    },
+    {
+      "move": "Armor Cannon",
+      "count": 206
+    },
+    {
+      "move": "Protect",
+      "count": 118
+    },
+    {
+      "move": "Wide Guard",
+      "count": 70
+    },
+    {
+      "move": "Heat Wave",
+      "count": 44
+    },
+    {
+      "move": "Trick Room",
+      "count": 39
+    },
+    {
+      "move": "Aura Sphere",
+      "count": 11
+    },
+    {
+      "move": "Calm Mind",
+      "count": 9
+    },
+    {
+      "move": "Endure",
+      "count": 7
+    },
+    {
+      "move": "Psychic",
+      "count": 4
+    },
+    {
+      "move": "Dark Pulse",
+      "count": 4
+    },
+    {
+      "move": "Trick",
+      "count": 3
+    },
+    {
+      "move": "Focus Blast",
+      "count": 2
+    },
+    {
+      "move": "Psyshock",
+      "count": 1
+    }
+  ],
+  "Rillaboom": [
+    {
+      "move": "Fake Out",
+      "count": 1309
+    },
+    {
+      "move": "Wood Hammer",
+      "count": 1071
+    },
+    {
+      "move": "Grassy Glide",
+      "count": 979
+    },
+    {
+      "move": "High Horsepower",
+      "count": 451
+    },
+    {
+      "move": "Protect",
+      "count": 134
+    },
+    {
+      "move": "U-turn",
+      "count": 109
+    },
+    {
+      "move": "Shadow Ball",
+      "count": 21
+    },
+    {
+      "move": "Drum Beating",
+      "count": 13
+    },
+    {
+      "move": "Zap Cannon",
+      "count": 13
+    },
+    {
+      "move": "Perish Song",
+      "count": 11
+    },
+    {
+      "move": "Superpower",
+      "count": 11
+    },
+    {
+      "move": "Focus Blast",
+      "count": 10
+    },
+    {
+      "move": "Leech Life",
+      "count": 10
+    },
+    {
+      "move": "Sludge Bomb",
+      "count": 9
+    },
+    {
+      "move": "Snarl",
+      "count": 7
+    },
+    {
+      "move": "Fling",
+      "count": 6
+    },
+    {
+      "move": "Hyper Voice",
+      "count": 4
+    },
+    {
+      "move": "Drain Punch",
+      "count": 4
+    },
+    {
+      "move": "Iron Head",
+      "count": 4
+    },
+    {
+      "move": "Draco Meteor",
+      "count": 4
+    },
+    {
+      "move": "Blizzard",
+      "count": 4
+    },
+    {
+      "move": "Flash Cannon",
+      "count": 4
+    },
+    {
+      "move": "Swords Dance",
+      "count": 3
+    },
+    {
+      "move": "Taunt",
+      "count": 3
+    },
+    {
+      "move": "Weather Ball",
+      "count": 3
+    },
+    {
+      "move": "Spiky Shield",
+      "count": 3
+    },
+    {
+      "move": "Heat Wave",
+      "count": 3
+    },
+    {
+      "move": "Struggle",
+      "count": 2
+    },
+    {
+      "move": "Earth Power",
+      "count": 2
+    },
+    {
+      "move": "Aura Sphere",
+      "count": 2
+    }
+  ],
+  "Garchomp": [
+    {
+      "move": "Protect",
+      "count": 539
+    },
+    {
+      "move": "Earth Power",
+      "count": 464
+    },
+    {
+      "move": "Dragon Pulse",
+      "count": 337
+    },
+    {
+      "move": "Stomping Tantrum",
+      "count": 322
+    },
+    {
+      "move": "Earthquake",
+      "count": 304
+    },
+    {
+      "move": "Power Gem",
+      "count": 250
+    },
+    {
+      "move": "Dragon Claw",
+      "count": 201
+    },
+    {
+      "move": "Rock Slide",
+      "count": 195
+    },
+    {
+      "move": "Draco Meteor",
+      "count": 162
+    },
+    {
+      "move": "Flamethrower",
+      "count": 122
+    },
+    {
+      "move": "Stealth Rock",
+      "count": 15
+    },
+    {
+      "move": "Swords Dance",
+      "count": 12
+    },
+    {
+      "move": "Fire Blast",
+      "count": 10
+    },
+    {
+      "move": "Dragon Tail",
+      "count": 8
+    },
+    {
+      "move": "Rock Tomb",
+      "count": 8
+    },
+    {
+      "move": "Substitute",
+      "count": 8
+    },
+    {
+      "move": "Heat Wave",
+      "count": 5
+    },
+    {
+      "move": "Sunny Day",
+      "count": 3
+    },
+    {
+      "move": "Iron Head",
+      "count": 3
+    },
+    {
+      "move": "Outrage",
+      "count": 3
+    },
+    {
+      "move": "Bulldoze",
+      "count": 2
+    },
+    {
+      "move": "Weather Ball",
+      "count": 2
+    },
+    {
+      "move": "Poison Jab",
+      "count": 2
+    },
+    {
+      "move": "Psychic",
+      "count": 2
+    },
+    {
+      "move": "Psyshock",
+      "count": 1
+    },
+    {
+      "move": "Encore",
+      "count": 1
+    },
+    {
+      "move": "Aurora Veil",
+      "count": 1
+    },
+    {
+      "move": "Leech Seed",
+      "count": 1
+    },
+    {
+      "move": "Dragon Rush",
+      "count": 1
+    },
+    {
+      "move": "Bitter Malice",
+      "count": 1
+    }
+  ],
+  "Golisopod": [
+    {
+      "move": "Leech Life",
+      "count": 841
+    },
+    {
+      "move": "Iron Head",
+      "count": 581
+    },
+    {
+      "move": "Drill Run",
+      "count": 483
+    },
+    {
+      "move": "Protect",
+      "count": 412
+    },
+    {
+      "move": "Sucker Punch",
+      "count": 362
+    },
+    {
+      "move": "Swords Dance",
+      "count": 155
+    },
+    {
+      "move": "First Impression",
+      "count": 32
+    },
+    {
+      "move": "Liquidation",
+      "count": 32
+    },
+    {
+      "move": "Bulk Up",
+      "count": 15
+    },
+    {
+      "move": "Close Combat",
+      "count": 9
+    },
+    {
+      "move": "Wide Guard",
+      "count": 8
+    },
+    {
+      "move": "Rock Slide",
+      "count": 7
+    },
+    {
+      "move": "Shadow Ball",
+      "count": 4
+    },
+    {
+      "move": "Aqua Jet",
+      "count": 3
+    },
+    {
+      "move": "Helping Hand",
+      "count": 1
+    }
+  ],
+  "Tyranitar": [
+    {
+      "move": "Rock Slide",
+      "count": 523
+    },
+    {
+      "move": "Knock Off",
+      "count": 389
+    },
+    {
+      "move": "Protect",
+      "count": 306
+    },
+    {
+      "move": "Dragon Dance",
+      "count": 69
+    },
+    {
+      "move": "Low Kick",
+      "count": 67
+    },
+    {
+      "move": "Ice Punch",
+      "count": 22
+    },
+    {
+      "move": "High Horsepower",
+      "count": 20
+    },
+    {
+      "move": "Crunch",
+      "count": 14
+    },
+    {
+      "move": "Superpower",
+      "count": 5
+    },
+    {
+      "move": "Fire Punch",
+      "count": 4
+    },
+    {
+      "move": "Ice Beam",
+      "count": 4
+    },
+    {
+      "move": "Rage Powder",
+      "count": 3
+    },
+    {
+      "move": "Sandstorm",
+      "count": 2
+    },
+    {
+      "move": "Fake Out",
+      "count": 2
+    },
+    {
+      "move": "Earth Power",
+      "count": 2
+    },
+    {
+      "move": "Zap Cannon",
+      "count": 2
+    },
+    {
+      "move": "Brave Bird",
+      "count": 2
+    },
+    {
+      "move": "Hyper Voice",
+      "count": 2
+    },
+    {
+      "move": "Leaf Storm",
+      "count": 1
+    },
+    {
+      "move": "Swords Dance",
+      "count": 1
+    },
+    {
+      "move": "Play Rough",
+      "count": 1
+    },
+    {
+      "move": "Will-O-Wisp",
+      "count": 1
+    },
+    {
+      "move": "Last Respects",
+      "count": 1
+    }
+  ],
+  "Incineroar": [
+    {
+      "move": "Fake Out",
+      "count": 1370
+    },
+    {
+      "move": "Flare Blitz",
+      "count": 1071
+    },
+    {
+      "move": "Throat Chop",
+      "count": 441
+    },
+    {
+      "move": "Parting Shot",
+      "count": 422
+    },
+    {
+      "move": "Darkest Lariat",
+      "count": 418
+    },
+    {
+      "move": "Protect",
+      "count": 226
+    },
+    {
+      "move": "Snarl",
+      "count": 86
+    },
+    {
+      "move": "Helping Hand",
+      "count": 44
+    },
+    {
+      "move": "Close Combat",
+      "count": 42
+    },
+    {
+      "move": "Taunt",
+      "count": 21
+    },
+    {
+      "move": "Zap Cannon",
+      "count": 20
+    },
+    {
+      "move": "Heat Wave",
+      "count": 19
+    },
+    {
+      "move": "Weather Ball",
+      "count": 18
+    },
+    {
+      "move": "Earth Power",
+      "count": 18
+    },
+    {
+      "move": "Sludge Bomb",
+      "count": 13
+    },
+    {
+      "move": "Perish Song",
+      "count": 11
+    },
+    {
+      "move": "Shadow Ball",
+      "count": 11
+    },
+    {
+      "move": "Dragon Pulse",
+      "count": 10
+    },
+    {
+      "move": "Blizzard",
+      "count": 10
+    },
+    {
+      "move": "Focus Blast",
+      "count": 9
+    },
+    {
+      "move": "Roar",
+      "count": 7
+    },
+    {
+      "move": "Sucker Punch",
+      "count": 6
+    },
+    {
+      "move": "Disable",
+      "count": 5
+    },
+    {
+      "move": "Will-O-Wisp",
+      "count": 5
+    },
+    {
+      "move": "Struggle",
+      "count": 5
+    },
+    {
+      "move": "Hyper Voice",
+      "count": 4
+    },
+    {
+      "move": "Encore",
+      "count": 4
+    },
+    {
+      "move": "Draco Meteor",
+      "count": 4
+    },
+    {
+      "move": "Assurance",
+      "count": 3
+    },
+    {
+      "move": "Tailwind",
+      "count": 3
+    }
+  ],
+  "Basculegion": [
+    {
+      "move": "Last Respects",
+      "count": 650
+    },
+    {
+      "move": "Wave Crash",
+      "count": 474
+    },
+    {
+      "move": "Protect",
+      "count": 254
+    },
+    {
+      "move": "Aqua Jet",
+      "count": 240
+    },
+    {
+      "move": "Flip Turn",
+      "count": 38
+    },
+    {
+      "move": "Soak",
+      "count": 19
+    },
+    {
+      "move": "Liquidation",
+      "count": 15
+    },
+    {
+      "move": "Will-O-Wisp",
+      "count": 14
+    },
+    {
+      "move": "Phantom Force",
+      "count": 6
+    },
+    {
+      "move": "Struggle",
+      "count": 6
+    },
+    {
+      "move": "Blizzard",
+      "count": 5
+    },
+    {
+      "move": "Leech Life",
+      "count": 4
+    },
+    {
+      "move": "Close Combat",
+      "count": 4
+    },
+    {
+      "move": "Substitute",
+      "count": 2
+    },
+    {
+      "move": "Taunt",
+      "count": 2
+    },
+    {
+      "move": "Icy Wind",
+      "count": 2
+    },
+    {
+      "move": "Psychic Fangs",
+      "count": 2
+    },
+    {
+      "move": "Head Smash",
+      "count": 1
+    },
+    {
+      "move": "Psychic",
+      "count": 1
+    },
+    {
+      "move": "Weather Ball",
+      "count": 1
+    },
+    {
+      "move": "Solar Beam",
+      "count": 1
+    },
+    {
+      "move": "Overheat",
+      "count": 1
+    },
+    {
+      "move": "Flamethrower",
+      "count": 1
+    },
+    {
+      "move": "Tailwind",
+      "count": 1
+    },
+    {
+      "move": "Dragon Pulse",
+      "count": 1
+    },
+    {
+      "move": "Curse",
+      "count": 1
+    },
+    {
+      "move": "Swords Dance",
+      "count": 1
+    },
+    {
+      "move": "Iron Head",
+      "count": 1
+    },
+    {
+      "move": "Aurora Veil",
+      "count": 1
+    },
+    {
+      "move": "Zap Cannon",
+      "count": 1
+    }
+  ],
+  "Sneasler": [
+    {
+      "move": "Close Combat",
+      "count": 1464
+    },
+    {
+      "move": "Dire Claw",
+      "count": 937
+    },
+    {
+      "move": "Protect",
+      "count": 601
+    },
+    {
+      "move": "Fake Out",
+      "count": 449
+    },
+    {
+      "move": "Rock Slide",
+      "count": 279
+    },
+    {
+      "move": "Coaching",
+      "count": 83
+    },
+    {
+      "move": "Poison Jab",
+      "count": 71
+    },
+    {
+      "move": "Rock Tomb",
+      "count": 70
+    },
+    {
+      "move": "Swords Dance",
+      "count": 69
+    },
+    {
+      "move": "Throat Chop",
+      "count": 69
+    },
+    {
+      "move": "Acrobatics",
+      "count": 45
+    },
+    {
+      "move": "Quick Guard",
+      "count": 36
+    },
+    {
+      "move": "Feint",
+      "count": 18
+    },
+    {
+      "move": "Gunk Shot",
+      "count": 15
+    },
+    {
+      "move": "Upper Hand",
+      "count": 8
+    },
+    {
+      "move": "Dragon Pulse",
+      "count": 6
+    },
+    {
+      "move": "Weather Ball",
+      "count": 4
+    },
+    {
+      "move": "Flamethrower",
+      "count": 4
+    },
+    {
+      "move": "Sunny Day",
+      "count": 4
+    },
+    {
+      "move": "Blizzard",
+      "count": 3
+    },
+    {
+      "move": "Taunt",
+      "count": 2
+    },
+    {
+      "move": "Earth Power",
+      "count": 2
+    },
+    {
+      "move": "Ice Shard",
+      "count": 2
+    },
+    {
+      "move": "Extreme Speed",
+      "count": 2
+    },
+    {
+      "move": "Struggle",
+      "count": 1
+    },
+    {
+      "move": "Double-Edge",
+      "count": 1
+    },
+    {
+      "move": "U-turn",
+      "count": 1
+    },
+    {
+      "move": "Psychic",
+      "count": 1
+    },
+    {
+      "move": "Solar Beam",
+      "count": 1
+    },
+    {
+      "move": "Heat Wave",
+      "count": 1
+    }
+  ],
+  "Raichu": [
+    {
+      "move": "Zap Cannon",
+      "count": 798
+    },
+    {
+      "move": "Protect",
+      "count": 458
+    },
+    {
+      "move": "Fake Out",
+      "count": 360
+    },
+    {
+      "move": "Focus Blast",
+      "count": 299
+    },
+    {
+      "move": "Encore",
+      "count": 74
+    },
+    {
+      "move": "Rising Voltage",
+      "count": 43
+    },
+    {
+      "move": "Light Screen",
+      "count": 35
+    },
+    {
+      "move": "Volt Tackle",
+      "count": 30
+    },
+    {
+      "move": "Reflect",
+      "count": 22
+    },
+    {
+      "move": "Nuzzle",
+      "count": 15
+    },
+    {
+      "move": "Volt Switch",
+      "count": 10
+    },
+    {
+      "move": "Drain Punch",
+      "count": 5
+    },
+    {
+      "move": "Charm",
+      "count": 5
+    },
+    {
+      "move": "Close Combat",
+      "count": 5
+    },
+    {
+      "move": "Struggle",
+      "count": 4
+    },
+    {
+      "move": "Substitute",
+      "count": 4
+    },
+    {
+      "move": "Thunderbolt",
+      "count": 2
+    },
+    {
+      "move": "Discharge",
+      "count": 2
+    },
+    {
+      "move": "Wild Charge",
+      "count": 2
+    },
+    {
+      "move": "Eerie Impulse",
+      "count": 1
+    },
+    {
+      "move": "Knock Off",
+      "count": 1
+    },
+    {
+      "move": "Helping Hand",
+      "count": 1
+    },
+    {
+      "move": "Heat Wave",
+      "count": 1
+    },
+    {
+      "move": "Feint",
+      "count": 1
+    },
+    {
+      "move": "Electroweb",
+      "count": 1
+    },
+    {
+      "move": "Play Rough",
+      "count": 1
+    },
+    {
+      "move": "Roost",
+      "count": 1
+    }
+  ],
+  "Lucario": [
+    {
+      "move": "Aura Sphere",
+      "count": 47
+    },
+    {
+      "move": "Calm Mind",
+      "count": 42
+    },
+    {
+      "move": "Flash Cannon",
+      "count": 42
+    },
+    {
+      "move": "Protect",
+      "count": 40
+    },
+    {
+      "move": "Detect",
+      "count": 15
+    },
+    {
+      "move": "Close Combat",
+      "count": 11
+    },
+    {
+      "move": "Dark Pulse",
+      "count": 10
+    },
+    {
+      "move": "Nasty Plot",
+      "count": 5
+    },
+    {
+      "move": "Terrain Pulse",
+      "count": 4
+    },
+    {
+      "move": "Steel Beam",
+      "count": 3
+    },
+    {
+      "move": "Stone Edge",
+      "count": 3
+    },
+    {
+      "move": "Psychic",
+      "count": 2
+    },
+    {
+      "move": "Meteor Mash",
+      "count": 1
+    },
+    {
+      "move": "Coaching",
+      "count": 1
+    },
+    {
+      "move": "Substitute",
+      "count": 1
+    },
+    {
+      "move": "Bullet Punch",
+      "count": 1
+    },
+    {
+      "move": "Vacuum Wave",
+      "count": 1
+    },
+    {
+      "move": "Earthquake",
+      "count": 1
+    }
+  ],
+  "Excadrill": [
+    {
+      "move": "High Horsepower",
+      "count": 318
+    },
+    {
+      "move": "Protect",
+      "count": 228
+    },
+    {
+      "move": "Iron Head",
+      "count": 164
+    },
+    {
+      "move": "Rock Slide",
+      "count": 161
+    },
+    {
+      "move": "Earthquake",
+      "count": 26
+    },
+    {
+      "move": "Swords Dance",
+      "count": 7
+    },
+    {
+      "move": "Drill Run",
+      "count": 6
+    },
+    {
+      "move": "Knock Off",
+      "count": 4
+    },
+    {
+      "move": "Rock Tomb",
+      "count": 3
+    },
+    {
+      "move": "Stomping Tantrum",
+      "count": 1
+    },
+    {
+      "move": "Rock Blast",
+      "count": 1
+    }
+  ],
+  "Sylveon": [
+    {
+      "move": "Hyper Voice",
+      "count": 565
+    },
+    {
+      "move": "Hyper Beam",
+      "count": 106
+    },
+    {
+      "move": "Detect",
+      "count": 105
+    },
+    {
+      "move": "Quick Attack",
+      "count": 70
+    },
+    {
+      "move": "Protect",
+      "count": 68
+    },
+    {
+      "move": "Yawn",
+      "count": 33
+    },
+    {
+      "move": "Calm Mind",
+      "count": 10
+    },
+    {
+      "move": "Moonblast",
+      "count": 5
+    },
+    {
+      "move": "Weather Ball",
+      "count": 2
+    },
+    {
+      "move": "Sucker Punch",
+      "count": 1
+    },
+    {
+      "move": "Iron Head",
+      "count": 1
+    },
+    {
+      "move": "Mystical Fire",
+      "count": 1
+    }
+  ],
+  "Dragonite": [
+    {
+      "move": "Dragon Pulse",
+      "count": 191
+    },
+    {
+      "move": "Tailwind",
+      "count": 93
+    },
+    {
+      "move": "Heat Wave",
+      "count": 81
+    },
+    {
+      "move": "Protect",
+      "count": 80
+    },
+    {
+      "move": "Draco Meteor",
+      "count": 21
+    },
+    {
+      "move": "Dragon Dance",
+      "count": 20
+    },
+    {
+      "move": "Air Slash",
+      "count": 17
+    },
+    {
+      "move": "Dragon Claw",
+      "count": 11
+    },
+    {
+      "move": "Thunderbolt",
+      "count": 10
+    },
+    {
+      "move": "Scale Shot",
+      "count": 8
+    },
+    {
+      "move": "Extreme Speed",
+      "count": 8
+    },
+    {
+      "move": "Hurricane",
+      "count": 8
+    },
+    {
+      "move": "Stomping Tantrum",
+      "count": 8
+    },
+    {
+      "move": "Low Kick",
+      "count": 8
+    },
+    {
+      "move": "Rock Slide",
+      "count": 7
+    },
+    {
+      "move": "Thunder",
+      "count": 3
+    },
+    {
+      "move": "Superpower",
+      "count": 2
+    },
+    {
+      "move": "Flamethrower",
+      "count": 2
+    },
+    {
+      "move": "Haze",
+      "count": 1
+    },
+    {
+      "move": "Icy Wind",
+      "count": 1
+    },
+    {
+      "move": "Taunt",
+      "count": 1
+    },
+    {
+      "move": "Curse",
+      "count": 1
+    },
+    {
+      "move": "Fire Blast",
+      "count": 1
+    }
+  ],
+  "Pelipper": [
+    {
+      "move": "Weather Ball",
+      "count": 513
+    },
+    {
+      "move": "Hurricane",
+      "count": 450
+    },
+    {
+      "move": "Tailwind",
+      "count": 234
+    },
+    {
+      "move": "Wide Guard",
+      "count": 197
+    },
+    {
+      "move": "Helping Hand",
+      "count": 69
+    },
+    {
+      "move": "Protect",
+      "count": 51
+    },
+    {
+      "move": "Muddy Water",
+      "count": 24
+    },
+    {
+      "move": "Ice Beam",
+      "count": 8
+    },
+    {
+      "move": "Encore",
+      "count": 6
+    },
+    {
+      "move": "Surf",
+      "count": 6
+    },
+    {
+      "move": "Rising Voltage",
+      "count": 6
+    },
+    {
+      "move": "Earthquake",
+      "count": 4
+    },
+    {
+      "move": "Rain Dance",
+      "count": 3
+    },
+    {
+      "move": "Dark Pulse",
+      "count": 2
+    },
+    {
+      "move": "Wave Crash",
+      "count": 2
+    },
+    {
+      "move": "Fake Out",
+      "count": 2
+    },
+    {
+      "move": "Shell Smash",
+      "count": 1
+    },
+    {
+      "move": "Hydro Pump",
+      "count": 1
+    },
+    {
+      "move": "Struggle",
+      "count": 1
+    },
+    {
+      "move": "Earth Power",
+      "count": 1
+    },
+    {
+      "move": "Rock Slide",
+      "count": 1
+    }
+  ],
+  "Skarmory": [
+    {
+      "move": "Tailwind",
+      "count": 7
+    },
+    {
+      "move": "Iron Head",
+      "count": 6
+    },
+    {
+      "move": "Brave Bird",
+      "count": 5
+    },
+    {
+      "move": "Drill Run",
+      "count": 3
+    },
+    {
+      "move": "Protect",
+      "count": 2
+    }
+  ],
+  "Glimmora": [
+    {
+      "move": "Spiky Shield",
+      "count": 140
+    },
+    {
+      "move": "Power Gem",
+      "count": 130
+    },
+    {
+      "move": "Sludge Bomb",
+      "count": 101
+    },
+    {
+      "move": "Earth Power",
+      "count": 99
+    },
+    {
+      "move": "Mortal Spin",
+      "count": 16
+    },
+    {
+      "move": "Protect",
+      "count": 1
+    }
+  ],
+  "Baxcalibur": [
+    {
+      "move": "Glaive Rush",
+      "count": 45
+    },
+    {
+      "move": "Protect",
+      "count": 40
+    },
+    {
+      "move": "Ice Shard",
+      "count": 22
+    },
+    {
+      "move": "High Horsepower",
+      "count": 14
+    },
+    {
+      "move": "Icicle Crash",
+      "count": 12
+    },
+    {
+      "move": "Dragon Dance",
+      "count": 8
+    },
+    {
+      "move": "Swords Dance",
+      "count": 8
+    },
+    {
+      "move": "Scale Shot",
+      "count": 1
+    }
+  ],
+  "Volcarona": [
+    {
+      "move": "Quiver Dance",
+      "count": 462
+    },
+    {
+      "move": "Heat Wave",
+      "count": 378
+    },
+    {
+      "move": "Protect",
+      "count": 348
+    },
+    {
+      "move": "Struggle Bug",
+      "count": 285
+    },
+    {
+      "move": "Giga Drain",
+      "count": 164
+    },
+    {
+      "move": "Rage Powder",
+      "count": 153
+    },
+    {
+      "move": "Overheat",
+      "count": 128
+    },
+    {
+      "move": "Tailwind",
+      "count": 101
+    },
+    {
+      "move": "Fiery Dance",
+      "count": 83
+    },
+    {
+      "move": "Bug Buzz",
+      "count": 41
+    },
+    {
+      "move": "Flamethrower",
+      "count": 22
+    },
+    {
+      "move": "Zap Cannon",
+      "count": 5
+    },
+    {
+      "move": "Morning Sun",
+      "count": 4
+    },
+    {
+      "move": "Focus Blast",
+      "count": 2
+    },
+    {
+      "move": "Calm Mind",
+      "count": 1
+    },
+    {
+      "move": "Dragon Pulse",
+      "count": 1
+    },
+    {
+      "move": "Knock Off",
+      "count": 1
+    },
+    {
+      "move": "Earth Power",
+      "count": 1
+    }
+  ],
+  "Metagross": [
+    {
+      "move": "Psychic Fangs",
+      "count": 165
+    },
+    {
+      "move": "Protect",
+      "count": 106
+    },
+    {
+      "move": "Body Press",
+      "count": 74
+    },
+    {
+      "move": "Iron Head",
+      "count": 49
+    },
+    {
+      "move": "Stomping Tantrum",
+      "count": 33
+    },
+    {
+      "move": "Steel Roller",
+      "count": 32
+    },
+    {
+      "move": "Cosmic Power",
+      "count": 22
+    },
+    {
+      "move": "Psych Up",
+      "count": 13
+    },
+    {
+      "move": "Ice Punch",
+      "count": 11
+    },
+    {
+      "move": "Bullet Punch",
+      "count": 9
+    },
+    {
+      "move": "Hard Press",
+      "count": 9
+    },
+    {
+      "move": "Meteor Mash",
+      "count": 8
+    },
+    {
+      "move": "Rock Slide",
+      "count": 6
+    },
+    {
+      "move": "Hammer Arm",
+      "count": 3
+    },
+    {
+      "move": "Shadow Claw",
+      "count": 2
+    },
+    {
+      "move": "Brick Break",
+      "count": 1
+    },
+    {
+      "move": "Iron Defense",
+      "count": 1
+    },
+    {
+      "move": "Thunder Punch",
+      "count": 1
+    },
+    {
+      "move": "Body Slam",
+      "count": 1
+    },
+    {
+      "move": "Hyper Voice",
+      "count": 1
+    }
+  ],
+  "Whimsicott": [
+    {
+      "move": "Moonblast",
+      "count": 403
+    },
+    {
+      "move": "Tailwind",
+      "count": 254
+    },
+    {
+      "move": "Protect",
+      "count": 147
+    },
+    {
+      "move": "Encore",
+      "count": 102
+    },
+    {
+      "move": "Sunny Day",
+      "count": 35
+    },
+    {
+      "move": "Charm",
+      "count": 32
+    },
+    {
+      "move": "Fake Tears",
+      "count": 15
+    },
+    {
+      "move": "Light Screen",
+      "count": 8
+    },
+    {
+      "move": "Energy Ball",
+      "count": 7
+    },
+    {
+      "move": "Endeavor",
+      "count": 6
+    },
+    {
+      "move": "Helping Hand",
+      "count": 5
+    },
+    {
+      "move": "Dazzling Gleam",
+      "count": 5
+    },
+    {
+      "move": "Tickle",
+      "count": 3
+    },
+    {
+      "move": "Solar Beam",
+      "count": 3
+    },
+    {
+      "move": "Psychic",
+      "count": 2
+    },
+    {
+      "move": "Trick Room",
+      "count": 2
+    },
+    {
+      "move": "Close Combat",
+      "count": 2
+    },
+    {
+      "move": "Power Gem",
+      "count": 1
+    },
+    {
+      "move": "Flamethrower",
+      "count": 1
+    },
+    {
+      "move": "Beat Up",
+      "count": 1
+    },
+    {
+      "move": "Misty Terrain",
+      "count": 1
+    },
+    {
+      "move": "Roost",
+      "count": 1
+    }
+  ],
+  "Charizard": [
+    {
+      "move": "Heat Wave",
+      "count": 782
+    },
+    {
+      "move": "Protect",
+      "count": 504
+    },
+    {
+      "move": "Weather Ball",
+      "count": 371
+    },
+    {
+      "move": "Ancient Power",
+      "count": 100
+    },
+    {
+      "move": "Hurricane",
+      "count": 88
+    },
+    {
+      "move": "Breaking Swipe",
+      "count": 44
+    },
+    {
+      "move": "Solar Beam",
+      "count": 39
+    },
+    {
+      "move": "Flame Charge",
+      "count": 36
+    },
+    {
+      "move": "Belly Drum",
+      "count": 16
+    },
+    {
+      "move": "Dragon Claw",
+      "count": 14
+    },
+    {
+      "move": "Dragon Dance",
+      "count": 13
+    },
+    {
+      "move": "Flare Blitz",
+      "count": 13
+    },
+    {
+      "move": "Roar",
+      "count": 12
+    },
+    {
+      "move": "Scorching Sands",
+      "count": 11
+    },
+    {
+      "move": "Air Slash",
+      "count": 11
+    },
+    {
+      "move": "Flamethrower",
+      "count": 6
+    },
+    {
+      "move": "Helping Hand",
+      "count": 4
+    },
+    {
+      "move": "Dragon Pulse",
+      "count": 3
+    }
+  ],
+  "Gengar": [
+    {
+      "move": "Protect",
+      "count": 261
+    },
+    {
+      "move": "Shadow Ball",
+      "count": 167
+    },
+    {
+      "move": "Sludge Bomb",
+      "count": 108
+    },
+    {
+      "move": "Perish Song",
+      "count": 91
+    },
+    {
+      "move": "Trick Room",
+      "count": 29
+    },
+    {
+      "move": "Substitute",
+      "count": 16
+    },
+    {
+      "move": "Icy Wind",
+      "count": 12
+    },
+    {
+      "move": "Focus Blast",
+      "count": 9
+    },
+    {
+      "move": "Disable",
+      "count": 7
+    },
+    {
+      "move": "Nasty Plot",
+      "count": 5
+    },
+    {
+      "move": "Hypnosis",
+      "count": 3
+    },
+    {
+      "move": "Taunt",
+      "count": 2
+    },
+    {
+      "move": "Will-O-Wisp",
+      "count": 2
+    },
+    {
+      "move": "Trick",
+      "count": 1
+    },
+    {
+      "move": "Sludge Wave",
+      "count": 1
+    },
+    {
+      "move": "Hex",
+      "count": 1
+    },
+    {
+      "move": "Destiny Bond",
+      "count": 1
+    }
+  ],
+  "Pawmot": [
+    {
+      "move": "Close Combat",
+      "count": 134
+    },
+    {
+      "move": "Double Shock",
+      "count": 113
+    },
+    {
+      "move": "Revival Blessing",
+      "count": 101
+    },
+    {
+      "move": "Fake Out",
+      "count": 76
+    },
+    {
+      "move": "Protect",
+      "count": 63
+    },
+    {
+      "move": "Coaching",
+      "count": 7
+    },
+    {
+      "move": "Ice Punch",
+      "count": 4
+    },
+    {
+      "move": "Electroweb",
+      "count": 1
+    }
+  ],
+  "Politoed": [
+    {
+      "move": "Muddy Water",
+      "count": 731
+    },
+    {
+      "move": "Weather Ball",
+      "count": 638
+    },
+    {
+      "move": "Protect",
+      "count": 381
+    },
+    {
+      "move": "Ice Beam",
+      "count": 328
+    },
+    {
+      "move": "Psych Up",
+      "count": 67
+    },
+    {
+      "move": "Perish Song",
+      "count": 63
+    },
+    {
+      "move": "Encore",
+      "count": 38
+    },
+    {
+      "move": "Icy Wind",
+      "count": 26
+    },
+    {
+      "move": "Hypnosis",
+      "count": 14
+    },
+    {
+      "move": "Helping Hand",
+      "count": 14
+    },
+    {
+      "move": "Iron Head",
+      "count": 6
+    },
+    {
+      "move": "Sucker Punch",
+      "count": 6
+    },
+    {
+      "move": "Rain Dance",
+      "count": 5
+    },
+    {
+      "move": "Leech Life",
+      "count": 5
+    },
+    {
+      "move": "Drill Run",
+      "count": 4
+    },
+    {
+      "move": "Focus Blast",
+      "count": 4
+    },
+    {
+      "move": "Haze",
+      "count": 3
+    },
+    {
+      "move": "Heat Wave",
+      "count": 3
+    },
+    {
+      "move": "Shadow Ball",
+      "count": 2
+    },
+    {
+      "move": "Hurricane",
+      "count": 2
+    },
+    {
+      "move": "Sludge Bomb",
+      "count": 1
+    },
+    {
+      "move": "Substitute",
+      "count": 1
+    },
+    {
+      "move": "Earth Power",
+      "count": 1
+    },
+    {
+      "move": "Rising Voltage",
+      "count": 1
+    },
+    {
+      "move": "Liquidation",
+      "count": 1
+    }
+  ],
+  "Scovillain": [
+    {
+      "move": "Rage Powder",
+      "count": 39
+    },
+    {
+      "move": "Leech Seed",
+      "count": 26
+    },
+    {
+      "move": "Protect",
+      "count": 25
+    },
+    {
+      "move": "Overheat",
+      "count": 20
+    },
+    {
+      "move": "Leaf Storm",
+      "count": 9
+    },
+    {
+      "move": "Flamethrower",
+      "count": 4
+    },
+    {
+      "move": "Giga Drain",
+      "count": 4
+    },
+    {
+      "move": "Super Fang",
+      "count": 1
+    }
+  ],
+  "Farigiraf": [
+    {
+      "move": "Psychic",
+      "count": 1105
+    },
+    {
+      "move": "Trick Room",
+      "count": 828
+    },
+    {
+      "move": "Helping Hand",
+      "count": 406
+    },
+    {
+      "move": "Protect",
+      "count": 346
+    },
+    {
+      "move": "Grass Knot",
+      "count": 190
+    },
+    {
+      "move": "Thunderbolt",
+      "count": 153
+    },
+    {
+      "move": "Hyper Voice",
+      "count": 143
+    },
+    {
+      "move": "Twin Beam",
+      "count": 127
+    },
+    {
+      "move": "Expanding Force",
+      "count": 126
+    },
+    {
+      "move": "Psychic Noise",
+      "count": 23
+    },
+    {
+      "move": "Rain Dance",
+      "count": 21
+    },
+    {
+      "move": "Imprison",
+      "count": 17
+    },
+    {
+      "move": "Roar",
+      "count": 10
+    },
+    {
+      "move": "Earth Power",
+      "count": 10
+    },
+    {
+      "move": "Shadow Ball",
+      "count": 8
+    },
+    {
+      "move": "Psychic Fangs",
+      "count": 8
+    },
+    {
+      "move": "Nasty Plot",
+      "count": 8
+    },
+    {
+      "move": "Dazzling Gleam",
+      "count": 8
+    },
+    {
+      "move": "Psyshock",
+      "count": 7
+    },
+    {
+      "move": "Heat Wave",
+      "count": 7
+    },
+    {
+      "move": "Energy Ball",
+      "count": 7
+    },
+    {
+      "move": "Calm Mind",
+      "count": 5
+    },
+    {
+      "move": "Sunny Day",
+      "count": 4
+    },
+    {
+      "move": "Mirror Coat",
+      "count": 4
+    },
+    {
+      "move": "Foul Play",
+      "count": 4
+    },
+    {
+      "move": "Iron Head",
+      "count": 4
+    },
+    {
+      "move": "Eruption",
+      "count": 4
+    },
+    {
+      "move": "Low Kick",
+      "count": 2
+    },
+    {
+      "move": "High Horsepower",
+      "count": 2
+    },
+    {
+      "move": "Drill Run",
+      "count": 2
+    }
+  ],
+  "Torkoal": [
+    {
+      "move": "Eruption",
+      "count": 248
+    },
+    {
+      "move": "Weather Ball",
+      "count": 90
+    },
+    {
+      "move": "Protect",
+      "count": 82
+    },
+    {
+      "move": "Heat Wave",
+      "count": 76
+    },
+    {
+      "move": "Earth Power",
+      "count": 47
+    },
+    {
+      "move": "Helping Hand",
+      "count": 45
+    },
+    {
+      "move": "Yawn",
+      "count": 15
+    },
+    {
+      "move": "Solar Beam",
+      "count": 8
+    },
+    {
+      "move": "Flamethrower",
+      "count": 6
+    },
+    {
+      "move": "Overheat",
+      "count": 5
+    },
+    {
+      "move": "Ancient Power",
+      "count": 3
+    },
+    {
+      "move": "Body Press",
+      "count": 2
+    },
+    {
+      "move": "Sunny Day",
+      "count": 2
+    },
+    {
+      "move": "Fake Out",
+      "count": 2
+    },
+    {
+      "move": "Rising Voltage",
+      "count": 1
+    },
+    {
+      "move": "Aura Sphere",
+      "count": 1
+    },
+    {
+      "move": "Stone Edge",
+      "count": 1
+    },
+    {
+      "move": "Draco Meteor",
+      "count": 1
+    }
+  ],
+  "Dragapult": [
+    {
+      "move": "Shadow Ball",
+      "count": 121
+    },
+    {
+      "move": "Dragon Darts",
+      "count": 89
+    },
+    {
+      "move": "Protect",
+      "count": 82
+    },
+    {
+      "move": "Draco Meteor",
+      "count": 76
+    },
+    {
+      "move": "Will-O-Wisp",
+      "count": 66
+    },
+    {
+      "move": "Phantom Force",
+      "count": 22
+    },
+    {
+      "move": "Light Screen",
+      "count": 15
+    },
+    {
+      "move": "Dragon Dance",
+      "count": 7
+    },
+    {
+      "move": "Curse",
+      "count": 7
+    },
+    {
+      "move": "Dragon Cheer",
+      "count": 6
+    },
+    {
+      "move": "Dragon Pulse",
+      "count": 5
+    },
+    {
+      "move": "Psychic Fangs",
+      "count": 5
+    },
+    {
+      "move": "Flamethrower",
+      "count": 3
+    },
+    {
+      "move": "Roost",
+      "count": 3
+    },
+    {
+      "move": "Close Combat",
+      "count": 3
+    },
+    {
+      "move": "Disable",
+      "count": 2
+    },
+    {
+      "move": "U-turn",
+      "count": 1
+    },
+    {
+      "move": "Fire Blast",
+      "count": 1
+    },
+    {
+      "move": "Dragon Tail",
+      "count": 1
+    },
+    {
+      "move": "Dragon Claw",
+      "count": 1
+    },
+    {
+      "move": "Beat Up",
+      "count": 1
+    },
+    {
+      "move": "Substitute",
+      "count": 1
+    },
+    {
+      "move": "Round",
+      "count": 1
+    },
+    {
+      "move": "Brave Bird",
+      "count": 1
+    },
+    {
+      "move": "Reflect",
+      "count": 1
+    }
+  ],
+  "Sinistcha": [
+    {
+      "move": "Matcha Gotcha",
+      "count": 232
+    },
+    {
+      "move": "Rage Powder",
+      "count": 178
+    },
+    {
+      "move": "Protect",
+      "count": 118
+    },
+    {
+      "move": "Trick Room",
+      "count": 63
+    },
+    {
+      "move": "Life Dew",
+      "count": 33
+    },
+    {
+      "move": "Shadow Ball",
+      "count": 10
+    },
+    {
+      "move": "Strength Sap",
+      "count": 6
+    },
+    {
+      "move": "Calm Mind",
+      "count": 2
+    },
+    {
+      "move": "Blizzard",
+      "count": 2
+    },
+    {
+      "move": "Fake Out",
+      "count": 1
+    },
+    {
+      "move": "Swords Dance",
+      "count": 1
+    },
+    {
+      "move": "Rock Slide",
+      "count": 1
+    },
+    {
+      "move": "Play Rough",
+      "count": 1
+    },
+    {
+      "move": "Aurora Veil",
+      "count": 1
+    }
+  ],
+  "Grimmsnarl": [
+    {
+      "move": "Spirit Break",
+      "count": 454
+    },
+    {
+      "move": "Light Screen",
+      "count": 428
+    },
+    {
+      "move": "Reflect",
+      "count": 319
+    },
+    {
+      "move": "Parting Shot",
+      "count": 154
+    },
+    {
+      "move": "Foul Play",
+      "count": 35
+    },
+    {
+      "move": "Protect",
+      "count": 9
+    },
+    {
+      "move": "Scary Face",
+      "count": 9
+    },
+    {
+      "move": "Weather Ball",
+      "count": 8
+    },
+    {
+      "move": "Fake Out",
+      "count": 7
+    },
+    {
+      "move": "Heat Wave",
+      "count": 6
+    },
+    {
+      "move": "Sucker Punch",
+      "count": 6
+    },
+    {
+      "move": "Iron Head",
+      "count": 6
+    },
+    {
+      "move": "Volt Tackle",
+      "count": 3
+    },
+    {
+      "move": "Drill Run",
+      "count": 3
+    },
+    {
+      "move": "Throat Chop",
+      "count": 3
+    },
+    {
+      "move": "Focus Blast",
+      "count": 3
+    },
+    {
+      "move": "Hurricane",
+      "count": 2
+    },
+    {
+      "move": "Swagger",
+      "count": 2
+    },
+    {
+      "move": "Encore",
+      "count": 1
+    },
+    {
+      "move": "Sludge Bomb",
+      "count": 1
+    },
+    {
+      "move": "Dazzling Gleam",
+      "count": 1
+    },
+    {
+      "move": "Earth Power",
+      "count": 1
+    },
+    {
+      "move": "Toxic",
+      "count": 1
+    },
+    {
+      "move": "Flare Blitz",
+      "count": 1
+    },
+    {
+      "move": "Fake Tears",
+      "count": 1
+    },
+    {
+      "move": "Misty Terrain",
+      "count": 1
+    }
+  ],
+  "Delphox": [
+    {
+      "move": "Heat Wave",
+      "count": 324
+    },
+    {
+      "move": "Protect",
+      "count": 281
+    },
+    {
+      "move": "Nasty Plot",
+      "count": 167
+    },
+    {
+      "move": "Psychic",
+      "count": 142
+    },
+    {
+      "move": "Expanding Force",
+      "count": 56
+    },
+    {
+      "move": "Psyshock",
+      "count": 37
+    },
+    {
+      "move": "Substitute",
+      "count": 24
+    },
+    {
+      "move": "Encore",
+      "count": 15
+    },
+    {
+      "move": "Psych Up",
+      "count": 7
+    },
+    {
+      "move": "Overheat",
+      "count": 3
+    },
+    {
+      "move": "Grass Knot",
+      "count": 2
+    },
+    {
+      "move": "Psychic Terrain",
+      "count": 2
+    },
+    {
+      "move": "Flamethrower",
+      "count": 2
+    },
+    {
+      "move": "Endure",
+      "count": 1
+    },
+    {
+      "move": "Hypnosis",
+      "count": 1
+    },
+    {
+      "move": "Calm Mind",
+      "count": 1
+    }
+  ],
+  "Indeedee-F": [
+    {
+      "move": "Protect",
+      "count": 29
+    },
+    {
+      "move": "Hyper Voice",
+      "count": 18
+    },
+    {
+      "move": "Expanding Force",
+      "count": 13
+    },
+    {
+      "move": "Dragon Pulse",
+      "count": 7
+    },
+    {
+      "move": "Heat Wave",
+      "count": 6
+    },
+    {
+      "move": "Earth Power",
+      "count": 5
+    },
+    {
+      "move": "Rock Slide",
+      "count": 5
+    },
+    {
+      "move": "Double-Edge",
+      "count": 3
+    },
+    {
+      "move": "Psychic Fangs",
+      "count": 3
+    },
+    {
+      "move": "Night Slash",
+      "count": 3
+    },
+    {
+      "move": "Power Gem",
+      "count": 3
+    },
+    {
+      "move": "Play Rough",
+      "count": 2
+    },
+    {
+      "move": "Water Spout",
+      "count": 2
+    },
+    {
+      "move": "Shadow Ball",
+      "count": 2
+    },
+    {
+      "move": "Iron Head",
+      "count": 1
+    },
+    {
+      "move": "Tailwind",
+      "count": 1
+    },
+    {
+      "move": "Fire Blast",
+      "count": 1
+    },
+    {
+      "move": "Psych Up",
+      "count": 1
+    },
+    {
+      "move": "Psyshock",
+      "count": 1
+    },
+    {
+      "move": "Yawn",
+      "count": 1
+    },
+    {
+      "move": "Heal Pulse",
+      "count": 1
+    },
+    {
+      "move": "Draco Meteor",
+      "count": 1
+    },
+    {
+      "move": "Encore",
+      "count": 1
+    },
+    {
+      "move": "Thunderbolt",
+      "count": 1
+    },
+    {
+      "move": "Calm Mind",
+      "count": 1
+    },
+    {
+      "move": "Future Sight",
+      "count": 1
+    },
+    {
+      "move": "Speed Swap",
+      "count": 1
+    },
+    {
+      "move": "Fake Out",
+      "count": 1
+    },
+    {
+      "move": "Air Slash",
+      "count": 1
+    },
+    {
+      "move": "Shell Smash",
+      "count": 1
+    }
+  ],
+  "Blastoise": [
+    {
+      "move": "Water Spout",
+      "count": 135
+    },
+    {
+      "move": "Dark Pulse",
+      "count": 74
+    },
+    {
+      "move": "Protect",
+      "count": 60
+    },
+    {
+      "move": "Aura Sphere",
+      "count": 56
+    },
+    {
+      "move": "Shell Smash",
+      "count": 44
+    },
+    {
+      "move": "Fake Out",
+      "count": 36
+    },
+    {
+      "move": "Ice Beam",
+      "count": 22
+    },
+    {
+      "move": "Terrain Pulse",
+      "count": 12
+    },
+    {
+      "move": "Water Pulse",
+      "count": 5
+    },
+    {
+      "move": "Flip Turn",
+      "count": 2
+    },
+    {
+      "move": "Dragon Pulse",
+      "count": 1
+    },
+    {
+      "move": "Hydro Pump",
+      "count": 1
+    }
+  ],
+  "Froslass": [
+    {
+      "move": "Blizzard",
+      "count": 266
+    },
+    {
+      "move": "Aurora Veil",
+      "count": 145
+    },
+    {
+      "move": "Protect",
+      "count": 126
+    },
+    {
+      "move": "Shadow Ball",
+      "count": 116
+    },
+    {
+      "move": "Will-O-Wisp",
+      "count": 6
+    },
+    {
+      "move": "Nasty Plot",
+      "count": 3
+    }
+  ],
+  "Milotic": [
+    {
+      "move": "Muddy Water",
+      "count": 341
+    },
+    {
+      "move": "Hypnosis",
+      "count": 301
+    },
+    {
+      "move": "Coil",
+      "count": 253
+    },
+    {
+      "move": "Scald",
+      "count": 234
+    },
+    {
+      "move": "Protect",
+      "count": 144
+    },
+    {
+      "move": "Ice Beam",
+      "count": 101
+    },
+    {
+      "move": "Icy Wind",
+      "count": 84
+    },
+    {
+      "move": "Recover",
+      "count": 68
+    },
+    {
+      "move": "Life Dew",
+      "count": 13
+    },
+    {
+      "move": "Hydro Pump",
+      "count": 11
+    },
+    {
+      "move": "Haze",
+      "count": 7
+    },
+    {
+      "move": "Alluring Voice",
+      "count": 3
+    },
+    {
+      "move": "Substitute",
+      "count": 2
+    },
+    {
+      "move": "Dragon Tail",
+      "count": 2
+    },
+    {
+      "move": "Mirror Coat",
+      "count": 1
+    },
+    {
+      "move": "Light Screen",
+      "count": 1
+    },
+    {
+      "move": "Dragon Cheer",
+      "count": 1
+    },
+    {
+      "move": "Rain Dance",
+      "count": 1
+    },
+    {
+      "move": "Blizzard",
+      "count": 1
+    },
+    {
+      "move": "Struggle",
+      "count": 1
+    },
+    {
+      "move": "Dragon Pulse",
+      "count": 1
+    }
+  ],
+  "Overqwil": [
+    {
+      "move": "Throat Chop",
+      "count": 90
+    },
+    {
+      "move": "Stockpile",
+      "count": 83
+    },
+    {
+      "move": "Minimize",
+      "count": 44
+    },
+    {
+      "move": "Swords Dance",
+      "count": 36
+    },
+    {
+      "move": "Protect",
+      "count": 14
+    },
+    {
+      "move": "Gunk Shot",
+      "count": 9
+    },
+    {
+      "move": "Crunch",
+      "count": 8
+    },
+    {
+      "move": "Poison Jab",
+      "count": 7
+    },
+    {
+      "move": "Barb Barrage",
+      "count": 6
+    },
+    {
+      "move": "Liquidation",
+      "count": 4
+    },
+    {
+      "move": "Shadow Ball",
+      "count": 2
+    },
+    {
+      "move": "Toxic",
+      "count": 1
+    },
+    {
+      "move": "Taunt",
+      "count": 1
+    },
+    {
+      "move": "Destiny Bond",
+      "count": 1
+    },
+    {
+      "move": "Ice Punch",
+      "count": 1
+    }
+  ],
+  "Slowbro": [
+    {
+      "move": "Stored Power",
+      "count": 9
+    },
+    {
+      "move": "Slack Off",
+      "count": 8
+    },
+    {
+      "move": "Scald",
+      "count": 7
+    },
+    {
+      "move": "Trick Room",
+      "count": 4
+    },
+    {
+      "move": "Psych Up",
+      "count": 4
+    },
+    {
+      "move": "Expanding Force",
+      "count": 4
+    },
+    {
+      "move": "Iron Defense",
+      "count": 3
+    },
+    {
+      "move": "Nasty Plot",
+      "count": 1
+    },
+    {
+      "move": "Protect",
+      "count": 1
+    },
+    {
+      "move": "Body Press",
+      "count": 1
+    }
+  ],
+  "Tinkaton": [
+    {
+      "move": "Encore",
+      "count": 12
+    },
+    {
+      "move": "Fake Out",
+      "count": 11
+    },
+    {
+      "move": "Gigaton Hammer",
+      "count": 7
+    },
+    {
+      "move": "Protect",
+      "count": 5
+    },
+    {
+      "move": "Helping Hand",
+      "count": 2
+    },
+    {
+      "move": "Foul Play",
+      "count": 1
+    }
+  ],
+  "Lopunny": [
+    {
+      "move": "Close Combat",
+      "count": 39
+    },
+    {
+      "move": "Fake Out",
+      "count": 33
+    },
+    {
+      "move": "Triple Axel",
+      "count": 6
+    },
+    {
+      "move": "Thunder Punch",
+      "count": 4
+    },
+    {
+      "move": "Protect",
+      "count": 3
+    },
+    {
+      "move": "Mach Punch",
+      "count": 2
+    },
+    {
+      "move": "U-turn",
+      "count": 1
+    },
+    {
+      "move": "Encore",
+      "count": 1
+    }
+  ],
+  "Kommo-o": [
+    {
+      "move": "Clanging Scales",
+      "count": 410
+    },
+    {
+      "move": "Protect",
+      "count": 385
+    },
+    {
+      "move": "Clangorous Soul",
+      "count": 319
+    },
+    {
+      "move": "Aura Sphere",
+      "count": 270
+    },
+    {
+      "move": "Flamethrower",
+      "count": 33
+    },
+    {
+      "move": "Vacuum Wave",
+      "count": 13
+    },
+    {
+      "move": "Drain Punch",
+      "count": 3
+    },
+    {
+      "move": "Heat Wave",
+      "count": 2
+    },
+    {
+      "move": "Dragon Pulse",
+      "count": 2
+    },
+    {
+      "move": "Body Press",
+      "count": 2
+    },
+    {
+      "move": "Coaching",
+      "count": 1
+    },
+    {
+      "move": "Breaking Swipe",
+      "count": 1
+    },
+    {
+      "move": "Draco Meteor",
+      "count": 1
+    },
+    {
+      "move": "Belly Drum",
+      "count": 1
+    },
+    {
+      "move": "Dragon Claw",
+      "count": 1
+    },
+    {
+      "move": "Trick Room",
+      "count": 1
+    }
+  ],
+  "Toxapex": [
+    {
+      "move": "Infestation",
+      "count": 44
+    },
+    {
+      "move": "Baneful Bunker",
+      "count": 32
+    },
+    {
+      "move": "Toxic",
+      "count": 27
+    },
+    {
+      "move": "Wide Guard",
+      "count": 13
+    },
+    {
+      "move": "Rock Slide",
+      "count": 2
+    },
+    {
+      "move": "Protect",
+      "count": 1
+    },
+    {
+      "move": "Ally Switch",
+      "count": 1
+    }
+  ],
+  "Maushold": [
+    {
+      "move": "Population Bomb",
+      "count": 12
+    },
+    {
+      "move": "Follow Me",
+      "count": 9
+    },
+    {
+      "move": "Protect",
+      "count": 8
+    },
+    {
+      "move": "Taunt",
+      "count": 5
+    },
+    {
+      "move": "Beat Up",
+      "count": 3
+    },
+    {
+      "move": "Super Fang",
+      "count": 2
+    },
+    {
+      "move": "Feint",
+      "count": 1
+    },
+    {
+      "move": "Bite",
+      "count": 1
+    },
+    {
+      "move": "After You",
+      "count": 1
+    }
+  ],
+  "Staraptor": [
+    {
+      "move": "Close Combat",
+      "count": 516
+    },
+    {
+      "move": "Protect",
+      "count": 236
+    },
+    {
+      "move": "Brave Bird",
+      "count": 162
+    },
+    {
+      "move": "Tailwind",
+      "count": 97
+    },
+    {
+      "move": "Roost",
+      "count": 69
+    },
+    {
+      "move": "Dual Wingbeat",
+      "count": 21
+    },
+    {
+      "move": "Final Gambit",
+      "count": 13
+    },
+    {
+      "move": "Blaze Kick",
+      "count": 4
+    },
+    {
+      "move": "Whirlwind",
+      "count": 1
+    },
+    {
+      "move": "Hyper Beam",
+      "count": 1
+    },
+    {
+      "move": "Fake Out",
+      "count": 1
+    },
+    {
+      "move": "Focus Blast",
+      "count": 1
+    },
+    {
+      "move": "Zap Cannon",
+      "count": 1
+    }
+  ],
+  "Gardevoir": [
+    {
+      "move": "Hyper Voice",
+      "count": 413
+    },
+    {
+      "move": "Protect",
+      "count": 234
+    },
+    {
+      "move": "Expanding Force",
+      "count": 189
+    },
+    {
+      "move": "Calm Mind",
+      "count": 72
+    },
+    {
+      "move": "Trick Room",
+      "count": 20
+    },
+    {
+      "move": "Thunderbolt",
+      "count": 16
+    },
+    {
+      "move": "Psyshock",
+      "count": 16
+    },
+    {
+      "move": "Moonblast",
+      "count": 15
+    },
+    {
+      "move": "Mystical Fire",
+      "count": 10
+    },
+    {
+      "move": "Hyper Beam",
+      "count": 6
+    },
+    {
+      "move": "Dazzling Gleam",
+      "count": 5
+    },
+    {
+      "move": "Substitute",
+      "count": 5
+    },
+    {
+      "move": "Imprison",
+      "count": 4
+    },
+    {
+      "move": "Aura Sphere",
+      "count": 4
+    },
+    {
+      "move": "Psychic",
+      "count": 3
+    },
+    {
+      "move": "Icy Wind",
+      "count": 2
+    },
+    {
+      "move": "Shadow Ball",
+      "count": 2
+    },
+    {
+      "move": "Encore",
+      "count": 2
+    }
+  ],
+  "Araquanid": [
+    {
+      "move": "Liquidation",
+      "count": 22
+    },
+    {
+      "move": "Wide Guard",
+      "count": 7
+    },
+    {
+      "move": "Leech Life",
+      "count": 3
+    },
+    {
+      "move": "Protect",
+      "count": 3
+    },
+    {
+      "move": "Mirror Coat",
+      "count": 2
+    },
+    {
+      "move": "Surf",
+      "count": 1
+    },
+    {
+      "move": "Earth Power",
+      "count": 1
+    }
+  ],
+  "Garganacl": [
+    {
+      "move": "Stone Edge",
+      "count": 2
+    },
+    {
+      "move": "Protect",
+      "count": 1
+    }
+  ],
+  "Grapploct": [
+    {
+      "move": "Storm Throw",
+      "count": 88
+    },
+    {
+      "move": "Detect",
+      "count": 21
+    },
+    {
+      "move": "Mach Punch",
+      "count": 18
+    },
+    {
+      "move": "Protect",
+      "count": 9
+    },
+    {
+      "move": "Payback",
+      "count": 7
+    },
+    {
+      "move": "Stomping Tantrum",
+      "count": 4
+    },
+    {
+      "move": "Feint",
+      "count": 3
+    },
+    {
+      "move": "Octolock",
+      "count": 1
+    },
+    {
+      "move": "Ice Punch",
+      "count": 1
+    },
+    {
+      "move": "Soak",
+      "count": 1
+    }
+  ],
+  "Hatterene": [
+    {
+      "move": "Dazzling Gleam",
+      "count": 53
+    },
+    {
+      "move": "Trick Room",
+      "count": 35
+    },
+    {
+      "move": "Expanding Force",
+      "count": 28
+    },
+    {
+      "move": "Protect",
+      "count": 19
+    },
+    {
+      "move": "Mystical Fire",
+      "count": 6
+    },
+    {
+      "move": "Magic Powder",
+      "count": 6
+    },
+    {
+      "move": "After You",
+      "count": 1
+    },
+    {
+      "move": "Calm Mind",
+      "count": 1
+    }
+  ],
+  "Aerodactyl": [
+    {
+      "move": "Rock Slide",
+      "count": 114
+    },
+    {
+      "move": "Tailwind",
+      "count": 56
+    },
+    {
+      "move": "Dual Wingbeat",
+      "count": 54
+    },
+    {
+      "move": "Protect",
+      "count": 27
+    },
+    {
+      "move": "Wide Guard",
+      "count": 14
+    },
+    {
+      "move": "Ice Fang",
+      "count": 4
+    },
+    {
+      "move": "Sandstorm",
+      "count": 2
+    }
+  ],
+  "Hydreigon": [
+    {
+      "move": "Dark Pulse",
+      "count": 42
+    },
+    {
+      "move": "Snarl",
+      "count": 28
+    },
+    {
+      "move": "Draco Meteor",
+      "count": 25
+    },
+    {
+      "move": "Earth Power",
+      "count": 24
+    },
+    {
+      "move": "Protect",
+      "count": 24
+    },
+    {
+      "move": "Dragon Pulse",
+      "count": 12
+    },
+    {
+      "move": "Flamethrower",
+      "count": 7
+    },
+    {
+      "move": "Tailwind",
+      "count": 2
+    },
+    {
+      "move": "Heat Wave",
+      "count": 2
+    },
+    {
+      "move": "Weather Ball",
+      "count": 2
+    },
+    {
+      "move": "Taunt",
+      "count": 1
+    }
+  ],
+  "Venusaur": [
+    {
+      "move": "Sleep Powder",
+      "count": 153
+    },
+    {
+      "move": "Sludge Bomb",
+      "count": 132
+    },
+    {
+      "move": "Protect",
+      "count": 129
+    },
+    {
+      "move": "Earth Power",
+      "count": 114
+    },
+    {
+      "move": "Leaf Storm",
+      "count": 53
+    },
+    {
+      "move": "Giga Drain",
+      "count": 19
+    },
+    {
+      "move": "Energy Ball",
+      "count": 4
+    },
+    {
+      "move": "Leech Seed",
+      "count": 3
+    },
+    {
+      "move": "Solar Beam",
+      "count": 3
+    },
+    {
+      "move": "Bulldoze",
+      "count": 2
+    },
+    {
+      "move": "Acid Spray",
+      "count": 2
+    },
+    {
+      "move": "Grassy Terrain",
+      "count": 1
+    },
+    {
+      "move": "Weather Ball",
+      "count": 1
+    },
+    {
+      "move": "Hurricane",
+      "count": 1
+    },
+    {
+      "move": "Heat Wave",
+      "count": 1
+    }
+  ],
+  "Primarina": [
+    {
+      "move": "Hyper Voice",
+      "count": 268
+    },
+    {
+      "move": "Moonblast",
+      "count": 238
+    },
+    {
+      "move": "Protect",
+      "count": 170
+    },
+    {
+      "move": "Calm Mind",
+      "count": 125
+    },
+    {
+      "move": "Dazzling Gleam",
+      "count": 18
+    },
+    {
+      "move": "Perish Song",
+      "count": 6
+    },
+    {
+      "move": "Aqua Jet",
+      "count": 6
+    },
+    {
+      "move": "Draining Kiss",
+      "count": 5
+    },
+    {
+      "move": "Disable",
+      "count": 2
+    },
+    {
+      "move": "Icy Wind",
+      "count": 2
+    },
+    {
+      "move": "Flip Turn",
+      "count": 1
+    },
+    {
+      "move": "Round",
+      "count": 1
+    },
+    {
+      "move": "Weather Ball",
+      "count": 1
+    },
+    {
+      "move": "Shadow Ball",
+      "count": 1
+    }
+  ],
+  "Mamoswine": [
+    {
+      "move": "High Horsepower",
+      "count": 20
+    },
+    {
+      "move": "Earthquake",
+      "count": 16
+    },
+    {
+      "move": "Protect",
+      "count": 15
+    },
+    {
+      "move": "Icicle Crash",
+      "count": 12
+    },
+    {
+      "move": "Ice Shard",
+      "count": 9
+    },
+    {
+      "move": "Rock Slide",
+      "count": 4
+    },
+    {
+      "move": "Stone Edge",
+      "count": 1
+    }
+  ],
+  "Talonflame": [
+    {
+      "move": "Brave Bird",
+      "count": 38
+    },
+    {
+      "move": "Tailwind",
+      "count": 35
+    },
+    {
+      "move": "Flare Blitz",
+      "count": 24
+    },
+    {
+      "move": "Quick Guard",
+      "count": 13
+    },
+    {
+      "move": "Protect",
+      "count": 11
+    },
+    {
+      "move": "Overheat",
+      "count": 9
+    },
+    {
+      "move": "Dual Wingbeat",
+      "count": 5
+    },
+    {
+      "move": "Acrobatics",
+      "count": 4
+    },
+    {
+      "move": "Will-O-Wisp",
+      "count": 3
+    },
+    {
+      "move": "Air Cutter",
+      "count": 3
+    },
+    {
+      "move": "Air Slash",
+      "count": 3
+    },
+    {
+      "move": "Defog",
+      "count": 1
+    }
+  ],
+  "Quaquaval": [
+    {
+      "move": "Aqua Step",
+      "count": 3
+    },
+    {
+      "move": "Close Combat",
+      "count": 3
+    },
+    {
+      "move": "Protect",
+      "count": 1
+    },
+    {
+      "move": "Ice Spinner",
+      "count": 1
+    }
+  ],
+  "Indeedee": [
+    {
+      "move": "Expanding Force",
+      "count": 485
+    },
+    {
+      "move": "Mystical Fire",
+      "count": 78
+    },
+    {
+      "move": "Imprison",
+      "count": 43
+    },
+    {
+      "move": "Protect",
+      "count": 38
+    },
+    {
+      "move": "Trick",
+      "count": 29
+    },
+    {
+      "move": "Trick Room",
+      "count": 24
+    },
+    {
+      "move": "Helping Hand",
+      "count": 20
+    },
+    {
+      "move": "Dazzling Gleam",
+      "count": 7
+    },
+    {
+      "move": "Hyper Voice",
+      "count": 6
+    },
+    {
+      "move": "Energy Ball",
+      "count": 6
+    },
+    {
+      "move": "Tri Attack",
+      "count": 5
+    },
+    {
+      "move": "Rock Slide",
+      "count": 4
+    },
+    {
+      "move": "Psychic",
+      "count": 3
+    },
+    {
+      "move": "Terrain Pulse",
+      "count": 2
+    },
+    {
+      "move": "Encore",
+      "count": 2
+    },
+    {
+      "move": "Knock Off",
+      "count": 1
+    },
+    {
+      "move": "Weather Ball",
+      "count": 1
+    },
+    {
+      "move": "Solar Beam",
+      "count": 1
+    },
+    {
+      "move": "Fake Out",
+      "count": 1
+    }
+  ],
+  "Eelektross": [
+    {
+      "move": "Thunderbolt",
+      "count": 3
+    },
+    {
+      "move": "Coil",
+      "count": 2
+    },
+    {
+      "move": "Protect",
+      "count": 2
+    },
+    {
+      "move": "Flamethrower",
+      "count": 1
+    },
+    {
+      "move": "Discharge",
+      "count": 1
+    }
+  ],
+  "Corviknight": [
+    {
+      "move": "Bulk Up",
+      "count": 120
+    },
+    {
+      "move": "Brave Bird",
+      "count": 105
+    },
+    {
+      "move": "Roost",
+      "count": 75
+    },
+    {
+      "move": "Iron Defense",
+      "count": 30
+    },
+    {
+      "move": "Power Trip",
+      "count": 30
+    },
+    {
+      "move": "Tailwind",
+      "count": 23
+    },
+    {
+      "move": "Body Press",
+      "count": 18
+    },
+    {
+      "move": "Iron Head",
+      "count": 15
+    },
+    {
+      "move": "Taunt",
+      "count": 6
+    },
+    {
+      "move": "Protect",
+      "count": 5
+    },
+    {
+      "move": "Rock Slide",
+      "count": 3
+    },
+    {
+      "move": "Knock Off",
+      "count": 1
+    },
+    {
+      "move": "Last Respects",
+      "count": 1
+    }
+  ],
+  "Gallade": [
+    {
+      "move": "Sacred Sword",
+      "count": 44
+    },
+    {
+      "move": "Psycho Cut",
+      "count": 41
+    },
+    {
+      "move": "Wide Guard",
+      "count": 16
+    },
+    {
+      "move": "Night Slash",
+      "count": 10
+    },
+    {
+      "move": "Trick Room",
+      "count": 8
+    },
+    {
+      "move": "Leaf Blade",
+      "count": 5
+    },
+    {
+      "move": "Protect",
+      "count": 5
+    },
+    {
+      "move": "Coaching",
+      "count": 1
+    },
+    {
+      "move": "Struggle",
+      "count": 1
+    }
+  ],
+  "Meganium": [
+    {
+      "move": "Weather Ball",
+      "count": 22
+    },
+    {
+      "move": "Protect",
+      "count": 21
+    },
+    {
+      "move": "Solar Beam",
+      "count": 19
+    },
+    {
+      "move": "Dazzling Gleam",
+      "count": 17
+    },
+    {
+      "move": "Earth Power",
+      "count": 2
+    }
+  ],
+  "Alakazam": [
+    {
+      "move": "Expanding Force",
+      "count": 43
+    },
+    {
+      "move": "Protect",
+      "count": 15
+    },
+    {
+      "move": "Nasty Plot",
+      "count": 7
+    },
+    {
+      "move": "Speed Swap",
+      "count": 3
+    },
+    {
+      "move": "Focus Blast",
+      "count": 2
+    },
+    {
+      "move": "Dazzling Gleam",
+      "count": 2
+    },
+    {
+      "move": "Shadow Ball",
+      "count": 2
+    }
+  ],
+  "Maushold-Four": [
+    {
+      "move": "Expanding Force",
+      "count": 1
+    },
+    {
+      "move": "Protect",
+      "count": 1
+    }
+  ],
+  "Perrserker": [
+    {
+      "move": "Fake Out",
+      "count": 3
+    },
+    {
+      "move": "Throat Chop",
+      "count": 3
+    },
+    {
+      "move": "Gyro Ball",
+      "count": 2
+    },
+    {
+      "move": "Fling",
+      "count": 2
+    },
+    {
+      "move": "Close Combat",
+      "count": 1
+    }
+  ],
+  "Mimikyu": [
+    {
+      "move": "Trick Room",
+      "count": 69
+    },
+    {
+      "move": "Protect",
+      "count": 47
+    },
+    {
+      "move": "Curse",
+      "count": 42
+    },
+    {
+      "move": "Play Rough",
+      "count": 24
+    },
+    {
+      "move": "Shadow Sneak",
+      "count": 17
+    },
+    {
+      "move": "Taunt",
+      "count": 7
+    },
+    {
+      "move": "Swords Dance",
+      "count": 4
+    },
+    {
+      "move": "Sunny Day",
+      "count": 4
+    },
+    {
+      "move": "Will-O-Wisp",
+      "count": 3
+    },
+    {
+      "move": "Weather Ball",
+      "count": 2
+    },
+    {
+      "move": "Shadow Claw",
+      "count": 2
+    },
+    {
+      "move": "Heat Wave",
+      "count": 1
+    }
+  ],
+  "Camerupt": [
+    {
+      "move": "Earth Power",
+      "count": 207
+    },
+    {
+      "move": "Heat Wave",
+      "count": 148
+    },
+    {
+      "move": "Protect",
+      "count": 97
+    },
+    {
+      "move": "Ancient Power",
+      "count": 50
+    },
+    {
+      "move": "Eruption",
+      "count": 14
+    },
+    {
+      "move": "Taunt",
+      "count": 5
+    },
+    {
+      "move": "Psychic",
+      "count": 5
+    },
+    {
+      "move": "Helping Hand",
+      "count": 4
+    },
+    {
+      "move": "Curse",
+      "count": 3
+    },
+    {
+      "move": "Will-O-Wisp",
+      "count": 3
+    },
+    {
+      "move": "Memento",
+      "count": 1
+    }
+  ],
+  "Ceruledge": [
+    {
+      "move": "Bitter Blade",
+      "count": 118
+    },
+    {
+      "move": "Swords Dance",
+      "count": 51
+    },
+    {
+      "move": "Protect",
+      "count": 46
+    },
+    {
+      "move": "Shadow Sneak",
+      "count": 46
+    },
+    {
+      "move": "Poltergeist",
+      "count": 17
+    },
+    {
+      "move": "Bulk Up",
+      "count": 11
+    },
+    {
+      "move": "Close Combat",
+      "count": 4
+    },
+    {
+      "move": "Taunt",
+      "count": 2
+    },
+    {
+      "move": "Fake Out",
+      "count": 1
+    }
+  ],
+  "Ninetales": [
+    {
+      "move": "Heat Wave",
+      "count": 38
+    },
+    {
+      "move": "Fake Tears",
+      "count": 17
+    },
+    {
+      "move": "Protect",
+      "count": 9
+    },
+    {
+      "move": "Weather Ball",
+      "count": 8
+    },
+    {
+      "move": "Solar Beam",
+      "count": 6
+    },
+    {
+      "move": "Encore",
+      "count": 6
+    },
+    {
+      "move": "Overheat",
+      "count": 4
+    },
+    {
+      "move": "Scorching Sands",
+      "count": 2
+    },
+    {
+      "move": "Dark Pulse",
+      "count": 1
+    },
+    {
+      "move": "Expanding Force",
+      "count": 1
+    },
+    {
+      "move": "Hyper Voice",
+      "count": 1
+    }
+  ],
+  "Blaziken": [
+    {
+      "move": "Detect",
+      "count": 49
+    },
+    {
+      "move": "Close Combat",
+      "count": 44
+    },
+    {
+      "move": "Flare Blitz",
+      "count": 41
+    },
+    {
+      "move": "Rock Slide",
+      "count": 30
+    },
+    {
+      "move": "Protect",
+      "count": 28
+    },
+    {
+      "move": "Aura Sphere",
+      "count": 8
+    },
+    {
+      "move": "Coaching",
+      "count": 6
+    },
+    {
+      "move": "Overheat",
+      "count": 5
+    },
+    {
+      "move": "Heat Wave",
+      "count": 3
+    },
+    {
+      "move": "Flamethrower",
+      "count": 2
+    },
+    {
+      "move": "Rock Tomb",
+      "count": 1
+    },
+    {
+      "move": "Swords Dance",
+      "count": 1
+    },
+    {
+      "move": "Bulk Up",
+      "count": 1
+    }
+  ],
+  "Audino": [
+    {
+      "move": "Yawn",
+      "count": 37
+    },
+    {
+      "move": "Trick Room",
+      "count": 31
+    },
+    {
+      "move": "Simple Beam",
+      "count": 30
+    },
+    {
+      "move": "Life Dew",
+      "count": 28
+    },
+    {
+      "move": "Protect",
+      "count": 12
+    },
+    {
+      "move": "Heal Pulse",
+      "count": 7
+    },
+    {
+      "move": "Ally Switch",
+      "count": 1
+    },
+    {
+      "move": "Psychic",
+      "count": 1
+    }
+  ],
+  "Kleavor": [
+    {
+      "move": "Stone Axe",
+      "count": 29
+    },
+    {
+      "move": "X-Scissor",
+      "count": 8
+    },
+    {
+      "move": "Protect",
+      "count": 4
+    },
+    {
+      "move": "Tailwind",
+      "count": 2
+    },
+    {
+      "move": "Close Combat",
+      "count": 1
+    }
+  ],
+  "Pidgeot": [
+    {
+      "move": "Hurricane",
+      "count": 8
+    },
+    {
+      "move": "Protect",
+      "count": 2
+    },
+    {
+      "move": "Tailwind",
+      "count": 2
+    }
+  ],
+  "Vivillon": [
+    {
+      "move": "Sleep Powder",
+      "count": 50
+    },
+    {
+      "move": "Protect",
+      "count": 19
+    },
+    {
+      "move": "Hurricane",
+      "count": 13
+    },
+    {
+      "move": "Rage Powder",
+      "count": 7
+    },
+    {
+      "move": "Struggle Bug",
+      "count": 2
+    },
+    {
+      "move": "Pollen Puff",
+      "count": 1
+    }
+  ],
+  "Chesnaught": [
+    {
+      "move": "Wide Guard",
+      "count": 17
+    },
+    {
+      "move": "Spiky Shield",
+      "count": 16
+    },
+    {
+      "move": "Body Press",
+      "count": 15
+    },
+    {
+      "move": "Drain Punch",
+      "count": 8
+    },
+    {
+      "move": "Iron Defense",
+      "count": 6
+    },
+    {
+      "move": "Belly Drum",
+      "count": 5
+    },
+    {
+      "move": "Grassy Glide",
+      "count": 3
+    },
+    {
+      "move": "Bulk Up",
+      "count": 2
+    },
+    {
+      "move": "Roar",
+      "count": 1
+    },
+    {
+      "move": "Feint",
+      "count": 1
+    },
+    {
+      "move": "Leech Seed",
+      "count": 1
+    }
+  ],
+  "Gyarados": [
+    {
+      "move": "Waterfall",
+      "count": 30
+    },
+    {
+      "move": "Dragon Dance",
+      "count": 9
+    },
+    {
+      "move": "Crunch",
+      "count": 7
+    },
+    {
+      "move": "Protect",
+      "count": 5
+    },
+    {
+      "move": "Thunder Wave",
+      "count": 4
+    },
+    {
+      "move": "Power Whip",
+      "count": 4
+    },
+    {
+      "move": "Taunt",
+      "count": 2
+    },
+    {
+      "move": "Lash Out",
+      "count": 2
+    },
+    {
+      "move": "Ice Fang",
+      "count": 1
+    }
+  ],
+  "Umbreon": [
+    {
+      "move": "Snarl",
+      "count": 4
+    },
+    {
+      "move": "Foul Play",
+      "count": 3
+    },
+    {
+      "move": "Taunt",
+      "count": 3
+    },
+    {
+      "move": "Yawn",
+      "count": 1
+    },
+    {
+      "move": "Psychic",
+      "count": 1
+    }
+  ],
+  "Absol": [
+    {
+      "move": "Night Slash",
+      "count": 59
+    },
+    {
+      "move": "Shadow Claw",
+      "count": 21
+    },
+    {
+      "move": "Protect",
+      "count": 19
+    },
+    {
+      "move": "Detect",
+      "count": 17
+    },
+    {
+      "move": "Rock Tomb",
+      "count": 11
+    },
+    {
+      "move": "Psycho Cut",
+      "count": 10
+    },
+    {
+      "move": "Icy Wind",
+      "count": 9
+    },
+    {
+      "move": "Close Combat",
+      "count": 7
+    },
+    {
+      "move": "Phantom Force",
+      "count": 7
+    },
+    {
+      "move": "Focus Energy",
+      "count": 5
+    },
+    {
+      "move": "Swords Dance",
+      "count": 3
+    },
+    {
+      "move": "Shadow Sneak",
+      "count": 2
+    },
+    {
+      "move": "Will-O-Wisp",
+      "count": 1
+    },
+    {
+      "move": "Knock Off",
+      "count": 1
+    },
+    {
+      "move": "Superpower",
+      "count": 1
+    }
+  ],
+  "Toxtricity": [
+    {
+      "move": "Overdrive",
+      "count": 7
+    },
+    {
+      "move": "Protect",
+      "count": 6
+    },
+    {
+      "move": "Sludge Bomb",
+      "count": 4
+    },
+    {
+      "move": "Snarl",
+      "count": 3
+    },
+    {
+      "move": "Boomburst",
+      "count": 3
+    }
+  ],
+  "Hippowdon": [
+    {
+      "move": "High Horsepower",
+      "count": 48
+    },
+    {
+      "move": "Yawn",
+      "count": 30
+    },
+    {
+      "move": "Protect",
+      "count": 23
+    },
+    {
+      "move": "Slack Off",
+      "count": 6
+    },
+    {
+      "move": "Stone Edge",
+      "count": 3
+    },
+    {
+      "move": "Roar",
+      "count": 2
+    },
+    {
+      "move": "Rock Slide",
+      "count": 2
+    },
+    {
+      "move": "Helping Hand",
+      "count": 1
+    }
+  ],
+  "Oranguru": [
+    {
+      "move": "Instruct",
+      "count": 6
+    },
+    {
+      "move": "Encore",
+      "count": 3
+    },
+    {
+      "move": "Trick Room",
+      "count": 3
+    },
+    {
+      "move": "Energy Ball",
+      "count": 2
+    },
+    {
+      "move": "Psychic Noise",
+      "count": 1
+    }
+  ],
+  "Mudsdale": [
+    {
+      "move": "High Horsepower",
+      "count": 9
+    },
+    {
+      "move": "Rock Slide",
+      "count": 5
+    },
+    {
+      "move": "Protect",
+      "count": 2
+    },
+    {
+      "move": "Curse",
+      "count": 1
+    },
+    {
+      "move": "Heavy Slam",
+      "count": 1
+    }
+  ],
+  "Mawile": [
+    {
+      "move": "Play Rough",
+      "count": 87
+    },
+    {
+      "move": "Sucker Punch",
+      "count": 33
+    },
+    {
+      "move": "Protect",
+      "count": 28
+    },
+    {
+      "move": "Iron Head",
+      "count": 24
+    },
+    {
+      "move": "Rock Slide",
+      "count": 13
+    },
+    {
+      "move": "Swords Dance",
+      "count": 9
+    },
+    {
+      "move": "Hypnosis",
+      "count": 1
+    }
+  ],
+  "Glaceon": [
+    {
+      "move": "Blizzard",
+      "count": 21
+    },
+    {
+      "move": "Calm Mind",
+      "count": 20
+    },
+    {
+      "move": "Freeze-Dry",
+      "count": 8
+    },
+    {
+      "move": "Protect",
+      "count": 6
+    },
+    {
+      "move": "Yawn",
+      "count": 1
+    }
+  ],
+  "Ampharos": [
+    {
+      "move": "Dragon Pulse",
+      "count": 8
+    },
+    {
+      "move": "Protect",
+      "count": 8
+    },
+    {
+      "move": "Rising Voltage",
+      "count": 7
+    },
+    {
+      "move": "Thunderbolt",
+      "count": 7
+    },
+    {
+      "move": "Parabolic Charge",
+      "count": 3
+    },
+    {
+      "move": "Focus Blast",
+      "count": 2
+    },
+    {
+      "move": "Cotton Guard",
+      "count": 1
+    }
+  ],
+  "Malamar": [
+    {
+      "move": "Superpower",
+      "count": 15
+    },
+    {
+      "move": "Protect",
+      "count": 13
+    },
+    {
+      "move": "Throat Chop",
+      "count": 8
+    },
+    {
+      "move": "Knock Off",
+      "count": 3
+    },
+    {
+      "move": "Trick Room",
+      "count": 3
+    },
+    {
+      "move": "Poison Jab",
+      "count": 1
+    },
+    {
+      "move": "Psychic Noise",
+      "count": 1
+    },
+    {
+      "move": "Psycho Cut",
+      "count": 1
+    }
+  ],
+  "Aegislash": [
+    {
+      "move": "Poltergeist",
+      "count": 75
+    },
+    {
+      "move": "Wide Guard",
+      "count": 36
+    },
+    {
+      "move": "Shadow Sneak",
+      "count": 32
+    },
+    {
+      "move": "King's Shield",
+      "count": 21
+    },
+    {
+      "move": "Iron Head",
+      "count": 20
+    },
+    {
+      "move": "Close Combat",
+      "count": 13
+    },
+    {
+      "move": "Sacred Sword",
+      "count": 8
+    },
+    {
+      "move": "Protect",
+      "count": 4
+    },
+    {
+      "move": "Power Gem",
+      "count": 2
+    },
+    {
+      "move": "Flash Cannon",
+      "count": 1
+    },
+    {
+      "move": "Swords Dance",
+      "count": 1
+    },
+    {
+      "move": "Shadow Ball",
+      "count": 1
+    },
+    {
+      "move": "Draco Meteor",
+      "count": 1
+    },
+    {
+      "move": "Substitute",
+      "count": 1
+    }
+  ],
+  "Clefable": [
+    {
+      "move": "Moonblast",
+      "count": 22
+    },
+    {
+      "move": "Follow Me",
+      "count": 14
+    },
+    {
+      "move": "Life Dew",
+      "count": 9
+    },
+    {
+      "move": "Stored Power",
+      "count": 6
+    },
+    {
+      "move": "Protect",
+      "count": 5
+    },
+    {
+      "move": "Flamethrower",
+      "count": 5
+    },
+    {
+      "move": "Psych Up",
+      "count": 4
+    },
+    {
+      "move": "Moonlight",
+      "count": 4
+    },
+    {
+      "move": "Grass Knot",
+      "count": 2
+    },
+    {
+      "move": "Will-O-Wisp",
+      "count": 1
+    },
+    {
+      "move": "Air Slash",
+      "count": 1
+    }
+  ],
+  "Mr. Mime": [
+    {
+      "move": "Fake Out",
+      "count": 8
+    },
+    {
+      "move": "Skill Swap",
+      "count": 7
+    },
+    {
+      "move": "Wide Guard",
+      "count": 6
+    },
+    {
+      "move": "Sunny Day",
+      "count": 4
+    },
+    {
+      "move": "Dazzling Gleam",
+      "count": 4
+    },
+    {
+      "move": "Protect",
+      "count": 1
+    },
+    {
+      "move": "Mystical Fire",
+      "count": 1
+    }
+  ],
+  "Meowscarada": [
+    {
+      "move": "Knock Off",
+      "count": 25
+    },
+    {
+      "move": "Triple Axel",
+      "count": 9
+    },
+    {
+      "move": "Flower Trick",
+      "count": 8
+    },
+    {
+      "move": "Low Kick",
+      "count": 7
+    },
+    {
+      "move": "Protect",
+      "count": 1
+    },
+    {
+      "move": "U-turn",
+      "count": 1
+    },
+    {
+      "move": "Taunt",
+      "count": 1
+    },
+    {
+      "move": "Thunder Punch",
+      "count": 1
+    }
+  ],
+  "Abomasnow": [
+    {
+      "move": "Blizzard",
+      "count": 10
+    },
+    {
+      "move": "Earth Power",
+      "count": 7
+    },
+    {
+      "move": "Ice Shard",
+      "count": 1
+    },
+    {
+      "move": "Leaf Storm",
+      "count": 1
+    }
+  ],
+  "Klefki": [
+    {
+      "move": "Dazzling Gleam",
+      "count": 19
+    },
+    {
+      "move": "Light Screen",
+      "count": 8
+    },
+    {
+      "move": "Rain Dance",
+      "count": 4
+    },
+    {
+      "move": "Reflect",
+      "count": 4
+    },
+    {
+      "move": "Calm Mind",
+      "count": 2
+    },
+    {
+      "move": "Draining Kiss",
+      "count": 2
+    },
+    {
+      "move": "Waterfall",
+      "count": 2
+    },
+    {
+      "move": "Trick Room",
+      "count": 2
+    },
+    {
+      "move": "Substitute",
+      "count": 1
+    },
+    {
+      "move": "Psych Up",
+      "count": 1
+    },
+    {
+      "move": "Dragon Dance",
+      "count": 1
+    },
+    {
+      "move": "Metal Sound",
+      "count": 1
+    },
+    {
+      "move": "Thunder Wave",
+      "count": 1
+    }
+  ],
+  "Pyroar": [
+    {
+      "move": "Heat Wave",
+      "count": 77
+    },
+    {
+      "move": "Protect",
+      "count": 33
+    },
+    {
+      "move": "Overheat",
+      "count": 30
+    },
+    {
+      "move": "Scorching Sands",
+      "count": 6
+    },
+    {
+      "move": "Snarl",
+      "count": 3
+    },
+    {
+      "move": "Flamethrower",
+      "count": 3
+    },
+    {
+      "move": "Hyper Voice",
+      "count": 2
+    },
+    {
+      "move": "Solar Beam",
+      "count": 2
+    },
+    {
+      "move": "Round",
+      "count": 1
+    }
+  ],
+  "Empoleon": [
+    {
+      "move": "Hydro Pump",
+      "count": 21
+    },
+    {
+      "move": "Protect",
+      "count": 15
+    },
+    {
+      "move": "Icy Wind",
+      "count": 10
+    },
+    {
+      "move": "Flash Cannon",
+      "count": 5
+    },
+    {
+      "move": "Yawn",
+      "count": 3
+    },
+    {
+      "move": "Ice Beam",
+      "count": 3
+    },
+    {
+      "move": "Roost",
+      "count": 1
+    },
+    {
+      "move": "Roar",
+      "count": 1
+    }
+  ],
+  "Kangaskhan": [
+    {
+      "move": "Double-Edge",
+      "count": 21
+    },
+    {
+      "move": "Fake Out",
+      "count": 15
+    },
+    {
+      "move": "Hammer Arm",
+      "count": 14
+    },
+    {
+      "move": "Last Resort",
+      "count": 7
+    },
+    {
+      "move": "Brick Break",
+      "count": 2
+    },
+    {
+      "move": "Crunch",
+      "count": 2
+    },
+    {
+      "move": "Protect",
+      "count": 1
+    },
+    {
+      "move": "Ice Punch",
+      "count": 1
+    }
+  ],
+  "Chandelure": [
+    {
+      "move": "Shadow Ball",
+      "count": 33
+    },
+    {
+      "move": "Heat Wave",
+      "count": 29
+    },
+    {
+      "move": "Trick Room",
+      "count": 13
+    },
+    {
+      "move": "Protect",
+      "count": 13
+    },
+    {
+      "move": "Overheat",
+      "count": 1
+    }
+  ],
+  "Conkeldurr": [
+    {
+      "move": "Close Combat",
+      "count": 1
+    }
+  ],
+  "Victreebel": [
+    {
+      "move": "Sludge Bomb",
+      "count": 2
+    },
+    {
+      "move": "Strength Sap",
+      "count": 1
+    }
+  ],
+  "Lycanroc": [
+    {
+      "move": "Rock Slide",
+      "count": 68
+    },
+    {
+      "move": "Close Combat",
+      "count": 20
+    },
+    {
+      "move": "Psychic Fangs",
+      "count": 17
+    },
+    {
+      "move": "Protect",
+      "count": 11
+    }
+  ],
+  "Mabosstiff": [
+    {
+      "move": "Jaw Lock",
+      "count": 3
+    },
+    {
+      "move": "Dig",
+      "count": 2
+    }
+  ],
+  "Golurk": [
+    {
+      "move": "Headlong Rush",
+      "count": 14
+    },
+    {
+      "move": "Poltergeist",
+      "count": 4
+    },
+    {
+      "move": "High Horsepower",
+      "count": 4
+    },
+    {
+      "move": "Protect",
+      "count": 3
+    },
+    {
+      "move": "Knock Off",
+      "count": 1
+    },
+    {
+      "move": "Heat Crash",
+      "count": 1
+    },
+    {
+      "move": "Ice Punch",
+      "count": 1
+    }
+  ],
+  "Heliolisk": [
+    {
+      "move": "Electroweb",
+      "count": 22
+    },
+    {
+      "move": "Hyper Voice",
+      "count": 10
+    },
+    {
+      "move": "Dark Pulse",
+      "count": 4
+    },
+    {
+      "move": "Volt Switch",
+      "count": 1
+    },
+    {
+      "move": "Heat Wave",
+      "count": 1
+    },
+    {
+      "move": "Air Slash",
+      "count": 1
+    }
+  ],
+  "Houndoom": [
+    {
+      "move": "Heat Wave",
+      "count": 6
+    },
+    {
+      "move": "Dark Pulse",
+      "count": 5
+    },
+    {
+      "move": "Protect",
+      "count": 2
+    },
+    {
+      "move": "Overheat",
+      "count": 2
+    }
+  ],
+  "Vileplume": [
+    {
+      "move": "Sleep Powder",
+      "count": 17
+    },
+    {
+      "move": "Sludge Bomb",
+      "count": 10
+    },
+    {
+      "move": "After You",
+      "count": 5
+    },
+    {
+      "move": "Giga Drain",
+      "count": 4
+    },
+    {
+      "move": "Strength Sap",
+      "count": 1
+    },
+    {
+      "move": "Solar Beam",
+      "count": 1
+    },
+    {
+      "move": "Pollen Puff",
+      "count": 1
+    },
+    {
+      "move": "Leaf Storm",
+      "count": 1
+    },
+    {
+      "move": "Protect",
+      "count": 1
+    },
+    {
+      "move": "Speed Swap",
+      "count": 1
+    },
+    {
+      "move": "Expanding Force",
+      "count": 1
+    }
+  ],
+  "Ninetales-Alola": [
+    {
+      "move": "Protect",
+      "count": 4
+    },
+    {
+      "move": "Shadow Ball",
+      "count": 4
+    },
+    {
+      "move": "Sludge Bomb",
+      "count": 2
+    },
+    {
+      "move": "Focus Blast",
+      "count": 2
+    },
+    {
+      "move": "Swords Dance",
+      "count": 1
+    },
+    {
+      "move": "Drain Punch",
+      "count": 1
+    }
+  ],
+  "Vanilluxe": [
+    {
+      "move": "Blizzard",
+      "count": 14
+    },
+    {
+      "move": "Icy Wind",
+      "count": 6
+    },
+    {
+      "move": "Freeze-Dry",
+      "count": 5
+    },
+    {
+      "move": "Protect",
+      "count": 2
+    },
+    {
+      "move": "Ice Shard",
+      "count": 1
+    },
+    {
+      "move": "Sheer Cold",
+      "count": 1
+    },
+    {
+      "move": "Aurora Veil",
+      "count": 1
+    }
+  ],
+  "Skeledirge": [
+    {
+      "move": "Torch Song",
+      "count": 31
+    },
+    {
+      "move": "Shadow Ball",
+      "count": 19
+    },
+    {
+      "move": "Protect",
+      "count": 15
+    },
+    {
+      "move": "Slack Off",
+      "count": 12
+    },
+    {
+      "move": "Yawn",
+      "count": 4
+    },
+    {
+      "move": "Last Respects",
+      "count": 1
+    },
+    {
+      "move": "Earth Power",
+      "count": 1
+    },
+    {
+      "move": "Alluring Voice",
+      "count": 1
+    }
+  ],
+  "Altaria": [
+    {
+      "move": "Hyper Voice",
+      "count": 19
+    },
+    {
+      "move": "Sing",
+      "count": 18
+    },
+    {
+      "move": "Protect",
+      "count": 13
+    },
+    {
+      "move": "Will-O-Wisp",
+      "count": 12
+    },
+    {
+      "move": "Ice Beam",
+      "count": 12
+    },
+    {
+      "move": "Tailwind",
+      "count": 10
+    },
+    {
+      "move": "Fire Spin",
+      "count": 5
+    },
+    {
+      "move": "Roar",
+      "count": 3
+    },
+    {
+      "move": "Perish Song",
+      "count": 3
+    },
+    {
+      "move": "Calm Mind",
+      "count": 3
+    },
+    {
+      "move": "Roost",
+      "count": 3
+    },
+    {
+      "move": "Expanding Force",
+      "count": 2
+    },
+    {
+      "move": "Draco Meteor",
+      "count": 2
+    },
+    {
+      "move": "Dragon Pulse",
+      "count": 2
+    },
+    {
+      "move": "Brave Bird",
+      "count": 1
+    },
+    {
+      "move": "Flamethrower",
+      "count": 1
+    },
+    {
+      "move": "Hyper Beam",
+      "count": 1
+    }
+  ],
+  "Pincurchin": [
+    {
+      "move": "Rising Voltage",
+      "count": 13
+    },
+    {
+      "move": "Sucker Punch",
+      "count": 4
+    },
+    {
+      "move": "Scald",
+      "count": 3
+    },
+    {
+      "move": "Protect",
+      "count": 2
+    },
+    {
+      "move": "Zing Zap",
+      "count": 2
+    }
+  ],
+  "Vivillon-Monsoon": [
+    {
+      "move": "Heat Wave",
+      "count": 1
+    }
+  ],
+  "Cinderace": [
+    {
+      "move": "High Jump Kick",
+      "count": 6
+    },
+    {
+      "move": "Pyro Ball",
+      "count": 5
+    },
+    {
+      "move": "Snarl",
+      "count": 2
+    },
+    {
+      "move": "Sucker Punch",
+      "count": 2
+    },
+    {
+      "move": "Iron Head",
+      "count": 1
+    },
+    {
+      "move": "Coaching",
+      "count": 1
+    },
+    {
+      "move": "Gunk Shot",
+      "count": 1
+    }
+  ],
+  "Drampa": [
+    {
+      "move": "Earth Power",
+      "count": 15
+    },
+    {
+      "move": "Protect",
+      "count": 13
+    },
+    {
+      "move": "Dragon Pulse",
+      "count": 9
+    },
+    {
+      "move": "Flamethrower",
+      "count": 8
+    },
+    {
+      "move": "Hyper Voice",
+      "count": 8
+    },
+    {
+      "move": "Thunderbolt",
+      "count": 6
+    },
+    {
+      "move": "Draco Meteor",
+      "count": 6
+    },
+    {
+      "move": "Heat Wave",
+      "count": 5
+    },
+    {
+      "move": "Energy Ball",
+      "count": 5
+    },
+    {
+      "move": "Hyper Beam",
+      "count": 1
+    }
+  ],
+  "Krookodile": [
+    {
+      "move": "Knock Off",
+      "count": 7
+    },
+    {
+      "move": "Earthquake",
+      "count": 4
+    },
+    {
+      "move": "Protect",
+      "count": 3
+    },
+    {
+      "move": "Crunch",
+      "count": 1
+    },
+    {
+      "move": "Close Combat",
+      "count": 1
+    },
+    {
+      "move": "High Horsepower",
+      "count": 1
+    }
+  ],
+  "Houndstone": [
+    {
+      "move": "Last Respects",
+      "count": 5
+    },
+    {
+      "move": "Yawn",
+      "count": 4
+    },
+    {
+      "move": "Slack Off",
+      "count": 3
+    },
+    {
+      "move": "High Horsepower",
+      "count": 3
+    },
+    {
+      "move": "Roost",
+      "count": 2
+    },
+    {
+      "move": "Torch Song",
+      "count": 2
+    },
+    {
+      "move": "Shadow Ball",
+      "count": 2
+    },
+    {
+      "move": "Will-O-Wisp",
+      "count": 1
+    },
+    {
+      "move": "Protect",
+      "count": 1
+    }
+  ],
+  "Slurpuff": [
+    {
+      "move": "Draining Kiss",
+      "count": 5
+    },
+    {
+      "move": "Calm Mind",
+      "count": 2
+    },
+    {
+      "move": "Amnesia",
+      "count": 1
+    },
+    {
+      "move": "Cotton Guard",
+      "count": 1
+    }
+  ],
+  "Manectric": [
+    {
+      "move": "Snarl",
+      "count": 7
+    },
+    {
+      "move": "Protect",
+      "count": 6
+    },
+    {
+      "move": "Thunderbolt",
+      "count": 5
+    },
+    {
+      "move": "Flamethrower",
+      "count": 4
+    },
+    {
+      "move": "Overheat",
+      "count": 2
+    },
+    {
+      "move": "Volt Switch",
+      "count": 1
+    },
+    {
+      "move": "Discharge",
+      "count": 1
+    },
+    {
+      "move": "Thunder",
+      "count": 1
+    }
+  ],
+  "Toucannon": [
+    {
+      "move": "Beak Blast",
+      "count": 3
+    },
+    {
+      "move": "Rock Blast",
+      "count": 2
+    },
+    {
+      "move": "Bullet Seed",
+      "count": 1
+    },
+    {
+      "move": "Protect",
+      "count": 1
+    }
+  ],
+  "Arboliva": [
+    {
+      "move": "Protect",
+      "count": 4
+    },
+    {
+      "move": "Giga Drain",
+      "count": 2
+    },
+    {
+      "move": "Earth Power",
+      "count": 2
+    },
+    {
+      "move": "Alluring Voice",
+      "count": 2
+    },
+    {
+      "move": "Steel Roller",
+      "count": 1
+    },
+    {
+      "move": "Psychic Fangs",
+      "count": 1
+    },
+    {
+      "move": "Taunt",
+      "count": 1
+    },
+    {
+      "move": "Energy Ball",
+      "count": 1
+    }
+  ],
+  "Arcanine-Hisui": [
+    {
+      "move": "Protect",
+      "count": 12
+    },
+    {
+      "move": "Tailwind",
+      "count": 3
+    },
+    {
+      "move": "Fake Out",
+      "count": 3
+    },
+    {
+      "move": "Aura Sphere",
+      "count": 3
+    },
+    {
+      "move": "Heat Wave",
+      "count": 2
+    },
+    {
+      "move": "Earth Power",
+      "count": 2
+    },
+    {
+      "move": "Close Combat",
+      "count": 2
+    },
+    {
+      "move": "Hyper Voice",
+      "count": 2
+    },
+    {
+      "move": "Focus Blast",
+      "count": 2
+    },
+    {
+      "move": "Brave Bird",
+      "count": 1
+    },
+    {
+      "move": "Weather Ball",
+      "count": 1
+    },
+    {
+      "move": "Solar Beam",
+      "count": 1
+    },
+    {
+      "move": "Terrain Pulse",
+      "count": 1
+    },
+    {
+      "move": "Drain Punch",
+      "count": 1
+    },
+    {
+      "move": "Detect",
+      "count": 1
+    },
+    {
+      "move": "Throat Chop",
+      "count": 1
+    },
+    {
+      "move": "Draco Meteor",
+      "count": 1
+    }
+  ],
+  "Sirfetch\u2019d": [
+    {
+      "move": "Close Combat",
+      "count": 5
+    },
+    {
+      "move": "Feint",
+      "count": 2
+    },
+    {
+      "move": "Meteor Assault",
+      "count": 2
+    },
+    {
+      "move": "Protect",
+      "count": 1
+    },
+    {
+      "move": "Leaf Blade",
+      "count": 1
+    },
+    {
+      "move": "Simple Beam",
+      "count": 1
+    },
+    {
+      "move": "Coaching",
+      "count": 1
+    },
+    {
+      "move": "Night Slash",
+      "count": 1
+    }
+  ],
+  "Tsareena": [
+    {
+      "move": "Power Whip",
+      "count": 12
+    },
+    {
+      "move": "Trop Kick",
+      "count": 11
+    },
+    {
+      "move": "Triple Axel",
+      "count": 6
+    },
+    {
+      "move": "Low Kick",
+      "count": 3
+    },
+    {
+      "move": "High Jump Kick",
+      "count": 3
+    },
+    {
+      "move": "Protect",
+      "count": 2
+    },
+    {
+      "move": "Zen Headbutt",
+      "count": 1
+    },
+    {
+      "move": "Taunt",
+      "count": 1
+    },
+    {
+      "move": "Helping Hand",
+      "count": 1
+    }
+  ],
+  "Vivillon-High Plains": [
+    {
+      "move": "Protect",
+      "count": 2
+    },
+    {
+      "move": "Disable",
+      "count": 1
+    },
+    {
+      "move": "Shadow Ball",
+      "count": 1
+    }
+  ],
+  "Beedrill": [
+    {
+      "move": "U-turn",
+      "count": 4
+    },
+    {
+      "move": "Protect",
+      "count": 2
+    },
+    {
+      "move": "Poison Jab",
+      "count": 2
+    },
+    {
+      "move": "Drill Run",
+      "count": 1
+    }
+  ],
+  "Squawkabilly": [
+    {
+      "move": "Final Gambit",
+      "count": 4
+    }
+  ],
+  "Rotom-Heat": [
+    {
+      "move": "Drill Run",
+      "count": 5
+    },
+    {
+      "move": "Leech Life",
+      "count": 2
+    },
+    {
+      "move": "Protect",
+      "count": 2
+    }
+  ],
+  "Meowstic": [
+    {
+      "move": "Yawn",
+      "count": 1
+    },
+    {
+      "move": "Skill Swap",
+      "count": 1
+    },
+    {
+      "move": "Sunny Day",
+      "count": 1
+    }
+  ],
+  "Orthworm": [
+    {
+      "move": "Heavy Slam",
+      "count": 1
+    }
+  ],
+  "Rhyperior": [
+    {
+      "move": "Rock Slide",
+      "count": 10
+    },
+    {
+      "move": "Earthquake",
+      "count": 8
+    },
+    {
+      "move": "Protect",
+      "count": 4
+    },
+    {
+      "move": "Heavy Slam",
+      "count": 2
+    },
+    {
+      "move": "Ice Punch",
+      "count": 1
+    },
+    {
+      "move": "High Horsepower",
+      "count": 1
+    },
+    {
+      "move": "Roar",
+      "count": 1
+    },
+    {
+      "move": "Hammer Arm",
+      "count": 1
+    }
+  ],
+  "Scizor": [
+    {
+      "move": "Swords Dance",
+      "count": 10
+    },
+    {
+      "move": "Protect",
+      "count": 10
+    },
+    {
+      "move": "Bullet Punch",
+      "count": 8
+    },
+    {
+      "move": "Close Combat",
+      "count": 4
+    },
+    {
+      "move": "Bug Bite",
+      "count": 1
+    }
+  ],
+  "Inteleon": [
+    {
+      "move": "Snipe Shot",
+      "count": 17
+    },
+    {
+      "move": "Protect",
+      "count": 13
+    },
+    {
+      "move": "Ice Beam",
+      "count": 3
+    },
+    {
+      "move": "Focus Energy",
+      "count": 3
+    },
+    {
+      "move": "Muddy Water",
+      "count": 3
+    },
+    {
+      "move": "Soak",
+      "count": 2
+    },
+    {
+      "move": "Blizzard",
+      "count": 1
+    }
+  ],
+  "Machamp": [
+    {
+      "move": "Storm Throw",
+      "count": 1
+    },
+    {
+      "move": "Substitute",
+      "count": 1
+    },
+    {
+      "move": "Detect",
+      "count": 1
+    }
+  ],
+  "Snorlax": [
+    {
+      "move": "Fissure",
+      "count": 45
+    },
+    {
+      "move": "Smack Down",
+      "count": 29
+    },
+    {
+      "move": "Stockpile",
+      "count": 26
+    },
+    {
+      "move": "Protect",
+      "count": 17
+    },
+    {
+      "move": "Body Press",
+      "count": 15
+    },
+    {
+      "move": "Belly Drum",
+      "count": 2
+    },
+    {
+      "move": "Earthquake",
+      "count": 1
+    },
+    {
+      "move": "Heavy Slam",
+      "count": 1
+    }
+  ],
+  "Scrafty": [
+    {
+      "move": "Knock Off",
+      "count": 22
+    },
+    {
+      "move": "Drain Punch",
+      "count": 19
+    },
+    {
+      "move": "Fake Out",
+      "count": 14
+    },
+    {
+      "move": "Throat Chop",
+      "count": 5
+    },
+    {
+      "move": "Detect",
+      "count": 3
+    },
+    {
+      "move": "Swords Dance",
+      "count": 2
+    },
+    {
+      "move": "Infestation",
+      "count": 2
+    },
+    {
+      "move": "Close Combat",
+      "count": 1
+    },
+    {
+      "move": "Sludge Bomb",
+      "count": 1
+    },
+    {
+      "move": "Rock Slide",
+      "count": 1
+    },
+    {
+      "move": "Protect",
+      "count": 1
+    },
+    {
+      "move": "Toxic",
+      "count": 1
+    },
+    {
+      "move": "Wide Guard",
+      "count": 1
+    }
+  ],
+  "Slowking-Galar": [
+    {
+      "move": "Dragon Pulse",
+      "count": 1
+    },
+    {
+      "move": "Protect",
+      "count": 1
+    }
+  ],
+  "Salazzle": [
+    {
+      "move": "Dragon Cheer",
+      "count": 3
+    },
+    {
+      "move": "Fake Out",
+      "count": 1
+    },
+    {
+      "move": "Encore",
+      "count": 1
+    }
+  ],
+  "Feraligatr": [
+    {
+      "move": "Liquidation",
+      "count": 5
+    },
+    {
+      "move": "Double-Edge",
+      "count": 5
+    },
+    {
+      "move": "Dragon Dance",
+      "count": 3
+    },
+    {
+      "move": "Protect",
+      "count": 3
+    },
+    {
+      "move": "Curse",
+      "count": 2
+    }
+  ],
+  "Starmie": [
+    {
+      "move": "Liquidation",
+      "count": 19
+    },
+    {
+      "move": "Protect",
+      "count": 11
+    },
+    {
+      "move": "Ice Spinner",
+      "count": 10
+    },
+    {
+      "move": "Expanding Force",
+      "count": 7
+    },
+    {
+      "move": "Waterfall",
+      "count": 4
+    },
+    {
+      "move": "Zen Headbutt",
+      "count": 3
+    },
+    {
+      "move": "Skill Swap",
+      "count": 1
+    },
+    {
+      "move": "Ice Beam",
+      "count": 1
+    }
+  ],
+  "Emboar": [
+    {
+      "move": "Rock Slide",
+      "count": 2
+    },
+    {
+      "move": "Flare Blitz",
+      "count": 2
+    },
+    {
+      "move": "Protect",
+      "count": 1
+    }
+  ],
+  "Crabominable": [
+    {
+      "move": "Rock Slide",
+      "count": 4
+    },
+    {
+      "move": "Close Combat",
+      "count": 2
+    }
+  ],
+  "Sceptile": [
+    {
+      "move": "Dragon Pulse",
+      "count": 39
+    },
+    {
+      "move": "Earth Power",
+      "count": 18
+    },
+    {
+      "move": "Detect",
+      "count": 16
+    },
+    {
+      "move": "Protect",
+      "count": 14
+    },
+    {
+      "move": "Energy Ball",
+      "count": 9
+    },
+    {
+      "move": "Leaf Storm",
+      "count": 2
+    },
+    {
+      "move": "Rock Slide",
+      "count": 2
+    }
+  ],
+  "Bellibolt": [
+    {
+      "move": "Soak",
+      "count": 4
+    },
+    {
+      "move": "Thunderbolt",
+      "count": 2
+    },
+    {
+      "move": "Parabolic Charge",
+      "count": 1
+    }
+  ],
+  "Hawlucha": [
+    {
+      "move": "Entrainment",
+      "count": 10
+    },
+    {
+      "move": "Detect",
+      "count": 9
+    },
+    {
+      "move": "Cross Chop",
+      "count": 3
+    },
+    {
+      "move": "High Jump Kick",
+      "count": 3
+    },
+    {
+      "move": "Sunny Day",
+      "count": 2
+    },
+    {
+      "move": "Drain Punch",
+      "count": 2
+    },
+    {
+      "move": "Brave Bird",
+      "count": 2
+    },
+    {
+      "move": "Will-O-Wisp",
+      "count": 2
+    },
+    {
+      "move": "Hex",
+      "count": 2
+    },
+    {
+      "move": "Swords Dance",
+      "count": 1
+    },
+    {
+      "move": "Coaching",
+      "count": 1
+    },
+    {
+      "move": "Rock Slide",
+      "count": 1
+    },
+    {
+      "move": "Trick Room",
+      "count": 1
+    }
+  ],
+  "Steelix": [
+    {
+      "move": "Body Press",
+      "count": 14
+    },
+    {
+      "move": "Heavy Slam",
+      "count": 11
+    },
+    {
+      "move": "Protect",
+      "count": 6
+    },
+    {
+      "move": "Curse",
+      "count": 4
+    },
+    {
+      "move": "Gyro Ball",
+      "count": 4
+    },
+    {
+      "move": "High Horsepower",
+      "count": 3
+    },
+    {
+      "move": "Wide Guard",
+      "count": 1
+    }
+  ],
+  "Sinistcha-Masterpiece": [
+    {
+      "move": "Zap Cannon",
+      "count": 3
+    },
+    {
+      "move": "Heavy Slam",
+      "count": 2
+    },
+    {
+      "move": "Protect",
+      "count": 1
+    },
+    {
+      "move": "High Horsepower",
+      "count": 1
+    },
+    {
+      "move": "Stomping Tantrum",
+      "count": 1
+    }
+  ],
+  "Goodra": [
+    {
+      "move": "Dragon Pulse",
+      "count": 9
+    },
+    {
+      "move": "Flamethrower",
+      "count": 9
+    },
+    {
+      "move": "Thunderbolt",
+      "count": 7
+    },
+    {
+      "move": "Protect",
+      "count": 6
+    }
+  ],
+  "Greninja": [
+    {
+      "move": "Dark Pulse",
+      "count": 3
+    },
+    {
+      "move": "Extrasensory",
+      "count": 1
+    },
+    {
+      "move": "Sludge Wave",
+      "count": 1
+    },
+    {
+      "move": "Ice Beam",
+      "count": 1
+    },
+    {
+      "move": "Night Slash",
+      "count": 1
+    },
+    {
+      "move": "Rock Slide",
+      "count": 1
+    }
+  ],
+  "Reuniclus": [
+    {
+      "move": "Trick Room",
+      "count": 1
+    },
+    {
+      "move": "Expanding Force",
+      "count": 1
+    },
+    {
+      "move": "Focus Blast",
+      "count": 1
+    }
+  ],
+  "Ditto": [
+    {
+      "move": "Zap Cannon",
+      "count": 4
+    },
+    {
+      "move": "Dragon Pulse",
+      "count": 3
+    },
+    {
+      "move": "Transform",
+      "count": 2
+    },
+    {
+      "move": "Shadow Ball",
+      "count": 2
+    },
+    {
+      "move": "Flare Blitz",
+      "count": 2
+    },
+    {
+      "move": "Rage Powder",
+      "count": 1
+    },
+    {
+      "move": "Heat Wave",
+      "count": 1
+    },
+    {
+      "move": "Electro Shot",
+      "count": 1
+    },
+    {
+      "move": "Hyper Voice",
+      "count": 1
+    },
+    {
+      "move": "Reflect",
+      "count": 1
+    },
+    {
+      "move": "Spirit Break",
+      "count": 1
+    }
+  ],
+  "Falinks": [
+    {
+      "move": "No Retreat",
+      "count": 2
+    },
+    {
+      "move": "Close Combat",
+      "count": 2
+    },
+    {
+      "move": "Upper Hand",
+      "count": 1
+    },
+    {
+      "move": "Knock Off",
+      "count": 1
+    }
+  ],
+  "Gliscor": [
+    {
+      "move": "High Horsepower",
+      "count": 20
+    },
+    {
+      "move": "Acrobatics",
+      "count": 13
+    },
+    {
+      "move": "Protect",
+      "count": 9
+    },
+    {
+      "move": "Swords Dance",
+      "count": 6
+    },
+    {
+      "move": "Tailwind",
+      "count": 2
+    },
+    {
+      "move": "Psychic Fangs",
+      "count": 1
+    }
+  ],
+  "Rotom-Wash": [
+    {
+      "move": "Knock Off",
+      "count": 2
+    },
+    {
+      "move": "Rock Slide",
+      "count": 1
+    },
+    {
+      "move": "Protect",
+      "count": 1
+    }
+  ],
+  "Pikachu": [
+    {
+      "move": "Thunderbolt",
+      "count": 1
+    },
+    {
+      "move": "Fake Out",
+      "count": 1
+    }
+  ],
+  "Wigglytuff": [
+    {
+      "move": "Moonblast",
+      "count": 2
+    }
+  ],
+  "Decidueye-Hisui": [
+    {
+      "move": "Fake Out",
+      "count": 1
+    },
+    {
+      "move": "Double-Edge",
+      "count": 1
+    },
+    {
+      "move": "Protect",
+      "count": 1
+    }
+  ],
+  "Dragalge": [
+    {
+      "move": "Draco Meteor",
+      "count": 8
+    },
+    {
+      "move": "Sludge Bomb",
+      "count": 5
+    },
+    {
+      "move": "Protect",
+      "count": 2
+    },
+    {
+      "move": "Dragon Pulse",
+      "count": 2
+    },
+    {
+      "move": "Toxic",
+      "count": 1
+    },
+    {
+      "move": "Flip Turn",
+      "count": 1
+    },
+    {
+      "move": "Ice Punch",
+      "count": 1
+    }
+  ],
+  "Aggron": [
+    {
+      "move": "Body Press",
+      "count": 10
+    },
+    {
+      "move": "Iron Defense",
+      "count": 7
+    },
+    {
+      "move": "Heavy Slam",
+      "count": 5
+    },
+    {
+      "move": "Protect",
+      "count": 4
+    }
+  ],
+  "Medicham": [
+    {
+      "move": "Close Combat",
+      "count": 3
+    },
+    {
+      "move": "Fake Out",
+      "count": 1
+    }
+  ],
+  "Banette": [
+    {
+      "move": "Poltergeist",
+      "count": 1
+    }
+  ],
+  "Aromatisse": [
+    {
+      "move": "Moonblast",
+      "count": 3
+    },
+    {
+      "move": "Encore",
+      "count": 1
+    },
+    {
+      "move": "Trick Room",
+      "count": 1
+    }
+  ],
+  "Thievul": [
+    {
+      "move": "Taunt",
+      "count": 1
+    },
+    {
+      "move": "Beat Up",
+      "count": 1
+    },
+    {
+      "move": "Fake Tears",
+      "count": 1
+    }
+  ],
+  "Wyrdeer": [
+    {
+      "move": "Hypnosis",
+      "count": 5
+    },
+    {
+      "move": "Expanding Force",
+      "count": 3
+    },
+    {
+      "move": "Psychic",
+      "count": 2
+    },
+    {
+      "move": "Gravity",
+      "count": 1
+    },
+    {
+      "move": "Psyshield Bash",
+      "count": 1
+    },
+    {
+      "move": "Trick Room",
+      "count": 1
+    }
+  ],
+  "Sharpedo": [
+    {
+      "move": "Crunch",
+      "count": 5
+    },
+    {
+      "move": "Protect",
+      "count": 1
+    }
+  ],
+  "Basculegion-F": [
+    {
+      "move": "Leech Life",
+      "count": 9
+    },
+    {
+      "move": "Sucker Punch",
+      "count": 3
+    },
+    {
+      "move": "Close Combat",
+      "count": 2
+    },
+    {
+      "move": "Rock Slide",
+      "count": 2
+    },
+    {
+      "move": "Hyper Voice",
+      "count": 2
+    },
+    {
+      "move": "Zap Cannon",
+      "count": 1
+    },
+    {
+      "move": "Iron Head",
+      "count": 1
+    },
+    {
+      "move": "Ice Punch",
+      "count": 1
+    },
+    {
+      "move": "First Impression",
+      "count": 1
+    }
+  ],
+  "Palafin": [
+    {
+      "move": "Protect",
+      "count": 1
+    }
+  ],
+  "Arcanine": [
+    {
+      "move": "Snarl",
+      "count": 12
+    },
+    {
+      "move": "Burn Up",
+      "count": 5
+    },
+    {
+      "move": "Will-O-Wisp",
+      "count": 4
+    },
+    {
+      "move": "Roar",
+      "count": 2
+    },
+    {
+      "move": "Flare Blitz",
+      "count": 2
+    },
+    {
+      "move": "Protect",
+      "count": 1
+    },
+    {
+      "move": "Howl",
+      "count": 1
+    }
+  ],
+  "Floette-Eternal": [
+    {
+      "move": "Cosmic Power",
+      "count": 1
+    },
+    {
+      "move": "Body Press",
+      "count": 1
+    }
+  ],
+  "Dedenne": [
+    {
+      "move": "Electroweb",
+      "count": 3
+    },
+    {
+      "move": "Entrainment",
+      "count": 1
+    }
+  ],
+  "Swalot": [
+    {
+      "move": "Stockpile",
+      "count": 17
+    },
+    {
+      "move": "Body Press",
+      "count": 16
+    },
+    {
+      "move": "Protect",
+      "count": 14
+    },
+    {
+      "move": "Toxic",
+      "count": 11
+    },
+    {
+      "move": "Curse",
+      "count": 1
+    }
+  ],
+  "Weavile": [
+    {
+      "move": "Fake Out",
+      "count": 5
+    },
+    {
+      "move": "Knock Off",
+      "count": 2
+    },
+    {
+      "move": "Upper Hand",
+      "count": 1
+    },
+    {
+      "move": "Ice Spinner",
+      "count": 1
+    },
+    {
+      "move": "Ice Shard",
+      "count": 1
+    }
+  ],
+  "Vivillon-Fancy": [
+    {
+      "move": "Protect",
+      "count": 5
+    },
+    {
+      "move": "Sludge Bomb",
+      "count": 1
+    }
+  ],
+  "Barbaracle": [
+    {
+      "move": "Rock Slide",
+      "count": 2
+    },
+    {
+      "move": "Protect",
+      "count": 1
+    }
+  ],
+  "Scolipede": [
+    {
+      "move": "Protect",
+      "count": 2
+    },
+    {
+      "move": "Gunk Shot",
+      "count": 1
+    }
+  ],
+  "Spiritomb": [
+    {
+      "move": "Trick Room",
+      "count": 3
+    },
+    {
+      "move": "Foul Play",
+      "count": 3
+    },
+    {
+      "move": "Will-O-Wisp",
+      "count": 2
+    }
+  ],
+  "Clawitzer": [
+    {
+      "move": "Dark Pulse",
+      "count": 5
+    },
+    {
+      "move": "Water Pulse",
+      "count": 5
+    },
+    {
+      "move": "Muddy Water",
+      "count": 1
+    },
+    {
+      "move": "Aura Sphere",
+      "count": 1
+    }
+  ],
+  "Chimecho": [
+    {
+      "move": "Calm Mind",
+      "count": 3
+    }
+  ],
+  "Azumarill": [
+    {
+      "move": "Liquidation",
+      "count": 3
+    },
+    {
+      "move": "Aqua Jet",
+      "count": 2
+    },
+    {
+      "move": "Belly Drum",
+      "count": 2
+    }
+  ],
+  "Vaporeon": [
+    {
+      "move": "Scald",
+      "count": 6
+    },
+    {
+      "move": "Detect",
+      "count": 3
+    },
+    {
+      "move": "Calm Mind",
+      "count": 2
+    },
+    {
+      "move": "Yawn",
+      "count": 2
+    }
+  ],
+  "Polteageist": [
+    {
+      "move": "Stored Power",
+      "count": 4
+    },
+    {
+      "move": "Shell Smash",
+      "count": 2
+    }
+  ],
+  "Emolga": [
+    {
+      "move": "Air Slash",
+      "count": 1
+    }
+  ],
+  "Samurott-Hisui": [
+    {
+      "move": "Psychic Fangs",
+      "count": 1
+    }
+  ],
+  "Alcremie": [
+    {
+      "move": "Decorate",
+      "count": 1
+    },
+    {
+      "move": "Helping Hand",
+      "count": 1
+    }
+  ],
+  "Rampardos": [
+    {
+      "move": "Rock Slide",
+      "count": 2
+    }
+  ],
+  "Toxicroak": [
+    {
+      "move": "Close Combat",
+      "count": 2
+    },
+    {
+      "move": "Gunk Shot",
+      "count": 1
+    },
+    {
+      "move": "Sucker Punch",
+      "count": 1
+    }
+  ],
+  "Stunfisk": [
+    {
+      "move": "Thunderbolt",
+      "count": 1
+    }
+  ],
+  "Cofagrigus": [
+    {
+      "move": "Stone Edge",
+      "count": 1
+    },
+    {
+      "move": "Cross Chop",
+      "count": 1
+    }
+  ]
+}

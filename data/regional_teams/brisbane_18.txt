@@ -1,0 +1,59 @@
+Farigiraf @ Sitrus Berry
+Ability: Armor Tail
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Expanding Force
+- Helping Hand
+- Trick Room
+- Protect
+
+Sylveon @ Fairy Feather
+Ability: Pixilate
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Hyper Voice
+- Hyper Beam
+- Quick Attack
+- Detect
+
+Whimsicott @ Occa Berry
+Ability: Prankster
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Grass Knot
+- Tailwind
+- Sunny Day
+- Protect
+
+Garchomp @ Choice Scarf
+Ability: Rough Skin
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Earthquake
+- Dragon Claw
+- Rock Slide
+- Stomping Tantrum
+
+Kingambit @ Focus Sash
+Ability: Defiant
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Kowtow Cleave
+- Iron Head
+- Sucker Punch
+- Low Kick
+
+Charizard @ Charizardite Y
+Ability: Blaze
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Heat Wave
+- Weather Ball
+- Ancient Power
+- Protect

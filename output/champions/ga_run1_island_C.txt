@@ -1,0 +1,59 @@
+Noivern @ Focus Sash
+Ability: Frisk
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Taunt
+- Bite
+- Uproar
+- Hurricane
+
+Salamence @ Oran Berry
+Ability: Intimidate
+Level: 50
+Hasty Nature
+EVs: 1 HP / 21 ATK / 15 SPA / 29 SPE
+- Double-Edge
+- Dragon Claw
+- Flamethrower
+- Protect
+
+Incineroar @ Sitrus Berry
+Ability: Intimidate
+Level: 50
+Impish Nature
+EVs: 32 HP / 23 DEF / 11 SPD
+- Fake Out
+- Flamethrower
+- Throat Chop
+- Parting Shot
+
+Gholdengo @ Life Orb
+Ability: Good as Gold
+Level: 50
+Timid Nature
+EVs: 32 SPA / 2 SPD / 32 SPE
+- Make It Rain
+- Shadow Ball
+- Nasty Plot
+- Protect
+
+Rillaboom @ Choice Scarf
+Ability: Grassy Surge
+Level: 50
+Adamant Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Grassy Glide
+- Wood Hammer
+- Fake Out
+- High Horsepower
+
+Garchomp @ Rocky Helmet
+Ability: Rough Skin
+Level: 50
+Jolly Nature
+EVs: 32 DEF / 2 SPD / 32 SPE
+- Stomping Tantrum
+- Dragon Claw
+- Rock Slide
+- Protect

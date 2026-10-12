@@ -1,0 +1,59 @@
+Glimmora @ Glimmoranite
+Ability: Toxic Debris
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Sludge Bomb
+- Power Gem
+- Earth Power
+- Spiky Shield
+
+Swampert @ Leftovers
+Ability: Torrent
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Wave Crash
+- High Horsepower
+- Yawn
+- Protect
+
+Dragapult @ Life Orb
+Ability: Clear Body
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Draco Meteor
+- Shadow Ball
+- Protect
+- Will-O-Wisp
+
+Rillaboom @ Miracle Seed
+Ability: Grassy Surge
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Fake Out
+- Wood Hammer
+- Grassy Glide
+- High Horsepower
+
+Staraptor @ Staraptite
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Brave Bird
+- Close Combat
+- Tailwind
+- Protect
+
+Volcarona @ Rocky Helmet
+Ability: Flame Body
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Overheat
+- Struggle Bug
+- Rage Powder
+- Protect

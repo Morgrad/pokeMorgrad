@@ -1,0 +1,59 @@
+Archaludon @ Leftovers
+Ability: Stamina
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Dragon Pulse
+- Flash Cannon
+- Electro Shot
+- Protect
+
+Politoed @ Choice Scarf
+Ability: Drizzle
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Weather Ball
+- Ice Beam
+- Muddy Water
+- Icy Wind
+
+Salamence @ Salamencite
+Ability: Intimidate
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Hyper Voice
+- Dragon Pulse
+- Tailwind
+- Protect
+
+Scovillain @ Scovillainite
+Ability: Moody
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Overheat
+- Protect
+- Leech Seed
+- Rage Powder
+
+Espathra @ Focus Sash
+Ability: Speed Boost
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Lumina Crash
+- Calm Mind
+- Baton Pass
+- Protect
+
+Incineroar @ Sitrus Berry
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Throat Chop
+- Snarl
+- Taunt
+- Fake Out

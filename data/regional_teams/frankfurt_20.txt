@@ -1,0 +1,59 @@
+Gengar @ Gengarite
+Ability: Cursed Body
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Perish Song
+- Shadow Ball
+- Sludge Bomb
+
+Incineroar @ Sitrus Berry
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Protect
+- Fake Out
+- Flare Blitz
+- Parting Shot
+
+Kingambit @ Life Orb
+Ability: Defiant
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Protect
+- Sucker Punch
+- Swords Dance
+- Kowtow Cleave
+
+Sneasler @ Grassy Seed
+Ability: Unburden
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Protect
+- Fake Out
+- Gunk Shot
+- Close Combat
+
+Altaria @ Altarianite
+Ability: Cloud Nine
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Perish Song
+- Hyper Voice
+- Draco Meteor
+
+Rillaboom @ Eject Button
+Ability: Grassy Surge
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- U-turn
+- Protect
+- Fake Out
+- Grassy Glide

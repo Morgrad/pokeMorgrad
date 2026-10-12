@@ -1,0 +1,59 @@
+Staraptor @ Choice Scarf
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Dual Wingbeat
+- Final Gambit
+- U-turn
+- Close Combat
+
+Pawmot @ Focus Sash
+Ability: Iron Fist
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Double Shock
+- Coaching
+- Close Combat
+- Fake Out
+
+Golisopod @ Golisopite
+Ability: Emergency Exit
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Drill Run
+- Liquidation
+- Iron Head
+- Leech Life
+
+Farigiraf @ Sitrus Berry
+Ability: Armor Tail
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Psychic
+- Trick Room
+- Protect
+- Thunderbolt
+
+Politoed @ Life Orb
+Ability: Drizzle
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Weather Ball
+- Rain Dance
+- Protect
+- Ice Beam
+
+Dragonite @ Dragoninite
+Ability: Multiscale
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Dragon Pulse
+- Protect
+- Hurricane
+- Thunder

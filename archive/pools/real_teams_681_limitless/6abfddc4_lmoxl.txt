@@ -1,0 +1,59 @@
+Salamence @ Salamencite
+Ability: Intimidate
+Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
+Modest Nature
+- Hyper Voice
+- Hyper Beam
+- Dragon Pulse
+- Protect
+
+Mimikyu @ Rocky Helmet
+Ability: Disguise
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Play Rough
+- Swords Dance
+- Shadow Sneak
+- Trick Room
+
+Sylveon @ Life Orb
+Ability: Pixilate
+Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
+Modest Nature
+- Hyper Voice
+- Hyper Beam
+- Weather Ball
+- Protect
+
+Torkoal @ Charcoal
+Ability: Drought
+Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
+Modest Nature
+- Solar Beam
+- Protect
+- Heat Wave
+- Sludge Bomb
+
+Dragalge @ Dragalgite
+Ability: Adaptability
+Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
+Modest Nature
+- Sludge Bomb
+- Protect
+- Dragon Pulse
+- Thunderbolt
+
+Arboliva @ Terrain Extender
+Ability: Seed Sower
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Giga Drain
+- Protect
+- Terrain Pulse
+- Leech Seed
