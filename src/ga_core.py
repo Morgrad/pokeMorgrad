@@ -643,26 +643,41 @@ def inject_immigrants(island, n):
 
 def _strip_species(genome, species_set, constraints):
     """Replace any mon whose species is in species_set with a fresh random mon.
-    Preserves item-clause by tracking used items. Never touches constrained slots.
+    Preserves species + item clauses. Never touches constrained slots.
     """
     if not genome:
         return genome
     stripped = copy.deepcopy(genome)
-    used_items = {m["item"] for m in stripped if m and m.get("item")}
+
+    # Build the set of base species we must avoid duplicating (excluding
+    # the slots we're about to replace).
+    def _bases(exclude_slots=()):
+        s = set()
+        for i, m in enumerate(stripped):
+            if i in exclude_slots or m is None:
+                continue
+            sp = _SPECIES_BY_NAME.get(m.get("species"))
+            if sp:
+                s.add(DB.norm(sp["baseSpecies"]))
+        return s
+
     for slot, mon in enumerate(stripped):
         if slot in constraints:
             continue
         if mon and mon.get("species") in species_set:
+            used_items = {m["item"] for m in stripped
+                          if m and m.get("item") and m is not mon}
+            used_bases = _bases(exclude_slots=(slot,))
             cands = [s["name"] for s in _BASE_SPECIES
-                     if s["name"] not in species_set and len(s["moves"]) >= 4]
+                     if s["name"] not in species_set
+                     and DB.norm(s["baseSpecies"]) not in used_bases
+                     and len(s["moves"]) >= 4]
             if not cands:
                 continue
             new_sp = random.choice(cands)
             fresh = _fresh_mon(new_sp, used_items)
             if fresh:
-                # Remove old item from used set if it's now unused
                 stripped[slot] = fresh
-                used_items.add(fresh["item"])
     return stripped
 
 
