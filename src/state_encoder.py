@@ -17,7 +17,7 @@ N_MOVES_PER = 4
 CONT_DIM = 17
 
 
-class StateEncoderV2:
+class StateEncoder:
     def __init__(self):
         db = json.load(open(REGM_DB))
         self.species_list = sorted(db["species"].keys())
@@ -118,7 +118,7 @@ class StateEncoderV2:
 
 if __name__ == "__main__":
     import sys, time
-    enc = StateEncoderV2()
+    enc = StateEncoder()
     print(f"Vocab: species={enc.n_species}, moves={enc.n_moves}, "
           f"items={enc.n_items}, abilities={enc.n_abilities}")
     path = os.path.expanduser("~/project/data/training_data.jsonl")

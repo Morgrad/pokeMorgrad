@@ -7,7 +7,7 @@ import torch.nn.functional as F
 from torch.utils.data import Dataset, DataLoader
 
 sys.path.insert(0, os.path.expanduser("~/project/tools"))
-from src.state_encoder import StateEncoderV2, N_SLOTS, N_MOVES_PER, CONT_DIM
+from src.state_encoder import StateEncoder, N_SLOTS, N_MOVES_PER, CONT_DIM
 
 DATA = os.path.expanduser("~/project/data/training_data.jsonl")
 PRIORS_PATH = os.path.expanduser("~/project/data/species_move_priors.json")
@@ -106,7 +106,7 @@ class BCDataset(Dataset):
         return tuple(out)
 
 
-class BCModelV4(nn.Module):
+class BCModel(nn.Module):
     def __init__(self, n_species, n_moves, n_items, n_abilities):
         super().__init__()
         self.sp_emb = nn.Embedding(n_species, EMB_SPECIES, padding_idx=0)
@@ -237,7 +237,7 @@ def run_epoch(model, loader, opt, train, move_mask):
 
 def main():
     print(f"Device: {DEVICE}")
-    enc = StateEncoderV2()
+    enc = StateEncoder()
     print(f"Vocab: species={enc.n_species}, moves={enc.n_moves}")
 
     print("Loading priors...")
@@ -263,7 +263,7 @@ def main():
     tl = DataLoader(train_ds, batch_size=BATCH, shuffle=True, num_workers=NUM_WORKERS)
     vl = DataLoader(val_ds, batch_size=BATCH, shuffle=False, num_workers=NUM_WORKERS)
 
-    model = BCModelV4(enc.n_species, enc.n_moves, enc.n_items, enc.n_abilities).to(DEVICE)
+    model = BCModel(enc.n_species, enc.n_moves, enc.n_items, enc.n_abilities).to(DEVICE)
     print(f"Params: {sum(p.numel() for p in model.parameters()):,}")
 
     opt = torch.optim.AdamW(model.parameters(), lr=LR, weight_decay=WEIGHT_DECAY)

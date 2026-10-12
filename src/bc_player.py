@@ -12,8 +12,8 @@ sys.path.insert(0, os.path.expanduser("~/project/src"))
 
 from poke_env.player import Player
 from poke_env.battle import DoubleBattle
-from state_encoder import StateEncoderV2, N_SLOTS, N_MOVES_PER, CONT_DIM
-from src.bc_train import BCModelV4, TYPE_MOVE, TYPE_SWITCH, TYPE_NONE, NEG_INF
+from src.state_encoder import StateEncoder, N_SLOTS, N_MOVES_PER, CONT_DIM
+from src.bc_train import BCModel, TYPE_MOVE, TYPE_SWITCH, TYPE_NONE, NEG_INF
 
 MODEL_PATH = os.path.expanduser("~/project/output/models/bc_v4_best.pt")
 PRIORS_PATH = os.path.expanduser("~/project/data/species_move_priors.json")
@@ -24,10 +24,10 @@ class BCPlayer(Player):
     def __init__(self, *args, **kwargs):
         # Load everything BEFORE super().__init__() so no async handler
         # fires against a half-constructed object.
-        self.encoder = StateEncoderV2()
+        self.encoder = StateEncoder()
         self.priors = json.load(open(PRIORS_PATH))
 
-        self.model = BCModelV4(
+        self.model = BCModel(
             self.encoder.n_species, self.encoder.n_moves,
             self.encoder.n_items, self.encoder.n_abilities,
         ).to(DEVICE)
