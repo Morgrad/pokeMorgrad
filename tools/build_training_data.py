@@ -3,7 +3,6 @@
 Reads data/showdown_replays/*.json, extracts decisions with the Tracker,
 tags each with side_won (from |win| line), writes JSONL.
 """
-import glob
 import json
 import sys
 from pathlib import Path
@@ -15,43 +14,59 @@ REPLAY_DIR = Path(__file__).resolve().parent.parent / "data" / "showdown_replays
 OUT = Path(__file__).resolve().parent.parent / "data" / "training_data.jsonl"
 
 
-def _get_player_names(log):
-    p1 = p2 = None
-    for line in log.split("\n"):
-        if line.startswith("|player|p1|"):
-            p1 = line.split("|")[3]
-        elif line.startswith("|player|p2|"):
-            p2 = line.split("|")[3]
-    return p1, p2
-
-
-def _get_winner(log):
-    for line in log.split("\n"):
-        if line.startswith("|win|"):
-            return line.split("|", 2)[2]
-    return None
+def parse_log(log):
+    """Return (p1_name, p2_name, winner_name, is_tie). All may be None."""
+    p1 = p2 = winner = None
+    is_tie = False
+    for line in log.splitlines():
+        if line.startswith("|player|p1|") and p1 is None:
+            parts = line.split("|")
+            if len(parts) >= 4 and parts[3]:
+                p1 = parts[3]
+        elif line.startswith("|player|p2|") and p2 is None:
+            parts = line.split("|")
+            if len(parts) >= 4 and parts[3]:
+                p2 = parts[3]
+        elif line.startswith("|win|"):
+            parts = line.split("|", 2)
+            if len(parts) >= 3:
+                winner = parts[2]
+        elif line.startswith("|tie|"):
+            is_tie = True
+    return p1, p2, winner, is_tie
 
 
 def main():
-    files = sorted(REPLAY_DIR.glob("*.json"))
-    files = [f for f in files if not f.name.endswith(".meta.json")]
-    print(f"{len(files)} replay files to process")
+    files = sorted(f for f in REPLAY_DIR.glob("*.json")
+                   if not f.name.endswith(".meta.json"))
+    print(f"{len(files)} replay files to process", flush=True)
 
     n_rows = 0
-    n_skipped = 0
+    skip_reasons = {}
     with open(OUT, "w") as fout:
         for i, fp in enumerate(files):
             try:
                 d = json.load(open(fp))
                 log = d.get("log", "")
-                p1, p2 = _get_player_names(log)
-                winner = _get_winner(log)
-                if not (p1 and p2 and winner):
-                    n_skipped += 1
+                if not log:
+                    skip_reasons["no_log"] = skip_reasons.get("no_log", 0) + 1
                     continue
 
-                t = Tracker(d)
-                outs = t.run()
+                p1, p2, winner, is_tie = parse_log(log)
+                if is_tie:
+                    skip_reasons["tie"] = skip_reasons.get("tie", 0) + 1
+                    continue
+                if not (p1 and p2):
+                    skip_reasons["no_players"] = skip_reasons.get("no_players", 0) + 1
+                    continue
+                if not winner:
+                    skip_reasons["no_winner"] = skip_reasons.get("no_winner", 0) + 1
+                    continue
+
+                outs = Tracker(d).run()
+                if not outs:
+                    skip_reasons["tracker_empty"] = skip_reasons.get("tracker_empty", 0) + 1
+                    continue
 
                 for row in outs:
                     side = row.get("side")
@@ -66,13 +81,15 @@ def main():
 
                 if (i + 1) % 500 == 0:
                     print(f"  {i+1}/{len(files)}  rows={n_rows}  "
-                          f"skipped={n_skipped}", flush=True)
+                          f"skipped={sum(skip_reasons.values())}", flush=True)
             except Exception as e:
-                n_skipped += 1
-                if n_skipped <= 10:
-                    print(f"  skip {fp.name}: {type(e).__name__}: {e}")
+                key = f"exc_{type(e).__name__}"
+                skip_reasons[key] = skip_reasons.get(key, 0) + 1
+                if skip_reasons[key] <= 3:
+                    print(f"  {fp.name}: {type(e).__name__}: {e}")
 
-    print(f"DONE: {n_rows} rows, {n_skipped} replays skipped")
+    print(f"DONE: {n_rows} rows")
+    print(f"Skip reasons: {skip_reasons}")
 
 
 if __name__ == "__main__":

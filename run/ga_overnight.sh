@@ -46,12 +46,12 @@ mkdir -p ~/project/output/checkpoints/v6
 
 echo ""
 echo "===== $(date) RUN 1 (5h) ====="
-python ~/project/run/ga_run.py run1 5 2>&1 | tee /tmp/ga_run1.log
+python -m run.ga_run run1 5 2>&1 | tee /tmp/ga_run1.log
 echo "[$(date)] RUN 1 finished rc=$?"
 
 echo ""
 echo "===== $(date) RUN 2 (5h, warm-start) ====="
-python ~/project/run/ga_run.py run2 5 2>&1 | tee /tmp/ga_run2.log
+python -m run.ga_run run2 5 2>&1 | tee /tmp/ga_run2.log
 echo "[$(date)] RUN 2 finished rc=$?"
 
 echo ""
