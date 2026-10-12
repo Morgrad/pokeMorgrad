@@ -36,7 +36,7 @@ Long-term goal: a reusable pipeline that adapts to any new VGC regulation in
 | Legality gate (Showdown validator) | ✅ Working | Zero invalid genomes in fuzz tests |
 | BC trainer (`src/bc_train.py`) | ✅ Working | Produces `bc_best.pt`, 57.9% move accuracy |
 | BC pilot (`src/bc_player.py`) | ⚠️ **Active bug** | See §5 |
-| GA engine (`src/ga_core.py`) | ✅ Working | Smoke tests pass: single-pop + islands + migration + breeding |
+| GA engine (`src/ga_core.py`) | ✅ Working | Overnight run launched 2026-10-12 16:20 |
 | Eval (`src/eval.py`) | ✅ Working | `--pilot heuristic|bc|both`, held-out or training pool |
 | Baseline team score | ✅ 59.0% | vs 100 held-out teams, heuristic pilot, seed 100 |
 
@@ -156,13 +156,15 @@ disappears, this is resolved.
 ### 5.2 GA island migration leaks locked species into free islands
 
 Island A (`{0: "Umbreon"}`) migrating a top genome to island B (no
-constraints) carries the Umbreon along. Over many gens B drifts toward
-Umbreon-heavy populations, undermining diversity. **Not urgent.**
+constraints) carries the Umbreon along. **Fixed 2026-10-12** via
+`_strip_species` — replaces foreign locked species on migration entry.
+Species-clause checked.
 
 ### 5.3 No retry on Showdown timeouts
 
-~5–10% of battles hit the 20s/30s timeout and return `None` (skipped from
-fitness). Consider a 1-retry-with-lower-concurrency policy later.
+~5–10% of battles hit the 20s/30s timeout and return `None`.
+**Fixed 2026-10-12:** both `ga_core._run_battle` and `eval.run_battle` now
+retry once with a fresh account id on failure.
 
 ---
 

@@ -114,13 +114,18 @@ committed — the pipeline runs without re-scraping.
 
 ---
 
-## Current status
+## Current status (2026-10-12)
 
-- **Baseline team** scores **59.0%** vs the 100 held-out teams (heuristic pilot, seed 100).
+- **Baseline team** scores **54–60%** vs the 100 held-out teams across
+  seeds (heuristic pilot). ~3-point spread between runs, expected.
 - **BC v5** (`bc_best.pt`) reaches **57.9%** move accuracy on validation.
-- GA island model (Umbreon-locked + 2 free) is wired and ready to launch.
-- **Open question:** whether GA should use the BC pilot or the heuristic pilot
-  for fitness. See `docs/STATE.md`.
+- **BC pilot is functional but weak:** 18.3% win rate vs held-out (single
+  seed). Fixes applied 2026-10-12 (target semantics, disabled moves, model
+  cache) restored 3–5× throughput but not win rate. Retraining planned.
+- **GA is running overnight** with heuristic pilot (BC pilot too weak for
+  fitness signal — see `docs/STATE.md` §8).
+- **Open question:** can BC be improved past 60% move accuracy with more
+  data? Current training set is 28k rows from 5000 replays — target is 150k.
 
 ---
 

@@ -535,3 +535,59 @@ Sand archetype by gen 12.
   SimpleHeuristics pilot, canonical DB, Showdown gate, 70.2% champion
 - 2026-10-11: island GA v6, refactored directory structure, launching
   10h overnight chain with 3 islands × 2 runs
+
+---
+
+## Day 4 — 2026-10-12 — Full consolidation + BC pilot fixes
+
+**Goal:** clean the repo (many versioned scripts), unify into one working
+pipeline per concern, fix the BC pilot, launch the first clean overnight GA.
+
+**Work done:**
+
+- **Package conversion.** `src/` became a real Python package (`__init__.py`,
+  `pyproject.toml`, no `sys.path.insert` hacks). All imports are now
+  `from src.X import Y`.
+- **Version removal.** `state_encoder_v2.py` → `state_encoder.py`,
+  `bc_train_v4.py` → `bc_train.py`. `ga_core.py` + `ga_core_v6.py` merged
+  into one `ga_core.py`. Zero `_vN` suffixes in active code.
+- **BC split.** `bc_train.py` split into `bc_model.py` (net + checkpoints +
+  move masks), `bc_train.py` (dataset + loop), `bc_player.py` (poke_env
+  Player). Player no longer imports the training pipeline.
+- **Eval unified.** `eval_champion.py` + `eval_head_to_head.py` → `eval.py`
+  with `--pilot heuristic|bc|both`.
+- **Repo hygiene.** Root `README.md` added. `pyproject.toml`, `LICENSE` (MIT),
+  `.gitattributes` added. `.gitignore` rewritten with `data/*` whitelist.
+  `filter-repo` stripped a 144 MB file from history. 43 MB of replays moved
+  out of git to `data/`. Dead code archived (`opponent_gen.py`,
+  `ga_counter_*.py`). `__pycache__` untracked.
+- **BC pilot fixes (5 bugs):**
+  1. Move mask defaulted to all-1s; species missing from priors had
+     fully-open masks → `Struggle` and off-list moves got picked.
+  2. Inference used species priors instead of live moveset; fixed with
+     `_live_moveset_mask` (O(4) lookups via precomputed map).
+  3. Fallback selected 0-PP moves; filtered `current_pp > 0`.
+  4. `choose_move` nested `choose_random_move` (a `DoubleBattleOrder`)
+     inside another `DoubleBattleOrder` → 3-part invalid command.
+  5. Doubles move orders lacked a target. Showdown rejects Yawn, etc.
+     Fix: `move_target=slot_idx + 1` for single-target moves only;
+     self/field/side/spread moves go without a target.
+  - **Perf:** model cached across `BCPlayer` instances (was loaded per
+    battle; 3× speedup for eval loops).
+- **GA bug fixes:**
+  - Island migration leaks Umbreon from the locked island into free
+    islands. Fix: `_strip_species` replaces foreign locked species on
+    entry. Species-clause safe.
+  - Battle runners got retry-on-timeout (1 retry per failed battle).
+- **New tool:** `tools/build_training_data.py` — driver that streams raw
+  replays through `Tracker`, tags each decision with `side_won`, writes
+  JSONL. **Bug:** currently skips 62% of replays (mostly ties and missing
+  winner lines) — investigated Day 5.
+- **BC training:** added outcome-weighted oversampling (`side_won` → 2x).
+  First attempt on 28k rows reached only 49% move acc. Rolled back to v5
+  (57.9%). Real fix is more data, see Day 5.
+- **First overnight GA launched** at end of Day 4 with heuristic pilot.
+
+**State at end of day:** repo is clean; pipeline is end-to-end runnable;
+BC pilot works but is weak; GA about to run for 10 hours.
+
