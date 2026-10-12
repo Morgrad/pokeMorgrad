@@ -1,6 +1,6 @@
 """Neural model + checkpoint I/O for the BC pilot.
 
-Extracted from the original bc_train_v4.py so that bc_player.py can import
+Extracted from the original bc_train.py so that bc_player.py can import
 the model without pulling in the training pipeline (DataLoader, Dataset, ...).
 """
 import os
@@ -80,7 +80,7 @@ def build_move_mask(priors, encoder, verbose=True):
 
 def save_checkpoint(path, model, *, epoch, val_loss, val_acc,
                     val_move_acc, val_switch_acc, encoder_v=2):
-    """Save a training checkpoint. Schema is compatible with bc_v4_best.pt."""
+    """Save a training checkpoint. Schema is compatible with bc_best.pt."""
     os.makedirs(os.path.dirname(path), exist_ok=True)
     torch.save({
         "model_state": model.state_dict(),

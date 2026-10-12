@@ -1,3 +1,5 @@
+> ⚠️ **Last verified:** commit `2739569`. Some details may be stale — see the root [README](../README.md) and `git log` for current truth.
+
 # Pokémon AI Project — State
 
 Last updated: 2026-10-11 23:35
@@ -62,7 +64,7 @@ project right now.
 
 ## Also discovered 2026-10-11
 
-- **Umbreon constraint bug** in `ga_core_v6.py` — migration/crossover
+- **Umbreon constraint bug** in `ga_core.py` — migration/crossover
   didn't enforce locked slots. Fixed at 22:22. Needs rerun to test the
   real Umbreon experiment.
 - **All 6 champions converged to the same composition**:
@@ -140,14 +142,14 @@ format. Then rerun GA with that pilot.
     │   ├── regmc_db.py           data access + team validator
     │   ├── showdown_validator.py legality gate
     │   ├── ga_core.py            base GA engine
-    │   └── ga_core_v6.py         island model + checkpoints
+    │   └── ga_core.py         island model + checkpoints
     ├── run/           entry points
     │   ├── ga_run.py             5-hour GA launcher
     │   └── ga_overnight.sh       10-hour chain
     ├── tools/         setup scripts
     │   ├── build_regmc_db.js     rebuild DB from Showdown
     │   ├── scrape_replays.py     replay scraper
-    │   └── scrape_regionals_v2.py regional top-cut scraper
+    │   └── scrape_replays.py regional top-cut scraper
     ├── ops/           server management
     │   └── start_server.sh / stop_all.sh / watch_server.sh
     ├── output/
@@ -168,7 +170,7 @@ format. Then rerun GA with that pilot.
 | Held-out pool (100) | same dir, same split |
 | Item prior          | `~/project/data/meta_items.json` |
 | Replays             | `~/project/data/showdown_replays/` |
-| GA engine           | `~/project/src/ga_core.py` + `ga_core_v6.py` |
+| GA engine           | `~/project/src/ga_core.py` + `ga_core.py` |
 | Showdown gate       | `~/project/src/showdown_validator.py` |
 | Chain script        | `~/project/run/ga_overnight.sh` |
 | Old 681-team pool   | `~/project/archive/pools/real_teams_681_limitless/` |
@@ -223,7 +225,7 @@ The pipeline is reusable. Every cycle improves as the format matures.
 - `tools/scrape_replays.py` — data collection
 - `tools/parse_replays.py` (to write) — replay → training pairs
 - `src/bc_train.py` (to write) — BC model training
-- `src/ga_core_v6.py` — search engine
+- `src/ga_core.py` — search engine
 - `src/showdown_validator.py` — legality gate
 - `data/regmc_db.json` — canonical format data
 

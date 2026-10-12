@@ -16,7 +16,7 @@ from src.bc_model import (
 )
 
 _REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-MODEL_PATH = os.path.join(_REPO_ROOT, "output", "models", "bc_v5_best_move.pt")
+MODEL_PATH = os.path.join(_REPO_ROOT, "output", "models", "bc_best.pt")
 PRIORS_PATH = os.path.join(_REPO_ROOT, "data", "species_move_priors.json")
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 

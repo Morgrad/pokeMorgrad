@@ -1,3 +1,5 @@
+> ⚠️ **Last verified:** commit `2739569`. Some details may be stale — see the root [README](../README.md) and `git log` for current truth.
+
 # Pokémon AI Project — Glossary
 
 Last updated: 2026-10-11
@@ -125,14 +127,14 @@ conversation that isn't here, add it.
 | `~/project/src/regmc_db.py` | Canonical data access + team validator |
 | `~/project/data/regmc_db.json` | Canonical DB (species, items, moves, abilities) |
 | `~/project/src/ga_core.py` | Base GA engine (species-level) |
-| `~/project/src/ga_core_v6.py` | Island model + checkpointing |
+| `~/project/src/ga_core.py` | Island model + checkpointing |
 | `~/project/src/showdown_validator.py` | Showdown legality gate |
 | `~/project/src/showdown_validate.js` | Node.js validator bridge |
 | `~/project/run/ga_run.py` | 5-hour GA launcher |
 | `~/project/run/ga_overnight.sh` | 10-hour chain (run1 + run2 + eval) |
 | `~/project/tools/build_regmc_db.js` | Rebuild canonical DB from Showdown |
 | `~/project/tools/scrape_replays.py` | Replay scraper |
-| `~/project/tools/scrape_regionals_v2.py` | Regional top-cut scraper |
+| `~/project/tools/scrape_replays.py` | Regional top-cut scraper |
 | `~/project/data/pool_split.json` | Train/held-out split (300/100) |
 | `~/project/data/meta_items.json` | Item frequency per species from real teams |
 | `~/project/data/showdown_replays/` | Scraped replays (training data) |
@@ -231,7 +233,7 @@ Older/deprecated Path labels from earlier discussions:
 
 ## 11. BC Training Metrics (Log Fields)
 
-Printed once per epoch by `src/bc_train_v3.py`. Format:
+Printed once per epoch by `src/bc_train.py`. Format:
 
     Epoch NN/30  trl=X tra=X trm=X  vll=X vla=X vlt3=X vlm=X  (Ns) *
 

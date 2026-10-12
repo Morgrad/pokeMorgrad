@@ -25,7 +25,7 @@ def _p(*parts):
 DATA = _p("data", "training_data.jsonl")
 PRIORS_PATH = _p("data", "species_move_priors.json")
 MODEL_DIR = _p("output", "models")
-BEST_MODEL_PATH = os.path.join(MODEL_DIR, "bc_v4_best.pt")
+BEST_MODEL_PATH = os.path.join(MODEL_DIR, "bc_best.pt")
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 BATCH = 256
