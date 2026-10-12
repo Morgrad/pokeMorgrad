@@ -33,6 +33,26 @@ PRIORS_PATH = os.path.join(_REPO_ROOT, "data", "species_move_priors.json")
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
 
+_MODEL_CACHE = {}
+
+
+def _get_shared_model():
+    """Load encoder + model + priors + mask once, share across instances."""
+    if DEVICE not in _MODEL_CACHE:
+        encoder = StateEncoder()
+        priors = json.load(open(PRIORS_PATH))
+        model = BCModel(
+            encoder.n_species, encoder.n_moves,
+            encoder.n_items, encoder.n_abilities,
+        ).to(DEVICE)
+        ckpt = load_checkpoint(MODEL_PATH, model, DEVICE)
+        mask = build_move_mask(priors, encoder, verbose=False).to(DEVICE)
+        _MODEL_CACHE[DEVICE] = (encoder, model, priors, mask)
+        print(f"BC pilot loaded (shared): epoch={ckpt.get('epoch')} "
+              f"vlm={ckpt.get('val_move_acc'):.3f}", flush=True)
+    return _MODEL_CACHE[DEVICE]
+
+
 def _to_sd_id(name: str) -> str:
     """Match Pokémon Showdown's toID(): lowercase, alphanumeric only."""
     return "".join(c for c in name.lower() if c.isalnum())
@@ -42,20 +62,7 @@ class BCPlayer(Player):
     def __init__(self, *args, **kwargs):
         # Build everything BEFORE super().__init__() so the async listener
         # never fires against a half-constructed object.
-        self.encoder = StateEncoder()
-        self.priors = json.load(open(PRIORS_PATH))
-
-        self.model = BCModel(
-            self.encoder.n_species, self.encoder.n_moves,
-            self.encoder.n_items, self.encoder.n_abilities,
-        ).to(DEVICE)
-        ckpt = load_checkpoint(MODEL_PATH, self.model, DEVICE)
-        print(f"BC pilot loaded: epoch={ckpt.get('epoch')} "
-              f"vlm={ckpt.get('val_move_acc'):.3f}", flush=True)
-
-        self.move_mask = build_move_mask(
-            self.priors, self.encoder, verbose=False
-        ).to(DEVICE)
+        self.encoder, self.model, self.priors, self.move_mask = _get_shared_model()
 
         # Reverse maps: index -> canonical name
         self._move_by_idx = {v: k for k, v in self.encoder.move_idx.items()}
@@ -143,6 +150,8 @@ class BCPlayer(Player):
                 continue
             if getattr(mv, "current_pp", 1) <= 0:
                 continue
+            if getattr(mv, "disabled", False):
+                continue
             idx = self._move_sd_to_idx.get(mv.id)
             if idx:
                 mask[0, idx] = 1.0
@@ -217,12 +226,12 @@ class BCPlayer(Player):
             chosen = next(
                 (mv for mv in mon.moves.values()
                  if mv is not None and mv.id == sd_id
-                 and getattr(mv, "current_pp", 1) > 0),
+                 and getattr(mv, "current_pp", 1) > 0 and not getattr(mv, "disabled", False)),
                 None,
             )
             if chosen is None:
                 avail = [mv for mv in mon.moves.values()
-                         if mv is not None and getattr(mv, "current_pp", 1) > 0]
+                         if mv is not None and getattr(mv, "current_pp", 1) > 0 and not getattr(mv, "disabled", False)]
                 chosen = avail[0] if avail else None
             if chosen is None:
                 return None
