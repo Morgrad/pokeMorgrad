@@ -581,12 +581,19 @@ pipeline per concern, fix the BC pilot, launch the first clean overnight GA.
   - Battle runners got retry-on-timeout (1 retry per failed battle).
 - **New tool:** `tools/build_training_data.py` — driver that streams raw
   replays through `Tracker`, tags each decision with `side_won`, writes
-  JSONL. **Bug:** currently skips 62% of replays (mostly ties and missing
-  winner lines) — investigated Day 5.
+  JSONL. Initial version had two bugs: (1) `parse_log` scanned ALL
+  `|player|pN|` lines, including the empty ones at the log tail, so p1/p2
+  ended up `""` and everything was skipped; (2) `startswith("|tie")` matched
+  `|tier|`. Fixed → 5001 replays produce 72,048 rows with a 0.3% skip rate
+  (13 `tracker_empty`). This is the training set for the Day-5 BC retrain.
 - **BC training:** added outcome-weighted oversampling (`side_won` → 2x).
   First attempt on 28k rows reached only 49% move acc. Rolled back to v5
   (57.9%). Real fix is more data, see Day 5.
-- **First overnight GA launched** at end of Day 4 with heuristic pilot.
+- **First overnight GA launched** at end of Day 4 with heuristic pilot:
+  2 × 8h runs (warm-started), 3 islands (A locks Umbreon, B/C free),
+  800 battles/genome. Fixed `run/ga_overnight.sh` to use
+  `python -m run.ga_run` (the bare script path broke `from src...`
+  imports under nohup).
 
 **State at end of day:** repo is clean; pipeline is end-to-end runnable;
 BC pilot works but is weak; GA about to run for 10 hours.

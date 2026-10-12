@@ -34,7 +34,7 @@ Long-term goal: a reusable pipeline that adapts to any new VGC regulation in
 | Data pipeline (scrape → parse → DB) | ✅ Working | 5000 replays, 144 MB `training_data.jsonl` (local-only) |
 | Canonical DB (`regmc_db.json`) | ✅ Working | 391 legal species, 166 items, 515 moves |
 | Legality gate (Showdown validator) | ✅ Working | Zero invalid genomes in fuzz tests |
-| BC trainer (`src/bc_train.py`) | ✅ Working | Produces `bc_best.pt`, 57.9% move accuracy |
+| BC trainer (`src/bc_train.py`) | ✅ Working | v5 = 57.9% move acc; retrain pending (72k rows ready) |
 | BC pilot (`src/bc_player.py`) | ⚠️ **Active bug** | See §5 |
 | GA engine (`src/ga_core.py`) | ✅ Working | Overnight run launched 2026-10-12 16:20 |
 | Eval (`src/eval.py`) | ✅ Working | `--pilot heuristic|bc|both`, held-out or training pool |
@@ -156,9 +156,9 @@ disappears, this is resolved.
 ### 5.2 GA island migration leaks locked species into free islands
 
 Island A (`{0: "Umbreon"}`) migrating a top genome to island B (no
-constraints) carries the Umbreon along. **Fixed 2026-10-12** via
-`_strip_species` — replaces foreign locked species on migration entry.
-Species-clause checked.
+constraints) carried the Umbreon along. **Fixed 2026-10-12** via
+`_strip_species`, which replaces foreign locked species on migration
+entry and enforces the species clause during replacement.
 
 ### 5.3 No retry on Showdown timeouts
 

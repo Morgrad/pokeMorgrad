@@ -285,3 +285,14 @@ Add entries here when:
 
 Keep entries terse. One line each when possible.
 
+## Project-specific terms
+
+| Term | Meaning |
+|---|---|
+| **side_won** | Boolean per training row: did the side that made this decision ultimately win the replay? Used by `bc_train.py` for outcome-weighted oversampling (winner decisions contribute 2× gradient weight). |
+| **live moveset mask** | At inference time, mask any move the acting Pokémon doesn't actually know (from its current 4-move set). More accurate than `species_move_priors.json`, which only covers species that appear in the priors file. |
+| **move target** | In Showdown doubles, single-target moves must be sent with a slot number (1 = opp left, 2 = opp right, -1 = our left ally, -2 = our right ally). Self/field/side/spread moves must NOT have one — `regmc_db.get_move(name)["target"]` decides which. |
+| **island** | A population in the island-model GA. Each island has its own constraints (e.g. island A locks Umbreon in slot 0). Migration every N generations carries top genomes to the next island. |
+| **foreign lock** | A species locked on island X but not island Y, appearing in an immigrant genome on island Y. `_strip_species` replaces these on migration. |
+| **held-out pool** | The 100 teams in `pool_split.json["holdout"]` never seen during GA. Used for honest final eval. |
+| **train pool** | The 300 teams in `pool_split.json["train"]` used for GA fitness. |

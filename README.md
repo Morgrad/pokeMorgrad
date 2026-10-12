@@ -120,12 +120,16 @@ committed — the pipeline runs without re-scraping.
   seeds (heuristic pilot). ~3-point spread between runs, expected.
 - **BC v5** (`bc_best.pt`) reaches **57.9%** move accuracy on validation.
 - **BC pilot is functional but weak:** 18.3% win rate vs held-out (single
-  seed). Fixes applied 2026-10-12 (target semantics, disabled moves, model
-  cache) restored 3–5× throughput but not win rate. Retraining planned.
-- **GA is running overnight** with heuristic pilot (BC pilot too weak for
-  fitness signal — see `docs/STATE.md` §8).
-- **Open question:** can BC be improved past 60% move accuracy with more
-  data? Current training set is 28k rows from 5000 replays — target is 150k.
+  seed). The 2026-10-12 fixes (target semantics, disabled moves, model
+  cache) restored throughput but not win rate. Retraining is the next step.
+- **Training data rebuilt:** `data/training_data.jsonl` is 72,048 rows from
+  5001 replays (0.3% skip). Regenerate any time with
+  `python tools/build_training_data.py`.
+- **GA running overnight** (2 × 8h runs, heuristic pilot). BC pilot is too
+  weak for fitness — see `docs/STATE.md` §8.
+- **Open question:** can BC be improved past 60% move accuracy by retraining
+  on the outcome-weighted 72k-row set? `bc_train.py` already has the
+  oversampling hook.
 
 ---
 
