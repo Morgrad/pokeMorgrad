@@ -404,7 +404,7 @@ def crossover(p1, p2, constraints):
 _SEM = None
 
 
-async def _run_battle(team_str, opp_str, uid):
+async def _run_battle_once(team_str, opp_str, uid):
     async with _SEM:
         bot = opp = None
         try:
@@ -869,3 +869,13 @@ async def run_islands(
             open(path, "w").write(genome_to_text(isl.best_ever["genome"]))
             print(f"  [{isl.name}] champion: {isl.best_ever['fit']*100:.1f}% "
                   f"(gen {isl.best_ever['gen']}) -> {path}")
+
+
+async def _run_battle(team_str, opp_str, uid, retries=1):
+    """Run one battle, retrying on failure. Returns 0/1/None."""
+    for attempt in range(retries + 1):
+        result = await _run_battle_once(team_str, opp_str,
+                                        uid + attempt * 999_983)
+        if result is not None:
+            return result
+    return None

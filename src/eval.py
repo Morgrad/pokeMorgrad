@@ -46,7 +46,7 @@ def make_player(pilot, team_str, uid, prefix):
     )
 
 
-async def run_battle(pilot, team_str, opp_str, uid, sem):
+async def _run_battle_once(pilot, team_str, opp_str, uid, sem):
     async with sem:
         bot = opp = None
         try:
@@ -136,6 +136,16 @@ async def main_async(args):
                      if h_pct is not None and b_pct is not None else "-")
             print(f"{name:40s} {h_str:>8s} {b_str:>8s} {d_str:>8s}")
 
+
+
+async def run_battle(pilot, team_str, opp_str, uid, sem, retries=1):
+    """Run one battle with retries. Returns 0/1/None."""
+    for attempt in range(retries + 1):
+        result = await _run_battle_once(pilot, team_str, opp_str,
+                                        uid + attempt * 999_983, sem)
+        if result is not None:
+            return result
+    return None
 
 def main():
     parser = argparse.ArgumentParser(description="Unified team evaluation.")
