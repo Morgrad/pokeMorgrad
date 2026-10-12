@@ -78,7 +78,14 @@ class BCDataset(Dataset):
                 else:
                     slot_data.append((TYPE_NONE, 0, 0, mon))
 
-            self.samples.append((state, slot_data))
+            # Outcome-weighted sampling: duplicate decisions from winning
+            # sides so they contribute ~2x their share of the gradient.
+            # Cheap alternative to sample-weighted loss (no cross_entropy
+            # reduction='none' plumbing). side_won defaults to True when
+            # the field is missing (e.g. legacy data without winner info).
+            weight = 2 if o.get("side_won", True) else 1
+            for _ in range(weight):
+                self.samples.append((state, slot_data))
 
     def __len__(self):
         return len(self.samples)
