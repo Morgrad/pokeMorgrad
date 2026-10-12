@@ -641,6 +641,31 @@ def inject_immigrants(island, n):
     return added
 
 
+def _strip_species(genome, species_set, constraints):
+    """Replace any mon whose species is in species_set with a fresh random mon.
+    Preserves item-clause by tracking used items. Never touches constrained slots.
+    """
+    if not genome:
+        return genome
+    stripped = copy.deepcopy(genome)
+    used_items = {m["item"] for m in stripped if m and m.get("item")}
+    for slot, mon in enumerate(stripped):
+        if slot in constraints:
+            continue
+        if mon and mon.get("species") in species_set:
+            cands = [s["name"] for s in _BASE_SPECIES
+                     if s["name"] not in species_set and len(s["moves"]) >= 4]
+            if not cands:
+                continue
+            new_sp = random.choice(cands)
+            fresh = _fresh_mon(new_sp, used_items)
+            if fresh:
+                # Remove old item from used set if it's now unused
+                stripped[slot] = fresh
+                used_items.add(fresh["item"])
+    return stripped
+
+
 def ring_migrate(islands, n=2):
     tops = []
     for isl in islands:
@@ -658,6 +683,13 @@ def ring_migrate(islands, n=2):
             if j >= len(ranked):
                 break
             fixed = enforce_constraints(genome, isl.constraints)
+            # Strip any species that is a lock on the SOURCE island but
+            # not locked here. Without this, Umbreon leaks from island A
+            # into B/C and diversity collapses over generations.
+            src_constraints = islands[(i - 1) % len(islands)].constraints
+            foreign_locks = set(src_constraints.values()) - set(isl.constraints.values())
+            if foreign_locks:
+                fixed = _strip_species(fixed, foreign_locks, isl.constraints)
             isl.population[ranked[-1 - j]] = fixed
             isl.fitness[ranked[-1 - j]] = 0.0
 
