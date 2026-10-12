@@ -3,9 +3,8 @@ Full pre-flight audit before launching the counter-meta GA.
 Checks every layer of the data + generation pipeline.
 """
 import os, sys, glob, random, json, traceback
-sys.path.insert(0, os.path.expanduser("~/project/src"))
-import regmc_db as DB
-import ga_core as G
+from src import regmc_db as DB
+from src import ga_core as G
 
 random.seed(0)
 
