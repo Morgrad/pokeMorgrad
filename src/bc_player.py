@@ -12,7 +12,7 @@ sys.path.insert(0, os.path.expanduser("~/project/src"))
 
 from poke_env.player import Player
 from poke_env.battle import DoubleBattle
-from state_encoder_v2 import StateEncoderV2, N_SLOTS, N_MOVES_PER, CONT_DIM
+from state_encoder import StateEncoderV2, N_SLOTS, N_MOVES_PER, CONT_DIM
 from bc_train_v4 import BCModelV4, TYPE_MOVE, TYPE_SWITCH, TYPE_NONE, NEG_INF
 
 MODEL_PATH = os.path.expanduser("~/project/output/models/bc_v4_best.pt")

@@ -1,0 +1,19 @@
+data/
+data/*
+!data/baseline_team.txt
+!data/meta_items.json
+!data/pool_split.json
+!data/species_move_priors.json
+!data/regmc_db.json
+!data/showdown_replays_meta/
+!data/regional_teams/
+output/
+# runtime output only — do NOT ignore run/*.py or run/*.sh
+run/*.log
+run/*.pid
+run/*.out
+run/nohup.out
+__pycache__/
+*.pt
+*.pyc
+nohup.out

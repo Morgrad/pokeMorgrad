@@ -7,7 +7,7 @@ import torch.nn.functional as F
 from torch.utils.data import Dataset, DataLoader
 
 sys.path.insert(0, os.path.expanduser("~/project/tools"))
-from state_encoder_v2 import StateEncoderV2, N_SLOTS, N_MOVES_PER, CONT_DIM
+from src.state_encoder import StateEncoderV2, N_SLOTS, N_MOVES_PER, CONT_DIM
 
 DATA = os.path.expanduser("~/project/data/training_data.jsonl")
 PRIORS_PATH = os.path.expanduser("~/project/data/species_move_priors.json")
