@@ -1,277 +1,260 @@
-> ⚠️ **Last verified:** commit `2739569`. Some details may be stale — see the root [README](../README.md) and `git log` for current truth.
+> **Bootstrap doc.** Read this first. It should let a fresh agent (or human)
+> start contributing within minutes. Update it every time something material
+> changes — do not let it drift. `STATE_history.md` is frozen history;
+> `GLOSSARY.md` defines terms; the root `README.md` is the public pitch.
 
-# Pokémon AI Project — State
+# Project State
 
-Last updated: 2026-10-11 23:35
-Full chronological history: see STATE_history.md
-Acronyms and terms: see GLOSSARY.md
-
----
-
-## Recent changes (2026-10-12)
-
-- `src/` is now a proper Python package — no `sys.path` hacks, no versioned filenames.
-- GA merged into one file: `src/ga_core.py` (single-pop + island model).
-- BC split into `src/bc_model.py` / `src/bc_train.py` / `src/bc_player.py`.
-- Eval unified: `python -m src.eval --pilot heuristic|bc|both`.
-- `data/` whitelisted in `.gitignore` — small canonical files tracked, big ones local-only.
-- Root `README.md` added; `docs/README.md` is now a pointer.
-- 43 MB of raw replays moved out of git (`archive/replays/` → `data/replays/`).
-- `pyproject.toml`, `LICENSE` (MIT), `.gitattributes` added.
-
-## Mission
-Find a Reg M-C team that beats the elite tournament meta. Build reusable
-pipeline that adapts to new regulations in ~2 weeks.
-
-**STATUS (2026-10-12):** Repo consolidated into a clean `src/` package with a
-unified GA + BC + eval pipeline. BC v5 checkpoint (`bc_best.pt`) reaches **57.9%**
-move accuracy on validation. **Active bug:** the BC pilot's move mask is degenerate
-for species missing from `species_move_priors.json` → it can predict `Struggle` or
-off-list moves → Showdown rejects and re-asks → infinite loop. Fix in progress.
+**Last verified:** 2026-10-12
+**Active branch:** `main`
+**Repo:** https://github.com/Morgrad/pokeMorgrad
 
 ---
 
-## Headline result (2026-10-11, PILOT-LIMITED)
+## 1. What this project is
 
-Held-out 100 regional teams × 3 seeds, N=300 each:
+Find the best Pokémon VGC **Regulation M-C** team by combining:
 
-| Champion              | Held-out |
-|-----------------------|----------|
-| baseline              | 58.3%    |
-| ga_run1_island_A      | 74.0%    |
-| ga_run1_island_B      | 76.7%    |
-| ga_run1_island_C      | 77.7%    |
-| **ga_run2_island_A**  | **78.7%** (best) |
-| ga_run2_island_B      | 74.7%    |
-| ga_run2_island_C      | 74.0%    |
+1. **Behavior cloning (BC)** — a neural net trained on ~5000 human Showdown
+   replays, used as a pilot that plays any 6-mon team.
+2. **Genetic algorithm (GA)** — evolves teams against 300 regional top-cut
+   teams using the pilot for fitness.
+3. **Held-out eval** — 100 regional teams never seen during GA, for honest
+   scoring.
 
-**These numbers are pilot-limited.** They measure "best team for
-SimpleHeuristicsPlayer" (broken pilot), not "best team for VGC." See below.
+Long-term goal: a reusable pipeline that adapts to any new VGC regulation in
+~2 weeks by swapping the scraper source and rebuilding `regmc_db.json`.
 
 ---
 
-## CRITICAL FINDING — pilot is broken
+## 2. Current status
 
-Move-frequency probe (20 battles, 276 decisions) on the champion:
-
-| Action         | % of clicks |
-|----------------|-------------|
-| Protect        | 0%          |
-| Fake Out       | 0%          |
-| Parting Shot   | 0%          |
-| U-turn / VSwitch | 0%        |
-| Follow Me / Tailwind / TR | 0% |
-| Dig            | 19.6%       |
-| Pass (Dig charge) | 19.6%    |
-| Switch         | 12.7%       |
-| Other (damage) | ~48%        |
-
-SimpleHeuristicsPlayer is **Tier 0** — greedy, doubles-unaware, clicks the
-highest-damage move. It cannot execute Protect, Fake Out, pivots, or any
-positioning play.
-
-**Implication:** all GA results so far are "best team for a broken pilot."
-Not comparable to real VGC. This is the single biggest limitation of the
-project right now.
+| Component | Status | Notes |
+|---|---|---|
+| Data pipeline (scrape → parse → DB) | ✅ Working | 5000 replays, 144 MB `training_data.jsonl` (local-only) |
+| Canonical DB (`regmc_db.json`) | ✅ Working | 391 legal species, 166 items, 515 moves |
+| Legality gate (Showdown validator) | ✅ Working | Zero invalid genomes in fuzz tests |
+| BC trainer (`src/bc_train.py`) | ✅ Working | Produces `bc_best.pt`, 57.9% move accuracy |
+| BC pilot (`src/bc_player.py`) | ⚠️ **Active bug** | See §5 |
+| GA engine (`src/ga_core.py`) | ✅ Working | Smoke tests pass: single-pop + islands + migration + breeding |
+| Eval (`src/eval.py`) | ✅ Working | `--pilot heuristic|bc|both`, held-out or training pool |
+| Baseline team score | ✅ 59.0% | vs 100 held-out teams, heuristic pilot, seed 100 |
 
 ---
 
-## Also discovered 2026-10-11
-
-- **Umbreon constraint bug** in `ga_core.py` — migration/crossover
-  didn't enforce locked slots. Fixed at 22:22. Needs rerun to test the
-  real Umbreon experiment.
-- **All 6 champions converged to the same composition**:
-  Noivern / Gliscor / Incineroar / Gholdengo / Rillaboom / Garchomp.
-  Islands B and C (both free) ended identical — migration may be
-  over-copying.
-- **Replay data verified public.** `gen9championsvgc2026regmc` format
-  exists on replay.pokemonshowdown.com. ~5000 replays scraped at 1200+.
-
----
-
-## Next: Path 3 — BC + RL pilot rebuild
-
-**Goal:** train a competent pilot from ~5000 human replays in our exact
-format. Then rerun GA with that pilot.
-
-### Pipeline (to build)
-1. **Parse replays** → `(state, action)` pairs (~100k examples)
-   - `~/project/tools/parse_replays.py` — to write
-2. **Train BC policy** — imitate human play
-   - `~/project/src/bc_train.py` — to write
-3. **Evaluate BC** vs SimpleHeuristics, vs baseline team
-4. **RL fine-tune** (weeks later)
-5. **Integrate into GA**, rerun
-
-### Data status
-- ~5000 replays in `~/project/data/showdown_replays/`
-- Ratings: 750 at 1600+, 11 at 1800+, 0 at 2000+
-- Format is young — top of ladder is only 1879
-- **Expect quality to improve over time** as the format matures
+## 3. Architecture at a glance
+replays (data/showdown_replays/, gitignored, 60 MB)
+│ tools/replay_tracker.py
+▼
+training_data.jsonl (data/, gitignored, 144 MB)
+│ src/bc_train.py
+▼
+output/models/bc_best.pt ◄─── src/bc_player.py loads it as a poke_env Player
+│
+│ fitness signal
+▼
+┌───────────────────────────────────┐
+│ src/ga_core.py │
+│ run_ga() single-pop (debug) │
+│ run_islands() island model (prod)│
+└──────────────┬────────────────────┘
+│
+▼
+output/champions/ga_<run>island<X>.txt
+│
+▼
+src/eval.py (held-out, honest score)
 
 ---
 
-## Previous milestones
+## 4. Repository layout
+~/project/
+├── README.md public pitch
+├── pyproject.toml packaging + ruff config
+├── LICENSE MIT
+├── .gitignore data/* whitelist
+├── .gitattributes line endings + binary markers
+│
+├── data/ read-only inputs (mostly gitignored)
+│ ├── regmc_db.json canonical format data ← TRACKED
+│ ├── baseline_team.txt reference team ← TRACKED
+│ ├── pool_split.json 300 train / 100 holdout ← TRACKED
+│ ├── meta_items.json per-species item frequencies ← TRACKED
+│ ├── species_move_priors.json per-species move usage ← TRACKED
+│ ├── regional_teams/ 400 real top-cut teams ← TRACKED
+│ ├── showdown_replays_meta/ replay index ← TRACKED
+│ ├── showdown_replays/ raw scraped replays ← LOCAL (60 MB)
+│ ├── training_data.jsonl parsed decisions ← LOCAL (144 MB)
+│ └── replays/ legacy parsed replays ← LOCAL
+│
+├── src/ Python package (from src import x)
+│ ├── init.py
+│ ├── regmc_db.py DB access + team validation
+│ ├── showdown_validator.py subprocess wrapper around Showdown's validator
+│ ├── showdown_validate.js Node script invoked by the wrapper
+│ ├── state_encoder.py battle state → tensors
+│ ├── bc_model.py BCModel + checkpoint save/load + move masks
+│ ├── bc_train.py training loop, saves output/models/bc_best.pt
+│ ├── bc_player.py poke_env Player wrapping BCModel
+│ ├── ga_core.py GA engine (single-pop + island model)
+│ ├── eval.py unified evaluation CLI
+│ └── audit_before_launch.py pre-flight: DB integrity, fuzz tests
+│
+├── run/ entry points
+│ ├── ga_run.py launch island GA (run_id, hours)
+│ └── ga_overnight.sh 10h chain: run1 → run2 → final eval
+│
+├── tools/ data pipeline (setup scripts)
+│ ├── build_regmc_db.js rebuild regmc_db.json from Showdown dex
+│ ├── scrape_replays.py scrape human replays from Limitless
+│ ├── replay_tracker.py parse replays → training_data.jsonl
+│ ├── batch_parse.py batch driver
+│ └── build_species_priors.py build species_move_priors.json
+│
+├── ops/ server management
+│ └── start_server.sh, stop_all.sh, stop_everything.sh, watch_server.sh
+│
+├── output/ generated (gitignored)
+│ ├── models/ bc_best.pt, bc_best_move.pt, ...
+│ ├── champions/ ga_<run>island<X>.txt
+│ └── checkpoints/v6/ per-generation GA snapshots
+│
+├── docs/ this folder + STATE_history.md + GLOSSARY.md
+└── archive/ frozen history — old scripts, old runs, old data
 
-- **2026-10-09** — Initial bot + GA v1 (NeuralPlayer pilot)
-- **2026-10-10** — Discovered NeuralPlayer exploit (its champions only
-  beat NeuralPlayer). Pivoted to SimpleHeuristics pilot. Built canonical
-  `regmc_db.json` from Showdown dex + Showdown legality gate. Scraped 400
-  regional top-cut teams.
-- **2026-10-11** — Island GA v6, refactored directory, ran 10h chain,
-  diagnosed pilot as broken, started Path 3.
-
----
-
-## Key findings to remember
-
-1. **SimpleHeuristics > NeuralPlayer by 22 points** as pilot. And
-   SimpleHeuristics itself is broken.
-2. **Random species swaps produce 2–5% win rate teams.** Catastrophic.
-   Always use role/species constraints.
-3. **GA diversity collapses in ~12 generations** without intervention.
-4. **Umbreon is off-meta** (not in top 20 species) but works in a support
-   shell: Snarl + Yawn + Whirlwind partners.
-5. **Top tournament meta:** Rillaboom 53%, Sneasler 40%, Incineroar 34%,
-   Gholdengo 31%, Kingambit 31%.
-6. **Items matter** (Focus Sash, White Herb, mega stones). Prior belief
-   they were noise was wrong.
-7. **Showdown format dex is the source of truth.** Never hand-maintain
-   format data — extract from Showdown.
-
----
-
-## Directory layout
-
-    ~/project/
-    ├── data/          read-only inputs
-    │   ├── regmc_db.json         canonical format data (from Showdown dex)
-    │   ├── baseline_team.txt     reference team for comparison
-    │   ├── pool_split.json       300 train / 100 held-out
-    │   ├── meta_items.json       empirical item distribution per species
-    │   ├── regional_teams/       400 real tournament top-cut teams
-    │   └── showdown_replays/     ~5000 scraped human replays
-    ├── src/           Python modules
-    │   ├── regmc_db.py           data access + team validator
-    │   ├── showdown_validator.py legality gate
-    │   ├── ga_core.py            base GA engine
-    │   └── ga_core.py         island model + checkpoints
-    ├── run/           entry points
-    │   ├── ga_run.py             5-hour GA launcher
-    │   └── ga_overnight.sh       10-hour chain
-    ├── tools/         setup scripts
-    │   ├── build_regmc_db.js     rebuild DB from Showdown
-    │   ├── scrape_replays.py     replay scraper
-    │   └── scrape_replays.py regional top-cut scraper
-    ├── ops/           server management
-    │   └── start_server.sh / stop_all.sh / watch_server.sh
-    ├── output/
-    │   ├── champions/            GA team files
-    │   └── checkpoints/v6/       per-generation snapshots
-    ├── docs/          this folder
-    └── archive/       old code, one-offs, old pools
+**Never edit `~/pokemon-showdown/`** — separate git repo, used as the simulator.
 
 ---
 
-## Key paths
+## 5. Active bugs / known issues
 
-| Purpose             | Path |
-|---------------------|------|
-| DB                  | `~/project/data/regmc_db.json` |
-| Baseline team       | `~/project/data/baseline_team.txt` |
-| Training pool (300) | `~/project/data/regional_teams/` via `pool_split.json` |
-| Held-out pool (100) | same dir, same split |
-| Item prior          | `~/project/data/meta_items.json` |
-| Replays             | `~/project/data/showdown_replays/` |
-| GA engine           | `~/project/src/ga_core.py` + `ga_core.py` |
-| Showdown gate       | `~/project/src/showdown_validator.py` |
-| Chain script        | `~/project/run/ga_overnight.sh` |
-| Old 681-team pool   | `~/project/archive/pools/real_teams_681_limitless/` |
+### 5.1 BC pilot was looping on invalid moves — fix applied, pending re-test
 
----
+**Symptom:** A battle called `choose_move` 100–2000+ times per turn. Showdown
+rejected our order, re-asked, we answered the same way, loop. `Struggle`
+appeared in ~50% of actions.
 
-## Architecture decisions (locked in)
+**Root causes found and fixed (2026-10-12):**
+1. `build_move_mask` initialized to all-1s → species missing from priors got a
+   fully-open mask → model picked anything, incl. `Struggle`.
+   *Fix:* default 0; explicit zeroing of `Struggle` and index 0.
+2. Inference used species-priors mask, not live moveset.
+   *Fix:* `_live_moveset_mask(battle_mon)` — O(4) lookups via precomputed map.
+3. Fallback sent moves with 0 PP.
+   *Fix:* fallback filters `current_pp > 0`.
+4. `choose_move` nested `choose_random_move` (a `DoubleBattleOrder`) inside
+   another `DoubleBattleOrder` → 3-part invalid command.
+   *Fix:* if either slot fails, return a single random double-order.
+5. **Doubles move orders lacked a target.** Showdown error was
+   `Can't move: Yawn needs a target`. Wire message was `/choose move yawn`
+   with no target.
+   *Fix:* `create_order(move, move_target=slot_idx + 1)`.
 
-- **Showdown format dex is the source of truth.** No hand-maintained JSON.
-- **Every generated team passes the Showdown legality gate** before
-  entering a population. Illegal teams can't exist.
-- **Island model** — 3 populations + ring migration every 5 gens.
-- **Stagnation restart** after 5 gens no improvement.
-- **Diversity monitor** — inject 3 randoms if unique species < 15.
-- **Held-out eval** — fitness on 300 training teams, final eval on the
-  other 100. Never evaluate on training data.
+**Status:** Awaiting re-test. If `calls/turn` drops to ~1 and `Struggle`
+disappears, this is resolved.
 
----
+### 5.2 GA island migration leaks locked species into free islands
 
-## Known weaknesses
+Island A (`{0: "Umbreon"}`) migrating a top genome to island B (no
+constraints) carries the Umbreon along. Over many gens B drifts toward
+Umbreon-heavy populations, undermining diversity. **Not urgent.**
 
-- **Pilot is broken** (see CRITICAL FINDING above). Path 3 is the fix.
-- **Items under-optimized** at N=800 (SE ±1.6%, item effects 1–4%).
-  Mitigated by `meta_items.json` prior.
-- **Training pool small** (300). Could scrape more regionals.
-- **Migration may over-copy** — islands B and C ended identical.
+### 5.3 No retry on Showdown timeouts
 
----
-
-## If something crashes
-
-    # Resume run1 from latest checkpoint
-    cd ~/project && source ~/llm-env/bin/activate
-    nohup python ~/project/run/ga_run.py run1 5 > /tmp/ga_run1_resume.log 2>&1 &
-    disown
-    # Auto-resumes from output/checkpoints/v6/run1/gen_NNNN.json
+~5–10% of battles hit the 20s/30s timeout and return `None` (skipped from
+fitness). Consider a 1-retry-with-lower-concurrency policy later.
 
 ---
 
-## Long-term: mature alongside the format
+## 6. Environment
 
-The pipeline is reusable. Every cycle improves as the format matures.
+- **Host:** Windows 11 + WSL2 (Ubuntu)
+- **GPU:** AMD 7900 XTX (ROCm 6.x) — torch uses `cuda` device name
+- **Venv:** `~/llm-env/` (`source ~/llm-env/bin/activate`)
+- **Showdown server:** `~/pokemon-showdown/` on `localhost:8000`
+- **Python:** 3.12
+- **Key deps:** `torch>=2.0`, `numpy`, `poke-env>=0.8`
 
-| Cycle | When | Data | Pilot | Deliverable |
-|-------|------|------|-------|-------------|
-| **1 (now)** | Oct 2026 | ~5000 replays, top 1879 | BC (mixed quality) | Working pipeline |
-| **2** | Jan 2027 | 10× replays, top 2100+ | BC retrained | Team-quality improvement |
-| **3** | Apr 2027 | Format peak, top 2200+ | BC + RL fine-tune | Real meta-breaker |
-| **4+** | Ongoing | New regulation M-D etc. | Adapt | Fresh cycle in ~2 weeks |
-
-**Infra that survives all cycles:**
-- `tools/scrape_replays.py` — data collection
-- `tools/parse_replays.py` (to write) — replay → training pairs
-- `src/bc_train.py` (to write) — BC model training
-- `src/ga_core.py` — search engine
-- `src/showdown_validator.py` — legality gate
-- `data/regmc_db.json` — canonical format data
+Harmless warning to ignore: `agent.cpp:608] sysfs nodes path
+'/sys/class/kfd/kfd/topology/nodes' does not exist` — ROCm probing WSL2.
 
 ---
 
-## Rollback anchors
+## 7. Key commands
 
-- **Pre-refactor snapshot:** `~/cleanup_2026-10-11/refactor_20261011_005140/project_before`
-- **Today's 10h run:** `~/project/output/archive/2026-10-11-10h-run/`
-
+| Task | Command | Notes |
+|---|---|---|
+| Pre-flight audit | `python -m src.audit_before_launch` | ~15s, 3500 fuzz tests |
+| Train BC | `python -m src.bc_train` | Needs `data/training_data.jsonl` |
+| Launch 5h GA | `python run/ga_run.py run1 5` | Islands A/B/C |
+| Launch 10h chain | `bash run/ga_overnight.sh` | run1 + run2 + eval |
+| Eval (heuristic) | `python -m src.eval <team.txt>` | Fast |
+| Eval (BC pilot) | `python -m src.eval --pilot bc <team.txt>` | Slow |
+| Compare pilots | `python -m src.eval --pilot both <team.txt>` | Delta table |
+| Held-out pool size | `python -c "from src.ga_core import heldout_pool; print(len(heldout_pool()))"` | Should be 100 |
+| Rebuild DB | `node tools/build_regmc_db.js` | Requires Showdown running |
+| Scrape replays | `python tools/scrape_replays.py` | → `data/showdown_replays/` |
+| Parse replays | `python tools/replay_tracker.py` | → `data/training_data.jsonl` |
 
 ---
 
-## Update 2026-10-12 00:05 — BC v1 trained
+## 8. Open questions (things to decide)
 
-### Result
-- 10 epochs, ~90s total
-- train_acc 29.8%, val_acc 21.0% (best at epoch 7)
-- val_loss increased after epoch 7 → overfitting
-- Model: 18.3M params, one-hot inputs (16,925 dims)
+1. **Should GA use the BC pilot for fitness, or the heuristic pilot?**
+   - Heuristic: fast but optimizes for the wrong policy.
+   - BC: slow (~1 battle/2s) but honest.
+   - Proposed two-phase: GA with heuristic → final eval with BC.
+2. **Should island migration preserve constraints?** See §5.2.
+3. **Is 57.9% move accuracy enough, or retrain with more data / epochs
+   before launching a long GA run?**
+4. **Do we need a persistent replay server or cached team library** to speed
+   up GA? Currently every battle spins up a fresh account.
 
-### Interpretation
-- ~100× better than random (0.2%)
-- Not yet at the 35-45% target for a competent pilot
-- Clear diagnosis: too much capacity for 97k training examples
+---
 
-### Saved
-- `~/project/output/models/bc_v1_best.pt`
-- `~/project/output/models/bc_v1_final.pt`
+## 9. Design decisions
 
-### v2 plan (tomorrow)
-1. Species/move embeddings (not one-hot)
-2. Smaller model (~3M params)
-3. Early stopping on val_loss
-4. Target: val_acc 35%+
+- **Showdown is the source of truth.** Every format fact comes from
+  `regmc_db.json`, regenerated from Showdown's dex by `tools/build_regmc_db.js`.
+- **`src/` is a package, not a folder of scripts.** No `sys.path.insert`.
+  Import as `from src.ga_core import run_islands`.
+- **No versioned filenames in active code.** Version history lives in git.
+  Archived scripts (`archive/`) keep their historical names.
+- **Big data stays local.** `data/training_data.jsonl`, `data/showdown_replays/`,
+  `data/replays/` are gitignored. Small canonical files are tracked so the
+  pipeline runs without re-scraping.
+- **Held-out eval is sacred.** Fitness uses `pool_split.json["train"]` (300).
+  Final eval uses `["holdout"]` (100). Never mix.
+- **GA has two tiers in one file.** `run_ga` = single-population debug.
+  `run_islands` = production with migration, stagnation restart, checkpointing.
+
+---
+
+## 10. History / prior decisions (compressed)
+
+- **Day 1 (2026-10-09):** WSL2 + ROCm + PyTorch on 7900 XTX.
+- **Day 2 (2026-10-10):** First GA, replay parser, NeuralPlayer pilot.
+- **Day 3 (2026-10-11):** Canonical DB, Showdown legality gate, island GA,
+  pilot diagnosed as broken (heuristic-vs-heuristic training signal).
+- **Day 4 (2026-10-12):** Full repo consolidation — package `src/`, merged GA,
+  split BC into model/train/player, unified eval, root README,
+  `pyproject.toml`, `filter-repo` to strip 144 MB file from history, BC pilot
+  loop bug diagnosed and fixed.
+
+Full log in `STATE_history.md`.
+
+---
+
+## 11. How to resume work (for an agent)
+
+1. `cd ~/project && source ~/llm-env/bin/activate`
+2. Run `python -m src.audit_before_launch`. If it passes, the data layer is
+   healthy.
+3. Check §5 "Active bugs" — pick the top item and reproduce it.
+4. **If touching the BC pilot:** after any change, run the 3-battle diagnostic
+   and verify `calls/turn` stays below 5. A higher number means the loop bug
+   is back. Look for `[Invalid choice]` errors in the output.
+5. **If touching the GA:** run a 1-generation smoke test with 1 island,
+   pop 4, 20 battles/genome before committing.
+6. Update this file (§2 status, §5 bugs) in the same commit as any material
+   change.
