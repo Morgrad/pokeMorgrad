@@ -36,6 +36,28 @@ def parse_log(log):
     return p1, p2, winner, is_tie
 
 
+
+def _target_idx(side, target_str):
+    """Normalize Showdown target string to canonical index.
+
+    0 = our right (-2), 1 = our left (-1), 2 = no target (0),
+    3 = opp left (1), 4 = opp right (2).
+    """
+    if not target_str or target_str.startswith("no "):
+        return 2
+    # Strip the " : SpeciesName" suffix that Showdown appends
+    slot = target_str.split(":", 1)[0].strip()
+    if side == "p1":
+        my_left, my_right, opp_left, opp_right = "p1a", "p1b", "p2a", "p2b"
+    else:
+        my_left, my_right, opp_left, opp_right = "p2a", "p2b", "p1a", "p1b"
+    if slot == my_left:  return 1
+    if slot == my_right: return 0
+    if slot == opp_left:  return 3
+    if slot == opp_right: return 4
+    return 2  # fallback
+
+
 def main():
     files = sorted(f for f in REPLAY_DIR.glob("*.json")
                    if not f.name.endswith(".meta.json"))
@@ -76,6 +98,12 @@ def main():
                         row["side_won"] = (winner == p2)
                     else:
                         continue
+                    # Extract target_idx per slot from `chosen`
+                    chosen = row.get("chosen", {}).get(side, {}) or {}
+                    for slot_name in ("a", "b"):
+                        act = chosen.get(slot_name) or {}
+                        tgt = act.get("target")
+                        row[f"target_{slot_name}"] = _target_idx(side, tgt)
                     fout.write(json.dumps(row) + "\n")
                     n_rows += 1
 
