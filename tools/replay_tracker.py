@@ -135,6 +135,10 @@ class Tracker:
         self.turn = 0
         self.pending_actions = {"p1": {}, "p2": {}}  # slot → action
         self.outputs = []
+        # turn number -> list of emitted output dicts still awaiting `chosen`.
+        # Lets _backfill_chosen fill the just-ended turn in O(1) instead of
+        # rescanning all of self.outputs every turn (the old O(turns²) loop).
+        self._awaiting_by_turn = {}
         self.full_moves = {"p1": {}, "p2": {}}  # set by run()
 
     def emit_decision(self):
@@ -152,7 +156,7 @@ class Tracker:
             # Legal actions (approximate — we know moves from reveal + bench from reveals)
             legal = self.compute_legal_actions(side)
 
-            self.outputs.append({
+            entry = {
                 "replay_id": self.data.get("id"),
                 "rating": self.data.get("rating"),
                 "turn": self.turn,
@@ -166,7 +170,25 @@ class Tracker:
                 },
                 "legal_actions": legal,
                 "chosen": {},  # filled as we process the turn's actions
-            })
+            }
+            self.outputs.append(entry)
+            self._awaiting_by_turn.setdefault(self.turn, []).append(entry)
+
+    def _backfill_chosen(self):
+        """Snapshot pending_actions into the outputs of the turn that just ended.
+
+        Equivalent to the old "scan every output where turn == self.turn and
+        chosen == {}" pass: the per-turn index holds exactly those still-unfilled
+        entries (added on emit, dropped here on fill), so this is O(entries-this-
+        turn) rather than O(all-outputs). Each entry still receives *both* sides'
+        pending actions, matching the original behavior.
+        """
+        awaiting = self._awaiting_by_turn.pop(self.turn, None)
+        if not awaiting:
+            return
+        for entry in awaiting:
+            for side_id in ("p1", "p2"):
+                entry["chosen"][side_id] = dict(self.pending_actions[side_id])
 
     def _shallow_mon_full_moves(self, m, side_id):
         """Like _shallow_mon but with the full moveset the player had."""
@@ -508,12 +530,8 @@ class Tracker:
             elif tag == "showteam":
                 self.handle_showteam(parts)
             elif tag == "turn":
-                # Snapshot pending_actions into ALL outputs of the previous turn
-                if self.outputs:
-                    for prev in self.outputs:
-                        if prev["turn"] == self.turn and prev["chosen"] == {}:
-                            for side_id in ("p1", "p2"):
-                                prev["chosen"][side_id] = dict(self.pending_actions[side_id])
+                # Fill in the previous turn's choices, then open the new turn.
+                self._backfill_chosen()
                 self.pending_actions = {"p1": {}, "p2": {}}
                 try:
                     self.turn = int(parts[2])
@@ -581,11 +599,7 @@ class Tracker:
                             side.mons[idx]["is_active"] = False
 
         # Final snapshot: fill chosen for the last turn (both side-outputs)
-        if self.outputs:
-            for prev in self.outputs:
-                if prev["turn"] == self.turn and prev["chosen"] == {}:
-                    for side_id in ("p1", "p2"):
-                        prev["chosen"][side_id] = dict(self.pending_actions[side_id])
+        self._backfill_chosen()
 
         return self.outputs
 
