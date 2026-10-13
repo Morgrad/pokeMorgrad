@@ -45,13 +45,22 @@ _TARGET_MAP = {0: 2, -1: 1, -2: 0, 1: 3, 2: 4}
 
 
 def _get_shared_model():
-    """Load encoder + model + priors + move mask once; cache by DEVICE."""
+    """Load encoder + model + priors + move mask once; cache by DEVICE.
+
+    This is the LIVE checkpoint read site. The keys read from the saved payload
+    — `arch`, `model_state`, `val_target_acc`, `val_move_acc`, `epoch` — are the
+    checkpoint contract (see bc_model.save_checkpoint). `arch` decides the class
+    (v3 -> BCModelV3 else BCModel); instantiating the wrong one makes
+    load_state_dict fail. Never rename these keys. Cached per DEVICE because
+    poke_env may spin up many BCPlayer instances per run and the GPU load is
+    expensive — all of them share one model.
+    """
     if DEVICE not in _MODEL_CACHE:
         encoder = StateEncoder()
         priors = json.load(open(PRIORS_PATH))
 
         raw = torch.load(MODEL_PATH, map_location=DEVICE)
-        arch = raw.get("arch", "v2")
+        arch = raw.get("arch") or "v2"   # `or`: bc_best.pt stores arch=None (pre-arch ckpt)
 
         if arch == "v3":
             model = BCModelV3(encoder.n_species, encoder.n_moves,
@@ -80,6 +89,16 @@ def _to_sd_id(name: str) -> str:
 
 
 class BCPlayer(Player):
+    """poke_env Player driven by the BC model.
+
+    The model proposes; poke_env's `valid_orders` disposes — we only ever score
+    and pick among orders poke_env already certified legal, so the pilot cannot
+    emit an illegal command (the old loop bug; see STATE.md §5.1). Any time the
+    state looks unexpected we fall back to choose_random_move rather than risk a
+    reject/retry loop. The shared model/encoder/mask come from the module cache;
+    the per-instance dicts below translate between Showdown ids and our vocab.
+    """
+
     def __init__(self, *args, **kwargs):
         self.encoder, self.model, self.priors, self.move_mask, self.arch = \
             _get_shared_model()
@@ -217,6 +236,14 @@ class BCPlayer(Player):
     # ---- move selection ----
 
     def choose_move(self, battle):
+        """Pick a double order: score each slot's legal options, resolve clashes.
+
+        Guards first: singles battle or malformed valid_orders -> random. Then
+        encode once, run the model once, score slot a and slot b independently,
+        argmax each. The one subtle case is a SWITCH collision — both slots
+        choosing the same bench mon is illegal — so the lower-scoring slot is
+        rerouted to its best move (or an alternative switch) instead.
+        """
         if not isinstance(battle, DoubleBattle):
             return self.choose_random_move(battle)
 

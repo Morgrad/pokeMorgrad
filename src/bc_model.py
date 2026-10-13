@@ -1,12 +1,20 @@
-"""Neural models + checkpoint I/O for the BC pilot.
+"""
+bc_model.py — Neural models + checkpoint I/O for the BC pilot.
 
-Two architectures:
-  BCModel    (v2) — flat MLP trunk. The production model; bc_best.pt was
-                    trained with this. OUTPUTS=6.
-  BCModelV3  (v3) — transformer over 12 slot tokens + 1 field token.
-                    Adds a per-slot target head. OUTPUTS=8.
+Two architectures live here; a checkpoint's `arch` field decides which one a
+loader instantiates:
+  BCModel    (v2) — flat MLP trunk. The production model; bc_best.pt was trained
+                    with this. OUTPUTS=6 (type/move/switch × two slots a/b).
+  BCModelV3  (v3) — transformer over 12 slot tokens + 1 field token, plus a
+                    per-slot target head. OUTPUTS=8.
 
-Callers should check `model.OUTPUTS` to know whether to unpack 6 or 8 tensors.
+Callers check `model.OUTPUTS` to know whether to unpack 6 or 8 tensors
+(see bc_player._get_shared_model / choose_move).
+
+CHECKPOINT CONTRACT: every name and dimension below is frozen — the saved
+state_dict in output/models/bc_best.pt is keyed by these exact attribute names
+and sized by these exact constants. See the banner by the constants. Comment
+freely; renaming a head or resizing an embedding silently breaks load_state_dict.
 """
 import os
 
@@ -16,36 +24,62 @@ import torch.nn as nn
 
 from src.state_encoder import N_SLOTS, N_MOVES_PER, CONT_DIM
 
-# Architecture constants
+# =============================================================================
+# CHECKPOINT CONTRACT — DO NOT RENAME OR RESIZE
+# =============================================================================
+# These widths set the embedding-table columns and therefore the trunk's first
+# Linear (flat = per_mon * N_SLOTS + field_width). Change one and the trained
+# weights no longer fit. They are duplicated nowhere else — this is the source.
 EMB_SPECIES = 32
 EMB_MOVE = 16
 EMB_ITEM = 16
 EMB_ABILITY = 16
 
+# Pre-softmax mask sentinel. Added to logits of illegal actions so softmax
+# drives them to ~0. Deliberately -1e4, NOT -inf: -inf * 0 (or an all-masked
+# row) produces NaNs that poison the loss; a large finite negative does not.
+# Consumed by bc_train's masked cross-entropy — keep it finite.
 NEG_INF = -1e4
+
+# Action "type" head classes and the per-slot target classes. The target order
+# mirrors bc_player._TARGET_MAP; N_TARGETS is part of the v3 checkpoint shape.
 TYPE_MOVE, TYPE_SWITCH, TYPE_NONE = 0, 1, 2
 N_TARGETS = 5   # 0=our right, 1=our left, 2=none, 3=opp left, 4=opp right
 
+# Field vector width (state_encoder.encode_field). Named here because the trunk
+# and field_proj both consume it; it coincidentally equals CONT_DIM (17) but is
+# a different vector — do not alias the two.
+FIELD_DIM = 17
 
-# ────────────────────────── v2 (production) ──────────────────────────
+
+# =============================================================================
+# v2 — BCModel (production: flat MLP trunk)
+# =============================================================================
 
 class BCModel(nn.Module):
     OUTPUTS = 6
 
     def __init__(self, n_species, n_moves, n_items, n_abilities):
         super().__init__()
+        # padding_idx=0 keeps the "unknown/empty" id (state_encoder reserves 0)
+        # pinned at a zero vector that never receives gradient.
         self.sp_emb = nn.Embedding(n_species, EMB_SPECIES, padding_idx=0)
         self.mv_emb = nn.Embedding(n_moves, EMB_MOVE, padding_idx=0)
         self.it_emb = nn.Embedding(n_items, EMB_ITEM, padding_idx=0)
         self.ab_emb = nn.Embedding(n_abilities, EMB_ABILITY, padding_idx=0)
 
+        # Flattened input width: every slot's embeddings+cont concatenated, times
+        # 12 slots, plus the single field vector. This sets trunk[0]'s in_features
+        # and is therefore frozen by the checkpoint.
         per_mon = EMB_SPECIES + EMB_MOVE * N_MOVES_PER + EMB_ITEM + EMB_ABILITY + CONT_DIM
-        flat = per_mon * N_SLOTS + 17
+        flat = per_mon * N_SLOTS + FIELD_DIM
 
         self.trunk = nn.Sequential(
             nn.Linear(flat, 512), nn.ReLU(), nn.Dropout(0.3),
             nn.Linear(512, 256), nn.ReLU(), nn.Dropout(0.3),
         )
+        # Two independent action heads, one per active slot (a = left, b = right).
+        # type = move/switch/none; move over the move vocab; switch over species.
         self.type_head_a   = nn.Linear(256, 3)
         self.move_head_a   = nn.Linear(256, n_moves)
         self.switch_head_a = nn.Linear(256, n_species)
@@ -66,7 +100,9 @@ class BCModel(nn.Module):
                 self.type_head_b(h), self.move_head_b(h), self.switch_head_b(h))
 
 
-# ────────────────────────── v3 (transformer) ──────────────────────────
+# =============================================================================
+# v3 — BCModelV3 (transformer over slot tokens + field token)
+# =============================================================================
 
 class _TransformerBlock(nn.Module):
     def __init__(self, d_model, n_heads, ff_dim, dropout=0.1):
@@ -114,7 +150,7 @@ class BCModelV3(nn.Module):
 
         per_mon = EMB_SPECIES + EMB_MOVE * N_MOVES_PER + EMB_ITEM + EMB_ABILITY + CONT_DIM
         self.mon_proj = nn.Linear(per_mon, d_model)
-        self.field_proj = nn.Linear(17, d_model)
+        self.field_proj = nn.Linear(FIELD_DIM, d_model)
         self.pos_emb = nn.Embedding(self.N_TOKENS, d_model)
 
         self.blocks = nn.ModuleList([
@@ -162,7 +198,9 @@ class BCModelV3(nn.Module):
         )
 
 
-# ────────────────────────── masks + checkpoint ──────────────────────────
+# =============================================================================
+# Move masks + checkpoint persistence
+# =============================================================================
 
 def build_move_mask(priors, encoder, verbose=True):
     """(species × move) 0/1 mask from real usage priors. Struggle + pad zeroed."""
@@ -177,6 +215,8 @@ def build_move_mask(priors, encoder, verbose=True):
             mid = encoder.move_idx.get(e["move"])
             if mid:
                 mask[sid, mid] = 1.0
+    # Struggle and the pad column (0) must never be selectable — zero them last
+    # so a species that happens to list Struggle in priors can't re-enable it.
     struggle_mid = encoder.move_idx.get("Struggle")
     if struggle_mid:
         mask[:, struggle_mid] = 0.0
@@ -192,7 +232,14 @@ def build_move_mask(priors, encoder, verbose=True):
 def save_checkpoint(path, model, *, epoch, val_loss, val_acc,
                     val_move_acc, val_switch_acc, encoder_v=2,
                     arch=None, val_target_acc=None):
-    """Save a training checkpoint. `arch` lets loaders pick the right class."""
+    """Save a training checkpoint.
+
+    The payload keys below are the CHECKPOINT CONTRACT (loaders read them by
+    name): model_state/epoch/val_loss/val_acc/val_move_acc/val_switch_acc/
+    encoder_v/arch, plus val_target_acc for v3. `arch` is what lets a loader
+    pick BCModel vs BCModelV3 without guessing from tensor shapes; if not given
+    we infer it from OUTPUTS (8 -> v3, else v2).
+    """
     os.makedirs(os.path.dirname(path), exist_ok=True)
     if arch is None:
         arch = "v3" if getattr(model, "OUTPUTS", 6) == 8 else "v2"
@@ -203,6 +250,9 @@ def save_checkpoint(path, model, *, epoch, val_loss, val_acc,
         "val_acc": val_acc,
         "val_move_acc": val_move_acc,
         "val_switch_acc": val_switch_acc,
+        # encoder_v: written into every checkpoint but currently unread by any
+        # loader. Kept because it's cheap insurance — the day the encoder layout
+        # changes, old checkpoints already carry the version tag to branch on.
         "encoder_v": encoder_v,
         "arch": arch,
     }
@@ -210,10 +260,7 @@ def save_checkpoint(path, model, *, epoch, val_loss, val_acc,
         payload["val_target_acc"] = val_target_acc
     torch.save(payload, path)
 
-
-def load_checkpoint(path, model, device="cpu"):
-    """Load state dict into `model` and set eval mode. Returns the raw ckpt dict."""
-    ckpt = torch.load(path, map_location=device)
-    model.load_state_dict(ckpt["model_state"])
-    model.eval()
-    return ckpt
+# NOTE: a generic load_checkpoint() lived here but was never called — the live
+# load path is bc_player._get_shared_model (it instantiates the right class from
+# `arch` before load_state_dict). Removed rather than kept as dead weight; the
+# contract above documents the payload keys a future loader must read.
