@@ -25,17 +25,17 @@ def _p(*parts):
 DATA = _p("data", "training_data.jsonl")
 PRIORS_PATH = _p("data", "species_move_priors.json")
 MODEL_DIR = _p("output", "models")
-BEST_MODEL_PATH = os.path.join(MODEL_DIR, "bc_best.pt")
+BEST_MODEL_PATH = os.path.join(MODEL_DIR, os.environ.get("BC_OUT", "bc_best.pt"))
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 BATCH = 256
-EPOCHS = 30
+EPOCHS = int(os.environ.get("BC_EPOCHS", "30"))
 LR = 1e-3
 WEIGHT_DECAY = 1e-5
 VAL_FRAC = 0.1
 SEED = 42
 NUM_WORKERS = 0
-PATIENCE = 3
+PATIENCE = int(os.environ.get("BC_PATIENCE", "3"))
 
 
 class BCDataset(Dataset):

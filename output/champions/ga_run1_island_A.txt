@@ -1,44 +1,44 @@
-Noivern @ Focus Sash
-Ability: Infiltrator
+Umbreon @ Leftovers
+Ability: Inner Focus
 Level: 50
-Modest Nature
-EVs: 2 HP / 32 SPA / 32 SPE
+Bold Nature
+EVs: 32 HP / 20 DEF / 14 SPD
+- Foul Play
+- Snarl
+- Yawn
 - Taunt
-- Bite
-- Uproar
-- Hurricane
 
-Gliscor @ Scope Lens
-Ability: Hyper Cutter
+Salamence @ Salamencite
+Ability: Intimidate
 Level: 50
-Jolly Nature
-EVs: 2 HP / 32 ATK / 32 SPE
-- Rock Slide
-- X-Scissor
-- Night Slash
-- Dig
+Naive Nature
+EVs: 1 HP / 21 ATK / 15 SPA / 29 SPE
+- Double-Edge
+- Outrage
+- Tailwind
+- Protect
 
 Incineroar @ Sitrus Berry
 Ability: Intimidate
 Level: 50
 Impish Nature
-EVs: 32 HP / 2 ATK / 32 DEF
+EVs: 32 HP / 23 DEF / 11 SPD
 - Fake Out
-- Flamethrower
+- Flare Blitz
 - Throat Chop
-- Parting Shot
+- Temper Flare
 
 Gholdengo @ Life Orb
 Ability: Good as Gold
 Level: 50
-Timid Nature
+Hasty Nature
 EVs: 2 HP / 32 SPA / 32 SPE
 - Make It Rain
 - Shadow Ball
-- Nasty Plot
+- Light Screen
 - Protect
 
-Rillaboom @ Choice Scarf
+Rillaboom @ Quick Claw
 Ability: Grassy Surge
 Level: 50
 Adamant Nature
@@ -48,11 +48,11 @@ EVs: 2 HP / 32 ATK / 32 SPE
 - Fake Out
 - High Horsepower
 
-Garchomp @ Rocky Helmet
-Ability: Rough Skin
+Garchomp @ Psychic Seed
+Ability: Sand Veil
 Level: 50
 Jolly Nature
-EVs: 32 DEF / 2 SPD / 32 SPE
+EVs: 2 HP / 32 ATK / 32 SPE
 - Stomping Tantrum
 - Dragon Claw
 - Rock Slide

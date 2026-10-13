@@ -1,21 +1,21 @@
-Noivern @ Focus Sash
-Ability: Frisk
+Basculegion @ Choice Scarf
+Ability: Adaptability
 Level: 50
 Modest Nature
 EVs: 2 HP / 32 SPA / 32 SPE
-- Taunt
-- Bite
-- Uproar
-- Hurricane
+- Chilling Water
+- Mud Shot
+- Icy Wind
+- Whirlpool
 
-Salamence @ Oran Berry
+Salamence @ Salamencite
 Ability: Intimidate
 Level: 50
-Hasty Nature
+Naive Nature
 EVs: 1 HP / 21 ATK / 15 SPA / 29 SPE
 - Double-Edge
-- Dragon Claw
-- Flamethrower
+- Outrage
+- Tailwind
 - Protect
 
 Incineroar @ Sitrus Berry
@@ -24,35 +24,35 @@ Level: 50
 Impish Nature
 EVs: 32 HP / 23 DEF / 11 SPD
 - Fake Out
-- Flamethrower
+- Flare Blitz
 - Throat Chop
-- Parting Shot
+- Temper Flare
 
 Gholdengo @ Life Orb
 Ability: Good as Gold
 Level: 50
-Timid Nature
-EVs: 32 SPA / 2 SPD / 32 SPE
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
 - Make It Rain
 - Shadow Ball
 - Nasty Plot
-- Protect
+- Endure
 
-Rillaboom @ Choice Scarf
+Rillaboom @ Miracle Seed
 Ability: Grassy Surge
 Level: 50
-Adamant Nature
+Impish Nature
 EVs: 2 HP / 32 ATK / 32 SPE
 - Grassy Glide
 - Wood Hammer
-- Fake Out
+- Facade
 - High Horsepower
 
 Garchomp @ Rocky Helmet
 Ability: Rough Skin
 Level: 50
-Jolly Nature
-EVs: 32 DEF / 2 SPD / 32 SPE
+Hasty Nature
+EVs: 2 HP / 32 ATK / 32 SPE
 - Stomping Tantrum
 - Dragon Claw
 - Rock Slide
