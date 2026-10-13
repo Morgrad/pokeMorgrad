@@ -689,3 +689,42 @@ launched by mistake; PID 2627 kept. Early signal (epoch 2):
 If v3 continues this trajectory, it beats v5 on move accuracy and adds a
 whole new capability (target prediction).
 
+### Day 5 addendum 3 — v3 verdict: doesn't help
+
+**Result:** trained v3 (transformer + target head, 5.5M params) on the same
+72k rows. Compared against v5 on the held-out 100 teams × 5 seeds with the
+BC pilot:
+
+| Model | move_acc | target_acc | pilot win rate |
+|---|---|---|---|
+| v5 (v2, 1.5M, MLP) | 0.5787 | n/a | **19.4%** |
+| v3 (transformer + target, 5.5M) | 0.5814 | 0.5125 | **8.8%** |
+
+**v3 is 10.6 points worse** in play despite slightly better move accuracy.
+
+**Why:** the target head is only 51% accurate (vs ~47% for the trivial
+"always no-target" predictor). Adding its log-prob to option scoring injects
+noise that drowns the move-selection signal — v3 often picks a *worse move*
+because the target head was confident about the wrong one.
+
+**Lessons:**
+1. Imitation accuracy is not the same as strategic quality. v3 imitates
+   marginally better but plays meaningfully worse.
+2. Bigger model + more heads ≠ better play when the training signal
+   (human moves) is noisy at the decision level.
+3. BC is close to its ceiling on this dataset. The next lever is NOT
+   architecture — it's either better training signal (outcome-weighted,
+   Elo-filtered) or a fundamentally different approach (search, RL, or
+   hybrid).
+
+**Also captured:** the "BC pilot ally-targeting" bug — v2's use of
+`valid_orders` (which lists ally-target options first) was causing the pilot
+to attack its own ally on every damaging move, dropping win rate to 0.3%.
+Fixed with an ally-target penalty (5.0 log units) for moves not on an
+ally-target allowlist. This restored v5 to 19.4% (vs its pre-refactor 18.3%).
+
+**Also captured:** `bc_best.pt` was overwritten with v3 in a `cp` mishap
+without 5-seed confirmation. Restored from `bc_v5_best_move.pt`. New rule
+added to STATE.md §12: never overwrite `bc_best.pt` until the new model wins
+5-seed pilot eval by >3 pts.
+
