@@ -598,3 +598,40 @@ pipeline per concern, fix the BC pilot, launch the first clean overnight GA.
 **State at end of day:** repo is clean; pipeline is end-to-end runnable;
 BC pilot works but is weak; GA about to run for 10 hours.
 
+## Day 5 — 2026-10-13 — First real GA win + BC retrain verdict
+
+**Headline: GA found a team that beats the meta by 7.4 points on 500 held-out battles.**
+
+- **Island C champion** (`output/champions/CHAMPION_2026-10-12.txt`):
+  64.4% vs 57.0% baseline on 100 held-out teams × 5 seeds (100/200/300/400/500).
+  Team core: `Basculegion @ Choice Scarf / Salamence-Mega / Incineroar /
+  Gholdengo / Rillaboom / Garchomp`.
+- **Island B did not generalize.** 68% on the training pool collapsed to 58.7%
+  held-out. Best-ever-on-training ≠ held-out quality. Lesson: always confirm
+  champions on the held-out pool before trusting the score.
+- **BC retrain (72k rows) regressed.** `bc_v6a.pt` = 52.7% val_move_acc vs
+  v5's 57.9%. Root cause: the rebuilt dataset is ~half the size of v5's
+  original (144 MB, estimated 150k+ rows). More epochs don't compensate for
+  fewer rows. `bc_best.pt` remains v5.
+- **BC pilot second bug wave** (uncovered by the eval run):
+  - `Move` objects in poke_env do **not** expose `.disabled`. Our
+    `getattr(mv, "disabled", False)` was always `False`, so disabled moves
+    (Fake Out on turn 2+, Flare Blitz under Disable) still got proposed and
+    Showdown rejected them, causing loops.
+  - `Outrage needs a target` — `randomNormal` was missing from `needs_target`.
+    Fixed this day.
+  - **Redesign in progress:** stop hand-filtering `mon.moves.values()`.
+    Use `battle.available_moves` (poke_env's parsed list of what's actually
+    choosable) as the source of truth, and `mv.request_target` for targets.
+    This is what poke_env's own `SimpleHeuristicsPlayer` does.
+- **GA run2 launched** with warm-start from run1 champions (island A/B/C).
+  Running 6h.
+
+**Files touched:** `src/bc_player.py` (target fix), `src/bc_train.py`
+(BC_OUT/BC_EPOCHS/BC_PATIENCE env overrides), `output/champions/*` (tracked).
+
+**Open questions for Day 6:**
+1. Does the redesigned pilot (using `available_moves`) eliminate loops?
+2. Does BC pilot win rate vs held-out improve from 18.3% after the redesign?
+3. Is 64.4% the plateau for the heuristic-pilot GA, or does run2 exceed it?
+

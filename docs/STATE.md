@@ -34,11 +34,13 @@ Long-term goal: a reusable pipeline that adapts to any new VGC regulation in
 | Data pipeline (scrape → parse → DB) | ✅ Working | 5000 replays, 144 MB `training_data.jsonl` (local-only) |
 | Canonical DB (`regmc_db.json`) | ✅ Working | 391 legal species, 166 items, 515 moves |
 | Legality gate (Showdown validator) | ✅ Working | Zero invalid genomes in fuzz tests |
-| BC trainer (`src/bc_train.py`) | ✅ Working | v5 = 57.9% move acc; retrain pending (72k rows ready) |
+| BC trainer (`src/bc_train.py`) | ✅ Working | v5 = 57.9% move acc |
+| BC retrain (72k rows) | ❌ Regression | v6a = 52.7% — worse than v5; needs more data |
+| GA champion (2026-10-12) | ✅ **+7.4 pts** | Island C: 64.4% vs 57.0% baseline, 5 seeds |
 | BC pilot (`src/bc_player.py`) | ⚠️ **Active bug** | See §5 |
 | GA engine (`src/ga_core.py`) | ✅ Working | Overnight run launched 2026-10-12 16:20 |
 | Eval (`src/eval.py`) | ✅ Working | `--pilot heuristic|bc|both`, held-out or training pool |
-| Baseline team score | ✅ 59.0% | vs 100 held-out teams, heuristic pilot, seed 100 |
+| Baseline team score | ✅ 57.0% | vs 100 held-out teams × 5 seeds, heuristic pilot |
 
 ---
 
