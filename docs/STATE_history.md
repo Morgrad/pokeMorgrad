@@ -666,4 +666,26 @@ BC pilot works but is weak; GA about to run for 10 hours.
 field token. 5.5 M params (vs 1.5 M for v2). Adds a 5-way target head.
 `BCModel` (v2) preserved unchanged so `bc_best.pt` keeps loading.
 
+### Day 5 addendum 2 — Reg M-C corpus is exhausted + v3 training
+
+**Data scrape result:** the format has only **5006 total replays on Showdown**.
+We already had 5001; the date-sorted scrape added 5. The rating-sorted scrape
+exhausted nothing (all above-1500 replays were already in the index). This is
+the ceiling for Reg M-C training data — **72,048 rows is what this format
+provides today.** More will only arrive as more games are played.
+
+Implications:
+- Can't scale v2/v3 by scraping more Reg M-C games.
+- Data augmentation (perspective flip, target mirror) is the cheapest 2× gain.
+- Waiting for the format to grow is a real option (weeks-timescale).
+
+**v3 training started** on the 72k-row dataset. Two configurations were
+launched by mistake; PID 2627 kept. Early signal (epoch 2):
+- `vlm=0.560` (already close to v2's best 0.5787)
+- `vltg=0.504` (target head is learning — never existed in v2)
+- Train and val loss both dropping → **not overfitting yet**
+- 22–30 s/epoch on the 7900 XTX
+
+If v3 continues this trajectory, it beats v5 on move accuracy and adds a
+whole new capability (target prediction).
 
