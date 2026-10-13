@@ -1,5 +1,10 @@
 """Unified team evaluation.
 
+Scores one or more teams against an opponent pool, over several RNG seeds, with
+either the fast heuristic pilot or the neural BC pilot (or both, side by side).
+The heuristic path never imports torch — BC is pulled in lazily — so a plain
+`--pilot heuristic` run stays light.
+
 Usage:
   python -m src.eval                                # defaults: baseline, both pilots
   python -m src.eval team1.txt team2.txt            # specific teams
@@ -17,11 +22,12 @@ from poke_env.player import SimpleHeuristicsPlayer
 from poke_env import AccountConfiguration
 
 from src import ga_core as G
-from src import regmc_db as DB
 
-FORMAT = G.FORMAT
-CONCURRENCY = 3
-TIMEOUT = 20
+FORMAT = G.FORMAT          # canonical format registry (defined in ga_core)
+CONCURRENCY = 3            # simultaneous battles against one Showdown server
+TIMEOUT = 20              # seconds before a battle is abandoned as hung (→ None)
+RETRY_STRIDE = 999_983   # uid offset on retry → fresh Showdown login (large prime)
+UID_MAX = 10**9          # upper bound of the random per-battle account id space
 DEFAULT_SEEDS = [100, 200, 300]
 
 _REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -47,6 +53,13 @@ def make_player(pilot, team_str, uid, prefix):
 
 
 async def _run_battle_once(pilot, team_str, opp_str, uid, sem):
+    """Play one battle: `pilot` team vs a heuristic opponent. Returns 1/0/None.
+
+    None means the battle errored or never finished (no min-turns guard here,
+    unlike the GA path — eval scores every completed game). Listeners are always
+    stopped in `finally` so a crash can't leak a websocket. Concurrency is bounded
+    by the caller-supplied semaphore.
+    """
     async with sem:
         bot = opp = None
         try:
@@ -68,12 +81,18 @@ async def _run_battle_once(pilot, team_str, opp_str, uid, sem):
 
 
 async def evaluate_team(pilot, team_str, opponents, seeds, concurrency):
+    """Return (total_wins, total_games) for a team across all seeds × opponents.
+
+    Each seed re-seeds the RNG so account ids / any sampling are reproducible per
+    seed. Battles returning None (timeout/error) are excluded from both totals, so
+    the win rate is over *completed* games only. Seeds run sequentially.
+    """
     total_w, total_g = 0, 0
     for seed in seeds:
         random.seed(seed)
         sem = asyncio.Semaphore(concurrency)
         tasks = [
-            run_battle(pilot, team_str, o, random.randint(1, 10**9), sem)
+            run_battle(pilot, team_str, o, random.randint(1, UID_MAX), sem)
             for o in opponents
         ]
         outs = await asyncio.gather(*tasks)
@@ -84,6 +103,11 @@ async def evaluate_team(pilot, team_str, opponents, seeds, concurrency):
 
 
 async def main_async(args):
+    """Resolve teams/opponents/pilots from args, run every combo, print a table.
+
+    Defaults to the baseline team vs the held-out pool with both pilots. With two
+    pilots it also prints a per-team HEUR/BC/Delta comparison.
+    """
     teams = args.teams or [_p("data", "baseline_team.txt")]
 
     if args.opponents == "all":
@@ -139,10 +163,10 @@ async def main_async(args):
 
 
 async def run_battle(pilot, team_str, opp_str, uid, sem, retries=1):
-    """Run one battle with retries. Returns 0/1/None."""
+    """Run one battle, retrying once on None with a fresh (RETRY_STRIDE-offset) uid."""
     for attempt in range(retries + 1):
         result = await _run_battle_once(pilot, team_str, opp_str,
-                                        uid + attempt * 999_983, sem)
+                                        uid + attempt * RETRY_STRIDE, sem)
         if result is not None:
             return result
     return None
