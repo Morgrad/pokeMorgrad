@@ -1,15 +1,12 @@
 """BC pilot — uses poke_env's valid_orders for action legality.
 
-Design (v2, 2026-10-13):
-  Rather than hand-filtering moves for PP/disabled/target-type (which was
-  continuously producing Showdown rejections), the pilot asks poke_env for
-  `battle.valid_orders` — the per-slot list of every legal SingleBattleOrder
-  (moves with all valid targets, plus switches). The model scores each option;
-  the argmax per slot becomes the choice. This eliminates the entire class of
-  bugs around disabled moves, wrong targets, and malformed orders.
+Supports v2 (MLP, 6 heads) and v3 (transformer, 8 heads with target head).
+Checkpoint `arch` field decides which. Override the model via
+BC_PILOT_PATH env var (default: output/models/bc_best.pt).
 
-Cached model: encoder + model + priors + move mask are loaded once and shared
-across all BCPlayer instances (eval loops create hundreds).
+For v3, the target head contributes to option scoring so that
+"move X targeting opp-left" and "move X targeting opp-right" get
+different scores instead of being arbitrary tie-breaks.
 """
 import json
 import os
@@ -26,32 +23,54 @@ from poke_env.player.battle_order import DoubleBattleOrder
 
 from src.state_encoder import StateEncoder
 from src.bc_model import (
-    BCModel, build_move_mask, load_checkpoint,
+    BCModel, BCModelV3, build_move_mask,
     TYPE_MOVE, TYPE_SWITCH,
 )
 
 _REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-MODEL_PATH = os.path.join(_REPO_ROOT, "output", "models", "bc_best.pt")
+DEFAULT_MODEL_PATH = os.path.join(_REPO_ROOT, "output", "models", "bc_best.pt")
+MODEL_PATH = os.environ.get("BC_PILOT_PATH", DEFAULT_MODEL_PATH)
 PRIORS_PATH = os.path.join(_REPO_ROOT, "data", "species_move_priors.json")
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
 _MODEL_CACHE = {}
 
+# Showdown SingleBattleOrder.move_target → training-time target_idx
+#   0  = no target (self / spread)  → 2
+#   -1 = our left ally              → 1
+#   -2 = our right ally             → 0
+#   1  = opponent left              → 3
+#   2  = opponent right             → 4
+_TARGET_MAP = {0: 2, -1: 1, -2: 0, 1: 3, 2: 4}
+
 
 def _get_shared_model():
-    """Load encoder + model + priors + move mask once, share across instances."""
+    """Load encoder + model + priors + move mask once; cache by DEVICE."""
     if DEVICE not in _MODEL_CACHE:
         encoder = StateEncoder()
         priors = json.load(open(PRIORS_PATH))
-        model = BCModel(
-            encoder.n_species, encoder.n_moves,
-            encoder.n_items, encoder.n_abilities,
-        ).to(DEVICE)
-        ckpt = load_checkpoint(MODEL_PATH, model, DEVICE)
+
+        raw = torch.load(MODEL_PATH, map_location=DEVICE)
+        arch = raw.get("arch", "v2")
+
+        if arch == "v3":
+            model = BCModelV3(encoder.n_species, encoder.n_moves,
+                              encoder.n_items, encoder.n_abilities)
+        else:
+            model = BCModel(encoder.n_species, encoder.n_moves,
+                            encoder.n_items, encoder.n_abilities)
+        model = model.to(DEVICE)
+        model.load_state_dict(raw["model_state"])
+        model.eval()
+
         mask = build_move_mask(priors, encoder, verbose=False).to(DEVICE)
-        _MODEL_CACHE[DEVICE] = (encoder, model, priors, mask)
-        print(f"BC pilot loaded (shared): epoch={ckpt.get('epoch')} "
-              f"vlm={ckpt.get('val_move_acc'):.3f}", flush=True)
+        _MODEL_CACHE[DEVICE] = (encoder, model, priors, mask, arch)
+
+        tgt = raw.get("val_target_acc")
+        tgt_str = f" vltg={tgt:.3f}" if tgt is not None else ""
+        vlm = raw.get("val_move_acc", float("nan"))
+        print(f"BC pilot loaded ({arch}): epoch={raw.get('epoch')} "
+              f"vlm={vlm:.3f}{tgt_str}", flush=True)
     return _MODEL_CACHE[DEVICE]
 
 
@@ -62,15 +81,14 @@ def _to_sd_id(name: str) -> str:
 
 class BCPlayer(Player):
     def __init__(self, *args, **kwargs):
-        self.encoder, self.model, self.priors, self.move_mask = _get_shared_model()
+        self.encoder, self.model, self.priors, self.move_mask, self.arch = \
+            _get_shared_model()
 
-        # Reverse/lookup maps
         self._species_by_sd_id = {_to_sd_id(k): k for k in self.encoder.species_idx}
         self._move_sd_to_idx = {_to_sd_id(k): v for k, v in self.encoder.move_idx.items()}
+        self._move_idx_to_name = {v: k for k, v in self.encoder.move_idx.items()}
 
         super().__init__(*args, **kwargs)
-
-    # ---- name normalization ----
 
     def _canonical_species(self, raw: str) -> str:
         if raw in self.encoder.species_idx:
@@ -79,9 +97,9 @@ class BCPlayer(Player):
 
     def _canonical_move(self, sd_id: str):
         idx = self._move_sd_to_idx.get(sd_id, 0)
-        return {v: k for k, v in self.encoder.move_idx.items()}.get(idx)
+        return self._move_idx_to_name.get(idx)
 
-    # ---- state conversion (unchanged) ----
+    # ---- state conversion ----
 
     def _state_to_dict(self, battle: DoubleBattle):
         def mon_view(mon, is_opp=False):
@@ -137,15 +155,18 @@ class BCPlayer(Player):
 
     # ---- scoring ----
 
-    def _score_options(self, options, type_logits, move_logits, switch_logits):
-        """Return a score per SingleBattleOrder option.
+    def _score_options(self, options, type_logits, move_logits, switch_logits,
+                       target_logits=None):
+        """Score each SingleBattleOrder option.
 
-        Score = log P(type | state) + log P(action | type, state).
-        Higher = model thinks this action is more likely.
+        Score = log P(type) + log P(move|type) [+ log P(target|move)] for
+        move options, or log P(type) + log P(switch|type) for switches.
         """
         type_lp = F.log_softmax(type_logits, dim=-1)
         move_lp = F.log_softmax(move_logits, dim=-1)
         switch_lp = F.log_softmax(switch_logits, dim=-1)
+        target_lp = (F.log_softmax(target_logits, dim=-1)
+                     if target_logits is not None else None)
 
         scores = []
         for opt in options:
@@ -156,17 +177,19 @@ class BCPlayer(Player):
                 if sid == 0:
                     scores.append(float("-inf"))
                     continue
-                score = (type_lp[TYPE_SWITCH] + switch_lp[sid]).item()
+                scores.append((type_lp[TYPE_SWITCH] + switch_lp[sid]).item())
             elif isinstance(order, Move):
                 idx = self._move_sd_to_idx.get(order.id, 0)
                 if idx == 0:
                     scores.append(float("-inf"))
                     continue
-                score = (type_lp[TYPE_MOVE] + move_lp[idx]).item()
+                s = (type_lp[TYPE_MOVE] + move_lp[idx]).item()
+                if target_lp is not None:
+                    tidx = _TARGET_MAP.get(opt.move_target, 2)
+                    s += target_lp[tidx].item()
+                scores.append(s)
             else:
                 scores.append(float("-inf"))
-                continue
-            scores.append(score)
         return scores
 
     # ---- move selection ----
@@ -183,7 +206,7 @@ class BCPlayer(Player):
         enc = self.encoder.encode(state)
 
         with torch.no_grad():
-            ta, ma, sa, tb, mb, sb = self.model(
+            outs = self.model(
                 enc["species_ids"].unsqueeze(0).to(DEVICE),
                 enc["move_ids"].unsqueeze(0).to(DEVICE),
                 enc["item_ids"].unsqueeze(0).to(DEVICE),
@@ -192,25 +215,32 @@ class BCPlayer(Player):
                 enc["field"].unsqueeze(0).to(DEVICE),
             )
 
-        scores_a = self._score_options(valid[0], ta[0], ma[0], sa[0])
-        scores_b = self._score_options(valid[1], tb[0], mb[0], sb[0])
+        if self.arch == "v3":
+            ta, ma, sa, tga, tb, mb, sb, tgb = outs
+        else:
+            ta, ma, sa, tb, mb, sb = outs
+            tga = tgb = None
+
+        scores_a = self._score_options(valid[0], ta[0], ma[0], sa[0],
+                                       tga[0] if tga is not None else None)
+        scores_b = self._score_options(valid[1], tb[0], mb[0], sb[0],
+                                       tgb[0] if tgb is not None else None)
 
         ia = int(np.argmax(scores_a))
         ib = int(np.argmax(scores_b))
         best_a = valid[0][ia]
         best_b = valid[1][ib]
 
-        # Handle switch collision: both slots want the same species.
+        # Switch collision: both slots want the same Pokémon.
         if (isinstance(best_a.order, Pokemon) and isinstance(best_b.order, Pokemon)
                 and str(best_a.order.species) == str(best_b.order.species)):
             if scores_a[ia] >= scores_b[ib]:
-                loser_valid, loser_scores, loser_i = valid[1], scores_b, ib
-                loser_is_a = False
+                loser_valid, loser_scores, loser_i, loser_is_a = \
+                    valid[1], scores_b, ib, False
             else:
-                loser_valid, loser_scores, loser_i = valid[0], scores_a, ia
-                loser_is_a = True
+                loser_valid, loser_scores, loser_i, loser_is_a = \
+                    valid[0], scores_a, ia, True
 
-            # Prefer a move; else a different switch; else keep original.
             move_idxs = [i for i, o in enumerate(loser_valid)
                          if isinstance(o.order, Move)]
             alt_switch_idxs = [
