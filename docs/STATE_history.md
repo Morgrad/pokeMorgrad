@@ -634,4 +634,36 @@ BC pilot works but is weak; GA about to run for 10 hours.
 1. Does the redesigned pilot (using `available_moves`) eliminate loops?
 2. Does BC pilot win rate vs held-out improve from 18.3% after the redesign?
 3. Is 64.4% the plateau for the heuristic-pilot GA, or does run2 exceed it?
+### Day 5 addendum — BC pilot v2 + target extraction
+
+**Two milestones landed in the same morning:**
+
+1. **BC pilot v2 — `battle.valid_orders`.** Two more bug classes (disabled
+   moves, target-type mismatches) drove the final redesign: instead of
+   hand-filtering `mon.moves` and guessing targets from the DB, the pilot
+   now asks poke_env for `battle.valid_orders` — the per-slot list of every
+   legal `SingleBattleOrder` (moves with all valid targets, plus switches,
+   already filtered for PP/disabled/Encore/Torment/etc.). The model scores
+   each option, argmax per slot, wraps in a `DoubleBattleOrder`. This is
+   exactly what poke_env's own `choose_random_doubles_move` does. Result:
+   zero Showdown rejections in a 6-turn diagnostic. File shrunk from 240 to
+   180 LOC; the 60 removed lines were the buggy ones.
+
+   - The `disabled` attribute does not exist on poke_env `Move` objects;
+     `getattr(mv, "disabled", False)` was a silent no-op. `available_moves`
+     exposes the correct per-turn list, but `valid_orders` is even better —
+     it already accounts for targets too.
+   - `randomNormal` was missing from `needs_target`, causing `Outrage needs
+     a target` errors. Fixed before the redesign (commit 26771f2).
+
+2. **Target labels in training data.** `tools/build_training_data.py` now
+   extracts `target_a` and `target_b` per decision row, normalized to a
+   5-class space: `0=our right, 1=our left, 2=none, 3=opp left, 4=opp right`.
+   Enables a future target head in the model. 72,048 rows regenerated
+   (0.3% skip), committed in 80e9520.
+
+**Next step in progress:** `BCModelV3` — transformer over slot tokens +
+field token. 5.5 M params (vs 1.5 M for v2). Adds a 5-way target head.
+`BCModel` (v2) preserved unchanged so `bc_best.pt` keeps loading.
+
 

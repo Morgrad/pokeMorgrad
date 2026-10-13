@@ -37,7 +37,7 @@ Long-term goal: a reusable pipeline that adapts to any new VGC regulation in
 | BC trainer (`src/bc_train.py`) | ✅ Working | v5 = 57.9% move acc |
 | BC retrain (72k rows) | ❌ Regression | v6a = 52.7% — worse than v5; needs more data |
 | GA champion (2026-10-12) | ✅ **+7.4 pts** | Island C: 64.4% vs 57.0% baseline, 5 seeds |
-| BC pilot (`src/bc_player.py`) | ⚠️ **Active bug** | See §5 |
+| BC pilot (`src/bc_player.py`) | ✅ v2 (valid_orders) | Zero Showdown rejections; **weak play quality** (~18% win rate) |
 | GA engine (`src/ga_core.py`) | ✅ Working | Overnight run launched 2026-10-12 16:20 |
 | Eval (`src/eval.py`) | ✅ Working | `--pilot heuristic|bc|both`, held-out or training pool |
 | Baseline team score | ✅ 57.0% | vs 100 held-out teams × 5 seeds, heuristic pilot |
