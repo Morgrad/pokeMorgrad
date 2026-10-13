@@ -27,10 +27,28 @@ Long-term goal: a reusable pipeline that adapts to any new VGC regulation in
 
 ---
 
-## 2. Current status
+## 2. Current status (2026-10-13, 11:30)
 
 | Component | Status | Notes |
 |---|---|---|
+| Data pipeline | ✅ Working | 5006 Reg M-C replays (all that exist), 72,048 rows |
+| Canonical DB (`regmc_db.json`) | ✅ Working | 391 species, 166 items, 515 moves |
+| Legality gate | ✅ Working | 0 invalid in 3500 fuzz tests |
+| **Heuristic pilot** | ✅ Working | **61.0%** vs 100 held-out × 5 seeds — the reference |
+| BC trainer (`bc_train.py`) | ✅ Working | v2 (MLP, 1.5M) and v3 (transformer, 5.5M) both train |
+| BC v5 pilot (`bc_best.pt`) | ⚠️ Functional, weak | **19.4%** vs held-out — 42 pts below heuristic |
+| BC v3 pilot (`bc_v3_5m.pt`) | ❌ Regression | **8.8%** — target head hurts |
+| GA engine (`ga_core.py`) | ✅ Working | Island model with migration, stagnation, checkpointing |
+| **GA champion (run1 island C)** | ✅ **+3.4 pts** | **64.4%** held-out vs 61.0% heuristic baseline |
+| GA run2 (warm-start) | 🔄 Running | Started 09:46, ETA ~15:45, 63% at gen 4 |
+| Eval (`eval.py`) | ✅ Working | `--pilot heuristic\|bc\|both`, 5-seed stable |
+
+**The strategic picture:** the heuristic pilot is 3× better than BC. BC is
+at its ceiling on this dataset. The GA produces real wins regardless, because
+it uses the heuristic for fitness. BC's value is as a *foundation for future
+search/RL*, not as a better pilot today.
+
+---|---|---|
 | Data pipeline (scrape → parse → DB) | ✅ Working | 5000 replays, 144 MB `training_data.jsonl` (local-only) |
 | Canonical DB (`regmc_db.json`) | ✅ Working | 391 legal species, 166 items, 515 moves |
 | Legality gate (Showdown validator) | ✅ Working | Zero invalid genomes in fuzz tests |
@@ -169,6 +187,46 @@ entry and enforces the species clause during replacement.
 retry once with a fresh account id on failure.
 
 ---
+
+
+
+### 5.4 BC pilot is at its ceiling (measured 2026-10-13)
+
+Empirically confirmed: **no tuning tried today moved the win rate up.**
+
+| Change | Pilot win rate | Delta |
+|---|---|---|
+| v5 baseline | 19.4% | — |
+| + more params (v3, 5.5M) | 8.8% | **−10.6** |
+| + target head | (same run) | — |
+| + ally-target penalty | (restored v5) | +1.1 vs pre-refactor |
+| + outcome weighting | (no change) | 0 |
+
+**Diagnosis:** high imitation accuracy (0.58) does not translate to strong
+play. The training signal (human median decisions) is noisy. Escalating the
+architecture makes this *worse*, not better.
+
+**Implications:**
+- Do not train more BC variants on this dataset expecting gains.
+- Do not use BC as a GA fitness pilot (heuristic is 3× better).
+- BC is useful only as a *foundation* — for search, or for RL warm-start.
+
+### 5.5 Ally-target bug (resolved 2026-10-13)
+
+`valid_orders` lists ally-target options (move_target = -1/-2) *first* for
+every damaging move. Our scoring gave all target variants identical scores,
+so `np.argmax` always picked the ally target. Pilot attacked its own ally on
+every damaging move → 0.3% win rate.
+
+Fix: `_score_options` applies a 5.0 log-unit penalty to `move_target ∈ {-1,-2}`
+unless the move is on an allowlist of genuinely ally-targeting moves
+(Helping Hand, Decorate, Follow Me, etc.). Restored v5 to 19.4%.
+
+### 5.6 Never overwrite `bc_best.pt` without 5-seed confirmation
+
+See §12. Briefly: on 2026-10-13 a `cp bc_v3_5m.pt bc_best.pt` ran without
+confirming v3 was better. Reverted. All future model promotions require
+5-seed pilot eval showing +3 pts over current `bc_best.pt`.
 
 ## 6. Environment
 
