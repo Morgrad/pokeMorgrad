@@ -88,9 +88,15 @@ async def evaluate_team(pilot, team_str, opponents, seeds, concurrency):
     the win rate is over *completed* games only. Seeds run sequentially.
     """
     total_w, total_g = 0, 0
+    # One semaphore for the whole call, not one per seed. Correct today because
+    # seeds run strictly sequentially — a seed's battles all finish (the gather
+    # below) before the next seed starts, so the counter is always back at full
+    # when reused. If seeds are ever parallelized, a single shared semaphore would
+    # cap total in-flight battles across all seeds (under-utilizing concurrency) —
+    # move it back inside the loop (per seed) at that point.
+    sem = asyncio.Semaphore(concurrency)
     for seed in seeds:
         random.seed(seed)
-        sem = asyncio.Semaphore(concurrency)
         tasks = [
             run_battle(pilot, team_str, o, random.randint(1, UID_MAX), sem)
             for o in opponents
