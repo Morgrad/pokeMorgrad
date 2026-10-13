@@ -4,7 +4,7 @@
     "formatName": "[Gen 9 Champions] VGC 2026 Reg M-C",
     "mod": "champions",
     "built": "2026-10-11T03:52:08.421Z",
-    "showdownPath": "/home/morgrad/pokemon-showdown/dist"
+    "showdownPath": "$SHOWDOWN_DIR/dist"
   },
   "rules": {
     "format": "gen9championsvgc2026regmc",

@@ -8,11 +8,14 @@ import glob
 import json
 import os
 
-sys.path.insert(0, os.path.expanduser("~/project/tools"))
+_TOOLS_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.dirname(_TOOLS_DIR))  # repo root, for `src.paths`
+sys.path.insert(0, _TOOLS_DIR)                    # for sibling `replay_tracker`
+from src.paths import data_path
 from replay_tracker import Tracker
 
-REPLAY_DIR = os.path.expanduser("~/project/data/showdown_replays")
-OUT_PATH = os.path.expanduser("~/project/data/training_data.jsonl")
+REPLAY_DIR = data_path("showdown_replays")
+OUT_PATH = data_path("training_data.jsonl")
 
 files = sorted(f for f in glob.glob(os.path.join(REPLAY_DIR, "*.json"))
                if not f.endswith(".meta.json"))

@@ -5,7 +5,7 @@
 
 # Project State
 
-**Last verified:** 2026-10-12
+**Last verified:** 2026-10-13
 **Active branch:** `main`
 **Repo:** https://github.com/Morgrad/pokeMorgrad
 
@@ -48,18 +48,6 @@ at its ceiling on this dataset. The GA produces real wins regardless, because
 it uses the heuristic for fitness. BC's value is as a *foundation for future
 search/RL*, not as a better pilot today.
 
----|---|---|
-| Data pipeline (scrape → parse → DB) | ✅ Working | 5000 replays, 144 MB `training_data.jsonl` (local-only) |
-| Canonical DB (`regmc_db.json`) | ✅ Working | 391 legal species, 166 items, 515 moves |
-| Legality gate (Showdown validator) | ✅ Working | Zero invalid genomes in fuzz tests |
-| BC trainer (`src/bc_train.py`) | ✅ Working | v5 = 57.9% move acc |
-| BC retrain (72k rows) | ❌ Regression | v6a = 52.7% — worse than v5; needs more data |
-| GA champion (2026-10-12) | ✅ **+7.4 pts** | Island C: 64.4% vs 57.0% baseline, 5 seeds |
-| BC pilot (`src/bc_player.py`) | ✅ v2 (valid_orders) | Zero Showdown rejections; **weak play quality** (~18% win rate) |
-| GA engine (`src/ga_core.py`) | ✅ Working | Overnight run launched 2026-10-12 16:20 |
-| Eval (`src/eval.py`) | ✅ Working | `--pilot heuristic|bc|both`, held-out or training pool |
-| Baseline team score | ✅ 57.0% | vs 100 held-out teams × 5 seeds, heuristic pilot |
-
 ---
 
 ## 3. Architecture at a glance
@@ -88,7 +76,7 @@ src/eval.py (held-out, honest score)
 ---
 
 ## 4. Repository layout
-~/project/
+pokeMorgrad/
 ├── README.md public pitch
 ├── pyproject.toml packaging + ruff config
 ├── LICENSE MIT
@@ -228,9 +216,37 @@ See §12. Briefly: on 2026-10-13 a `cp bc_v3_5m.pt bc_best.pt` ran without
 confirming v3 was better. Reverted. All future model promotions require
 5-seed pilot eval showing +3 pts over current `bc_best.pt`.
 
+### 5.7 Hardcoded host paths broke portability (resolved 2026-10-13)
+
+**Symptom:** The repo was copied from an earlier host (`morgrad`, `~/project`)
+to this one (`sberumen`, `~/pokeMorgrad`), but older modules still had absolute
+paths baked in — `os.path.expanduser("~/project/data/...")` in Python and
+`/home/morgrad/pokemon-showdown/dist` in the JS bridges. Anything importing
+`regmc_db` or `state_encoder` failed, and `data/pool_split.json` listed teams by
+absolute `/home/morgrad/...` path, so `ga_core` silently loaded an **empty**
+opponent pool (no error, just 0 battles).
+
+**Fix:**
+1. New `src/paths.py` — single source of truth. Resolves `REPO_ROOT` from the
+   `POKEMORGRAD_ROOT` env var (validated to contain `data/`) else the parent of
+   `src/`. Exposes `data_path()`, `output_path()`, `src_path()`, `showdown_dir()`
+   (the last honoring `SHOWDOWN_DIR`, default `~/pokemon-showdown`).
+2. Every module (`regmc_db`, `state_encoder`, `showdown_validator`,
+   `audit_before_launch`, `ga_core`, `run/ga_run.py`) now resolves files through
+   it. JS bridges (`showdown_validate.js`, `build_regmc_db.js`) and shell scripts
+   (`ga_overnight.sh`, `ops/*.sh`) use `SHOWDOWN_DIR` / `$BASH_SOURCE`-relative
+   roots. `tools/*.py` self-bootstrap `sys.path` to import `src.paths`.
+3. `ga_core._load_teams` now resolves pool entries by **basename** against
+   `data/regional_teams/`, counts misses, warns, and **raises** if a non-empty
+   file list loads zero teams (kills the silent-empty-pool failure mode).
+4. `data/pool_split.json` regenerated to store basenames, not absolute paths.
+
+**Status:** Resolved by inspection; needs the §13 verification checklist run on
+this host to confirm end-to-end.
+
 ## 6. Environment
 
-- **Host:** Windows 11 + WSL2 (Ubuntu)
+- **Host:** Windows 11 + WSL2 (Fedora Linux 42)
 - **GPU:** AMD 7900 XTX (ROCm 6.x) — torch uses `cuda` device name
 - **Venv:** `~/llm-env/` (`source ~/llm-env/bin/activate`)
 - **Showdown server:** `~/pokemon-showdown/` on `localhost:8000`
@@ -256,7 +272,7 @@ Harmless warning to ignore: `agent.cpp:608] sysfs nodes path
 | Held-out pool size | `python -c "from src.ga_core import heldout_pool; print(len(heldout_pool()))"` | Should be 100 |
 | Rebuild DB | `node tools/build_regmc_db.js` | Requires Showdown running |
 | Scrape replays | `python tools/scrape_replays.py` | → `data/showdown_replays/` |
-| Parse replays | `python tools/replay_tracker.py` | → `data/training_data.jsonl` |
+| Parse replays | `python tools/batch_parse.py` | → `data/training_data.jsonl` |
 
 ---
 
@@ -309,7 +325,7 @@ Full log in `STATE_history.md`.
 
 ## 11. How to resume work (for an agent)
 
-1. `cd ~/project && source ~/llm-env/bin/activate`
+1. `cd ~/pokeMorgrad && source ~/llm-env/bin/activate`
 2. Run `python -m src.audit_before_launch`. If it passes, the data layer is
    healthy.
 3. Check §5 "Active bugs" — pick the top item and reproduce it.
@@ -320,3 +336,77 @@ Full log in `STATE_history.md`.
    pop 4, 20 battles/genome before committing.
 6. Update this file (§2 status, §5 bugs) in the same commit as any material
    change.
+
+---
+
+## 12. Model promotion rule
+
+`output/models/bc_best.pt` is the pilot every eval and GA run loads. **Never
+overwrite it without a 5-seed pilot eval showing +3 pts** over the current
+`bc_best.pt` on the held-out pool. History: a blind `cp bc_v3_5m.pt bc_best.pt`
+on 2026-10-13 silently regressed the pilot (v3 is 8.8% vs v5's 19.4%) and had to
+be reverted (§5.6). To promote a candidate:
+
+    python -m src.eval --pilot bc output/models/<candidate>.pt   # 5-seed
+    # only if mean win rate ≥ current bc_best + 3 pts:
+    cp output/models/<candidate>.pt output/models/bc_best.pt
+
+---
+
+## 13. Verification checklist (portability — run before committing §5.7)
+
+The path refactor was done by inspection on a host where the toolchain could not
+be executed. Run these on the WSL (Fedora) host, from the repo root, with the
+venv active and Showdown up on `:8000`. Each should pass before the commit.
+
+    cd ~/pokeMorgrad && source ~/llm-env/bin/activate
+
+1. **No dead host paths remain in the live tree** (expect zero hits; `archive/`
+   is frozen history and intentionally excluded, as is this doc's own prose):
+
+        grep -rniE '~/project|/home/morgrad' \
+          --include='*.py' --include='*.js' --include='*.sh' --include='*.json' \
+          src run tools ops data README.md
+
+2. **Lint is clean** (project ruff config: E/F/W/I, ignore E501):
+
+        ruff check src run tools
+
+3. **Path layer resolves and points at this checkout:**
+
+        python -c "from src.paths import data_path, output_path, showdown_dir; \
+          print(data_path('regmc_db.json')); print(output_path('champions')); \
+          print(showdown_dir())"
+
+4. **Core imports load** (the modules that had baked-in paths):
+
+        python -c "import src.regmc_db, src.state_encoder, src.showdown_validator, \
+          src.audit_before_launch, src.ga_core; print('imports OK')"
+
+5. **Opponent pools are non-empty** (the silent-empty-pool regression):
+
+        python -c "from src.ga_core import regional_pool, heldout_pool; \
+          print('train', len(regional_pool())); print('holdout', len(heldout_pool()))"
+        # expect: train 300, holdout 100
+
+6. **Pre-flight audit passes:**
+
+        python -m src.audit_before_launch
+
+7. **JS bridges find Showdown** (uses `SHOWDOWN_DIR`, default `~/pokemon-showdown`):
+
+        node tools/build_regmc_db.js --dry-run 2>/dev/null || \
+          node -e "const o=require('os'),p=require('path'); \
+          console.log(process.env.SHOWDOWN_DIR||p.join(o.homedir(),'pokemon-showdown'))"
+
+8. **Legality gate still works end-to-end:**
+
+        python -c "from src.showdown_validator import validate_team; \
+          print(validate_team(open('data/baseline_team.txt').read()))"
+
+9. **Optional — override check:** set `POKEMORGRAD_ROOT=/tmp/nope` and confirm
+   `src.paths` rejects it (missing `data/`), proving the env validation works.
+
+If all nine pass, commit. If step 5 returns 0 for either pool, the basename
+resolution in `ga_core._load_teams` or the `pool_split.json` regeneration is
+wrong — stop and fix before committing.

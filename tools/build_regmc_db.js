@@ -8,11 +8,16 @@
  * Usage: node build_regmc_db.js [format] [outPath]
  */
 const fs = require('fs');
-const SHOWDOWN = '/home/morgrad/pokemon-showdown/dist';
+const os = require('os');
+const path = require('path');
+const SHOWDOWN = process.env.SHOWDOWN_DIR
+    ? path.join(process.env.SHOWDOWN_DIR, 'dist')
+    : path.join(os.homedir(), 'pokemon-showdown', 'dist');
 const {Dex} = require(SHOWDOWN + '/sim/dex');
 
 const FORMAT = process.argv[2] || 'gen9championsvgc2026regmc';
-const OUT_PATH = process.argv[3] || '/home/morgrad/project/regmc_db.json';
+const OUT_PATH = process.argv[3]
+    || path.join(__dirname, '..', 'data', 'regmc_db.json');
 
 const format = Dex.formats.get(FORMAT);
 if (!format.exists) { console.error('Format not found:', FORMAT); process.exit(1); }

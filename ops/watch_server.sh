@@ -1,7 +1,12 @@
 #!/bin/bash
 # Watchdog: keep Showdown alive, kill training if it stalls.
-# Run with: nohup bash ~/project/ops/watch_server.sh > /tmp/watch_server.log 2>&1 &
+# Run with: nohup bash ops/watch_server.sh > /tmp/watch_server.log 2>&1 &
+#
+# NOTE: the training-stall half of this script targets the separate
+# ~/vgc-bench project (vgc_bench.train / TensorBoard), not pokeMorgrad.
+# Only the Showdown-health loop is relevant here.
 
+OPS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 TB_DIR=~/vgc-bench/results/logs_sp
 STALL_SECONDS=300   # kill training if no TB write in 5 min
 CHECK_INTERVAL=30
@@ -11,7 +16,7 @@ while true; do
     # 1. Showdown health
     if ! curl -s http://localhost:8000 > /dev/null 2>&1; then
         echo "$(date) Showdown DOWN — restarting"
-        bash ~/project/ops/start_server.sh
+        bash "$OPS_DIR/start_server.sh"
         sleep 5
     fi
 

@@ -1,10 +1,11 @@
 """Encoder v2: dict of tensors for embedding-based model."""
 import json
-import os
 import numpy as np
 import torch
 
-REGM_DB = os.path.expanduser("~/project/data/regmc_db.json")
+from src.paths import data_path
+
+REGM_DB = data_path("regmc_db.json")
 
 STATUSES = ["none", "brn", "par", "slp", "psn", "tox", "frz"]
 WEATHERS = ["none", "SunnyDay", "RainDance", "Sandstorm", "Snow", "Hail",
@@ -117,11 +118,11 @@ class StateEncoder:
 
 
 if __name__ == "__main__":
-    import sys, time
+    import time
     enc = StateEncoder()
     print(f"Vocab: species={enc.n_species}, moves={enc.n_moves}, "
           f"items={enc.n_items}, abilities={enc.n_abilities}")
-    path = os.path.expanduser("~/project/data/training_data.jsonl")
+    path = data_path("training_data.jsonl")
     with open(path) as f:
         sample = json.loads(f.readline())
     out = enc.encode(sample["state"])

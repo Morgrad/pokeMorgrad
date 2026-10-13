@@ -1,8 +1,10 @@
-> ⚠️ **Last verified:** commit `2739569`. Some details may be stale — see the root [README](../README.md) and `git log` for current truth.
+> ℹ️ Paths in this file are **repo-relative** (resolved at runtime via
+> `src/paths.py`). For current project status see [`STATE.md`](STATE.md) and the
+> root [README](../README.md).
 
 # Pokémon AI Project — Glossary
 
-Last updated: 2026-10-11
+Last updated: 2026-10-13
 
 A single reference for every acronym, term, and piece of jargon used in this
 project. Grouped by category. If you see a term in a log, file name, or
@@ -111,7 +113,7 @@ conversation that isn't here, add it.
 | **Pool** | Opponent team set | 400 regional top-cuts, split 300/100 |
 | **Held-out** | Test set never seen in training | 100 teams for final eval |
 | **Train pool** | Fitness evaluation set | 300 teams sampled randomly |
-| **Pilot** | Who plays the battles | SimpleHeuristics currently (broken) |
+| **Pilot** | Who plays the battles | Heuristic (working baseline) or BC pilot (functional but weak) |
 | **Team preview** | Pick 4 of your 6 | Strategic phase before battle |
 | **Meta** | The dominant strategy set | What most top players run |
 | **Archetype** | A team style | Rain, Sand, Trick Room, etc. |
@@ -124,26 +126,34 @@ conversation that isn't here, add it.
 
 | File | Purpose |
 |---|---|
-| `~/project/src/regmc_db.py` | Canonical data access + team validator |
-| `~/project/data/regmc_db.json` | Canonical DB (species, items, moves, abilities) |
-| `~/project/src/ga_core.py` | Base GA engine (species-level) |
-| `~/project/src/ga_core.py` | Island model + checkpointing |
-| `~/project/src/showdown_validator.py` | Showdown legality gate |
-| `~/project/src/showdown_validate.js` | Node.js validator bridge |
-| `~/project/run/ga_run.py` | 5-hour GA launcher |
-| `~/project/run/ga_overnight.sh` | 10-hour chain (run1 + run2 + eval) |
-| `~/project/tools/build_regmc_db.js` | Rebuild canonical DB from Showdown |
-| `~/project/tools/scrape_replays.py` | Replay scraper |
-| `~/project/tools/scrape_replays.py` | Regional top-cut scraper |
-| `~/project/data/pool_split.json` | Train/held-out split (300/100) |
-| `~/project/data/meta_items.json` | Item frequency per species from real teams |
-| `~/project/data/showdown_replays/` | Scraped replays (training data) |
-| `~/project/data/regional_teams/` | 400 top-cut teams (opponent pool) |
-| `~/project/output/champions/` | GA-produced team files |
-| `~/project/output/checkpoints/v6/` | Per-gen checkpoints |
-| `~/project/docs/STATE.md` | Current project state (short) |
-| `~/project/docs/STATE_history.md` | Full chronological log |
-| `~/project/docs/GLOSSARY.md` | This file |
+| `src/paths.py` | Repo-relative path resolution — single source of truth for file locations |
+| `src/regmc_db.py` | Canonical data access + team validator |
+| `data/regmc_db.json` | Canonical DB (species, items, moves, abilities) |
+| `src/ga_core.py` | GA engine — base (species-level) + island model + checkpointing |
+| `src/state_encoder.py` | Battle state → tensors for the BC model |
+| `src/bc_model.py` | Neural net definition + checkpoint I/O |
+| `src/bc_train.py` | BC training loop |
+| `src/bc_player.py` | poke_env Player wrapping the BC model |
+| `src/eval.py` | Unified evaluation CLI |
+| `src/audit_before_launch.py` | Pre-flight sanity checks |
+| `src/showdown_validator.py` | Showdown legality gate |
+| `src/showdown_validate.js` | Node.js validator bridge |
+| `run/ga_run.py` | 5-hour GA launcher |
+| `run/ga_overnight.sh` | 10-hour chain (run1 + run2 + eval) |
+| `tools/build_regmc_db.js` | Rebuild canonical DB from Showdown |
+| `tools/scrape_replays.py` | Replay scraper |
+| `tools/replay_tracker.py` | Replay parser (Tracker class) |
+| `tools/batch_parse.py` | Batch driver: replays → `training_data.jsonl` |
+| `tools/build_species_priors.py` | Build `species_move_priors.json` |
+| `data/pool_split.json` | Train/held-out split (300/100), basenames |
+| `data/meta_items.json` | Item frequency per species from real teams |
+| `data/showdown_replays/` | Scraped replays (training data) |
+| `data/regional_teams/` | 400 top-cut teams (opponent pool) |
+| `output/champions/` | GA-produced team files |
+| `output/checkpoints/v6/` | Per-gen checkpoints |
+| `docs/STATE.md` | Current project state (short) |
+| `docs/STATE_history.md` | Full chronological log |
+| `docs/GLOSSARY.md` | This file |
 
 ---
 

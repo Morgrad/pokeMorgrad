@@ -2,9 +2,11 @@
 Full pre-flight audit before launching the counter-meta GA.
 Checks every layer of the data + generation pipeline.
 """
-import os, sys, glob, random, json, traceback
+import random
+
 from src import regmc_db as DB
 from src import ga_core as G
+from src.paths import data_path
 
 random.seed(0)
 
@@ -176,7 +178,7 @@ print()
 print("=" * 60)
 print("9. BASELINE TEAM")
 print("=" * 60)
-baseline = os.path.expanduser("~/project/data/baseline_team.txt")
+baseline = data_path("baseline_team.txt")
 ok, errs = DB.validate_team(open(baseline).read())
 print(f"  {baseline}: {'VALID' if ok else 'INVALID ' + str(errs[:3])}")
 

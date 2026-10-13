@@ -1,14 +1,17 @@
 """Scrape Pokemon Showdown replays for our format."""
 import urllib.request, urllib.error, json, os, sys, time, random
 
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from src.paths import data_path
+
 UA = "Mozilla/5.0 (compatible; research-scraper/1.0)"
 FORMAT = "gen9championsvgc2026regmc"
 RATING_FLOOR = int(sys.argv[1]) if len(sys.argv) > 1 else 1600
 MAX_PAGES = int(sys.argv[2]) if len(sys.argv) > 2 else 200
 SLEEP = 0.25
 
-META_DIR = os.path.expanduser("~/project/data/showdown_replays_meta")
-REPLAY_DIR = os.path.expanduser("~/project/data/showdown_replays")
+META_DIR = data_path("showdown_replays_meta")
+REPLAY_DIR = data_path("showdown_replays")
 os.makedirs(META_DIR, exist_ok=True)
 os.makedirs(REPLAY_DIR, exist_ok=True)
 

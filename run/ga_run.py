@@ -15,9 +15,10 @@ import random
 import sys
 
 from src.ga_core import run_islands
+from src.paths import data_path, output_path
 
-BASELINE = os.path.expanduser("~/project/data/baseline_team.txt")
-CHAMP_DIR = os.path.expanduser("~/project/output/champions")
+BASELINE = data_path("baseline_team.txt")
+CHAMP_DIR = output_path("champions")
 
 RUN_ID = sys.argv[1] if len(sys.argv) > 1 else "run1"
 HOURS = float(sys.argv[2]) if len(sys.argv) > 2 else 5.0

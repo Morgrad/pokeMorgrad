@@ -44,9 +44,10 @@ Runs on Windows + WSL2 with an AMD 7900 XTX (ROCm).
 
 ## Layout
 
-    ~/project/
+    pokeMorgrad/
     ├── data/          read-only inputs (mostly gitignored, see below)
     ├── src/           Python package
+    │   ├── paths.py              repo-relative path resolution (single source)
     │   ├── regmc_db.py           canonical format data + team validator
     │   ├── showdown_validator.py legality gate
     │   ├── state_encoder.py      battle state → tensors
@@ -89,7 +90,7 @@ Requires Python 3.10+, Node.js (for Showdown), and a running Showdown server on 
 **not committed** — too large and regenerable. Rebuild with:
 
     python tools/scrape_replays.py            # → data/showdown_replays/
-    python tools/replay_tracker.py            # → data/training_data.jsonl
+    python tools/batch_parse.py               # → data/training_data.jsonl
 
 Canonical small files (`regmc_db.json`, `pool_split.json`, `meta_items.json`,
 `species_move_priors.json`, `regional_teams/`, `showdown_replays_meta/`) *are*
@@ -103,7 +104,7 @@ committed — the pipeline runs without re-scraping.
 |---|---|
 | Rebuild canonical DB | `node tools/build_regmc_db.js` |
 | Scrape replays | `python tools/scrape_replays.py` |
-| Parse replays → training data | `python tools/replay_tracker.py` |
+| Parse replays → training data | `python tools/batch_parse.py` |
 | Pre-flight audit | `python -m src.audit_before_launch` |
 | Train BC model | `python -m src.bc_train` |
 | Launch 5h GA | `python run/ga_run.py run1 5` |
@@ -114,22 +115,24 @@ committed — the pipeline runs without re-scraping.
 
 ---
 
-## Current status (2026-10-12)
+## Current status
 
-- **Baseline team** scores **54–60%** vs the 100 held-out teams across
-  seeds (heuristic pilot). ~3-point spread between runs, expected.
-- **BC v5** (`bc_best.pt`) reaches **57.9%** move accuracy on validation.
-- **BC pilot is functional but weak:** 18.3% win rate vs held-out (single
-  seed). The 2026-10-12 fixes (target semantics, disabled moves, model
-  cache) restored throughput but not win rate. Retraining is the next step.
-- **Training data rebuilt:** `data/training_data.jsonl` is 72,048 rows from
-  5001 replays (0.3% skip). Regenerate any time with
-  `python tools/build_training_data.py`.
-- **GA running overnight** (2 × 8h runs, heuristic pilot). BC pilot is too
-  weak for fitness — see `docs/STATE.md` §8.
-- **Open question:** can BC be improved past 60% move accuracy by retraining
-  on the outcome-weighted 72k-row set? `bc_train.py` already has the
-  oversampling hook.
+Numbers move between runs, so the authoritative snapshot lives in
+[`docs/STATE.md`](docs/STATE.md) — treat that file as the source of truth and
+this section as orientation only.
+
+- **Heuristic pilot** is the working baseline; the GA optimizes against it and
+  the champion edges it out on the held-out set. See STATE.md §2 for the latest
+  figures.
+- **BC pilot is functional but weak** — good enough to train and evaluate, not
+  yet strong enough to drive GA fitness. Retraining on the outcome-weighted
+  training set is the open thread (`bc_train.py` has the oversampling hook).
+- **Training data is regenerable:** `python tools/scrape_replays.py` then
+  `python tools/batch_parse.py` rebuild `data/showdown_replays/` and
+  `data/training_data.jsonl`.
+- **Paths are now portable.** All modules resolve files through `src/paths.py`
+  (repo-relative, overridable via `POKEMORGRAD_ROOT` / `SHOWDOWN_DIR`), so the
+  tree runs from any checkout location — no hardcoded home directories.
 
 ---
 

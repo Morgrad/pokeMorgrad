@@ -13,7 +13,9 @@ import os
 import re
 from functools import lru_cache
 
-DB_PATH = os.path.expanduser("~/project/data/regmc_db.json")
+from src.paths import data_path
+
+DB_PATH = data_path("regmc_db.json")
 
 
 def norm(s):
@@ -321,7 +323,7 @@ if __name__ == "__main__":
     print()
 
     # Baseline team validation
-    baseline_path = os.path.expanduser("~/project/data/baseline_team.txt")
+    baseline_path = data_path("baseline_team.txt")
     if os.path.exists(baseline_path):
         text = open(baseline_path).read()
         ok, errs = validate_team(text)

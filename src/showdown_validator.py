@@ -1,10 +1,14 @@
 """
 Python wrapper around the Node TeamValidator. Caches results by team hash.
 """
-import base64, hashlib, os, subprocess, sys
+import base64
+import hashlib
+import subprocess
+
+from src.paths import data_path, src_path
 
 CACHE = {}
-JS_PATH = os.path.expanduser("~/project/src/showdown_validate.js")
+JS_PATH = src_path("showdown_validate.js")
 
 def check_teams(team_texts):
     """team_texts: list of Showdown team strings. Returns list of (ok, msg)."""
@@ -45,7 +49,7 @@ def check_teams(team_texts):
 
 if __name__ == "__main__":
     # Quick test
-    baseline = open(os.path.expanduser("~/project/data/baseline_team.txt")).read()
+    baseline = open(data_path("baseline_team.txt")).read()
     bad = baseline.replace("Umbreon", "Greninja").replace("Inner Focus", "Battle Bond")
     results = check_teams([baseline, bad])
     for r in results:

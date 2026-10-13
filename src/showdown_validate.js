@@ -1,8 +1,11 @@
 // Batch validator: reads N teams (one per line-delimited base64 blob),
 // returns N verdicts. One process handles many teams — fast.
-const {Dex} = require('/home/morgrad/pokemon-showdown/dist/sim/dex');
-const {Teams} = require('/home/morgrad/pokemon-showdown/dist/sim/teams');
-const {TeamValidator} = require('/home/morgrad/pokemon-showdown/dist/sim/team-validator');
+const os = require('os');
+const path = require('path');
+const SHOWDOWN = process.env.SHOWDOWN_DIR || path.join(os.homedir(), 'pokemon-showdown');
+const {Dex} = require(path.join(SHOWDOWN, 'dist/sim/dex'));
+const {Teams} = require(path.join(SHOWDOWN, 'dist/sim/teams'));
+const {TeamValidator} = require(path.join(SHOWDOWN, 'dist/sim/team-validator'));
 
 const FORMAT = 'gen9championsvgc2026regmc';
 const validator = TeamValidator.get(FORMAT);

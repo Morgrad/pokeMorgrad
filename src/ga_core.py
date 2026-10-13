@@ -56,6 +56,35 @@ def meta_items_for(species_name):
     return [(e["item"], e["count"]) for e in entries] if entries else None
 
 
+def _load_teams(files, label):
+    """Load team strings from a list of paths.
+
+    pool_split.json historically stored absolute paths from another host, so
+    each entry is resolved by basename against the local regional_teams dir.
+    Loud on failure: a silently-empty pool used to look like a 0% eval.
+    """
+    teams, missing = [], 0
+    for f in files:
+        path = os.path.join(_REGIONAL_DIR, os.path.basename(f))
+        try:
+            text = open(path).read().strip()
+            if text:
+                teams.append(text)
+            else:
+                missing += 1
+        except OSError:
+            missing += 1
+    if missing:
+        print(f"WARNING: {label} pool: {missing}/{len(files)} teams failed to load "
+              f"from {_REGIONAL_DIR}")
+    if files and not teams:
+        raise RuntimeError(
+            f"{label} pool is empty: none of {len(files)} team files could be "
+            f"read from {_REGIONAL_DIR}. Check data/regional_teams/ exists."
+        )
+    return teams
+
+
 _REGIONAL = None
 def regional_pool():
     """Training pool of team strings."""
@@ -64,18 +93,10 @@ def regional_pool():
         split_path = _p("data", "pool_split.json")
         if os.path.exists(split_path):
             split = json.load(open(split_path))
-            files = split.get("train", [])
+            _REGIONAL = _load_teams(split.get("train", []), "training")
         else:
             files = sorted(glob.glob(os.path.join(_REGIONAL_DIR, "*.txt")))
-        teams = []
-        for f in files:
-            try:
-                text = open(f).read().strip()
-                if text:
-                    teams.append(text)
-            except Exception:
-                pass
-        _REGIONAL = teams
+            _REGIONAL = _load_teams(files, "training")
     return _REGIONAL
 
 
@@ -87,16 +108,7 @@ def heldout_pool():
         split_path = _p("data", "pool_split.json")
         if os.path.exists(split_path):
             split = json.load(open(split_path))
-            files = split.get("holdout", [])
-            teams = []
-            for f in files:
-                try:
-                    text = open(f).read().strip()
-                    if text:
-                        teams.append(text)
-                except Exception:
-                    pass
-            _HELDOUT = teams
+            _HELDOUT = _load_teams(split.get("holdout", []), "held-out")
         else:
             _HELDOUT = regional_pool()
     return _HELDOUT

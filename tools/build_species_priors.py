@@ -1,10 +1,14 @@
 """Build species → top-N-moves priors from training data."""
 import json
 import os
+import sys
 from collections import Counter, defaultdict
 
-DATA = os.path.expanduser("~/project/data/training_data.jsonl")
-OUT = os.path.expanduser("~/project/data/species_move_priors.json")
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from src.paths import data_path
+
+DATA = data_path("training_data.jsonl")
+OUT = data_path("species_move_priors.json")
 
 counts = defaultdict(Counter)
 
