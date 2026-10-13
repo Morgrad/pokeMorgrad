@@ -29,6 +29,7 @@ import random
 import subprocess
 import time
 import urllib.request
+from functools import lru_cache
 
 from poke_env.player import SimpleHeuristicsPlayer
 from poke_env import AccountConfiguration
@@ -160,17 +161,24 @@ def heldout_pool():
 # =============================================================================
 # SET GENERATION
 # =============================================================================
+@lru_cache(maxsize=None)
 def _legal_items_for(species_name):
     """Items this species may legally hold.
 
     Mega stones are species-locked (only the matching mon may hold its stone;
     every other stone is filtered out), and `itemUser` items (e.g. signature
     berries) are restricted to their listed users. Everything else is fair game.
-    Falls back to ["Leftovers"] so a caller always has something to choose.
+    Falls back to ("Leftovers",) so a caller always has something to choose.
+
+    Cached: the legal set for a species never changes within a run (it's a pure
+    function of the static item/species tables), and this sits on the set-build
+    hot path. Returns a *tuple* so the cached value can't be mutated by a caller —
+    every call site either iterates it, wraps it in set(), or random.choice()s it,
+    all of which accept a tuple unchanged.
     """
     sp = _SPECIES_BY_NAME.get(species_name)
     if not sp:
-        return ["Leftovers"]
+        return ("Leftovers",)
     stones = set(sp["megaStones"])
     out = []
     for it in _ITEMS:
@@ -186,7 +194,7 @@ def _legal_items_for(species_name):
             if not any(DB.norm(u) == target for u in users):
                 continue
         out.append(name)
-    return out or ["Leftovers"]
+    return tuple(out) or ("Leftovers",)
 
 
 def _random_mon(species_name):
@@ -334,24 +342,61 @@ def filter_legal_genomes(genomes, constraints):
     invalid genome is replaced by a freshly built one, retried up to
     MAX_REBUILD_TRIES times; if none of the rebuilds pass, that slot is simply
     dropped (the population is topped back up by the caller). Output length may
-    therefore be < len(genomes).
+    therefore be < len(genomes), and survivors keep their input order.
+
+    Batched to cut subprocess spawns: SV.check_teams validates a whole list in a
+    single Showdown process, so instead of one validator call per rebuild attempt
+    (worst case n + MAX_REBUILD_TRIES·bad spawns per generation) we validate by
+    *attempt index* — one batched call for the initial population, then one per
+    rebuild round over only the still-failing slots, worst case
+    MAX_REBUILD_TRIES+1 calls total.
+
+    Equivalence note: initially-legal genomes pass through byte-identical and in
+    order. Rebuilt genomes are random either way; batching consumes the RNG
+    round-major instead of per-genome, so a specific replacement's identity can
+    differ from the old path — but the per-genome pass/fail, the input ordering,
+    and the MAX_REBUILD_TRIES-per-genome cap (a None build still burns a try) are
+    preserved exactly.
     """
-    texts = [genome_to_text(g) for g in genomes]
-    verdicts = SV.check_teams(texts)
-    out = []
-    for g, (ok, msg) in zip(genomes, verdicts):
+    # result[i] holds the legal genome for input slot i (original or a rebuild),
+    # or None if that slot was dropped. Reassembled in input order at the end.
+    result = [None] * len(genomes)
+    verdicts = SV.check_teams([genome_to_text(g) for g in genomes])
+
+    # Slots still needing a legal replacement, each with its remaining try budget.
+    pending = {}
+    for i, (g, (ok, _msg)) in enumerate(zip(genomes, verdicts)):
         if ok:
-            out.append(g)
-            continue
-        for _ in range(MAX_REBUILD_TRIES):
+            result[i] = g
+        else:
+            pending[i] = MAX_REBUILD_TRIES
+
+    while pending:
+        # One attempt for every still-failing slot. Building consumes a try even
+        # when build_random_genome returns None (mirrors the original loop, where
+        # a None fresh still burned one of the MAX_REBUILD_TRIES iterations).
+        fresh_by_idx = {}
+        for i in list(pending):
+            pending[i] -= 1
             fresh = build_random_genome(constraints)
-            if fresh is None:
-                continue
-            ok2, _ = SV.check_teams([genome_to_text(fresh)])[0]
-            if ok2:
-                out.append(fresh)
-                break
-    return out
+            if fresh is not None:
+                fresh_by_idx[i] = fresh
+
+        # Validate this round's successfully-built candidates in one batched call.
+        if fresh_by_idx:
+            idxs = list(fresh_by_idx)
+            round_verdicts = SV.check_teams([genome_to_text(fresh_by_idx[i]) for i in idxs])
+            for i, (ok2, _msg) in zip(idxs, round_verdicts):
+                if ok2:
+                    result[i] = fresh_by_idx[i]
+                    del pending[i]
+
+        # Drop any slot that has exhausted its attempts without a legal rebuild.
+        for i in list(pending):
+            if pending[i] <= 0:
+                del pending[i]
+
+    return [g for g in result if g is not None]
 
 
 # =============================================================================
