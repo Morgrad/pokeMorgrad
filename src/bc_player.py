@@ -155,12 +155,24 @@ class BCPlayer(Player):
 
     # ---- scoring ----
 
+    # Moves that legitimately target an ally in VGC doubles.
+    # Everything else targeting -1/-2 is almost always a misclick and
+    # we strongly discourage it. See docs/STATE.md §BC pilot notes.
+    ALLY_TARGET_MOVES = {
+        "helpinghand", "decorate", "coaching", "healpulse", "floralhealing",
+        "lifedew", "junglehealing", "pollenpuff", "followme", "ragepowder",
+        "afteryou", "instruct", "quash", "swagger", "flatter",
+    }
+
+    ALLY_TARGET_PENALTY = 5.0
+
     def _score_options(self, options, type_logits, move_logits, switch_logits,
                        target_logits=None):
         """Score each SingleBattleOrder option.
 
-        Score = log P(type) + log P(move|type) [+ log P(target|move)] for
-        move options, or log P(type) + log P(switch|type) for switches.
+        Score = log P(type) + log P(move|type) [+ log P(target|move)]
+              [+ ally-target penalty], or
+              log P(type) + log P(switch|type) for switches.
         """
         type_lp = F.log_softmax(type_logits, dim=-1)
         move_lp = F.log_softmax(move_logits, dim=-1)
@@ -187,6 +199,16 @@ class BCPlayer(Player):
                 if target_lp is not None:
                     tidx = _TARGET_MAP.get(opt.move_target, 2)
                     s += target_lp[tidx].item()
+
+                # Discourage ally-targeting for moves that aren't actually
+                # ally-targets. Without this, v2 (no target head) always
+                # picked -2 (our right ally) for damaging moves because
+                # poke_env lists it first in valid_orders.
+                if opt.move_target in (-1, -2):
+                    move_name = self._move_idx_to_name.get(idx, "")
+                    sd = _to_sd_id(move_name)
+                    if sd not in self.ALLY_TARGET_MOVES:
+                        s -= self.ALLY_TARGET_PENALTY
                 scores.append(s)
             else:
                 scores.append(float("-inf"))
