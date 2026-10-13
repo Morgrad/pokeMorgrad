@@ -1,12 +1,22 @@
 """
-GA core engine for counter-meta team search.
+ga_core.py — GA engine for counter-meta VGC team search.
+
+Evolves 6-mon teams against a pool of real top-cut teams, using a poke_env
+pilot (heuristic by default) to play out battles for the fitness signal.
 
 Entry points:
-  run_ga(...)        single-population generational GA (debug/fast)
-  run_islands(...)   multi-island GA with migration + checkpointing (production)
+  run_ga(...)        single-population generational GA — legacy/debug only.
+  run_islands(...)   multi-island GA with ring migration, stagnation restart,
+                     and JSON checkpointing — THIS is the production path.
 
-Genome = 6 mons, each {species, item, ability, nature, evs, moves}.
-Constraints = {slot_idx: species_name} — locked slots don't mutate.
+Vocabulary used throughout:
+  genome       = list of 6 mon dicts {species, item, ability, nature, evs, moves}
+  constraints  = {slot_idx: species_name} — "locked" slots that must hold a
+                 given species and are never mutated/crossed away.
+  fitness      = win rate of a genome vs a sampled slice of the opponent pool.
+
+Everything here is CPU/async orchestration; the only heavy dependency is
+poke_env driving a local Showdown server (see restart_showdown / SHOWDOWN_PORT).
 """
 from __future__ import annotations
 
@@ -26,7 +36,7 @@ from poke_env import AccountConfiguration
 from src import regmc_db as DB
 from src import showdown_validator as SV
 
-FORMAT = "gen9championsvgc2026regmc"
+FORMAT = "gen9championsvgc2026regmc"  # canonical format registry; battle.py callers pass this in
 
 # Repo root = parent of this file's directory (src/)
 _REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -37,7 +47,35 @@ def _p(*parts):
     return os.path.join(_REPO_ROOT, *parts)
 
 
-# ============= CACHED ROSTER =============
+# -----------------------------------------------------------------------------
+# Tuning knobs — every value here was hand-tuned against the Reg M-C pool.
+# Grouped up top so a reviewer can find and adjust them without spelunking
+# through the engine body. Changing one changes GA *behavior*, not correctness.
+# -----------------------------------------------------------------------------
+
+# --- Set generation ---
+META_ITEM_BIAS = 0.70   # P(draw the item from real tournament usage) vs any legal item.
+                        # 0.70 keeps teams meta-plausible while still exploring off-meta tech.
+EV_BUDGET = 66          # Total EVs handed out per mutated spread. Deliberately low: these are
+EV_STAT_CAP = 32        # search seeds, not tournament sets; 66 in 32-point chunks ≈ 2 invested stats.
+
+# --- Legality gate ---
+MAX_REBUILD_TRIES = 20  # Illegal genome: rebuild from scratch up to N times before dropping it.
+
+# --- Battle harness ---
+BATTLE_TIMEOUT = 20     # seconds before a battle is abandoned as hung (returns None, not a loss).
+MIN_TURNS = 3           # Battles ending < 3 turns are almost always a Showdown desync/forfeit,
+                        # not a real game — discard so they don't poison the fitness signal.
+RETRY_STRIDE = 999_983  # Added to the account uid on a retry so attempt #2 gets a fresh Showdown
+                        # login. Large prime → no collision with the uids of nearby battles.
+SEED_POOL = 30          # When seeding a population from real teams, draw from the first N teams.
+
+
+# =============================================================================
+# CACHED ROSTER
+# =============================================================================
+# Loaded once at import and reused for every genome built this run. Filtering to
+# species that actually have moves avoids ever building a mon we can't legalize.
 _BASE_SPECIES = [s for s in DB.all_species_base() if s["moves"]]
 _SPECIES_BY_NAME = {s["name"]: s for s in _BASE_SPECIES}
 _ITEMS = list(DB.all_items())
@@ -47,7 +85,12 @@ _REGIONAL_DIR = _p("data", "regional_teams")
 
 _META_ITEMS = None
 def meta_items_for(species_name):
-    """List of (item_name, weight) for a species, from real tournament data."""
+    """List of (item_name, count) for a species, from real tournament usage.
+
+    `count` is a raw frequency weight (consumed by random.choices in
+    _pick_item_for), not a normalized probability. Lazily loads meta_items.json
+    on first call; returns None when we have no usage data for the species.
+    """
     global _META_ITEMS
     if _META_ITEMS is None:
         path = _p("data", "meta_items.json")
@@ -114,8 +157,17 @@ def heldout_pool():
     return _HELDOUT
 
 
-# ============= SET GENERATION =============
+# =============================================================================
+# SET GENERATION
+# =============================================================================
 def _legal_items_for(species_name):
+    """Items this species may legally hold.
+
+    Mega stones are species-locked (only the matching mon may hold its stone;
+    every other stone is filtered out), and `itemUser` items (e.g. signature
+    berries) are restricted to their listed users. Everything else is fair game.
+    Falls back to ["Leftovers"] so a caller always has something to choose.
+    """
     sp = _SPECIES_BY_NAME.get(species_name)
     if not sp:
         return ["Leftovers"]
@@ -127,7 +179,7 @@ def _legal_items_for(species_name):
             out.append(name)
             continue
         if it.get("megaStone"):
-            continue  # wrong species's stone
+            continue  # a different species's stone
         users = it.get("itemUser")
         if users:
             target = DB.norm(species_name)
@@ -138,6 +190,13 @@ def _legal_items_for(species_name):
 
 
 def _random_mon(species_name):
+    """Build a random legal set for a species, or None if it can't field 4 moves.
+
+    The EV spread + nature are picked to match the moveset's damage class:
+    mostly-physical → offensive Jolly, mostly-special → Modest, mixed/none →
+    a bulky Calm spread. Item is a placeholder here; callers overwrite it with
+    _pick_item_for to apply the meta bias and dedupe within a team.
+    """
     sp = _SPECIES_BY_NAME.get(species_name)
     if not sp or len(sp["moves"]) < 4:
         return None
@@ -161,7 +220,14 @@ def _random_mon(species_name):
 
 
 def _pick_item_for(species_name, used_items):
-    """Pick an item with a bias toward what the meta actually uses."""
+    """Pick an item, biased toward what the meta actually runs, avoiding dupes.
+
+    Priority: (1) a mega stone not yet used on this team — stones are the whole
+    point of the species, so claim one first; (2) with probability META_ITEM_BIAS,
+    a usage-weighted draw from real tournament data (legal + unused only);
+    (3) otherwise any legal unused item. Item clause (no duplicate items on a
+    team) is enforced via `used_items`.
+    """
     sp = _SPECIES_BY_NAME.get(species_name)
     if not sp:
         return "Leftovers"
@@ -169,7 +235,7 @@ def _pick_item_for(species_name, used_items):
         if stone not in used_items:
             return stone
     meta = meta_items_for(species_name)
-    if meta and random.random() < 0.70:
+    if meta and random.random() < META_ITEM_BIAS:
         legal_set = set(_legal_items_for(species_name)) - used_items
         candidates = [(i, w) for i, w in meta if i in legal_set]
         if candidates:
@@ -189,6 +255,13 @@ def _fresh_mon(species_name, used_items):
 
 
 def build_random_genome(constraints):
+    """Build a full 6-mon genome honoring locks, the species clause, and item dupes.
+
+    Locked slots (constraints) are filled first with their mandated species; the
+    rest are filled from a shuffled roster, skipping any base species already on
+    the team (species clause) and any mon we can't build. Returns None if a slot
+    can't be filled — the caller is expected to retry or drop the genome.
+    """
     mons = [None] * 6
     used_bases, used_items = set(), set()
     for slot, sp_name in constraints.items():
@@ -221,8 +294,11 @@ def build_random_genome(constraints):
     return mons
 
 
-# ============= SERIALIZE =============
+# =============================================================================
+# SERIALIZE
+# =============================================================================
 def genome_to_text(mons):
+    """Render a genome as a Showdown team paste (the format every tool consumes)."""
     lines = []
     for m in mons:
         lines.append(f"{m['species']} @ {m['item']}")
@@ -238,6 +314,7 @@ def genome_to_text(mons):
 
 
 def text_to_genome(text):
+    """Parse a Showdown team paste back into a genome. None unless it's exactly 6 mons."""
     mons = DB.parse_team(text)
     if len(mons) != 6:
         return None
@@ -247,9 +324,18 @@ def text_to_genome(text):
     } for m in mons]
 
 
-# ============= SHOWDOWN LEGALITY GATE =============
+# =============================================================================
+# SHOWDOWN LEGALITY GATE
+# =============================================================================
 def filter_legal_genomes(genomes, constraints):
-    """Return only Showdown-legal genomes. Rebuild invalid ones (up to 20 tries each)."""
+    """Return only Showdown-legal genomes, rebuilding invalid ones in place.
+
+    Each genome is validated by the real Showdown team validator (via SV). An
+    invalid genome is replaced by a freshly built one, retried up to
+    MAX_REBUILD_TRIES times; if none of the rebuilds pass, that slot is simply
+    dropped (the population is topped back up by the caller). Output length may
+    therefore be < len(genomes).
+    """
     texts = [genome_to_text(g) for g in genomes]
     verdicts = SV.check_teams(texts)
     out = []
@@ -257,7 +343,7 @@ def filter_legal_genomes(genomes, constraints):
         if ok:
             out.append(g)
             continue
-        for _ in range(20):
+        for _ in range(MAX_REBUILD_TRIES):
             fresh = build_random_genome(constraints)
             if fresh is None:
                 continue
@@ -268,8 +354,11 @@ def filter_legal_genomes(genomes, constraints):
     return out
 
 
-# ============= MUTATION =============
+# =============================================================================
+# MUTATION
+# =============================================================================
 def _used_bases(mons, exclude_slot=None):
+    """Set of base-species norms currently on the team (for the species clause)."""
     s = set()
     for i, m in enumerate(mons):
         if i == exclude_slot or m is None:
@@ -281,11 +370,17 @@ def _used_bases(mons, exclude_slot=None):
 
 
 def _used_items(mons, exclude_slot=None):
+    """Set of items currently on the team (for the item clause)."""
     return {m["item"] for i, m in enumerate(mons)
             if i != exclude_slot and m and m.get("item")}
 
 
 def mutate_species(mons, slot, constraints):
+    """Swap one slot's species for a random legal one not already on the team.
+
+    `constraints` is accepted for a uniform mutate() dispatch signature but is
+    unused here — locked slots are filtered out by the caller before we're called.
+    """
     used = _used_bases(mons, exclude_slot=slot)
     cands = [s["name"] for s in _BASE_SPECIES
              if DB.norm(s["baseSpecies"]) not in used and len(s["moves"]) >= 4]
@@ -301,6 +396,7 @@ def mutate_species(mons, slot, constraints):
 
 
 def mutate_item(mons, slot):
+    """Swap one slot's item for a random legal unused one (item clause preserved)."""
     sp = _SPECIES_BY_NAME.get(mons[slot]["species"])
     if not sp:
         return mons
@@ -312,6 +408,7 @@ def mutate_item(mons, slot):
 
 
 def mutate_ability(mons, slot):
+    """Swap to an alternate ability (no-op if the species has only one)."""
     sp = _SPECIES_BY_NAME.get(mons[slot]["species"])
     if not sp or len(sp["abilities"]) < 2:
         return mons
@@ -322,18 +419,24 @@ def mutate_ability(mons, slot):
 
 
 def mutate_nature(mons, slot):
+    """Swap to a different nature."""
     alts = [n for n in _NATURES if n != mons[slot]["nature"]]
     mons[slot]["nature"] = random.choice(alts)
     return mons
 
 
 def mutate_evs(mons, slot):
+    """Re-roll the EV spread: hand out EV_BUDGET in EV_STAT_CAP-sized chunks.
+
+    Randomly dumps the budget into stats, each capped at EV_STAT_CAP, until it's
+    spent. Zero-valued stats are dropped from the dict (Showdown omits them).
+    """
     stats = ["hp", "atk", "def", "spa", "spd", "spe"]
-    budget, evs = 66, {s: 0 for s in stats}
+    budget, evs = EV_BUDGET, {s: 0 for s in stats}
     while budget > 0:
         s = random.choice(stats)
-        if evs[s] < 32:
-            add = min(budget, 32 - evs[s])
+        if evs[s] < EV_STAT_CAP:
+            add = min(budget, EV_STAT_CAP - evs[s])
             evs[s] += add
             budget -= add
     mons[slot]["evs"] = {s: v for s, v in evs.items() if v > 0}
@@ -341,6 +444,7 @@ def mutate_evs(mons, slot):
 
 
 def mutate_move(mons, slot):
+    """Swap one of the 4 moves for a random legal one not already known."""
     sp = _SPECIES_BY_NAME.get(mons[slot]["species"])
     if not sp:
         return mons
@@ -351,6 +455,12 @@ def mutate_move(mons, slot):
 
 
 def mutate(mons, constraints, n=None):
+    """Apply 1–4 random mutation ops to free (unlocked) slots of a genome copy.
+
+    Operates on a deep copy so the parent genome is never aliased. Locked slots
+    (in constraints) are excluded from the target pool. mutate_species needs the
+    constraints arg; the rest take only (mons, slot) — hence the dispatch branch.
+    """
     mons = copy.deepcopy(mons)
     free_slots = [i for i in range(6) if i not in constraints]
     if not free_slots:
@@ -366,6 +476,14 @@ def mutate(mons, constraints, n=None):
 
 
 def crossover(p1, p2, constraints):
+    """Breed two parents slot-by-slot, then repair the species and item clauses.
+
+    Each free slot inherits from a random parent; locked slots take the parent
+    that actually holds the mandated species (rebuilding if neither does). The
+    naive per-slot mix can duplicate a base species or item, so two repair passes
+    follow: re-roll species-clause violators via mutate_species, then re-pick any
+    duplicate item via _pick_item_for.
+    """
     child = []
     for i in range(6):
         if i in constraints:
@@ -412,11 +530,21 @@ def crossover(p1, p2, constraints):
     return child
 
 
-# ============= BATTLE =============
-_SEM = None
+# =============================================================================
+# BATTLE
+# =============================================================================
+_SEM = None   # module-global concurrency gate; set by run_ga / run_islands.
 
 
 async def _run_battle_once(team_str, opp_str, uid):
+    """Play one heuristic-vs-heuristic battle; return 1 (win) / 0 (loss) / None.
+
+    None means "no usable result": the battle errored, never finished, or ended
+    in under MIN_TURNS turns (a desync/forfeit we refuse to score). Both players
+    always have their Showdown listeners stopped in `finally` so a crashed battle
+    can't leak a hung websocket. Serialized through the module semaphore so we
+    never exceed the configured concurrency against one Showdown server.
+    """
     async with _SEM:
         bot = opp = None
         try:
@@ -426,14 +554,14 @@ async def _run_battle_once(team_str, opp_str, uid):
             opp = SimpleHeuristicsPlayer(
                 battle_format=FORMAT, team=opp_str, max_concurrent_battles=1,
                 account_configuration=AccountConfiguration.generate(f"O{uid}", rand=True))
-            await asyncio.wait_for(bot.battle_against(opp, n_battles=1), timeout=20)
+            await asyncio.wait_for(bot.battle_against(opp, n_battles=1), timeout=BATTLE_TIMEOUT)
             if bot.n_finished_battles == 0:
                 return None
             try:
                 turns = getattr(list(bot.battles.values())[-1], "turn", 0)
             except Exception:
                 turns = 0
-            if turns < 3:
+            if turns < MIN_TURNS:
                 return None
             return 1 if bot.n_won_battles > 0 else 0
         except Exception:
@@ -448,6 +576,12 @@ async def _run_battle_once(team_str, opp_str, uid):
 
 
 async def evaluate(mons, opponents, idx, total):
+    """Fitness = win rate of one genome across all `opponents`, run concurrently.
+
+    Invalid genomes score 0.0 immediately (and log it). Battles that return None
+    (timeout/desync) are dropped from the denominator, not counted as losses — a
+    genome isn't penalized for Showdown flaking. Prints a per-genome progress line.
+    """
     text = genome_to_text(mons)
     ok, errs = DB.validate_team(text)
     if not ok:
@@ -467,9 +601,15 @@ async def evaluate(mons, opponents, idx, total):
     return fit
 
 
-# ============= SIMPLE GA (single population) =============
+# =============================================================================
+# SIMPLE GA (single population) — LEGACY / debug only
+# =============================================================================
+# run_islands (below) is the production path. run_ga is kept for quick local
+# debugging of the evolve loop without the island/migration machinery; it has no
+# live callers in run/ and is not checkpointed.
 async def run_ga(locked, pop_size, generations, battles_per_genome, concurrency,
                  seed_path=None, label="latest"):
+    """Single-population generational GA. Legacy/debug — see run_islands for prod."""
     global _SEM
     _SEM = asyncio.Semaphore(concurrency)
     random.seed(42)
@@ -488,7 +628,7 @@ async def run_ga(locked, pop_size, generations, battles_per_genome, concurrency,
             population.append(g)
             print(f"Seeded with {os.path.basename(seed_path)}")
     for _ in range(min(3, pop_size - len(population))):
-        text = random.choice(opponents[:30])
+        text = random.choice(opponents[:SEED_POOL])
         g = text_to_genome(text)
         if not g:
             continue
@@ -535,6 +675,10 @@ async def run_ga(locked, pop_size, generations, battles_per_genome, concurrency,
 
         if gen == generations - 1:
             break
+        # Elitism: keep the top fifth (≥2) verbatim, fill the rest by breeding
+        # crossovers of the elite pool. run_islands.breed uses a larger top-third
+        # — single-pop can afford a tighter elite since there's no migration to
+        # reseed diversity.
         n_elites = max(2, pop_size // 5)
         elites = [g for _, g in ranked[:n_elites]]
         new_pop = [copy.deepcopy(g) for g in elites]
@@ -548,7 +692,13 @@ async def run_ga(locked, pop_size, generations, battles_per_genome, concurrency,
     print(genome_to_text(all_time_best["genome"]))
 
 
-# ============= ISLAND MODEL =============
+# =============================================================================
+# ISLAND MODEL
+# =============================================================================
+# The production GA: N semi-isolated populations ("islands"), each optionally
+# locking a different species, evolving in parallel. Top genomes migrate around a
+# ring every few generations; stagnant islands restart their worst half. State is
+# JSON-checkpointed every generation so a multi-hour run survives a crash/restart.
 CHECKPOINT_DIR = _p("output", "checkpoints", "v6")
 CHAMPION_DIR = _p("output", "champions")
 SHOWDOWN_DIR = os.path.expanduser("~/pokemon-showdown")
@@ -572,6 +722,14 @@ def enforce_constraints(genome, constraints):
 
 
 class Island:
+    """One GA sub-population plus its evolve/checkpoint bookkeeping.
+
+    constraints  = {slot: species} locked for this island (may be empty).
+    best_ever    = all-time best genome seen here (survives stagnation restarts).
+    stagnation   = generations since best_ever improved (drives the restart).
+    to_dict/from_dict are the on-disk checkpoint shape (see save_checkpoint).
+    """
+
     def __init__(self, name, constraints=None, seed_paths=None):
         self.name = name
         self.constraints = constraints or {}
@@ -583,6 +741,12 @@ class Island:
         self.seed_paths = seed_paths or []
 
     def init_population(self, size):
+        """Fill the population to `size`: seed files first, then random genomes.
+
+        Runs the legality gate once, then tops up again (the gate can drop
+        genomes it couldn't legalize). The final list may still be short if the
+        roster can't produce `size` legal genomes, which is acceptable.
+        """
         self.population = []
         for path in self.seed_paths:
             if os.path.exists(path):
@@ -606,6 +770,7 @@ class Island:
         self.fitness = [0.0] * len(self.population)
 
     def to_dict(self):
+        """Serialize to the JSON checkpoint shape (constraint keys → str for JSON)."""
         return {
             "name": self.name,
             "constraints": {str(k): v for k, v in self.constraints.items()},
@@ -618,6 +783,7 @@ class Island:
 
     @classmethod
     def from_dict(cls, d):
+        """Rebuild an Island from a checkpoint dict (constraint keys → int again)."""
         isl = cls(d["name"], {int(k): v for k, v in d.get("constraints", {}).items()})
         isl.population = d["population"]
         isl.fitness = d.get("fitness", [0.0] * len(isl.population))
@@ -628,6 +794,7 @@ class Island:
 
 
 def count_unique_species(island):
+    """Count distinct base species across the island — the diversity metric."""
     seen = set()
     for g in island.population:
         if not g:
@@ -640,6 +807,11 @@ def count_unique_species(island):
 
 
 def inject_immigrants(island, n):
+    """Replace the `n` worst genomes with fresh random ones. Returns count added.
+
+    Diversity rescue: called when an island's unique-species count falls below
+    the floor. Targets the lowest-fitness slots so we never evict a contender.
+    """
     if not island.fitness:
         return 0
     ranked = sorted(range(len(island.population)), key=lambda i: island.fitness[i])
@@ -694,6 +866,13 @@ def _strip_species(genome, species_set, constraints):
 
 
 def ring_migrate(islands, n=2):
+    """Copy each island's top `n` genomes into the next island's worst `n` slots.
+
+    Migration runs around a ring (island i receives from island i-1). Incoming
+    genomes are constraint-enforced for the destination, and any species that is
+    locked on the SOURCE but not here is stripped — see the inline note below for
+    the diversity-collapse bug that motivated it.
+    """
     tops = []
     for isl in islands:
         if not isl.fitness:
@@ -722,6 +901,13 @@ def ring_migrate(islands, n=2):
 
 
 def restart_showdown():
+    """Kill and relaunch the local Showdown server, waiting for it to come back.
+
+    Called periodically mid-run because the Node server leaks memory/sockets over
+    thousands of battles. Hard-kills any process on the port, relaunches detached
+    with --no-security (local-only, trusted), then polls the HTTP port for up to
+    15s. Returns True once it answers, False if it never came up.
+    """
     print(f"  [showdown] restarting on :{SHOWDOWN_PORT}...")
     subprocess.run(["pkill", "-9", "-f", f"pokemon-showdown start {SHOWDOWN_PORT}"],
                    stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
@@ -731,7 +917,7 @@ def restart_showdown():
         cwd=SHOWDOWN_DIR,
         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
     )
-    for _ in range(15):
+    for _ in range(15):   # poll up to ~15s for the server to accept connections
         try:
             urllib.request.urlopen(f"http://localhost:{SHOWDOWN_PORT}", timeout=2)
             print(f"  [showdown] back up")
@@ -743,6 +929,12 @@ def restart_showdown():
 
 
 def save_checkpoint(generation, islands, run_id="run1"):
+    """Write a full-run checkpoint and prune old ones, keeping every 5th gen.
+
+    Retention: the latest checkpoint is always kept; older ones survive only if
+    their generation is a multiple of 5. This bounds disk use over a long run
+    while still leaving periodic restore points. Returns the path written.
+    """
     base = os.path.join(CHECKPOINT_DIR, run_id)
     os.makedirs(base, exist_ok=True)
     path = os.path.join(base, f"gen_{generation:04d}.json")
@@ -754,10 +946,10 @@ def save_checkpoint(generation, islands, run_id="run1"):
     with open(path, "w") as f:
         json.dump(state, f, indent=2)
     all_ckpts = sorted(f for f in os.listdir(base) if f.startswith("gen_"))
-    for f in all_ckpts[:-1]:
+    for f in all_ckpts[:-1]:   # never prune the newest
         try:
             gen = int(f.split("_")[1].split(".")[0])
-            if gen % 5 != 0:
+            if gen % 5 != 0:   # keep multiples of 5 as periodic restore points
                 os.remove(os.path.join(base, f))
         except Exception:
             pass
@@ -765,6 +957,7 @@ def save_checkpoint(generation, islands, run_id="run1"):
 
 
 def load_latest_checkpoint(run_id="run1"):
+    """Path of the highest-numbered checkpoint for a run, or None if none exist."""
     base = os.path.join(CHECKPOINT_DIR, run_id)
     if not os.path.isdir(base):
         return None
@@ -775,6 +968,13 @@ def load_latest_checkpoint(run_id="run1"):
 
 
 def breed(island, immigration_rate=0.20):
+    """Produce the next generation of one island: elites + crossovers + immigrants.
+
+    Keeps the top third (≥2) as elites, then fills the rest by either injecting a
+    fresh random genome (probability immigration_rate, for ongoing diversity) or
+    breeding a mutated crossover of two elites. The new population is legality-
+    gated and topped back up to the original size. Fitness resets to zero.
+    """
     n = len(island.population)
     if n < 4:
         return
@@ -815,6 +1015,15 @@ async def run_islands(
     max_hours=None,
     run_id="run1",
 ):
+    """Production GA driver: evolve N islands with migration, restart, checkpoints.
+
+    Resumes from the latest checkpoint for `run_id` if one exists, else builds
+    islands from island_specs. Each generation, per island: evaluate fitness,
+    track the all-time best, rescue diversity (inject_immigrants) or escape local
+    optima (stagnation restart), then breed. Every `migration_every` gens the ring
+    migrates; every `showdown_restart_every` gens the server is bounced. Stops at
+    `generations` or when `max_hours` elapses. Writes a champion file per island.
+    """
     global _SEM
     _SEM = asyncio.Semaphore(concurrency)
 
@@ -931,10 +1140,15 @@ async def run_islands(
 
 
 async def _run_battle(team_str, opp_str, uid, retries=1):
-    """Run one battle, retrying on failure. Returns 0/1/None."""
+    """Run one battle, retrying once on a None result with a fresh account id.
+
+    The retry uses a RETRY_STRIDE-offset uid so attempt #2 logs in under a
+    different Showdown account — most None results are transient login/timeout
+    flakes, not deterministic failures. Returns 0/1/None.
+    """
     for attempt in range(retries + 1):
         result = await _run_battle_once(team_str, opp_str,
-                                        uid + attempt * 999_983)
+                                        uid + attempt * RETRY_STRIDE)
         if result is not None:
             return result
     return None
