@@ -1,4 +1,17 @@
-"""Scrape Pokemon Showdown replays for our format."""
+"""Scrape Pokemon Showdown replays for our format.
+
+Two phases: (1) page the public replay search API by descending rating to build a
+metadata index, (2) fetch the full replay JSON for everything above RATING_FLOOR
+(plus a slice of unrated games). Both phases are resumable — the metadata index
+and already-fetched replays on disk are skipped on re-run.
+
+Usage:
+  python tools/scrape_replays.py [RATING_FLOOR] [MAX_PAGES]
+    RATING_FLOOR  min ladder rating to fetch in full (default 1600)
+    MAX_PAGES     search pages to scan this run    (default 200)
+
+Writes: data/showdown_replays_meta/index.json and data/showdown_replays/*.json
+"""
 import urllib.request, urllib.error, json, os, sys, time, random
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -8,7 +21,12 @@ UA = "Mozilla/5.0 (compatible; research-scraper/1.0)"
 FORMAT = "gen9championsvgc2026regmc"
 RATING_FLOOR = int(sys.argv[1]) if len(sys.argv) > 1 else 1600
 MAX_PAGES = int(sys.argv[2]) if len(sys.argv) > 2 else 200
-SLEEP = 0.25
+
+# --- Scraper tuning ---
+SLEEP = 0.25            # polite delay between API hits; keep us under the rate limiter
+PAGE_SIZE = 51          # Showdown's search.json returns 51 results/page — a short page = the last page
+UNRATED_CAP = 500       # cap on unrated replays to include (they lack a rating signal; keep a sample, not all)
+EMPTY_PAGE_STOP = 3     # consecutive empty pages that mean "we've run past the end" → stop
 
 META_DIR = data_path("showdown_replays_meta")
 REPLAY_DIR = data_path("showdown_replays")
@@ -27,7 +45,7 @@ meta_path = os.path.join(META_DIR, "index.json")
 if os.path.exists(meta_path):
     all_meta = json.load(open(meta_path))
     seen_ids = {m["id"] for m in all_meta}
-    start_page = (len(all_meta) // 51) + 1
+    start_page = (len(all_meta) // PAGE_SIZE) + 1
     print(f"Resumed: {len(all_meta)} entries, starting page {start_page}")
 else:
     all_meta = []
@@ -52,7 +70,7 @@ for page in range(start_page, start_page + MAX_PAGES):
 
     if not entries:
         empty_pages += 1
-        if empty_pages >= 3:
+        if empty_pages >= EMPTY_PAGE_STOP:
             print(f"  page {page}: 3 empty pages, stopping")
             break
         continue
@@ -78,7 +96,7 @@ for page in range(start_page, start_page + MAX_PAGES):
     if page % 10 == 0:
         json.dump(all_meta, open(meta_path, "w"), indent=1)
 
-    if len(entries) < 51:
+    if len(entries) < PAGE_SIZE:
         print(f"  page {page}: last page ({len(entries)} entries)")
         break
 
@@ -96,7 +114,7 @@ if ratings:
 qualified = [m for m in all_meta
              if isinstance(m["rating"], (int, float)) and m["rating"] >= RATING_FLOOR]
 unrated = [m for m in all_meta if m["rating"] is None]
-qualified += unrated[:500]
+qualified += unrated[:UNRATED_CAP]
 
 print(f"\nPHASE 2: fetch {len(qualified)} replays (rating >= {RATING_FLOOR})")
 

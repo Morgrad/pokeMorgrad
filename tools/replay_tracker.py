@@ -32,6 +32,13 @@ import json
 import sys
 from pathlib import Path
 
+# --- Format constants (gen 9 VGC) ---
+# These mirror in-game durations; we only flag the window, we don't tick it down
+# turn by turn (the training signal is "is it active now", not "how many left").
+MOVES_PER_MON = 4        # a mon reveals at most 4 distinct moves — cap every move list here
+TRICK_ROOM_TURNS = 5     # Trick Room lasts 5 turns for the side that sets it
+TAILWIND_TURNS = 4       # Tailwind lasts 4 turns for the side that sets it
+
 
 def blank_mon():
     return {
@@ -46,18 +53,23 @@ def blank_mon():
         "ability": None,
         "is_mega": False,
         "is_active": False,
-        "slot": None,
         "brought": False,
         "fainted": False,
     }
 
 
 class Side:
+    """One player's roster, tracked as the replay is replayed line by line.
+
+    `mons` is the 6-mon preview order (what |poke| / |showteam| reveal up front);
+    `active` maps the two live slots ("a"/"b") to indices into `mons`. We mutate
+    these dicts in place as damage/boosts/switches come in.
+    """
+
     def __init__(self, side_id):
         self.side_id = side_id  # "p1" or "p2"
         self.mons = [blank_mon() for _ in range(6)]  # preview order
         self.active = {"a": None, "b": None}  # index into mons
-        self.brought_count = 0
 
     def find_by_species(self, species):
         """Find a mon by species name (first non-fainted match)."""
@@ -69,13 +81,6 @@ class Side:
     def find_active(self, slot):
         idx = self.active.get(slot)
         return self.mons[idx] if idx is not None else None
-
-    def next_bench_index(self):
-        """Return index of next non-active, non-fainted brought mon (or None)."""
-        for i, m in enumerate(self.mons):
-            if m["brought"] and not m["is_active"] and not m["fainted"]:
-                return i
-        return None
 
 
 def update_boosts(mon, stat, delta):
@@ -168,7 +173,7 @@ class Tracker:
         out = self._shallow_mon(m)
         full = self.full_moves.get(side_id, {}).get(m["species"], [])
         if full:
-            out["revealed_moves"] = list(full[:4])
+            out["revealed_moves"] = list(full[:MOVES_PER_MON])
         return out
 
     def _shallow_mon(self, m):
@@ -196,7 +201,7 @@ class Tracker:
             actions = []
             # Revealed moves become legal "candidates" (we don't know full moveset)
             full_moves = self.full_moves.get(side.side_id, {}).get(mon["species"], mon["revealed_moves"])
-            for mv in full_moves[:4]:
+            for mv in full_moves[:MOVES_PER_MON]:
                 actions.append({"type": "move", "move": mv, "target": None})
             # Any brought, non-active bench mon is a switch target
             for i, m in enumerate(side.mons):
@@ -271,7 +276,6 @@ class Tracker:
         mon["hp_now"] = hp_now
         mon["hp_max"] = hp_max or mon["hp_max"]
         mon["is_active"] = True
-        mon["slot"] = slot
         mon["brought"] = True
         side.active[slot] = idx
         # If this is mid-turn, record action
@@ -423,7 +427,7 @@ class Tracker:
         field = parts[2]
         if "Trick Room" in field:
             self.field["trick_room"] = not end
-            self.field["trick_room_turns"] = 0 if end else 5
+            self.field["trick_room_turns"] = 0 if end else TRICK_ROOM_TURNS
 
     def handle_sidestart(self, parts, end=False):
         # |-sidestart|p1: Team|move: Tailwind
@@ -433,7 +437,7 @@ class Tracker:
         cond = parts[3] if len(parts) > 3 else ""
         side_id = team.split(":")[0].strip()
         if "Tailwind" in cond:
-            self.field["tailwind"][side_id] = 0 if end else 4
+            self.field["tailwind"][side_id] = 0 if end else TAILWIND_TURNS
 
     def handle_detailschange(self, parts):
         # |detailschange|p1a: Charizard|Charizard-Mega-Y, L50, F

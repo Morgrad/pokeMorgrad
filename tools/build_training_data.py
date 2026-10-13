@@ -1,7 +1,18 @@
 """Build data/training_data.jsonl from raw Showdown replays.
 
-Reads data/showdown_replays/*.json, extracts decisions with the Tracker,
-tags each with side_won (from |win| line), writes JSONL.
+THIS is the training-data driver — the one bc_train.py consumes. It reads
+data/showdown_replays/*.json, replays each with the Tracker to recover per-turn
+decisions, tags every row with:
+  - side_won   (bool, from the |win| line vs the |player| names)
+  - target_a / target_b  (canonical target index per active slot, see _target_idx)
+and writes one JSON object per line.
+
+Do NOT regenerate training data with tools/batch_parse.py (archived) — it predates
+the side_won/target_* schema and silently degrades bc_train. Keep this file's
+output schema in lockstep with bc_train's reader (bc_train.py).
+
+Usage:
+  python tools/build_training_data.py
 """
 import json
 import sys
