@@ -1,30 +1,33 @@
-"""BC pilot — wraps a trained BC model as a poke_env Player.
+"""BC pilot — uses poke_env's valid_orders for action legality.
 
-Design notes:
-  * All name lookups normalize through `_to_sd_id` (lowercase alphanumeric),
-    matching both Showdown's `mv.id` format and poke_env's species display.
-  * Move masking prefers the LIVE moveset (all 4 moves known for our own mon)
-    over species priors. Falls back to priors only if `battle_mon` isn't given.
-  * In doubles, move orders MUST include a target (Showdown rejects otherwise).
-    Slot 0 targets opponent slot 1; slot 1 targets opponent slot 2.
-  * `choose_move` returns a proper `DoubleBattleOrder` when both slots succeed.
-    If either slot fails, it returns a single random double-order for the whole
-    turn — never a nested DoubleBattleOrder (which Showdown rejects).
+Design (v2, 2026-10-13):
+  Rather than hand-filtering moves for PP/disabled/target-type (which was
+  continuously producing Showdown rejections), the pilot asks poke_env for
+  `battle.valid_orders` — the per-slot list of every legal SingleBattleOrder
+  (moves with all valid targets, plus switches). The model scores each option;
+  the argmax per slot becomes the choice. This eliminates the entire class of
+  bugs around disabled moves, wrong targets, and malformed orders.
+
+Cached model: encoder + model + priors + move mask are loaded once and shared
+across all BCPlayer instances (eval loops create hundreds).
 """
 import json
 import os
 
+import numpy as np
 import torch
 import torch.nn.functional as F
 
 from poke_env.player import Player
 from poke_env.battle import DoubleBattle
+from poke_env.battle.pokemon import Pokemon
+from poke_env.battle.move import Move
 from poke_env.player.battle_order import DoubleBattleOrder
 
 from src.state_encoder import StateEncoder
 from src.bc_model import (
     BCModel, build_move_mask, load_checkpoint,
-    NEG_INF, TYPE_MOVE, TYPE_SWITCH,
+    TYPE_MOVE, TYPE_SWITCH,
 )
 
 _REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -32,12 +35,11 @@ MODEL_PATH = os.path.join(_REPO_ROOT, "output", "models", "bc_best.pt")
 PRIORS_PATH = os.path.join(_REPO_ROOT, "data", "species_move_priors.json")
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
-
 _MODEL_CACHE = {}
 
 
 def _get_shared_model():
-    """Load encoder + model + priors + mask once, share across instances."""
+    """Load encoder + model + priors + move mask once, share across instances."""
     if DEVICE not in _MODEL_CACHE:
         encoder = StateEncoder()
         priors = json.load(open(PRIORS_PATH))
@@ -60,16 +62,10 @@ def _to_sd_id(name: str) -> str:
 
 class BCPlayer(Player):
     def __init__(self, *args, **kwargs):
-        # Build everything BEFORE super().__init__() so the async listener
-        # never fires against a half-constructed object.
         self.encoder, self.model, self.priors, self.move_mask = _get_shared_model()
 
-        # Reverse maps: index -> canonical name
-        self._move_by_idx = {v: k for k, v in self.encoder.move_idx.items()}
-        self._species_by_idx = {v: k for k, v in self.encoder.species_idx.items()}
-        # SD-id -> canonical name (for species display matching)
+        # Reverse/lookup maps
         self._species_by_sd_id = {_to_sd_id(k): k for k in self.encoder.species_idx}
-        # SD-id -> encoder index (fast live-move masking)
         self._move_sd_to_idx = {_to_sd_id(k): v for k, v in self.encoder.move_idx.items()}
 
         super().__init__(*args, **kwargs)
@@ -82,9 +78,10 @@ class BCPlayer(Player):
         return self._species_by_sd_id.get(_to_sd_id(raw), raw)
 
     def _canonical_move(self, sd_id: str):
-        return self._move_by_idx.get(self._move_sd_to_idx.get(sd_id, 0))
+        idx = self._move_sd_to_idx.get(sd_id, 0)
+        return {v: k for k, v in self.encoder.move_idx.items()}.get(idx)
 
-    # ---- state conversion ----
+    # ---- state conversion (unchanged) ----
 
     def _state_to_dict(self, battle: DoubleBattle):
         def mon_view(mon, is_opp=False):
@@ -138,27 +135,53 @@ class BCPlayer(Player):
             "field": field,
         }
 
-    # ---- prediction ----
+    # ---- scoring ----
 
-    def _live_moveset_mask(self, battle_mon):
-        """Fast: O(4) lookups. Only moves with PP>0 that the mon actually knows."""
-        mask = torch.zeros((1, self.encoder.n_moves), dtype=torch.float32, device=DEVICE)
-        if battle_mon is None or not battle_mon.moves:
-            return mask
-        for mv in battle_mon.moves.values():
-            if mv is None or not mv.id:
-                continue
-            if getattr(mv, "current_pp", 1) <= 0:
-                continue
-            if getattr(mv, "disabled", False):
-                continue
-            idx = self._move_sd_to_idx.get(mv.id)
-            if idx:
-                mask[0, idx] = 1.0
-        return mask
+    def _score_options(self, options, type_logits, move_logits, switch_logits):
+        """Return a score per SingleBattleOrder option.
 
-    def _predict_action(self, state_dict, slot_idx, battle_mon=None):
-        enc = self.encoder.encode(state_dict)
+        Score = log P(type | state) + log P(action | type, state).
+        Higher = model thinks this action is more likely.
+        """
+        type_lp = F.log_softmax(type_logits, dim=-1)
+        move_lp = F.log_softmax(move_logits, dim=-1)
+        switch_lp = F.log_softmax(switch_logits, dim=-1)
+
+        scores = []
+        for opt in options:
+            order = opt.order
+            if isinstance(order, Pokemon):
+                sp = self._canonical_species(str(order.species))
+                sid = self.encoder.species_idx.get(sp, 0)
+                if sid == 0:
+                    scores.append(float("-inf"))
+                    continue
+                score = (type_lp[TYPE_SWITCH] + switch_lp[sid]).item()
+            elif isinstance(order, Move):
+                idx = self._move_sd_to_idx.get(order.id, 0)
+                if idx == 0:
+                    scores.append(float("-inf"))
+                    continue
+                score = (type_lp[TYPE_MOVE] + move_lp[idx]).item()
+            else:
+                scores.append(float("-inf"))
+                continue
+            scores.append(score)
+        return scores
+
+    # ---- move selection ----
+
+    def choose_move(self, battle):
+        if not isinstance(battle, DoubleBattle):
+            return self.choose_random_move(battle)
+
+        valid = getattr(battle, "valid_orders", None)
+        if not valid or len(valid) != 2 or not valid[0] or not valid[1]:
+            return self.choose_random_move(battle)
+
+        state = self._state_to_dict(battle)
+        enc = self.encoder.encode(state)
+
         with torch.no_grad():
             ta, ma, sa, tb, mb, sb = self.model(
                 enc["species_ids"].unsqueeze(0).to(DEVICE),
@@ -169,121 +192,42 @@ class BCPlayer(Player):
                 enc["field"].unsqueeze(0).to(DEVICE),
             )
 
-        if slot_idx == 0:
-            type_logits, move_logits, switch_logits = ta, ma, sa
-        else:
-            type_logits, move_logits, switch_logits = tb, mb, sb
+        scores_a = self._score_options(valid[0], ta[0], ma[0], sa[0])
+        scores_b = self._score_options(valid[1], tb[0], mb[0], sb[0])
 
-        my_active = state_dict["my_active"]
-        acting = my_active[slot_idx] if slot_idx < len(my_active) else None
-        if acting is None:
-            return None
-        sid = self.encoder.species_idx.get(acting["species"], 0)
-        if sid == 0:
-            return None
+        ia = int(np.argmax(scores_a))
+        ib = int(np.argmax(scores_b))
+        best_a = valid[0][ia]
+        best_b = valid[1][ib]
 
-        if battle_mon is not None and battle_mon.moves:
-            lm = self._live_moveset_mask(battle_mon)
-            m_masked = move_logits + (1 - lm) * NEG_INF
-        else:
-            m_masked = move_logits + (1 - self.move_mask[sid].unsqueeze(0)) * NEG_INF
+        # Handle switch collision: both slots want the same species.
+        if (isinstance(best_a.order, Pokemon) and isinstance(best_b.order, Pokemon)
+                and str(best_a.order.species) == str(best_b.order.species)):
+            if scores_a[ia] >= scores_b[ib]:
+                loser_valid, loser_scores, loser_i = valid[1], scores_b, ib
+                loser_is_a = False
+            else:
+                loser_valid, loser_scores, loser_i = valid[0], scores_a, ia
+                loser_is_a = True
 
-        bench = state_dict["my_bench"]
-        bench_mask = torch.zeros(self.encoder.n_species, device=DEVICE)
-        for m in bench:
-            if m is None:
-                continue
-            bid = self.encoder.species_idx.get(m["species"], 0)
-            if bid:
-                bench_mask[bid] = 1.0
-        s_masked = switch_logits + (1 - bench_mask) * NEG_INF
+            # Prefer a move; else a different switch; else keep original.
+            move_idxs = [i for i, o in enumerate(loser_valid)
+                         if isinstance(o.order, Move)]
+            alt_switch_idxs = [
+                i for i, o in enumerate(loser_valid)
+                if isinstance(o.order, Pokemon)
+                and str(o.order.species) != str(loser_valid[loser_i].order.species)
+            ]
+            if move_idxs:
+                new_i = max(move_idxs, key=lambda i: loser_scores[i])
+            elif alt_switch_idxs:
+                new_i = max(alt_switch_idxs, key=lambda i: loser_scores[i])
+            else:
+                new_i = loser_i
 
-        type_probs = F.softmax(type_logits, dim=-1)[0]
-        p_move = type_probs[TYPE_MOVE].item() * F.softmax(m_masked, dim=-1).max().item()
-        p_switch = type_probs[TYPE_SWITCH].item() * F.softmax(s_masked, dim=-1).max().item()
+            if loser_is_a:
+                best_a = loser_valid[new_i]
+            else:
+                best_b = loser_valid[new_i]
 
-        if p_move >= p_switch:
-            mid = m_masked.argmax().item()
-            name = self._move_by_idx.get(mid)
-            return ("move", name) if name else None
-
-        sid_target = s_masked.argmax().item()
-        name = self._species_by_idx.get(sid_target)
-        return ("switch", name) if name else None
-
-    # ---- order construction ----
-
-    def _build_slot_order(self, slot_idx, mon, state, battle):
-        if mon is None or mon.fainted:
-            return None
-        action = self._predict_action(state, slot_idx, battle_mon=mon)
-        if action is None:
-            return None
-        kind, name = action
-
-        if kind == "move":
-            sd_id = _to_sd_id(name)
-            chosen = next(
-                (mv for mv in mon.moves.values()
-                 if mv is not None and mv.id == sd_id
-                 and getattr(mv, "current_pp", 1) > 0 and not getattr(mv, "disabled", False)),
-                None,
-            )
-            if chosen is None:
-                avail = [mv for mv in mon.moves.values()
-                         if mv is not None and getattr(mv, "current_pp", 1) > 0 and not getattr(mv, "disabled", False)]
-                chosen = avail[0] if avail else None
-            if chosen is None:
-                return None
-
-            # Decide target based on move type and live opponent slots.
-            from src.regmc_db import get_move
-            canonical = self._canonical_move(chosen.id) or name
-            move_data = get_move(canonical) or {}
-            target_type = move_data.get("target", "normal")
-            needs_target = target_type in (
-                "normal", "adjacentAlly", "adjacentAllyOrSelf",
-            )
-            if not needs_target:
-                return self.create_order(chosen)
-
-            # Slot numbers in Showdown doubles:
-            #   1 = opp left, 2 = opp right, -1 = our left ally, -2 = our right ally
-            if target_type in ("adjacentAlly", "adjacentAllyOrSelf"):
-                # Target ally (or self if no ally)
-                ally_slot = -1 if slot_idx == 1 else -2
-                return self.create_order(chosen, move_target=ally_slot)
-
-            # Single-target move: pick a live opponent slot
-            opp_actives = battle.opponent_active_pokemon
-            live_slots = [i + 1 for i, m in enumerate(opp_actives)
-                          if m is not None and not m.fainted]
-            if not live_slots:
-                return self.create_order(chosen)  # let Showdown pick; rare
-            preferred = slot_idx + 1
-            target = preferred if preferred in live_slots else live_slots[0]
-            return self.create_order(chosen, move_target=target)
-
-    def choose_move(self, battle):
-        if not isinstance(battle, DoubleBattle):
-            return self.choose_random_move(battle)
-
-        state = self._state_to_dict(battle)
-
-        # If EITHER slot fails, issue a single random double-order for the
-        # whole turn. poke_env's choose_random_move() already returns a
-        # DoubleBattleOrder, and nesting that inside another DoubleBattleOrder
-        # produces a malformed 3-part command that Showdown rejects.
-        orders = []
-        failed = False
-        for slot_idx, mon in enumerate(battle.active_pokemon):
-            order = self._build_slot_order(slot_idx, mon, state, battle)
-            if order is None:
-                failed = True
-                break
-            orders.append(order)
-
-        if failed or len(orders) != 2:
-            return self.choose_random_move(battle)
-
-        return DoubleBattleOrder(orders[0], orders[1])
+        return DoubleBattleOrder(best_a, best_b)
