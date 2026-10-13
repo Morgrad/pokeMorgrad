@@ -47,6 +47,20 @@ WEATHERS = ["none", "SunnyDay", "RainDance", "Sandstorm", "Snow", "Hail",
 TERRAINS = ["none", "Electric", "Grassy", "Psychic", "Misty"]         # 5-wide
 BOOST_STATS = ["atk", "def", "spa", "spd", "spe"]                     # 5-wide
 
+# Precomputed name->index lookups over the frozen lists above. Equivalent to
+# `X.index(name) if name in X else 0` but O(1) instead of an O(n) scan on every
+# encode — these fire 12x per state, once per battle decision. Because "none"
+# sits at index 0 in each list, .get(name, 0) returns the SAME bin for both known
+# values and the unknown-value fallback, so the one-hot output is byte-identical.
+_STATUSES_IDX = {n: i for i, n in enumerate(STATUSES)}
+_WEATHERS_IDX = {n: i for i, n in enumerate(WEATHERS)}
+_TERRAINS_IDX = {n: i for i, n in enumerate(TERRAINS)}
+
+# Slot layout in encode(): my 2 active, my 4 bench, opp 2 active, opp 4 seen.
+# 1.0 marks the on-field slots (0,1 and 6,7) and is written into cont[16]. It's a
+# fixed constant, so build it once at import instead of re-allocating per encode.
+_ACTIVE_MASK = [1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0]
+
 N_SLOTS = 12       # mons per state: 2 active + 4 bench, our side then theirs
 N_MOVES_PER = 4    # move slots per mon
 CONT_DIM = 17      # width of the per-mon continuous vector (cont[] layout below)
@@ -148,9 +162,9 @@ class StateEncoder:
             for i, stat in enumerate(BOOST_STATS):
                 b = boosts.get(stat, 0)
                 cont[2 + i] = max(-1.0, min(1.0, b / BOOST_STAGE_MAX))
-            # Status one-hot; unknown status -> index 0 ("none") via the guard.
+            # Status one-hot; unknown status -> index 0 ("none") via the fallback.
             status = mon.get("status") or "none"
-            si = STATUSES.index(status) if status in STATUSES else 0
+            si = _STATUSES_IDX.get(status, 0)
             cont[7 + si] = 1.0
             cont[14] = 1.0 if mon.get("is_mega") else 0.0
             cont[15] = 1.0 if hp_now == 0 else 0.0
@@ -172,10 +186,10 @@ class StateEncoder:
             return v
         p = 0
         w = field.get("weather") or "none"
-        v[p + (WEATHERS.index(w) if w in WEATHERS else 0)] = 1.0
+        v[p + _WEATHERS_IDX.get(w, 0)] = 1.0
         p += len(WEATHERS)
         t = field.get("terrain") or "none"
-        v[p + (TERRAINS.index(t) if t in TERRAINS else 0)] = 1.0
+        v[p + _TERRAINS_IDX.get(t, 0)] = 1.0
         p += len(TERRAINS)
         v[p] = 1.0 if field.get("trick_room") else 0.0
         p += 1
@@ -190,19 +204,18 @@ class StateEncoder:
 
         Slot order is FIXED and must match training: our 2 active, our 4 bench,
         their 2 active, their 4 seen. Short lists are padded with None; long ones
-        truncated. `active_mask` marks which of the 12 slots are the on-field
-        mons (slots 0,1 and 6,7) and is written into cont[16] per slot.
+        truncated. The module-level `_ACTIVE_MASK` marks which of the 12 slots are
+        the on-field mons (slots 0,1 and 6,7) and is written into cont[16] per slot.
         """
         my_active = (list(state_dict.get("my_active", [])) + [None, None])[:2]
         my_bench = (list(state_dict.get("my_bench", [])) + [None]*4)[:4]
         opp_active = (list(state_dict.get("opp_active", [])) + [None, None])[:2]
         opp_seen = (list(state_dict.get("opp_seen", [])) + [None]*4)[:4]
         slots = my_active + my_bench + opp_active + opp_seen
-        active_mask = [1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0]
         sp_ids, mv_ids, it_ids, ab_ids, conts = [], [], [], [], []
         for i, m in enumerate(slots):
             sid, mvs, iid, aid, cont = self.encode_mon(m)
-            cont[16] = float(active_mask[i])
+            cont[16] = float(_ACTIVE_MASK[i])
             sp_ids.append(sid); mv_ids.append(mvs); it_ids.append(iid)
             ab_ids.append(aid); conts.append(cont)
         return {
