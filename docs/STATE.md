@@ -431,6 +431,82 @@ commit with a self-test in the same script.
 **Status:** diagnostic run 2026-10-14 to confirm `meta_items.json` schema;
 patch to follow if the schema supports constraints 1–4.
 
+
+### 5.14 Team-realism constraint stack (2026-10-14)
+
+The GA optimizes against the heuristic pilot, which is blind to items, Protect
+timing, Fake Out priority, and the difference between a special attacker with
+a physical move and one without. Left unconstrained, champions look like this
+(pre-2026-10-14 island A):
+
+    Umbreon @ Binding Band  [Charm, Spite, Foul Play, Focus Energy]
+    Salamence @ Icy Rock     [Double-Edge, Fly, Tailwind, Rock Tomb]
+    Garchomp @ Heat Rock     [Stomping Tantrum, Dragon Claw, Rock Slide, Protect]
+    ...
+
+Scores 66% against the pilot; loses to any human. Five constraints, all in
+`src/ga_core.py`, now prevent the worst artifacts:
+
+1. **Items from meta** — `_pick_item_for` restricts to
+   `data/meta_items.json[species]` when present (weighted by frequency), else
+   `CANONICAL_ITEMS` (Leftovers, Sitrus, Focus Sash, Life Orb, Choice items,
+   Assault Vest, Rocky Helmet). Removes dead-item champions at zero cost.
+   Mega stones still take priority when applicable.
+
+2. **Protect coverage** — `_enforce_composition` (called from
+   `filter_legal_genomes`) forces one team slot to take a Protect-family move
+   (Protect, Detect, Spiky Shield, King's Shield, Baneful Bunker, Silk Trap,
+   Burning Bulwark) if none on the team has one. Soft: skipped if no mon
+   learns any.
+
+3. **Fake Out / redirection coverage** — same enforcement, targeting
+   {Fake Out, Follow Me, Rage Powder}.
+
+4. **Role-committed movesets** — `_species_role` buckets each species as
+   physical / special / support based on `baseStats`:
+     peak < 80        → support
+     low  < 80        → commit to peak side (Gengar 65/130 → special)
+     both >= 80       → coin flip per genome (Salamence, Dragapult, Arcanine,
+                        Archaludon explore both real builds across the
+                        population)
+   `_preferred_pool` samples 4 moves from the role-appropriate pool (correct
+   category + Status). Off-role moves only appear via a fallback path for
+   species whose movepools are too small. EVs and nature follow the role,
+   not the sampled move count.
+
+5. **Champion selection by validation slice** — `VAL_POOL_SIZE=30` teams of
+   the 300-team training pool are held back from fitness. Each generation,
+   the training-best is evaluated on the slice; champions save from
+   `best_val_ever`. Motivated by island B (2026-10-13) scoring 68% on
+   training pool, 58.7% held-out.
+
+**What the constraint stack does NOT fix (known gaps):**
+
+- **Offensive type coverage.** The three 2026-10-13 champions have zero
+  Water / Electric / Ice / Bug moves. They win by raw stat pressure against
+  the training pool, not by matchup coverage. Fixing this needs a new
+  team-level constraint (minimum N distinct offensive types, or force one
+  super-effective angle vs common meta typings). Design problem, not a
+  patch — deferred.
+- **Meta-species bias.** GA freely picks from 386 legal species; champions
+  use non-meta picks (Delphox, Infernape) that exploit pilot quirks rather
+  than real VGC dynamics. Fix would bias initial population toward
+  `meta_items.json` species or the actual top-cut roster. Deferred.
+- **Team-level synergy.** Psychic Seed on a non-Psyspam team is not caught
+  (item is meta-real, terrain isn't). Needs team-composition analysis.
+  Deferred.
+- **Natures.** No reliable nature data source (meta_items.json has items
+  only). Roles drive natures, which is a proxy, not tournament truth.
+
+**Effect on scores:** expect champions to drop from 66–71% (old) to ~58–64%
+(new) against the heuristic pilot. The number is lower, but it now means
+"realistic team beating realistic teams" instead of "team that exploits
+pilot bugs." The interpretation change is the point.
+
+**Landing:** five commits across 2026-10-14, all to `src/ga_core.py`. No
+checkpoint schema changes, no model changes, no effect on `bc_best.pt` or
+`bc_heuristic.pt`.
+
 ## 6. Environment
 
 - **Host:** Windows 11 + WSL2 (Fedora Linux 42)
