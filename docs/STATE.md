@@ -507,6 +507,29 @@ pilot bugs." The interpretation change is the point.
 checkpoint schema changes, no model changes, no effect on `bc_best.pt` or
 `bc_heuristic.pt`.
 
+
+
+### 5.15 Items in the encoder HURT the pilot (measured 2026-10-14)
+
+Controlled A/B, three BC models on the same heuristic-play dataset, all saved
+by val_move_acc (checkpoint metric was fixed first, isolating the variable):
+
+| Model | Features | Win rate (300 battles) |
+|---|---|---|
+| v1  | no items | 30-36% (two 500-battle runs) |
+| v2  | items/abilities | 23% [19.5-26.9] |
+| v1b | no items | 31.3% [26.3-36.8] |
+
+**v1b ≈ v1 → the v2 regression was items, not the checkpoint metric.**
+
+Diagnosis: the encoder learns spurious correlations between item presence and
+action when items are only revealed ~25% of the time (opponents). Real signal
+is drowned by noise. The heuristic pilot itself barely uses items in its
+decision function, so item-awareness buys nothing while costing generality.
+
+**Action:** the encoder redesign (D) will NOT add item or ability features.
+Focus on tactical features (turns_on_field, speed advantage, has_protected,
+moves_used_count) that the heuristic actually conditions on.
 ## 6. Environment
 
 - **Host:** Windows 11 + WSL2 (Fedora Linux 42)
