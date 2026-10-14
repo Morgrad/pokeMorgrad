@@ -530,6 +530,27 @@ decision function, so item-awareness buys nothing while costing generality.
 **Action:** the encoder redesign (D) will NOT add item or ability features.
 Focus on tactical features (turns_on_field, speed advantage, has_protected,
 moves_used_count) that the heuristic actually conditions on.
+
+
+### 5.16 BC is capped below the heuristic by construction (2026-10-14)
+
+The heuristic pilot wins 57% live. BC-on-heuristic imitates the heuristic.
+Even a perfect imitation reaches 57% and no higher — the ceiling is set by
+the reference, not by the model. Current BC (v1c, honest split) = 32% live
+at val_move_acc 0.62.
+
+Three independent signals this is fundamental:
+  - val_move_acc does not predict live win rate (0.76 val -> 31% live;
+    0.62 val -> 32% live)
+  - team-distribution ablation: random-team agreement (20%) == baseline-team
+    agreement (19%) — same model, same heuristic, same wall
+  - v1b vs v1c: 14-point val swing, no live change
+
+Conclusion: BC can only lose to the heuristic. Any pilot that wants to BEAT
+57% needs search or RL on top of BC, not more BC.
+
+**Action:** stop BC-on-heuristic improvements. Reserve encoder D + target
+scoring as tools for future RL warm-start, not as a path to a stronger pilot.
 ## 6. Environment
 
 - **Host:** Windows 11 + WSL2 (Fedora Linux 42)
