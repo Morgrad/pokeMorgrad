@@ -286,11 +286,16 @@ def main():
     opt = torch.optim.AdamW(model.parameters(), lr=LR, weight_decay=WEIGHT_DECAY)
     sched = torch.optim.lr_scheduler.CosineAnnealingLR(opt, T_max=EPOCHS)
 
-    best_val_loss = float("inf")
+    # Selection metric: val_move_acc, NOT val_loss. The loss uses NEG_INF
+    # masking (-1e4) which produces outlier spikes when the model mis-predicts
+    # a masked move; those spikes dominate the average and let val_loss climb
+    # while accuracy keeps improving. We've been saving the wrong epoch.
     best_val_acc = 0.0
-    best_val_move = 0.0
+    best_val_move = -1.0
     best_val_switch = 0.0
+    best_val_loss = float("inf")
     best_val_target = None
+    best_epoch = 0
     noimp = 0
 
     for epoch in range(1, EPOCHS + 1):
@@ -301,12 +306,13 @@ def main():
         dt = time.time() - t0
 
         marker = ""
-        if vl_res["loss"] < best_val_loss:
+        if vl_res["move_acc"] > best_val_move:
+            best_val_move = vl_res["move_acc"]
             best_val_loss = vl_res["loss"]
             best_val_acc = vl_res["acc"]
-            best_val_move = vl_res["move_acc"]
             best_val_switch = vl_res["switch_acc"]
             best_val_target = vl_res.get("target_acc")
+            best_epoch = epoch
             noimp = 0
             save_checkpoint(
                 BEST_MODEL_PATH, model,
@@ -334,8 +340,9 @@ def main():
             print(f"Early stop at epoch {epoch}")
             break
 
-    print(f"\nBest val_loss={best_val_loss:.4f}  val_acc={best_val_acc:.3f}  "
-          f"val_move_acc={best_val_move:.4f}  val_switch_acc={best_val_switch:.3f}")
+    print(f"\nBest val_move_acc={best_val_move:.4f} (epoch {best_epoch})  "
+          f"val_acc={best_val_acc:.3f}  val_switch_acc={best_val_switch:.3f}  "
+          f"(loss at that epoch={best_val_loss:.4f})")
     if best_val_target is not None:
         print(f"Best val_target_acc={best_val_target:.4f}")
     print(f"Saved: {BEST_MODEL_PATH}")
