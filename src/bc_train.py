@@ -321,15 +321,6 @@ def main():
           f"{n_val_battles} val battles "
           f"({len(train_d)}/{len(val_d)} rows)")
 
-    rng = random.Random(SEED)
-    rng.shuffle(clean_battles)
-    n_val_battles = max(1, int(len(clean_battles) * VAL_FRAC))
-    val_d = [r for b in clean_battles[:n_val_battles] for r in b]
-    train_d = [r for b in clean_battles[n_val_battles:] for r in b]
-    print(f"  battle-level split: {len(clean_battles) - n_val_battles} train / "
-          f"{n_val_battles} val battles "
-          f"({len(train_d)}/{len(val_d)} rows)")
-
     print("Building datasets...")
     train_ds = BCDataset(train_d, enc, priors)
     val_ds = BCDataset(val_d, enc, priors)
