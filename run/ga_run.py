@@ -56,7 +56,7 @@ if __name__ == "__main__":
         pop_per_island=10,
         generations=999,
         battles_per_genome=800,
-        concurrency=3,
+        concurrency=int(os.environ.get("GA_CONCURRENCY", "3")),
         immigration_rate=0.20,
         stagnation_limit=5,
         diversity_floor=15,
