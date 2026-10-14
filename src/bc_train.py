@@ -29,7 +29,7 @@ def _p(*parts):
     return os.path.join(_REPO_ROOT, *parts)
 
 
-DATA = _p("data", "training_data.jsonl")
+DATA = os.environ.get("BC_DATA", _p("data", "training_data.jsonl"))   # override for heuristic-imitation runs
 PRIORS_PATH = _p("data", "species_move_priors.json")
 MODEL_DIR = _p("output", "models")
 BEST_MODEL_PATH = os.path.join(MODEL_DIR, os.environ.get("BC_OUT", "bc_best.pt"))
