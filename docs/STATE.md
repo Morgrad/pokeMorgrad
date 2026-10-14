@@ -43,6 +43,12 @@ Long-term goal: a reusable pipeline that adapts to any new VGC regulation in
 | GA run2 (warm-start) | ✅ Ran 2026-10-13 | Champions in `output/champions/ga_run2_island_*.txt` |
 | Eval (`eval.py`) | ✅ Working | `--pilot heuristic\|bc\|both`, 5-seed stable |
 
+**Tried and rejected (2026-10-13):** bf16 autocast on the BC trainer gave
+no speedup (11.8s vs 11.6s epoch-2) at 1.5M params × batch 256 — this
+workload is launch-overhead-bound, not matmul-bound. Larger batches (512,
+1024) also lost accuracy at matched epochs. If a bigger model (v3+) is ever
+trained, re-test bf16 then. See `bc_train.py` for the fp32 path.
+
 **The strategic picture:** the heuristic pilot is 3× better than BC. BC is
 at its ceiling on this dataset. The GA produces real wins regardless, because
 it uses the heuristic for fitness. BC's value is as a *foundation for future
