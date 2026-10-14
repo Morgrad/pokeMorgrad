@@ -336,6 +336,38 @@ possibly turns-on-field). That's `CONT_DIM` 17 → 20 and a corresponding
 model bump; breaks the current checkpoint contract, so plan for a fresh
 train from scratch on the heuristic dataset.
 
+
+### 5.12 Imitation accuracy does not predict win rate
+
+Observed three times now:
+
+| Model | val_move_acc | Live win rate |
+|---|---|---|
+| bc_heuristic v1 (epoch 4) | 0.687 | **30.4%** |
+| bc_heuristic v2 (epoch 27, +items) | 0.734 | 23.0% |
+| v3 transformer (yesterday) | 0.581 | 8.8% |
+| v2 baseline human-trained | 0.579 | 19.4% |
+
+In every case, higher val_move_acc corresponded to equal or worse live play.
+
+**Two hypotheses, both plausible:**
+1. **Late-epoch overfitting.** Val split is drawn from the same 5000 battles,
+   so a model that memorizes the training distribution scores well on val but
+   not on live opponents. Patience=6 lets it train too long.
+2. **Label distribution mismatch.** Human/imitation accuracy measures "did
+   the model predict what the reference did", not "did the model win". The
+   reference acts suboptimally, so faithful imitation of suboptimal play
+   cannot beat the reference.
+
+**The right selection metric is live win rate**, not val_move_acc or val_loss.
+Until we build a training-time held-out eval loop, treat trained models as
+candidates and always verify with `src.eval`.
+
+**Consequence:** the current `bc_train.py` still saves on val_move_acc (it's
+the least-wrong of the val metrics), but the checkpoint at save time is a
+guess. Future improvement: save every N epochs to `bc_ckpt_e{epoch}.pt` and
+eval them all to pick the winner.
+
 ## 6. Environment
 
 - **Host:** Windows 11 + WSL2 (Fedora Linux 42)
