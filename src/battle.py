@@ -39,8 +39,13 @@ def make_player(pilot, team_str, uid, prefix, battle_format):
     """Construct one poke_env Player for `pilot` on `team_str`.
 
     `prefix` namespaces the throwaway account id ("B" for our bot, "O" for the
-    opponent) so the two players in a battle never share a login; rand=True lets
-    poke_env salt the name further to dodge collisions across concurrent battles.
+    opponent) so the two players in a battle never share a login. The uid is
+    already a random int from the caller's seeded RNG, so collisions are
+    impossible without further salting — and passing rand=False keeps the
+    account name deterministic, which makes battle outcomes REPRODUCIBLE
+    across concurrency levels. (rand=True would pull from Python's global
+    random module inside each async task, so the exact name depends on task
+    interleaving — same seed, different results at different concurrencies.)
     The BCPlayer import is lazy so this stays torch-free for the heuristic path.
     """
     if pilot == "bc":
@@ -52,7 +57,7 @@ def make_player(pilot, team_str, uid, prefix, battle_format):
         battle_format=battle_format,
         team=team_str,
         max_concurrent_battles=1,
-        account_configuration=AccountConfiguration.generate(f"{prefix}{uid}", rand=True),
+        account_configuration=AccountConfiguration.generate(f"{prefix}{uid}", rand=False),
     )
 
 

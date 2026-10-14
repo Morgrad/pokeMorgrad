@@ -22,7 +22,7 @@ from src import ga_core as G
 from src import battle as B
 
 FORMAT = G.FORMAT          # canonical format registry (defined in ga_core)
-CONCURRENCY = 3            # simultaneous battles against one Showdown server
+CONCURRENCY = int(os.environ.get("GA_CONCURRENCY", "3"))   # simultaneous battles per server
 TIMEOUT = 20              # seconds before a battle is abandoned as hung (→ None)
 UID_MAX = 10**9          # upper bound of the random per-battle account id space
 DEFAULT_SEEDS = [100, 200, 300]
