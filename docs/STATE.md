@@ -39,7 +39,7 @@ Long-term goal: a reusable pipeline that adapts to any new VGC regulation in
 | BC v5 pilot (`bc_best.pt`) | ⚠️ Functional, weak | **19.4%** vs held-out — 42 pts below heuristic |
 | BC v3 pilot (`bc_v3_5m.pt`) | ❌ Regression | **8.8%** — target head hurts |
 | GA engine (`ga_core.py`) | ✅ Working | Island model with migration, stagnation, checkpointing |
-| **GA champion (run1 island C)** | ✅ **+3.4 pts** | **64.4%** held-out vs 61.0% heuristic baseline |
+| **GA champion (run1 island C)** | ✅ **+7.4 pts (real)** | 61.8% [59.6-64.1] vs 54.4% [52.1-56.7] on 1800 battles (18 seeds, 2026-10-13). CIs disjoint — statistically significant at 95%. |
 | GA run2 (warm-start) | ✅ Ran 2026-10-13 | Champions in `output/champions/ga_run2_island_*.txt` |
 | Eval (`eval.py`) | ✅ Working | `--pilot heuristic\|bc\|both`, 5-seed stable |
 
