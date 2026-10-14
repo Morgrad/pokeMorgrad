@@ -68,6 +68,15 @@ MIN_TURNS = 3           # Battles ending < 3 turns are almost always a Showdown 
 # (The retry-uid stride lives in src/battle.py now — RETRY_STRIDE there.)
 SEED_POOL = 30          # When seeding a population from real teams, draw from the first N teams.
 
+# --- Early-stop ---
+# A genome plays EARLY_STOP_MIN_BATTLES first; if that head score is below
+# EARLY_STOP_WIN_RATE we skip the tail. Statistically: at 50 battles the Wilson
+# 95% CI is ~±10 pts, so a genome truly at 30%+ has <1% chance of showing <15%.
+# The abort catches the bottom third of a generation at negligible false-positive
+# risk and saves ~85% of the wall time for those genomes.
+EARLY_STOP_MIN_BATTLES = 50     # only meaningful when the pool is larger than this.
+EARLY_STOP_WIN_RATE = 0.15      # abort when head score < this.
+
 
 # =============================================================================
 # CACHED ROSTER
@@ -581,31 +590,73 @@ def crossover(p1, p2, constraints):
 _SEM = None   # module-global concurrency gate; set by run_ga / run_islands.
 
 
+def _log_score(idx, total, fit, wins, valid_n, mons, tag=""):
+    """One-line progress print. `tag` is an optional suffix like 'early-abort'."""
+    ts = time.strftime("%H:%M:%S")
+    species = ' / '.join(m['species'] for m in mons)
+    suffix = f"  {tag}" if tag else ""
+    print(f"  [{ts}] {idx+1:>2}/{total}  {fit*100:5.1f}%  ({wins}W/{valid_n}){suffix}  {species}",
+          flush=True)
+
+
 async def evaluate(mons, opponents, idx, total):
     """Fitness = win rate of one genome across all `opponents`, run concurrently.
 
-    Invalid genomes score 0.0 immediately (and log it). Battles that return None
-    (timeout/desync) are dropped from the denominator, not counted as losses — a
-    genome isn't penalized for Showdown flaking. Prints a per-genome progress line.
+    Two-phase: play EARLY_STOP_MIN_BATTLES first; if that head score is below
+    EARLY_STOP_WIN_RATE, skip the tail and return the partial score. Partial (not
+    0.0) so the genome still ranks correctly against other bad genomes — useful
+    in early generations when the whole population is weak.
+
+    Invalid genomes score 0.0 immediately. Battles returning None (timeout /
+    desync) are dropped from the denominator, not counted as losses.
+
+    Small pools (<= EARLY_STOP_MIN_BATTLES, e.g. smoke tests) skip the split and
+    play everything in one batch.
     """
     text = genome_to_text(mons)
     ok, errs = DB.validate_team(text)
     if not ok:
         print(f"  [{idx+1}/{total}] INVALID: {errs[:2]}")
         return 0.0
-    tasks = [B.run_battle(text, o, random.randint(1, 10**9), _SEM, FORMAT,
-                          pilot="heuristic", timeout=BATTLE_TIMEOUT, min_turns=MIN_TURNS)
-             for o in opponents]
-    outcomes = await asyncio.gather(*tasks)
-    valid = [o for o in outcomes if o is not None]
-    if not valid:
+
+    def _battle(opp):
+        return B.run_battle(text, opp, random.randint(1, 10**9), _SEM, FORMAT,
+                            pilot="heuristic", timeout=BATTLE_TIMEOUT,
+                            min_turns=MIN_TURNS)
+
+    # Small pools: no early-stop possible, one batch.
+    if len(opponents) <= EARLY_STOP_MIN_BATTLES:
+        outcomes = await asyncio.gather(*[_battle(o) for o in opponents])
+        valid = [o for o in outcomes if o is not None]
+        if not valid:
+            return 0.0
+        fit = sum(valid) / len(valid)
+        _log_score(idx, total, fit, sum(valid), len(valid), mons)
+        return fit
+
+    # Phase 1 — head batch.
+    head, tail = opponents[:EARLY_STOP_MIN_BATTLES], opponents[EARLY_STOP_MIN_BATTLES:]
+    head_outs = await asyncio.gather(*[_battle(o) for o in head])
+    head_valid = [o for o in head_outs if o is not None]
+    if not head_valid:
         return 0.0
-    wins = sum(valid)
-    fit = wins / len(valid)
-    ts = time.strftime("%H:%M:%S")
-    species = ' / '.join(m['species'] for m in mons)
-    print(f"  [{ts}] {idx+1:>2}/{total}  {fit*100:5.1f}%  ({wins}W/{len(valid)})  {species}",
-          flush=True)
+    head_fit = sum(head_valid) / len(head_valid)
+
+    # Early-abort: hopeless genome, skip the tail entirely.
+    if head_fit < EARLY_STOP_WIN_RATE:
+        _log_score(idx, total, head_fit, sum(head_valid), len(head_valid), mons,
+                   tag="early-abort")
+        return head_fit
+
+    # Phase 2 — tail batch.
+    tail_outs = await asyncio.gather(*[_battle(o) for o in tail])
+    tail_valid = [o for o in tail_outs if o is not None]
+
+    all_valid = head_valid + tail_valid
+    if not all_valid:
+        return 0.0
+    fit = sum(all_valid) / len(all_valid)
+    _log_score(idx, total, fit, sum(all_valid), len(all_valid), mons)
     return fit
 
 
