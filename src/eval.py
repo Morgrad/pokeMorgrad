@@ -34,6 +34,25 @@ def _p(*parts):
     return os.path.join(_REPO_ROOT, *parts)
 
 
+def wilson_ci(wins: int, games: int, z: float = 1.96) -> tuple[float, float]:
+    """95% Wilson score interval for a binomial proportion.
+
+    Preferred over naive p ± z·sqrt(p(1-p)/n): the Wilson interval stays inside
+    [0, 1] for small n and doesn't collapse to a point at 0% or 100%. With 100
+    battles (the 1-seed case), the naive interval is wrong enough to mislead —
+    Wilson is the standard fix.
+
+    Returns (lo, hi) as fractions in [0, 1]. Caller multiplies by 100 for print.
+    """
+    if games == 0:
+        return (0.0, 0.0)
+    p = wins / games
+    denom = 1 + z * z / games
+    center = (p + z * z / (2 * games)) / denom
+    half = (z * (p * (1 - p) / games + z * z / (4 * games * games)) ** 0.5) / denom
+    return (max(0.0, center - half), min(1.0, center + half))
+
+
 async def evaluate_team(pilot, team_str, opponents, seeds, concurrency):
     """Return (total_wins, total_games) for a team across all seeds × opponents.
 
@@ -101,25 +120,35 @@ async def main_async(args):
                                        args.concurrency)
             results[pilot][os.path.basename(team_path)] = (w, g)
             pct = (w / g * 100) if g else 0.0
-            print(f"  {os.path.basename(team_path):40s} {w:4d}/{g:4d} = {pct:5.1f}%")
+            lo, hi = wilson_ci(w, g)
+            ci_str = f"[{lo*100:4.1f}-{hi*100:4.1f}]" if g else "[   n/a   ]"
+            print(f"  {os.path.basename(team_path):40s} {w:4d}/{g:4d} = "
+                  f"{pct:5.1f}%  95% CI {ci_str}")
 
     if len(pilots) > 1:
-        print("\n" + "=" * 72)
-        print(f"{'Team':40s} {'HEUR':>8s} {'BC':>8s} {'Delta':>8s}")
-        print("-" * 72)
+        print("\n" + "=" * 92)
+        print(f"{'Team':32s} {'HEURISTIC':>20s} {'BC':>20s} {'Delta':>8s}")
+        print("-" * 92)
         all_teams = set()
         for r in results.values():
             all_teams.update(r.keys())
         for name in sorted(all_teams):
             h = results.get("heuristic", {}).get(name)
             b = results.get("bc", {}).get(name)
-            h_pct = (h[0] / h[1] * 100) if h and h[1] else None
-            b_pct = (b[0] / b[1] * 100) if b and b[1] else None
-            h_str = f"{h_pct:.1f}%" if h_pct is not None else "-"
-            b_str = f"{b_pct:.1f}%" if b_pct is not None else "-"
+
+            def _fmt(res):
+                if not res or not res[1]:
+                    return "-", None
+                w, g = res
+                pct = w / g * 100
+                lo, hi = wilson_ci(w, g)
+                return f"{pct:.1f}% [{lo*100:.0f}-{hi*100:.0f}]", pct
+
+            h_str, h_pct = _fmt(h)
+            b_str, b_pct = _fmt(b)
             d_str = (f"{b_pct - h_pct:+.1f}"
                      if h_pct is not None and b_pct is not None else "-")
-            print(f"{name:40s} {h_str:>8s} {b_str:>8s} {d_str:>8s}")
+            print(f"{name:32s} {h_str:>20s} {b_str:>20s} {d_str:>8s}")
 
 
 def main():
