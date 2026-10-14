@@ -210,11 +210,30 @@ def _random_mon(species_name):
     mostly-physical → offensive Jolly, mostly-special → Modest, mixed/none →
     a bulky Calm spread. Item is a placeholder here; callers overwrite it with
     _pick_item_for to apply the meta bias and dedupe within a team.
+
+    Moves with target="randomNormal" (Outrage, Thrash, Uproar, ...) are EXCLUDED.
+    poke_env's SimpleHeuristicsPlayer doesn't attach a move_target for these in
+    doubles, so Showdown rejects the order with "[Invalid choice] Can't move: X
+    needs a target" — the battle is dropped as a None result and the fitness
+    denominator shrinks. Cheap to avoid: just don't generate those moves.
     """
     sp = _SPECIES_BY_NAME.get(species_name)
     if not sp or len(sp["moves"]) < 4:
         return None
-    moves = random.sample(sp["moves"], 4)
+
+    legal = []
+    for mv in sp["moves"]:
+        data = DB.get_move(mv)
+        if not data:
+            continue
+        if data.get("target") == "randomNormal":
+            continue    # heuristic can't target these correctly in doubles
+        legal.append(mv)
+
+    if len(legal) < 4:
+        return None
+
+    moves = random.sample(legal, 4)
     cats = [DB.get_move(m)["category"] for m in moves if DB.get_move(m)]
     n_p, n_s = cats.count("Physical"), cats.count("Special")
     if n_p > n_s:
