@@ -40,7 +40,7 @@ Long-term goal: a reusable pipeline that adapts to any new VGC regulation in
 | BC v3 pilot (`bc_v3_5m.pt`) | ❌ Regression | **8.8%** — target head hurts |
 | GA engine (`ga_core.py`) | ✅ Working | Island model with migration, stagnation, checkpointing |
 | **GA champion (run1 island C)** | ✅ **+3.4 pts** | **64.4%** held-out vs 61.0% heuristic baseline |
-| GA run2 (warm-start) | 🔄 Running | Started 09:46, ETA ~15:45, 63% at gen 4 |
+| GA run2 (warm-start) | ✅ Ran 2026-10-13 | Champions in `output/champions/ga_run2_island_*.txt` |
 | Eval (`eval.py`) | ✅ Working | `--pilot heuristic\|bc\|both`, 5-seed stable |
 
 **The strategic picture:** the heuristic pilot is 3× better than BC. BC is
@@ -158,8 +158,11 @@ appeared in ~50% of actions.
    with no target.
    *Fix:* `create_order(move, move_target=slot_idx + 1)`.
 
-**Status:** Awaiting re-test. If `calls/turn` drops to ~1 and `Struggle`
-disappears, this is resolved.
+**Status:** ✅ **Resolved 2026-10-13.** The final fix was the Tier 3A
+redesign: instead of hand-filtering moves and building orders, the pilot scores
+poke_env's `battle.valid_orders` (the server's pre-legal list). Zero
+`[Invalid choice]` rejections; 3-battle diagnostic shows `calls/turn ≤ 2`.
+Play quality is still weak (see §5.4) — but the mechanical loop is gone.
 
 ### 5.2 GA island migration leaks locked species into free islands
 
@@ -243,6 +246,47 @@ opponent pool (no error, just 0 battles).
 
 **Status:** Resolved by inspection; needs the §13 verification checklist run on
 this host to confirm end-to-end.
+
+### 5.8 Eval noise floor — measured 2026-10-13
+
+Fixed-seed evals are **NOT reproducible to the percentage point.** Showdown's
+server-side RNG (crits, damage rolls, AI decisions) is not client-seedable, so
+identical commands produce different scores run-to-run. `rand=False` in
+`src/battle.py` removed the second RNG source but did **not** fix this — the
+server is the dominant noise term.
+
+Measured (baseline team, heuristic pilot, same command back-to-back):
+
+| Battles | Observed range | True rate | 1σ (binomial) |
+|---|---|---|---|
+| 100 (1 seed) | 52–63% | ~57% | ±5 pts |
+| 300 (3 seeds) | 54–61% | ~56.5% | ±3 pts |
+| 500 (5 seeds) | — | — | ±2.2 pts |
+
+Observed spread matches binomial sampling exactly — this is **not a bug**, it's
+arithmetic. (Briefly misdiagnosed as server nondeterminism on 2026-10-13; the
+numbers are consistent with the binomial band.)
+
+**Rules for any decision-relevant eval:**
+1. Use ≥5 seeds; single-seed numbers are noise.
+2. Report a 95% Wilson CI (see §5.9, added with eval.py update).
+3. Comparisons need ≥500 battles to distinguish <3-pt gaps.
+
+**Corollary for past claims:**
+- "Island C 64.4% vs baseline 57.0%" (+7.4 pts, 500 battles) — real, CI roughly
+  [60.2, 68.4] vs [52.5, 61.5]; intervals barely miss overlapping.
+- "GA champion +3.4 pts" (300–500 battles) — **inside the noise floor**, cannot
+  be distinguished from baseline.
+- "v3 8.8% vs v5 19.4%" (−10.6 pts, 500 battles) — real.
+
+### 5.9 Concurrency knob — added 2026-10-13
+
+`GA_CONCURRENCY` env var (default 8) controls simultaneous battles in both
+`src/battle.py` and `src/eval.py`. Measured on an 800-battle GA smoke:
+`c=3: 35s, c=8: 28s (+20%), c=12: 28s, c=16: 29s` — **ceiling is 8**; per-battle
+Showdown handshake (~25ms) dominates above that and concurrency cannot help.
+
+Set per-run: `GA_CONCURRENCY=12 python run/ga_run.py run1 6`.
 
 ## 6. Environment
 
