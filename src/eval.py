@@ -18,15 +18,12 @@ import asyncio
 import os
 import random
 
-from poke_env.player import SimpleHeuristicsPlayer
-from poke_env import AccountConfiguration
-
 from src import ga_core as G
+from src import battle as B
 
 FORMAT = G.FORMAT          # canonical format registry (defined in ga_core)
 CONCURRENCY = 3            # simultaneous battles against one Showdown server
 TIMEOUT = 20              # seconds before a battle is abandoned as hung (→ None)
-RETRY_STRIDE = 999_983   # uid offset on retry → fresh Showdown login (large prime)
 UID_MAX = 10**9          # upper bound of the random per-battle account id space
 DEFAULT_SEEDS = [100, 200, 300]
 
@@ -35,49 +32,6 @@ _REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 def _p(*parts):
     return os.path.join(_REPO_ROOT, *parts)
-
-
-def make_player(pilot, team_str, uid, prefix):
-    """Construct a Player for the given pilot. BC import is lazy."""
-    if pilot == "bc":
-        from src.bc_player import BCPlayer
-        cls = BCPlayer
-    else:
-        cls = SimpleHeuristicsPlayer
-    return cls(
-        battle_format=FORMAT,
-        team=team_str,
-        max_concurrent_battles=1,
-        account_configuration=AccountConfiguration.generate(f"{prefix}{uid}", rand=True),
-    )
-
-
-async def _run_battle_once(pilot, team_str, opp_str, uid, sem):
-    """Play one battle: `pilot` team vs a heuristic opponent. Returns 1/0/None.
-
-    None means the battle errored or never finished (no min-turns guard here,
-    unlike the GA path — eval scores every completed game). Listeners are always
-    stopped in `finally` so a crash can't leak a websocket. Concurrency is bounded
-    by the caller-supplied semaphore.
-    """
-    async with sem:
-        bot = opp = None
-        try:
-            bot = make_player(pilot, team_str, uid, "B")
-            opp = make_player("heuristic", opp_str, uid, "O")
-            await asyncio.wait_for(bot.battle_against(opp, n_battles=1), timeout=TIMEOUT)
-            if bot.n_finished_battles == 0:
-                return None
-            return 1 if bot.n_won_battles > 0 else 0
-        except Exception:
-            return None
-        finally:
-            for p in (bot, opp):
-                try:
-                    if p:
-                        await p.ps_client.stop_listening()
-                except Exception:
-                    pass
 
 
 async def evaluate_team(pilot, team_str, opponents, seeds, concurrency):
@@ -98,7 +52,8 @@ async def evaluate_team(pilot, team_str, opponents, seeds, concurrency):
     for seed in seeds:
         random.seed(seed)
         tasks = [
-            run_battle(pilot, team_str, o, random.randint(1, UID_MAX), sem)
+            B.run_battle(team_str, o, random.randint(1, UID_MAX), sem, FORMAT,
+                         pilot=pilot, timeout=TIMEOUT, min_turns=0)
             for o in opponents
         ]
         outs = await asyncio.gather(*tasks)
@@ -166,16 +121,6 @@ async def main_async(args):
                      if h_pct is not None and b_pct is not None else "-")
             print(f"{name:40s} {h_str:>8s} {b_str:>8s} {d_str:>8s}")
 
-
-
-async def run_battle(pilot, team_str, opp_str, uid, sem, retries=1):
-    """Run one battle, retrying once on None with a fresh (RETRY_STRIDE-offset) uid."""
-    for attempt in range(retries + 1):
-        result = await _run_battle_once(pilot, team_str, opp_str,
-                                        uid + attempt * RETRY_STRIDE, sem)
-        if result is not None:
-            return result
-    return None
 
 def main():
     parser = argparse.ArgumentParser(description="Unified team evaluation.")

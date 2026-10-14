@@ -31,9 +31,7 @@ import time
 import urllib.request
 from functools import lru_cache
 
-from poke_env.player import SimpleHeuristicsPlayer
-from poke_env import AccountConfiguration
-
+from src import battle as B
 from src import regmc_db as DB
 from src import showdown_validator as SV
 
@@ -67,8 +65,7 @@ MAX_REBUILD_TRIES = 20  # Illegal genome: rebuild from scratch up to N times bef
 BATTLE_TIMEOUT = 20     # seconds before a battle is abandoned as hung (returns None, not a loss).
 MIN_TURNS = 3           # Battles ending < 3 turns are almost always a Showdown desync/forfeit,
                         # not a real game — discard so they don't poison the fitness signal.
-RETRY_STRIDE = 999_983  # Added to the account uid on a retry so attempt #2 gets a fresh Showdown
-                        # login. Large prime → no collision with the uids of nearby battles.
+# (The retry-uid stride lives in src/battle.py now — RETRY_STRIDE there.)
 SEED_POOL = 30          # When seeding a population from real teams, draw from the first N teams.
 
 
@@ -578,46 +575,10 @@ def crossover(p1, p2, constraints):
 # =============================================================================
 # BATTLE
 # =============================================================================
+# The battle harness itself (player construction, timeout, retry, websocket
+# cleanup) lives in src/battle.py, shared with eval. The GA passes this module
+# semaphore, FORMAT, and its own knobs (BATTLE_TIMEOUT, MIN_TURNS) into it.
 _SEM = None   # module-global concurrency gate; set by run_ga / run_islands.
-
-
-async def _run_battle_once(team_str, opp_str, uid):
-    """Play one heuristic-vs-heuristic battle; return 1 (win) / 0 (loss) / None.
-
-    None means "no usable result": the battle errored, never finished, or ended
-    in under MIN_TURNS turns (a desync/forfeit we refuse to score). Both players
-    always have their Showdown listeners stopped in `finally` so a crashed battle
-    can't leak a hung websocket. Serialized through the module semaphore so we
-    never exceed the configured concurrency against one Showdown server.
-    """
-    async with _SEM:
-        bot = opp = None
-        try:
-            bot = SimpleHeuristicsPlayer(
-                battle_format=FORMAT, team=team_str, max_concurrent_battles=1,
-                account_configuration=AccountConfiguration.generate(f"B{uid}", rand=True))
-            opp = SimpleHeuristicsPlayer(
-                battle_format=FORMAT, team=opp_str, max_concurrent_battles=1,
-                account_configuration=AccountConfiguration.generate(f"O{uid}", rand=True))
-            await asyncio.wait_for(bot.battle_against(opp, n_battles=1), timeout=BATTLE_TIMEOUT)
-            if bot.n_finished_battles == 0:
-                return None
-            try:
-                turns = getattr(list(bot.battles.values())[-1], "turn", 0)
-            except Exception:
-                turns = 0
-            if turns < MIN_TURNS:
-                return None
-            return 1 if bot.n_won_battles > 0 else 0
-        except Exception:
-            return None
-        finally:
-            for p in (bot, opp):
-                try:
-                    if p:
-                        await p.ps_client.stop_listening()
-                except Exception:
-                    pass
 
 
 async def evaluate(mons, opponents, idx, total):
@@ -632,7 +593,9 @@ async def evaluate(mons, opponents, idx, total):
     if not ok:
         print(f"  [{idx+1}/{total}] INVALID: {errs[:2]}")
         return 0.0
-    tasks = [_run_battle(text, o, random.randint(1, 10**9)) for o in opponents]
+    tasks = [B.run_battle(text, o, random.randint(1, 10**9), _SEM, FORMAT,
+                          pilot="heuristic", timeout=BATTLE_TIMEOUT, min_turns=MIN_TURNS)
+             for o in opponents]
     outcomes = await asyncio.gather(*tasks)
     valid = [o for o in outcomes if o is not None]
     if not valid:
@@ -1182,18 +1145,3 @@ async def run_islands(
             open(path, "w").write(genome_to_text(isl.best_ever["genome"]))
             print(f"  [{isl.name}] champion: {isl.best_ever['fit']*100:.1f}% "
                   f"(gen {isl.best_ever['gen']}) -> {path}")
-
-
-async def _run_battle(team_str, opp_str, uid, retries=1):
-    """Run one battle, retrying once on a None result with a fresh account id.
-
-    The retry uses a RETRY_STRIDE-offset uid so attempt #2 logs in under a
-    different Showdown account — most None results are transient login/timeout
-    flakes, not deterministic failures. Returns 0/1/None.
-    """
-    for attempt in range(retries + 1):
-        result = await _run_battle_once(team_str, opp_str,
-                                        uid + attempt * RETRY_STRIDE)
-        if result is not None:
-            return result
-    return None
