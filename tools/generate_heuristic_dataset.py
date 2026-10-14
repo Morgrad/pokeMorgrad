@@ -256,6 +256,14 @@ async def main_async(args):
         bot_genome = G.build_random_genome({})
         if bot_genome is None:
             continue
+        # Route through the same Showdown legality gate the GA uses.
+        # Without this, ~1% of random genomes contain format-illegal forms
+        # (Greninja-Bond) or transfer-only moves, and their battles fail at
+        # team validation before they start.
+        legal = G.filter_legal_genomes([bot_genome], {})
+        if not legal:
+            continue    # couldn't legalize in 20 rebuilds; skip this battle
+        bot_genome = legal[0]
         bot_team = G.genome_to_text(bot_genome)
         opp_team = random.choice(opponents)
         pairs.append((bot_team, opp_team, i))
