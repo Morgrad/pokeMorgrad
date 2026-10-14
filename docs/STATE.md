@@ -551,6 +551,24 @@ Conclusion: BC can only lose to the heuristic. Any pilot that wants to BEAT
 
 **Action:** stop BC-on-heuristic improvements. Reserve encoder D + target
 scoring as tools for future RL warm-start, not as a path to a stronger pilot.
+
+
+### 5.17 Move sampling from priors (2026-10-14)
+
+Fifth constraint in the team-realism stack. _random_mon now samples from
+top-8 moves by tournament usage in species_move_priors.json when the
+species has an entry. Role filter drops off-category moves when >= 4
+matching priors exist. Fallback to role-weighted random for the ~75% of
+species without priors.
+
+Before: Umbreon got Copycat/Rest/Baby-Doll Eyes/Reflect.
+After:  Umbreon gets Snarl/Taunt/Foul Play/Psychic.
+Same pattern for Rillaboom, Excadrill, Incineroar, Garchomp, Toucannon,
+Heliolisk, and every other top-cut species with priors.
+
+The remaining ~75% of non-prior species still sample from role-random.
+That's acceptable: the GA converges on priors-species because they
+perform better, and eval will reflect that.
 ## 6. Environment
 
 - **Host:** Windows 11 + WSL2 (Fedora Linux 42)
