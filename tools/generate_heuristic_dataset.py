@@ -78,6 +78,33 @@ def _canonical_move(sd_id: str, encoder):
     return None
 
 
+# Lazily-built reverse maps for item/ability toID -> display name.
+# poke_env hands us ids like 'sitrusberry'; the encoder keys are 'Sitrus Berry'.
+_ITEM_BY_SD = None
+_ABILITY_BY_SD = None
+
+
+def _ensure_item_ability_maps(encoder):
+    global _ITEM_BY_SD, _ABILITY_BY_SD
+    if _ITEM_BY_SD is None:
+        _ITEM_BY_SD = {_to_sd_id(k): k for k in encoder.item_idx}
+        _ABILITY_BY_SD = {_to_sd_id(k): k for k in encoder.ability_idx}
+
+
+def _canonical_item(raw, encoder):
+    if not raw or raw == "unknown_item":
+        return None
+    _ensure_item_ability_maps(encoder)
+    return _ITEM_BY_SD.get(raw)
+
+
+def _canonical_ability(raw, encoder):
+    if not raw or raw == "unknown_ability":
+        return None
+    _ensure_item_ability_maps(encoder)
+    return _ABILITY_BY_SD.get(raw)
+
+
 def _mon_view(mon, encoder, is_opp=False):
     if mon is None or mon.species is None:
         return None
@@ -97,8 +124,8 @@ def _mon_view(mon, encoder, is_opp=False):
         "status": mon.status.name.lower() if mon.status else None,
         "boosts": {k: v for k, v in mon.boosts.items() if v != 0},
         "revealed_moves": revealed[:4],
-        "item": None,
-        "ability": None,
+        "item": _canonical_item(getattr(mon, "item", None), encoder),
+        "ability": _canonical_ability(getattr(mon, "ability", None), encoder),
         "is_mega": False,
     }
 
@@ -134,6 +161,7 @@ class RecordingHeuristic(SimpleHeuristicsPlayer):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.decisions = []
+        self._last_recorded_turn = None    # skip re-asks within the same turn
 
     def choose_move(self, battle):
         encoder = _get_encoder()
@@ -144,7 +172,7 @@ class RecordingHeuristic(SimpleHeuristicsPlayer):
 
         order = super().choose_move(battle)
 
-        if state is not None:
+        if state is not None and battle.turn != self._last_recorded_turn:
             actions = self._order_to_actions(order, encoder)
             if actions:
                 self.decisions.append({
@@ -152,6 +180,7 @@ class RecordingHeuristic(SimpleHeuristicsPlayer):
                     "state": state,
                     "actions": actions,
                 })
+                self._last_recorded_turn = battle.turn
         return order
 
     def _order_to_actions(self, order, encoder):
