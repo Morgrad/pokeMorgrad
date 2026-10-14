@@ -36,7 +36,7 @@ BEST_MODEL_PATH = os.path.join(MODEL_DIR, os.environ.get("BC_OUT", "bc_best.pt")
 MODEL_ARCH = os.environ.get("BC_MODEL", "v2")
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
-BATCH = 256
+BATCH = int(os.environ.get("BC_BATCH", "256"))   # 256 baseline; 512 often 1.3-1.6x throughput on 24 GB
 EPOCHS = int(os.environ.get("BC_EPOCHS", "30"))
 LR = 1e-3
 WEIGHT_DECAY = 1e-5
@@ -275,8 +275,10 @@ def main():
     val_ds = BCDataset(val_d, enc, priors)
     print(f"  train={len(train_ds):,}  val={len(val_ds):,}")
 
-    tl = DataLoader(train_ds, batch_size=BATCH, shuffle=True, num_workers=NUM_WORKERS)
-    vl = DataLoader(val_ds, batch_size=BATCH, shuffle=False, num_workers=NUM_WORKERS)
+    tl = DataLoader(train_ds, batch_size=BATCH, shuffle=True, num_workers=NUM_WORKERS,
+                     pin_memory=False)  # ROCm+WSL2: pinned memory is flaky/slow here
+    vl = DataLoader(val_ds, batch_size=BATCH, shuffle=False, num_workers=NUM_WORKERS,
+                     pin_memory=False)
 
     model = build_model(enc)
     print(f"Params: {sum(p.numel() for p in model.parameters()):,}")
