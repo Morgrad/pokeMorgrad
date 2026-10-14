@@ -297,6 +297,11 @@ Set per-run: `GA_CONCURRENCY=12 python run/ga_run.py run1 6`.
 - **Python:** 3.12
 - **Key deps:** `torch>=2.0`, `numpy`, `poke-env>=0.8`
 
+ROCm perf env vars set in `~/llm-env/bin/activate` (not tracked in repo):
+  GPU_MAX_HEAP_SIZE=100, GPU_MAX_ALLOC_PERCENT=100, HSA_ENABLE_SDMA=0,
+  MIOPEN_FIND_MODE=2, MIOPEN_FIND_ENFORCE=3. Append these exports after
+  recreating the venv (`cat >> ~/llm-env/bin/activate <<'EOF' ... EOF`).
+
 Harmless warning to ignore: `agent.cpp:608] sysfs nodes path
 '/sys/class/kfd/kfd/topology/nodes' does not exist` — ROCm probing WSL2.
 
