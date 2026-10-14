@@ -49,12 +49,12 @@ mkdir -p "$REPO_ROOT/output/checkpoints/v6"
 
 echo ""
 echo "===== $(date) RUN 1 (5h) ====="
-python -m run.ga_run run1 5.5 2>&1 | tee /tmp/ga_run1.log
+python -m run.ga_run run1 2.5 2>&1 | tee /tmp/ga_run1.log
 echo "[$(date)] RUN 1 finished rc=$?"
 
 echo ""
 echo "===== $(date) RUN 2 (5h, warm-start) ====="
-python -m run.ga_run run2 5.5 2>&1 | tee /tmp/ga_run2.log
+python -m run.ga_run run2 2.5 2>&1 | tee /tmp/ga_run2.log
 echo "[$(date)] RUN 2 finished rc=$?"
 
 echo ""
