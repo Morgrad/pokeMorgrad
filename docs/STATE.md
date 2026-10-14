@@ -368,6 +368,69 @@ the least-wrong of the val metrics), but the checkpoint at save time is a
 guess. Future improvement: save every N epochs to `bc_ckpt_e{epoch}.pt` and
 eval them all to pick the winner.
 
+
+### 5.13 GA is overfitting to the pilot, not the meta
+
+The 71% (island C) and 66% (islands A/B) champions from 2026-10-13 look like
+real wins, but they exploit the heuristic pilot's blind spots instead of the
+tournament meta:
+
+- **Dead items.** `Umbreon @ Binding Band` (no binding moves), `Garchomp @
+  Heat Rock` (no weather setter on the team), `Salamence @ Icy Rock` (no hail).
+  The pilot ignores items, so the GA leaves them at whatever random pick
+  survived selection.
+- **No Protect coverage.** Neither champion runs Protect on more than one mon.
+  A real VGC team always has 2+ Protect users for tempo and reads.
+- **No Fake Out / redirection.** The pilot doesn't value turn-1 disruption,
+  so the GA doesn't evolve it.
+- **Natures sometimes nonsensical.** `Modest Infernape` (physical) appears in
+  one champion. The pilot doesn't care.
+
+**Consequence:** the 66–71% numbers are "beat this specific bot," not "beat
+Reg M-C." Showing these teams to a human VGC player would earn a polite laugh.
+
+**Why BC-on-heuristic cannot fix this.** The heuristic itself has the same
+blind spots. Training BC to imitate the heuristic trains it to have the same
+blind spots. Fixing the pilot is the *right* long-term move (encoder redesign,
+RL), but it is a multi-day project.
+
+**Pragmatic fix for now: constrain what the GA can build.** Reserve the
+"anything legal" search for later; require the GA to build teams that look
+like real top-cut teams.
+
+**Constraint layer (ordered by impact / cost):**
+
+1. **Items from meta only.** `_pick_item_for` and `mutate_item` restricted to
+   items that appear in `data/meta_items.json` for that species. Fallback to a
+   small canonical list (Leftovers, Sitrus Berry, Focus Sash, Life Orb,
+   Choice Scarf) when the species has no meta entry. Removes all dead-item
+   champions at zero cost to search quality — real teams only use real items.
+
+2. **Protect coverage.** After building or mutating a genome, if no mon has a
+   Protect-family move (Protect, Detect, Spiky Shield, King's Shield, Baneful
+   Bunker, Silk Trap, Burning Bulwark), force one slot to swap a move for the
+   species' Protect if it learns one. Soft constraint — skip if the species
+   can't learn any protect move.
+
+3. **Real natures only.** If nature data exists in meta, sample from it. Else
+   skip this constraint (do not fake it).
+
+4. **Fake Out / redirection coverage.** If no mon has Fake Out, Follow Me, or
+   Rage Powder, force one slot to take it if the species can learn it. Soft
+   constraint, same fallback as Protect.
+
+**Expected effect:** champion scores drop from ~65% to ~58–62% against the
+heuristic pilot — because the teams are no longer exploiting pilot bugs. But
+the *interpretation* of the number changes from "beat a broken bot" to "a
+team that would make sense on a real regional top-cut list."
+
+**Design discipline:** the constraint lives in `ga_core.py` only. It does not
+touch `state_encoder.py`, `bc_*.py`, or any checkpoint. Landing it is a single
+commit with a self-test in the same script.
+
+**Status:** diagnostic run 2026-10-14 to confirm `meta_items.json` schema;
+patch to follow if the schema supports constraints 1–4.
+
 ## 6. Environment
 
 - **Host:** Windows 11 + WSL2 (Fedora Linux 42)
