@@ -266,9 +266,69 @@ def main():
             decisions.append(json.loads(line))
     print(f"  {len(decisions)} turn rows")
 
-    random.shuffle(decisions)
-    n_val = int(len(decisions) * VAL_FRAC)
-    train_d, val_d = decisions[n_val:], decisions[:n_val]
+    # ── Pre-clean: drop consecutive (side, turn) duplicates ─────────────
+    # The file predates the generator's re-ask dedup fix. Two sources of
+    # dupes: (a) Showdown re-prompts cause choose_move to fire twice for the
+    # same (side, turn); (b) the switch-collision loop bug caused thousands
+    # of repeated p1-turn-1 rows. Both are noise.
+    cleaned = []
+    last = (None, None)
+    dup_dropped = 0
+    for r in decisions:
+        key = (r.get("side"), r.get("turn"))
+        if key == last:
+            dup_dropped += 1
+            continue
+        cleaned.append(r)
+        last = key
+    print(f"  pre-clean: {len(decisions)} -> {len(cleaned)} rows "
+          f"(dropped {dup_dropped} consecutive dupes)")
+
+    def _chunk_battles(rows):
+        battles, cur = [], []
+        seen_t1 = set()
+        for r in rows:
+            side, turn = r.get("side"), r.get("turn", 0)
+            if turn == 1 and side in seen_t1:
+                battles.append(cur)
+                cur = []
+                seen_t1 = set()
+            cur.append(r)
+            if turn == 1:
+                seen_t1.add(side)
+        if cur:
+            battles.append(cur)
+        return battles
+
+    def _is_clean(chunk):
+        if len(chunk) > 100:
+            return False
+        sides = {r.get("side") for r in chunk}
+        return sides == {"p1", "p2"}
+
+    all_battles = _chunk_battles(cleaned)
+    clean_battles = [c for c in all_battles if _is_clean(c)]
+    dropped = len(all_battles) - len(clean_battles)
+    print(f"  chunked into {len(all_battles)} battles, "
+          f"dropped {dropped} corrupted, kept {len(clean_battles)}")
+
+    rng = random.Random(SEED)
+    rng.shuffle(clean_battles)
+    n_val_battles = max(1, int(len(clean_battles) * VAL_FRAC))
+    val_d = [r for b in clean_battles[:n_val_battles] for r in b]
+    train_d = [r for b in clean_battles[n_val_battles:] for r in b]
+    print(f"  battle-level split: {len(clean_battles) - n_val_battles} train / "
+          f"{n_val_battles} val battles "
+          f"({len(train_d)}/{len(val_d)} rows)")
+
+    rng = random.Random(SEED)
+    rng.shuffle(clean_battles)
+    n_val_battles = max(1, int(len(clean_battles) * VAL_FRAC))
+    val_d = [r for b in clean_battles[:n_val_battles] for r in b]
+    train_d = [r for b in clean_battles[n_val_battles:] for r in b]
+    print(f"  battle-level split: {len(clean_battles) - n_val_battles} train / "
+          f"{n_val_battles} val battles "
+          f"({len(train_d)}/{len(val_d)} rows)")
 
     print("Building datasets...")
     train_ds = BCDataset(train_d, enc, priors)
