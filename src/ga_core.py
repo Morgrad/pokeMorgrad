@@ -68,6 +68,14 @@ MIN_TURNS = 3           # Battles ending < 3 turns are almost always a Showdown 
 # (The retry-uid stride lives in src/battle.py now — RETRY_STRIDE there.)
 SEED_POOL = 30          # When seeding a population from real teams, draw from the first N teams.
 
+# --- Champion selection ---
+# Reserve a slice of the training pool that the GA never samples for fitness.
+# Champion files are saved from the best genome by validation score, not by
+# training fitness. Island B (2026-10-13) was 68% on the training pool but
+# 58.7% held-out — the training-best overfit. A validation slice catches that.
+VAL_POOL_SIZE = 30
+VAL_SPLIT_SEED = 42
+
 # --- Early-stop ---
 # A genome plays EARLY_STOP_MIN_BATTLES first; if that head score is below
 # EARLY_STOP_WIN_RATE we skip the tail. Statistically: at 50 battles the Wilson
@@ -151,6 +159,21 @@ def regional_pool():
 
 
 _HELDOUT = None
+def _split_train_val(pool, val_size=VAL_POOL_SIZE, seed=VAL_SPLIT_SEED):
+    """Deterministically split the training pool into (train, val) by index.
+
+    Index-based, not string-based, because regional teams can duplicate.
+    Union of train and val equals the original pool.
+    """
+    rng = random.Random(seed)
+    idxs = list(range(len(pool)))
+    rng.shuffle(idxs)
+    val_idxs = set(idxs[:val_size])
+    train = [pool[i] for i in range(len(pool)) if i not in val_idxs]
+    val = [pool[i] for i in sorted(val_idxs)]
+    return train, val
+
+
 def heldout_pool():
     """Held-out pool (100 teams). Used for final eval only."""
     global _HELDOUT
@@ -814,6 +837,8 @@ class Island:
         self.population = []
         self.fitness = []
         self.best_ever = {"fit": -1, "genome": None, "gen": None}
+        # best_val_ever = best genome by validation-slice score (champion source)
+        self.best_val_ever = {"fit": -1, "genome": None, "gen": None}
         self.stagnation = 0
         self.history = []
         self.seed_paths = seed_paths or []
@@ -855,6 +880,7 @@ class Island:
             "population": self.population,
             "fitness": self.fitness,
             "best_ever": self.best_ever,
+            "best_val_ever": self.best_val_ever,
             "stagnation": self.stagnation,
             "history": self.history,
         }
@@ -866,6 +892,8 @@ class Island:
         isl.population = d["population"]
         isl.fitness = d.get("fitness", [0.0] * len(isl.population))
         isl.best_ever = d["best_ever"]
+        isl.best_val_ever = d.get("best_val_ever",
+                                   {"fit": -1, "genome": None, "gen": None})
         isl.stagnation = d.get("stagnation", 0)
         isl.history = d.get("history", [])
         return isl
@@ -1079,6 +1107,23 @@ def breed(island, immigration_rate=0.20):
     island.fitness = [0.0] * len(island.population)
 
 
+async def _eval_on_subset(genome, opponents, verbose=False):
+    """One-shot fitness on a specific opponent list. No early-stop, no retry."""
+    text = genome_to_text(genome)
+    ok, errs = DB.validate_team(text)
+    if not ok:
+        return 0.0
+    tasks = [B.run_battle(text, o, random.randint(1, 10**9), _SEM, FORMAT,
+                          pilot="heuristic", timeout=BATTLE_TIMEOUT,
+                          min_turns=MIN_TURNS)
+             for o in opponents]
+    outcomes = await asyncio.gather(*tasks)
+    valid = [o for o in outcomes if o is not None]
+    if not valid:
+        return 0.0
+    return sum(valid) / len(valid)
+
+
 async def run_islands(
     island_specs,
     pop_per_island=10,
@@ -1135,6 +1180,9 @@ async def run_islands(
     print(f"Gens {start_gen}..{generations}, {battles_per_genome} battles/genome")
 
     opp_pool = regional_pool()
+    train_pool, val_pool = _split_train_val(opp_pool)
+    print(f"Fitness pool: {len(train_pool)} teams   "
+          f"Validation slice: {len(val_pool)} teams")
     t0 = time.time()
     time_budget_seconds = (max_hours * 3600) if max_hours else None
 
@@ -1149,7 +1197,7 @@ async def run_islands(
               f"({(time.time()-t0)/60:.1f} min) ===")
 
         for isl in islands:
-            gen_opps = random.sample(opp_pool, min(battles_per_genome, len(opp_pool)))
+            gen_opps = random.sample(train_pool, min(battles_per_genome, len(train_pool)))
             fits = await asyncio.gather(*[
                 evaluate(g, gen_opps, i, len(isl.population))
                 for i, g in enumerate(isl.population)
@@ -1165,9 +1213,23 @@ async def run_islands(
                     "gen": gen + 1,
                 }
                 isl.stagnation = 0
-                print(f"  [{isl.name}] NEW ALL-TIME: {gen_best*100:.1f}%")
+                print(f"  [{isl.name}] NEW ALL-TIME (train): {gen_best*100:.1f}%")
             else:
                 isl.stagnation += 1
+
+            # Champion selection: evaluate this generation's training-best on
+            # the held-back validation slice. Champions come from
+            # best_val_ever, not best_ever — Island B (2026-10-13) showed
+            # the training best overfits by ~10 points on held-out.
+            val_fit = await _eval_on_subset(isl.population[best_idx], val_pool)
+            if val_fit > isl.best_val_ever["fit"]:
+                isl.best_val_ever = {
+                    "fit": val_fit,
+                    "genome": copy.deepcopy(isl.population[best_idx]),
+                    "gen": gen + 1,
+                }
+                print(f"  [{isl.name}] NEW VAL BEST: {val_fit*100:.1f}% "
+                      f"(train {gen_best*100:.1f}%)")
 
             isl.history.append({
                 "gen": gen + 1,
@@ -1210,8 +1272,12 @@ async def run_islands(
     os.makedirs(CHAMPION_DIR, exist_ok=True)
     print(f"\n=== DONE ===")
     for isl in islands:
-        if isl.best_ever["genome"]:
+        # Champion by validation score, not training score. Fall back to
+        # training best if we never got a val evaluation (short runs).
+        best = isl.best_val_ever if isl.best_val_ever["genome"] else isl.best_ever
+        label = "val" if isl.best_val_ever["genome"] else "train"
+        if best["genome"]:
             path = os.path.join(CHAMPION_DIR, f"ga_{run_id}_island_{isl.name}.txt")
-            open(path, "w").write(genome_to_text(isl.best_ever["genome"]))
-            print(f"  [{isl.name}] champion: {isl.best_ever['fit']*100:.1f}% "
-                  f"(gen {isl.best_ever['gen']}) -> {path}")
+            open(path, "w").write(genome_to_text(best["genome"]))
+            print(f"  [{isl.name}] champion ({label}): {best['fit']*100:.1f}% "
+                  f"(train best {isl.best_ever['fit']*100:.1f}%) -> {path}")
