@@ -85,6 +85,28 @@ VAL_SPLIT_SEED = 42
 EARLY_STOP_MIN_BATTLES = 50     # only meaningful when the pool is larger than this.
 EARLY_STOP_WIN_RATE = 0.15      # abort when head score < this.
 
+# --- Team realism constraints ---
+# The GA optimizes for the heuristic pilot, which ignores items, Protect
+# timing, and Fake Out priority. Left unconstrained, it produces champions
+# full of dead items and no tactical moves — real VGC players laugh at them.
+# These constraints make champions look like top-cut teams without touching
+# the model or the pilot.
+CANONICAL_ITEMS = (
+    "Leftovers", "Sitrus Berry", "Focus Sash", "Life Orb",
+    "Choice Scarf", "Choice Specs", "Assault Vest", "Rocky Helmet",
+)
+# Species with no meta_items.json entry pick from CANONICAL_ITEMS ∩ legal.
+# Species WITH an entry pick only from that entry (usage-weighted).
+
+PROTECT_MOVES = (
+    "Protect", "Detect", "Spiky Shield", "King's Shield",
+    "Baneful Bunker", "Silk Trap", "Burning Bulwark",
+)
+# Priority-ordered: the first one in the list that a species learns gets used.
+
+FAKEOUT_MOVES = ("Fake Out", "Follow Me", "Rage Powder")
+# Turn-1 disruption / redirection; first learnable wins.
+
 
 # =============================================================================
 # CACHED ROSTER
@@ -226,6 +248,98 @@ def _legal_items_for(species_name):
     return tuple(out) or ("Leftovers",)
 
 
+def _species_role(sp):
+    """Classify a species into a single offensive role for this genome.
+
+    Returns one of: 'physical', 'special', 'support'.
+
+    Design: no 'mixed' role. Real teams commit to one EV spread; the
+    population explores the other build by generating a different genome with
+    the opposite coin flip. This matches how tournament teams are built and
+    keeps EV/nature/moveset internally consistent.
+
+    Thresholds:
+      peak < 80  -> support   (Umbreon 65/60; can't carry either offense)
+      low  < 80  -> commit    (Gengar 65/130; 65 Atk is unusable)
+      else       -> coin flip (Salamence 135/110, Dragapult 120/100,
+                               Arcanine 110/100, Archaludon 105/125)
+    """
+    stats = sp.get("baseStats") or {}
+    atk = stats.get("atk", 0)
+    spa = stats.get("spa", 0)
+    if atk == 0 and spa == 0:
+        return "physical"        # no data — arbitrary but deterministic
+    peak = max(atk, spa)
+    low = min(atk, spa)
+    if peak < 80:
+        return "support"
+    if low < 80:
+        return "physical" if atk > spa else "special"
+    # Both viable — commit to one side at random.
+    return random.choice(("physical", "special"))
+
+
+def _score_move_for_role(move_name, role):
+    """Bias weight for a move given the genome's committed role.
+
+    3 = strongly preferred (correct offensive category)
+    2 = neutral (Status, or any offensive move on support role)
+    1 = mild dislike (off-role offensive move — rare coverage slot)
+    """
+    data = DB.get_move(move_name)
+    if not data:
+        return 2
+    cat = data.get("category", "Status")
+    if cat == "Status":
+        return 2
+    if role == "support":
+        return 2
+    if role == "physical":
+        return 3 if cat == "Physical" else 1
+    if role == "special":
+        return 3 if cat == "Special" else 1
+    return 2
+
+
+def _weighted_sample_no_replace(items, weights, k):
+    """Sample k distinct items with weights. Weights must be > 0."""
+    pool = list(items)
+    w = list(weights)
+    out = []
+    for _ in range(min(k, len(pool))):
+        idx = random.choices(range(len(pool)), weights=w, k=1)[0]
+        out.append(pool.pop(idx))
+        w.pop(idx)
+    return out
+
+
+def _preferred_pool(legal_moves, role):
+    """Split a move pool into (preferred, fallback) by role.
+
+    Preferred = moves whose category matches the role, plus any Status move.
+    Fallback = off-role offensive moves.
+
+    Returns (preferred, fallback) lists.
+    """
+    preferred, fallback = [], []
+    for mv in legal_moves:
+        data = DB.get_move(mv)
+        cat = data.get("category", "Status") if data else "Status"
+        if cat == "Status":
+            preferred.append(mv)
+            continue
+        if role == "support":
+            fallback.append(mv)
+            continue
+        if role == "physical":
+            (preferred if cat == "Physical" else fallback).append(mv)
+        elif role == "special":
+            (preferred if cat == "Special" else fallback).append(mv)
+        else:
+            preferred.append(mv)
+    return preferred, fallback
+
+
 def _random_mon(species_name):
     """Build a random legal set for a species, or None if it can't field 4 moves.
 
@@ -256,14 +370,29 @@ def _random_mon(species_name):
     if len(legal) < 4:
         return None
 
-    moves = random.sample(legal, 4)
-    cats = [DB.get_move(m)["category"] for m in moves if DB.get_move(m)]
-    n_p, n_s = cats.count("Physical"), cats.count("Special")
-    if n_p > n_s:
-        evs, nature = {"hp": 2, "atk": 32, "spe": 32}, "Jolly"
-    elif n_s > n_p:
-        evs, nature = {"hp": 2, "spa": 32, "spe": 32}, "Modest"
+    role = _species_role(sp)
+    preferred, fallback = _preferred_pool(legal, role)
+
+    # Sample all 4 from the preferred pool when possible (the normal case —
+    # every viable roster species has >= 4 moves in role + Status). The
+    # fallback path exists only so a species with a tiny movepool can still
+    # produce a legal set.
+    if len(preferred) >= 4:
+        weights = [2 ** _score_move_for_role(mv, role) for mv in preferred]
+        moves = _weighted_sample_no_replace(preferred, weights, 4)
     else:
+        combined = preferred + fallback
+        weights = [2 ** _score_move_for_role(mv, role) for mv in combined]
+        moves = _weighted_sample_no_replace(combined, weights, 4)
+
+    # EVs + nature follow the committed role, NOT the sampled move count.
+    # Role was already coin-flipped above; this makes the whole genome
+    # internally consistent (moves, EVs, nature all align to one offense).
+    if role == "physical":
+        evs, nature = {"hp": 2, "atk": 32, "spe": 32}, "Jolly"
+    elif role == "special":
+        evs, nature = {"hp": 2, "spa": 32, "spe": 32}, "Modest"
+    else:  # support
         evs, nature = {"hp": 32, "def": 20, "spd": 14}, "Calm"
     return {
         "species": species_name,
@@ -276,13 +405,20 @@ def _random_mon(species_name):
 
 
 def _pick_item_for(species_name, used_items):
-    """Pick an item, biased toward what the meta actually runs, avoiding dupes.
+    """Pick an item a real team would plausibly run, avoiding item-clause dupes.
 
-    Priority: (1) a mega stone not yet used on this team — stones are the whole
-    point of the species, so claim one first; (2) with probability META_ITEM_BIAS,
-    a usage-weighted draw from real tournament data (legal + unused only);
-    (3) otherwise any legal unused item. Item clause (no duplicate items on a
-    team) is enforced via `used_items`.
+    Priority:
+      1. Mega stone not yet used on this team (only choice for mega species).
+      2. Meta items from real tournament usage, weighted by frequency, if the
+         species has an entry — restricted to items this species can legally
+         hold and that aren't already on the team.
+      3. Canonical competitive items (CANONICAL_ITEMS ∩ legal ∩ unused).
+      4. Last resort: any legal unused item.
+
+    Realism: dead items (Binding Band on a mon with no binding moves, Heat Rock
+    with no sun setter) are eliminated by construction because real tournament
+    data never contains them for these species, and the canonical fallback is
+    competitive staples. The pilot is blind to items; the GA exploited that.
     """
     sp = _SPECIES_BY_NAME.get(species_name)
     if not sp:
@@ -290,13 +426,23 @@ def _pick_item_for(species_name, used_items):
     for stone in sp["megaStones"]:
         if stone not in used_items:
             return stone
+
+    legal_set = set(_legal_items_for(species_name)) - used_items
+
+    # 2. Meta items, weighted
     meta = meta_items_for(species_name)
-    if meta and random.random() < META_ITEM_BIAS:
-        legal_set = set(_legal_items_for(species_name)) - used_items
+    if meta:
         candidates = [(i, w) for i, w in meta if i in legal_set]
         if candidates:
             items, weights = zip(*candidates)
             return random.choices(items, weights=weights, k=1)[0]
+
+    # 3. Canonical fallback
+    canonical = [i for i in CANONICAL_ITEMS if i in legal_set]
+    if canonical:
+        return random.choice(canonical)
+
+    # 4. Last resort
     legal = [i for i in _legal_items_for(species_name) if i not in used_items]
     return random.choice(legal) if legal else "Leftovers"
 
@@ -381,6 +527,74 @@ def text_to_genome(text):
 
 
 # =============================================================================
+# TEAM REALISM CONSTRAINTS
+# =============================================================================
+def _force_move_on_slot(genome, slot, candidate_moves):
+    """Try to replace one of slot's moves with the first learnable candidate.
+
+    Returns True if the swap succeeded, False if no candidate is learnable by
+    that species. Preserves species identity; item/EV/nature untouched.
+    """
+    mon = genome[slot]
+    sp = _SPECIES_BY_NAME.get(mon["species"])
+    if not sp:
+        return False
+    learnable = [mv for mv in candidate_moves if mv in sp["moves"]]
+    if not learnable:
+        return False
+    pick = learnable[0]
+    if pick in mon["moves"]:
+        return False  # already has it, nothing to do
+    # Replace a move that isn't Protect-family and isn't the candidate
+    for i, mv in enumerate(mon["moves"]):
+        if mv not in PROTECT_MOVES and mv not in FAKEOUT_MOVES:
+            mon["moves"][i] = pick
+            return True
+    # All 4 moves are Protect/FakeOut family — replace slot 0 anyway
+    mon["moves"][0] = pick
+    return True
+
+
+def _enforce_composition(genome):
+    """Ensure team has Protect coverage and turn-1 disruption.
+
+    Soft constraints: if no mon on the team can learn the required move, the
+    genome passes through unchanged. Idempotent: a genome that already has
+    the coverage gets no edits.
+    """
+    if not genome or len(genome) != 6:
+        return genome
+
+    # --- Protect coverage ---
+    has_protect = any(
+        any(mv in PROTECT_MOVES for mv in (m.get("moves") or []))
+        for m in genome if m
+    )
+    if not has_protect:
+        # Try slots in a shuffled order so different genomes get different
+        # Protect users — avoids every champion looking identical.
+        slots = list(range(6))
+        random.shuffle(slots)
+        for slot in slots:
+            if _force_move_on_slot(genome, slot, PROTECT_MOVES):
+                break
+
+    # --- Fake Out / redirection coverage ---
+    has_fakeout = any(
+        any(mv in FAKEOUT_MOVES for mv in (m.get("moves") or []))
+        for m in genome if m
+    )
+    if not has_fakeout:
+        slots = list(range(6))
+        random.shuffle(slots)
+        for slot in slots:
+            if _force_move_on_slot(genome, slot, FAKEOUT_MOVES):
+                break
+
+    return genome
+
+
+# =============================================================================
 # SHOWDOWN LEGALITY GATE
 # =============================================================================
 def filter_legal_genomes(genomes, constraints):
@@ -444,7 +658,13 @@ def filter_legal_genomes(genomes, constraints):
             if pending[i] <= 0:
                 del pending[i]
 
-    return [g for g in result if g is not None]
+    legal = [g for g in result if g is not None]
+    # Apply team-realism constraints once, on every genome that leaves the
+    # gate. This is the single choke point shared by init_population and breed,
+    # so nothing enters the population unconstrained.
+    for g in legal:
+        _enforce_composition(g)
+    return legal
 
 
 # =============================================================================
