@@ -299,14 +299,21 @@ class BCPlayer(Player):
             ]
             if move_idxs:
                 new_i = max(move_idxs, key=lambda i: loser_scores[i])
+                if loser_is_a:
+                    best_a = loser_valid[new_i]
+                else:
+                    best_b = loser_valid[new_i]
             elif alt_switch_idxs:
                 new_i = max(alt_switch_idxs, key=lambda i: loser_scores[i])
+                if loser_is_a:
+                    best_a = loser_valid[new_i]
+                else:
+                    best_b = loser_valid[new_i]
             else:
-                new_i = loser_i
-
-            if loser_is_a:
-                best_a = loser_valid[new_i]
-            else:
-                best_b = loser_valid[new_i]
+                # No alternative for the loser slot — every legal action is a
+                # switch to the same Pokemon. Showdown rejects double-same-
+                # switch and we'd loop forever. Bail out to a random legal
+                # double-order for the whole turn instead.
+                return self.choose_random_move(battle)
 
         return DoubleBattleOrder(best_a, best_b)
