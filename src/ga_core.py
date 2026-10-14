@@ -120,6 +120,25 @@ _NATURES = [n["name"] for n in DB.all_natures()]
 _REGIONAL_DIR = _p("data", "regional_teams")
 
 
+_MOVE_PRIORS = None
+def move_priors_for(species_name, top_n=8):
+    """Top-N moves by tournament usage count for a species, or None.
+
+    Returns a list of (move_name, count) pairs. Caller decides how to
+    filter/weight. Lazily loads the file once.
+    """
+    global _MOVE_PRIORS
+    if _MOVE_PRIORS is None:
+        path = _p("data", "species_move_priors.json")
+        _MOVE_PRIORS = json.load(open(path)) if os.path.exists(path) else {}
+    entries = _MOVE_PRIORS.get(species_name, [])
+    if not entries:
+        return None
+    ranked = sorted(entries, key=lambda e: -e.get("count", 0))[:top_n]
+    out = [(e["move"], e.get("count", 1)) for e in ranked]
+    return out or None
+
+
 _META_ITEMS = None
 def meta_items_for(species_name):
     """List of (item_name, count) for a species, from real tournament usage.
@@ -371,19 +390,34 @@ def _random_mon(species_name):
         return None
 
     role = _species_role(sp)
-    preferred, fallback = _preferred_pool(legal, role)
+    moves = None
 
-    # Sample all 4 from the preferred pool when possible (the normal case —
-    # every viable roster species has >= 4 moves in role + Status). The
-    # fallback path exists only so a species with a tiny movepool can still
-    # produce a legal set.
-    if len(preferred) >= 4:
-        weights = [2 ** _score_move_for_role(mv, role) for mv in preferred]
-        moves = _weighted_sample_no_replace(preferred, weights, 4)
-    else:
-        combined = preferred + fallback
-        weights = [2 ** _score_move_for_role(mv, role) for mv in combined]
-        moves = _weighted_sample_no_replace(combined, weights, 4)
+    # Preferred path: tournament usage priors. Real teams use 6-10 of a
+    # species' 40-80 legal moves; sampling from the full pool produces
+    # Copycat-Rest nonsense. Priors give us the real set.
+    priors = move_priors_for(species_name)
+    if priors:
+        priors_legal = [(mv, w) for mv, w in priors if mv in legal]
+        if len(priors_legal) >= 4:
+            # Restrict to role-matching categories when we have 4+ such moves
+            role_matched = [(mv, w) for mv, w in priors_legal
+                            if _score_move_for_role(mv, role) >= 2]
+            if len(role_matched) >= 4:
+                priors_legal = role_matched
+            items = [mv for mv, _ in priors_legal]
+            weights = [w for _, w in priors_legal]
+            moves = _weighted_sample_no_replace(items, weights, 4)
+
+    # Fallback: role-weighted random over the full legal pool.
+    if moves is None:
+        preferred, fallback = _preferred_pool(legal, role)
+        if len(preferred) >= 4:
+            weights = [2 ** _score_move_for_role(mv, role) for mv in preferred]
+            moves = _weighted_sample_no_replace(preferred, weights, 4)
+        else:
+            combined = preferred + fallback
+            weights = [2 ** _score_move_for_role(mv, role) for mv in combined]
+            moves = _weighted_sample_no_replace(combined, weights, 4)
 
     # EVs + nature follow the committed role, NOT the sampled move count.
     # Role was already coin-flipped above; this makes the whole genome
