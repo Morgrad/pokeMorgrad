@@ -294,6 +294,22 @@ Showdown handshake (~25ms) dominates above that and concurrency cannot help.
 
 Set per-run: `GA_CONCURRENCY=12 python run/ga_run.py run1 6`.
 
+
+### 5.10 Island config — 2026-10-13 overnight run
+
+Three islands, 2x Umbreon goal + 1x free reference. All three warm-start
+from run1's champions during run2 (if ):
+
+  - **A:** Umbreon locked (slot 0) +  seed
+        → OG team; GA improves the other 5 slots
+  - **B:** Umbreon locked (slot 0), no seed
+        → fresh search of the 5 free slots around Umbreon
+  - **C:** fully free, no seed
+        → ceiling reference (no Umbreon constraint)
+
+Run budget: 2 × 5.5h (~11h total) + final eval. ,
+early-stop active. See  ISLANDS for the canonical spec.
+
 ## 6. Environment
 
 - **Host:** Windows 11 + WSL2 (Fedora Linux 42)

@@ -39,8 +39,9 @@ ISLANDS = [
     },
     {
         "name": "B",
-        "constraints": {},
-        "seed_paths": [BASELINE] + ([warm_b] if use_warm and os.path.exists(warm_b) else []),
+        "constraints": {0: "Umbreon"},
+        # No BASELINE seed — GA discovers the 5 free slots itself.
+        "seed_paths": ([warm_b] if use_warm and os.path.exists(warm_b) else []),
     },
     {
         "name": "C",
