@@ -64,7 +64,7 @@ Runs on Windows + WSL2 with an AMD 7900 XTX (ROCm).
     │   ├── build_regmc_db.js     rebuild canonical DB from Showdown
     │   ├── scrape_replays.py     replay scraper
     │   ├── replay_tracker.py     replay parser
-    │   ├── batch_parse.py        batch driver for the parser
+    │   ├── build_training_data.py  replays → training_data.jsonl (THE driver)
     │   └── build_species_priors.py
     ├── ops/           server management (start/stop/watch Showdown)
     ├── output/        champions, checkpoints, trained models (gitignored)
@@ -90,7 +90,7 @@ Requires Python 3.10+, Node.js (for Showdown), and a running Showdown server on 
 **not committed** — too large and regenerable. Rebuild with:
 
     python tools/scrape_replays.py            # → data/showdown_replays/
-    python tools/batch_parse.py               # → data/training_data.jsonl
+    python tools/build_training_data.py       # → data/training_data.jsonl
 
 Canonical small files (`regmc_db.json`, `pool_split.json`, `meta_items.json`,
 `species_move_priors.json`, `regional_teams/`, `showdown_replays_meta/`) *are*
@@ -104,7 +104,7 @@ committed — the pipeline runs without re-scraping.
 |---|---|
 | Rebuild canonical DB | `node tools/build_regmc_db.js` |
 | Scrape replays | `python tools/scrape_replays.py` |
-| Parse replays → training data | `python tools/batch_parse.py` |
+| Parse replays → training data | `python tools/build_training_data.py` |
 | Pre-flight audit | `python -m src.audit_before_launch` |
 | Train BC model | `python -m src.bc_train` |
 | Launch 5h GA | `python run/ga_run.py run1 5` |
@@ -128,8 +128,9 @@ this section as orientation only.
   yet strong enough to drive GA fitness. Retraining on the outcome-weighted
   training set is the open thread (`bc_train.py` has the oversampling hook).
 - **Training data is regenerable:** `python tools/scrape_replays.py` then
-  `python tools/batch_parse.py` rebuild `data/showdown_replays/` and
-  `data/training_data.jsonl`.
+  `python tools/build_training_data.py` rebuild `data/showdown_replays/` and
+  `data/training_data.jsonl`. (`tools/batch_parse.py` is legacy — pre-`side_won`
+  schema; do not use it to regenerate training data.)
 - **Paths are now portable.** All modules resolve files through `src/paths.py`
   (repo-relative, overridable via `POKEMORGRAD_ROOT` / `SHOWDOWN_DIR`), so the
   tree runs from any checkout location — no hardcoded home directories.

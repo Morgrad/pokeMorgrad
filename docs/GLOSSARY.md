@@ -143,7 +143,8 @@ conversation that isn't here, add it.
 | `tools/build_regmc_db.js` | Rebuild canonical DB from Showdown |
 | `tools/scrape_replays.py` | Replay scraper |
 | `tools/replay_tracker.py` | Replay parser (Tracker class) |
-| `tools/batch_parse.py` | Batch driver: replays → `training_data.jsonl` |
+| `tools/build_training_data.py` | THE training-data driver: replays → `training_data.jsonl` (tags `side_won`/`target_a`/`target_b`) |
+| `tools/batch_parse.py` | Legacy driver (pre-`side_won` schema) — archived, do not regenerate with it |
 | `tools/build_species_priors.py` | Build `species_move_priors.json` |
 | `data/pool_split.json` | Train/held-out split (300/100), basenames |
 | `data/meta_items.json` | Item frequency per species from real teams |

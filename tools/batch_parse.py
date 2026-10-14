@@ -1,4 +1,12 @@
-"""Process all scraped replays → training_data.jsonl.
+# =============================================================================
+# LEGACY — pre-`side_won` schema. DO NOT USE to regenerate training data.
+# =============================================================================
+# The live driver is tools/build_training_data.py. This script writes the raw
+# Tracker output and never tags rows with side_won / target_a / target_b — the
+# exact labels bc_train.py reads. Training on its output silently degrades the
+# BC model (missing win signal + target indices). Kept for reference only;
+# archived out of the active tool path.
+"""Process all scraped replays → training_data.jsonl.  [LEGACY — see header above]
 
 Each line is a decision point with state + chosen action.
 Skips decisions where chosen action is incomplete.

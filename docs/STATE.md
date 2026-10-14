@@ -116,7 +116,7 @@ pokeMorgrad/
 │ ├── build_regmc_db.js rebuild regmc_db.json from Showdown dex
 │ ├── scrape_replays.py scrape human replays from Limitless
 │ ├── replay_tracker.py parse replays → training_data.jsonl
-│ ├── batch_parse.py batch driver
+│ ├── build_training_data.py THE driver: replays → training_data.jsonl
 │ └── build_species_priors.py build species_move_priors.json
 │
 ├── ops/ server management
@@ -272,7 +272,7 @@ Harmless warning to ignore: `agent.cpp:608] sysfs nodes path
 | Held-out pool size | `python -c "from src.ga_core import heldout_pool; print(len(heldout_pool()))"` | Should be 100 |
 | Rebuild DB | `node tools/build_regmc_db.js` | Requires Showdown running |
 | Scrape replays | `python tools/scrape_replays.py` | → `data/showdown_replays/` |
-| Parse replays | `python tools/batch_parse.py` | → `data/training_data.jsonl` |
+| Parse replays | `python tools/build_training_data.py` | → `data/training_data.jsonl` (`batch_parse.py` is legacy) |
 
 ---
 
@@ -410,3 +410,39 @@ venv active and Showdown up on `:8000`. Each should pass before the commit.
 If all nine pass, commit. If step 5 returns 0 for either pool, the basename
 resolution in `ga_core._load_teams` or the `pool_split.json` regeneration is
 wrong — stop and fix before committing.
+
+### Refactor 2026-10-13 (part 2) — optimize / de-over-engineer / comment
+
+Status: all three tiers written; pending host verification
+(`docs/refactor_verification.md`). Plan: `docs/refactor_plan_2026-10-13.md`. Tiers: 1
+(comments + named constants + dead-code removal) → 2 (output-equivalent
+optimizations: item-cache, encoder precompute, batched legality, semaphore
+hoist) → 3 (shared `src/battle.py`, replay-driver consolidation,
+inverted-doc fix). Checkpoint contract frozen throughout — no state_dict key,
+arch value, or dimension constant renamed/resized.
+
+Tier 1 landed: contract banners (`bc_model`, `bc_player._get_shared_model`,
+`state_encoder`), the two 17-dim `cont[]`/`encode_field` layout maps, named
+constants with per-threshold rationale across `ga_core`/`eval`/`regmc_db`/
+`state_encoder`/tool scripts, and provably-dead removals (`eval`'s `DB` import,
+`showdown_validate.js`'s `Dex`, `replay_tracker`'s `brought_count`/
+`next_bench_index`/`["slot"]`, `bc_model.load_checkpoint`).
+
+Tier 2 landed (each output-equivalent, one commit apiece): `_legal_items_for`
+`@lru_cache` returning tuples (2A); encoder precompute — `STATUSES`/`WEATHERS`/
+`TERRAINS` `.index()` scans → module-level `{name: idx}` dicts + hoisted
+`_ACTIVE_MASK`, proven bit-identical by `tools/encode_snapshot.py` (2B);
+`replay_tracker` indexed `|turn|` backfill (2D); `filter_legal_genomes` batched
+per-attempt legality (2E); per-call semaphore hoist in `eval.evaluate_team` (2F);
+and the dropped `mutate_species(constraints)` param.
+
+Tier 3 landed: the shared battle layer now lives in `src/battle.py`
+(`make_player`/`run_battle_once`/`run_battle`, `pilot`/`timeout`/`min_turns`
+kwargs); `eval` and `ga_core` call it instead of each carrying a copy — this
+removes the §5.3 twin-maintenance hazard. Replay drivers consolidated:
+`build_training_data.py` is THE driver, `tools/batch_parse.py` archived with a
+LEGACY header, and the inverted README/GLOSSARY/STATE doc lines corrected (they
+had pointed at `batch_parse.py`). Verification gates: `docs/refactor_verification.md`.
+
+Checkpoint contract held throughout — no state_dict key, arch value, or dimension
+constant renamed/resized.
