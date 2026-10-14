@@ -1,309 +1,317 @@
-> ℹ️ Paths in this file are **repo-relative** (resolved at runtime via
-> `src/paths.py`). For current project status see [`STATE.md`](STATE.md) and the
-> root [README](../README.md).
+> Paths in this file are repo-relative (resolved at runtime via
+> `src/paths.py`). For current project status see `STATE.md` and the root
+> `README.md`.
 
 # Pokémon AI Project — Glossary
 
-Last updated: 2026-10-13
+Last updated: 2026-10-14
 
-A single reference for every acronym, term, and piece of jargon used in this
-project. Grouped by category. If you see a term in a log, file name, or
-conversation that isn't here, add it.
-
----
-
-## 1. Game / VGC (Pokémon Video Game Championships)
-
-| Term | Meaning | Notes |
-|---|---|---|
-| **VGC** | Video Game Championships | Official Pokémon competitive format |
-| **Reg** | Regulation | A ruleset cycle, e.g. Reg M-C |
-| **M-C** | Regulation M-C | Our target format (2026) |
-| **M-B** | Regulation M-B | Previous regulation |
-| **OTS** | Open Team Sheets | Opponent sees your full 6 at preview |
-| **CTS** | Closed Team Sheets | Opponent sees only species (opposite of OTS) |
-| **Bo1** | Best of 1 | One game decides the match |
-| **Bo3** | Best of 3 | Up to three games; first to 2 wins |
-| **BSS** | Battle Stadium Singles | Singles ladder (not our format) |
-| **BST** | Base Stat Total | Sum of a species' 6 base stats |
-| **EV** | Effort Value | Stat investment; 32 per stat, 66 total in our format |
-| **IV** | Individual Value | Innate stat range; always 31 in VGC |
-| **HP** | Hit Points | Health stat |
-| **Atk** | Attack | Physical damage stat |
-| **Def** | Defense | Physical defense stat |
-| **SpA** | Special Attack | Special damage stat |
-| **SpD** | Special Defense | Special defense stat |
-| **Spe** | Speed | Turn order stat |
-| **KO** | Knock Out | Faint |
-| **OHKO** | One-Hit KO | Faint in one hit |
-| **2HKO** | Two-Hit KO | Faint in two hits |
-| **STAB** | Same Type Attack Bonus | +50% damage when move type matches user |
-| **TR** | Trick Room | Speed-inverting field effect |
-| **TW** | Tailwind | Doubles team speed for 4 turns |
-| **Mega** | Mega Evolution | Mid-battle transformation via held stone |
-| **Tera** | Terastallization | Gen 9 mechanic (may appear in future formats) |
-| **Preview** | Team Preview | 30 seconds to pick 4 of 6 mons |
+Reference for every acronym, term, and piece of jargon used in this project.
+Grouped by category. If a term appears in a log, file name, or conversation
+and is not here, add it.
 
 ---
 
-## 2. Machine Learning / AI
+## 1. Game / VGC
 
-| Term | Meaning | Notes |
-|---|---|---|
-| **AI** | Artificial Intelligence | Umbrella term |
-| **ML** | Machine Learning | Learning from data |
-| **DL** | Deep Learning | ML with neural nets |
-| **NN** | Neural Network | The model type |
-| **RL** | Reinforcement Learning | Learn by reward |
-| **BC** | Behavior Cloning | Imitate human play |
-| **GA** | Genetic Algorithm | Evolution-based search |
-| **MCTS** | Monte Carlo Tree Search | Game-tree search |
-| **IL** | Imitation Learning | Same as BC |
-| **PPO** | Proximal Policy Optimization | RL algorithm (used by vgc-bench) |
-| **DQN** | Deep Q-Network | Classic RL algorithm |
-| **SOTA** | State Of The Art | Best available result |
-| **MDP** | Markov Decision Process | RL formalism |
-| **POMDP** | Partially Observable MDP | RL with hidden state (our case) |
-| **CNN** | Convolutional Neural Network | Image-oriented net |
-| **RNN** | Recurrent Neural Network | Sequence-oriented net |
-| **LSTM** | Long Short-Term Memory | RNN variant |
-| **Transformer** | Attention-based net | Modern default |
-| **LLM** | Large Language Model | GPT-style text model |
-| **GPT** | Generative Pre-trained Transformer | LLM family |
-| **BERT** | Bidirectional Encoder Representations from Transformers | Encoder LLM |
-| **SGD** | Stochastic Gradient Descent | Optimizer |
-| **Adam** | Adaptive Moment Estimation | Optimizer (common default) |
-| **LR** | Learning Rate | How big each update is |
-| **BCE** | Binary Cross Entropy | Loss for binary classification |
-| **CE** | Cross Entropy | Loss for multi-class classification |
-| **MSE** | Mean Squared Error | Loss for regression |
+| Term | Meaning |
+|---|---|
+| VGC | Video Game Championships — official Pokémon competitive format |
+| Reg | Regulation — a ruleset cycle |
+| M-C | Regulation M-C — our target format (2026) |
+| M-B | Regulation M-B — previous regulation |
+| OTS | Open Team Sheets — opponent sees your full 6 at preview |
+| CTS | Closed Team Sheets — opponent sees only species |
+| Bo1 / Bo3 | Best of 1 / Best of 3 |
+| BST | Base Stat Total — sum of a species' 6 base stats |
+| EV | Effort Value — stat investment; 66 total, 32 per stat cap in our format |
+| IV | Individual Value — innate stat range; always 31 in VGC |
+| HP / Atk / Def / SpA / SpD / Spe | The six stats |
+| KO / OHKO / 2HKO | Knock Out / one hit / two hits |
+| STAB | Same Type Attack Bonus — +50% damage when move type matches user |
+| TR | Trick Room — speed-inverting field effect |
+| TW | Tailwind — doubles team speed for 4 turns |
+| Mega | Mega Evolution — mid-battle transformation via held stone |
+| Tera | Terastallization — Gen 9 mechanic, not in our format |
+| Preview | Team Preview — pick 4 of 6 before battle |
+| Meta | The dominant strategy set at a given time |
+| Archetype | A team style: rain, sand, Trick Room, Psyspam, etc. |
+| Species clause | No duplicate species on a team |
+| Item clause | No duplicate items on a team |
+
+---
+
+## 2. Machine Learning
+
+| Term | Meaning |
+|---|---|
+| ML / DL | Machine Learning / Deep Learning |
+| NN | Neural Network |
+| RL | Reinforcement Learning |
+| BC | Behavior Cloning — imitate human play |
+| IL | Imitation Learning — same as BC |
+| GA | Genetic Algorithm — evolution-based search |
+| MCTS | Monte Carlo Tree Search |
+| PPO | Proximal Policy Optimization — RL algorithm |
+| SOTA | State Of The Art |
+| MDP / POMDP | Markov Decision Process / Partially Observable |
+| CNN / RNN / LSTM / Transformer | Network architectures |
+| LLM | Large Language Model |
+| SGD / Adam | Optimizers |
+| LR | Learning Rate |
+| CE | Cross Entropy — multi-class loss |
+| NLL | Negative Log Likelihood |
+| Dropout | Regularization technique |
 
 ---
 
 ## 3. Statistics
 
-| Term | Meaning | Notes |
-|---|---|---|
-| **SE** | Standard Error | Noise measure: `sqrt(p(1-p)/N)` |
-| **CI** | Confidence Interval | Range containing true value with X% probability |
-| **N** | Sample size | Number of battles |
-| **σ** | Sigma (standard deviation) | Spread of a distribution |
-| **μ** | Mu (mean) | Average value |
-| **p-value** | Probability under null hypothesis | Small = unlikely by chance |
-| **p̂** | Sample proportion | Observed win rate |
+| Term | Meaning |
+|---|---|
+| SE | Standard Error — noise measure, sqrt(p(1-p)/N) |
+| CI | Confidence Interval |
+| N | Sample size (battles) |
+| sigma / mu | Standard deviation / mean |
+| p-value | Probability under the null hypothesis |
+| Wilson CI | Binomial confidence interval that stays inside [0,1] at small N |
+| Binomial noise | The intrinsic variance in a win-rate measurement |
+| Noise floor | The smallest change in win rate that is distinguishable from noise |
 
 ---
 
-## 4. Our Project — Core Concepts
+## 4. GA concepts
 
-| Term | Meaning | Notes |
-|---|---|---|
-| **Genome** | A candidate team | Represented as 6 mons with moves/items/etc. |
-| **Population** | Set of genomes | Current generation's candidates |
-| **Generation** | One evolution cycle | Evaluate → sort → breed |
-| **Elite** | Top-ranked genome | Kept unchanged into next gen |
-| **Crossover** | Combine two parents | Mix 6 slots from each |
-| **Mutation** | Random change | Swap species, move, item, etc. |
-| **Island** | Independent sub-population | 3 islands in v6 |
-| **Migration** | Copy genomes between islands | Ring topology, every 5 gens |
-| **Stagnation** | No improvement for N gens | Triggers restart |
-| **Diversity floor** | Min species count in pop | Below → inject randoms |
-| **Immigrant** | Freshly random genome | Injected to break convergence |
-| **Fitness** | Win rate vs opponent pool | Single number per genome |
-| **Pool** | Opponent team set | 400 regional top-cuts, split 300/100 |
-| **Held-out** | Test set never seen in training | 100 teams for final eval |
-| **Train pool** | Fitness evaluation set | 300 teams sampled randomly |
-| **Pilot** | Who plays the battles | Heuristic (working baseline) or BC pilot (functional but weak) |
-| **Team preview** | Pick 4 of your 6 | Strategic phase before battle |
-| **Meta** | The dominant strategy set | What most top players run |
-| **Archetype** | A team style | Rain, Sand, Trick Room, etc. |
-| **Species clause** | No duplicate species | Format rule |
-| **Item clause** | No duplicate items | Format rule |
+| Term | Meaning |
+|---|---|
+| Genome | A candidate team — 6 mons with moves/items/natures/EVs |
+| Population | Set of genomes in one generation |
+| Generation | One evolve cycle: evaluate, sort, breed |
+| Elite | Top-ranked genome, copied unchanged into next gen |
+| Crossover | Combine two parent genomes |
+| Mutation | Random change to one genome (species, item, move, etc.) |
+| Island | Independent sub-population; the v6 model runs 3 |
+| Migration | Copy top genomes between islands (ring topology) |
+| Stagnation | N generations with no improvement; triggers restart |
+| Diversity floor | Minimum unique-species count in an island |
+| Immigrant | Freshly random genome, injected to break convergence |
+| Fitness | Win rate against a sampled opponent pool |
+| Pool | Opponent team set (the 400 top-cut teams) |
+| Train pool | 270 teams sampled for fitness (of the 300-team split) |
+| Validation slice | 30 teams held back from fitness; used for champion selection |
+| Held-out pool | 100 teams never seen during GA; final eval only |
+| Foreign lock | A species locked on island X but not Y, present in an immigrant |
+| Constraint | A locked slot, e.g. `{0: "Umbreon"}` |
+| Island spec | The full config for one island: name, constraints, seed paths |
+| Early stop | Aborting a genome's evaluation after a head batch if clearly bad |
+| Champion | Best genome from an island, selected by validation score |
 
 ---
 
-## 5. Our Project — Code & Files
+## 5. BC / encoder
+
+| Term | Meaning |
+|---|---|
+| Encoder | Battle state to tensors |
+| cont[] | 17-dim continuous vector per mon (HP, boosts, status, etc.) |
+| field[] | 17-dim field vector (weather, terrain, TR, tailwind) |
+| Slot | One of 12 mon positions: my-2-active, my-4-bench, opp-2-active, opp-4-seen |
+| Move mask | Per-species allowed-moves mask from usage priors |
+| Live moveset mask | Inference-time mask built from the acting mon's current 4 moves |
+| Move priors | Top-N moves by tournament usage per species |
+| Meta items | Item frequency per species from real top-cut teams |
+| Canonical items | Fallback item list for species without meta entries |
+| Role | physical / special / support — determined from base stats |
+| Preferred pool | Moves matching the role + Status moves |
+| Fallback pool | Off-role moves, used only if preferred pool is short |
+| side_won | Boolean per training row: did this side win? Used for oversampling |
+| Checkpoint contract | Frozen names and dimensions that must not change (arch, N_TARGETS, etc.) |
+| arch | Checkpoint field: "v2" (MLP) or "v3" (transformer) |
+
+---
+
+## 6. Model constants (frozen by checkpoint)
+
+| Name | Value | Meaning |
+|---|---|---|
+| N_SLOTS | 12 | Slots in the state encoder (2+4+2+4) |
+| N_MOVES_PER | 4 | Moves per mon |
+| CONT_DIM | 17 | Continuous feature width per mon |
+| N_TARGETS | 5 | Target classes: our left, our right, none, opp left, opp right |
+| EMB_SPECIES / EMB_MOVE / EMB_ITEM / EMB_ABILITY | 32 / 16 / 16 / 16 | Embedding sizes |
+| NEG_INF | -1e4 | Mask sentinel; -inf produces NaN in the loss |
+
+---
+
+## 7. GA tuning constants (in src/ga_core.py)
+
+| Name | Default | Meaning |
+|---|---|---|
+| META_ITEM_BIAS | 0.70 | Probability of drawing an item from meta prior |
+| EV_BUDGET / EV_STAT_CAP | 66 / 32 | EVs handed out per mutated spread |
+| MAX_REBUILD_TRIES | 20 | Rebuild attempts before dropping an illegal genome |
+| BATTLE_TIMEOUT | 20 | Seconds before a battle is abandoned |
+| MIN_TURNS | 3 | Battles shorter than this are dropped as desyncs |
+| SEED_POOL | 30 | First N regional teams used to seed a random population |
+| VAL_POOL_SIZE / VAL_SPLIT_SEED | 30 / 42 | Validation-slice size and split seed |
+| EARLY_STOP_MIN_BATTLES | 50 | Head batch size before early-abort decision |
+| EARLY_STOP_WIN_RATE | 0.15 | Below this head rate, the tail is skipped |
+| PROTECT_MOVES / FAKEOUT_MOVES | tuple | Required-coverage move sets |
+| CANONICAL_ITEMS | tuple | Fallback item pool |
+
+---
+
+## 8. Code and files
 
 | File | Purpose |
 |---|---|
-| `src/paths.py` | Repo-relative path resolution — single source of truth for file locations |
-| `src/regmc_db.py` | Canonical data access + team validator |
-| `data/regmc_db.json` | Canonical DB (species, items, moves, abilities) |
-| `src/ga_core.py` | GA engine — base (species-level) + island model + checkpointing |
-| `src/state_encoder.py` | Battle state → tensors for the BC model |
-| `src/bc_model.py` | Neural net definition + checkpoint I/O |
-| `src/bc_train.py` | BC training loop |
-| `src/bc_player.py` | poke_env Player wrapping the BC model |
-| `src/eval.py` | Unified evaluation CLI |
-| `src/audit_before_launch.py` | Pre-flight sanity checks |
-| `src/showdown_validator.py` | Showdown legality gate |
-| `src/showdown_validate.js` | Node.js validator bridge |
-| `run/ga_run.py` | 5-hour GA launcher |
-| `run/ga_overnight.sh` | 10-hour chain (run1 + run2 + eval) |
-| `tools/build_regmc_db.js` | Rebuild canonical DB from Showdown |
-| `tools/scrape_replays.py` | Replay scraper |
-| `tools/replay_tracker.py` | Replay parser (Tracker class) |
-| `tools/build_training_data.py` | THE training-data driver: replays → `training_data.jsonl` (tags `side_won`/`target_a`/`target_b`) |
-| `tools/batch_parse.py` | Legacy driver (pre-`side_won` schema) — archived, do not regenerate with it |
-| `tools/build_species_priors.py` | Build `species_move_priors.json` |
-| `data/pool_split.json` | Train/held-out split (300/100), basenames |
-| `data/meta_items.json` | Item frequency per species from real teams |
-| `data/showdown_replays/` | Scraped replays (training data) |
-| `data/regional_teams/` | 400 top-cut teams (opponent pool) |
-| `output/champions/` | GA-produced team files |
-| `output/checkpoints/v6/` | Per-gen checkpoints |
-| `docs/STATE.md` | Current project state (short) |
-| `docs/STATE_history.md` | Full chronological log |
-| `docs/GLOSSARY.md` | This file |
+| src/paths.py | Repo-relative path resolution, single source of truth |
+| src/regmc_db.py | Canonical data access + team validator |
+| src/state_encoder.py | Battle state to tensors |
+| src/bc_model.py | BCModel (v2) and BCModelV3 definitions + checkpoint I/O |
+| src/bc_train.py | BC training loop |
+| src/bc_player.py | poke_env Player wrapping the BC model |
+| src/ga_core.py | GA engine: genome build, mutate, crossover, islands |
+| src/battle.py | Shared battle runner (make_player, run_battle) |
+| src/eval.py | Unified evaluation CLI |
+| src/audit_before_launch.py | Pre-flight data-integrity checks |
+| src/showdown_validator.py | Python wrapper around the Node validator |
+| src/showdown_validate.js | Node bridge |
+| run/ga_run.py | 5.5-hour GA launcher |
+| run/ga_overnight.sh | 11-hour chain: run1 + run2 + eval |
+| tools/preflight.py | Pre-launch sanity checks |
+| tools/bc_diagnostic.py | BC vs heuristic decision comparison |
+| tools/encode_snapshot.py | Capture/compare encoder output for bit-exactness |
+| tools/build_regmc_db.js | Rebuild canonical DB from Showdown |
+| tools/scrape_replays.py | Replay scraper |
+| tools/replay_tracker.py | Replay parser (Tracker class) |
+| tools/build_training_data.py | Training-data driver: replays to training_data.jsonl |
+| tools/generate_heuristic_dataset.py | Heuristic-imitation dataset generator |
+| tools/build_species_priors.py | Build species_move_priors.json |
 
 ---
 
-## 6. Our Project — Paths (Roadmap Labels)
+## 9. Data files
 
-| Path | Meaning | Status |
-|---|---|---|
-| **Path 2** | Hand-coded doubles-aware pilot | Fallback if Path 3 fails |
-| **Path 3** | BC + RL pilot from replays | **Current plan** |
-
-Older/deprecated Path labels from earlier discussions:
-- Path A / B / C — superseded by Path 2/3 naming
-
----
-
-## 7. Tools & Infrastructure
-
-| Term | Meaning | Notes |
-|---|---|---|
-| **Showdown** | Pokémon Showdown | Battle simulator, runs on localhost:8000 |
-| **Node** | Node.js | JavaScript runtime (runs Showdown) |
-| **poke_env** | Python library | Battle interface used by all our pilots |
-| **ROCm** | Radeon Open Compute | AMD GPU compute stack |
-| **WSL** | Windows Subsystem for Linux | How we run Linux on Windows |
-| **GPU** | Graphics Processing Unit | 7900 XTX in our case |
-| **CPU** | Central Processing Unit | |
-| **API** | Application Programming Interface | |
-| **CLI** | Command Line Interface | |
-| **PID** | Process ID | Unix process identifier |
-| **HTTP(S)** | HyperText Transfer Protocol (Secure) | Web protocol |
-| **URL** | Uniform Resource Locator | Web address |
-| **UA** | User Agent | HTTP header identifying the client |
-| **RNG** | Random Number Generator | |
-| **ETA** | Estimated Time of Arrival | Used in progress logs |
-| **JSON** | JavaScript Object Notation | Data format |
-| **JSONL** | JSON Lines | One JSON object per line |
+| File | Purpose |
+|---|---|
+| data/regmc_db.json | Canonical format data (species, moves, items, abilities) |
+| data/baseline_team.txt | Reference team, GA seed for island A |
+| data/pool_split.json | Train/holdout split (300/100), basenames |
+| data/meta_items.json | Item frequency per species from tournament usage |
+| data/species_move_priors.json | Top moves by usage per species |
+| data/regional_teams/ | 400 top-cut teams |
+| data/showdown_replays/ | Scraped replays (gitignored, regenerable) |
+| data/training_data.jsonl | Parsed decisions (gitignored, regenerable) |
+| data/training_data_heuristic.jsonl | Heuristic-imitation rows (gitignored) |
+| output/models/ | Trained checkpoints |
+| output/champions/ | GA-produced team files |
+| output/checkpoints/v6/run{1,2}/ | Per-generation GA snapshots |
 
 ---
 
-## 8. Common Log Terms
+## 10. Tools and infrastructure
 
 | Term | Meaning |
 |---|---|
-| **TB** | TensorBoard | Training visualization (used by vgc-bench, not our GA) |
-| **fps** | Frames per second | Training throughput (steps/sec in our context) |
-| **log_level=40** | Python logging level | 40 = ERROR only (silent training) |
-| **popup** | Showdown server rejection message | "Your team was rejected..." |
-| **forfeit** | Battle conceded early | Counted separately in fitness |
-| **ALL-TIME** | Best genome seen so far | Persisted to champion file |
-| **NEW ALL-TIME** | Log message | When an island sets a new best |
+| Showdown | Pokémon Showdown — the battle simulator |
+| Node | Node.js runtime; Showdown is written in it |
+| poke_env | Python library we use to talk to Showdown |
+| ROCm | AMD GPU compute stack |
+| WSL | Windows Subsystem for Linux |
+| GPU / CPU | Graphics / Central Processing Unit |
+| HTTP / URL / UA | Web protocol, address, user agent |
+| RNG | Random Number Generator |
+| PID | Process ID |
+| JSON / JSONL | Data formats |
+| venv | Python virtual environment (~/llm-env) |
+| preflight | The pre-launch check script |
 
 ---
 
-## 9. Hosts / URLs
+## 11. Log fields
 
-| URL | Purpose |
+BC training epoch line:
+
+    Epoch NN/30  trl=X tra=X trm=X trs=X  vll=X vla=X vlm=X vls=X  (Ns) *
+
+| Code | Meaning |
 |---|---|
-| `play.pokemonshowdown.com` | Main Showdown server |
-| `replay.pokemonshowdown.com` | Public replay database |
-| `replay.pokemonshowdown.com/search.json` | Replay search API |
-| `replay.pokemonshowdown.com/<id>.json` | Individual replay |
-| `limitlessvgc.com` | Regional tournament data |
-| `play.limitlesstcg.com` | Online tournament data (older scrape) |
-| `localhost:8000` | Our training Showdown server |
-| `localhost:8001` | Our eval / probe Showdown server |
-| `localhost:6006` | TensorBoard (vgc-bench only) |
+| trl / vll | Train / val loss |
+| tra / vla | Train / val overall action accuracy |
+| trm / vlm | Train / val move-head accuracy (masked) |
+| trs / vls | Train / val switch-head accuracy |
+| (Ns) | Wall-clock seconds for the epoch |
+| * | New best val_move_acc; checkpoint saved |
+
+GA line:
+
+    [HH:MM:SS]  3/10  47.0%  (141W/300)  Umbreon / Salamence / ...
+
+| Field | Meaning |
+|---|---|
+| HH:MM:SS | Wall clock at print time |
+| 3/10 | Third genome of ten this generation |
+| 47.0% | Fitness (win rate) |
+| 141W/300 | Wins out of valid battles played |
+| early-abort | Genome was aborted after the head batch |
+| species list | The genome's species in slot order |
 
 ---
 
-## 10. Things That Sound Alike But Aren't
+## 12. Path labels (roadmap)
 
-| Term A | Term B | Difference |
+| Label | Meaning | Status |
 |---|---|---|
-| SimpleHeuristics | MaxBasePowerPlayer | Both built-in bots; SH is slightly smarter |
-| Reg M-C | Reg M-B | Different regulations (M-C is current) |
-| Bo1 / Bo3 | OTS / CTS | Best-of format vs team sheet visibility — independent axes |
-| Genome | Champion | Genome is any candidate; champion is the best found |
-| Fitness | Win rate | Fitness is what GA optimizes (usually = win rate) |
-| Population | Pool | Population = GA's genomes; Pool = opponents |
-| Pool | Held-out | Pool = training data; held-out = test set |
-| Train | Eval | Train uses 300 teams; eval uses 100 different ones |
-| Pilot | Player | Same thing; "pilot" emphasizes that it plays a fixed team |
+| Path 2 | Hand-coded doubles-aware pilot | Fallback |
+| Path 3 | BC + RL pilot from replays | Current plan |
+
+Older/deprecated: Path A / B / C.
 
 ---
 
----
+## 13. Things that sound alike
 
-## 11. BC Training Metrics (Log Fields)
-
-Printed once per epoch by `src/bc_train.py`. Format:
-
-    Epoch NN/30  trl=X tra=X trm=X  vll=X vla=X vlt3=X vlm=X  (Ns) *
-
-| Code | Meaning | Notes |
+| A | B | Difference |
 |---|---|---|
-| **trl** | train loss | Sum of 3 heads (type + move + switch) |
-| **tra** | train accuracy | Overall action accuracy (move OR switch correct) |
-| **trm** | train move accuracy | Move-head top-1 accuracy among masked moves |
-| **trt3** | train top-3 | Move-head top-3 accuracy (is correct move in top 3?) |
-| **vll** | val loss | Validation loss — used for early stopping |
-| **vla** | val accuracy | Overall action accuracy on held-out examples |
-| **vlm** | val move accuracy | **Primary metric** — val move-head top-1 with mask |
-| **vlt3** | val top-3 | Val move-head top-3 accuracy |
+| SimpleHeuristics / MaxBasePowerPlayer | Built-in poke_env bots; SH is stronger | |
+| Reg M-C / Reg M-B | Different regulations | |
+| Bo1 / OTS | Best-of format vs team-sheet visibility, independent axes | |
+| Genome / Champion | Candidate vs best-found | |
+| Fitness / Win rate | Fitness is what GA optimizes; usually equal to win rate | |
+| Population / Pool | GA's genomes vs opponent teams | |
+| Pool / Held-out | Training pool vs test set | |
+| Train / Eval | 270 teams for GA, 100 held out | |
+| Pilot / Player | Same thing; "pilot" emphasizes it plays a fixed team | |
+| Row-level / Battle-level split | The second avoids leakage; use battle-level | |
+| Role / Category | Role is a species classification; Category is a move property | |
 
-### Reference values (May 2026 Reg M-C, ~100k examples)
+---
 
-| Metric | Random | Always-most-common | Bad model | Good model |
-|---|---|---|---|---|
-| vlm (masked) | ~5% (1 of 20) | ~15% | <25% | **>40%** |
-| vlt3 | ~15% | — | <50% | **>70%** |
-| vla | 0.1% | ~10% | <25% | **>35%** |
+## 14. Project history highlights
 
-### Version history
+Terms and names from earlier iterations, kept here so older logs remain
+readable.
 
-| Model | Encoder | Model size | val_acc | val_move_acc |
-|---|---|---|---|---|
-| v1 | one-hot, 16.9k dims | 18M params | 21% | n/a |
-| v2 | embeddings, dict | 1.3M params | 19% | n/a |
-| v3 | v2 + species move masking | 1.3M params | (running) | (running) |
+| Term | Meaning | Superseded by |
+|---|---|---|
+| v1 / v2 / v3 encoder | Earlier embedding models | v4 (currently v2/v3 in BCModel/BCModelV3) |
+| bc_train_v4.py | Original BC trainer filename | bc_train.py |
+| ga_core_v6.py | Island-model extension | Merged into ga_core.py |
+| state_encoder_v2.py | Original encoder filename | state_encoder.py |
+| batch_parse.py | Legacy data driver (pre-side_won) | build_training_data.py |
+| opponent_gen.py | Old team generator | Archived, unused |
+| Path 3 | BC+RL plan label | Still current |
+| NeuralPlayer | Original v1 pilot | Archived |
 
-### Metric abbreviations, short form
+---
 
-- `tr*` = train
-- `vl*` = val
-- `*l` = loss
-- `*a` = overall accuracy
-- `*m` = move accuracy
-- `*t3` = top-3 accuracy
-- Suffix ` *` after epoch line = new best val_loss (checkpoint saved)
-- `noimp=N` = N epochs without improvement (early stops at 3)
+## 15. How to extend this file
 
-## 12. How to Extend This File
-
-Add entries here when:
+Add an entry when:
 - A new acronym is introduced
 - A new file enters the pipeline
-- A new path label is created
+- A new constant becomes important
 - An ambiguity keeps causing confusion
 
-Keep entries terse. One line each when possible.
-
-## Project-specific terms
-
-| Term | Meaning |
-|---|---|
-| **side_won** | Boolean per training row: did the side that made this decision ultimately win the replay? Used by `bc_train.py` for outcome-weighted oversampling (winner decisions contribute 2× gradient weight). |
-| **live moveset mask** | At inference time, mask any move the acting Pokémon doesn't actually know (from its current 4-move set). More accurate than `species_move_priors.json`, which only covers species that appear in the priors file. |
-| **move target** | In Showdown doubles, single-target moves must be sent with a slot number (1 = opp left, 2 = opp right, -1 = our left ally, -2 = our right ally). Self/field/side/spread moves must NOT have one — `regmc_db.get_move(name)["target"]` decides which. |
-| **island** | A population in the island-model GA. Each island has its own constraints (e.g. island A locks Umbreon in slot 0). Migration every N generations carries top genomes to the next island. |
-| **foreign lock** | A species locked on island X but not island Y, appearing in an immigrant genome on island Y. `_strip_species` replaces these on migration. |
-| **held-out pool** | The 100 teams in `pool_split.json["holdout"]` never seen during GA. Used for honest final eval. |
-| **train pool** | The 300 teams in `pool_split.json["train"]` used for GA fitness. |
+Keep entries terse. One line each where possible.
