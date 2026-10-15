@@ -938,3 +938,9 @@ Commit: c26e6c9 priors: item-keyed build priors with species fallback
 Robots.txt check: pokebase.app and pokemon-zone.com allow HTML (API blocked); pokechamdb.com explicitly disallows AI crawlers — respecting that and not scraping. Primary sources remain Limitless + VGCPastes. pokebase is a spot-check for priors; pokemon-zone win-rate data deferred until p5 results.
 
 Commit: 04b9c73 docs: §13 external data source audit (robots.txt)
+
+### 2026-10-15 17:36 — Prior cross-validation vs pokebase
+
+Abilities/spreads/natures/items match Pokebase within 2%. Moves diverge (Power Gem 52% on Pokebase vs rank 6 in ours) — source-population effect: tournament vs ladder. Priors kept as-is. Revisit if GA champions fail on specific missing moves.
+
+Commit: 743fe4e docs: §14 prior cross-validation vs pokebase.app
