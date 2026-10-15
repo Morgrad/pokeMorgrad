@@ -409,3 +409,24 @@ it survives — which is exactly the discovery mechanism we want.
 
 This is the design. Not "correct because we hardcoded it," but "correct
 because it wins."
+
+## 13. External data sources (2026-10-15)
+
+Robots.txt audit:
+
+| Source | HTML scrape | Notes |
+|--------|-------------|-------|
+| pokebase.app | allowed | API disallowed. Same pattern as MetaVGC. |
+| pokemon-zone.com | allowed | API + TCG disallowed. Tournament pages OK. |
+| pokechamdb.com | **disallowed** | Explicit AI-crawler blocks (GPTBot, ClaudeBot, etc.). Respect the intent, do not scrape. |
+| metavgc.com | allowed at HTML, API disallowed | Champions UI data |
+| limitlessvgc.com | allowed | Already the primary tournament source |
+| VGCPastes Google Sheet | public | Primary prior source |
+
+Plan:
+- Use pokebase.app as a cross-check for our VGCPastes-based priors (spot verification)
+- Use pokemon-zone.com for tournament-level win-rate weighting (deferred until p5 results)
+- Never scrape pokechamdb.com given its clear AI-crawler stance
+
+Primary data stays Limitless + VGCPastes. External sources are supplements,
+not dependencies.
