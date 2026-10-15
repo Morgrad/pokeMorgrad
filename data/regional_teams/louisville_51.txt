@@ -2,7 +2,7 @@ Politoed @ Sitrus Berry
 Ability: Drizzle
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Protect
 - Perish Song
 - Encore
@@ -12,7 +12,7 @@ Rillaboom @ Eject Button
 Ability: Grassy Surge
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Protect
 - Fake Out
 - Grassy Glide
@@ -22,7 +22,7 @@ Incineroar @ Chople Berry
 Ability: Intimidate
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Protect
 - Fake Out
 - Darkest Lariat
@@ -32,7 +32,7 @@ Kommo-o @ Leftovers
 Ability: Bulletproof
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Protect
 - Clangorous Soul
 - Clanging Scales
@@ -42,7 +42,7 @@ Gengar @ Gengarite
 Ability: Cursed Body
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Protect
 - Perish Song
 - Sludge Bomb
@@ -52,7 +52,7 @@ Annihilape @ Choice Scarf
 Ability: Defiant
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Close Combat
 - Phantom Force
 - Ice Punch

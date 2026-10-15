@@ -2,7 +2,7 @@ Salamence @ Salamencite
 Ability: Intimidate
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Hyper Voice
 - Draco Meteor
 - Double-Edge
@@ -12,7 +12,7 @@ Volcarona @ Sitrus Berry
 Ability: Flame Body
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Heat Wave
 - Whirlwind
 - Rage Powder
@@ -22,7 +22,7 @@ Aegislash @ Leftovers
 Ability: Stance Change
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Shadow Ball
 - Flash Cannon
 - Wide Guard
@@ -32,7 +32,7 @@ Sylveon @ Fairy Feather
 Ability: Pixilate
 Level: 50
 Calm Nature
-EVs: 32 HP / 20 Def / 14 SpD
+EVs: 32 HP / 20 DEF / 14 SPD
 - Hyper Voice
 - Quick Attack
 - Yawn
@@ -42,7 +42,7 @@ Metagross @ Metagrossite
 Ability: Clear Body
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Bullet Punch
 - Psychic Fangs
 - Stomping Tantrum
@@ -52,7 +52,7 @@ Tyranitar @ Focus Sash
 Ability: Sand Stream
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Rock Slide
 - Knock Off
 - Low Kick

@@ -2,7 +2,7 @@ Annihilape @ Choice Scarf
 Ability: Defiant
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Close Combat
 - Shadow Claw
 - Rock Slide
@@ -12,7 +12,7 @@ Dragonite @ Dragoninite
 Ability: Multiscale
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Dragon Pulse
 - Thunderbolt
 - Tailwind
@@ -22,7 +22,7 @@ Ninetales @ Focus Sash
 Ability: Drought
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Weather Ball
 - Snarl
 - Helping Hand
@@ -32,7 +32,7 @@ Incineroar @ Sitrus Berry
 Ability: Intimidate
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Flare Blitz
 - Darkest Lariat
 - Parting Shot
@@ -42,7 +42,7 @@ Delphox @ Delphoxite
 Ability: Blaze
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Heat Wave
 - Psychic
 - Nasty Plot
@@ -52,7 +52,7 @@ Rillaboom @ Expert Belt
 Ability: Grassy Surge
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Wood Hammer
 - Grassy Glide
 - High Horsepower

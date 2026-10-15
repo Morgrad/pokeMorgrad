@@ -2,7 +2,7 @@ Basculegion @ Choice Scarf
 Ability: Adaptability
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Last Respects
 - Wave Crash
 - Aqua Jet
@@ -12,7 +12,7 @@ Volcarona @ Grassy Seed
 Ability: Flame Body
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Heat Wave
 - Quiver Dance
 - Giga Drain
@@ -22,7 +22,7 @@ Garchomp @ Garchompite Z
 Ability: Rough Skin
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Power Gem
 - Earth Power
 - Dragon Pulse
@@ -32,7 +32,7 @@ Rillaboom @ Miracle Seed
 Ability: Grassy Surge
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Grassy Glide
 - Wood Hammer
 - High Horsepower
@@ -42,7 +42,7 @@ Froslass @ Froslassite
 Ability: Cursed Body
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Blizzard
 - Shadow Ball
 - Protect
@@ -52,7 +52,7 @@ Incineroar @ Sitrus Berry
 Ability: Intimidate
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Fake Out
 - Parting Shot
 - Flare Blitz

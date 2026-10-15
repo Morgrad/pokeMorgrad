@@ -2,7 +2,7 @@ Pelipper @ Focus Sash
 Ability: Drizzle
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Hurricane
 - Muddy Water
 - Icy Wind
@@ -12,7 +12,7 @@ Tsareena @ Choice Scarf
 Ability: Queenly Majesty
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Power Whip
 - Triple Axel
 - Zen Headbutt
@@ -22,7 +22,7 @@ Archaludon @ Leftovers
 Ability: Stamina
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Draco Meteor
 - Flash Cannon
 - Electro Shot
@@ -32,7 +32,7 @@ Greninja @ Greninjite
 Ability: Protean
 Level: 50
 Calm Nature
-EVs: 32 HP / 20 Def / 14 SpD
+EVs: 32 HP / 20 DEF / 14 SPD
 - Dark Pulse
 - Rock Slide
 - Gunk Shot
@@ -42,7 +42,7 @@ Talonflame @ Life Orb
 Ability: Gale Wings
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Dual Wingbeat
 - Will-O-Wisp
 - Tailwind
@@ -52,7 +52,7 @@ Swampert @ Swampertite
 Ability: Torrent
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Muddy Water
 - Ice Beam
 - Earth Power

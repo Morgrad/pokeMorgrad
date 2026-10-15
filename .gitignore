@@ -3,6 +3,7 @@ data/*
 !data/baseline_team.txt
 !data/meta_items.json
 !data/pool_split.json
+!data/pool_split_golden.json
 !data/species_move_priors.json
 !data/regmc_db.json
 !data/showdown_replays_meta/

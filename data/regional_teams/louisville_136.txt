@@ -2,7 +2,7 @@ Garchomp @ Garchompite Z
 Ability: Rough Skin
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Dragon Pulse
 - Power Gem
 - Earth Power
@@ -12,7 +12,7 @@ Rillaboom @ Miracle Seed
 Ability: Grassy Surge
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Wood Hammer
 - Grassy Glide
 - High Horsepower
@@ -22,7 +22,7 @@ Incineroar @ Sitrus Berry
 Ability: Intimidate
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Flare Blitz
 - Darkest Lariat
 - Parting Shot
@@ -32,7 +32,7 @@ Raichu @ Raichunite Y
 Ability: Lightning Rod
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Zap Cannon
 - Focus Blast
 - Fake Out
@@ -42,7 +42,7 @@ Volcarona @ Grassy Seed
 Ability: Flame Body
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Heat Wave
 - Giga Drain
 - Quiver Dance
@@ -52,7 +52,7 @@ Sneasler @ White Herb
 Ability: Unburden
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Dire Claw
 - Close Combat
 - Rock Slide

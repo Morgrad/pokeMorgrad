@@ -2,7 +2,7 @@ Basculegion @ Focus Sash
 Ability: Adaptability
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Liquidation
 - Last Respects
 - Aqua Jet
@@ -12,7 +12,7 @@ Delphox @ Delphoxite
 Ability: Blaze
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Heat Wave
 - Psyshock
 - Nasty Plot
@@ -22,7 +22,7 @@ Sneasler @ White Herb
 Ability: Unburden
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Dire Claw
 - Close Combat
 - Fake Out
@@ -32,7 +32,7 @@ Kingambit @ Life Orb
 Ability: Defiant
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Kowtow Cleave
 - Sucker Punch
 - Low Kick
@@ -42,7 +42,7 @@ Rillaboom @ Miracle Seed
 Ability: Grassy Surge
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Wood Hammer
 - Grassy Glide
 - Fake Out
@@ -52,7 +52,7 @@ Dragonite @ Dragoninite
 Ability: Inner Focus
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Dragon Pulse
 - Heat Wave
 - Tailwind

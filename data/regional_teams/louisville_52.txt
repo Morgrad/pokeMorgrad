@@ -2,7 +2,7 @@ Volcarona @ Rocky Helmet
 Ability: Flame Body
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Overheat
 - Struggle Bug
 - Rage Powder
@@ -12,7 +12,7 @@ Primarina @ Life Orb
 Ability: Liquid Voice
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Hyper Voice
 - Moonblast
 - Calm Mind
@@ -22,7 +22,7 @@ Gholdengo @ Grassy Seed
 Ability: Good as Gold
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Make It Rain
 - Shadow Ball
 - Nasty Plot
@@ -32,7 +32,7 @@ Raichu @ Raichunite Y
 Ability: Lightning Rod
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Zap Cannon
 - Focus Blast
 - Fake Out
@@ -42,7 +42,7 @@ Rillaboom @ Miracle Seed
 Ability: Grassy Surge
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Fake Out
 - Wood Hammer
 - Grassy Glide
@@ -52,7 +52,7 @@ Sneasler @ White Herb
 Ability: Unburden
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Close Combat
 - Dire Claw
 - Rock Slide

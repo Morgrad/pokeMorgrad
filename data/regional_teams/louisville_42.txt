@@ -2,7 +2,7 @@ Raichu @ Raichunite Y
 Ability: Lightning Rod
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Fake Out
 - Zap Cannon
 - Focus Blast
@@ -12,7 +12,7 @@ Sinistcha @ Colbur Berry
 Ability: Hospitality
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Matcha Gotcha
 - Shadow Ball
 - Rage Powder
@@ -22,7 +22,7 @@ Kommo-o @ Leftovers
 Ability: Soundproof
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Clanging Scales
 - Aura Sphere
 - Clangorous Soul
@@ -32,7 +32,7 @@ Delphox @ Delphoxite
 Ability: Blaze
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Heat Wave
 - Psyshock
 - Nasty Plot
@@ -42,7 +42,7 @@ Kingambit @ Life Orb
 Ability: Defiant
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Kowtow Cleave
 - Sucker Punch
 - Iron Head
@@ -52,7 +52,7 @@ Incineroar @ Sitrus Berry
 Ability: Intimidate
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Fake Out
 - Flare Blitz
 - Helping Hand

@@ -2,7 +2,7 @@ Garchomp @ Soft Sand
 Ability: Rough Skin
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Protect
 - Earthquake
 - Dragon Claw
@@ -12,7 +12,7 @@ Delphox @ Delphoxite
 Ability: Blaze
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Protect
 - Heat Wave
 - Psychic
@@ -22,7 +22,7 @@ Rillaboom @ Miracle Seed
 Ability: Grassy Surge
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Wood Hammer
 - Grassy Glide
 - U-turn
@@ -32,7 +32,7 @@ Vivillon @ Focus Sash
 Ability: Compound Eyes
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Protect
 - Hurricane
 - Rage Powder
@@ -42,7 +42,7 @@ Sneasler @ Grassy Seed
 Ability: Unburden
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Protect
 - Close Combat
 - Dire Claw
@@ -52,7 +52,7 @@ Primarina @ Life Orb
 Ability: Liquid Voice
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Protect
 - Hyper Voice
 - Moonblast

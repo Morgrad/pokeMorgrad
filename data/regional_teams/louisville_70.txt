@@ -2,7 +2,7 @@ Salamence @ Salamencite
 Ability: Intimidate
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Hyper Voice
 - Draco Meteor
 - Tailwind
@@ -12,7 +12,7 @@ Kingambit @ Focus Sash
 Ability: Defiant
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Kowtow Cleave
 - Sucker Punch
 - Iron Head
@@ -22,7 +22,7 @@ Raichu @ Raichunite Y
 Ability: Lightning Rod
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Zap Cannon
 - Focus Blast
 - Fake Out
@@ -32,7 +32,7 @@ Volcarona @ Leftovers
 Ability: Flame Body
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Heat Wave
 - Giga Drain
 - Quiver Dance
@@ -42,7 +42,7 @@ Rillaboom @ Miracle Seed
 Ability: Grassy Surge
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Wood Hammer
 - Grassy Glide
 - High Horsepower
@@ -52,7 +52,7 @@ Basculegion @ Choice Scarf
 Ability: Adaptability
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Last Respects
 - Wave Crash
 - Icy Wind

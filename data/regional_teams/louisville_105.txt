@@ -2,7 +2,7 @@ Sylveon @ Fairy Feather
 Ability: Pixilate
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Hyper Voice
 - Hyper Beam
 - Quick Attack
@@ -12,7 +12,7 @@ Farigiraf @ Sitrus Berry
 Ability: Armor Tail
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Psychic
 - Thunderbolt
 - Trick Room
@@ -22,7 +22,7 @@ Kingambit @ Focus Sash
 Ability: Defiant
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Kowtow Cleave
 - Sucker Punch
 - Iron Head
@@ -32,7 +32,7 @@ Garchomp @ Life Orb
 Ability: Rough Skin
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Dragon Claw
 - Earthquake
 - Rock Tomb
@@ -42,7 +42,7 @@ Aerodactyl @ Aerodactylite
 Ability: Unnerve
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Rock Slide
 - Dual Wingbeat
 - Tailwind
@@ -52,7 +52,7 @@ Charizard @ Charizardite Y
 Ability: Blaze
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Weather Ball
 - Heat Wave
 - Solar Beam

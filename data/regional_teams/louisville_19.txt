@@ -2,7 +2,7 @@ Incineroar @ Sitrus Berry
 Ability: Intimidate
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Fake Out
 - Parting Shot
 - Flare Blitz
@@ -12,7 +12,7 @@ Rillaboom @ Miracle Seed
 Ability: Grassy Surge
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Fake Out
 - Wood Hammer
 - U-turn
@@ -22,7 +22,7 @@ Garchomp @ Choice Scarf
 Ability: Rough Skin
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Stomping Tantrum
 - Rock Slide
 - Dragon Claw
@@ -32,7 +32,7 @@ Raichu @ Raichunite Y
 Ability: Lightning Rod
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Protect
 - Zap Cannon
 - Encore
@@ -42,7 +42,7 @@ Milotic @ Grassy Seed
 Ability: Competitive
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Protect
 - Muddy Water
 - Ice Beam
@@ -52,7 +52,7 @@ Gholdengo @ Life Orb
 Ability: Good as Gold
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Protect
 - Shadow Ball
 - Nasty Plot

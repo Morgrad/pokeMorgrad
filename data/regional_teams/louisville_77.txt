@@ -2,7 +2,7 @@ Venusaur @ Focus Sash
 Ability: Chlorophyll
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Protect
 - Leaf Storm
 - Sleep Powder
@@ -12,7 +12,7 @@ Pelipper @ Sitrus Berry
 Ability: Drizzle
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Hurricane
 - Tailwind
 - Weather Ball
@@ -22,7 +22,7 @@ Clefable @ Clefablite
 Ability: Unaware
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Protect
 - Follow Me
 - Helping Hand
@@ -32,7 +32,7 @@ Krookodile @ Choice Scarf
 Ability: Intimidate
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Crunch
 - Earthquake
 - High Horsepower
@@ -42,7 +42,7 @@ Charizard @ Charizardite Y
 Ability: Blaze
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Protect
 - Heat Wave
 - Hurricane
@@ -52,7 +52,7 @@ Archaludon @ Leftovers
 Ability: Stamina
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Protect
 - Dragon Pulse
 - Electro Shot

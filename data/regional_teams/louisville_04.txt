@@ -2,7 +2,7 @@ Gholdengo @ Life Orb
 Ability: Good as Gold
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Make It Rain
 - Shadow Ball
 - Power Gem
@@ -12,7 +12,7 @@ Archaludon @ Leftovers
 Ability: Stamina
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Dragon Pulse
 - Electro Shot
 - Flash Cannon
@@ -22,7 +22,7 @@ Pelipper @ Sitrus Berry
 Ability: Drizzle
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Weather Ball
 - Hurricane
 - Tailwind
@@ -32,7 +32,7 @@ Swampert @ Swampertite
 Ability: Torrent
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Wave Crash
 - Ice Punch
 - Earthquake
@@ -42,7 +42,7 @@ Staraptor @ Staraptite
 Ability: Intimidate
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Brave Bird
 - Close Combat
 - Tailwind
@@ -52,7 +52,7 @@ Sinistcha @ Colbur Berry
 Ability: Hospitality
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Matcha Gotcha
 - Rage Powder
 - Trick Room

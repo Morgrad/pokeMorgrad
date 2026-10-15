@@ -2,7 +2,7 @@ Venusaur @ Life Orb
 Ability: Chlorophyll
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Leaf Storm
 - Sludge Bomb
 - Earth Power
@@ -12,7 +12,7 @@ Charizard @ Charizardite Y
 Ability: Blaze
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Weather Ball
 - Heat Wave
 - Ancient Power
@@ -22,7 +22,7 @@ Garchomp @ Choice Scarf
 Ability: Rough Skin
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Dragon Claw
 - Earthquake
 - Rock Slide
@@ -32,7 +32,7 @@ Sylveon @ Fairy Feather
 Ability: Pixilate
 Level: 50
 Calm Nature
-EVs: 32 HP / 20 Def / 14 SpD
+EVs: 32 HP / 20 DEF / 14 SPD
 - Hyper Voice
 - Quick Attack
 - Yawn
@@ -42,7 +42,7 @@ Toxapex @ Leftovers
 Ability: Regenerator
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Infestation
 - Toxic
 - Wide Guard
@@ -52,7 +52,7 @@ Incineroar @ Sitrus Berry
 Ability: Intimidate
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Fake Out
 - Flare Blitz
 - Darkest Lariat

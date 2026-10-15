@@ -2,7 +2,7 @@ Archaludon @ Leftovers
 Ability: Stamina
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Electro Shot
 - Snarl
 - Dragon Pulse
@@ -12,7 +12,7 @@ Charizard @ Charizardite Y
 Ability: Blaze
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Heat Wave
 - Weather Ball
 - Hurricane
@@ -22,7 +22,7 @@ Pelipper @ Sitrus Berry
 Ability: Drizzle
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Weather Ball
 - Hurricane
 - Tailwind
@@ -32,7 +32,7 @@ Venusaur @ Focus Sash
 Ability: Chlorophyll
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Sludge Bomb
 - Leaf Storm
 - Sleep Powder
@@ -42,7 +42,7 @@ Grimmsnarl @ Light Clay
 Ability: Prankster
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Spirit Break
 - Reflect
 - Light Screen
@@ -52,7 +52,7 @@ Garchomp @ Choice Scarf
 Ability: Rough Skin
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Bulldoze
 - Earthquake
 - Rock Slide

@@ -2,7 +2,7 @@ Sylveon @ Fairy Feather
 Ability: Pixilate
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Hyper Voice
 - Quick Attack
 - Detect
@@ -12,7 +12,7 @@ Farigiraf @ Sitrus Berry
 Ability: Armor Tail
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Trick Room
 - Helping Hand
 - Protect
@@ -22,7 +22,7 @@ Torkoal @ Charcoal
 Ability: Drought
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Protect
 - Helping Hand
 - Weather Ball
@@ -32,7 +32,7 @@ Garchomp @ Garchompite Z
 Ability: Rough Skin
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Protect
 - Earth Power
 - Power Gem
@@ -42,7 +42,7 @@ Pyroar @ Pyroarite
 Ability: Unnerve
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Protect
 - Heat Wave
 - Overheat
@@ -52,7 +52,7 @@ Kingambit @ Focus Sash
 Ability: Defiant
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Kowtow Cleave
 - Iron Head
 - Sucker Punch

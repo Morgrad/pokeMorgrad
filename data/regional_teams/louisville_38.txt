@@ -2,7 +2,7 @@ Venusaur @ Focus Sash
 Ability: Chlorophyll
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Sludge Bomb
 - Energy Ball
 - Sleep Powder
@@ -12,7 +12,7 @@ Gholdengo @ Life Orb
 Ability: Good as Gold
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Make It Rain
 - Shadow Ball
 - Protect
@@ -22,7 +22,7 @@ Farigiraf @ Silk Scarf
 Ability: Armor Tail
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Psychic
 - Trick Room
 - Imprison
@@ -32,7 +32,7 @@ Garchomp @ Choice Scarf
 Ability: Rough Skin
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Dragon Claw
 - Rock Slide
 - Stomping Tantrum
@@ -42,7 +42,7 @@ Watchog @ Chople Berry
 Ability: Analytic
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Ice Punch
 - Detect
 - Low Kick
@@ -52,7 +52,7 @@ Charizard @ Charizardite Y
 Ability: Blaze
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Heat Wave
 - Ancient Power
 - Focus Blast

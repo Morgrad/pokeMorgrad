@@ -2,7 +2,7 @@ Rillaboom @ Eject Button
 Ability: Grassy Surge
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Fake Out
 - Grassy Glide
 - Wood Hammer
@@ -12,7 +12,7 @@ Kommo-o @ Leftovers
 Ability: Soundproof
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Clanging Scales
 - Clangorous Soul
 - Protect
@@ -22,7 +22,7 @@ Charizard @ Charizardite Y
 Ability: Blaze
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Weather Ball
 - Heat Wave
 - Protect
@@ -32,7 +32,7 @@ Incineroar @ Sitrus Berry
 Ability: Intimidate
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Parting Shot
 - Protect
 - Flare Blitz
@@ -42,7 +42,7 @@ Basculegion @ Choice Scarf
 Ability: Adaptability
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Wave Crash
 - Flip Turn
 - Soak
@@ -52,7 +52,7 @@ Gengar @ Gengarite
 Ability: Cursed Body
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Protect
 - Shadow Ball
 - Sludge Bomb

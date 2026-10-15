@@ -2,7 +2,7 @@ Glimmora @ Glimmoranite
 Ability: Toxic Debris
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Sludge Bomb
 - Power Gem
 - Earth Power
@@ -12,7 +12,7 @@ Kingambit @ Chople Berry
 Ability: Defiant
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Sucker Punch
 - Kowtow Cleave
 - Iron Head
@@ -22,7 +22,7 @@ Volcarona @ Rocky Helmet
 Ability: Flame Body
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Protect
 - Heat Wave
 - Bug Buzz
@@ -32,7 +32,7 @@ Sneasler @ Grassy Seed
 Ability: Unburden
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Dire Claw
 - Close Combat
 - Rock Tomb
@@ -42,7 +42,7 @@ Rillaboom @ Sitrus Berry
 Ability: Grassy Surge
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Fake Out
 - Grassy Glide
 - Wood Hammer
@@ -52,7 +52,7 @@ Froslass @ Froslassite
 Ability: Cursed Body
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Blizzard
 - Aurora Veil
 - Shadow Ball

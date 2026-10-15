@@ -2,7 +2,7 @@ Golisopod @ Golisopite
 Ability: Emergency Exit
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Leech Life
 - Iron Head
 - Drill Run
@@ -12,7 +12,7 @@ Garchomp @ Garchompite Z
 Ability: Rough Skin
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Earth Power
 - Draco Meteor
 - Power Gem
@@ -22,7 +22,7 @@ Pelipper @ Life Orb
 Ability: Drizzle
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Weather Ball
 - Muddy Water
 - Hurricane
@@ -32,7 +32,7 @@ Archaludon @ Leftovers
 Ability: Stamina
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Electro Shot
 - Dragon Pulse
 - Snarl
@@ -42,7 +42,7 @@ Farigiraf @ Sitrus Berry
 Ability: Armor Tail
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Psychic
 - Helping Hand
 - Trick Room
@@ -52,7 +52,7 @@ Sneasler @ White Herb
 Ability: Unburden
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Close Combat
 - Gunk Shot
 - U-turn

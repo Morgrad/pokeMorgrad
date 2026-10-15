@@ -2,7 +2,7 @@ Sneasler @ White Herb
 Ability: Unburden
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Fake Out
 - Dire Claw
 - Close Combat
@@ -12,7 +12,7 @@ Rillaboom @ Eject Button
 Ability: Grassy Surge
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Fake Out
 - Grassy Glide
 - U-turn
@@ -22,7 +22,7 @@ Incineroar @ Chople Berry
 Ability: Intimidate
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Fake Out
 - Flare Blitz
 - Parting Shot
@@ -32,7 +32,7 @@ Kommo-o @ Leftovers
 Ability: Bulletproof
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Clanging Scales
 - Aura Sphere
 - Clangorous Soul
@@ -42,7 +42,7 @@ Kingambit @ Life Orb
 Ability: Defiant
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Kowtow Cleave
 - Sucker Punch
 - Swords Dance
@@ -52,7 +52,7 @@ Gengar @ Gengarite
 Ability: Cursed Body
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Shadow Ball
 - Sludge Bomb
 - Perish Song

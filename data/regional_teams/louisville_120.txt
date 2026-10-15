@@ -2,7 +2,7 @@ Sneasler @ Psychic Seed
 Ability: Unburden
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Close Combat
 - Dire Claw
 - Rock Slide
@@ -12,7 +12,7 @@ Charizard @ Charizardite Y
 Ability: Blaze
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Heat Wave
 - Weather Ball
 - Solar Beam
@@ -22,7 +22,7 @@ Metagross @ Metagrossite
 Ability: Clear Body
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Steel Roller
 - Psychic Fangs
 - Stomping Tantrum
@@ -32,7 +32,7 @@ Dragapult @ Life Orb
 Ability: Clear Body
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Draco Meteor
 - Shadow Ball
 - Will-O-Wisp
@@ -42,7 +42,7 @@ Indeedee @ Focus Sash
 Ability: Psychic Surge
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Expanding Force
 - Mystical Fire
 - Helping Hand
@@ -52,7 +52,7 @@ Milotic @ Sitrus Berry
 Ability: Competitive
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Scald
 - Light Screen
 - Ice Beam

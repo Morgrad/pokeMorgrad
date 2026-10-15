@@ -2,7 +2,7 @@ Garchomp @ Garchompite Z
 Ability: Rough Skin
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Protect
 - Dragon Pulse
 - Earth Power
@@ -12,7 +12,7 @@ Incineroar @ Sitrus Berry
 Ability: Intimidate
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Flare Blitz
 - Fake Out
 - Darkest Lariat
@@ -22,7 +22,7 @@ Volcarona @ Grassy Seed
 Ability: Flame Body
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Protect
 - Heat Wave
 - Giga Drain
@@ -32,7 +32,7 @@ Annihilape @ Choice Scarf
 Ability: Defiant
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Close Combat
 - Shadow Claw
 - U-turn
@@ -42,7 +42,7 @@ Raichu @ Raichunite Y
 Ability: Lightning Rod
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Protect
 - Zap Cannon
 - Focus Blast
@@ -52,7 +52,7 @@ Rillaboom @ Life Orb
 Ability: Grassy Surge
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Wood Hammer
 - U-turn
 - Grassy Glide

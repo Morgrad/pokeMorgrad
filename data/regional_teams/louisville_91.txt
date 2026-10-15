@@ -2,7 +2,7 @@ Sylveon @ Fairy Feather
 Ability: Pixilate
 Level: 50
 Calm Nature
-EVs: 32 HP / 20 Def / 14 SpD
+EVs: 32 HP / 20 DEF / 14 SPD
 - Detect
 - Hyper Voice
 - Quick Attack
@@ -12,7 +12,7 @@ Farigiraf @ Sitrus Berry
 Ability: Armor Tail
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Protect
 - Trick Room
 - Psychic
@@ -22,7 +22,7 @@ Garchomp @ Garchompite Z
 Ability: Rough Skin
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Protect
 - Power Gem
 - Earth Power
@@ -32,7 +32,7 @@ Rillaboom @ Miracle Seed
 Ability: Grassy Surge
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Grassy Glide
 - Fake Out
 - Wood Hammer
@@ -42,7 +42,7 @@ Charizard @ Charizardite Y
 Ability: Blaze
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Protect
 - Heat Wave
 - Weather Ball
@@ -52,7 +52,7 @@ Incineroar @ Leftovers
 Ability: Intimidate
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Flare Blitz
 - Parting Shot
 - Fake Out

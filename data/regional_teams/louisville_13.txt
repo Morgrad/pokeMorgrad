@@ -2,7 +2,7 @@ Froslass @ Froslassite
 Ability: Cursed Body
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Blizzard
 - Shadow Ball
 - Aurora Veil
@@ -12,7 +12,7 @@ Whimsicott @ Fairy Feather
 Ability: Prankster
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Moonblast
 - Encore
 - Tailwind
@@ -22,7 +22,7 @@ Staraptor @ Staraptite
 Ability: Intimidate
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Close Combat
 - Brave Bird
 - Roost
@@ -32,7 +32,7 @@ Glimmora @ Focus Sash
 Ability: Toxic Debris
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Power Gem
 - Earth Power
 - Sludge Bomb
@@ -42,7 +42,7 @@ Armarouge @ Sitrus Berry
 Ability: Flash Fire
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Armor Cannon
 - Psyshock
 - Wide Guard
@@ -52,7 +52,7 @@ Kingambit @ Life Orb
 Ability: Defiant
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Kowtow Cleave
 - Sucker Punch
 - Iron Head

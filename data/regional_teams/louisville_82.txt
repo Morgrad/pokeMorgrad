@@ -2,7 +2,7 @@ Sneasler @ White Herb
 Ability: Unburden
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Gunk Shot
 - Protect
 - Fake Out
@@ -12,7 +12,7 @@ Incineroar @ Chople Berry
 Ability: Intimidate
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Flare Blitz
 - Fake Out
 - Parting Shot
@@ -22,7 +22,7 @@ Farigiraf @ Sitrus Berry
 Ability: Armor Tail
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Psychic
 - Protect
 - Helping Hand
@@ -32,7 +32,7 @@ Garchomp @ Garchompite Z
 Ability: Rough Skin
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Draco Meteor
 - Power Gem
 - Flamethrower
@@ -42,7 +42,7 @@ Primarina @ Life Orb
 Ability: Liquid Voice
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Moonblast
 - Hyper Voice
 - Dazzling Gleam
@@ -52,7 +52,7 @@ Torkoal @ Charcoal
 Ability: Drought
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Eruption
 - Earth Power
 - Weather Ball

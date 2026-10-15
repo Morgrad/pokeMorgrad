@@ -2,7 +2,7 @@ Whimsicott @ Focus Sash
 Ability: Prankster
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Protect
 - Moonblast
 - Tailwind
@@ -12,7 +12,7 @@ Basculegion @ Choice Scarf
 Ability: Adaptability
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Wave Crash
 - Last Respects
 - Flip Turn
@@ -22,7 +22,7 @@ Kommo-o @ Life Orb
 Ability: Soundproof
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Protect
 - Clanging Scales
 - Aura Sphere
@@ -32,7 +32,7 @@ Glimmora @ Glimmoranite
 Ability: Toxic Debris
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Spiky Shield
 - Sludge Bomb
 - Power Gem
@@ -42,7 +42,7 @@ Charizard @ Charizardite Y
 Ability: Blaze
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Protect
 - Heat Wave
 - Solar Beam
@@ -52,7 +52,7 @@ Indeedee @ Twisted Spoon
 Ability: Psychic Surge
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Protect
 - Expanding Force
 - Trick Room

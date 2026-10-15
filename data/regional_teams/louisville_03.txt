@@ -2,7 +2,7 @@ Venusaur @ Focus Sash
 Ability: Chlorophyll
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Sleep Powder
 - Protect
 - Earth Power
@@ -12,7 +12,7 @@ Politoed @ Mystic Water
 Ability: Drizzle
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Weather Ball
 - Protect
 - Ice Beam
@@ -22,7 +22,7 @@ Grimmsnarl @ Light Clay
 Ability: Prankster
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Spirit Break
 - Reflect
 - Light Screen
@@ -32,7 +32,7 @@ Raichu @ Raichunite X
 Ability: Lightning Rod
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Fake Out
 - Volt Switch
 - Feint
@@ -42,7 +42,7 @@ Archaludon @ Leftovers
 Ability: Stamina
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Dragon Pulse
 - Electro Shot
 - Protect
@@ -52,7 +52,7 @@ Charizard @ Charizardite Y
 Ability: Blaze
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Heat Wave
 - Weather Ball
 - Protect

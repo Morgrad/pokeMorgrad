@@ -2,7 +2,7 @@ Kommo-o @ Leftovers
 Ability: Soundproof
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Protect
 - Clanging Scales
 - Aura Sphere
@@ -12,7 +12,7 @@ Rillaboom @ Miracle Seed
 Ability: Grassy Surge
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Grassy Glide
 - Wood Hammer
 - Fake Out
@@ -22,7 +22,7 @@ Gholdengo @ Life Orb
 Ability: Good as Gold
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Protect
 - Make It Rain
 - Shadow Ball
@@ -32,7 +32,7 @@ Incineroar @ Sitrus Berry
 Ability: Intimidate
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Flare Blitz
 - Darkest Lariat
 - Fake Out
@@ -42,7 +42,7 @@ Lopunny @ Lopunnite
 Ability: Limber
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Protect
 - Close Combat
 - Fake Out
@@ -52,7 +52,7 @@ Sinistcha @ Occa Berry
 Ability: Hospitality
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Protect
 - Matcha Gotcha
 - Rage Powder

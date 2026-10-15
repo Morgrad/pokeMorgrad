@@ -2,7 +2,7 @@ Whimsicott @ Focus Sash
 Ability: Prankster
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Tailwind
 - Moonblast
 - Encore
@@ -12,7 +12,7 @@ Kingambit @ Chople Berry
 Ability: Defiant
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Protect
 - Sucker Punch
 - Kowtow Cleave
@@ -22,7 +22,7 @@ Charizard @ Charizardite Y
 Ability: Blaze
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Protect
 - Weather Ball
 - Heat Wave
@@ -32,7 +32,7 @@ Farigiraf @ Sitrus Berry
 Ability: Armor Tail
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Trick Room
 - Psychic
 - Thunderbolt
@@ -42,7 +42,7 @@ Kommo-o @ Life Orb
 Ability: Soundproof
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Protect
 - Aura Sphere
 - Clanging Scales
@@ -52,7 +52,7 @@ Basculegion @ Mystic Water
 Ability: Adaptability
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Wave Crash
 - Last Respects
 - Aqua Jet

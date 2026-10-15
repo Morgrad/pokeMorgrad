@@ -2,7 +2,7 @@ Sinistcha @ Colbur Berry
 Ability: Hospitality
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Matcha Gotcha
 - Rage Powder
 - Trick Room
@@ -12,7 +12,7 @@ Salamence @ Salamencite
 Ability: Intimidate
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Protect
 - Tailwind
 - Hurricane
@@ -22,7 +22,7 @@ Pelipper @ Sitrus Berry
 Ability: Drizzle
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Hurricane
 - Weather Ball
 - Tailwind
@@ -32,7 +32,7 @@ Swampert @ Swampertite
 Ability: Torrent
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Wave Crash
 - Earthquake
 - Ice Punch
@@ -42,7 +42,7 @@ Archaludon @ Leftovers
 Ability: Stamina
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Protect
 - Aura Sphere
 - Electro Shot
@@ -52,7 +52,7 @@ Gholdengo @ Life Orb
 Ability: Good as Gold
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Protect
 - Make It Rain
 - Shadow Ball

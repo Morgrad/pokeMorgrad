@@ -2,7 +2,7 @@ Rillaboom @ Miracle Seed
 Ability: Grassy Surge
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Fake Out
 - Wood Hammer
 - Grassy Glide
@@ -12,7 +12,7 @@ Incineroar @ Sitrus Berry
 Ability: Intimidate
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Fake Out
 - Flare Blitz
 - Throat Chop
@@ -22,7 +22,7 @@ Glimmora @ Glimmoranite
 Ability: Toxic Debris
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Power Gem
 - Sludge Bomb
 - Earth Power
@@ -32,7 +32,7 @@ Froslass @ Froslassite
 Ability: Snow Cloak
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Blizzard
 - Shadow Ball
 - Aurora Veil
@@ -42,7 +42,7 @@ Basculegion @ Choice Scarf
 Ability: Adaptability
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Wave Crash
 - Last Respects
 - Aqua Jet
@@ -52,7 +52,7 @@ Volcarona @ Grassy Seed
 Ability: Flame Body
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Heat Wave
 - Giga Drain
 - Quiver Dance

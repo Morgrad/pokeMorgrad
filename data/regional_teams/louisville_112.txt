@@ -2,7 +2,7 @@ Swampert @ Swampertite
 Ability: Torrent
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Wave Crash
 - Earthquake
 - Ice Punch
@@ -12,7 +12,7 @@ Rillaboom @ Eject Button
 Ability: Grassy Surge
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Grassy Glide
 - U-turn
 - Fake Out
@@ -22,7 +22,7 @@ Gengar @ Gengarite
 Ability: Cursed Body
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Shadow Ball
 - Sludge Bomb
 - Perish Song
@@ -32,7 +32,7 @@ Pelipper @ Focus Sash
 Ability: Drizzle
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Hurricane
 - Weather Ball
 - Wide Guard
@@ -42,7 +42,7 @@ Archaludon @ Leftovers
 Ability: Stamina
 Level: 50
 Modest Nature
-EVs: 2 HP / 32 SpA / 32 Spe
+EVs: 2 HP / 32 SPA / 32 SPE
 - Electro Shot
 - Dragon Pulse
 - Flash Cannon
@@ -52,7 +52,7 @@ Incineroar @ Sitrus Berry
 Ability: Intimidate
 Level: 50
 Jolly Nature
-EVs: 2 HP / 32 Atk / 32 Spe
+EVs: 2 HP / 32 ATK / 32 SPE
 - Fake Out
 - Flare Blitz
 - Parting Shot
