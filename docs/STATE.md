@@ -5,7 +5,7 @@
 
 # Project State
 
-**Last verified:** 2026-10-14
+**Last verified:** 2026-10-15
 **Active branch:** `main`
 **Repo:** https://github.com/Morgrad/pokeMorgrad
 
@@ -628,6 +628,62 @@ holdout to settle which selection rule wins on the current pool.
 `logging.Filter` on the `poke_env` loggers to suppress two benign
 CRITICAL messages ("You cannot reject open team sheets...").
 Cosmetic. Filters apply to processes started after the patch.
+
+### 5.19 Parallel arch + VGCPastes pool + train-selection (2026-10-15)
+
+**Parallel architecture is default.** 3 Python processes, one per island,
+each on its own Showdown (8000/8001/8002). 2.78x serial throughput.
+2.5h run reaches ~130 gens/island vs serial's ~30-50.
+
+**Champion-selection flipped to train-best.** p3 showed train wins on
+held-out by +6 to +10 pts over val:
+
+| Island | Val | Train | Delta |
+|--------|-----|-------|-------|
+| A (Umbreon) | 58.0% | 59.0% | +1.0 (tie) |
+| B (Umbreon) | 55.8% | 66.4% | **+10.6** |
+| C (free)    | 58.8% | 64.8% | **+6.0** |
+
+`run_islands` now writes `best_ever` (train) as primary. `best_val_ever`
+still tracked but no longer default.
+
+**VGCPastes pool swap.** 445-team mixed-EV pool replaced by 150 VGCPastes
+teams with real EV spreads. Holdout unchanged (100 teams).
+
+- Sheet: `1axlwmzPA49rYkqXh7zHvAtSP-TKbM0ijGYBPRflLSWw` tab `Champions M-C`
+- **Gotcha:** Pokepaste column uses HYPERLINK formulas. CSV export returns
+  display text (wrong URL). MUST use XLSX + openpyxl to read
+  `cell.hyperlink.target`.
+- Pokepaste raw endpoint: `/raw` (not `.txt`). First attempt 404'd 204/204.
+- Filter: `EVs=Yes` AND tournament in Tier-1/2 set. 204 kept from 647.
+- After validate+dedup: 150 teams. 202/204 pass validate (99%).
+- Dedup by `sorted([(species, item) for mon in team])`.
+
+**New tools:** `scrape_vgcpastes.py`, `swap_pool.py`,
+`extract_champions.py`, `watch_islands.py` (all in `tools/`).
+
+**Watchdog mtime flaw.** `watch_islands.py` uses log mtime to detect
+stalls. A traceback loop fools it — p3 island A was hung 15 min while log
+kept updating. Fix: check for `=== GEN` markers, not file mtime.
+
+**Showdown death during p3.** All 3 instances died ~gen 10. Islands hung
+in ConnectionRefused loops at 100% CPU. Manual restart fixed. WSL sleep
+targets masked permanently as prevention.
+
+**Opponent-side Outrage.** GA genomes filter randomNormal moves, but pool
+teams can contain Outrage. Heuristic pilot kills those battles (2 vs 48
+in p2, non-cascading now). Fix: strip at `_load_teams`.
+
+**Baseline noise floor.** Same baseline measured 54.8/55.0/55.8/57.2/60.6%
+across 500-battle evals. ±5 pts. Never trust single eval <3-pt gap.
+
+**Reference numbers on same 100-team holdout:**
+
+| Run | Pool | Best champion |
+|-----|------|---------------|
+| p1  | 270 (inferred EVs) | 71.6% (C) |
+| p3  | 445 (mixed) | 66.4% (B train) |
+| p4  | 150 (real EVs) | pending |
 
 ## 6. Environment
 

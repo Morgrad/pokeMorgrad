@@ -75,6 +75,11 @@ SEED_POOL = 30          # When seeding a population from real teams, draw from t
 # training fitness. Island B (2026-10-13) was 68% on the training pool but
 # 58.7% held-out — the training-best overfit. A validation slice catches that.
 VAL_POOL_SIZE = 30
+# Per-generation opponent sample size. When the train pool is larger than
+# this, each generation samples TRAIN_SAMPLE_SIZE opponents from the full
+# pool. Keeps per-gen fitness complexity bounded as the pool grows.
+# Override via GA_TRAIN_SAMPLE env var.
+TRAIN_SAMPLE_SIZE = int(os.environ.get("GA_TRAIN_SAMPLE", "250"))
 VAL_SPLIT_SEED = 42
 
 # --- Early-stop ---
@@ -1465,7 +1470,8 @@ async def run_islands(
               f"({(time.time()-t0)/60:.1f} min) ===")
 
         for isl in islands:
-            gen_opps = random.sample(train_pool, min(battles_per_genome, len(train_pool)))
+            n_sample = min(battles_per_genome, TRAIN_SAMPLE_SIZE, len(train_pool))
+            gen_opps = random.sample(train_pool, n_sample)
             fits = await asyncio.gather(*[
                 evaluate(g, gen_opps, i, len(isl.population))
                 for i, g in enumerate(isl.population)

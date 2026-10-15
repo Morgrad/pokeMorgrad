@@ -200,7 +200,7 @@ and is not here, add it.
 | data/pool_split.json | Train/holdout split (300/100), basenames |
 | data/meta_items.json | Item frequency per species from tournament usage |
 | data/species_move_priors.json | Top moves by usage per species |
-| data/regional_teams/ | 545 top-cut teams (Baltimore, Brisbane, Frankfurt, Recife, Louisville) |
+| data/regional_teams/ | 150 VGCPastes teams (real EVs); 100 holdout; 445 archived under `_archive_2026-10-15/` |
 | data/showdown_replays/ | Scraped replays (gitignored, regenerable) |
 | data/training_data.jsonl | Parsed decisions (gitignored, regenerable) |
 | data/training_data_heuristic.jsonl | Heuristic-imitation rows (gitignored) |
@@ -315,6 +315,26 @@ Add an entry when:
 - An ambiguity keeps causing confusion
 
 Keep entries terse. One line each where possible.
+
+---
+
+## 17. Pool sources and swap (2026-10-15)
+
+| Term | Meaning |
+|---|---|
+| VGCPastes | Community repo of tournament team pastes; source of real EVs |
+| Pokepaste | pastebin for teams; `/raw` returns Showdown text |
+| Real EVs | EV spreads extracted from tournament pastes (not inferred) |
+| Inferred EVs | Canonical role spreads (2/32/32 etc); pre-swap default |
+| Golden holdout | `pool_split_golden.json`; frozen 100-team eval set |
+| Train champion | Genome by best training fitness (default 2026-10-15) |
+| Val champion | Genome by best 30-team validation score (legacy) |
+| Signature dedup | `sorted([(species, item) for mon in team])` |
+| HYPERLINK formula | Sheets cell type that CSV export loses |
+| Watchdog | `tools/watch_islands.py`; SIGKILLs stalled islands |
+| WSL sleep mask | `systemctl mask sleep.target ...`; no overnight suspend |
+
+
 
 ---
 

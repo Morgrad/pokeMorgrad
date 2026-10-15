@@ -591,6 +591,72 @@ limit — use the file pattern:
 
 ---
 
+---
+
+## 18. VGCPastes scraper workflow
+
+Scrape the VGCPastes "Champions M-C" Google Sheet and download Pokepastes.
+
+**Sheet ID:** `1axlwmzPA49rYkqXh7zHvAtSP-TKbM0ijGYBPRflLSWw`
+
+### Gotcha — HYPERLINK formulas
+
+The Pokepaste column uses `=HYPERLINK("real-url", "display-text")`.
+`pubhtml` and `gviz` CSV exports return display text — often stale. We
+MUST use XLSX export (`/export?format=xlsx`), which preserves hyperlinks
+in `cell.hyperlink.target` (via `openpyxl`).
+
+### Commands
+
+    cd ~/project && source ~/llm-env/bin/activate
+    python3 tools/scrape_vgcpastes.py fetch-csv          # XLSX + hyperlink extraction
+    python3 tools/scrape_vgcpastes.py report             # rank/tournament/EVs dist
+    python3 tools/scrape_vgcpastes.py filter-balanced    # EVs=Yes + Tier-1/2
+    python3 tools/scrape_vgcpastes.py fetch-teams        # downloads to /tmp/vgc_scraped/
+
+Pokepaste endpoint: `https://pokepast.es/<id>/raw` (NOT `.txt`).
+Rate: 0.5s. ~200 teams in ~2 min.
+
+---
+
+## 19. Pool swap workflow
+
+Archive current training pool and swap in a new one. Never touches holdout.
+
+    python3 tools/swap_pool.py --dry-run    # preview
+    python3 tools/swap_pool.py --apply      # execute
+
+Steps:
+1. Validate every `/tmp/vgc_scraped/*.txt` via `showdown validate-team`
+2. Dedup by `sorted([(species, item) for mon in team])`: vs holdout, vs
+   current train, vs new self
+3. Move current train files to `data/regional_teams/_archive_<DATE>/`
+4. Copy new files as `vgc_<ID>.txt`
+5. Backup `pool_split.json` -> `.bak`
+6. Rewrite `pool_split.json`: new train, unchanged holdout
+
+**Reversible:** keep `.bak` + `_archive_<DATE>/` for at least one full
+p-run.
+
+**Known limit:** `team_signature()` fails on ~10% of files (parser
+rejects some real teams). Those can't be deduped — accept ~1 team of
+holdout leakage per swap.
+
+---
+
+## 20. Recovering champions from killed runs
+
+If a GA run is killed before clean exit, champions may be missing but
+checkpoints still have the best genomes.
+
+    python3 tools/extract_champions.py <run_id>
+
+Reads latest `output/checkpoints/v6/<run_id>_<X>/gen_NNNN.json`, writes
+`ga_<run_id>_island_<X>.txt` (train-best after 2026-10-15 patch) and
+`ga_<run_id>_island_<X>_train.txt` (legacy alias).
+
+---
+
 ## 16. Daily and weekly patterns
 ---
 

@@ -125,7 +125,7 @@ their worst half.
     │   ├── pool_split.json            445 train / 100 holdout
     │   ├── meta_items.json            item frequency per species
     │   ├── species_move_priors.json   move frequency per species
-    │   ├── regional_teams/            545 top-cut teams
+    │   ├── regional_teams/            150 VGCPastes teams (real EVs, 2026-10-15 swap)
     │   ├── showdown_replays/          raw replays (gitignored, regenerable)
     │   └── training_data.jsonl        parsed decisions (gitignored)
     │
@@ -215,8 +215,9 @@ Authoritative numbers live in `docs/STATE.md`. Orientation only:
 
 - **Heuristic pilot baseline**: around 57 percent against the held-out pool.
   Every champion is measured against this.
-- **Best held-out champion so far**: **71.6 percent** (island C,
-  2026-10-14 parallel run, on the current holdout), with the constraint
+- **Best held-out champion so far**: **71.6 percent** (p1 island C, 2026-10-14). p3 (2026-10-15) hit 66.4%
+  on the same holdout with a 445-team pool — larger pool correlated with
+  worse champions. p4 (2026-10-15) tests a 150-team real-EV pool, with the constraint
   stack active. Prior pre-constraint best was 66 to 71 percent. Those teams are structurally unrealistic. Dead items
   (Binding Band on a mon with no binding moves), missing Protect coverage,
   off-role moves. The five-part constraint stack landed 2026-10-14 fixes

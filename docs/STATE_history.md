@@ -765,3 +765,50 @@ messages ("You cannot reject open team sheets...").
 
 **Overnight run launched:** `bash run/ga_parallel.sh 2.5 p2`. Eval on
 `--opponents heldout` with the new 100-team holdout.
+
+## Day 7 — 2026-10-15 — Parallel arch + VGCPastes pool + train-selection
+
+**Headlines.**
+
+**1. Parallel GA confirmed.** 3 processes, 3 Showdowns, 2.78x throughput.
+p3 ran 2.5h at ~1.5 min/gen. Watchdog added (`watch_islands.py`) but has
+an mtime-based flaw — a traceback loop looks "alive" — fix pending.
+
+**2. Train-selection wins by +6 to +10 pts.** p3 empirical result:
+- B: val 55.8% vs train 66.4% (+10.6)
+- C: val 58.8% vs train 64.8% (+6.0)
+- A: val 58.0% vs train 59.0% (+1.0)
+
+`run_islands` patched to prefer `best_ever` (train).
+
+**3. VGCPastes pool swap.** 445 mixed-EV teams -> 150 real-EV teams.
+Holdout unchanged. Two bugs found:
+- Google Sheets HYPERLINK formulas lose URLs in CSV export. Fix: XLSX +
+  openpyxl.
+- Pokepaste raw text is `/raw`, not `.txt`. First download 404'd 204/204.
+
+Quality: 202/204 pass validate (99%). Dedup: 150 kept.
+
+**4. Debugging.**
+- Showdown died during p3 at ~gen 10; all 3 instances. Islands hung in
+  ConnectionRefused loops. Watchdog didn't fire (mtime kept advancing).
+- WSL sleep masked permanently.
+- `extract_champions.py` recovers champions from checkpoints.
+- Opponent-side Outrage still causes ~2 battle deaths/island (fix deferred).
+
+**5. Baseline noise floor: ±5 pts on 500 battles.** Same baseline measured
+54.8 / 55.0 / 55.8 / 57.2 / 60.6% across separate evals.
+
+**Reference numbers (same holdout):**
+| Run | Pool | Best |
+|-----|------|------|
+| p1  | 270 (inferred) | 71.6% (C) |
+| p3  | 445 (mixed) | 66.4% (B train) |
+| p4  | 150 (real EVs) | pending |
+
+**Files touched:** `run/ga_parallel.sh`, `run/ga_island.py`,
+`src/battle.py`, `src/ga_core.py`, `tools/watch_islands.py`,
+`tools/extract_champions.py`, `tools/scrape_vgcpastes.py`,
+`tools/swap_pool.py`, `tools/regenerate_split.py`,
+`tools/scrape_tournament.py`, `tools/normalize_tournament.py`,
+`data/pool_split.json`, `data/regional_teams/vgc_*.txt`.
