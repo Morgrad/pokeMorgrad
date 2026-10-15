@@ -848,3 +848,9 @@ Commit: 2fd1a9d docs: add damage/smart_player/log_milestone to STATE §5.20, GLO
 Replaced super().choose_singles_move with SimpleHeuristicsPlayer.choose_singles_move (parent is @staticmethod, super() in classmethod was fragile). Removed duplicate Player imports. .bak now tracked.
 
 Commit: bb42e1d smart_player: fix super() calls; track pool_split.json.bak; log milestones
+
+### 2026-10-15 13:18 — Island A seeding is soft, not anchored
+
+Seed genome is 1/10 of initial population; no constraint preserves its species after gen 1. Island A's 94-gen champion diverged from baseline. Design question for p5: freeze species vs accept drift. Milotic Coil set is real (Modest+Coil for Hypnosis acc) — retract earlier criticism.
+
+Commit: 6ac2826 tools/log_milestone: auto-commit the doc change
