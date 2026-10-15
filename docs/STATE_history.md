@@ -926,3 +926,9 @@ Commit: 2d98456 docs: structural fitness §11 — mega-form role divergence
 Explicit design principle: hard only for legality (format rules), soft for priors and mutation, soft-penalty-only for structural fitness. No item-aware _species_role, no 'requires X build' hardcodes. Every legal genome reachable; discovery via mutation + fitness.
 
 Commit: 264a9b9 docs: §12 — soft/hard boundary, minimal hardcoding
+
+### 2026-10-15 17:22 — Item-keyed build priors
+
+species_build_priors.json now has 264 species-only keys + 160 (species, item) keys. Garchompite Z separates into Modest special spreads; Choice Scarf separates into Adamant physical. Rare items (<3 teams) fall back to species-only aggregate. 25% mass cap + structural fitness handle fallback incoherence.
+
+Commit: c26e6c9 priors: item-keyed build priors with species fallback
