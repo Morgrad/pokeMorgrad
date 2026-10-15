@@ -312,3 +312,21 @@ Swim stops being a coin flip when ability_consistency rewards the pair.
 6. p5-A vs p5-B smoke test to validate
 
 Total ~3-4 days of work.
+
+## 11. Mega-form role divergence (2026-10-15)
+
+Species name alone is not sufficient to classify a mon's role when the
+species has mega forms with different stat distributions.
+
+Example: Garchomp's top spread in species_build_priors.json is
+2 HP / 32 SpA / 32 Spe Modest (n=16) — that's Mega Garchomp Z, a
+special attacker. Regular Garchomp is physical. Aggregating by species
+mixes the two.
+
+Fix (deferred to 2026-10-16):
+1. Rebuild priors keyed by (species, item) with species-only fallback.
+2. Patch _species_role to use the mega form's baseStats when the held
+   item matches a mega stone.
+3. Patch _random_mon to look up (species, item) first.
+
+The three changes go together.
