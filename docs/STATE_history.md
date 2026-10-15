@@ -914,3 +914,9 @@ Commit: c9669d9 docs: structural fitness §10 — vocabulary expansion
 264 species priors from 560 VGCPastes teams. Joint (evs, nature) tuples in species_build_priors.json; ability frequencies in species_ability_priors.json. Wiring into _random_mon deferred; design decision needed on role-filter + weight-cap.
 
 Commit: a271520 priors: species build (evs+nature) and ability frequencies from VGCPastes
+
+### 2026-10-15 17:16 — Mega-form role divergence
+
+Garchomp species priors mix Mega Garchomp Z (special) with regular Garchomp (physical). Same issue for Charizard X/Y and other dual-mega species. Fix deferred: rebuild priors with (species, item) key, patch _species_role to use mega form stats, patch _random_mon item-first lookup. Three changes together.
+
+Commit: 2d98456 docs: structural fitness §11 — mega-form role divergence
