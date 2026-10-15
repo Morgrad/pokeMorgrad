@@ -1,0 +1,58 @@
+
+
+Gardevoir-Mega @ Gardevoirite  
+Ability: Pixilate  
+EVs: 17 HP / 17 Def / 32 SpA  
+Quiet Nature  
+- Hyper Voice  
+- Expanding Force  
+- Calm Mind  
+- Trick Room  
+
+Camerupt-Mega @ Cameruptite  
+Ability: Solid Rock  
+EVs: 32 HP / 32 SpA / 2 SpD  
+Quiet Nature  
+- Heat Wave  
+- Fire Blast  
+- Earth Power  
+- Ancient Power  
+
+Sneasler @ Psychic Seed  
+Ability: Unburden  
+EVs: 3 HP / 32 Atk / 15 Def / 1 SpD / 15 Spe  
+Adamant Nature  
+- Close Combat  
+- Dire Claw  
+- Rock Slide  
+- Protect  
+
+Basculegion (M) @ Life Orb  
+Ability: Adaptability  
+EVs: 32 HP / 32 Atk / 2 SpD  
+Adamant Nature  
+Level: 50  
+- Last Respects  
+- Wave Crash  
+- Aqua Jet  
+- Protect  
+
+Farigiraf @ Wise Glasses  
+Ability: Armor Tail  
+EVs: 12 HP / 20 Def / 14 SpA / 20 SpD  
+Modest Nature  
+- Expanding Force  
+- Thunderbolt  
+- Sunny Day  
+- Trick Room  
+
+Indeedee-F (F) @ Rocky Helmet  
+Ability: Psychic Surge  
+EVs: 32 HP / 32 Def / 2 SpA  
+Relaxed Nature  
+Level: 50  
+- Psychic  
+- Follow Me  
+- Helping Hand  
+- Trick Room  
+

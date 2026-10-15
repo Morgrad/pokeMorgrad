@@ -1,0 +1,60 @@
+Basculegion (M) @ Mystic Water  
+Ability: Adaptability  
+Level: 50  
+EVs: 28 Atk / 13 Def / 25 Spe  
+Adamant Nature  
+- Protect  
+- Aqua Jet  
+- Wave Crash  
+- Last Respects  
+
+Incineroar @ Sitrus Berry  
+Ability: Intimidate  
+Level: 50  
+EVs: 32 HP / 5 Atk / 12 Def / 17 SpD  
+Adamant Nature  
+- Flare Blitz  
+- Darkest Lariat  
+- Fake Out  
+- Parting Shot  
+
+Gholdengo @ Life Orb  
+Ability: Good as Gold  
+Level: 50  
+EVs: 14 HP / 7 SpA / 31 SpD / 14 Spe  
+Modest Nature  
+- Make It Rain  
+- Shadow Ball  
+- Protect  
+- Nasty Plot  
+
+Floette-Eternal (F) @ Floettite  
+Ability: Flower Veil  
+Level: 50  
+EVs: 26 HP / 16 Def / 5 SpA / 19 Spe  
+Modest Nature  
+- Draining Kiss  
+- Calm Mind  
+- Dazzling Gleam  
+- Protect  
+
+Aerodactyl @ Focus Sash  
+Ability: Unnerve  
+Level: 50  
+EVs: 2 HP / 32 Atk / 32 Spe  
+Jolly Nature  
+- Rock Slide  
+- Tailwind  
+- Protect  
+- Dual Wingbeat  
+
+Rillaboom @ Miracle Seed  
+Ability: Grassy Surge  
+Level: 50  
+EVs: 27 HP / 25 Atk / 14 Spe  
+Adamant Nature  
+- Grassy Glide  
+- Wood Hammer  
+- Fake Out  
+- High Horsepower  
+
