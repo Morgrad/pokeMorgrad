@@ -878,3 +878,9 @@ Commit: 3ac7f30 docs: log milestone — SmartPlayer signature aligned
 p4 champion: 62.8% on inferred-EV holdout (best of p4). CANNOT be compared to p1 (71.6%) or p3 (66.4%) — different training pool EV quality. Real-EV holdout is the next infra piece.
 
 Commit: 41eb976 docs: log milestone — test_pilots.py drafted
+
+### 2026-10-15 16:12 — SmartPlayer loses to vanilla (42.5%)
+
+200 same-team mirror battles on 8001: SmartPlayer wins 42.5% [35.9-49.4], vanilla 57.5%. Timing is valid (localhost Showdown is fast). Likely causes: KO bonus overtuned (+8), score scale mismatch with parent's cross-slot logic, no Protect/Fake-Out awareness. Not fixing tonight.
+
+Commit: 1462e9a test_pilots: same-team smart vs vanilla, 200 battles
