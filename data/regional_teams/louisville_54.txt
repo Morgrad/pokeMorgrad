@@ -1,0 +1,59 @@
+Rillaboom @ Life Orb
+Ability: Grassy Surge
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Grassy Glide
+- High Horsepower
+- Wood Hammer
+- Fake Out
+
+Raichu @ Raichunite Y
+Ability: Lightning Rod
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Zap Cannon
+- Fake Out
+- Focus Blast
+- Protect
+
+Froslass @ Froslassite
+Ability: Cursed Body
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Blizzard
+- Aurora Veil
+- Shadow Ball
+- Protect
+
+Kommo-o @ Leftovers
+Ability: Soundproof
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Clanging Scales
+- Aura Sphere
+- Clangorous Soul
+- Protect
+
+Arcanine-Hisui @ Focus Sash
+Ability: Rock Head
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Flare Blitz
+- Head Smash
+- Extreme Speed
+- Protect
+
+Kingambit @ Chople Berry
+Ability: Defiant
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Kowtow Cleave
+- Sucker Punch
+- Iron Head
+- Protect

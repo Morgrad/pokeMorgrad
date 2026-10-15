@@ -1,0 +1,59 @@
+Charizard @ Charizardite Y
+Ability: Blaze
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Heat Wave
+- Weather Ball
+- Scorching Sands
+- Protect
+
+Garchomp @ Life Orb
+Ability: Rough Skin
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Dragon Claw
+- Stomping Tantrum
+- Earthquake
+- Rock Slide
+
+Indeedee-F @ Colbur Berry
+Ability: Psychic Surge
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Psychic
+- Follow Me
+- Helping Hand
+- Trick Room
+
+Sneasler @ Psychic Seed
+Ability: Unburden
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Dire Claw
+- Close Combat
+- Throat Chop
+- Protect
+
+Gardevoir @ Gardevoirite
+Ability: Telepathy
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Hyper Voice
+- Expanding Force
+- Mystical Fire
+- Protect
+
+Dragapult @ Focus Sash
+Ability: Clear Body
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Dragon Darts
+- Phantom Force
+- U-turn
+- Protect

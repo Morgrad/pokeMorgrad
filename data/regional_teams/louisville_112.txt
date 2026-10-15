@@ -1,0 +1,59 @@
+Swampert @ Swampertite
+Ability: Torrent
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Wave Crash
+- Earthquake
+- Ice Punch
+- Protect
+
+Rillaboom @ Eject Button
+Ability: Grassy Surge
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Grassy Glide
+- U-turn
+- Fake Out
+- Protect
+
+Gengar @ Gengarite
+Ability: Cursed Body
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Shadow Ball
+- Sludge Bomb
+- Perish Song
+- Protect
+
+Pelipper @ Focus Sash
+Ability: Drizzle
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Hurricane
+- Weather Ball
+- Wide Guard
+- Protect
+
+Archaludon @ Leftovers
+Ability: Stamina
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Electro Shot
+- Dragon Pulse
+- Flash Cannon
+- Protect
+
+Incineroar @ Sitrus Berry
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Fake Out
+- Flare Blitz
+- Parting Shot
+- Protect

@@ -1,0 +1,59 @@
+Salamence @ Salamencite
+Ability: Intimidate
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Hyper Voice
+- Draco Meteor
+- Double-Edge
+- Protect
+
+Volcarona @ Sitrus Berry
+Ability: Flame Body
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Heat Wave
+- Whirlwind
+- Rage Powder
+- Protect
+
+Aegislash @ Leftovers
+Ability: Stance Change
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Shadow Ball
+- Flash Cannon
+- Wide Guard
+- King’s Shield
+
+Sylveon @ Fairy Feather
+Ability: Pixilate
+Level: 50
+Calm Nature
+EVs: 32 HP / 20 Def / 14 SpD
+- Hyper Voice
+- Quick Attack
+- Yawn
+- Detect
+
+Metagross @ Metagrossite
+Ability: Clear Body
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Bullet Punch
+- Psychic Fangs
+- Stomping Tantrum
+- Protect
+
+Tyranitar @ Focus Sash
+Ability: Sand Stream
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Rock Slide
+- Knock Off
+- Low Kick
+- Protect

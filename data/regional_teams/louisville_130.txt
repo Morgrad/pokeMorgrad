@@ -1,0 +1,59 @@
+Glimmora @ Glimmoranite
+Ability: Toxic Debris
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Sludge Bomb
+- Power Gem
+- Earth Power
+- Spiky Shield
+
+Kingambit @ Chople Berry
+Ability: Defiant
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Sucker Punch
+- Kowtow Cleave
+- Iron Head
+- Low Kick
+
+Volcarona @ Rocky Helmet
+Ability: Flame Body
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Protect
+- Heat Wave
+- Bug Buzz
+- Quiver Dance
+
+Sneasler @ Grassy Seed
+Ability: Unburden
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Dire Claw
+- Close Combat
+- Rock Tomb
+- Protect
+
+Rillaboom @ Sitrus Berry
+Ability: Grassy Surge
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Fake Out
+- Grassy Glide
+- Wood Hammer
+- U-turn
+
+Froslass @ Froslassite
+Ability: Cursed Body
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Blizzard
+- Aurora Veil
+- Shadow Ball
+- Protect

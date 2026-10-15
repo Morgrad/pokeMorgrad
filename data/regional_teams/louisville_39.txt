@@ -1,0 +1,59 @@
+Floette-Eternal @ Floettite
+Ability: Flower Veil
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Light of Ruin
+- Moonblast
+- Dazzling Gleam
+- Protect
+
+Sneasler @ White Herb
+Ability: Unburden
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Rock Slide
+- Close Combat
+- Dire Claw
+- Protect
+
+Archaludon @ Leftovers
+Ability: Stamina
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Aura Sphere
+- Electro Shot
+- Dragon Pulse
+- Protect
+
+Golisopod @ Golisopite
+Ability: Emergency Exit
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Sucker Punch
+- Protect
+- Iron Head
+- Leech Life
+
+Pelipper @ Sitrus Berry
+Ability: Drizzle
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Hurricane
+- Helping Hand
+- Wide Guard
+- Tailwind
+
+Basculegion-F @ Focus Sash
+Ability: Swift Swim
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Shadow Ball
+- Muddy Water
+- Ice Beam
+- Protect

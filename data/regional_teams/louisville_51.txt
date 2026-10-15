@@ -1,0 +1,59 @@
+Politoed @ Sitrus Berry
+Ability: Drizzle
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Protect
+- Perish Song
+- Encore
+- Muddy Water
+
+Rillaboom @ Eject Button
+Ability: Grassy Surge
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Protect
+- Fake Out
+- Grassy Glide
+- U-turn
+
+Incineroar @ Chople Berry
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Protect
+- Fake Out
+- Darkest Lariat
+- Parting Shot
+
+Kommo-o @ Leftovers
+Ability: Bulletproof
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Protect
+- Clangorous Soul
+- Clanging Scales
+- Aura Sphere
+
+Gengar @ Gengarite
+Ability: Cursed Body
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Protect
+- Perish Song
+- Sludge Bomb
+- Shadow Ball
+
+Annihilape @ Choice Scarf
+Ability: Defiant
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Close Combat
+- Phantom Force
+- Ice Punch
+- U-turn

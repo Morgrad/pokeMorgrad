@@ -1,0 +1,59 @@
+Charizard @ Charizardite Y
+Ability: Blaze
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Heat Wave
+- Weather Ball
+- Protect
+- Solar Beam
+
+Kommo-o @ Life Orb
+Ability: Soundproof
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Protect
+- Clanging Scales
+- Aura Sphere
+- Vacuum Wave
+
+Basculegion @ Choice Scarf
+Ability: Adaptability
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Wave Crash
+- Aqua Jet
+- Last Respects
+- Flip Turn
+
+Glimmora @ Glimmoranite
+Ability: Toxic Debris
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Spiky Shield
+- Sludge Bomb
+- Power Gem
+- Earth Power
+
+Whimsicott @ Focus Sash
+Ability: Prankster
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Moonblast
+- Protect
+- Tailwind
+- Encore
+
+Incineroar @ Sitrus Berry
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Flare Blitz
+- Parting Shot
+- Fake Out
+- Snarl

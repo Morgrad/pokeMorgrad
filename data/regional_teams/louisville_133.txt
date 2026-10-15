@@ -1,0 +1,59 @@
+Kommo-o @ Leftovers
+Ability: Soundproof
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Protect
+- Clanging Scales
+- Aura Sphere
+- Clangorous Soul
+
+Rillaboom @ Miracle Seed
+Ability: Grassy Surge
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Grassy Glide
+- Wood Hammer
+- Fake Out
+- U-turn
+
+Gholdengo @ Life Orb
+Ability: Good as Gold
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Protect
+- Make It Rain
+- Shadow Ball
+- Nasty Plot
+
+Incineroar @ Sitrus Berry
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Flare Blitz
+- Darkest Lariat
+- Fake Out
+- Parting Shot
+
+Lopunny @ Lopunnite
+Ability: Limber
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Protect
+- Close Combat
+- Fake Out
+- Triple Axel
+
+Sinistcha @ Occa Berry
+Ability: Hospitality
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Protect
+- Matcha Gotcha
+- Rage Powder
+- Life Dew

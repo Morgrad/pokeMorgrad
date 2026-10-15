@@ -25,9 +25,41 @@ Design constraints (both prevent real breakage, not just style):
     and `--pilot heuristic` eval) never pays the torch import cost.
 """
 import asyncio
+import os
 
-from poke_env import AccountConfiguration
+# --- Suppress benign poke_env protocol noise --------------------------------
+# poke_env logs certain VGC messages at CRITICAL even though they're
+# harmless (open-team-sheet handshake repeats across every battle).
+# Filter them at the logger so the console stays readable.
+import logging as _logging
+
+class _DropVGCNoise(_logging.Filter):
+    _PATTERNS = (
+        "cannot reject open team sheets",
+        "already made your decision about agreeing to open team sheets",
+    )
+    def filter(self, record):
+        try:
+            msg = record.getMessage().lower()
+        except Exception:
+            return True
+        return not any(p in msg for p in self._PATTERNS)
+
+for _name in ("poke_env", "poke_env.ps_client", "poke_env.player"):
+    _logging.getLogger(_name).addFilter(_DropVGCNoise())
+# ---------------------------------------------------------------------------
+
+from poke_env import AccountConfiguration, ServerConfiguration
 from poke_env.player import SimpleHeuristicsPlayer
+
+# --- Multi-instance support -------------------------------------------------
+# When SHOWDOWN_PORT is set (by run/ga_parallel.sh), route this process's
+# players to that server. Unset -> default 8000, same as before.
+_SHOWDOWN_PORT = os.environ.get("SHOWDOWN_PORT", "8000")
+DEFAULT_SERVER = ServerConfiguration(
+    f"ws://localhost:{_SHOWDOWN_PORT}/showdown/websocket",
+    f"http://localhost:{_SHOWDOWN_PORT}/action.php?",
+)
 
 # Added to a battle's account uid on each retry so the next attempt logs in under
 # a fresh Showdown account. Large prime → no collision with the uids of nearby
@@ -57,6 +89,7 @@ def make_player(pilot, team_str, uid, prefix, battle_format):
         battle_format=battle_format,
         team=team_str,
         max_concurrent_battles=1,
+        server_configuration=DEFAULT_SERVER,
         account_configuration=AccountConfiguration.generate(f"{prefix}{uid}", rand=False),
     )
 

@@ -1,0 +1,59 @@
+Garchomp @ Soft Sand
+Ability: Rough Skin
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Protect
+- Earthquake
+- Dragon Claw
+- Stomping Tantrum
+
+Delphox @ Delphoxite
+Ability: Blaze
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Protect
+- Heat Wave
+- Psychic
+- Nasty Plot
+
+Rillaboom @ Miracle Seed
+Ability: Grassy Surge
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Wood Hammer
+- Grassy Glide
+- U-turn
+- Fake Out
+
+Vivillon @ Focus Sash
+Ability: Compound Eyes
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Protect
+- Hurricane
+- Rage Powder
+- Sleep Powder
+
+Sneasler @ Grassy Seed
+Ability: Unburden
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Protect
+- Close Combat
+- Dire Claw
+- Rock Tomb
+
+Primarina @ Life Orb
+Ability: Liquid Voice
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Protect
+- Hyper Voice
+- Moonblast
+- Calm Mind

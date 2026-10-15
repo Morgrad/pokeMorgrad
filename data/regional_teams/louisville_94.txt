@@ -1,0 +1,59 @@
+Clefable @ Sitrus Berry
+Ability: Unaware
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Protect
+- Follow Me
+- Helping Hand
+- Moonblast
+
+Garchomp @ Garchompite
+Ability: Rough Skin
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Protect
+- Earth Power
+- Dragon Pulse
+- Power Gem
+
+Delphox @ Delphoxite
+Ability: Blaze
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Protect
+- Nasty Plot
+- Psychic
+- Heat Wave
+
+Kingambit @ Life Orb
+Ability: Defiant
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Protect
+- Swords Dance
+- Sucker Punch
+- Kowtow Cleave
+
+Rillaboom @ Miracle Seed
+Ability: Grassy Surge
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Fake Out
+- Wood Hammer
+- Grassy Glide
+- High Horsepower
+
+Sneasler @ White Herb
+Ability: Unburden
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Fake Out
+- Dire Claw
+- Close Combat
+- Rock Slide

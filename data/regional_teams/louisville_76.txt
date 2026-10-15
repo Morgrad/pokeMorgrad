@@ -1,0 +1,59 @@
+Sinistcha @ Colbur Berry
+Ability: Hospitality
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Matcha Gotcha
+- Rage Powder
+- Trick Room
+- Protect
+
+Salamence @ Salamencite
+Ability: Intimidate
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Protect
+- Tailwind
+- Hurricane
+- Draco Meteor
+
+Pelipper @ Sitrus Berry
+Ability: Drizzle
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Hurricane
+- Weather Ball
+- Tailwind
+- Wide Guard
+
+Swampert @ Swampertite
+Ability: Torrent
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Wave Crash
+- Earthquake
+- Ice Punch
+- Protect
+
+Archaludon @ Leftovers
+Ability: Stamina
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Protect
+- Aura Sphere
+- Electro Shot
+- Dragon Pulse
+
+Gholdengo @ Life Orb
+Ability: Good as Gold
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Protect
+- Make It Rain
+- Shadow Ball
+- Power Gem

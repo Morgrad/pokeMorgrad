@@ -1,0 +1,59 @@
+Floette-Eternal @ Floettite
+Ability: Flower Veil
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Moonblast
+- Calm Mind
+- Dazzling Gleam
+
+Sneasler @ Focus Sash
+Ability: Poison Touch
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Protect
+- Close Combat
+- Dire Claw
+- Fake Out
+
+Kingambit @ Chople Berry
+Ability: Defiant
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Protect
+- Kowtow Cleave
+- Iron Head
+- Sucker Punch
+
+Rillaboom @ Miracle Seed
+Ability: Grassy Surge
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Grassy Glide
+- U-turn
+- Wood Hammer
+- Fake Out
+
+Salamence @ Salamencite
+Ability: Intimidate
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Draco Meteor
+- Hyper Voice
+- Flamethrower
+- Tailwind
+
+Basculegion @ Life Orb
+Ability: Adaptability
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Protect
+- Wave Crash
+- Last Respects
+- Aqua Jet

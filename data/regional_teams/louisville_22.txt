@@ -1,0 +1,59 @@
+Garchomp @ Choice Scarf
+Ability: Rough Skin
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Dragon Claw
+- Stomping Tantrum
+- Earthquake
+- Rock Slide
+
+Basculegion @ Sitrus Berry
+Ability: Adaptability
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Wave Crash
+- Last Respects
+- Aqua Jet
+- Protect
+
+Sneasler @ Focus Sash
+Ability: Poison Touch
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Close Combat
+- Dire Claw
+- Fake Out
+- Feint
+
+Delphox @ Delphoxite
+Ability: Blaze
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Heat Wave
+- Psychic
+- Encore
+- Protect
+
+Kingambit @ Occa Berry
+Ability: Defiant
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Kowtow Cleave
+- Iron Head
+- Sucker Punch
+- Low Kick
+
+Dragonite @ Dragoninite
+Ability: Inner Focus
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Dragon Pulse
+- Heat Wave
+- Tailwind
+- Protect

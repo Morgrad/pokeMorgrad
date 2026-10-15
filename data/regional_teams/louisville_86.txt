@@ -1,0 +1,59 @@
+Garchomp @ Garchompite Z
+Ability: Rough Skin
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Protect
+- Dragon Pulse
+- Earth Power
+- Power Gem
+
+Incineroar @ Sitrus Berry
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Flare Blitz
+- Fake Out
+- Darkest Lariat
+- Parting Shot
+
+Volcarona @ Grassy Seed
+Ability: Flame Body
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Protect
+- Heat Wave
+- Giga Drain
+- Quiver Dance
+
+Annihilape @ Choice Scarf
+Ability: Defiant
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Close Combat
+- Shadow Claw
+- U-turn
+- Rock Tomb
+
+Raichu @ Raichunite Y
+Ability: Lightning Rod
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Protect
+- Zap Cannon
+- Focus Blast
+- Fake Out
+
+Rillaboom @ Life Orb
+Ability: Grassy Surge
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Wood Hammer
+- U-turn
+- Grassy Glide
+- Fake Out

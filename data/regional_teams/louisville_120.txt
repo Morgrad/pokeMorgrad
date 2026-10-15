@@ -1,0 +1,59 @@
+Sneasler @ Psychic Seed
+Ability: Unburden
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Close Combat
+- Dire Claw
+- Rock Slide
+- Protect
+
+Charizard @ Charizardite Y
+Ability: Blaze
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Heat Wave
+- Weather Ball
+- Solar Beam
+- Protect
+
+Metagross @ Metagrossite
+Ability: Clear Body
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Steel Roller
+- Psychic Fangs
+- Stomping Tantrum
+- Protect
+
+Dragapult @ Life Orb
+Ability: Clear Body
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Draco Meteor
+- Shadow Ball
+- Will-O-Wisp
+- Protect
+
+Indeedee @ Focus Sash
+Ability: Psychic Surge
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Expanding Force
+- Mystical Fire
+- Helping Hand
+- Protect
+
+Milotic @ Sitrus Berry
+Ability: Competitive
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Scald
+- Light Screen
+- Ice Beam
+- Protect

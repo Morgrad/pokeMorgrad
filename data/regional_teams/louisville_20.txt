@@ -1,0 +1,59 @@
+Armarouge @ Life Orb
+Ability: Flash Fire
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Expanding Force
+- Armor Cannon
+- Heat Wave
+- Protect
+
+Sneasler @ Psychic Seed
+Ability: Unburden
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Close Combat
+- Fake Out
+- Rock Slide
+- Dire Claw
+
+Milotic @ Leftovers
+Ability: Competitive
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Muddy Water
+- Coil
+- Recover
+- Hypnosis
+
+Indeedee-F @ Rocky Helmet
+Ability: Psychic Surge
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Psychic
+- Follow Me
+- Trick Room
+- Helping Hand
+
+Raichu @ Raichunite Y
+Ability: Lightning Rod
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Zap Cannon
+- Fake Out
+- Focus Blast
+- Protect
+
+Froslass @ Froslassite
+Ability: Cursed Body
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Blizzard
+- Shadow Ball
+- Aurora Veil
+- Protect

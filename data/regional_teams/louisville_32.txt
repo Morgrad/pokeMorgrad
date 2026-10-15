@@ -1,0 +1,59 @@
+Froslass @ Froslassite
+Ability: Cursed Body
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Blizzard
+- Shadow Ball
+- Aurora Veil
+- Protect
+
+Glimmora @ Glimmoranite
+Ability: Toxic Debris
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Sludge Bomb
+- Power Gem
+- Earth Power
+- Spiky Shield
+
+Talonflame @ Charcoal
+Ability: Gale Wings
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Brave Bird
+- Flare Blitz
+- Tailwind
+- Protect
+
+Kommo-o @ Life Orb
+Ability: Soundproof
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Clanging Scales
+- Aura Sphere
+- Flamethrower
+- Protect
+
+Kingambit @ Chople Berry
+Ability: Defiant
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Kowtow Cleave
+- Iron Head
+- Sucker Punch
+- Low Kick
+
+Rillaboom @ Miracle Seed
+Ability: Grassy Surge
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Wood Hammer
+- Grassy Glide
+- High Horsepower
+- Fake Out

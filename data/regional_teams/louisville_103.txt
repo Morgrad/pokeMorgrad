@@ -1,0 +1,59 @@
+Sinistcha @ Colbur Berry
+Ability: Hospitality
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Rage Powder
+- Matcha Gotcha
+- Trick Room
+- Protect
+
+Garchomp @ Choice Scarf
+Ability: Rough Skin
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Dragon Claw
+- Stomping Tantrum
+- Rock Slide
+- Earthquake
+
+Delphox @ Delphoxite
+Ability: Blaze
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Protect
+- Nasty Plot
+- Heat Wave
+- Psychic
+
+Raichu @ Raichunite Y
+Ability: Lightning Rod
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Protect
+- Fake Out
+- Zap Cannon
+- Focus Blast
+
+Kingambit @ Life Orb
+Ability: Defiant
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Protect
+- Swords Dance
+- Kowtow Cleave
+- Sucker Punch
+
+Incineroar @ Sitrus Berry
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Fake Out
+- Snarl
+- Parting Shot
+- Flare Blitz

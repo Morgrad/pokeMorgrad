@@ -1,0 +1,59 @@
+Sneasler @ Psychic Seed
+Ability: Unburden
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Protect
+- Close Combat
+- Dire Claw
+- Throat Chop
+
+Tyranitar @ Tyranitarite
+Ability: Sand Stream
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Protect
+- Rock Slide
+- Low Kick
+- Knock Off
+
+Rotom-Heat @ Choice Scarf
+Ability: Levitate
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Volt Switch
+- Overheat
+- Discharge
+- Trick
+
+Indeedee-F @ Rocky Helmet
+Ability: Psychic Surge
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Follow Me
+- Helping Hand
+- Psychic
+- Protect
+
+Excadrill @ Focus Sash
+Ability: Sand Rush
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Protect
+- High Horsepower
+- Iron Head
+- Earthquake
+
+Sceptile @ Sceptilite
+Ability: Overgrow
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Detect
+- Dragon Pulse
+- Energy Ball
+- Earth Power

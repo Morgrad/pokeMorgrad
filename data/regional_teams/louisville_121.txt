@@ -1,0 +1,59 @@
+Whimsicott @ Focus Sash
+Ability: Prankster
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Protect
+- Moonblast
+- Tailwind
+- Encore
+
+Basculegion @ Choice Scarf
+Ability: Adaptability
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Wave Crash
+- Last Respects
+- Flip Turn
+- Aqua Jet
+
+Kommo-o @ Life Orb
+Ability: Soundproof
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Protect
+- Clanging Scales
+- Aura Sphere
+- Flamethrower
+
+Glimmora @ Glimmoranite
+Ability: Toxic Debris
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Spiky Shield
+- Sludge Bomb
+- Power Gem
+- Earth Power
+
+Charizard @ Charizardite Y
+Ability: Blaze
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Protect
+- Heat Wave
+- Solar Beam
+- Weather Ball
+
+Indeedee @ Twisted Spoon
+Ability: Psychic Surge
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Protect
+- Expanding Force
+- Trick Room
+- Imprison

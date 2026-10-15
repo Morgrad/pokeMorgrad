@@ -1,0 +1,59 @@
+Rillaboom @ Miracle Seed
+Ability: Grassy Surge
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Fake Out
+- Wood Hammer
+- Grassy Glide
+- High Horsepower
+
+Incineroar @ Sitrus Berry
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Fake Out
+- Flare Blitz
+- Throat Chop
+- Parting Shot
+
+Glimmora @ Glimmoranite
+Ability: Toxic Debris
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Power Gem
+- Sludge Bomb
+- Earth Power
+- Spiky Shield
+
+Froslass @ Froslassite
+Ability: Snow Cloak
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Blizzard
+- Shadow Ball
+- Aurora Veil
+- Protect
+
+Basculegion @ Choice Scarf
+Ability: Adaptability
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Wave Crash
+- Last Respects
+- Aqua Jet
+- Flip Turn
+
+Volcarona @ Grassy Seed
+Ability: Flame Body
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Heat Wave
+- Giga Drain
+- Quiver Dance
+- Protect

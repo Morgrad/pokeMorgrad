@@ -1,0 +1,59 @@
+Volcarona @ Rocky Helmet
+Ability: Flame Body
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Overheat
+- Rage Powder
+- Tailwind
+
+Floette-Eternal @ Floettite
+Ability: Flower Veil
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Draining Kiss
+- Dazzling Gleam
+- Calm Mind
+
+Rillaboom @ Miracle Seed
+Ability: Grassy Surge
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Fake Out
+- Wood Hammer
+- Grassy Glide
+- High Horsepower
+
+Gholdengo @ Life Orb
+Ability: Good as Gold
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Make It Rain
+- Shadow Ball
+- Nasty Plot
+
+Sneasler @ Focus Sash
+Ability: Unburden
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Fake Out
+- Dire Claw
+- Rock Slide
+- Close Combat
+
+Garchomp @ Garchompite Z
+Ability: Rough Skin
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Draco Meteor
+- Earth Power
+- Power Gem

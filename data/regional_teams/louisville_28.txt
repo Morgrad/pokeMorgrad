@@ -1,0 +1,59 @@
+Sinistcha @ Colbur Berry
+Ability: Hospitality
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Matcha Gotcha
+- Rage Powder
+- Trick Room
+- Protect
+
+Basculegion @ Choice Scarf
+Ability: Adaptability
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Wave Crash
+- Last Respects
+- Phantom Force
+- Flip Turn
+
+Archaludon @ Leftovers
+Ability: Stamina
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Electro Shot
+- Dragon Pulse
+- Protect
+- Flash Cannon
+
+Floette-Eternal @ Floettite
+Ability: Flower Veil
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Calm Mind
+- Moonblast
+- Dazzling Gleam
+- Protect
+
+Pelipper @ Focus Sash
+Ability: Drizzle
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Hurricane
+- Weather Ball
+- Tailwind
+- Wide Guard
+
+Incineroar @ Sitrus Berry
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Flare Blitz
+- Fake Out
+- Parting Shot
+- Throat Chop

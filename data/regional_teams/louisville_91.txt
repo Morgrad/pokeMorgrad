@@ -1,0 +1,59 @@
+Sylveon @ Fairy Feather
+Ability: Pixilate
+Level: 50
+Calm Nature
+EVs: 32 HP / 20 Def / 14 SpD
+- Detect
+- Hyper Voice
+- Quick Attack
+- Yawn
+
+Farigiraf @ Sitrus Berry
+Ability: Armor Tail
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Protect
+- Trick Room
+- Psychic
+- Helping Hand
+
+Garchomp @ Garchompite Z
+Ability: Rough Skin
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Protect
+- Power Gem
+- Earth Power
+- Draco Meteor
+
+Rillaboom @ Miracle Seed
+Ability: Grassy Surge
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Grassy Glide
+- Fake Out
+- Wood Hammer
+- High Horsepower
+
+Charizard @ Charizardite Y
+Ability: Blaze
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Protect
+- Heat Wave
+- Weather Ball
+- Ancient Power
+
+Incineroar @ Leftovers
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Flare Blitz
+- Parting Shot
+- Fake Out
+- Snarl

@@ -1,0 +1,59 @@
+Sneasler @ White Herb
+Ability: Unburden
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Dire Claw
+- Close Combat
+- Rock Tomb
+- Protect
+
+Basculegion @ Mystic Water
+Ability: Adaptability
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Wave Crash
+- Last Respects
+- Aqua Jet
+- Protect
+
+Whimsicott @ Focus Sash
+Ability: Prankster
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Moonblast
+- Encore
+- Tailwind
+- Protect
+
+Garchomp @ Life Orb
+Ability: Rough Skin
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Dragon Claw
+- Earthquake
+- Rock Slide
+- Protect
+
+Charizard @ Charizardite Y
+Ability: Blaze
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Heat Wave
+- Solar Beam
+- Weather Ball
+- Protect
+
+Kingambit @ Chople Berry
+Ability: Defiant
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Kowtow Cleave
+- Iron Head
+- Sucker Punch
+- Low Kick

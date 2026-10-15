@@ -1,0 +1,59 @@
+Camerupt @ Cameruptite
+Ability: Solid Rock
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Heat Wave
+- Fire Blast
+- Earth Power
+- Ancient Power
+
+Indeedee-F @ Rocky Helmet
+Ability: Psychic Surge
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Psychic
+- Trick Room
+- Helping Hand
+- Follow Me
+
+Basculegion @ Life Orb
+Ability: Adaptability
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Last Respects
+- Wave Crash
+- Aqua Jet
+- Protect
+
+Farigiraf @ Wise Glasses
+Ability: Armor Tail
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Expanding Force
+- Thunderbolt
+- Sunny Day
+- Trick Room
+
+Gardevoir @ Gardevoirite
+Ability: Trace
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Hyper Voice
+- Expanding Force
+- Calm Mind
+- Protect
+
+Sneasler @ Psychic Seed
+Ability: Unburden
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Dire Claw
+- Close Combat
+- Rock Slide
+- Protect

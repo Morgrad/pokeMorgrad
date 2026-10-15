@@ -122,10 +122,10 @@ their worst half.
     ├── data/          inputs
     │   ├── regmc_db.json              canonical format data
     │   ├── baseline_team.txt          reference team, seeds GA island A
-    │   ├── pool_split.json            270 train / 30 val / 100 holdout
+    │   ├── pool_split.json            445 train / 100 holdout
     │   ├── meta_items.json            item frequency per species
     │   ├── species_move_priors.json   move frequency per species
-    │   ├── regional_teams/            400 top-cut teams
+    │   ├── regional_teams/            545 top-cut teams
     │   ├── showdown_replays/          raw replays (gitignored, regenerable)
     │   └── training_data.jsonl        parsed decisions (gitignored)
     │
@@ -215,8 +215,9 @@ Authoritative numbers live in `docs/STATE.md`. Orientation only:
 
 - **Heuristic pilot baseline**: around 57 percent against the held-out pool.
   Every champion is measured against this.
-- **Best held-out champion so far**: 66 to 71 percent, from the
-  pre-constraint era. Those teams are structurally unrealistic. Dead items
+- **Best held-out champion so far**: **71.6 percent** (island C,
+  2026-10-14 parallel run, on the current holdout), with the constraint
+  stack active. Prior pre-constraint best was 66 to 71 percent. Those teams are structurally unrealistic. Dead items
   (Binding Band on a mon with no binding moves), missing Protect coverage,
   off-role moves. The five-part constraint stack landed 2026-10-14 fixes
   those. Expected effect: champion scores drop to the 58 to 64 percent range,

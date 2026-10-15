@@ -1,0 +1,59 @@
+Kingambit @ Occa Berry
+Ability: Defiant
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Kowtow Cleave
+- Sucker Punch
+- Iron Head
+- Protect
+
+Torkoal @ Charcoal
+Ability: Drought
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Eruption
+- Heat Wave
+- Earth Power
+- Protect
+
+Farigiraf @ Sitrus Berry
+Ability: Armor Tail
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Hyper Voice
+- Psychic
+- Trick Room
+- Protect
+
+Venusaur @ Focus Sash
+Ability: Chlorophyll
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Leaf Storm
+- Sludge Bomb
+- Sleep Powder
+- Protect
+
+Garchomp @ Garchompite Z
+Ability: Rough Skin
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Draco Meteor
+- Earth Power
+- Power Gem
+- Protect
+
+Alcremie @ Rocky Helmet
+Ability: Sweet Veil
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Decorate
+- Helping Hand
+- Dazzling Gleam
+- Mystical Fire

@@ -1,0 +1,59 @@
+Incineroar @ Chople Berry
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Parting Shot
+- Fake Out
+- Flare Blitz
+- Darkest Lariat
+
+Overqwil @ Life Orb
+Ability: Swift Swim
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Protect
+- Liquidation
+- Throat Chop
+- Poison Jab
+
+Garchomp @ Choice Scarf
+Ability: Rough Skin
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Rock Slide
+- Stomping Tantrum
+- Dragon Claw
+- Earthquake
+
+Pelipper @ Damp Rock
+Ability: Drizzle
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Wide Guard
+- Tailwind
+- Hurricane
+- Weather Ball
+
+Archaludon @ Leftovers
+Ability: Stamina
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Electro Shot
+- Aura Sphere
+- Dragon Pulse
+
+Floette-Eternal @ Floettite
+Ability: Flower Veil
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Calm Mind
+- Dazzling Gleam
+- Moonblast

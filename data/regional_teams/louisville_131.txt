@@ -1,0 +1,59 @@
+Garchomp @ Choice Scarf
+Ability: Rough Skin
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Stomping Tantrum
+- Earthquake
+- Dragon Claw
+- Rock Slide
+
+Archaludon @ Leftovers
+Ability: Stamina
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Electro Shot
+- Draco Meteor
+- Flash Cannon
+
+Charizard @ Charizardite Y
+Ability: Blaze
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Weather Ball
+- Solar Beam
+- Heat Wave
+
+Golisopod @ Golisopite
+Ability: Emergency Exit
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Protect
+- Leech Life
+- Sucker Punch
+- Iron Head
+
+Basculegion-F @ Focus Sash
+Ability: Swift Swim
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Ice Beam
+- Muddy Water
+- Shadow Ball
+
+Pelipper @ Damp Rock
+Ability: Drizzle
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Weather Ball
+- Wide Guard
+- Helping Hand
+- Hurricane

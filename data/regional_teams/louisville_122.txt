@@ -1,0 +1,59 @@
+Kangaskhan @ Kangaskhanite
+Ability: Scrappy
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Fake Out
+- Double-Edge
+- Rock Tomb
+- Hammer Arm
+
+Hatterene @ Life Orb
+Ability: Magic Bounce
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Expanding Force
+- Dazzling Gleam
+- Protect
+- Trick Room
+
+Kingambit @ Black Glasses
+Ability: Defiant
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Kowtow Cleave
+- Sucker Punch
+- Low Kick
+- Protect
+
+Torkoal @ Charcoal
+Ability: Drought
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Eruption
+- Weather Ball
+- Earth Power
+- Protect
+
+Indeedee-F @ Psychic Seed
+Ability: Psychic Surge
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Psychic
+- Helping Hand
+- Follow Me
+- Trick Room
+
+Farigiraf @ Sitrus Berry
+Ability: Armor Tail
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Expanding Force
+- Helping Hand
+- Protect
+- Trick Room

@@ -1,0 +1,59 @@
+Kommo-o @ Life Orb
+Ability: Soundproof
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Clanging Scales
+- Aura Sphere
+- Flamethrower
+- Protect
+
+Gardevoir @ Gardevoirite
+Ability: Synchronize
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Expanding Force
+- Hyper Voice
+- Calm Mind
+- Protect
+
+Whimsicott @ Focus Sash
+Ability: Prankster
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Moonblast
+- Tailwind
+- Encore
+- Protect
+
+Basculegion @ Mystic Water
+Ability: Adaptability
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Wave Crash
+- Last Respects
+- Aqua Jet
+- Protect
+
+Indeedee-F @ Psychic Seed
+Ability: Psychic Surge
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Follow Me
+- Psychic
+- Trick Room
+- Helping Hand
+
+Pyroar @ Pyroarite
+Ability: Unnerve
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Heat Wave
+- Overheat
+- Scorching Sands
+- Protect

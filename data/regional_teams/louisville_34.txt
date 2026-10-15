@@ -1,0 +1,59 @@
+Venusaur @ Life Orb
+Ability: Chlorophyll
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Leaf Storm
+- Sludge Bomb
+- Earth Power
+- Protect
+
+Charizard @ Charizardite Y
+Ability: Blaze
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Weather Ball
+- Heat Wave
+- Ancient Power
+- Protect
+
+Garchomp @ Choice Scarf
+Ability: Rough Skin
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Dragon Claw
+- Earthquake
+- Rock Slide
+- Stomping Tantrum
+
+Sylveon @ Fairy Feather
+Ability: Pixilate
+Level: 50
+Calm Nature
+EVs: 32 HP / 20 Def / 14 SpD
+- Hyper Voice
+- Quick Attack
+- Yawn
+- Detect
+
+Toxapex @ Leftovers
+Ability: Regenerator
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Infestation
+- Toxic
+- Wide Guard
+- Baneful Bunker
+
+Incineroar @ Sitrus Berry
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Fake Out
+- Flare Blitz
+- Darkest Lariat
+- Parting Shot

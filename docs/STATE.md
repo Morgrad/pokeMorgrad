@@ -5,7 +5,7 @@
 
 # Project State
 
-**Last verified:** 2026-10-13
+**Last verified:** 2026-10-14
 **Active branch:** `main`
 **Repo:** https://github.com/Morgrad/pokeMorgrad
 
@@ -569,6 +569,66 @@ Heliolisk, and every other top-cut species with priors.
 The remaining ~75% of non-prior species still sample from role-random.
 That's acceptable: the GA converges on priors-species because they
 perform better, and eval will reflect that.
+### 5.18 Parallel GA + val-overfit diagnosis (2026-10-14)
+
+**Parallel architecture.** Three Python processes, one per island, each
+running its own asyncio event loop against its own Showdown instance
+(ports 8000/8001/8002). Bypasses Python's single-threaded GIL limit.
+Measured 2.78x aggregate throughput (72.4 battles/sec across 3 processes
+vs ~26 single). 2.5h parallel run reached 130-148 gens per island vs
+serial's ~30-50.
+
+New files: `run/ga_parallel.sh` (launcher), `run/ga_island.py` (single
+island entry point). `SHOWDOWN_PORT` env var routes each process to its
+own server — patched into `src/battle.py` and `src/ga_core.py`. Falls
+back to 8000 when unset; old serial path unchanged.
+
+**Ring migration is intentionally absent** in parallel mode
+(`migration_every=999`). Three fully independent lineages. Whether this
+helps or hurts is unresolved — the 2026-10-14 run can't isolate it from
+the Umbreon-constraint effect.
+
+**Island C held-out result (2026-10-14).**
+- Old holdout: 74.8% [70.8-78.4], baseline 57.2%
+- New holdout (with Louisville): 71.6% [67.5-75.4], baseline 55.8%
+- C was fully unconstrained; A and B (Umbreon slot 0) tied with baseline.
+- CIs disjoint from baseline on both holdouts → real, not sampling noise.
+
+**Val-selection overfits by 15-27 points.** The 30-team validation slice
+(`VAL_POOL_SIZE=30`) has binomial σ ≈ 9 pts. Selecting max-of-~1300
+noisy draws picks the tail. Observed 2026-10-14:
+
+| Island | Val best | Old held-out | Gap |
+|--------|----------|--------------|-----|
+| A | 83.3% | 56.0% | -27.3 |
+| B | 80.0% | 59.0% | -21.0 |
+| C | 89.7% | 74.8% | -14.9 |
+
+This contradicts the 2026-10-13 finding (§5.14 item 5) that training-best
+overfits more than val-best. Under the extended pool, val overfits more.
+
+**Dual-champion fix (2026-10-14).** `run_islands` now writes both
+champions: existing `ga_<run>_island_<X>.txt` (val-selected) plus new
+`ga_<run>_island_<X>_train.txt` (train-selected). Eval both on the same
+holdout to settle which selection rule wins on the current pool.
+
+**Louisville pool extension (2026-10-14).**
+- Scraped 145 teams from `limitlessvgc.com/tournaments/445/teams`
+  (`tools/scrape_louisville.py`, adapted from `scrape_regionals_v2.py`)
+- Normalized form-species names via `tools/normalize_louisville.py`
+  (`Female Indeedee` → `Indeedee-F`, `Hisuian Arcanine` → `Arcanine-Hisui`)
+- One `Held Item:` artifact in `louisville_39.txt` fixed manually
+- Pool now 545 teams (was 400). Regenerated split with
+  `tools/regenerate_split.py`: 445 train / 100 holdout, 0 overlap.
+- Holdout fully regenerated (different 100 teams than before). Bridge
+  eval on 2026-10-14 champions against new holdout: A=54.4, B=57.8,
+  C=71.6, baseline=55.8.
+
+**VGC noise filter (2026-10-14).** `src/battle.py` installs a
+`logging.Filter` on the `poke_env` loggers to suppress two benign
+CRITICAL messages ("You cannot reject open team sheets...").
+Cosmetic. Filters apply to processes started after the patch.
+
 ## 6. Environment
 
 - **Host:** Windows 11 + WSL2 (Fedora Linux 42)

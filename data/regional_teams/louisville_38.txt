@@ -1,0 +1,59 @@
+Venusaur @ Focus Sash
+Ability: Chlorophyll
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Sludge Bomb
+- Energy Ball
+- Sleep Powder
+- Protect
+
+Gholdengo @ Life Orb
+Ability: Good as Gold
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Make It Rain
+- Shadow Ball
+- Protect
+- Focus Blast
+
+Farigiraf @ Silk Scarf
+Ability: Armor Tail
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Psychic
+- Trick Room
+- Imprison
+- Hyper Voice
+
+Garchomp @ Choice Scarf
+Ability: Rough Skin
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Dragon Claw
+- Rock Slide
+- Stomping Tantrum
+- Earthquake
+
+Watchog @ Chople Berry
+Ability: Analytic
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Ice Punch
+- Detect
+- Low Kick
+- Thunder Wave
+
+Charizard @ Charizardite Y
+Ability: Blaze
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Heat Wave
+- Ancient Power
+- Focus Blast
+- Protect

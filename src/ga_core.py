@@ -1057,7 +1057,7 @@ async def run_ga(locked, pop_size, generations, battles_per_genome, concurrency,
 CHECKPOINT_DIR = _p("output", "checkpoints", "v6")
 CHAMPION_DIR = _p("output", "champions")
 SHOWDOWN_DIR = os.path.expanduser("~/pokemon-showdown")
-SHOWDOWN_PORT = 8000
+SHOWDOWN_PORT = int(os.environ.get("SHOWDOWN_PORT", "8000"))
 
 
 def enforce_constraints(genome, constraints):
@@ -1535,3 +1535,9 @@ async def run_islands(
             open(path, "w").write(genome_to_text(best["genome"]))
             print(f"  [{isl.name}] champion ({label}): {best['fit']*100:.1f}% "
                   f"(train best {isl.best_ever['fit']*100:.1f}%) -> {path}")
+        if isl.best_ever["genome"]:
+            path = os.path.join(
+                CHAMPION_DIR, f"ga_{run_id}_island_{isl.name}_train.txt")
+            open(path, "w").write(genome_to_text(isl.best_ever["genome"]))
+            print(f"  [{isl.name}] champion (train): "
+                  f"{isl.best_ever['fit']*100:.1f}% -> {path}")

@@ -1,0 +1,59 @@
+Incineroar @ Black Glasses
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Flare Blitz
+- Darkest Lariat
+- Parting Shot
+- Fake Out
+
+Gliscor @ Life Orb
+Ability: Hyper Cutter
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Protect
+- High Horsepower
+- Rock Slide
+- Tailwind
+
+Torkoal @ Charcoal
+Ability: Drought
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Eruption
+- Flamethrower
+- Solar Beam
+- Protect
+
+Vivillon @ Focus Sash
+Ability: Compound Eyes
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Hurricane
+- Protect
+- Sleep Powder
+- Rage Powder
+
+Indeedee-F @ Psychic Seed
+Ability: Psychic Surge
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Follow Me
+- Trick Room
+- Protect
+- Mystical Fire
+
+Gardevoir @ Gardevoirite
+Ability: Telepathy
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Hyper Voice
+- Expanding Force
+- Trick Room
+- Protect

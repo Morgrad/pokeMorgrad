@@ -1,0 +1,59 @@
+Torkoal @ Charcoal
+Ability: Drought
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Weather Ball
+- Eruption
+- Earth Power
+
+Gardevoir @ Gardevoirite
+Ability: Synchronize
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Hyper Voice
+- Expanding Force
+- Thunderbolt
+- Trick Room
+
+Venusaur @ Life Orb
+Ability: Chlorophyll
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Sludge Bomb
+- Leaf Storm
+- Weather Ball
+- Sleep Powder
+
+Politoed @ Mystic Water
+Ability: Drizzle
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Muddy Water
+- Weather Ball
+- Ice Beam
+
+Indeedee-F @ Rocky Helmet
+Ability: Psychic Surge
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Follow Me
+- Helping Hand
+- Trick Room
+- Psychic
+
+Samurott-Hisui @ Focus Sash
+Ability: Sharpness
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Detect
+- Aqua Cutter
+- Sacred Sword
+- Night Slash

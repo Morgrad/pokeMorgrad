@@ -1,0 +1,59 @@
+Raichu @ Raichunite Y
+Ability: Lightning Rod
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Zap Cannon
+- Fake Out
+- Focus Blast
+- Protect
+
+Pelipper @ Focus Sash
+Ability: Drizzle
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Weather Ball
+- Protect
+- Tailwind
+- Hurricane
+
+Swampert @ Swampertite
+Ability: Damp
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Wave Crash
+- High Horsepower
+- Ice Punch
+- Protect
+
+Meowscarada @ Choice Scarf
+Ability: Protean
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Flower Trick
+- Knock Off
+- Triple Axel
+- U-turn
+
+Farigiraf @ Sitrus Berry
+Ability: Armor Tail
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Twin Beam
+- Thunderbolt
+- Nasty Plot
+- Trick Room
+
+Archaludon @ Leftovers
+Ability: Stamina
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Dragon Pulse
+- Flash Cannon
+- Electro Shot
+- Protect

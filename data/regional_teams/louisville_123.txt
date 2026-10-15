@@ -1,0 +1,59 @@
+Garchomp @ Garchompite Z
+Ability: Rough Skin
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Draco Meteor
+- Earth Power
+- Power Gem
+- Protect
+
+Sneasler @ Psychic Seed
+Ability: Unburden
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Fake Out
+- Close Combat
+- Dire Claw
+- Protect
+
+Armarouge @ Focus Sash
+Ability: Flash Fire
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Armor Cannon
+- Expanding Force
+- Wide Guard
+- Protect
+
+Blastoise @ Blastoisinite
+Ability: Rain Dish
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Water Spout
+- Dark Pulse
+- Shell Smash
+- Protect
+
+Indeedee-F @ Sitrus Berry
+Ability: Psychic Surge
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Psychic
+- Follow Me
+- Helping Hand
+- Protect
+
+Gholdengo @ Choice Scarf
+Ability: Good as Gold
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Make It Rain
+- Shadow Ball
+- Power Gem
+- Trick

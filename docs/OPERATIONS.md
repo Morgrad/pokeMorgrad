@@ -577,6 +577,86 @@ limit — use the file pattern:
 ---
 
 ## 16. Daily and weekly patterns
+---
+
+## 17. Parallel GA (2026-10-14 onwards)
+
+Three islands, three processes, three Showdown instances
+(8000/8001/8002). 2.78x throughput vs the serial single-process GA.
+Preferred for any run above one hour. See STATE.md §5.18.
+
+### Prerequisites
+
+- `run/ga_parallel.sh` (executable) — orchestrates the three processes
+- `run/ga_island.py` — single-island entry point
+- Showdown instances on 8000, 8001, 8002 (script starts any missing)
+- `SHOWDOWN_PORT` routing patched in `src/battle.py` + `src/ga_core.py`
+
+### Launch
+
+    cd ~/project && source ~/llm-env/bin/activate
+    pkill -9 -f "run.ga_island" 2>/dev/null; sleep 1
+    nohup bash run/ga_parallel.sh 2.5 p2 > /tmp/ga_p2_launch.log 2>&1 &
+    echo "launch PID $!"
+    sleep 60
+    tail -20 /tmp/ga_p2_launch.log
+
+Args: `<hours> <run_id>`. Use a fresh run_id each launch (p1, p2, p3…)
+so checkpoints and champions don't clobber.
+
+### Monitoring
+
+    ps aux | grep -E "ga_island|pokemon-showdown start" | grep -v grep
+    # expect 6 processes: 3x python -m run.ga_island + 3x node
+
+    for n in A B C; do echo "--- island $n ---"; tail -4 /tmp/ga_p2_${n}.log; done
+
+    for n in A B C; do
+      echo "--- island $n val ---"
+      grep "NEW VAL BEST" /tmp/ga_p2_${n}.log | tail -5
+    done
+
+### Champions
+
+Per island, two files:
+
+    output/champions/ga_p2_island_A.txt         # val-selected
+    output/champions/ga_p2_island_A_train.txt   # train-selected
+
+Both are valid; eval tells you which is better. Background: STATE.md §5.18.
+
+### Eval
+
+Wait for all three to finish (`=== DONE ===` in all three logs), then:
+
+    cd ~/project && source ~/llm-env/bin/activate
+    python -m src.eval \
+      output/champions/ga_p2_island_A.txt \
+      output/champions/ga_p2_island_A_train.txt \
+      output/champions/ga_p2_island_B.txt \
+      output/champions/ga_p2_island_B_train.txt \
+      output/champions/ga_p2_island_C.txt \
+      output/champions/ga_p2_island_C_train.txt \
+      data/baseline_team.txt \
+      --opponents heldout --pilot heuristic \
+      --seeds 100 200 300 400 500 --concurrency 8 \
+      2>&1 | tee /tmp/eval_p2.log
+
+### Stop
+
+    pkill -9 -f "run.ga_island"
+    pkill -9 -f "pokemon-showdown start 8001"
+    pkill -9 -f "pokemon-showdown start 8002"
+
+Checkpoints under `output/checkpoints/v6/p2_A/`, `p2_B/`, `p2_C/`.
+Rerunning same run_id resumes per-island independently.
+
+### Caveats
+
+- Ring migration disabled in parallel mode (§5.18).
+- Val-selection overfits; both selection rules are written.
+- Concurrency per process = 8. Higher doesn't help (§5.9).
+
 
 Morning after an overnight run:
 

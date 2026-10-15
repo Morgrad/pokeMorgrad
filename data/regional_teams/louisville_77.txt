@@ -1,0 +1,59 @@
+Venusaur @ Focus Sash
+Ability: Chlorophyll
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Protect
+- Leaf Storm
+- Sleep Powder
+- Sludge Bomb
+
+Pelipper @ Sitrus Berry
+Ability: Drizzle
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Hurricane
+- Tailwind
+- Weather Ball
+- Wide Guard
+
+Clefable @ Clefablite
+Ability: Unaware
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Protect
+- Follow Me
+- Helping Hand
+- Moonblast
+
+Krookodile @ Choice Scarf
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Crunch
+- Earthquake
+- High Horsepower
+- Rock Tomb
+
+Charizard @ Charizardite Y
+Ability: Blaze
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Protect
+- Heat Wave
+- Hurricane
+- Weather Ball
+
+Archaludon @ Leftovers
+Ability: Stamina
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Protect
+- Dragon Pulse
+- Electro Shot
+- Flash Cannon

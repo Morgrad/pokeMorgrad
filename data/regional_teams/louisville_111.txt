@@ -1,0 +1,59 @@
+Kingambit @ Occa Berry
+Ability: Defiant
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Kowtow Cleave
+- Sucker Punch
+- Iron Head
+- Rock Tomb
+
+Rillaboom @ Sitrus Berry
+Ability: Grassy Surge
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Wood Hammer
+- Grassy Glide
+- Low Kick
+- Fake Out
+
+Volcarona @ Focus Sash
+Ability: Flame Body
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Heat Wave
+- Tailwind
+- Rage Powder
+- Protect
+
+Basculegion @ Choice Scarf
+Ability: Adaptability
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Wave Crash
+- Aqua Jet
+- Last Respects
+- Flip Turn
+
+Garchomp @ Life Orb
+Ability: Rough Skin
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Dragon Claw
+- Stomping Tantrum
+- Rock Slide
+- Protect
+
+Gardevoir @ Gardevoirite
+Ability: Trace
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Hyper Voice
+- Psychic
+- Mystical Fire
+- Protect

@@ -1,0 +1,59 @@
+Sneasler @ White Herb
+Ability: Unburden
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Gunk Shot
+- Protect
+- Fake Out
+- Close Combat
+
+Incineroar @ Chople Berry
+Ability: Intimidate
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Flare Blitz
+- Fake Out
+- Parting Shot
+- Darkest Lariat
+
+Farigiraf @ Sitrus Berry
+Ability: Armor Tail
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Psychic
+- Protect
+- Helping Hand
+- Trick Room
+
+Garchomp @ Garchompite Z
+Ability: Rough Skin
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Draco Meteor
+- Power Gem
+- Flamethrower
+- Protect
+
+Primarina @ Life Orb
+Ability: Liquid Voice
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Moonblast
+- Hyper Voice
+- Dazzling Gleam
+- Protect
+
+Torkoal @ Charcoal
+Ability: Drought
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Eruption
+- Earth Power
+- Weather Ball
+- Protect

@@ -1,0 +1,59 @@
+Salamence @ Salamencite
+Ability: Intimidate
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Protect
+- Draco Meteor
+- Flamethrower
+- Hyper Voice
+
+Tyranitar @ Tyranitarite
+Ability: Sand Stream
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Protect
+- Rock Slide
+- Low Kick
+- Knock Off
+
+Indeedee @ Choice Scarf
+Ability: Psychic Surge
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SpA / 32 Spe
+- Expanding Force
+- Mystical Fire
+- Trick
+- Protect
+
+Excadrill @ Focus Sash
+Ability: Sand Rush
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Protect
+- High Horsepower
+- Iron Head
+- Rock Slide
+
+Sneasler @ White Herb
+Ability: Unburden
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Protect
+- Close Combat
+- Dire Claw
+- Coaching
+
+Corviknight @ Psychic Seed
+Ability: Mirror Armor
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 Atk / 32 Spe
+- Roost
+- Bulk Up
+- Power Trip
+- Brave Bird

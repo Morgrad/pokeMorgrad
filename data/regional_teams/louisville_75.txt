@@ -1,0 +1,59 @@
+Talonflame @ Life Orb
+Ability: Gale Wings
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Protect
+- Brave Bird
+- Flare Blitz
+- Tailwind
+
+Kommo-o @ Leftovers
+Ability: Soundproof
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Clanging Scales
+- Aura Sphere
+- Clangorous Soul
+
+Indeedee-F @ Rocky Helmet
+Ability: Psychic Surge
+Level: 50
+Calm Nature
+EVs: 32 HP / 20 DEF / 14 SPD
+- Imprison
+- Helping Hand
+- Trick Room
+- Follow Me
+
+Blastoise @ Blastoisinite
+Ability: Rain Dish
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Water Spout
+- Terrain Pulse
+- Shell Smash
+
+Maushold @ Wide Lens
+Ability: Technician
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Protect
+- Population Bomb
+- Feint
+- Follow Me
+
+Delphox @ Delphoxite
+Ability: Blaze
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Protect
+- Heat Wave
+- Expanding Force
+- Nasty Plot

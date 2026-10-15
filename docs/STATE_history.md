@@ -728,3 +728,40 @@ without 5-seed confirmation. Restored from `bc_v5_best_move.pt`. New rule
 added to STATE.md §12: never overwrite `bc_best.pt` until the new model wins
 5-seed pilot eval by >3 pts.
 
+
+## Day 6 — 2026-10-14 — Parallel architecture + Louisville pool + val-overfit
+
+**Two big things landed today.**
+
+**1. Parallel architecture.** Serial GA was CPU-bound on one Python event
+loop (110% CPU = 1 core maxed while 15 idle). Diagnosed via `top` under
+load, confirmed by a 3-process throughput test at 2.78x aggregate. New
+`run/ga_parallel.sh` + `run/ga_island.py` spawn one process per island on
+its own Showdown port. `SHOWDOWN_PORT` env var patched into `battle.py`
+and `ga_core.py` for port routing. 2.5h parallel run reached 130-148 gens
+per island vs serial's ~30-50.
+
+**2. Pool extended + val-selection overfit diagnosed.** Scraped 145
+Louisville teams (5th tournament); normalized form-species names; fixed
+one `Held Item:` artifact. Pool now 545 teams, regenerated split at
+445/100. Island C (fully unconstrained) scored 71.6% on the new holdout,
++15.8 over baseline, CIs disjoint. Islands A/B (Umbreon slot 0) tied with
+baseline — Umbreon lock caps them. Val best scores overfit held-out by
+15-27 pts (30-team val slice sigma ~ 9 pts, selecting max-of-1300 draws).
+This contradicts the Oct-13 finding that train overfits more than val.
+
+**Dual-champion patch.** Write both val-selected and train-selected
+champions so the next run settles the selection-rule question empirically.
+
+**VGC noise filter.** `battle.py` suppresses benign poke_env CRITICAL
+messages ("You cannot reject open team sheets...").
+
+**Files touched:** `run/ga_parallel.sh`, `run/ga_island.py`,
+`src/battle.py` (SHOWDOWN_PORT + filter), `src/ga_core.py` (SHOWDOWN_PORT
++ dual champion), `tools/scrape_louisville.py`,
+`tools/normalize_louisville.py`, `tools/regenerate_split.py`,
+`tools/throughput_test.py`, `tools/parallel_throughput_test.py`,
+`data/pool_split.json`, `data/regional_teams/louisville_*.txt` (145 new).
+
+**Overnight run launched:** `bash run/ga_parallel.sh 2.5 p2`. Eval on
+`--opponents heldout` with the new 100-team holdout.

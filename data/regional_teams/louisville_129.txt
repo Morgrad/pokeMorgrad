@@ -1,0 +1,59 @@
+Indeedee-F @ Rocky Helmet
+Ability: Psychic Surge
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Follow Me
+- Trick Room
+- Psychic
+- Helping Hand
+
+Venusaur @ Focus Sash
+Ability: Chlorophyll
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Sleep Powder
+- Leaf Storm
+- Sludge Bomb
+- Earth Power
+
+Annihilape @ Choice Scarf
+Ability: Defiant
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Shadow Claw
+- Close Combat
+- Rock Tomb
+- U-turn
+
+Torkoal @ Charcoal
+Ability: Drought
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Eruption
+- Protect
+- Weather Ball
+- Helping Hand
+
+Meowstic-F @ Meowsticite
+Ability: Competitive
+Level: 50
+Modest Nature
+EVs: 2 HP / 32 SPA / 32 SPE
+- Fake Out
+- Expanding Force
+- Protect
+- Thunderbolt
+
+Blaziken @ Blazikenite
+Ability: Speed Boost
+Level: 50
+Jolly Nature
+EVs: 2 HP / 32 ATK / 32 SPE
+- Close Combat
+- Flare Blitz
+- Rock Slide
+- Detect

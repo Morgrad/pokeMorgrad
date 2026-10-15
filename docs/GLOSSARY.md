@@ -96,7 +96,7 @@ and is not here, add it.
 | Diversity floor | Minimum unique-species count in an island |
 | Immigrant | Freshly random genome, injected to break convergence |
 | Fitness | Win rate against a sampled opponent pool |
-| Pool | Opponent team set (the 400 top-cut teams) |
+| Pool | Opponent team set (the 545 top-cut teams) |
 | Train pool | 270 teams sampled for fitness (of the 300-team split) |
 | Validation slice | 30 teams held back from fitness; used for champion selection |
 | Held-out pool | 100 teams never seen during GA; final eval only |
@@ -200,7 +200,7 @@ and is not here, add it.
 | data/pool_split.json | Train/holdout split (300/100), basenames |
 | data/meta_items.json | Item frequency per species from tournament usage |
 | data/species_move_priors.json | Top moves by usage per species |
-| data/regional_teams/ | 400 top-cut teams |
+| data/regional_teams/ | 545 top-cut teams (Baltimore, Brisbane, Frankfurt, Recife, Louisville) |
 | data/showdown_replays/ | Scraped replays (gitignored, regenerable) |
 | data/training_data.jsonl | Parsed decisions (gitignored, regenerable) |
 | data/training_data_heuristic.jsonl | Heuristic-imitation rows (gitignored) |
@@ -315,3 +315,19 @@ Add an entry when:
 - An ambiguity keeps causing confusion
 
 Keep entries terse. One line each where possible.
+
+---
+
+## 16. Parallel architecture (2026-10-14)
+
+| Term | Meaning |
+|---|---|
+| Parallel GA | Three processes, three islands, three Showdown instances |
+| Island process | One `python -m run.ga_island` invocation, drives one island |
+| SHOWDOWN_PORT | Env var; routes a process to its own Showdown instance |
+| Val champion | Genome picked by val-slice score; `ga_<run>_island_<X>.txt` |
+| Train champion | Genome picked by training fitness; `..._train.txt` suffix |
+| Ring migration | Cross-island genome exchange (serial mode only) |
+| Louisville | 5th tournament added to the pool 2026-10-14 (145 teams) |
+| Bridge eval | Re-evaluating old champions on the new holdout after a pool change |
+
