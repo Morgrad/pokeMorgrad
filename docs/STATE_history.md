@@ -890,3 +890,9 @@ Commit: 1462e9a test_pilots: same-team smart vs vanilla, 200 battles
 p4 C_train 69.6%, A_train 67.2% on real-EV holdout. p1 C drops 71.6->64.2. p3 B_train 66.4->64.8. Ranking completely flipped: p4 wins. Umbreon-free island (C) remains best. p1's high number was holdout-specific artifact. Infra: build_real_ev_holdout.py, scrape_vgcpastes strips Tera Type for future downloads.
 
 Commit: abab20c real-EV holdout + Tera strip: p4 champions top honest eval
+
+### 2026-10-15 16:59 — Structural fitness design
+
+Design doc for Path A structural fitness. 6 sub-scores: EV-role (0.25), ability (0.20), move-role (0.20), item-synergy (0.15), coverage (0.10), anti-synergy (0.10). Additive bonus/penalty to win rate, ALPHA=0.15. No code yet — Day 2 starts implementation.
+
+Commit: 17375b9 docs: structural fitness design (Path A)
