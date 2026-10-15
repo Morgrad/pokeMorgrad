@@ -908,3 +908,9 @@ Commit: 220cdd0 structural fitness: meta-data integration as open question
 Added §10 to structural fitness doc: four priors to build (EVs, abilities, natures, extended moves). Vocabulary + fitness signal are complements. Sequencing: priors first, then Path A, then p5-A vs p5-B test.
 
 Commit: c9669d9 docs: structural fitness §10 — vocabulary expansion
+
+### 2026-10-15 17:14 — Build + ability priors from VGCPastes
+
+264 species priors from 560 VGCPastes teams. Joint (evs, nature) tuples in species_build_priors.json; ability frequencies in species_ability_priors.json. Wiring into _random_mon deferred; design decision needed on role-filter + weight-cap.
+
+Commit: a271520 priors: species build (evs+nature) and ability frequencies from VGCPastes
