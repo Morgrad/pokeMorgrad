@@ -330,3 +330,82 @@ Fix (deferred to 2026-10-16):
 3. Patch _random_mon to look up (species, item) first.
 
 The three changes go together.
+
+## 12. Soft vs hard boundary (2026-10-15)
+
+Design principle restated after mega-form discussion: **as little
+hardcoding as possible.** The GA's value is finding what beats the meta,
+which requires that every legal genome remains reachable.
+
+### HARD (unavoidable — already enforced by legality gate)
+
+- Species exists in regmc_db
+- Item exists, species can hold it
+- Move exists, species can learn it
+- Species clause, item clause, format rules
+- Champions EV cap (0-32 per stat, total budget)
+
+No new hard constraints are added by structural fitness. Ever.
+
+### SOFT (priors, sampled and mutate-able)
+
+- Which build to sample per (species, item): sampled from
+  species_build_priors.json, weighted, capped at 25% per spread
+- Which ability to sample: sampled from species_ability_priors.json
+- Which moves to sample: sampled from species_move_priors.json (top-8)
+- Which item to sample: sampled from meta_items.json
+- Role of a genome: **inferred from the sampled build, not assigned by
+  species.** Two Garchomp genomes can have different roles if their
+  items/builds differ.
+
+Mutation can break any of these pairings freely:
+- `mutate_item` changes Garchompite Z → Rocky Helmet. Build becomes
+  incoherent. Structural fitness penalizes. GA decides whether to
+  revert, fix the spread, or push through.
+- `mutate_evs` can flip a spread from physical to special. Role of the
+  genome flips with it for downstream checks.
+- `mutate_ability` can swap Rough Skin for Sand Veil. Ability prior
+  penalty applies but the genome is still legal and playable.
+
+### SOFT PENALTY (structural fitness — never reject)
+
+- Item-build coherence
+- Ability-consistency with team context
+- Role-committed movesets (already in constraint stack as a soft rule)
+- Coverage, anti-synergy, EV-role match
+
+Every one of these is a weight in the fitness composite. None of them
+prevents a genome from existing, playing, or reproducing. If a genome
+with an unusual pairing wins enough battles to offset the penalties,
+it survives — which is exactly the discovery mechanism we want.
+
+### What this rules out (design decisions)
+
+- **No item-aware `_species_role`.** Role stays species-based for the
+  constraint stack's move filtering. Item-keyed roles only affect prior
+  sampling, not move pool filtering.
+- **No "Garchompite Z requires special build."** If the sampled build
+  is special, the genome is special. If mutation flips the spread to
+  physical, the pairing becomes incoherent and gets penalized, but the
+  genome still plays.
+- **No "Politoed requires Drizzle."** Drizzle is 99% of Politoed
+  abilities in the data. Prior samples it 99% of the time. Mutation can
+  still pick Water Absorb; the ability-consistency penalty applies.
+- **No hidden ceilings.** If the meta shifts and off-meta builds
+  become good, the GA can find them because mutation can produce them.
+
+### The Garchomp example, end to end
+
+1. Prior sampled for `Garchomp @ Garchompite Z` → mostly Modest
+   2/32/32. Genome created with special role.
+2. `mutate_item` swaps to `Garchompite` (regular Mega Garchomp X) →
+   physical build is now the prior for that item. Structural fitness
+   soft-penalizes incoherence if spread wasn't updated.
+3. `mutate_evs` on the physical build finds a Jolly 2/32/32 spread that
+   wins more battles against the real-EV pool. Genome survives.
+4. `mutate_item` swaps back to Rocky Helmet → regular Garchomp,
+   physical. Still coherent. Still playable.
+5. The GA now knows all three variants; fitness decides which stays.
+
+This is the design. Not "correct because we hardcoded it," but "correct
+because it wins."
