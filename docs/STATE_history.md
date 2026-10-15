@@ -920,3 +920,9 @@ Commit: a271520 priors: species build (evs+nature) and ability frequencies from 
 Garchomp species priors mix Mega Garchomp Z (special) with regular Garchomp (physical). Same issue for Charizard X/Y and other dual-mega species. Fix deferred: rebuild priors with (species, item) key, patch _species_role to use mega form stats, patch _random_mon item-first lookup. Three changes together.
 
 Commit: 2d98456 docs: structural fitness §11 — mega-form role divergence
+
+### 2026-10-15 17:19 — Structural fitness §12: soft/hard boundary
+
+Explicit design principle: hard only for legality (format rules), soft for priors and mutation, soft-penalty-only for structural fitness. No item-aware _species_role, no 'requires X build' hardcodes. Every legal genome reachable; discovery via mutation + fitness.
+
+Commit: 264a9b9 docs: §12 — soft/hard boundary, minimal hardcoding
