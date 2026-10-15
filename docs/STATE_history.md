@@ -842,3 +842,9 @@ Commit: 1378c82 smart_player: KO-aware heuristic pilot (unverified in battle)
 STATE §5.20 documents damage.py and smart_player.py. GLOSSARY §18 adds terms. OPERATIONS §21 adds log_milestone workflow.
 
 Commit: 2fd1a9d docs: add damage/smart_player/log_milestone to STATE §5.20, GLOSSARY §18, OPERATIONS §21
+
+### 2026-10-15 13:13 — SmartPlayer hardening
+
+Replaced super().choose_singles_move with SimpleHeuristicsPlayer.choose_singles_move (parent is @staticmethod, super() in classmethod was fragile). Removed duplicate Player imports. .bak now tracked.
+
+Commit: bb42e1d smart_player: fix super() calls; track pool_split.json.bak; log milestones
