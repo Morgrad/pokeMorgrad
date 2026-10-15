@@ -60,50 +60,55 @@ def evs_for_moves(moves):
     n_phys = cats.count("Physical")
     n_spec = cats.count("Special")
     if n_phys == 0 and n_spec == 0:
-        return "32 HP / 20 Def / 14 SpD", "Calm"
+        return "32 HP / 20 DEF / 14 SPD", "Calm"
     if n_phys > n_spec:
-        return "2 HP / 32 Atk / 32 Spe", "Jolly"
+        return "2 HP / 32 ATK / 32 SPE", "Jolly"
     if n_spec > n_phys:
-        return "2 HP / 32 SpA / 32 Spe", "Modest"
-    return "32 HP / 20 Def / 14 SpD", "Calm"
+        return "2 HP / 32 SPA / 32 SPE", "Modest"
+    return "32 HP / 20 DEF / 14 SPD", "Calm"
 
 
 def parse_team(container):
-    """Parse one .teamlist-pokemon container into a Showdown team string."""
-    mons = container.select(".pkmn")
+    """Parse a .teamlist-pokemon container into a Showdown team string.
+
+    Selectors match the actual Limitless VGC HTML: div.name / div.item /
+    div.ability / div.nature / ul.moves > li. Do not change these without
+    re-checking against the live page.
+    """
+    mons = container.find_all("div", class_="pkmn")
     if len(mons) != 6:
         return None
     lines = []
-    for mon in mons:
-        # Species + item
-        name_el = mon.select_one(".pkmn-name")
-        item_el = mon.select_one(".pkmn-item")
-        if not name_el:
-            return None
-        species = name_el.get_text(strip=True)
+    for p in mons:
+        name_el = p.find("div", class_="name")
+        item_el = p.find("div", class_="item")
+        abil_el = p.find("div", class_="ability")
+        nat_el = p.find("div", class_="nature")
+        moves_el = p.find("ul", class_="moves")
+
+        species = name_el.get_text(strip=True) if name_el else ""
         item = item_el.get_text(strip=True) if item_el else "Leftovers"
-        item = re.sub(r"^@\s*", "", item).strip() or "Leftovers"
+        ability = parse_ability(abil_el.get_text(strip=True)) if abil_el else "Pressure"
+        nature_listed = parse_nature(nat_el.get_text(strip=True)) if nat_el else None
+        moves = [li.get_text(strip=True) for li in moves_el.find_all("li")] if moves_el else []
 
-        ability_el = mon.select_one(".pkmn-ability")
-        ability = parse_ability(ability_el.get_text(strip=True)) if ability_el else ""
-
-        nature_el = mon.select_one(".pkmn-nature")
-        nature = parse_nature(nature_el.get_text(strip=True)) if nature_el else ""
-
-        moves = [m.get_text(strip=True) for m in mon.select(".pkmn-move")]
-        if not moves:
+        if not species or not moves:
             return None
 
-        evs, default_nature = evs_for_moves(moves)
+        # EVs are inferred from move categories. Nature is also inferred (not
+        # from Limitless) because EVs aren't published — using a shown nature
+        # with inferred EVs can give an internally inconsistent team.
+        ev_str, nat_infer = evs_for_moves(moves)
 
         lines.append(f"{species} @ {item}")
-        lines.append(f"Ability: {ability or 'Pressure'}")
+        lines.append(f"Ability: {ability}")
         lines.append("Level: 50")
-        lines.append(f"{nature or default_nature} Nature")
-        lines.append(f"EVs: {evs}")
-        for mv in moves[:4]:
+        lines.append(f"{nat_infer} Nature")
+        lines.append(f"EVs: {ev_str}")
+        for mv in moves:
             lines.append(f"- {mv}")
         lines.append("")
+
     return "\n".join(lines)
 
 
