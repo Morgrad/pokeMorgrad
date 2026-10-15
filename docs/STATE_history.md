@@ -902,3 +902,9 @@ Commit: 17375b9 docs: structural fitness design (Path A)
 Champions UI exposes ability/move/item/EV/teammate distributions. Design decision: soft priors only, never hard filters. Deferred to post-Path-A. p5-A vs p5-B experiment will settle it.
 
 Commit: 220cdd0 structural fitness: meta-data integration as open question
+
+### 2026-10-15 17:12 — Vocabulary expansion design (Path A §10)
+
+Added §10 to structural fitness doc: four priors to build (EVs, abilities, natures, extended moves). Vocabulary + fitness signal are complements. Sequencing: priors first, then Path A, then p5-A vs p5-B test.
+
+Commit: c9669d9 docs: structural fitness §10 — vocabulary expansion
