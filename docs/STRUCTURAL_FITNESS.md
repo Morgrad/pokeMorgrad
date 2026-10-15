@@ -227,3 +227,30 @@ Day 4: pick `ALPHA`, launch p5 with structural fitness on real-EV pool.
 4. **Where do weights live?** Module constants are simple but require a
    code edit to tune. Env vars are flexible but harder to reason about.
    Leaning module constants for v1, since we'll A/B via git branches.
+
+## 9. Meta-data integration (open question, 2026-10-15)
+
+The Champions UI exposes per-species aggregate stats: ability distribution,
+move frequency, item frequency, EV-spread distribution, nature distribution,
+teammate co-occurrence. This data is a candidate prior source.
+
+Design decision: **soft priors, never hard filters.**
+
+Rationale: hardcoding popular choices turns the GA into a meta sampler.
+The GA's value is finding teams that beat the meta, including counter-meta
+picks. Prior-driven initial populations + soft-probability mutations help
+convergence; hard constraints kill exploration.
+
+Proposed soft-prior additions (v2, after Path A):
+- `species_ability_priors.json` — ability frequencies by species
+- `species_teammate_priors.json` — top-N teammates by co-occurrence
+- `species_ev_priors.json` — real spread distributions (already proposed
+  2026-10-15, still not built)
+
+Test: p5-A (no priors) vs p5-B (soft priors), same pool, same holdout.
+Success = B's champion has higher structural score AND equal-or-better
+win rate. Failure = B's win rate drops (priors over-constrained search).
+
+Scraping status: unknown source. The UI shows data but scraping requires
+either an in-game capture pipeline or locating the public API (if one
+exists). Deferred pending Path A completion.
