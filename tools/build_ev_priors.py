@@ -1,20 +1,24 @@
-"""Build joint (evs, nature) priors from VGCPastes scraped teams.
+"""Build (species, item)-keyed build priors from VGCPastes scraped teams.
 
 Usage:
     python3 tools/build_ev_priors.py
 
-Reads /tmp/vgc_scraped/*.txt (Pokepaste format), aggregates per-species
-(evs, nature) tuples by frequency, writes data/species_build_priors.json.
+Outputs:
+    data/species_build_priors.json     keyed by "Species @ Item" AND "Species"
+    data/species_ability_priors.json   keyed by species only
 
-Also builds data/species_ability_priors.json from the same teams.
+Item-keyed entries are stored only when they have >= MIN_ITEM_COUNT teams.
+Species-only entries aggregate across all items and serve as fallback.
+Sampling logic (in ga_core._random_mon) should prefer item-keyed, fall
+back to species-only.
 
-Only includes (evs, nature) tuples that appear >= 2 times per species, to
-avoid a long tail of one-off noise. Species with only one unique build get
-that build as the sole prior.
+Format per entry (list, most-common-first):
+    {"evs": {"hp": 2, "atk": 32, "spe": 32}, "nature": "Jolly", "count": 47}
 """
 import json
+import re
 import sys
-from collections import Counter
+from collections import Counter, defaultdict
 from pathlib import Path
 
 REPO = Path.home() / "project"
@@ -25,12 +29,21 @@ SCRAPED = Path("/tmp/vgc_scraped")
 OUT_BUILD = REPO / "data" / "species_build_priors.json"
 OUT_ABILITY = REPO / "data" / "species_ability_priors.json"
 
-MIN_COUNT = 2
-MAX_SPREADS = 20
+MIN_COUNT_SPECIES = 2    # species-level entries need >= 2 occurrences
+MIN_COUNT_ITEM = 3       # (species, item) entries need >= 3 occurrences
+MAX_SPREADS = 25
+MAX_ABILITIES = 5
+
+
+def normalize_item(item):
+    """Normalize item name to what appears after '@'. Handles empty/None."""
+    if not item:
+        return ""
+    return item.strip()
 
 
 def ev_tuple(evs):
-    """Convert evs dict to a sorted hashable tuple of (stat, value)."""
+    """Convert evs dict to hashable tuple of (stat, value), zeros dropped."""
     if not evs:
         return ()
     return tuple(sorted((k, int(v)) for k, v in evs.items() if int(v) > 0))
@@ -40,10 +53,12 @@ def main():
     files = sorted(SCRAPED.glob("*.txt"))
     print(f"reading {len(files)} teams...")
 
-    build_counts = {}   # species -> Counter of (evs_tuple, nature)
-    ability_counts = {} # species -> Counter of ability
-    parsed = skipped = 0
+    # Counters keyed by species and by (species, item)
+    species_build = defaultdict(Counter)      # species -> Counter[(evs_tuple, nature)]
+    item_build = defaultdict(Counter)         # (species, item) -> Counter[...]
+    species_ability = defaultdict(Counter)    # species -> Counter[ability]
 
+    parsed = skipped = 0
     for i, f in enumerate(files):
         text = f.read_text()
         try:
@@ -55,62 +70,106 @@ def main():
             skipped += 1
             continue
         parsed += 1
+
         for m in mons:
-            sp = m.get("species", "").strip()
+            sp = (m.get("species") or "").strip()
             if not sp:
                 continue
+            item = normalize_item(m.get("item"))
             evs = m.get("evs") or {}
             nat = (m.get("nature") or "").strip() or "Neutral"
             abil = (m.get("ability") or "").strip()
+
             key = (ev_tuple(evs), nat)
-            build_counts.setdefault(sp, Counter())[key] += 1
+            species_build[sp][key] += 1
+            if item:
+                item_build[(sp, item)][key] += 1
             if abil:
-                ability_counts.setdefault(sp, Counter())[abil] += 1
+                species_ability[sp][abil] += 1
+
         if (i + 1) % 100 == 0:
             print(f"  {i+1}/{len(files)}  parsed={parsed} skipped={skipped}")
 
     print(f"\nparsed: {parsed}  skipped: {skipped}")
-    print(f"species with builds: {len(build_counts)}")
-    print(f"species with abilities: {len(ability_counts)}")
+    print(f"species with builds:    {len(species_build)}")
+    print(f"species+item with builds: {len(item_build)}")
+    print(f"species with abilities: {len(species_ability)}")
 
-    # --- build priors ---
+    # --- build output dict ---
     build_out = {}
-    for sp, counter in sorted(build_counts.items()):
+
+    # species-only entries
+    for sp, counter in sorted(species_build.items()):
         entries = []
         for (ev_tup, nat), count in counter.most_common(MAX_SPREADS):
-            if count < MIN_COUNT and entries:
+            if count < MIN_COUNT_SPECIES and entries:
                 break
-            evs = dict(ev_tup)
             entries.append({
-                "evs": evs,
+                "evs": dict(ev_tup),
                 "nature": nat,
                 "count": count,
             })
         if entries:
             build_out[sp] = entries
 
+    # item-keyed entries — only when well-populated
+    item_keys_added = 0
+    for (sp, item), counter in sorted(item_build.items()):
+        total = sum(counter.values())
+        if total < MIN_COUNT_ITEM:
+            continue
+        entries = []
+        for (ev_tup, nat), count in counter.most_common(MAX_SPREADS):
+            if count < MIN_COUNT_SPECIES and entries:
+                break
+            entries.append({
+                "evs": dict(ev_tup),
+                "nature": nat,
+                "count": count,
+            })
+        if entries:
+            key = f"{sp} @ {item}"
+            build_out[key] = entries
+            item_keys_added += 1
+
+    # ability priors (species-only)
     ability_out = {}
-    for sp, counter in sorted(ability_counts.items()):
-        entries = [{"ability": a, "count": c} for a, c in counter.most_common(10)]
+    for sp, counter in sorted(species_ability.items()):
+        entries = [{"ability": a, "count": c}
+                   for a, c in counter.most_common(MAX_ABILITIES)]
         if entries:
             ability_out[sp] = entries
 
     OUT_BUILD.write_text(json.dumps(build_out, indent=2))
     OUT_ABILITY.write_text(json.dumps(ability_out, indent=2))
 
-    print(f"\nwrote {OUT_BUILD} ({len(build_out)} species)")
+    print(f"\nwrote {OUT_BUILD}")
+    print(f"  species-only keys: {len(species_build)}")
+    print(f"  (species, item) keys added: {item_keys_added}")
+    print(f"  total keys: {len(build_out)}")
     print(f"wrote {OUT_ABILITY} ({len(ability_out)} species)")
 
     # --- sanity samples ---
-    for name in ["Garchomp", "Umbreon", "Incineroar", "Rillaboom", "Gholdengo"]:
-        if name in build_out:
-            print(f"\n{name}:")
-            for e in build_out[name][:3]:
+    def show(key):
+        if key in build_out:
+            print(f"\n{key}:")
+            for e in build_out[key][:5]:
                 evs = e["evs"]
-                ev_str = " / ".join(f"{v} {k.upper()}" for k, v in evs.items())
-                print(f"  {ev_str}  {e['nature']}  (n={e['count']})")
-        if name in ability_out:
-            print(f"  abilities: {[(e['ability'], e['count']) for e in ability_out[name][:3]]}")
+                ev_str = " / ".join(f"{v} {k.upper()}" for k, v in evs.items()) or "(no EVs)"
+                print(f"  {ev_str:40}  {e['nature']:10}  (n={e['count']})")
+        else:
+            print(f"\n{key}: NOT FOUND")
+
+    print("\n=== sanity ===")
+    show("Garchomp")
+    show("Garchomp @ Garchompite Z")
+    show("Garchomp @ Rocky Helmet")
+    show("Garchomp @ Choice Scarf")
+    show("Incineroar @ Sitrus Berry")
+    show("Umbreon @ Leftovers")
+
+    if "Garchomp" in ability_out:
+        print(f"\nGarchomp abilities: {ability_out['Garchomp']}")
 
 
 if __name__ == "__main__":
