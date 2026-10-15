@@ -148,10 +148,10 @@ class SmartPlayer(SimpleHeuristicsPlayer):
         frac = avg / opp_hp
         ko = 1.0 if max(rolls) >= opp_hp else 0.0
         acc = (move.accuracy / 100.0) if isinstance(move.accuracy, int) else 1.0
-        return (frac * cls.DAMAGE_WEIGHT + ko * cls.KO_BONUS) * acc
+        return (frac * SmartPlayer.DAMAGE_WEIGHT + ko * SmartPlayer.KO_BONUS) * acc
 
-    @classmethod
-    def choose_singles_move(cls, battle):
+    @staticmethod
+    def choose_singles_move(battle):
         """Override: score damaging moves with damage.py; fall back for
         status/setup/switch by calling the parent's decision path."""
         # If we can't identify the active mons, defer.
@@ -177,7 +177,7 @@ class SmartPlayer(SimpleHeuristicsPlayer):
         # Score every available damaging move with our estimator.
         scored = []
         for mv in battle.available_moves or []:
-            s = cls._score_move_with_damage(attacker, opponent, mv, battle)
+            s = SmartPlayer._score_move_with_damage(attacker, opponent, mv, battle)
             if s is not None:
                 scored.append((mv, s))
 
@@ -191,7 +191,7 @@ class SmartPlayer(SimpleHeuristicsPlayer):
         # parent_score is base_power-ish, in the hundreds. Normalize crudely.
         try:
             parent_move = order_move
-            parent_move_score = cls._score_move_with_damage(
+            parent_move_score = SmartPlayer._score_move_with_damage(
                 attacker, opponent, parent_move, battle
             )
         except Exception:
