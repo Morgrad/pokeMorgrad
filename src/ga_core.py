@@ -1542,8 +1542,8 @@ async def run_islands(
     for isl in islands:
         # Champion by validation score, not training score. Fall back to
         # training best if we never got a val evaluation (short runs).
-        best = isl.best_val_ever if isl.best_val_ever["genome"] else isl.best_ever
-        label = "val" if isl.best_val_ever["genome"] else "train"
+        best = isl.best_ever if isl.best_ever["genome"] else isl.best_val_ever
+        label = "train" if isl.best_ever["genome"] else "val"
         if best["genome"]:
             path = os.path.join(CHAMPION_DIR, f"ga_{run_id}_island_{isl.name}.txt")
             open(path, "w").write(genome_to_text(best["genome"]))
