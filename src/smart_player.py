@@ -158,14 +158,14 @@ class SmartPlayer(SimpleHeuristicsPlayer):
         attacker = getattr(battle, "active_pokemon", None)
         opponent = getattr(battle, "opponent_active_pokemon", None)
         if attacker is None or opponent is None:
-            return super().choose_singles_move(battle)
+            return SimpleHeuristicsPlayer.choose_singles_move(battle)
 
         # Only intervene for damaging move selection.
         # Let the parent handle switches, entry hazards, setup, Protect logic.
         try:
-            parent_result = super().choose_singles_move(battle)
+            parent_result = SimpleHeuristicsPlayer.choose_singles_move(battle)
         except Exception:
-            return super().choose_singles_move(battle)
+            return SimpleHeuristicsPlayer.choose_singles_move(battle)
 
         # If parent wanted to switch or use a non-damaging move, keep it.
         order, parent_score = parent_result
@@ -190,8 +190,6 @@ class SmartPlayer(SimpleHeuristicsPlayer):
         # Compare against parent's score heuristic scaled to our units:
         # parent_score is base_power-ish, in the hundreds. Normalize crudely.
         try:
-            from poke_env.player import Player
-            # Parent score for current move, in our units:
             parent_move = order_move
             parent_move_score = cls._score_move_with_damage(
                 attacker, opponent, parent_move, battle
@@ -201,8 +199,7 @@ class SmartPlayer(SimpleHeuristicsPlayer):
 
         if parent_move_score is None or best_score >= parent_move_score:
             try:
-                from poke_env.player import Player
-                return Player.create_order(best_move), best_score
+                return SimpleHeuristicsPlayer.create_order(best_move), best_score
             except Exception:
                 return parent_result
         return parent_result

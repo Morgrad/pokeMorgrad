@@ -818,3 +818,27 @@ Quality: 202/204 pass validate (99%). Dedup: 150 kept.
 Champions stat formula (EV points -> max(2*p-1,0)) + base damage. Verified vs Showdown on Garchomp/Incineroar/Rillaboom. No modifiers yet.
 
 Commit: d043744 src/damage.py: Champions stat + base damage formula; tools/log_milestone.py
+
+### 2026-10-15 13:04 — damage.py modifiers
+
+Added crit, burn, weather, terrain, stat stages, screens. Order matches Showdown battle-actions.modifyDamage. Verified: base/rain/-1Atk/+2Def/crit/burn/reflect all match expected values.
+
+Commit: ddb13ff src/damage.py: add crit, burn, weather, terrain, stat stages, screens
+
+### 2026-10-15 13:07 — poke_env API inspected
+
+Heuristic's move scoring uses base_stats (no EVs), no KO detection, no return-damage calc. Pokemon.damage_multiplier() exposed. smart_player target: KO-aware scoring with damage.py.
+
+Commit: ddb13ff src/damage.py: add crit, burn, weather, terrain, stat stages, screens
+
+### 2026-10-15 13:09 — SmartPlayer prototype
+
+Subclass of SimpleHeuristicsPlayer that scores damaging moves via damage.py (KO bonus, HP-fraction penalty, accuracy weighting). NOT yet verified in live battles. Falls back to parent on any exception.
+
+Commit: 1378c82 smart_player: KO-aware heuristic pilot (unverified in battle)
+
+### 2026-10-15 13:10 — docs: damage + smart_player + milestone workflow
+
+STATE §5.20 documents damage.py and smart_player.py. GLOSSARY §18 adds terms. OPERATIONS §21 adds log_milestone workflow.
+
+Commit: 2fd1a9d docs: add damage/smart_player/log_milestone to STATE §5.20, GLOSSARY §18, OPERATIONS §21
