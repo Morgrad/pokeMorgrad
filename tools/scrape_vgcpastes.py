@@ -245,6 +245,10 @@ def cmd_fetch_teams():
             text = fetch_url(f"https://pokepast.es/{paste_id}/raw", timeout=30)
             if len(text) < 100:
                 raise ValueError(f"response too short: {len(text)} bytes")
+            # Strip Tera Type lines — Reg M-C disables Tera, and malformed
+            # values ("None") crash poke_env's team loader.
+            import re as _re
+            text = _re.sub(r"^Tera Type:.*\n", "", text, flags=_re.MULTILINE)
             out.write_text(text)
             downloaded += 1
         except Exception as e:
