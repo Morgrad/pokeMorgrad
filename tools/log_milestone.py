@@ -34,3 +34,8 @@ Commit: {commit}
 h.write_text(h.read_text().rstrip() + entry)
 print(f"appended: {TITLE}")
 print(f"  commit: {commit}")
+
+# Auto-commit the doc change so it doesn't linger unstaged
+subprocess.run(["git", "add", str(h)], cwd=str(REPO), check=True)
+subprocess.run(["git", "commit", "-m", f"docs: log milestone — {TITLE}"],
+               cwd=str(REPO), check=True)
