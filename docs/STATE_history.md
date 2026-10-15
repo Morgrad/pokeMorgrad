@@ -872,3 +872,9 @@ Commit: 6bcfd32 smart_player: choose_singles_move -> @staticmethod (match parent
 Head-to-head smart vs vanilla heuristic on 8001. Compiles. Not yet run (would contend with p4 on Showdown). First run post-p4.
 
 Commit: 3ac7f30 docs: log milestone — SmartPlayer signature aligned
+
+### 2026-10-15 16:10 — p4 eval + holdout methodology gap
+
+p4 champion: 62.8% on inferred-EV holdout (best of p4). CANNOT be compared to p1 (71.6%) or p3 (66.4%) — different training pool EV quality. Real-EV holdout is the next infra piece.
+
+Commit: 41eb976 docs: log milestone — test_pilots.py drafted
