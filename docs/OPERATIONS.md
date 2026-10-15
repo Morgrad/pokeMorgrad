@@ -50,28 +50,43 @@ Red flags:
 
 ## 1. Pre-flight
 
+> **Path note (2026-10-15).** There are two launch paths:
+> - **Parallel (preferred, §17):** `bash run/ga_parallel.sh <hours> <run_id>`
+>   — bypasses preflight's `--launch` entirely. Run preflight *without*
+>   `--launch` for the data-integrity checks, then launch parallel directly.
+> - **Serial (legacy):** `GA_CONCURRENCY=8 python3 tools/preflight.py --launch`
+>   — chains `run/ga_overnight.sh` (run1 → run2 → eval, single process,
+>   ring migration enabled).
+>
+> Preflight's `--launch` only triggers the serial path. It does **not**
+> validate the parallel launch. For parallel runs, read §17.
+
 Before any overnight run:
 
     cd ~/project
     source ~/llm-env/bin/activate
     GA_CONCURRENCY=8 python3 tools/preflight.py
 
-Runs ten checks in about two seconds:
+Runs ~16 checks in about two seconds:
 1. Showdown reachable on :8000
 2. Showdown process alive
 3. Required data files present
 4. src/ and run/ have no uncommitted changes
 5. Constraint functions present in ga_core (silent-removal guard)
-6. Island spec configured in run/ga_run.py
+6. Island spec configured in run/ga_run.py (serial path; parallel specs
+   live in run/ga_island.py and are not checked here)
 7. Torch CUDA available
 8. output/champions writable
 9. Disk free above 5 GB
 10. GA_CONCURRENCY set to a non-default value
 
-Pass to launch. Fail means fix first. Use `--launch` to start the overnight
-chain only if all checks pass:
+**For a serial run:** pass `--launch` to chain `run/ga_overnight.sh`.
 
     GA_CONCURRENCY=8 python3 tools/preflight.py --launch
+
+**For a parallel run:** stop here. Launch with §17:
+
+    nohup bash run/ga_parallel.sh 2.5 p2 > /tmp/ga_p2_launch.log 2>&1 &
 
 ---
 

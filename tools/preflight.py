@@ -62,7 +62,7 @@ def main():
     r = subprocess.run(["git", "-C", str(ROOT), "diff", "--quiet",
                         "src/", "run/"], capture_output=True)
     all_ok &= check("src/ and run/ committed", r.returncode == 0,
-                    "uncommitted changes — commit or stash")
+                    "clean" if r.returncode == 0 else "uncommitted changes — commit or stash")
 
     # 5. Constraint code present in ga_core (silent regression check)
     gc = (ROOT / "src" / "ga_core.py").read_text()
