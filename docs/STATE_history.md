@@ -812,3 +812,9 @@ Quality: 202/204 pass validate (99%). Dedup: 150 kept.
 `tools/swap_pool.py`, `tools/regenerate_split.py`,
 `tools/scrape_tournament.py`, `tools/normalize_tournament.py`,
 `data/pool_split.json`, `data/regional_teams/vgc_*.txt`.
+
+### 2026-10-15 13:01 — damage.py base module
+
+Champions stat formula (EV points -> max(2*p-1,0)) + base damage. Verified vs Showdown on Garchomp/Incineroar/Rillaboom. No modifiers yet.
+
+Commit: d043744 src/damage.py: Champions stat + base damage formula; tools/log_milestone.py
