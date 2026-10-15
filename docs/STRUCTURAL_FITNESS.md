@@ -430,3 +430,28 @@ Plan:
 
 Primary data stays Limitless + VGCPastes. External sources are supplements,
 not dependencies.
+
+## 14. Prior cross-validation (2026-10-15)
+
+Compared our VGCPastes-derived Garchomp priors against pokebase.app's
+Champions Garchomp page.
+
+Match:
+- Abilities: Rough Skin 98.9% (us) vs 97% (them)
+- Top spread: 2 HP / 32 SpA / 32 Spe (both)
+- Natures: Modest/Adamant/Jolly/Timid (both, same set)
+- Items: Garchompite Z > Choice Scarf > Life Orb (both, same order)
+
+Diverge:
+- Moves: Pokebase has Power Gem at 52% and Dragon Claw at 39%; ours has
+  Dragon Pulse rank 3 and Power Gem rank 6.
+
+Diagnosis: source-population effect. VGCPastes = tournament top-cuts
+(Dragon Pulse for mirror/Dragon matchups). Pokebase = ladder/ranked
+(Power Gem for Thundurus/Flying). Both are real; the priors match the
+population our GA plays against (tournament teams).
+
+Action: keep current priors. Mutation can reach rank-6 moves.
+
+Revisit if: GA produces champions that fail specifically because of a
+missing move — then scrape pokebase for move rankings as a supplement.
