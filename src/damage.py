@@ -244,3 +244,81 @@ def ko_chance(attacker_species, attacker_evs, attacker_nature,
     if not rolls:
         return 0.0
     return sum(1 for r in rolls if r >= hp) / len(rolls)
+
+
+# ------------------------------------------------------------------------
+# Stats-based variant: use pre-computed final stats instead of EVs.
+# Needed for live battle-time scoring where poke_env has already calculated
+# stats under the correct format rules.
+# ------------------------------------------------------------------------
+
+def damage_rolls_from_stats(attacker_stats, attacker_types, attacker_boosts,
+                             move_name, defender_stats, defender_types,
+                             defender_boosts,
+                             is_doubles=True, include_spread=True,
+                             crit=False, burn=False,
+                             weather=None, terrain=None,
+                             attacker_grounded=True,
+                             attacker_ability=None,
+                             reflect=False, light_screen=False,
+                             aurora_veil=False):
+    """Same as damage_rolls but takes final stat ints, not EVs+nature.
+
+    attacker_stats / defender_stats: dict {hp, atk, def, spa, spd, spe}
+    attacker_types / defender_types: list of DB-cased strings ('Grass')
+    """
+    mv = DB.get_move(move_name)
+    if not mv or mv.get("category") == "Status":
+        return []
+    category = mv["category"].lower()
+    power = mv.get("basePower") or 0
+    if power <= 0:
+        return []
+
+    ab = attacker_boosts or {}
+    db_ = defender_boosts or {}
+
+    if category == "physical":
+        a = attacker_stats.get("atk", 0) * _stage_mult(ab.get("atk", 0))
+        d = defender_stats.get("def", 0) * _stage_mult(db_.get("def", 0))
+    else:
+        a = attacker_stats.get("spa", 0) * _stage_mult(ab.get("spa", 0))
+        d = defender_stats.get("spd", 0) * _stage_mult(db_.get("spd", 0))
+
+    if weather == "sand" and category == "special" and "Rock" in defender_types:
+        d *= 1.5
+    elif weather == "snow" and category == "physical" and "Ice" in defender_types:
+        d *= 1.5
+    if a == 0 or d == 0:
+        return []
+
+    base = ((2 * 50) // 5 + 2) * power * int(a) // int(d)
+    base = base // 50 + 2
+    if include_spread and _is_spread(mv, is_doubles):
+        base = int(base * 0.75)
+    wm = _weather_mult(weather, mv["type"])
+    if wm != 1.0:
+        base = int(base * wm)
+    if crit:
+        base = int(base * 1.5)
+
+    rolls = [int(base * (85 + i) / 100) for i in range(16)]
+
+    stab = 1.5 if mv["type"] in attacker_types else 1.0
+    eff = _effectiveness(mv["type"], defender_types)
+    burn_m = 0.5 if (burn and category == "physical" and attacker_ability != "Guts") else 1.0
+    terrain_m = _terrain_mult(terrain, mv["type"]) if attacker_grounded else 1.0
+    screen_m = _screen_mult(category, is_doubles, reflect, light_screen,
+                            aurora_veil, crit)
+
+    out = []
+    for r in rolls:
+        r = int(r * stab)
+        r = int(r * eff)
+        r = int(r * burn_m)
+        r = int(r * terrain_m)
+        r = int(r * screen_m)
+        if eff > 0 and r < 1:
+            r = 1
+        out.append(r)
+    return out
