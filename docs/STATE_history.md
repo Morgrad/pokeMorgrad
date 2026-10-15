@@ -884,3 +884,9 @@ Commit: 41eb976 docs: log milestone — test_pilots.py drafted
 200 same-team mirror battles on 8001: SmartPlayer wins 42.5% [35.9-49.4], vanilla 57.5%. Timing is valid (localhost Showdown is fast). Likely causes: KO bonus overtuned (+8), score scale mismatch with parent's cross-slot logic, no Protect/Fake-Out awareness. Not fixing tonight.
 
 Commit: 1462e9a test_pilots: same-team smart vs vanilla, 200 battles
+
+### 2026-10-15 16:44 — Real-EV holdout reveals p4 champions as the best
+
+p4 C_train 69.6%, A_train 67.2% on real-EV holdout. p1 C drops 71.6->64.2. p3 B_train 66.4->64.8. Ranking completely flipped: p4 wins. Umbreon-free island (C) remains best. p1's high number was holdout-specific artifact. Infra: build_real_ev_holdout.py, scrape_vgcpastes strips Tera Type for future downloads.
+
+Commit: abab20c real-EV holdout + Tera strip: p4 champions top honest eval
