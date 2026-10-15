@@ -35,7 +35,8 @@ from src import battle as B
 from src import regmc_db as DB
 from src import showdown_validator as SV
 
-FORMAT = "gen9championsvgc2026regmc"  # canonical format registry; battle.py callers pass this in
+FORMAT = "gen9championsvgc2026regmc"
+  # canonical format registry; battle.py callers pass this in
 
 # Repo root = parent of this file's directory (src/)
 _REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -791,11 +792,24 @@ def mutate_evs(mons, slot):
 
 
 def mutate_move(mons, slot):
-    """Swap one of the 4 moves for a random legal one not already known."""
+    """Swap one of the 4 moves for a random legal one not already known.
+
+    Excludes randomNormal moves (Outrage, Thrash, Uproar, ...) — the
+    heuristic pilot can't target them in doubles and Showdown rejects the
+    order, cascading into socket death and an infinite retry loop
+    (2026-10-15, run p2 island A). Matches the same filter in _random_mon.
+    """
     sp = _SPECIES_BY_NAME.get(mons[slot]["species"])
     if not sp:
         return mons
-    alts = [m for m in sp["moves"] if m not in mons[slot]["moves"]]
+    alts = []
+    for m in sp["moves"]:
+        if m in mons[slot]["moves"]:
+            continue
+        data = DB.get_move(m)
+        if data and data.get("target") == "randomNormal":
+            continue
+        alts.append(m)
     if alts:
         mons[slot]["moves"][random.randint(0, 3)] = random.choice(alts)
     return mons
