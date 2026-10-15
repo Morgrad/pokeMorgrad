@@ -455,3 +455,30 @@ Action: keep current priors. Mutation can reach rank-6 moves.
 
 Revisit if: GA produces champions that fail specifically because of a
 missing move — then scrape pokebase for move rankings as a supplement.
+
+## 15. Prior source mismatch (2026-10-15, discovered during diagnostic)
+
+Three prior files, two different sources:
+
+- species_move_priors.json     <- data/showdown_replays (5000 LADDER replays)
+- species_build_priors.json    <- /tmp/vgc_scraped (560 TOURNAMENT teams)
+- species_ability_priors.json  <- /tmp/vgc_scraped (same)
+
+Coverage gap: 145 species have build+ability priors but NO move priors.
+Those fall back to role-random move selection, exactly the Copycat-Rest
+failure mode the priors were supposed to eliminate.
+
+Divergences (e.g. Garchomp Dragon Pulse rank 3 in ours vs Dragon Claw
+rank 4 on Pokebase) may be ladder-vs-tournament effects, not bugs.
+
+Fix (tomorrow, Priority 1):
+- tools/build_move_priors.py, mirrors build_ev_priors.py
+- Rebuild move priors from /tmp/vgc_scraped (560 tournament teams)
+- Result: all three priors tournament-sourced, 145-species gap closes
+
+Then (Priority 2):
+- Scrape pokebase.app HTML for all legal species
+- Compare new move priors to pokebase (both tournament-sourced)
+- Fix real divergences, log expected ones
+
+Deferred: full species-by-species comparison until source mismatch fixed.
