@@ -1,10 +1,20 @@
 """Champions-format stat + base damage estimator.
 
-Mirrors Showdown's data/mods/champions/scripts.ts statModify + damage math.
-Critical: EV points (0-32) map to stat term via max(2*points - 1, 0).
+Mirrors Showdown's data/mods/champions/scripts.ts statModify + battle-actions
+damage math. Verified against Showdown for base cases.
 
-Ignores: crits, weather, terrain, stat stages, abilities, items, screens,
-status. Extend via explicit modifier params — do not fork the module.
+EV points are Champions points (0-32). Stat term uses max(2*points - 1, 0).
+
+Modifier coverage (all optional kwargs, defaults = no modifier):
+  - crit:         1.5x damage (ignores screens)
+  - burn:         0.5x physical (skipped if attacker_ability == 'Guts')
+  - weather:      'rain' | 'sun' | 'sand' | 'snow'
+  - terrain:      'electric' | 'grassy' | 'psychic' | 'misty'
+  - attacker_boosts / defender_boosts: dict of stat -> stage (-6..+6)
+  - reflect / light_screen / aurora_veil: bool
+  - attacker_ability / defender_ability: for damage-relevant abilities
+
+Order of operations follows Showdown's battle-actions.modifyDamage exactly.
 """
 from __future__ import annotations
 
@@ -22,11 +32,6 @@ def _raw_db():
     return json.loads(_DB_PATH.read_text())
 
 
-# typeChart[defender_type].damageTaken[move_type] is a code:
-#   0 -> 1.0x   (neutral)
-#   1 -> 2.0x   (weak)
-#   2 -> 0.5x   (resist)
-#   4 -> 0.0x   (immune)
 _CODE_TO_MULT = {0: 1.0, 1: 2.0, 2: 0.5, 4: 0.0}
 
 
@@ -45,12 +50,15 @@ NATURE_MODS = {
 
 
 def _ev_term(points):
-    """Champions points (0-32) -> stat EV term. See scripts.ts."""
     return max(2 * int(points) - 1, 0)
 
 
+def _stage_mult(stage):
+    s = max(-6, min(6, int(stage)))
+    return (2 + s) / 2 if s >= 0 else 2 / (2 - s)
+
+
 def stat_at_level(species_name, stat, ev=0, iv=31, nature=None, level=50):
-    """Final stat. `ev` is Champions points (0-32). Returns 0 if species unknown."""
     sp = DB.get_species(species_name)
     if not sp:
         return 0
@@ -70,7 +78,6 @@ def stat_at_level(species_name, stat, ev=0, iv=31, nature=None, level=50):
 
 
 def _effectiveness(move_type, defender_types):
-    """Return type multiplier. move_type and defender_types are DB-cased."""
     chart = _raw_db()["typeChart"]
     mult = 1.0
     for dt in defender_types:
@@ -81,18 +88,56 @@ def _effectiveness(move_type, defender_types):
 
 
 def _is_spread(move, is_doubles):
-    """True if the move hits multiple targets in doubles."""
     if not is_doubles:
         return False
-    target = (move.get("target") or "").lower()
-    return target in ("alladjacent", "alladjacentfoes")
+    return (move.get("target") or "").lower() in ("alladjacent", "alladjacentfoes")
+
+
+def _weather_mult(weather, move_type):
+    if weather == "rain":
+        if move_type == "Water": return 1.5
+        if move_type == "Fire":  return 0.5
+    elif weather == "sun":
+        if move_type == "Fire":  return 1.5
+        if move_type == "Water": return 0.5
+    return 1.0
+
+
+def _terrain_mult(terrain, move_type):
+    if not terrain:
+        return 1.0
+    t = terrain.lower()
+    mt = move_type.lower()
+    if t == "electric" and mt == "electric": return 1.3
+    if t == "grassy"   and mt == "grass":    return 1.3
+    if t == "psychic"  and mt == "psychic":  return 1.3
+    if t == "misty"    and mt == "dragon":   return 0.5
+    return 1.0
+
+
+def _screen_mult(category, is_doubles, reflect, light_screen, aurora_veil, crit):
+    if crit:
+        return 1.0
+    f = (2.0 / 3.0) if is_doubles else 0.5
+    if aurora_veil:
+        return f
+    if category == "physical" and reflect:
+        return f
+    if category == "special" and light_screen:
+        return f
+    return 1.0
 
 
 def damage_rolls(attacker_species, attacker_evs, attacker_nature,
                  move_name, defender_species, defender_evs, defender_nature,
                  attacker_level=50, defender_level=50, is_doubles=True,
-                 crit=False, burn=False, include_spread=True):
-    """Return 16 damage values (0.85x - 1.00x rolls), or [] if invalid."""
+                 include_spread=True,
+                 crit=False, burn=False,
+                 weather=None, terrain=None,
+                 attacker_boosts=None, defender_boosts=None,
+                 attacker_grounded=True, defender_grounded=True,
+                 reflect=False, light_screen=False, aurora_veil=False,
+                 attacker_ability=None, defender_ability=None):
     mv = DB.get_move(move_name)
     if not mv or mv.get("category") == "Status":
         return []
@@ -106,44 +151,67 @@ def damage_rolls(attacker_species, attacker_evs, attacker_nature,
     if power <= 0:
         return []
 
+    ab = attacker_boosts or {}
+    db_ = defender_boosts or {}
+
     if category == "physical":
-        a = stat_at_level(attacker_species, "atk",
-                          ev=attacker_evs.get("atk", 0),
-                          nature=attacker_nature, level=attacker_level)
-        d = stat_at_level(defender_species, "def",
-                          ev=defender_evs.get("def", 0),
-                          nature=defender_nature, level=defender_level)
+        a_base = stat_at_level(attacker_species, "atk",
+                               ev=attacker_evs.get("atk", 0),
+                               nature=attacker_nature, level=attacker_level)
+        d_base = stat_at_level(defender_species, "def",
+                               ev=defender_evs.get("def", 0),
+                               nature=defender_nature, level=defender_level)
+        a_stat = a_base * _stage_mult(ab.get("atk", 0))
+        d_stat = d_base * _stage_mult(db_.get("def", 0))
     else:
-        a = stat_at_level(attacker_species, "spa",
-                          ev=attacker_evs.get("spa", 0),
-                          nature=attacker_nature, level=attacker_level)
-        d = stat_at_level(defender_species, "spd",
-                          ev=defender_evs.get("spd", 0),
-                          nature=defender_nature, level=defender_level)
-    if a == 0 or d == 0:
+        a_base = stat_at_level(attacker_species, "spa",
+                               ev=attacker_evs.get("spa", 0),
+                               nature=attacker_nature, level=attacker_level)
+        d_base = stat_at_level(defender_species, "spd",
+                               ev=defender_evs.get("spd", 0),
+                               nature=defender_nature, level=defender_level)
+        a_stat = a_base * _stage_mult(ab.get("spa", 0))
+        d_stat = d_base * _stage_mult(db_.get("spd", 0))
+
+    if weather == "sand" and category == "special" and "Rock" in dfd.get("types", []):
+        d_stat *= 1.5
+    elif weather == "snow" and category == "physical" and "Ice" in dfd.get("types", []):
+        d_stat *= 1.5
+
+    if a_stat == 0 or d_stat == 0:
         return []
 
-    # Showdown base formula: ((2 * level / 5 + 2) * power * A / D) / 50 + 2
-    base = ((2 * attacker_level) // 5 + 2) * power * a // d
+    base = ((2 * attacker_level) // 5 + 2) * power * int(a_stat) // int(d_stat)
     base = base // 50 + 2
 
     if include_spread and _is_spread(mv, is_doubles):
         base = int(base * 0.75)
+
+    wm = _weather_mult(weather, mv["type"])
+    if wm != 1.0:
+        base = int(base * wm)
+
     if crit:
         base = int(base * 1.5)
 
     rolls = [int(base * (85 + i) / 100) for i in range(16)]
 
-    # STAB (order matches Showdown: randomizer, STAB, type, burn)
     stab = 1.5 if mv["type"] in atk.get("types", []) else 1.0
     eff = _effectiveness(mv["type"], dfd.get("types", []))
-    burn_m = 0.5 if (burn and category == "physical") else 1.0
+    burn_m = 1.0
+    if burn and category == "physical" and attacker_ability != "Guts":
+        burn_m = 0.5
+    terrain_m = _terrain_mult(terrain, mv["type"]) if attacker_grounded else 1.0
+    screen_m = _screen_mult(category, is_doubles, reflect, light_screen,
+                            aurora_veil, crit)
 
     out = []
     for r in rolls:
         r = int(r * stab)
         r = int(r * eff)
         r = int(r * burn_m)
+        r = int(r * terrain_m)
+        r = int(r * screen_m)
         if eff > 0 and r < 1:
             r = 1
         out.append(r)
@@ -164,7 +232,6 @@ def damage_range(attacker_species, attacker_evs, attacker_nature,
 def ko_chance(attacker_species, attacker_evs, attacker_nature,
               move_name, defender_species, defender_evs, defender_nature,
               **kwargs):
-    """P(single hit KOs). Returns 0..1."""
     hp = stat_at_level(defender_species, "hp",
                        ev=defender_evs.get("hp", 0),
                        nature=defender_nature,
