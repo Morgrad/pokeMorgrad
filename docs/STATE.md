@@ -685,6 +685,28 @@ across 500-battle evals. ±5 pts. Never trust single eval <3-pt gap.
 | p3  | 445 (mixed) | 66.4% (B train) |
 | p4  | 150 (real EVs) | pending |
 
+### 5.20 damage.py + smart_player.py (2026-10-15)
+
+**`src/damage.py`** — Champions-format stat + damage estimator.
+- Mirrors `data/mods/champions/scripts.ts` stat formula. EV points (0-32)
+  map to stat term via `max(2*points - 1, 0)`, NOT mainline `evs // 4`.
+- Base damage + modifiers: crit, burn, weather, terrain, stat stages,
+  screens. Order matches Showdown `battle-actions.modifyDamage`.
+- Verified against Showdown formula for base cases (Garchomp, Incineroar,
+  Rillaboom). Full modifier test passed.
+- Two variants: `damage_rolls` (from EVs+nature) and
+  `damage_rolls_from_stats` (from pre-computed stats, for battle-time use).
+
+**`src/smart_player.py`** — subclass of `SimpleHeuristicsPlayer`.
+- Overrides `choose_singles_move` to score damaging moves via damage.py.
+- Adds KO bonus (+8), HP-fraction weight (3x), accuracy weighting.
+- Falls back to parent behavior on any exception — pure upside.
+- **NOT verified in live battles yet.** First test: head-to-head vs
+  vanilla heuristic, N=200, tomorrow.
+
+**`tools/log_milestone.py`** — appends a dated entry to STATE_history.md
+after each commit. Usage: `python3 tools/log_milestone.py "Title" "Summary"`.
+
 ## 6. Environment
 
 - **Host:** Windows 11 + WSL2 (Fedora Linux 42)

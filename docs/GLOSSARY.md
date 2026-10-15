@@ -318,6 +318,25 @@ Keep entries terse. One line each where possible.
 
 ---
 
+## 18. Damage / pilot modules (2026-10-15)
+
+| Term | Meaning |
+|---|---|
+| Champions EV | Points 0-32 per stat; formula `max(2*p-1,0)`, not mainline evs//4 |
+| damage_rolls | 16-slot damage range (0.85x to 1.00x); primary API |
+| damage_rolls_from_stats | Variant for battle-time scoring using pre-computed stats |
+| Modifier order | base -> spread -> weather -> crit -> random -> STAB -> type -> burn -> screens |
+| Stat stage | -6..+6 multiplier; formula `(2+s)/2` or `2/(2-s)` |
+| SmartPlayer | Subclass of SimpleHeuristicsPlayer with KO-aware move scoring |
+| KO bonus | +8 in SmartPlayer's move score when the move can OHKO |
+| HP-fraction weight | 3x multiplier on expected damage as fraction of target HP |
+| log_milestone | `tools/log_milestone.py` — appends dated entry to STATE_history |
+| PseudoBattle | poke_env internal class exposing one slot of a doubles battle |
+
+
+
+---
+
 ## 17. Pool sources and swap (2026-10-15)
 
 | Term | Meaning |

@@ -657,6 +657,25 @@ Reads latest `output/checkpoints/v6/<run_id>_<X>/gen_NNNN.json`, writes
 
 ---
 
+---
+
+## 21. Milestone logging
+
+After each commit that changes what the code can do:
+
+    git add <files>
+    git commit -m "..."
+    python3 tools/log_milestone.py "Short title" "One-line summary"
+    git push
+
+Appends a dated entry to `docs/STATE_history.md`. Small commits that don't
+change behavior (docs fixes, formatting) can skip the log. Milestones
+(new module, fixed bug, changed default) should always log.
+
+Not for every commit — for every *checkpoint*.
+
+---
+
 ## 16. Daily and weekly patterns
 ---
 
