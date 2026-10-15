@@ -860,3 +860,9 @@ Commit: 6ac2826 tools/log_milestone: auto-commit the doc change
 Baseline species locked in all 6 slots (Umbreon, Salamence, Incineroar, Gholdengo, Rillaboom, Garchomp). Island A becomes species-frozen optimizer; only items/moves/EVs/natures evolve. Spec drafted in /tmp/p5_specs_draft.py. Ring migration into A becomes mostly a no-op — accepted.
 
 Commit: 49252c5 docs: log milestone — Island A seeding is soft, not anchored
+
+### 2026-10-15 13:28 — SmartPlayer signature aligned
+
+choose_singles_move changed from @classmethod to @staticmethod to match SimpleHeuristicsPlayer. Damage lookups confirmed working for Move.id format (lowercase).
+
+Commit: 6bcfd32 smart_player: choose_singles_move -> @staticmethod (match parent)
