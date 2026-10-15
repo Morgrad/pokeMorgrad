@@ -896,3 +896,9 @@ Commit: abab20c real-EV holdout + Tera strip: p4 champions top honest eval
 Design doc for Path A structural fitness. 6 sub-scores: EV-role (0.25), ability (0.20), move-role (0.20), item-synergy (0.15), coverage (0.10), anti-synergy (0.10). Additive bonus/penalty to win rate, ALPHA=0.15. No code yet — Day 2 starts implementation.
 
 Commit: 17375b9 docs: structural fitness design (Path A)
+
+### 2026-10-15 17:05 — Meta-data prior design question
+
+Champions UI exposes ability/move/item/EV/teammate distributions. Design decision: soft priors only, never hard filters. Deferred to post-Path-A. p5-A vs p5-B experiment will settle it.
+
+Commit: 220cdd0 structural fitness: meta-data integration as open question
