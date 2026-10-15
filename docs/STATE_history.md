@@ -944,3 +944,9 @@ Commit: 04b9c73 docs: §13 external data source audit (robots.txt)
 Abilities/spreads/natures/items match Pokebase within 2%. Moves diverge (Power Gem 52% on Pokebase vs rank 6 in ours) — source-population effect: tournament vs ladder. Priors kept as-is. Revisit if GA champions fail on specific missing moves.
 
 Commit: 743fe4e docs: §14 prior cross-validation vs pokebase.app
+
+### 2026-10-15 17:39 — Prior source mismatch found
+
+Move priors sourced from 5000 ladder replays; build/ability priors from 560 tournament teams. 145 species have build+ability but NO move priors — they fall back to random. Fix tomorrow: rebuild move priors from VGCPastes (tournament source), then pokebase comparison.
+
+Commit: 77176bc docs: §15 prior source mismatch — move priors from ladder, others from tournaments
