@@ -932,3 +932,9 @@ Commit: 264a9b9 docs: §12 — soft/hard boundary, minimal hardcoding
 species_build_priors.json now has 264 species-only keys + 160 (species, item) keys. Garchompite Z separates into Modest special spreads; Choice Scarf separates into Adamant physical. Rare items (<3 teams) fall back to species-only aggregate. 25% mass cap + structural fitness handle fallback incoherence.
 
 Commit: c26e6c9 priors: item-keyed build priors with species fallback
+
+### 2026-10-15 17:35 — External data source audit
+
+Robots.txt check: pokebase.app and pokemon-zone.com allow HTML (API blocked); pokechamdb.com explicitly disallows AI crawlers — respecting that and not scraping. Primary sources remain Limitless + VGCPastes. pokebase is a spot-check for priors; pokemon-zone win-rate data deferred until p5 results.
+
+Commit: 04b9c73 docs: §13 external data source audit (robots.txt)
