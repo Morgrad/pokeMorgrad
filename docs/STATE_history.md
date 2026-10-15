@@ -866,3 +866,9 @@ Commit: 49252c5 docs: log milestone — Island A seeding is soft, not anchored
 choose_singles_move changed from @classmethod to @staticmethod to match SimpleHeuristicsPlayer. Damage lookups confirmed working for Move.id format (lowercase).
 
 Commit: 6bcfd32 smart_player: choose_singles_move -> @staticmethod (match parent)
+
+### 2026-10-15 13:30 — test_pilots.py drafted
+
+Head-to-head smart vs vanilla heuristic on 8001. Compiles. Not yet run (would contend with p4 on Showdown). First run post-p4.
+
+Commit: 3ac7f30 docs: log milestone — SmartPlayer signature aligned
