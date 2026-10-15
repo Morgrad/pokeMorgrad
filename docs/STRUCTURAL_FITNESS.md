@@ -254,3 +254,61 @@ win rate. Failure = B's win rate drops (priors over-constrained search).
 Scraping status: unknown source. The UI shows data but scraping requires
 either an in-game capture pipeline or locating the public API (if one
 exists). Deferred pending Path A completion.
+
+## 10. Vocabulary expansion (added 2026-10-15)
+
+Fitness signal is necessary but not sufficient. The GA also needs raw
+material to search over. Today the "vocabulary" is artificially narrow:
+
+| Dimension | Current vocab | Real-world vocab | Gap |
+|-----------|---------------|------------------|-----|
+| EV spreads | 3 canonical (one per role) | ~15-25 per species | huge |
+| Natures | 1 per role | ~5-8 per species | moderate |
+| Moves | top-8 role-filtered | full pool + tech | moderate |
+| Items | meta_items.json weighted | already good | low |
+| Abilities | uniform random.choice(legal) | ~99/1 split | huge |
+
+Example (Garchomp, from Champions UI aggregate data):
+- Rough Skin 99.2%, Sand Veil 0.8%. Our code: 50/50 coin.
+- 5 real spreads, top ones at 28%, 23.5%, 5.7%. Our code: 1 spread.
+- Natures Timid 24.8%, Adamant 24%, Jolly 23.8%. Our code: Jolly only.
+
+**Vocabulary expansion = build priors from VGCPastes data we already have.**
+
+### Four new priors (Phase 1)
+
+1. `species_ev_priors.json` — top-N spreads per species, weighted by
+   frequency. Biggest single win.
+2. `species_ability_priors.json` — abilities weighted by usage.
+3. `species_nature_priors.json` — natures weighted by usage.
+4. Extended move pool — top-16 (currently top-8).
+
+### Why vocabulary alone doesn't help
+
+If the pilot can't distinguish a 2/32/0/0/0/32 Garchomp from a
+0/32/2/0/0/32 Garchomp (both hit the same hard with the heuristic's
+`base_stats` estimation), then adding more spreads is just noise. The
+GA has more to search over but no signal to prefer one.
+
+**Vocabulary expansion and Path A structural fitness are complements.**
+
+### Why vocabulary + signal does help
+
+Given a fitness signal that rewards coherent builds, the GA will:
+- Prefer species-canonical ability (Rough Skin over Sand Veil)
+- Prefer spreads that score well in the structural check
+- Explore off-canonical spreads when they win more
+
+Synergies emerge when the pilot can distinguish them. Drizzle + Swift
+Swim stops being a coin flip when ability_consistency rewards the pair.
+
+### Sequencing
+
+1. Build `species_ev_priors.json` (30 min, from existing data)
+2. Build `species_ability_priors.json` (30 min)
+3. Build `species_nature_priors.json` (15 min)
+4. Wire into `_random_mon` + `mutate_evs` + `mutate_ability` (1 day)
+5. Path A structural fitness (already designed)
+6. p5-A vs p5-B smoke test to validate
+
+Total ~3-4 days of work.
