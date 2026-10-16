@@ -6,7 +6,7 @@ Imports below are intra-repo (`src.*`) only. Dependency direction: arrows mean "
 ## Contents
 - [Dependency map](#dependency-map)
 - [Foundation: paths, regmc_db, showdown_validator](#paths-regmc_db-showdown_validator)
-- [Damage stack: damage, opp_model, speed_model, doubles_eval, doubles_pilot, smart_player](#damage-stack)
+- [Damage stack: damage, opp_model, speed_model, battle_memory, doubles_eval, doubles_pilot, smart_player](#damage-stack)
 - [GA: ga_core (by section), battle, eval, audit_before_launch](#ga_corepy)
 - [BC stack (torch): state_encoder, bc_model, bc_player, bc_train](#bc-stack-torch)
 - [Env vars read by src/](#env-vars-read-by-src)
@@ -17,13 +17,14 @@ paths  <-- regmc_db, state_encoder, showdown_validator, damage, opp_model, ga_co
 regmc_db <-- damage, ga_core, audit_before_launch
 damage <-- smart_player, doubles_eval, opp_model, speed_model, doubles_pilot
 opp_model <-- speed_model
+regmc_db <-- battle_memory   (move priority); battle_memory <-- (future) turn_sim, vgc_pilot
 opp_model, doubles_eval, smart_player <-- doubles_pilot
 battle <-- ga_core, eval            (battle lazily imports bc_player / doubles_pilot)
 state_encoder <-- bc_model <-- bc_player, bc_train ; state_encoder <-- bc_player, bc_train
 ga_core <-- eval, audit_before_launch ; ga_core <-- run/*
 ```
 - Torch-importing modules: `state_encoder` (torch at `state_encoder.py:30`), `bc_model`, `bc_player`, `bc_train`.
-- Torch-free: `paths, regmc_db, showdown_validator, damage, opp_model, speed_model, doubles_eval, smart_player, doubles_pilot, ga_core, battle, eval`.
+- Torch-free: `paths, regmc_db, showdown_validator, damage, opp_model, speed_model, battle_memory (poke_env only imported inside `repair_mega_forms`), doubles_eval, smart_player, doubles_pilot, ga_core, battle, eval`.
   `battle` reaches torch only through the lazy `BCPlayer` import (`battle.py:84-86`); `DoublesPilot` import is also lazy (`battle.py:87-89`).
 
 ---
@@ -82,8 +83,9 @@ Pure (torch-free, poke_env-free) probability that we move before an opposing mon
 - Conditions: `weather`, `conditions[(scope,name)]` (Trick Room, Tailwind, terrains, screens, hazards with layers) with start turn, source, setter, `history` (end_reason expired/replaced). `turns_left(cond, now)` -> (min, max) incl. the current turn; max assumes Rocks/Light Clay/Terrain Extender. Conditions set after the residual tick (turn 0, end-of-turn replacements) start next turn. Validated on 5006 real replays (Tailwind 4 turns in 930/930; Trick Room/terrain/weather 5 turns in >90%).
 - Action order: `actions[turn]`, `turn_order(turn)` (chosen switches then moves/cant; `[from]` copies except lockedmove are not actions; pivot/replacement/drag switches are `chosen=False`), `first_mover[turn]`, `speed_pairs(turn)` (consecutive same-priority moves on untainted turns; taint = After You, Quash, Quick Claw, Custap, Dancer, Instruct). Caller still discounts Trick Room and Speed abilities/items.
 - Protect: `protect_success_prob(ident)` = 1/3^chain for consecutive turns, fail resets (real replays: 67% fail on the 2nd use). Wide Guard/Quick Guard/Mat Block do NOT share the counter.
+- Open Team Sheets: `|showteam|` is parsed into `ots[side]` (species, item, ability, moves, nature, gender; EVs are hidden); `ots_set(ident_or_species, side)` matches by species (a Mega form matches its base, nicknames handled). Validated on real replays: every OTS item equals the stone that later Mega'd. Feeding it to `opp_model.opponent_builds(species, item=, moves_seen=, ability=)` collapses the archetype posterior to the real set (to be wired in `VGCPilot._foe`). poke_env only requests OTS when the Player is built with `accept_open_team_sheet=True`; ladder games rarely have it (1.5%), Bo3 forces it.
 - Speed flags: `speed_flags(ident)` -> item_consumed, status, slow_start, turns_since_switch_in (inputs for Unburden/Quick Feet/Slow Start; not yet used by speed_model).
-- Tests: `tests/test_battle_memory.py` (20: 16 synthetic/edge-case + 4 on real replays). Live check: 6 poke_env battles on :8000, memory turn == battle.turn and Mega flags agree with poke_env.
+- Tests: `tests/test_battle_memory.py` (22: 17 synthetic/edge-case + 5 on real replays). Live check: 6 poke_env battles on :8000, memory turn == battle.turn and Mega flags agree with poke_env.
 
 ### doubles_eval.py (171 lines)
 Pure-logic joint scoring of a PAIR of attack actions (numpy + damage; no poke_env).

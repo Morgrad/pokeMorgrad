@@ -10,4 +10,4 @@ Knowledge base: what each module, script, data file and setting does. For projec
 | [data-files.md](data-files.md) | `data/` and `output/` files: schema, generator, tracked or not |
 | [config-and-env.md](config-and-env.md) | Paths, venv, Showdown ports, environment variables, GA knobs |
 
-Conventions: `~/pokeMorgrad` is the repo, `~/venv-pokemorgad` the venv (`~/project` and `~/llm-env` are compatibility symlinks to be dropped later). Format is `gen9championsvgc2026regmc`: Mega Evolution legal, Terastallization not legal. Line numbers in these pages were measured on 2026-10-16 and drift as code changes.
+Conventions: `~/pokeMorgrad` is the repo, `~/venv-pokemorgad` the venv (`~/llm-env` was removed 2026-10-16; the `~/project` symlink to the repo is only kept while VS Code is still opened through it, delete it with `rm ~/project` after reopening at `~/pokeMorgrad`; nothing in the code uses either path). Format is `gen9championsvgc2026regmc`: Mega Evolution legal, Terastallization not legal. Line numbers in these pages were measured on 2026-10-16 and drift as code changes.

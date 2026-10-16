@@ -331,6 +331,15 @@ Keep entries terse. One line each where possible.
 | HP-fraction weight | 3x multiplier on expected damage as fraction of target HP |
 | log_milestone | `tools/log_milestone.py` — appends dated entry to STATE_history |
 | PseudoBattle | poke_env internal class exposing one slot of a doubles battle |
+| BattleMemory | `src/battle_memory.py`: per-battle state poke_env lacks (Mega form/stone, condition timers, action order, Protect chain, OTS), fed raw protocol lines |
+| BattleMemoryMixin | Mixin placed before the poke_env Player; feeds every line of a message block to BattleMemory before poke_env handles it |
+| Condition | One timed field/side effect (weather, terrain, Trick Room, Tailwind, screens, hazards) with start turn, source, setter, end turn/reason |
+| turns_left | `(min, max)` turns a Condition still lasts counting the current turn; max assumes Rocks / Light Clay / Terrain Extender |
+| Taint | Marker on a turn whose move order is not pure Speed (After You, Quash, Quick Claw, Custap, Dancer, Instruct) |
+| speed_pairs | Consecutive same-priority moves on untainted turns: the only valid Speed observations |
+| Stall chain | Consecutive successful Protect-family uses; next success chance 1/3^chain (Wide Guard/Quick Guard/Mat Block excluded) |
+| repair_mega_forms | Re-applies the exact Mega form from `\|detailschange\|` because poke_env maps Z stones to the wrong form |
+| OTS (Open Team Sheet) | Both teams' items/abilities/moves/natures shown at team preview; opt-in on ladder (~1.5% of games), forced in Bo3 |
 
 
 

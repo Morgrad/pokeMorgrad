@@ -187,6 +187,23 @@ def test_wide_guard_does_not_use_stall_counter():
     assert m.protect_success_prob("p1a: A") == 1.0
 
 
+# ---- Open Team Sheet -----------------------------------------------------------------
+OTS = ("|showteam|p1|Golisopod||Golisopite|EmergencyExit|LeechLife,CloseCombat,IronHead,Protect|Brave||F|||50|]"
+       "Indeedee-F||RockyHelmet|PsychicSurge|Psychic,FollowMe,TrickRoom,HelpingHand|Bold||F|||50|]"
+       "Kitty|Raichu|RaichuniteY|LightningRod|ZapCannon,Encore,Protect|Timid||F|||50|")
+
+
+def test_ots_parsed_and_matched_by_species_including_mega_and_nickname():
+    m = new(OTS)
+    g = m.ots_set("Golisopod-Mega", "p1")
+    assert g["item"] == "golisopite" and g["ability"] == "emergencyexit"
+    assert g["moves"] == ["leechlife", "closecombat", "ironhead", "protect"] and g["nature"] == "Brave"
+    assert m.ots_set("p1a: Whatever") is None
+    assert m.ots_set("Raichu-Mega-Y")["item"] == "raichuniteY".lower()
+    assert m.ots_set("Indeedee-F", "p1")["ability"] == "psychicsurge"
+    assert m.ots_set("Garchomp") is None and len(m.ots["p1"]) == 3
+
+
 # ---- speed-relevant flags --------------------------------------------------------------
 def test_speed_flags_item_status_slow_start():
     m = new("""
@@ -286,6 +303,25 @@ def test_real_replays_protect_fails_two_thirds_on_second_consecutive_use():
                 pend = True
             m.feed(p)
     assert tot > 100 and 0.58 < fails / tot < 0.75, (fails, tot)
+
+
+def test_real_replays_ots_item_matches_the_stone_that_later_megas():
+    seen = ok = 0
+    for f in _replays(5006):
+        text = open(f).read()
+        if "|showteam|" not in text:
+            continue
+        m = B.BattleMemory()
+        for line in json.load(open(f))["log"].split("\n"):
+            m.feed(line.split("|"))
+        assert set(m.ots) <= {"p1", "p2"} and all(len(v) == 6 for v in m.ots.values())
+        for r in m.mons.values():
+            if r.mega_stone:
+                st = m.ots_set(r.mega_form.rsplit("-Mega", 1)[0], r.side)
+                if st:
+                    seen += 1
+                    ok += st["item"] == B._id(r.mega_stone)
+    assert seen > 10 and ok == seen, (ok, seen)
 
 
 def test_real_replays_every_turn_has_a_consistent_first_mover():

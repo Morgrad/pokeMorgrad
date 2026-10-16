@@ -133,6 +133,7 @@ class BattleMemory:
         self._awaiting: Optional[Tuple[str, str]] = None
         self._megaed_now: set = set()
         self.repaired: set = set()
+        self.ots: Dict[str, List[dict]] = {}     # Open Team Sheet sets by side, when shown
 
     # ---- queries -------------------------------------------------------------------
     def mon(self, ident: str) -> Optional[MonRecord]:
@@ -140,6 +141,18 @@ class BattleMemory:
 
     def mon_by(self, side: str, name: str) -> Optional[MonRecord]:
         return self.mons.get((side, name))
+
+    def ots_set(self, ident_or_species: str, side: Optional[str] = None) -> Optional[dict]:
+        """Open Team Sheet set (species, item, ability, moves, nature, gender) for a mon,
+        matched by species (a Mega form matches its base). None if no sheet was shown."""
+        if side is None and ": " in ident_or_species:
+            side, ident_or_species = _side(ident_or_species), _key(ident_or_species)[1]
+        want = _id(ident_or_species)
+        for sd in ([side] if side else list(self.ots)):
+            for st in self.ots.get(sd, []):
+                if want == st["id"] or (want.startswith(st["id"]) and "mega" in want[len(st["id"]):]):
+                    return st
+        return None
 
     def mega_available(self, side: str) -> bool:
         return self.mega_used.get(side) is None
@@ -328,6 +341,19 @@ class BattleMemory:
     def _on_end(self, p):
         if len(p) > 3 and p[3] == "Slow Start":
             self._rec(p[2]).slow_start = False
+
+    def _on_showteam(self, p):
+        sets = []
+        for entry in "|".join(p[3:]).split("]"):
+            f = entry.split("|")
+            if len(f) < 6 or not (f[0] or f[1]):
+                continue
+            species = f[1] or f[0]
+            sets.append({"species": species, "id": _id(species), "item": _id(f[2]),
+                         "ability": _id(f[3]), "moves": [_id(x) for x in f[4].split(",") if x],
+                         "nature": f[5], "gender": f[7] if len(f) > 7 else ""})
+        if sets:
+            self.ots[p[2]] = sets
 
     def _on_activate(self, p):
         if len(p) > 3 and p[3] in TAINT_ACTIVATE:

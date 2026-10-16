@@ -1074,6 +1074,9 @@ Evolution legal, Terastallization NOT legal** (never model Tera).
 - Opponent speed = **option B, staged**: probability `p_faster(ours, theirs)` from
   the prior build mixture first; later reweight from observed move order.
 - Always discuss before changing code; update these md files at every checkpoint.
+- Goal is LADDER now, Bo3 later. The pilot is predictive by default (priors/archetypes from
+  `opp_model`); ONLY when the opponent accepted OTS (`BattleMemory.ots` non-empty) does it switch
+  to reacting to the real sets. OTS is never required for any feature to work.
 
 **Planned foundation (5 new files, pure/torch-free where possible).**
 1. `src/speed_model.py` — DONE (stage 1), see below.
@@ -1245,5 +1248,6 @@ Second pass (user-approved): deleted `ops/stop_all.sh`, `ops/stop_everything.sh`
 ### 5.25 battle_memory.py (2026-10-16, uncommitted until go-ahead)
 Done: `src/battle_memory.py` + `tests/test_battle_memory.py` (20 tests, in `tools/verify.sh`); wiki in src-modules.md. Event source decision: option A (override `_handle_battle_message`, feed all lines before `super()`); confirmed live (memory turn == battle.turn in 6 battles; request line position is irrelevant).
 Findings from 5006 real replays: (1) `|detailschange|` always immediately precedes `|-mega|`, so the Mega form (incl. Z) and the stone are exact once it happens; one Mega per side; 85% of sides Mega; the Mega happens on the mon's first opportunity in 79% of cases and on turn 1 in 52%. (2) poke_env applies the wrong form to Z-line Megas (Spe 92 instead of 151); repaired by `repair_mega_forms`. (3) Wide Guard/Quick Guard/Mat Block do not use the stall counter. (4) Weather/terrain set at turn 0 or after the residual tick start effectively next turn. (5) The format has Open Team Sheets (15/1000 ladder games used them; Bo3 forces them): when present, `|showteam|` gives full sets; not parsed yet.
+Follow-up (commit 'OTS parsing'): `|showteam|` parsing (`ots`, `ots_set`), 22 tests; user goal is LADDER now, Bo3 later (so OTS stays low priority, wired only when `VGCPilot` exists).
 Next: thin `VGCPilot` with Mega-now/save decision (action-rate counter), then `turn_sim.py` (single slot, then joint); wire speed_model to speed_flags/memory; speed stage 2 from `speed_pairs`.
-
+Cleanup: `~/llm-env` symlink removed (nothing references it). `~/project` symlink left in place only because VS Code is still opened through it; `rm ~/project` once reopened at `~/pokeMorgrad` (wiki README says so).
