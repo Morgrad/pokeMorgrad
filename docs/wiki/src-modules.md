@@ -62,7 +62,7 @@ Champions-format damage estimator mirroring Showdown's `data/mods/champions` mat
 ### opp_model.py (~155 lines)
 Torch-free, poke_env-free model of hidden opposing builds.
 - `Build` dataclass (weight, stats, max_hp); `opponent_builds(species)` returns up to `TOP_K=3` weighted builds from `data/species_build_priors.json`, else a generic spread (Adamant/Modest, 32 HP / 32 offense / 2 Spe).
-- `_prior_key` falls back to the base species for `-Mega` forms; `resolve_species`, `stats_for`, `ability_distribution(species, known_ability=None)` -> `{ability id: prob}` from `data/species_ability_priors.json` (revealed ability = certain, DB abilities uniform if no prior); `immunity_prob(species, move_type, ability)` is built on it with the `IMMUNITY_ABILITIES` map. LEVEL=50.
+- `_prior_key` falls back to the base species for `-Mega` forms; `resolve_species`, `stats_for`, `ability_distribution(species, known_ability=None)` -> `{ability id: prob}` (a Mega form returns its DB Mega ability with certainty, because the priors hold the paste/pre-Mega ability) from `data/species_ability_priors.json` (revealed ability = certain, DB abilities uniform if no prior); `immunity_prob(species, move_type, ability)` is built on it with the `IMMUNITY_ABILITIES` map. LEVEL=50.
 - Imports `damage`, `paths`. Importers: doubles_pilot, speed_model, tests.
 
 ### speed_model.py (~105 lines, new 2026-10-16, stage 1 of the new VGC pilot)
@@ -71,7 +71,7 @@ Pure (torch-free, poke_env-free) probability that we move before an opposing mon
 - `SpeedHypothesis(weight, stat, ability)`; `SpeedBelief(hypotheses)` (weights renormalized): `speeds(mods)`, `p_faster(our_speed, mods, trick_room)` (ties 0.5, Trick Room inverts, empty belief = 0.5).
 - `belief_for(species, known_ability=None)`: top-3 builds (opp_model) x ability distribution. Stage 1 = prior only. Stage 2 (not built): `observe_*` to reweight from observed move order.
 - Not modelled: Scarf on an unrevealed item, Unburden/Quick Feet/Slow Start, Mega speed changes, Quick Claw/Custap/Lagging Tail/Stall.
-- Tests: `tests/test_speed_model.py` (8).
+- Tests: `tests/test_speed_model.py` (9).
 
 ### doubles_eval.py (171 lines)
 Pure-logic joint scoring of a PAIR of attack actions (numpy + damage; no poke_env).

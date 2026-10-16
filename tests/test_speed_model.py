@@ -78,6 +78,11 @@ def test_known_ability_collapses_distribution():
     assert all(h.ability == "swiftswim" for h in S.belief_for("pelipper", "Swift Swim").hypotheses)
 
 
+def test_mega_form_gets_its_mega_ability_not_the_paste_ability():
+    assert O.ability_distribution("Golisopod-Mega") == {"toughclaws": 1.0}
+    assert O.ability_distribution("Golisopod") == {"emergencyexit": 1.0}
+
+
 if __name__ == "__main__":
     failed = 0
     for name, fn in sorted(globals().items()):

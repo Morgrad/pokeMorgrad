@@ -1103,6 +1103,30 @@ Then wiki pages for architecture/pilots, retire `SmartPlayer` (move
 single-slot version first, then joint; (c) mega as the first visible feature so it
 shows in replays; (d) speed stage 2 (observe move order).
 
+**Deferred speed-model items (tracked, user 2026-10-16: model them once the
+foundation is ready; do not drop).** All belong in `src/speed_model.py` and need
+`battle_memory.py` for the inputs:
+1. Choice Scarf on an *unrevealed* item: add a Scarf-weighted hypothesis branch
+   (prior from item usage; collapses to certain once the item is revealed or the
+   mon is seen locked into one move at Scarf-like speed).
+2. Unburden / Quick Feet / Slow Start: ability-conditioned Speed multipliers
+   (needs item-consumed, status and turns-since-switch-in tracking).
+3. Mega speed changes: use the Mega form's base Speed from the turn Mega happens
+   (our own: known; opponent: the stone is not revealed by poke_env after Mega).
+4. Quick Claw / Custap Berry / Lagging Tail / Stall: priority-bracket effects
+   (probabilistic ordering, not a Speed multiplier).
+Also stage 2 (reweight hypotheses from observed move order), listed under Next.
+
+**Prior-source recon (2026-10-16, read-only; raw pages in /tmp/scrape_recon).**
+- VGCPastes sheet (gid 2001945654): CSV export works; 647 teams, 560 with
+  pokepaste + EVs, tournament/rank/date columns. Larger than the 350-team corpus.
+- metavgc.com `/pokemon/<slug>`: server-rendered per-species usage tables (top
+  moves, nature+EV spreads, abilities, items, with %). Rich and cheap to parse.
+- pokebase.app: list pages give only "most used" and item lists; per-species
+  builds load via `/api`, which robots.txt disallows -> not scraped.
+- pokemon-zone.com: Cloudflare challenge (403) -> not scraped.
+- Conflicts vs `regmc_db.json` and the corpus were measured; see 5.23 (blended priors).
+
 **poke_env 0.16.1 facts relied on** (paths under site-packages/poke_env/battle/;
 `abs`=abstract_battle.py, `pk`=pokemon.py, `db`=double_battle.py):
 - `Pokemon.first_turn` (pk:1018) works for Fake Out eligibility. `protect_counter`
@@ -1123,3 +1147,49 @@ shows in replays; (d) speed stage 2 (observe move order).
   targets -1/-2 own slots, 1/2 opponent slots, 0 none. `DoubleBattleOrder.join_orders`
   rejects mega on both slots and the same switch twice; a hand-built order is not validated.
 - poke_env reads its own gen9 move data, not `data/regmc_db.json`.
+
+### 5.23 Blended priors: corpus + metavgc (2026-10-16)
+
+**Done.** Pipeline: `tools/build_ev_priors.py` -> `data/species_{build,ability}_priors.corpus.json`
+(corpus only, 139 species) + `tools/scrape_metavgc.py fetch|parse` -> `data/scraped/metavgc/species.json`
+(gitignored) -> `tools/blend_priors.py` -> the four files below. 4 tests in `tests/test_blend_priors.py`.
+- `species_build_priors.json`: 384 species (was 139), 501 keys incl. the pass-through `"Species @ Item"` keys.
+  Read by `src/opp_model.py` (species-only keys, top 3 by count).
+- `species_ability_priors.json`: 377 species.
+- `species_item_priors.json`, `species_move_usage.json` (new, `[{item|move, pct}]` + `__other__` residual):
+  not consumed yet; the item shares are the input for the deferred unrevealed-Scarf modelling.
+- `species_move_priors.json` (BC pilot ladder mask) is NOT touched.
+
+**Rule.** `count = corpus_count + N0 * metavgc_share`, N0=10 (metavgc is worth 10 teams, our corpus
+dominates where it has more evidence). Max 10 spreads per species. A metavgc ability table is used only
+if >= 90% of its mass is DB-legal; otherwise the corpus alone is kept.
+
+**Normalisation.** Natures canonicalised (casing, typos such as "Adament"); spreads with a stat > 32 or sum > 66
+dropped; misspelled Mega stones (Excadrillite, Feraligite, Crabominite) resolved to the species' own stone;
+moves matched by id against the DB movepool (5 dropped, canonical DB names written); the "Other" bucket
+becomes `__other__`.
+
+**Mega ability (user hypothesis, confirmed).** Pastes carry the pre-Mega ability (`Golisopod` + Golisopite),
+so priors hold Emergency Exit while a Mega'd mon in battle has Tough Claws. Fixed in
+`opp_model.ability_distribution`: a Mega form returns its DB Mega abilities uniformly. Test:
+`test_mega_form_gets_its_mega_ability_not_the_paste_ability`. `legal_abilities` accepts base-species abilities
+for Mega forms.
+
+**metavgc quirks.** Regional-form ability tables are wrong (base-slot mapping / merged forms): 12 species
+distrusted (Decidueye-Hisui, Lycanroc, Lycanroc-Midnight, Meowstic-F, Ninetales-Alola, Persian-Alola,
+Samurott-Hisui, Slowbro-Galar, the three Tauros-Paldea forms, Typhlosion-Hisui). Curly apostrophes in move names.
+
+**Known issues.**
+- Pre-Mega key mixes populations: corpus `Garchomp` includes Mega holders, the metavgc `garchomp` page is mostly
+  non-Mega builds (top build comes out Modest 48%). Better: weight the base and `-mega` pages by P(mega).
+- DB has an empty movepool for Vivillon-Fancy, Vivillon-Pokeball, Gourgeist-Super, Polteageist-Antique,
+  Sinistcha-Masterpiece (fall back to the base species' pool). Ogerpon `-tera` slugs ignored.
+- `build_ev_priors.py` still reads `/tmp/vgc_scraped`, which no longer exists, so it cannot regenerate the
+  corpus files until the scrape is redone (`tools/scrape_vgcpastes.py`). The `.corpus.json` files are the frozen input.
+- pokebase.app and pokemon-zone.com deliberately not scraped (robots / Cloudflare).
+
+**Rollback.** Git tag `pre-blended-priors` (`git checkout pre-blended-priors -- data/`) and file copies in
+`~/backups/pokeMorgrad-pre-blend-20261016/`. Or re-run `python tools/blend_priors.py`.
+
+**Next.** Refine the pre-Mega mixture; extend the corpus from the sheet's 647 teams; use the item priors for
+Scarf (5.22 deferred item 1); then `battle_memory.py` / `turn_sim.py`.

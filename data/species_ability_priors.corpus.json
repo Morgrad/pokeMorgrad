@@ -1,0 +1,1008 @@
+{
+  "Absol": [
+    {
+      "ability": "Justified",
+      "count": 2
+    },
+    {
+      "ability": "Pressure",
+      "count": 2
+    },
+    {
+      "ability": "Super Luck",
+      "count": 2
+    }
+  ],
+  "Absol-Mega-Z": [
+    {
+      "ability": "Sharpness",
+      "count": 2
+    },
+    {
+      "ability": "Justified",
+      "count": 1
+    },
+    {
+      "ability": "Pressure",
+      "count": 1
+    }
+  ],
+  "Aegislash": [
+    {
+      "ability": "Stance Change",
+      "count": 2
+    }
+  ],
+  "Aerodactyl": [
+    {
+      "ability": "Unnerve",
+      "count": 9
+    }
+  ],
+  "Alakazam": [
+    {
+      "ability": "Inner Focus",
+      "count": 1
+    }
+  ],
+  "Alcremie": [
+    {
+      "ability": "Sweet Veil",
+      "count": 2
+    }
+  ],
+  "Altaria": [
+    {
+      "ability": "Cloud Nine",
+      "count": 3
+    }
+  ],
+  "Annihilape": [
+    {
+      "ability": "Defiant",
+      "count": 12
+    }
+  ],
+  "Arcanine": [
+    {
+      "ability": "Intimidate",
+      "count": 1
+    }
+  ],
+  "Arcanine-Hisui": [
+    {
+      "ability": "Rock Head",
+      "count": 45
+    },
+    {
+      "ability": "Intimidate",
+      "count": 2
+    }
+  ],
+  "Archaludon": [
+    {
+      "ability": "Stamina",
+      "count": 66
+    },
+    {
+      "ability": "Sturdy",
+      "count": 2
+    }
+  ],
+  "Armarouge": [
+    {
+      "ability": "Flash Fire",
+      "count": 22
+    },
+    {
+      "ability": "Weak Armor",
+      "count": 3
+    }
+  ],
+  "Audino": [
+    {
+      "ability": "Healer",
+      "count": 1
+    }
+  ],
+  "Basculegion": [
+    {
+      "ability": "Adaptability",
+      "count": 64
+    }
+  ],
+  "Basculegion-F": [
+    {
+      "ability": "Swift Swim",
+      "count": 9
+    },
+    {
+      "ability": "Adaptability",
+      "count": 1
+    }
+  ],
+  "Baxcalibur": [
+    {
+      "ability": "Thermal Exchange",
+      "count": 6
+    },
+    {
+      "ability": "Ice Body",
+      "count": 1
+    }
+  ],
+  "Baxcalibur-Mega": [
+    {
+      "ability": "Thermal Exchange",
+      "count": 4
+    }
+  ],
+  "Blastoise": [
+    {
+      "ability": "Rain Dish",
+      "count": 3
+    }
+  ],
+  "Blastoise-Mega": [
+    {
+      "ability": "Mega Launcher",
+      "count": 2
+    },
+    {
+      "ability": "Torrent",
+      "count": 1
+    }
+  ],
+  "Blaziken": [
+    {
+      "ability": "Speed Boost",
+      "count": 2
+    }
+  ],
+  "Blaziken-Mega": [
+    {
+      "ability": "Speed Boost",
+      "count": 1
+    }
+  ],
+  "Camerupt": [
+    {
+      "ability": "Solid Rock",
+      "count": 6
+    }
+  ],
+  "Camerupt-Mega": [
+    {
+      "ability": "Solid Rock",
+      "count": 1
+    }
+  ],
+  "Ceruledge": [
+    {
+      "ability": "Flash Fire",
+      "count": 5
+    }
+  ],
+  "Charizard": [
+    {
+      "ability": "Blaze",
+      "count": 44
+    },
+    {
+      "ability": "Solar Power",
+      "count": 2
+    }
+  ],
+  "Charizard-Mega-Y": [
+    {
+      "ability": "Solar Power",
+      "count": 2
+    },
+    {
+      "ability": "Blaze",
+      "count": 2
+    },
+    {
+      "ability": "Drought",
+      "count": 2
+    }
+  ],
+  "Clefable": [
+    {
+      "ability": "Magic Guard",
+      "count": 1
+    }
+  ],
+  "Corviknight": [
+    {
+      "ability": "Mirror Armor",
+      "count": 6
+    }
+  ],
+  "Decidueye-Hisui": [
+    {
+      "ability": "Scrappy",
+      "count": 1
+    }
+  ],
+  "Delphox": [
+    {
+      "ability": "Blaze",
+      "count": 14
+    }
+  ],
+  "Dragapult": [
+    {
+      "ability": "Infiltrator",
+      "count": 6
+    },
+    {
+      "ability": "Clear Body",
+      "count": 5
+    },
+    {
+      "ability": "Cursed Body",
+      "count": 2
+    }
+  ],
+  "Dragonite": [
+    {
+      "ability": "Inner Focus",
+      "count": 9
+    },
+    {
+      "ability": "Multiscale",
+      "count": 7
+    }
+  ],
+  "Dragonite-Mega": [
+    {
+      "ability": "Multiscale",
+      "count": 1
+    }
+  ],
+  "Empoleon": [
+    {
+      "ability": "Competitive",
+      "count": 1
+    }
+  ],
+  "Espathra": [
+    {
+      "ability": "Speed Boost",
+      "count": 4
+    }
+  ],
+  "Excadrill": [
+    {
+      "ability": "Sand Rush",
+      "count": 25
+    },
+    {
+      "ability": "Mold Breaker",
+      "count": 1
+    }
+  ],
+  "Farigiraf": [
+    {
+      "ability": "Armor Tail",
+      "count": 48
+    }
+  ],
+  "Floette-Eternal": [
+    {
+      "ability": "Flower Veil",
+      "count": 46
+    },
+    {
+      "ability": "Symbiosis",
+      "count": 2
+    }
+  ],
+  "Floette-Mega": [
+    {
+      "ability": "Fairy Aura",
+      "count": 5
+    },
+    {
+      "ability": "Flower Veil",
+      "count": 3
+    }
+  ],
+  "Froslass": [
+    {
+      "ability": "Cursed Body",
+      "count": 18
+    },
+    {
+      "ability": "Snow Cloak",
+      "count": 1
+    }
+  ],
+  "Froslass-Mega": [
+    {
+      "ability": "Cursed Body",
+      "count": 2
+    },
+    {
+      "ability": "Snow Warning",
+      "count": 1
+    },
+    {
+      "ability": "Snow Cloak",
+      "count": 1
+    }
+  ],
+  "Garchomp": [
+    {
+      "ability": "Rough Skin",
+      "count": 75
+    }
+  ],
+  "Garchomp-Mega-Z": [
+    {
+      "ability": "Rough Skin",
+      "count": 4
+    },
+    {
+      "ability": "Levitate",
+      "count": 2
+    }
+  ],
+  "Gardevoir": [
+    {
+      "ability": "Trace",
+      "count": 8
+    },
+    {
+      "ability": "Synchronize",
+      "count": 6
+    },
+    {
+      "ability": "Telepathy",
+      "count": 3
+    }
+  ],
+  "Gardevoir-Mega": [
+    {
+      "ability": "Pixilate",
+      "count": 2
+    },
+    {
+      "ability": "Trace",
+      "count": 1
+    },
+    {
+      "ability": "Synchronize",
+      "count": 1
+    }
+  ],
+  "Gengar": [
+    {
+      "ability": "Cursed Body",
+      "count": 23
+    }
+  ],
+  "Gengar-Mega": [
+    {
+      "ability": "Shadow Tag",
+      "count": 2
+    }
+  ],
+  "Gholdengo": [
+    {
+      "ability": "Good as Gold",
+      "count": 80
+    }
+  ],
+  "Glalie": [
+    {
+      "ability": "Moody",
+      "count": 1
+    }
+  ],
+  "Glimmora": [
+    {
+      "ability": "Toxic Debris",
+      "count": 20
+    },
+    {
+      "ability": "Adaptability",
+      "count": 1
+    }
+  ],
+  "Glimmora-Mega": [
+    {
+      "ability": "Toxic Debris",
+      "count": 1
+    }
+  ],
+  "Golisopod": [
+    {
+      "ability": "Emergency Exit",
+      "count": 39
+    }
+  ],
+  "Golisopod-Mega": [
+    {
+      "ability": "Emergency Exit",
+      "count": 2
+    },
+    {
+      "ability": "Tough Claws",
+      "count": 1
+    }
+  ],
+  "Goodra-Hisui": [
+    {
+      "ability": "Shell Armor",
+      "count": 1
+    }
+  ],
+  "Grapploct": [
+    {
+      "ability": "Technician",
+      "count": 2
+    }
+  ],
+  "Grimmsnarl": [
+    {
+      "ability": "Prankster",
+      "count": 17
+    }
+  ],
+  "Gyarados": [
+    {
+      "ability": "Intimidate",
+      "count": 1
+    }
+  ],
+  "Hatterene": [
+    {
+      "ability": "Magic Bounce",
+      "count": 8
+    }
+  ],
+  "Hippowdon": [
+    {
+      "ability": "Sand Stream",
+      "count": 2
+    }
+  ],
+  "Hydreigon": [
+    {
+      "ability": "Levitate",
+      "count": 3
+    }
+  ],
+  "Incineroar": [
+    {
+      "ability": "Intimidate",
+      "count": 123
+    }
+  ],
+  "Indeedee": [
+    {
+      "ability": "Psychic Surge",
+      "count": 19
+    }
+  ],
+  "Indeedee-F": [
+    {
+      "ability": "Psychic Surge",
+      "count": 62
+    },
+    {
+      "ability": "Synchronize",
+      "count": 1
+    }
+  ],
+  "Kangaskhan": [
+    {
+      "ability": "Scrappy",
+      "count": 1
+    }
+  ],
+  "Kingambit": [
+    {
+      "ability": "Defiant",
+      "count": 103
+    }
+  ],
+  "Klefki": [
+    {
+      "ability": "Prankster",
+      "count": 1
+    }
+  ],
+  "Kommo-o": [
+    {
+      "ability": "Soundproof",
+      "count": 15
+    },
+    {
+      "ability": "Bulletproof",
+      "count": 3
+    }
+  ],
+  "Lopunny": [
+    {
+      "ability": "Limber",
+      "count": 1
+    }
+  ],
+  "Lucario": [
+    {
+      "ability": "Inner Focus",
+      "count": 10
+    }
+  ],
+  "Lycanroc-Dusk": [
+    {
+      "ability": "Tough Claws",
+      "count": 1
+    }
+  ],
+  "Mamoswine": [
+    {
+      "ability": "Oblivious",
+      "count": 1
+    }
+  ],
+  "Maushold-Four": [
+    {
+      "ability": "Technician",
+      "count": 2
+    }
+  ],
+  "Mawile": [
+    {
+      "ability": "Hyper Cutter",
+      "count": 3
+    },
+    {
+      "ability": "Intimidate",
+      "count": 1
+    }
+  ],
+  "Mawile-Mega": [
+    {
+      "ability": "Hyper Cutter",
+      "count": 1
+    }
+  ],
+  "Medicham": [
+    {
+      "ability": "Telepathy",
+      "count": 1
+    }
+  ],
+  "Meganium-Mega": [
+    {
+      "ability": "Mega Sol",
+      "count": 1
+    }
+  ],
+  "Meowscarada": [
+    {
+      "ability": "Protean",
+      "count": 1
+    },
+    {
+      "ability": "Overgrow",
+      "count": 1
+    }
+  ],
+  "Meowstic": [
+    {
+      "ability": "Prankster",
+      "count": 1
+    }
+  ],
+  "Meowstic-F": [
+    {
+      "ability": "Competitive",
+      "count": 1
+    }
+  ],
+  "Meowstic-F-Mega": [
+    {
+      "ability": "Competitive",
+      "count": 1
+    }
+  ],
+  "Metagross": [
+    {
+      "ability": "Clear Body",
+      "count": 12
+    }
+  ],
+  "Metagross-Mega": [
+    {
+      "ability": "Tough Claws",
+      "count": 1
+    },
+    {
+      "ability": "Clear Body",
+      "count": 1
+    }
+  ],
+  "Milotic": [
+    {
+      "ability": "Competitive",
+      "count": 39
+    }
+  ],
+  "Mimikyu": [
+    {
+      "ability": "Disguise",
+      "count": 2
+    }
+  ],
+  "Ninetales": [
+    {
+      "ability": "Drought",
+      "count": 2
+    }
+  ],
+  "Ninetales-Alola": [
+    {
+      "ability": "Snow Warning",
+      "count": 4
+    }
+  ],
+  "Noivern": [
+    {
+      "ability": "Infiltrator",
+      "count": 1
+    },
+    {
+      "ability": "Telepathy",
+      "count": 1
+    }
+  ],
+  "Overqwil": [
+    {
+      "ability": "Swift Swim",
+      "count": 1
+    },
+    {
+      "ability": "Intimidate",
+      "count": 1
+    }
+  ],
+  "Pawmot": [
+    {
+      "ability": "Iron Fist",
+      "count": 9
+    },
+    {
+      "ability": "Volt Absorb",
+      "count": 2
+    }
+  ],
+  "Pelipper": [
+    {
+      "ability": "Drizzle",
+      "count": 53
+    }
+  ],
+  "Pidgeot": [
+    {
+      "ability": "Big Pecks",
+      "count": 1
+    }
+  ],
+  "Politoed": [
+    {
+      "ability": "Drizzle",
+      "count": 20
+    }
+  ],
+  "Primarina": [
+    {
+      "ability": "Liquid Voice",
+      "count": 13
+    }
+  ],
+  "Pyroar": [
+    {
+      "ability": "Unnerve",
+      "count": 4
+    }
+  ],
+  "Pyroar-Mega": [
+    {
+      "ability": "Unnerve",
+      "count": 1
+    }
+  ],
+  "Raichu": [
+    {
+      "ability": "Lightning Rod",
+      "count": 67
+    }
+  ],
+  "Raichu-Mega-X": [
+    {
+      "ability": "Lightning Rod",
+      "count": 1
+    }
+  ],
+  "Raichu-Mega-Y": [
+    {
+      "ability": "No Guard",
+      "count": 3
+    },
+    {
+      "ability": "Lightning Rod",
+      "count": 1
+    }
+  ],
+  "Rillaboom": [
+    {
+      "ability": "Grassy Surge",
+      "count": 174
+    }
+  ],
+  "Rotom-Heat": [
+    {
+      "ability": "Levitate",
+      "count": 1
+    }
+  ],
+  "Rotom-Mow": [
+    {
+      "ability": "Levitate",
+      "count": 1
+    }
+  ],
+  "Rotom-Wash": [
+    {
+      "ability": "Levitate",
+      "count": 1
+    }
+  ],
+  "Sableye": [
+    {
+      "ability": "Prankster",
+      "count": 4
+    }
+  ],
+  "Salamence": [
+    {
+      "ability": "Intimidate",
+      "count": 76
+    }
+  ],
+  "Salamence-Mega": [
+    {
+      "ability": "Aerilate",
+      "count": 7
+    },
+    {
+      "ability": "Intimidate",
+      "count": 4
+    }
+  ],
+  "Sceptile": [
+    {
+      "ability": "Overgrow",
+      "count": 1
+    }
+  ],
+  "Scovillain": [
+    {
+      "ability": "Chlorophyll",
+      "count": 2
+    }
+  ],
+  "Scrafty": [
+    {
+      "ability": "Intimidate",
+      "count": 1
+    }
+  ],
+  "Sinistcha": [
+    {
+      "ability": "Hospitality",
+      "count": 18
+    }
+  ],
+  "Sinistcha-Masterpiece": [
+    {
+      "ability": "Hospitality",
+      "count": 1
+    }
+  ],
+  "Sirfetch\u2019d": [
+    {
+      "ability": "Scrappy",
+      "count": 3
+    }
+  ],
+  "Sneasler": [
+    {
+      "ability": "Unburden",
+      "count": 124
+    },
+    {
+      "ability": "Poison Touch",
+      "count": 18
+    }
+  ],
+  "Snorlax": [
+    {
+      "ability": "Thick Fat",
+      "count": 2
+    }
+  ],
+  "Squawkabilly": [
+    {
+      "ability": "Intimidate",
+      "count": 1
+    }
+  ],
+  "Staraptor": [
+    {
+      "ability": "Intimidate",
+      "count": 21
+    },
+    {
+      "ability": "Reckless",
+      "count": 1
+    }
+  ],
+  "Staraptor-Mega": [
+    {
+      "ability": "Contrary",
+      "count": 1
+    }
+  ],
+  "Starmie": [
+    {
+      "ability": "Natural Cure",
+      "count": 3
+    }
+  ],
+  "Swampert": [
+    {
+      "ability": "Torrent",
+      "count": 9
+    },
+    {
+      "ability": "Damp",
+      "count": 4
+    }
+  ],
+  "Swampert-Mega": [
+    {
+      "ability": "Torrent",
+      "count": 2
+    },
+    {
+      "ability": "Swift Swim",
+      "count": 1
+    }
+  ],
+  "Sylveon": [
+    {
+      "ability": "Pixilate",
+      "count": 30
+    }
+  ],
+  "Talonflame": [
+    {
+      "ability": "Gale Wings",
+      "count": 8
+    }
+  ],
+  "Tauros-Paldea-Aqua": [
+    {
+      "ability": "Intimidate",
+      "count": 1
+    }
+  ],
+  "Thievul": [
+    {
+      "ability": "Unburden",
+      "count": 1
+    }
+  ],
+  "Tinkaton": [
+    {
+      "ability": "Mold Breaker",
+      "count": 1
+    }
+  ],
+  "Torkoal": [
+    {
+      "ability": "Drought",
+      "count": 14
+    }
+  ],
+  "Toxapex": [
+    {
+      "ability": "Regenerator",
+      "count": 3
+    }
+  ],
+  "Toxtricity": [
+    {
+      "ability": "Punk Rock",
+      "count": 1
+    }
+  ],
+  "Tsareena": [
+    {
+      "ability": "Queenly Majesty",
+      "count": 4
+    }
+  ],
+  "Typhlosion-Hisui": [
+    {
+      "ability": "Frisk",
+      "count": 1
+    }
+  ],
+  "Tyranitar": [
+    {
+      "ability": "Sand Stream",
+      "count": 25
+    }
+  ],
+  "Tyranitar-Mega": [
+    {
+      "ability": "Sand Stream",
+      "count": 3
+    }
+  ],
+  "Vanilluxe": [
+    {
+      "ability": "Snow Warning",
+      "count": 1
+    }
+  ],
+  "Venusaur": [
+    {
+      "ability": "Chlorophyll",
+      "count": 16
+    }
+  ],
+  "Vivillon": [
+    {
+      "ability": "Compound Eyes",
+      "count": 3
+    }
+  ],
+  "Volcarona": [
+    {
+      "ability": "Flame Body",
+      "count": 35
+    }
+  ],
+  "Watchog": [
+    {
+      "ability": "Analytic",
+      "count": 1
+    }
+  ],
+  "Whimsicott": [
+    {
+      "ability": "Prankster",
+      "count": 17
+    }
+  ],
+  "Zoroark": [
+    {
+      "ability": "Illusion",
+      "count": 1
+    }
+  ],
+  "Zoroark-Hisui": [
+    {
+      "ability": "Illusion",
+      "count": 2
+    }
+  ]
+}

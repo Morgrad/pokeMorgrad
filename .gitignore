@@ -7,6 +7,10 @@ data/*
 !data/species_move_priors.json
 !data/species_build_priors.json
 !data/species_ability_priors.json
+!data/species_build_priors.corpus.json
+!data/species_ability_priors.corpus.json
+!data/species_item_priors.json
+!data/species_move_usage.json
 !data/regmc_db.json
 !data/showdown_replays_meta/
 !data/regional_teams/

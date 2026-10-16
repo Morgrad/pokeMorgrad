@@ -4,8 +4,10 @@ Usage:
     python3 tools/build_ev_priors.py
 
 Outputs:
-    data/species_build_priors.json     keyed by "Species @ Item" AND "Species"
-    data/species_ability_priors.json   keyed by species only
+    data/species_build_priors.corpus.json     keyed by "Species @ Item" AND "Species"
+    data/species_ability_priors.corpus.json   keyed by species only
+(corpus-only counts; tools/blend_priors.py blends them with metavgc into the
+species_{build,ability}_priors.json files that src/opp_model.py reads)
 
 Item-keyed entries are stored only when they have >= MIN_ITEM_COUNT teams.
 Species-only entries aggregate across all items and serve as fallback.
@@ -26,8 +28,8 @@ sys.path.insert(0, str(REPO))
 from src import regmc_db as DB
 
 SCRAPED = Path("/tmp/vgc_scraped")
-OUT_BUILD = REPO / "data" / "species_build_priors.json"
-OUT_ABILITY = REPO / "data" / "species_ability_priors.json"
+OUT_BUILD = REPO / "data" / "species_build_priors.corpus.json"
+OUT_ABILITY = REPO / "data" / "species_ability_priors.corpus.json"
 
 MIN_COUNT_SPECIES = 2    # species-level entries need >= 2 occurrences
 MIN_COUNT_ITEM = 3       # (species, item) entries need >= 3 occurrences

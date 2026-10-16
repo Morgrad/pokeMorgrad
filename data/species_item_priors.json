@@ -1,0 +1,11458 @@
+{
+ "Abomasnow": [
+  {
+   "item": "Abomasite",
+   "pct": 87.8
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 3.25
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 3.25
+  },
+  {
+   "item": "Light Clay",
+   "pct": 2.44
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 0.81
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 0.81
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 0.81
+  },
+  {
+   "item": "Lum Berry",
+   "pct": 0.81
+  },
+  {
+   "item": "__other__",
+   "pct": 0.02
+  }
+ ],
+ "Abomasnow-Mega": [
+  {
+   "item": "Abomasite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Absol": [
+  {
+   "item": "Focus Sash",
+   "pct": 28.57
+  },
+  {
+   "item": "Absolite",
+   "pct": 28.57
+  },
+  {
+   "item": "Scope Lens",
+   "pct": 17.86
+  },
+  {
+   "item": "Life Orb",
+   "pct": 17.86
+  },
+  {
+   "item": "Muscle Band",
+   "pct": 3.57
+  },
+  {
+   "item": "Abomasite",
+   "pct": 3.57
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Absol-Mega": [
+  {
+   "item": "Absolite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Absol-Mega-Z": [
+  {
+   "item": "Absolite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Aegislash": [
+  {
+   "item": "Spell Tag",
+   "pct": 43.78
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 19.28
+  },
+  {
+   "item": "Leftovers",
+   "pct": 11.89
+  },
+  {
+   "item": "Life Orb",
+   "pct": 8.83
+  },
+  {
+   "item": "Colbur Berry",
+   "pct": 6.13
+  },
+  {
+   "item": "White Herb",
+   "pct": 2.7
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 2.16
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 2.16
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 1.62
+  },
+  {
+   "item": "Kasib Berry",
+   "pct": 1.44
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Aegislash-Blade": [
+  {
+   "item": "Spell Tag",
+   "pct": 43.78
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 19.28
+  },
+  {
+   "item": "Leftovers",
+   "pct": 11.89
+  },
+  {
+   "item": "Life Orb",
+   "pct": 8.83
+  },
+  {
+   "item": "Colbur Berry",
+   "pct": 6.13
+  },
+  {
+   "item": "White Herb",
+   "pct": 2.7
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 2.16
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 2.16
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 1.62
+  },
+  {
+   "item": "Kasib Berry",
+   "pct": 1.44
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Aerodactyl": [
+  {
+   "item": "Aerodactylite",
+   "pct": 63.02
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 35.25
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 0.5
+  },
+  {
+   "item": "King's Rock",
+   "pct": 0.24
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.21
+  },
+  {
+   "item": "Lum Berry",
+   "pct": 0.18
+  },
+  {
+   "item": "Sharp Beak",
+   "pct": 0.18
+  },
+  {
+   "item": "Life Orb",
+   "pct": 0.18
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 0.13
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 0.1
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Aerodactyl-Mega": [
+  {
+   "item": "Aerodactylite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Aggron": [
+  {
+   "item": "Aggronite",
+   "pct": 96.34
+  },
+  {
+   "item": "Focus Band",
+   "pct": 1.83
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.61
+  },
+  {
+   "item": "Life Orb",
+   "pct": 0.61
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.61
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Aggron-Mega": [
+  {
+   "item": "Aggronite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Alakazam": [
+  {
+   "item": "Alakazite",
+   "pct": 70.0
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 15.83
+  },
+  {
+   "item": "Life Orb",
+   "pct": 6.67
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 3.33
+  },
+  {
+   "item": "Twisted Spoon",
+   "pct": 2.5
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 0.83
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.83
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Alakazam-Mega": [
+  {
+   "item": "Alakazite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Alcremie": [
+  {
+   "item": "Sitrus Berry",
+   "pct": 34.25
+  },
+  {
+   "item": "Leftovers",
+   "pct": 13.7
+  },
+  {
+   "item": "Light Clay",
+   "pct": 13.7
+  },
+  {
+   "item": "Iron Ball",
+   "pct": 9.59
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 6.85
+  },
+  {
+   "item": "Babiri Berry",
+   "pct": 6.85
+  },
+  {
+   "item": "Kebia Berry",
+   "pct": 5.48
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 4.11
+  },
+  {
+   "item": "Fairy Feather",
+   "pct": 2.74
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 2.74
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Alcremie-Caramel-Swirl": [
+  {
+   "item": "Sitrus Berry",
+   "pct": 34.25
+  },
+  {
+   "item": "Leftovers",
+   "pct": 13.7
+  },
+  {
+   "item": "Light Clay",
+   "pct": 13.7
+  },
+  {
+   "item": "Iron Ball",
+   "pct": 9.59
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 6.85
+  },
+  {
+   "item": "Babiri Berry",
+   "pct": 6.85
+  },
+  {
+   "item": "Kebia Berry",
+   "pct": 5.48
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 4.11
+  },
+  {
+   "item": "Fairy Feather",
+   "pct": 2.74
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 2.74
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Alcremie-Lemon-Cream": [
+  {
+   "item": "Sitrus Berry",
+   "pct": 34.25
+  },
+  {
+   "item": "Leftovers",
+   "pct": 13.7
+  },
+  {
+   "item": "Light Clay",
+   "pct": 13.7
+  },
+  {
+   "item": "Iron Ball",
+   "pct": 9.59
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 6.85
+  },
+  {
+   "item": "Babiri Berry",
+   "pct": 6.85
+  },
+  {
+   "item": "Kebia Berry",
+   "pct": 5.48
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 4.11
+  },
+  {
+   "item": "Fairy Feather",
+   "pct": 2.74
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 2.74
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Alcremie-Matcha-Cream": [
+  {
+   "item": "Sitrus Berry",
+   "pct": 34.25
+  },
+  {
+   "item": "Leftovers",
+   "pct": 13.7
+  },
+  {
+   "item": "Light Clay",
+   "pct": 13.7
+  },
+  {
+   "item": "Iron Ball",
+   "pct": 9.59
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 6.85
+  },
+  {
+   "item": "Babiri Berry",
+   "pct": 6.85
+  },
+  {
+   "item": "Kebia Berry",
+   "pct": 5.48
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 4.11
+  },
+  {
+   "item": "Fairy Feather",
+   "pct": 2.74
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 2.74
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Alcremie-Mint-Cream": [
+  {
+   "item": "Sitrus Berry",
+   "pct": 34.25
+  },
+  {
+   "item": "Leftovers",
+   "pct": 13.7
+  },
+  {
+   "item": "Light Clay",
+   "pct": 13.7
+  },
+  {
+   "item": "Iron Ball",
+   "pct": 9.59
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 6.85
+  },
+  {
+   "item": "Babiri Berry",
+   "pct": 6.85
+  },
+  {
+   "item": "Kebia Berry",
+   "pct": 5.48
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 4.11
+  },
+  {
+   "item": "Fairy Feather",
+   "pct": 2.74
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 2.74
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Alcremie-Rainbow-Swirl": [
+  {
+   "item": "Sitrus Berry",
+   "pct": 34.25
+  },
+  {
+   "item": "Leftovers",
+   "pct": 13.7
+  },
+  {
+   "item": "Light Clay",
+   "pct": 13.7
+  },
+  {
+   "item": "Iron Ball",
+   "pct": 9.59
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 6.85
+  },
+  {
+   "item": "Babiri Berry",
+   "pct": 6.85
+  },
+  {
+   "item": "Kebia Berry",
+   "pct": 5.48
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 4.11
+  },
+  {
+   "item": "Fairy Feather",
+   "pct": 2.74
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 2.74
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Alcremie-Ruby-Cream": [
+  {
+   "item": "Sitrus Berry",
+   "pct": 34.25
+  },
+  {
+   "item": "Leftovers",
+   "pct": 13.7
+  },
+  {
+   "item": "Light Clay",
+   "pct": 13.7
+  },
+  {
+   "item": "Iron Ball",
+   "pct": 9.59
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 6.85
+  },
+  {
+   "item": "Babiri Berry",
+   "pct": 6.85
+  },
+  {
+   "item": "Kebia Berry",
+   "pct": 5.48
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 4.11
+  },
+  {
+   "item": "Fairy Feather",
+   "pct": 2.74
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 2.74
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Alcremie-Ruby-Swirl": [
+  {
+   "item": "Sitrus Berry",
+   "pct": 34.25
+  },
+  {
+   "item": "Leftovers",
+   "pct": 13.7
+  },
+  {
+   "item": "Light Clay",
+   "pct": 13.7
+  },
+  {
+   "item": "Iron Ball",
+   "pct": 9.59
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 6.85
+  },
+  {
+   "item": "Babiri Berry",
+   "pct": 6.85
+  },
+  {
+   "item": "Kebia Berry",
+   "pct": 5.48
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 4.11
+  },
+  {
+   "item": "Fairy Feather",
+   "pct": 2.74
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 2.74
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Altaria": [
+  {
+   "item": "Altarianite",
+   "pct": 45.41
+  },
+  {
+   "item": "Haban Berry",
+   "pct": 28.44
+  },
+  {
+   "item": "Leftovers",
+   "pct": 8.72
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 8.26
+  },
+  {
+   "item": "Yache Berry",
+   "pct": 3.67
+  },
+  {
+   "item": "Bright Powder",
+   "pct": 1.83
+  },
+  {
+   "item": "Roseli Berry",
+   "pct": 1.38
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 0.92
+  },
+  {
+   "item": "Wise Glasses",
+   "pct": 0.92
+  },
+  {
+   "item": "White Herb",
+   "pct": 0.46
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Altaria-Mega": [
+  {
+   "item": "Altarianite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Ampharos": [
+  {
+   "item": "Ampharosite",
+   "pct": 92.97
+  },
+  {
+   "item": "Shuca Berry",
+   "pct": 1.56
+  },
+  {
+   "item": "Life Orb",
+   "pct": 1.56
+  },
+  {
+   "item": "Magnet",
+   "pct": 1.56
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 0.78
+  },
+  {
+   "item": "Iron Ball",
+   "pct": 0.78
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.78
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Ampharos-Mega": [
+  {
+   "item": "Ampharosite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Annihilape": [
+  {
+   "item": "Choice Scarf",
+   "pct": 32.37
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 25.39
+  },
+  {
+   "item": "Leftovers",
+   "pct": 20.25
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 11.2
+  },
+  {
+   "item": "Life Orb",
+   "pct": 4.21
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 2.16
+  },
+  {
+   "item": "Roseli Berry",
+   "pct": 1.54
+  },
+  {
+   "item": "Psychic Seed",
+   "pct": 1.34
+  },
+  {
+   "item": "Kasib Berry",
+   "pct": 0.92
+  },
+  {
+   "item": "Lum Berry",
+   "pct": 0.62
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Appletun": [
+  {
+   "item": "Leftovers",
+   "pct": 26.09
+  },
+  {
+   "item": "Dragon Fang",
+   "pct": 21.74
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 17.39
+  },
+  {
+   "item": "Iron Ball",
+   "pct": 8.7
+  },
+  {
+   "item": "Miracle Seed",
+   "pct": 8.7
+  },
+  {
+   "item": "Big Root",
+   "pct": 4.35
+  },
+  {
+   "item": "Life Orb",
+   "pct": 4.35
+  },
+  {
+   "item": "Yache Berry",
+   "pct": 4.35
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 4.35
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Araquanid": [
+  {
+   "item": "Mystic Water",
+   "pct": 56.83
+  },
+  {
+   "item": "Leftovers",
+   "pct": 15.86
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 9.25
+  },
+  {
+   "item": "Life Orb",
+   "pct": 6.61
+  },
+  {
+   "item": "Coba Berry",
+   "pct": 3.08
+  },
+  {
+   "item": "Never-Melt Ice",
+   "pct": 2.64
+  },
+  {
+   "item": "Iron Ball",
+   "pct": 1.76
+  },
+  {
+   "item": "Big Root",
+   "pct": 1.76
+  },
+  {
+   "item": "White Herb",
+   "pct": 1.32
+  },
+  {
+   "item": "Charti Berry",
+   "pct": 0.88
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Arbok": [
+  {
+   "item": "Sitrus Berry",
+   "pct": 25.0
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 25.0
+  },
+  {
+   "item": "Life Orb",
+   "pct": 25.0
+  },
+  {
+   "item": "Leftovers",
+   "pct": 16.67
+  },
+  {
+   "item": "Hard Stone",
+   "pct": 8.33
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Arboliva": [
+  {
+   "item": "Sitrus Berry",
+   "pct": 30.0
+  },
+  {
+   "item": "Leftovers",
+   "pct": 25.0
+  },
+  {
+   "item": "Life Orb",
+   "pct": 10.0
+  },
+  {
+   "item": "Miracle Seed",
+   "pct": 10.0
+  },
+  {
+   "item": "Terrain Extender",
+   "pct": 10.0
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 5.0
+  },
+  {
+   "item": "Grassy Seed",
+   "pct": 5.0
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 5.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Arcanine": [
+  {
+   "item": "Sitrus Berry",
+   "pct": 60.15
+  },
+  {
+   "item": "Life Orb",
+   "pct": 9.02
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 6.77
+  },
+  {
+   "item": "Leftovers",
+   "pct": 6.02
+  },
+  {
+   "item": "Charcoal",
+   "pct": 4.51
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 3.76
+  },
+  {
+   "item": "Shuca Berry",
+   "pct": 3.01
+  },
+  {
+   "item": "Passho Berry",
+   "pct": 2.26
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 2.26
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 2.26
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Arcanine-Hisui": [
+  {
+   "item": "Focus Sash",
+   "pct": 97.61
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 1.04
+  },
+  {
+   "item": "Life Orb",
+   "pct": 0.62
+  },
+  {
+   "item": "Charcoal",
+   "pct": 0.21
+  },
+  {
+   "item": "King's Rock",
+   "pct": 0.1
+  },
+  {
+   "item": "White Herb",
+   "pct": 0.1
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.1
+  },
+  {
+   "item": "King's Rock",
+   "pct": 0.1
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.1
+  },
+  {
+   "item": "__other__",
+   "pct": 0.02
+  }
+ ],
+ "Archaludon": [
+  {
+   "item": "Leftovers",
+   "pct": 90.26
+  },
+  {
+   "item": "Chople Berry",
+   "pct": 3.31
+  },
+  {
+   "item": "White Herb",
+   "pct": 1.44
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 1.4
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 0.99
+  },
+  {
+   "item": "Life Orb",
+   "pct": 0.74
+  },
+  {
+   "item": "Shuca Berry",
+   "pct": 0.65
+  },
+  {
+   "item": "Magnet",
+   "pct": 0.58
+  },
+  {
+   "item": "Dragon Fang",
+   "pct": 0.34
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.29
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Ariados": [
+  {
+   "item": "Sitrus Berry",
+   "pct": 54.35
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 15.22
+  },
+  {
+   "item": "Leftovers",
+   "pct": 10.87
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 8.7
+  },
+  {
+   "item": "Scope Lens",
+   "pct": 4.35
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 2.17
+  },
+  {
+   "item": "Coba Berry",
+   "pct": 2.17
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 2.17
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Armarouge": [
+  {
+   "item": "Life Orb",
+   "pct": 48.16
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 25.97
+  },
+  {
+   "item": "Twisted Spoon",
+   "pct": 8.01
+  },
+  {
+   "item": "Colbur Berry",
+   "pct": 5.19
+  },
+  {
+   "item": "Psychic Seed",
+   "pct": 4.98
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 2.16
+  },
+  {
+   "item": "Charcoal",
+   "pct": 1.62
+  },
+  {
+   "item": "Kasib Berry",
+   "pct": 1.41
+  },
+  {
+   "item": "Leftovers",
+   "pct": 1.41
+  },
+  {
+   "item": "White Herb",
+   "pct": 1.08
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Aromatisse": [
+  {
+   "item": "Sitrus Berry",
+   "pct": 56.67
+  },
+  {
+   "item": "Fairy Feather",
+   "pct": 10.0
+  },
+  {
+   "item": "Babiri Berry",
+   "pct": 6.67
+  },
+  {
+   "item": "Iron Ball",
+   "pct": 6.67
+  },
+  {
+   "item": "King's Rock",
+   "pct": 3.33
+  },
+  {
+   "item": "White Herb",
+   "pct": 3.33
+  },
+  {
+   "item": "Bright Powder",
+   "pct": 3.33
+  },
+  {
+   "item": "Chesto Berry",
+   "pct": 3.33
+  },
+  {
+   "item": "Kebia Berry",
+   "pct": 3.33
+  },
+  {
+   "item": "Leftovers",
+   "pct": 3.33
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Audino": [
+  {
+   "item": "Audinite",
+   "pct": 60.42
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 18.75
+  },
+  {
+   "item": "Chople Berry",
+   "pct": 8.33
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 4.17
+  },
+  {
+   "item": "Leftovers",
+   "pct": 2.08
+  },
+  {
+   "item": "Light Clay",
+   "pct": 2.08
+  },
+  {
+   "item": "Bright Powder",
+   "pct": 2.08
+  },
+  {
+   "item": "Eject Button",
+   "pct": 2.08
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Audino-Mega": [
+  {
+   "item": "Audinite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Aurorus": [
+  {
+   "item": "Never-Melt Ice",
+   "pct": 28.57
+  },
+  {
+   "item": "Light Clay",
+   "pct": 12.24
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 10.2
+  },
+  {
+   "item": "Chople Berry",
+   "pct": 10.2
+  },
+  {
+   "item": "Life Orb",
+   "pct": 10.2
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 6.12
+  },
+  {
+   "item": "Babiri Berry",
+   "pct": 6.12
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 6.12
+  },
+  {
+   "item": "Grassy Seed",
+   "pct": 6.12
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 4.08
+  },
+  {
+   "item": "__other__",
+   "pct": 0.03
+  }
+ ],
+ "Avalugg": [
+  {
+   "item": "Occa Berry",
+   "pct": 33.33
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 16.67
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 16.67
+  },
+  {
+   "item": "Light Clay",
+   "pct": 16.67
+  },
+  {
+   "item": "White Herb",
+   "pct": 16.67
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Avalugg-Hisui": [
+  {
+   "item": "Quick Claw",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Azumarill": [
+  {
+   "item": "Sitrus Berry",
+   "pct": 72.88
+  },
+  {
+   "item": "Mystic Water",
+   "pct": 13.56
+  },
+  {
+   "item": "Life Orb",
+   "pct": 5.65
+  },
+  {
+   "item": "Leftovers",
+   "pct": 2.26
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 1.69
+  },
+  {
+   "item": "White Herb",
+   "pct": 1.13
+  },
+  {
+   "item": "Muscle Band",
+   "pct": 1.13
+  },
+  {
+   "item": "Bright Powder",
+   "pct": 0.56
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 0.56
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 0.56
+  },
+  {
+   "item": "__other__",
+   "pct": 0.02
+  }
+ ],
+ "Banette": [
+  {
+   "item": "Banettite",
+   "pct": 96.77
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 3.23
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Banette-Mega": [
+  {
+   "item": "Banettite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Barbaracle": [
+  {
+   "item": "Barbaracite",
+   "pct": 85.42
+  },
+  {
+   "item": "Scope Lens",
+   "pct": 6.25
+  },
+  {
+   "item": "Life Orb",
+   "pct": 4.17
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 2.08
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 2.08
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Barbaracle-Mega": [
+  {
+   "item": "Barbaracite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Basculegion": [
+  {
+   "item": "Choice Scarf",
+   "pct": 48.41
+  },
+  {
+   "item": "Life Orb",
+   "pct": 30.16
+  },
+  {
+   "item": "Mystic Water",
+   "pct": 12.57
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 4.1
+  },
+  {
+   "item": "Colbur Berry",
+   "pct": 2.25
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 2.12
+  },
+  {
+   "item": "Grassy Seed",
+   "pct": 0.26
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 0.13
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Basculegion-F": [
+  {
+   "item": "Choice Scarf",
+   "pct": 32.58
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 29.55
+  },
+  {
+   "item": "Life Orb",
+   "pct": 24.75
+  },
+  {
+   "item": "Mystic Water",
+   "pct": 7.07
+  },
+  {
+   "item": "Rindo Berry",
+   "pct": 2.02
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 1.52
+  },
+  {
+   "item": "Colbur Berry",
+   "pct": 0.76
+  },
+  {
+   "item": "Life Orb",
+   "pct": 0.76
+  },
+  {
+   "item": "Damp Rock",
+   "pct": 0.51
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 0.51
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Bastiodon": [
+  {
+   "item": "Leftovers",
+   "pct": 57.89
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 21.05
+  },
+  {
+   "item": "Chople Berry",
+   "pct": 10.53
+  },
+  {
+   "item": "Passho Berry",
+   "pct": 5.26
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 5.26
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Baxcalibur": [
+  {
+   "item": "Baxcalibrite",
+   "pct": 81.52
+  },
+  {
+   "item": "Life Orb",
+   "pct": 12.8
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 1.42
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.95
+  },
+  {
+   "item": "Psychic Seed",
+   "pct": 0.95
+  },
+  {
+   "item": "Never-Melt Ice",
+   "pct": 0.95
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 0.71
+  },
+  {
+   "item": "Muscle Band",
+   "pct": 0.24
+  },
+  {
+   "item": "Haban Berry",
+   "pct": 0.24
+  },
+  {
+   "item": "Chople Berry",
+   "pct": 0.24
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Baxcalibur-Mega": [
+  {
+   "item": "Baxcalibrite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Beartic": [
+  {
+   "item": "Focus Sash",
+   "pct": 36.84
+  },
+  {
+   "item": "Life Orb",
+   "pct": 31.58
+  },
+  {
+   "item": "Never-Melt Ice",
+   "pct": 10.53
+  },
+  {
+   "item": "Muscle Band",
+   "pct": 5.26
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 5.26
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 5.26
+  },
+  {
+   "item": "Bright Powder",
+   "pct": 5.26
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Beedrill": [
+  {
+   "item": "Beedrillite",
+   "pct": 98.53
+  },
+  {
+   "item": "Scope Lens",
+   "pct": 1.47
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Beedrill-Mega": [
+  {
+   "item": "Beedrillite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Bellibolt": [
+  {
+   "item": "Magnet",
+   "pct": 36.19
+  },
+  {
+   "item": "Leftovers",
+   "pct": 26.67
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 16.19
+  },
+  {
+   "item": "Shuca Berry",
+   "pct": 7.62
+  },
+  {
+   "item": "Big Root",
+   "pct": 4.76
+  },
+  {
+   "item": "Metronome",
+   "pct": 2.86
+  },
+  {
+   "item": "Life Orb",
+   "pct": 1.9
+  },
+  {
+   "item": "Air Balloon",
+   "pct": 1.9
+  },
+  {
+   "item": "Light Clay",
+   "pct": 0.95
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.95
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Blastoise": [
+  {
+   "item": "Blastoisinite",
+   "pct": 97.35
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.82
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.53
+  },
+  {
+   "item": "Mystic Water",
+   "pct": 0.53
+  },
+  {
+   "item": "White Herb",
+   "pct": 0.47
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 0.06
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 0.06
+  },
+  {
+   "item": "Silk Scarf",
+   "pct": 0.06
+  },
+  {
+   "item": "Life Orb",
+   "pct": 0.06
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 0.06
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Blastoise-Mega": [
+  {
+   "item": "Blastoisinite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Blaziken": [
+  {
+   "item": "Blazikenite",
+   "pct": 85.09
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 8.83
+  },
+  {
+   "item": "Life Orb",
+   "pct": 4.01
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 0.57
+  },
+  {
+   "item": "Charcoal",
+   "pct": 0.46
+  },
+  {
+   "item": "Black Belt",
+   "pct": 0.34
+  },
+  {
+   "item": "White Herb",
+   "pct": 0.23
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 0.23
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 0.11
+  },
+  {
+   "item": "Lum Berry",
+   "pct": 0.11
+  },
+  {
+   "item": "__other__",
+   "pct": 0.02
+  }
+ ],
+ "Blaziken-Mega": [
+  {
+   "item": "Blazikenite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Camerupt": [
+  {
+   "item": "Cameruptite",
+   "pct": 99.21
+  },
+  {
+   "item": "Life Orb",
+   "pct": 0.31
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.16
+  },
+  {
+   "item": "Charcoal",
+   "pct": 0.16
+  },
+  {
+   "item": "Iron Ball",
+   "pct": 0.16
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Camerupt-Mega": [
+  {
+   "item": "Cameruptite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Castform": [
+  {
+   "item": "Choice Scarf",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Castform-Rainy": [
+  {
+   "item": "Choice Scarf",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Castform-Snowy": [
+  {
+   "item": "Choice Scarf",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Castform-Sunny": [
+  {
+   "item": "Choice Scarf",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Ceruledge": [
+  {
+   "item": "Colbur Berry",
+   "pct": 61.73
+  },
+  {
+   "item": "Grassy Seed",
+   "pct": 15.51
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 6.77
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 4.42
+  },
+  {
+   "item": "Life Orb",
+   "pct": 4.32
+  },
+  {
+   "item": "Leftovers",
+   "pct": 2.55
+  },
+  {
+   "item": "Charcoal",
+   "pct": 2.16
+  },
+  {
+   "item": "Kasib Berry",
+   "pct": 1.28
+  },
+  {
+   "item": "Shuca Berry",
+   "pct": 0.69
+  },
+  {
+   "item": "White Herb",
+   "pct": 0.59
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Chandelure": [
+  {
+   "item": "Chandelurite",
+   "pct": 65.07
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 20.21
+  },
+  {
+   "item": "Colbur Berry",
+   "pct": 3.42
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 3.08
+  },
+  {
+   "item": "Life Orb",
+   "pct": 2.4
+  },
+  {
+   "item": "Charcoal",
+   "pct": 2.4
+  },
+  {
+   "item": "Bright Powder",
+   "pct": 1.37
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 1.03
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 0.68
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.34
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Chandelure-Mega": [
+  {
+   "item": "Chandelurite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Charizard": [
+  {
+   "item": "Charizardite X",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Charizard-Mega-X": [
+  {
+   "item": "Charizardite X",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Charizard-Mega-Y": [
+  {
+   "item": "Charizardite Y",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Chesnaught": [
+  {
+   "item": "Chesnaughtite",
+   "pct": 79.81
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 6.73
+  },
+  {
+   "item": "Leftovers",
+   "pct": 5.77
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 1.92
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 0.96
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 0.96
+  },
+  {
+   "item": "Roseli Berry",
+   "pct": 0.96
+  },
+  {
+   "item": "Coba Berry",
+   "pct": 0.96
+  },
+  {
+   "item": "Lum Berry",
+   "pct": 0.96
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.96
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Chesnaught-Mega": [
+  {
+   "item": "Chesnaughtite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Chimecho": [
+  {
+   "item": "Chimechite",
+   "pct": 98.39
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 1.61
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Chimecho-Mega": [
+  {
+   "item": "Chimechite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Cinderace": [
+  {
+   "item": "Focus Sash",
+   "pct": 25.0
+  },
+  {
+   "item": "Life Orb",
+   "pct": 22.73
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 22.73
+  },
+  {
+   "item": "White Herb",
+   "pct": 9.09
+  },
+  {
+   "item": "Shuca Berry",
+   "pct": 6.82
+  },
+  {
+   "item": "Bright Powder",
+   "pct": 4.55
+  },
+  {
+   "item": "Red Card",
+   "pct": 2.27
+  },
+  {
+   "item": "Chople Berry",
+   "pct": 2.27
+  },
+  {
+   "item": "Black Glasses",
+   "pct": 2.27
+  },
+  {
+   "item": "Muscle Band",
+   "pct": 2.27
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Clawitzer": [
+  {
+   "item": "Life Orb",
+   "pct": 60.49
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 12.35
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 7.41
+  },
+  {
+   "item": "Mystic Water",
+   "pct": 6.17
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 3.7
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 3.7
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 2.47
+  },
+  {
+   "item": "Wacan Berry",
+   "pct": 1.23
+  },
+  {
+   "item": "Dragon Fang",
+   "pct": 1.23
+  },
+  {
+   "item": "Rindo Berry",
+   "pct": 1.23
+  },
+  {
+   "item": "__other__",
+   "pct": 0.02
+  }
+ ],
+ "Clefable": [
+  {
+   "item": "Sitrus Berry",
+   "pct": 45.85
+  },
+  {
+   "item": "Leftovers",
+   "pct": 17.62
+  },
+  {
+   "item": "Clefablite",
+   "pct": 13.21
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 10.36
+  },
+  {
+   "item": "Babiri Berry",
+   "pct": 2.59
+  },
+  {
+   "item": "Grassy Seed",
+   "pct": 2.59
+  },
+  {
+   "item": "Kebia Berry",
+   "pct": 2.33
+  },
+  {
+   "item": "Life Orb",
+   "pct": 2.33
+  },
+  {
+   "item": "Lum Berry",
+   "pct": 1.55
+  },
+  {
+   "item": "Fairy Feather",
+   "pct": 1.55
+  },
+  {
+   "item": "__other__",
+   "pct": 0.02
+  }
+ ],
+ "Clefable-Mega": [
+  {
+   "item": "Clefablite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Cofagrigus": [
+  {
+   "item": "Mental Herb",
+   "pct": 30.77
+  },
+  {
+   "item": "Leftovers",
+   "pct": 29.23
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 18.46
+  },
+  {
+   "item": "Colbur Berry",
+   "pct": 7.69
+  },
+  {
+   "item": "Kasib Berry",
+   "pct": 4.62
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 4.62
+  },
+  {
+   "item": "Bright Powder",
+   "pct": 1.54
+  },
+  {
+   "item": "Zoom Lens",
+   "pct": 1.54
+  },
+  {
+   "item": "Electric Seed",
+   "pct": 1.54
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Conkeldurr": [
+  {
+   "item": "Life Orb",
+   "pct": 35.0
+  },
+  {
+   "item": "Black Belt",
+   "pct": 33.75
+  },
+  {
+   "item": "Leftovers",
+   "pct": 8.75
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 7.5
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 6.25
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 2.5
+  },
+  {
+   "item": "White Herb",
+   "pct": 2.5
+  },
+  {
+   "item": "Lum Berry",
+   "pct": 1.25
+  },
+  {
+   "item": "Roseli Berry",
+   "pct": 1.25
+  },
+  {
+   "item": "Muscle Band",
+   "pct": 1.25
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Corviknight": [
+  {
+   "item": "Leftovers",
+   "pct": 58.98
+  },
+  {
+   "item": "Psychic Seed",
+   "pct": 19.35
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 8.52
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 8.43
+  },
+  {
+   "item": "Life Orb",
+   "pct": 1.67
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 1.3
+  },
+  {
+   "item": "Lum Berry",
+   "pct": 0.83
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.37
+  },
+  {
+   "item": "Metal Coat",
+   "pct": 0.28
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 0.28
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Crabominable": [
+  {
+   "item": "Crabominite",
+   "pct": 94.84
+  },
+  {
+   "item": "Life Orb",
+   "pct": 1.94
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 1.29
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.65
+  },
+  {
+   "item": "Muscle Band",
+   "pct": 0.65
+  },
+  {
+   "item": "Never-Melt Ice",
+   "pct": 0.65
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Crabominable-Mega": [
+  {
+   "item": "Crabominite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Cramorant-Gorging": [
+  {
+   "item": "Sitrus Berry",
+   "pct": 88.38
+  },
+  {
+   "item": "Life Orb",
+   "pct": 11.62
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Cramorant-Gulping": [
+  {
+   "item": "Sitrus Berry",
+   "pct": 88.38
+  },
+  {
+   "item": "Life Orb",
+   "pct": 11.62
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Decidueye": [
+  {
+   "item": "Focus Sash",
+   "pct": 38.1
+  },
+  {
+   "item": "Life Orb",
+   "pct": 19.05
+  },
+  {
+   "item": "Spell Tag",
+   "pct": 9.52
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 9.52
+  },
+  {
+   "item": "White Herb",
+   "pct": 9.52
+  },
+  {
+   "item": "Focus Band",
+   "pct": 4.76
+  },
+  {
+   "item": "Kasib Berry",
+   "pct": 4.76
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 4.76
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Decidueye-Hisui": [
+  {
+   "item": "Rocky Helmet",
+   "pct": 50.0
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 50.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Dedenne": [
+  {
+   "item": "Focus Sash",
+   "pct": 50.0
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 25.0
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 12.5
+  },
+  {
+   "item": "King's Rock",
+   "pct": 12.5
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Delphox": [
+  {
+   "item": "Delphoxite",
+   "pct": 99.15
+  },
+  {
+   "item": "Psychic Seed",
+   "pct": 0.36
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 0.16
+  },
+  {
+   "item": "Charcoal",
+   "pct": 0.13
+  },
+  {
+   "item": "Life Orb",
+   "pct": 0.07
+  },
+  {
+   "item": "Colbur Berry",
+   "pct": 0.03
+  },
+  {
+   "item": "Wise Glasses",
+   "pct": 0.03
+  },
+  {
+   "item": "Lum Berry",
+   "pct": 0.03
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 0.03
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Delphox-Mega": [
+  {
+   "item": "Delphoxite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Diggersby": [
+  {
+   "item": "Life Orb",
+   "pct": 45.95
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 40.54
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 5.41
+  },
+  {
+   "item": "Soft Sand",
+   "pct": 2.7
+  },
+  {
+   "item": "Silk Scarf",
+   "pct": 2.7
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 2.7
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Ditto": [
+  {
+   "item": "Choice Scarf",
+   "pct": 50.96
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 20.19
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 8.65
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 6.73
+  },
+  {
+   "item": "Leftovers",
+   "pct": 6.73
+  },
+  {
+   "item": "Life Orb",
+   "pct": 1.92
+  },
+  {
+   "item": "Bright Powder",
+   "pct": 1.92
+  },
+  {
+   "item": "Focus Band",
+   "pct": 0.96
+  },
+  {
+   "item": "Scope Lens",
+   "pct": 0.96
+  },
+  {
+   "item": "Iron Ball",
+   "pct": 0.96
+  },
+  {
+   "item": "__other__",
+   "pct": 0.02
+  }
+ ],
+ "Dragalge-Mega": [
+  {
+   "item": "Dragalgite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Dragapult": [
+  {
+   "item": "Life Orb",
+   "pct": 64.42
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 15.58
+  },
+  {
+   "item": "Dragon Fang",
+   "pct": 6.55
+  },
+  {
+   "item": "Colbur Berry",
+   "pct": 5.31
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 1.95
+  },
+  {
+   "item": "White Herb",
+   "pct": 1.42
+  },
+  {
+   "item": "Spell Tag",
+   "pct": 1.42
+  },
+  {
+   "item": "Kasib Berry",
+   "pct": 1.24
+  },
+  {
+   "item": "Light Clay",
+   "pct": 1.06
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 1.06
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Dragonite": [
+  {
+   "item": "Dragoninite",
+   "pct": 66.5
+  },
+  {
+   "item": "Life Orb",
+   "pct": 14.98
+  },
+  {
+   "item": "Dragon Fang",
+   "pct": 11.03
+  },
+  {
+   "item": "Lum Berry",
+   "pct": 2.47
+  },
+  {
+   "item": "Leftovers",
+   "pct": 1.44
+  },
+  {
+   "item": "White Herb",
+   "pct": 1.4
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.84
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 0.6
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 0.42
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 0.33
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Dragonite-Mega": [
+  {
+   "item": "Dragoninite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Drampa": [
+  {
+   "item": "Drampanite",
+   "pct": 73.63
+  },
+  {
+   "item": "Life Orb",
+   "pct": 5.86
+  },
+  {
+   "item": "Chople Berry",
+   "pct": 4.4
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 4.4
+  },
+  {
+   "item": "Leftovers",
+   "pct": 3.66
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 2.2
+  },
+  {
+   "item": "Haban Berry",
+   "pct": 1.83
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 1.83
+  },
+  {
+   "item": "Silk Scarf",
+   "pct": 1.1
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 1.1
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Drampa-Mega": [
+  {
+   "item": "Drampanite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Eelektross": [
+  {
+   "item": "Eelektrossite",
+   "pct": 94.79
+  },
+  {
+   "item": "Life Orb",
+   "pct": 2.08
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 1.04
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 1.04
+  },
+  {
+   "item": "Muscle Band",
+   "pct": 0.52
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.52
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Eelektross-Mega": [
+  {
+   "item": "Eelektrossite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Eiscue-Noice": [
+  {
+   "item": "Focus Sash",
+   "pct": 42.55
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 32.75
+  },
+  {
+   "item": "Leftovers",
+   "pct": 24.7
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Emboar": [
+  {
+   "item": "Emboarite",
+   "pct": 84.62
+  },
+  {
+   "item": "Leftovers",
+   "pct": 5.13
+  },
+  {
+   "item": "Magnet",
+   "pct": 5.13
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 2.56
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 2.56
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Emboar-Mega": [
+  {
+   "item": "Emboarite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Emolga": [
+  {
+   "item": "Focus Sash",
+   "pct": 55.56
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 11.11
+  },
+  {
+   "item": "Magnet",
+   "pct": 11.11
+  },
+  {
+   "item": "Bright Powder",
+   "pct": 11.11
+  },
+  {
+   "item": "Charti Berry",
+   "pct": 11.11
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Empoleon": [
+  {
+   "item": "Leftovers",
+   "pct": 34.48
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 15.86
+  },
+  {
+   "item": "Chople Berry",
+   "pct": 15.17
+  },
+  {
+   "item": "Life Orb",
+   "pct": 11.03
+  },
+  {
+   "item": "Shuca Berry",
+   "pct": 5.52
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 4.14
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 4.14
+  },
+  {
+   "item": "Mystic Water",
+   "pct": 3.45
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 3.45
+  },
+  {
+   "item": "Grassy Seed",
+   "pct": 2.76
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Espathra": [
+  {
+   "item": "Focus Sash",
+   "pct": 18.18
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 17.75
+  },
+  {
+   "item": "Colbur Berry",
+   "pct": 17.32
+  },
+  {
+   "item": "Electric Seed",
+   "pct": 16.88
+  },
+  {
+   "item": "Grassy Seed",
+   "pct": 7.79
+  },
+  {
+   "item": "Life Orb",
+   "pct": 7.36
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 5.63
+  },
+  {
+   "item": "Leftovers",
+   "pct": 4.33
+  },
+  {
+   "item": "Kasib Berry",
+   "pct": 3.03
+  },
+  {
+   "item": "Twisted Spoon",
+   "pct": 1.73
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Espeon": [
+  {
+   "item": "Focus Sash",
+   "pct": 20.0
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 20.0
+  },
+  {
+   "item": "Fairy Feather",
+   "pct": 15.0
+  },
+  {
+   "item": "Twisted Spoon",
+   "pct": 15.0
+  },
+  {
+   "item": "Life Orb",
+   "pct": 10.0
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 5.0
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 5.0
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 5.0
+  },
+  {
+   "item": "Psychic Seed",
+   "pct": 5.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Excadrill": [
+  {
+   "item": "Focus Sash",
+   "pct": 90.88
+  },
+  {
+   "item": "Life Orb",
+   "pct": 4.11
+  },
+  {
+   "item": "Excadrite",
+   "pct": 1.79
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 1.25
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 0.98
+  },
+  {
+   "item": "White Herb",
+   "pct": 0.27
+  },
+  {
+   "item": "Soft Sand",
+   "pct": 0.27
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.18
+  },
+  {
+   "item": "King's Rock",
+   "pct": 0.18
+  },
+  {
+   "item": "Scope Lens",
+   "pct": 0.09
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Excadrill-Mega": [
+  {
+   "item": "Excadrite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Falinks": [
+  {
+   "item": "Falinksite",
+   "pct": 94.87
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 2.56
+  },
+  {
+   "item": "Payapa Berry",
+   "pct": 2.56
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Falinks-Mega": [
+  {
+   "item": "Falinksite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Farfetch\u2019d": [
+  {
+   "item": "Leek",
+   "pct": 81.82
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 18.18
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Farigiraf": [
+  {
+   "item": "Sitrus Berry",
+   "pct": 71.94
+  },
+  {
+   "item": "Colbur Berry",
+   "pct": 18.5
+  },
+  {
+   "item": "Grassy Seed",
+   "pct": 3.32
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 2.23
+  },
+  {
+   "item": "Leftovers",
+   "pct": 1.32
+  },
+  {
+   "item": "Twisted Spoon",
+   "pct": 0.9
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 0.76
+  },
+  {
+   "item": "Life Orb",
+   "pct": 0.55
+  },
+  {
+   "item": "Psychic Seed",
+   "pct": 0.25
+  },
+  {
+   "item": "Lum Berry",
+   "pct": 0.23
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Feraligatr": [
+  {
+   "item": "Feraligite",
+   "pct": 77.7
+  },
+  {
+   "item": "Life Orb",
+   "pct": 21.58
+  },
+  {
+   "item": "Lum Berry",
+   "pct": 0.72
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Feraligatr-Mega": [
+  {
+   "item": "Feraligite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Flapple": [
+  {
+   "item": "Focus Sash",
+   "pct": 34.62
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 26.92
+  },
+  {
+   "item": "Life Orb",
+   "pct": 19.23
+  },
+  {
+   "item": "Muscle Band",
+   "pct": 7.69
+  },
+  {
+   "item": "White Herb",
+   "pct": 3.85
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 3.85
+  },
+  {
+   "item": "Miracle Seed",
+   "pct": 3.85
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Flareon": [
+  {
+   "item": "White Herb",
+   "pct": 40.0
+  },
+  {
+   "item": "Charcoal",
+   "pct": 20.0
+  },
+  {
+   "item": "Leftovers",
+   "pct": 20.0
+  },
+  {
+   "item": "Life Orb",
+   "pct": 20.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Floette-Eternal": [
+  {
+   "item": "Floettite",
+   "pct": 92.5
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 4.13
+  },
+  {
+   "item": "Fairy Feather",
+   "pct": 2.81
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.19
+  },
+  {
+   "item": "Life Orb",
+   "pct": 0.19
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 0.19
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Floette-Mega": [
+  {
+   "item": "Floettite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Florges": [
+  {
+   "item": "Leftovers",
+   "pct": 29.17
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 25.0
+  },
+  {
+   "item": "Life Orb",
+   "pct": 12.5
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 8.33
+  },
+  {
+   "item": "Fairy Feather",
+   "pct": 8.33
+  },
+  {
+   "item": "Coba Berry",
+   "pct": 8.33
+  },
+  {
+   "item": "Grassy Seed",
+   "pct": 4.17
+  },
+  {
+   "item": "Shell Bell",
+   "pct": 4.17
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Forretress": [
+  {
+   "item": "Iron Ball",
+   "pct": 41.67
+  },
+  {
+   "item": "Leftovers",
+   "pct": 33.33
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 16.67
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 4.17
+  },
+  {
+   "item": "Black Belt",
+   "pct": 4.17
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Froslass": [
+  {
+   "item": "Froslassite",
+   "pct": 99.42
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 0.39
+  },
+  {
+   "item": "Lum Berry",
+   "pct": 0.04
+  },
+  {
+   "item": "Never-Melt Ice",
+   "pct": 0.04
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 0.04
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 0.04
+  },
+  {
+   "item": "Wise Glasses",
+   "pct": 0.04
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Froslass-Mega": [
+  {
+   "item": "Froslassite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Furfrou": [
+  {
+   "item": "Life Orb",
+   "pct": 25.0
+  },
+  {
+   "item": "Leftovers",
+   "pct": 25.0
+  },
+  {
+   "item": "Bright Powder",
+   "pct": 25.0
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 25.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Gallade": [
+  {
+   "item": "Focus Sash",
+   "pct": 16.54
+  },
+  {
+   "item": "Iron Ball",
+   "pct": 15.54
+  },
+  {
+   "item": "Life Orb",
+   "pct": 14.79
+  },
+  {
+   "item": "White Herb",
+   "pct": 13.28
+  },
+  {
+   "item": "Galladite",
+   "pct": 12.28
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 7.52
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 6.27
+  },
+  {
+   "item": "Scope Lens",
+   "pct": 6.02
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 5.26
+  },
+  {
+   "item": "Black Belt",
+   "pct": 2.51
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Gallade-Mega": [
+  {
+   "item": "Galladite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Garbodor": [
+  {
+   "item": "Leftovers",
+   "pct": 14.29
+  },
+  {
+   "item": "Silk Scarf",
+   "pct": 14.29
+  },
+  {
+   "item": "King's Rock",
+   "pct": 14.29
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 14.29
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 14.29
+  },
+  {
+   "item": "White Herb",
+   "pct": 14.29
+  },
+  {
+   "item": "Life Orb",
+   "pct": 14.29
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Garchomp": [
+  {
+   "item": "Life Orb",
+   "pct": 48.97
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 20.05
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 13.92
+  },
+  {
+   "item": "Garchompite",
+   "pct": 4.36
+  },
+  {
+   "item": "Roseli Berry",
+   "pct": 4.01
+  },
+  {
+   "item": "Soft Sand",
+   "pct": 2.55
+  },
+  {
+   "item": "Dragon Fang",
+   "pct": 1.59
+  },
+  {
+   "item": "Lum Berry",
+   "pct": 1.58
+  },
+  {
+   "item": "White Herb",
+   "pct": 1.57
+  },
+  {
+   "item": "Haban Berry",
+   "pct": 1.39
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Garchomp-Mega": [
+  {
+   "item": "Garchompite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Gardevoir": [
+  {
+   "item": "Gardevoirite",
+   "pct": 95.24
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 2.35
+  },
+  {
+   "item": "Fairy Feather",
+   "pct": 0.71
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 0.38
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.27
+  },
+  {
+   "item": "Life Orb",
+   "pct": 0.27
+  },
+  {
+   "item": "Wise Glasses",
+   "pct": 0.22
+  },
+  {
+   "item": "Metronome",
+   "pct": 0.22
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.16
+  },
+  {
+   "item": "Bright Powder",
+   "pct": 0.16
+  },
+  {
+   "item": "__other__",
+   "pct": 0.02
+  }
+ ],
+ "Gardevoir-Mega": [
+  {
+   "item": "Gardevoirite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Garganacl": [
+  {
+   "item": "Leftovers",
+   "pct": 62.79
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 23.26
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 4.65
+  },
+  {
+   "item": "Grassy Seed",
+   "pct": 4.65
+  },
+  {
+   "item": "Hard Stone",
+   "pct": 2.33
+  },
+  {
+   "item": "Shell Bell",
+   "pct": 2.33
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Gengar": [
+  {
+   "item": "Gengarite",
+   "pct": 96.6
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 2.49
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 0.29
+  },
+  {
+   "item": "Spell Tag",
+   "pct": 0.14
+  },
+  {
+   "item": "Life Orb",
+   "pct": 0.14
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.1
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.1
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 0.1
+  },
+  {
+   "item": "Lum Berry",
+   "pct": 0.05
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Gengar-Mega": [
+  {
+   "item": "Gengarite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Gholdengo": [
+  {
+   "item": "Life Orb",
+   "pct": 80.96
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 3.97
+  },
+  {
+   "item": "Grassy Seed",
+   "pct": 3.68
+  },
+  {
+   "item": "Leftovers",
+   "pct": 2.87
+  },
+  {
+   "item": "Metal Coat",
+   "pct": 2.36
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 1.96
+  },
+  {
+   "item": "Spell Tag",
+   "pct": 1.72
+  },
+  {
+   "item": "White Herb",
+   "pct": 1.13
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.98
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 0.36
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Glaceon": [
+  {
+   "item": "Never-Melt Ice",
+   "pct": 50.85
+  },
+  {
+   "item": "Bright Powder",
+   "pct": 35.59
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 5.08
+  },
+  {
+   "item": "Leftovers",
+   "pct": 3.39
+  },
+  {
+   "item": "Life Orb",
+   "pct": 1.69
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 1.69
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 1.69
+  },
+  {
+   "item": "__other__",
+   "pct": 0.02
+  }
+ ],
+ "Glalie": [
+  {
+   "item": "Glalitite",
+   "pct": 83.33
+  },
+  {
+   "item": "Leftovers",
+   "pct": 3.33
+  },
+  {
+   "item": "Never-Melt Ice",
+   "pct": 3.33
+  },
+  {
+   "item": "Bright Powder",
+   "pct": 3.33
+  },
+  {
+   "item": "Iron Ball",
+   "pct": 3.33
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 3.33
+  },
+  {
+   "item": "__other__",
+   "pct": 0.02
+  }
+ ],
+ "Glalie-Mega": [
+  {
+   "item": "Glalitite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Glimmora": [
+  {
+   "item": "Focus Sash",
+   "pct": 49.23
+  },
+  {
+   "item": "Glimmoranite",
+   "pct": 46.84
+  },
+  {
+   "item": "Life Orb",
+   "pct": 1.54
+  },
+  {
+   "item": "Shuca Berry",
+   "pct": 0.8
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 0.69
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 0.32
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.21
+  },
+  {
+   "item": "Air Balloon",
+   "pct": 0.16
+  },
+  {
+   "item": "Hard Stone",
+   "pct": 0.11
+  },
+  {
+   "item": "Poison Barb",
+   "pct": 0.11
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Glimmora-Mega": [
+  {
+   "item": "Glimmoranite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Gliscor": [
+  {
+   "item": "Life Orb",
+   "pct": 26.44
+  },
+  {
+   "item": "Psychic Seed",
+   "pct": 14.94
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 13.79
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 10.34
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 9.2
+  },
+  {
+   "item": "Leftovers",
+   "pct": 8.05
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 6.9
+  },
+  {
+   "item": "Bright Powder",
+   "pct": 5.75
+  },
+  {
+   "item": "Soft Sand",
+   "pct": 4.6
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Gogoat": [
+  {
+   "item": "Grassy Seed",
+   "pct": 40.0
+  },
+  {
+   "item": "Zoom Lens",
+   "pct": 20.0
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 20.0
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 20.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Golisopod": [
+  {
+   "item": "Golisopite",
+   "pct": 99.46
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.23
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.14
+  },
+  {
+   "item": "Golisopite",
+   "pct": 0.09
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 0.05
+  },
+  {
+   "item": "Life Orb",
+   "pct": 0.05
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Golisopod-Mega": [
+  {
+   "item": "Golisopite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Golurk": [
+  {
+   "item": "Golurkite",
+   "pct": 95.93
+  },
+  {
+   "item": "Life Orb",
+   "pct": 1.74
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 0.58
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.58
+  },
+  {
+   "item": "Muscle Band",
+   "pct": 0.58
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 0.58
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Golurk-Mega": [
+  {
+   "item": "Golurkite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Goodra": [
+  {
+   "item": "Leftovers",
+   "pct": 32.5
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 20.0
+  },
+  {
+   "item": "Shell Bell",
+   "pct": 15.0
+  },
+  {
+   "item": "Haban Berry",
+   "pct": 7.5
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 5.0
+  },
+  {
+   "item": "White Herb",
+   "pct": 5.0
+  },
+  {
+   "item": "Life Orb",
+   "pct": 5.0
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 5.0
+  },
+  {
+   "item": "Big Root",
+   "pct": 2.5
+  },
+  {
+   "item": "Roseli Berry",
+   "pct": 2.5
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Goodra-Hisui": [
+  {
+   "item": "Leftovers",
+   "pct": 75.0
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 16.67
+  },
+  {
+   "item": "Chople Berry",
+   "pct": 8.33
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Gourgeist": [
+  {
+   "item": "Choice Scarf",
+   "pct": 80.86
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 6.4
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 4.5
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 3.72
+  },
+  {
+   "item": "Leftovers",
+   "pct": 2.19
+  },
+  {
+   "item": "Life Orb",
+   "pct": 1.32
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 0.48
+  },
+  {
+   "item": "Coba Berry",
+   "pct": 0.23
+  },
+  {
+   "item": "Colbur Berry",
+   "pct": 0.13
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.12
+  },
+  {
+   "item": "__other__",
+   "pct": 0.05
+  }
+ ],
+ "Gourgeist-Large": [
+  {
+   "item": "Focus Sash",
+   "pct": 59.55
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 15.67
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 8.47
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 5.17
+  },
+  {
+   "item": "Leftovers",
+   "pct": 4.17
+  },
+  {
+   "item": "Colbur Berry",
+   "pct": 2.92
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 1.78
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 1.21
+  },
+  {
+   "item": "White Herb",
+   "pct": 0.76
+  },
+  {
+   "item": "Spell Tag",
+   "pct": 0.3
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Gourgeist-Small": [
+  {
+   "item": "Choice Scarf",
+   "pct": 80.86
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 6.4
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 4.5
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 3.72
+  },
+  {
+   "item": "Leftovers",
+   "pct": 2.19
+  },
+  {
+   "item": "Life Orb",
+   "pct": 1.32
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 0.48
+  },
+  {
+   "item": "Coba Berry",
+   "pct": 0.23
+  },
+  {
+   "item": "Colbur Berry",
+   "pct": 0.13
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.12
+  },
+  {
+   "item": "__other__",
+   "pct": 0.05
+  }
+ ],
+ "Gourgeist-Super": [
+  {
+   "item": "Sitrus Berry",
+   "pct": 46.19
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 11.35
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 8.97
+  },
+  {
+   "item": "Colbur Berry",
+   "pct": 6.8
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 6.63
+  },
+  {
+   "item": "Leftovers",
+   "pct": 3.82
+  },
+  {
+   "item": "Coba Berry",
+   "pct": 3.49
+  },
+  {
+   "item": "Kasib Berry",
+   "pct": 3.2
+  },
+  {
+   "item": "Hard Stone",
+   "pct": 3.02
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 1.39
+  },
+  {
+   "item": "__other__",
+   "pct": 5.14
+  }
+ ],
+ "Grapploct": [
+  {
+   "item": "Life Orb",
+   "pct": 33.33
+  },
+  {
+   "item": "Black Belt",
+   "pct": 33.33
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 10.67
+  },
+  {
+   "item": "Psychic Seed",
+   "pct": 8.0
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 6.67
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 5.33
+  },
+  {
+   "item": "Misty Seed",
+   "pct": 1.33
+  },
+  {
+   "item": "Roseli Berry",
+   "pct": 1.33
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Greninja": [
+  {
+   "item": "Greninjite",
+   "pct": 71.55
+  },
+  {
+   "item": "Life Orb",
+   "pct": 11.21
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 6.47
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 6.03
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 1.72
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.86
+  },
+  {
+   "item": "Mystic Water",
+   "pct": 0.86
+  },
+  {
+   "item": "Focus Band",
+   "pct": 0.43
+  },
+  {
+   "item": "Shell Bell",
+   "pct": 0.43
+  },
+  {
+   "item": "Scope Lens",
+   "pct": 0.43
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Greninja-Mega": [
+  {
+   "item": "Greninjite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Grimmsnarl": [
+  {
+   "item": "Light Clay",
+   "pct": 92.03
+  },
+  {
+   "item": "Roseli Berry",
+   "pct": 5.16
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 1.05
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.62
+  },
+  {
+   "item": "Black Glasses",
+   "pct": 0.46
+  },
+  {
+   "item": "Fairy Feather",
+   "pct": 0.16
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 0.16
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 0.13
+  },
+  {
+   "item": "Babiri Berry",
+   "pct": 0.13
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 0.1
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Gyarados": [
+  {
+   "item": "Gyaradosite",
+   "pct": 64.61
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 16.29
+  },
+  {
+   "item": "Leftovers",
+   "pct": 9.27
+  },
+  {
+   "item": "Life Orb",
+   "pct": 3.09
+  },
+  {
+   "item": "Lum Berry",
+   "pct": 1.69
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 1.12
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 1.12
+  },
+  {
+   "item": "Mystic Water",
+   "pct": 1.12
+  },
+  {
+   "item": "Wacan Berry",
+   "pct": 0.84
+  },
+  {
+   "item": "Charti Berry",
+   "pct": 0.84
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Gyarados-Mega": [
+  {
+   "item": "Gyaradosite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Hatterene": [
+  {
+   "item": "Life Orb",
+   "pct": 67.05
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 10.66
+  },
+  {
+   "item": "Fairy Feather",
+   "pct": 8.2
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 5.08
+  },
+  {
+   "item": "Babiri Berry",
+   "pct": 2.95
+  },
+  {
+   "item": "Leftovers",
+   "pct": 1.64
+  },
+  {
+   "item": "Twisted Spoon",
+   "pct": 1.64
+  },
+  {
+   "item": "Wise Glasses",
+   "pct": 1.48
+  },
+  {
+   "item": "Psychic Seed",
+   "pct": 0.82
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 0.49
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Hawlucha": [
+  {
+   "item": "Hawluchanite",
+   "pct": 77.4
+  },
+  {
+   "item": "White Herb",
+   "pct": 6.78
+  },
+  {
+   "item": "Psychic Seed",
+   "pct": 5.65
+  },
+  {
+   "item": "Electric Seed",
+   "pct": 3.39
+  },
+  {
+   "item": "Grassy Seed",
+   "pct": 2.82
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 1.13
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 1.13
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 0.56
+  },
+  {
+   "item": "King's Rock",
+   "pct": 0.56
+  },
+  {
+   "item": "Medichamite",
+   "pct": 0.56
+  },
+  {
+   "item": "__other__",
+   "pct": 0.02
+  }
+ ],
+ "Hawlucha-Mega": [
+  {
+   "item": "Hawluchanite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Heliolisk": [
+  {
+   "item": "Choice Scarf",
+   "pct": 48.0
+  },
+  {
+   "item": "Life Orb",
+   "pct": 18.4
+  },
+  {
+   "item": "Magnet",
+   "pct": 12.0
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 11.2
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 4.8
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 1.6
+  },
+  {
+   "item": "Leftovers",
+   "pct": 1.6
+  },
+  {
+   "item": "Bright Powder",
+   "pct": 0.8
+  },
+  {
+   "item": "Big Root",
+   "pct": 0.8
+  },
+  {
+   "item": "Grassy Seed",
+   "pct": 0.8
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Heracross": [
+  {
+   "item": "Heracronite",
+   "pct": 92.31
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 2.56
+  },
+  {
+   "item": "White Herb",
+   "pct": 2.56
+  },
+  {
+   "item": "Life Orb",
+   "pct": 1.28
+  },
+  {
+   "item": "Coba Berry",
+   "pct": 1.28
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Heracross-Mega": [
+  {
+   "item": "Heracronite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Hippowdon": [
+  {
+   "item": "Leftovers",
+   "pct": 52.63
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 19.74
+  },
+  {
+   "item": "Smooth Rock",
+   "pct": 10.53
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 3.95
+  },
+  {
+   "item": "Passho Berry",
+   "pct": 2.63
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 2.63
+  },
+  {
+   "item": "Iron Ball",
+   "pct": 2.63
+  },
+  {
+   "item": "Life Orb",
+   "pct": 2.63
+  },
+  {
+   "item": "Soft Sand",
+   "pct": 1.32
+  },
+  {
+   "item": "Lum Berry",
+   "pct": 1.32
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Houndoom": [
+  {
+   "item": "Houndoominite",
+   "pct": 76.0
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 11.0
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 4.0
+  },
+  {
+   "item": "Black Glasses",
+   "pct": 4.0
+  },
+  {
+   "item": "Life Orb",
+   "pct": 3.0
+  },
+  {
+   "item": "Charcoal",
+   "pct": 2.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Houndoom-Mega": [
+  {
+   "item": "Houndoominite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Houndstone": [
+  {
+   "item": "Sitrus Berry",
+   "pct": 44.51
+  },
+  {
+   "item": "Spell Tag",
+   "pct": 26.01
+  },
+  {
+   "item": "Life Orb",
+   "pct": 14.45
+  },
+  {
+   "item": "Colbur Berry",
+   "pct": 5.78
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 2.89
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 2.31
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 1.73
+  },
+  {
+   "item": "Leftovers",
+   "pct": 1.16
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 0.58
+  },
+  {
+   "item": "Kasib Berry",
+   "pct": 0.58
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Hydrapple": [
+  {
+   "item": "Life Orb",
+   "pct": 33.33
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 21.67
+  },
+  {
+   "item": "Leftovers",
+   "pct": 13.33
+  },
+  {
+   "item": "Yache Berry",
+   "pct": 13.33
+  },
+  {
+   "item": "Dragon Fang",
+   "pct": 5.0
+  },
+  {
+   "item": "Big Root",
+   "pct": 5.0
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 3.33
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 3.33
+  },
+  {
+   "item": "Miracle Seed",
+   "pct": 1.67
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Hydreigon": [
+  {
+   "item": "Choice Scarf",
+   "pct": 70.16
+  },
+  {
+   "item": "Life Orb",
+   "pct": 15.24
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 4.29
+  },
+  {
+   "item": "Haban Berry",
+   "pct": 3.25
+  },
+  {
+   "item": "Chople Berry",
+   "pct": 2.3
+  },
+  {
+   "item": "Roseli Berry",
+   "pct": 1.27
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 1.11
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 1.11
+  },
+  {
+   "item": "Scope Lens",
+   "pct": 0.71
+  },
+  {
+   "item": "Black Glasses",
+   "pct": 0.56
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Incineroar": [
+  {
+   "item": "Sitrus Berry",
+   "pct": 68.22
+  },
+  {
+   "item": "Passho Berry",
+   "pct": 10.29
+  },
+  {
+   "item": "Chople Berry",
+   "pct": 9.12
+  },
+  {
+   "item": "Leftovers",
+   "pct": 2.4
+  },
+  {
+   "item": "White Herb",
+   "pct": 2.38
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 2.35
+  },
+  {
+   "item": "Charcoal",
+   "pct": 2.06
+  },
+  {
+   "item": "Shuca Berry",
+   "pct": 1.56
+  },
+  {
+   "item": "Life Orb",
+   "pct": 1.14
+  },
+  {
+   "item": "Lum Berry",
+   "pct": 0.46
+  },
+  {
+   "item": "__other__",
+   "pct": 0.02
+  }
+ ],
+ "Indeedee": [
+  {
+   "item": "Choice Scarf",
+   "pct": 69.99
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 19.7
+  },
+  {
+   "item": "Colbur Berry",
+   "pct": 2.52
+  },
+  {
+   "item": "Twisted Spoon",
+   "pct": 2.29
+  },
+  {
+   "item": "Life Orb",
+   "pct": 2.06
+  },
+  {
+   "item": "Psychic Seed",
+   "pct": 1.72
+  },
+  {
+   "item": "Terrain Extender",
+   "pct": 0.57
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.57
+  },
+  {
+   "item": "Wise Glasses",
+   "pct": 0.34
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 0.23
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Indeedee-F": [
+  {
+   "item": "Rocky Helmet",
+   "pct": 36.14
+  },
+  {
+   "item": "Colbur Berry",
+   "pct": 32.48
+  },
+  {
+   "item": "Psychic Seed",
+   "pct": 17.3
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 9.64
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 2.13
+  },
+  {
+   "item": "Eject Button",
+   "pct": 0.77
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.59
+  },
+  {
+   "item": "Terrain Extender",
+   "pct": 0.37
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 0.29
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 0.29
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Infernape": [
+  {
+   "item": "Focus Sash",
+   "pct": 65.45
+  },
+  {
+   "item": "Life Orb",
+   "pct": 9.09
+  },
+  {
+   "item": "Charcoal",
+   "pct": 9.09
+  },
+  {
+   "item": "Black Belt",
+   "pct": 3.64
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 3.64
+  },
+  {
+   "item": "Leftovers",
+   "pct": 1.82
+  },
+  {
+   "item": "Shuca Berry",
+   "pct": 1.82
+  },
+  {
+   "item": "Focus Band",
+   "pct": 1.82
+  },
+  {
+   "item": "Wise Glasses",
+   "pct": 1.82
+  },
+  {
+   "item": "Passho Berry",
+   "pct": 1.82
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Inteleon": [
+  {
+   "item": "Scope Lens",
+   "pct": 76.36
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 9.09
+  },
+  {
+   "item": "Life Orb",
+   "pct": 7.27
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 3.64
+  },
+  {
+   "item": "Mystic Water",
+   "pct": 1.82
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 1.82
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Jolteon": [
+  {
+   "item": "Life Orb",
+   "pct": 33.33
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 26.88
+  },
+  {
+   "item": "Magnet",
+   "pct": 18.28
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 9.68
+  },
+  {
+   "item": "Shuca Berry",
+   "pct": 3.23
+  },
+  {
+   "item": "Air Balloon",
+   "pct": 3.23
+  },
+  {
+   "item": "Bright Powder",
+   "pct": 2.15
+  },
+  {
+   "item": "Scope Lens",
+   "pct": 1.08
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 1.08
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 1.08
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Kangaskhan": [
+  {
+   "item": "Kangaskhanite",
+   "pct": 58.63
+  },
+  {
+   "item": "Silk Scarf",
+   "pct": 28.13
+  },
+  {
+   "item": "Life Orb",
+   "pct": 9.46
+  },
+  {
+   "item": "Chople Berry",
+   "pct": 1.3
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.59
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 0.59
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.35
+  },
+  {
+   "item": "Metronome",
+   "pct": 0.35
+  },
+  {
+   "item": "Muscle Band",
+   "pct": 0.35
+  },
+  {
+   "item": "Iron Ball",
+   "pct": 0.24
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Kangaskhan-Mega": [
+  {
+   "item": "Kangaskhanite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Kingambit": [
+  {
+   "item": "Chople Berry",
+   "pct": 31.5
+  },
+  {
+   "item": "Black Glasses",
+   "pct": 30.81
+  },
+  {
+   "item": "Life Orb",
+   "pct": 18.96
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 14.37
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 3.04
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 0.7
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.2
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.16
+  },
+  {
+   "item": "Black Belt",
+   "pct": 0.13
+  },
+  {
+   "item": "Shuca Berry",
+   "pct": 0.11
+  },
+  {
+   "item": "__other__",
+   "pct": 0.02
+  }
+ ],
+ "Kleavor": [
+  {
+   "item": "Focus Sash",
+   "pct": 43.35
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 33.24
+  },
+  {
+   "item": "Life Orb",
+   "pct": 10.4
+  },
+  {
+   "item": "Muscle Band",
+   "pct": 6.36
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 2.02
+  },
+  {
+   "item": "White Herb",
+   "pct": 1.45
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 1.45
+  },
+  {
+   "item": "Silver Powder",
+   "pct": 0.87
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.58
+  },
+  {
+   "item": "Sharp Beak",
+   "pct": 0.29
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Klefki": [
+  {
+   "item": "Light Clay",
+   "pct": 63.41
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 12.2
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 9.27
+  },
+  {
+   "item": "Shuca Berry",
+   "pct": 4.88
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 3.9
+  },
+  {
+   "item": "Leftovers",
+   "pct": 2.93
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 1.46
+  },
+  {
+   "item": "Bright Powder",
+   "pct": 0.98
+  },
+  {
+   "item": "Wise Glasses",
+   "pct": 0.49
+  },
+  {
+   "item": "Damp Rock",
+   "pct": 0.49
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Kommo-o": [
+  {
+   "item": "Leftovers",
+   "pct": 54.02
+  },
+  {
+   "item": "Life Orb",
+   "pct": 33.19
+  },
+  {
+   "item": "Dragon Fang",
+   "pct": 5.7
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 3.22
+  },
+  {
+   "item": "Haban Berry",
+   "pct": 1.46
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 0.66
+  },
+  {
+   "item": "Roseli Berry",
+   "pct": 0.44
+  },
+  {
+   "item": "Wise Glasses",
+   "pct": 0.44
+  },
+  {
+   "item": "Grassy Seed",
+   "pct": 0.44
+  },
+  {
+   "item": "Psychic Seed",
+   "pct": 0.44
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Krookodile": [
+  {
+   "item": "Choice Scarf",
+   "pct": 37.76
+  },
+  {
+   "item": "Life Orb",
+   "pct": 24.49
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 10.2
+  },
+  {
+   "item": "Soft Sand",
+   "pct": 8.16
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 4.08
+  },
+  {
+   "item": "Chople Berry",
+   "pct": 4.08
+  },
+  {
+   "item": "White Herb",
+   "pct": 3.06
+  },
+  {
+   "item": "Passho Berry",
+   "pct": 3.06
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 3.06
+  },
+  {
+   "item": "Leftovers",
+   "pct": 2.04
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Leafeon": [
+  {
+   "item": "Miracle Seed",
+   "pct": 30.0
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 25.0
+  },
+  {
+   "item": "Life Orb",
+   "pct": 15.0
+  },
+  {
+   "item": "Leftovers",
+   "pct": 10.0
+  },
+  {
+   "item": "King's Rock",
+   "pct": 5.0
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 5.0
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 5.0
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 5.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Liepard": [
+  {
+   "item": "Focus Sash",
+   "pct": 75.44
+  },
+  {
+   "item": "Roseli Berry",
+   "pct": 5.26
+  },
+  {
+   "item": "Black Glasses",
+   "pct": 3.51
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 3.51
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 3.51
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 1.75
+  },
+  {
+   "item": "Damp Rock",
+   "pct": 1.75
+  },
+  {
+   "item": "Chople Berry",
+   "pct": 1.75
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 1.75
+  },
+  {
+   "item": "Bright Powder",
+   "pct": 1.75
+  },
+  {
+   "item": "__other__",
+   "pct": 0.02
+  }
+ ],
+ "Lopunny": [
+  {
+   "item": "Lopunnite",
+   "pct": 98.71
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 0.65
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 0.32
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.32
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Lopunny-Mega": [
+  {
+   "item": "Lopunnite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Lucario": [
+  {
+   "item": "Lucarionite",
+   "pct": 75.0
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 11.96
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 4.89
+  },
+  {
+   "item": "Life Orb",
+   "pct": 3.26
+  },
+  {
+   "item": "Black Belt",
+   "pct": 1.09
+  },
+  {
+   "item": "Chople Berry",
+   "pct": 1.09
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 1.09
+  },
+  {
+   "item": "Lum Berry",
+   "pct": 0.54
+  },
+  {
+   "item": "White Herb",
+   "pct": 0.54
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.54
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Lucario-Mega": [
+  {
+   "item": "Lucarionite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Luxray": [
+  {
+   "item": "Sitrus Berry",
+   "pct": 39.29
+  },
+  {
+   "item": "Magnet",
+   "pct": 14.29
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 10.71
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 7.14
+  },
+  {
+   "item": "Shuca Berry",
+   "pct": 7.14
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 7.14
+  },
+  {
+   "item": "White Herb",
+   "pct": 3.57
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 3.57
+  },
+  {
+   "item": "Life Orb",
+   "pct": 3.57
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 3.57
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Lycanroc": [
+  {
+   "item": "Focus Sash",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Lycanroc-Dusk": [
+  {
+   "item": "Focus Sash",
+   "pct": 87.5
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 8.33
+  },
+  {
+   "item": "Hard Stone",
+   "pct": 4.17
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Lycanroc-Midnight": [
+  {
+   "item": "Expert Belt",
+   "pct": 42.86
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 28.57
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 14.29
+  },
+  {
+   "item": "Life Orb",
+   "pct": 14.29
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Mabosstiff": [
+  {
+   "item": "Sitrus Berry",
+   "pct": 50.0
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 50.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Machamp": [
+  {
+   "item": "Expert Belt",
+   "pct": 31.48
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 16.67
+  },
+  {
+   "item": "Life Orb",
+   "pct": 11.11
+  },
+  {
+   "item": "Black Belt",
+   "pct": 9.26
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 9.26
+  },
+  {
+   "item": "Scope Lens",
+   "pct": 7.41
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 5.56
+  },
+  {
+   "item": "Muscle Band",
+   "pct": 5.56
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 1.85
+  },
+  {
+   "item": "Focus Band",
+   "pct": 1.85
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Malamar": [
+  {
+   "item": "Malamarite",
+   "pct": 71.01
+  },
+  {
+   "item": "Roseli Berry",
+   "pct": 12.32
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 3.62
+  },
+  {
+   "item": "Leftovers",
+   "pct": 2.9
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 2.9
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 2.17
+  },
+  {
+   "item": "Life Orb",
+   "pct": 2.17
+  },
+  {
+   "item": "Black Glasses",
+   "pct": 1.45
+  },
+  {
+   "item": "Chople Berry",
+   "pct": 0.72
+  },
+  {
+   "item": "Light Clay",
+   "pct": 0.72
+  },
+  {
+   "item": "__other__",
+   "pct": 0.02
+  }
+ ],
+ "Malamar-Mega": [
+  {
+   "item": "Malamarite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Mamoswine": [
+  {
+   "item": "Focus Sash",
+   "pct": 52.84
+  },
+  {
+   "item": "Life Orb",
+   "pct": 29.89
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 9.68
+  },
+  {
+   "item": "Never-Melt Ice",
+   "pct": 1.68
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 1.47
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 1.26
+  },
+  {
+   "item": "Soft Sand",
+   "pct": 0.84
+  },
+  {
+   "item": "Chople Berry",
+   "pct": 0.84
+  },
+  {
+   "item": "Bright Powder",
+   "pct": 0.84
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 0.63
+  },
+  {
+   "item": "__other__",
+   "pct": 0.03
+  }
+ ],
+ "Manectric": [
+  {
+   "item": "Manectite",
+   "pct": 89.21
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 2.88
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 2.88
+  },
+  {
+   "item": "Shuca Berry",
+   "pct": 1.44
+  },
+  {
+   "item": "Bright Powder",
+   "pct": 0.72
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 0.72
+  },
+  {
+   "item": "White Herb",
+   "pct": 0.72
+  },
+  {
+   "item": "Life Orb",
+   "pct": 0.72
+  },
+  {
+   "item": "Magnet",
+   "pct": 0.72
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Manectric-Mega": [
+  {
+   "item": "Manectite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Maushold": [
+  {
+   "item": "Chople Berry",
+   "pct": 40.0
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 25.45
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 20.0
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 7.27
+  },
+  {
+   "item": "Silk Scarf",
+   "pct": 3.64
+  },
+  {
+   "item": "Red Card",
+   "pct": 1.82
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 1.82
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Maushold-Four": [
+  {
+   "item": "Chople Berry",
+   "pct": 40.0
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 25.45
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 20.0
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 7.27
+  },
+  {
+   "item": "Silk Scarf",
+   "pct": 3.64
+  },
+  {
+   "item": "Red Card",
+   "pct": 1.82
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 1.82
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Mawile": [
+  {
+   "item": "Mawilite",
+   "pct": 99.49
+  },
+  {
+   "item": "Life Orb",
+   "pct": 0.17
+  },
+  {
+   "item": "Fairy Feather",
+   "pct": 0.09
+  },
+  {
+   "item": "Meganiumite",
+   "pct": 0.09
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 0.09
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 0.09
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Mawile-Mega": [
+  {
+   "item": "Mawilite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Medicham": [
+  {
+   "item": "Medichamite",
+   "pct": 66.67
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 12.5
+  },
+  {
+   "item": "Life Orb",
+   "pct": 9.72
+  },
+  {
+   "item": "White Herb",
+   "pct": 2.78
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 2.78
+  },
+  {
+   "item": "Shell Bell",
+   "pct": 1.39
+  },
+  {
+   "item": "Coba Berry",
+   "pct": 1.39
+  },
+  {
+   "item": "Iron Ball",
+   "pct": 1.39
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 1.39
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Medicham-Mega": [
+  {
+   "item": "Medichamite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Meganium": [
+  {
+   "item": "Meganiumite",
+   "pct": 99.76
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.24
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Meganium-Mega": [
+  {
+   "item": "Meganiumite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Meowstic": [
+  {
+   "item": "Meowsticite",
+   "pct": 24.88
+  },
+  {
+   "item": "Light Clay",
+   "pct": 20.4
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 16.42
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 12.44
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 8.96
+  },
+  {
+   "item": "Colbur Berry",
+   "pct": 6.47
+  },
+  {
+   "item": "Bright Powder",
+   "pct": 5.97
+  },
+  {
+   "item": "Leftovers",
+   "pct": 2.49
+  },
+  {
+   "item": "Twisted Spoon",
+   "pct": 1.0
+  },
+  {
+   "item": "White Herb",
+   "pct": 1.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Meowstic-F": [
+  {
+   "item": "Meowsticite",
+   "pct": 95.77
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 2.82
+  },
+  {
+   "item": "Lum Berry",
+   "pct": 1.41
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Meowstic-F-Mega": [
+  {
+   "item": "Meowsticite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Meowstic-M-Mega": [
+  {
+   "item": "Meowsticite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Metagross": [
+  {
+   "item": "Metagrossite",
+   "pct": 97.29
+  },
+  {
+   "item": "Life Orb",
+   "pct": 1.38
+  },
+  {
+   "item": "Metal Coat",
+   "pct": 0.39
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.2
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 0.2
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.2
+  },
+  {
+   "item": "Colbur Berry",
+   "pct": 0.15
+  },
+  {
+   "item": "Shell Bell",
+   "pct": 0.1
+  },
+  {
+   "item": "Shuca Berry",
+   "pct": 0.05
+  },
+  {
+   "item": "King's Rock",
+   "pct": 0.05
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Metagross-Mega": [
+  {
+   "item": "Metagrossite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Milotic": [
+  {
+   "item": "Leftovers",
+   "pct": 60.44
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 29.59
+  },
+  {
+   "item": "Psychic Seed",
+   "pct": 4.75
+  },
+  {
+   "item": "Grassy Seed",
+   "pct": 2.22
+  },
+  {
+   "item": "Mystic Water",
+   "pct": 1.12
+  },
+  {
+   "item": "Rindo Berry",
+   "pct": 0.59
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 0.43
+  },
+  {
+   "item": "Zoom Lens",
+   "pct": 0.32
+  },
+  {
+   "item": "Life Orb",
+   "pct": 0.32
+  },
+  {
+   "item": "Bright Powder",
+   "pct": 0.21
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Mimikyu": [
+  {
+   "item": "Life Orb",
+   "pct": 30.21
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 21.28
+  },
+  {
+   "item": "White Herb",
+   "pct": 13.19
+  },
+  {
+   "item": "Spell Tag",
+   "pct": 12.77
+  },
+  {
+   "item": "Fairy Feather",
+   "pct": 6.81
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 6.81
+  },
+  {
+   "item": "Leftovers",
+   "pct": 3.83
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 2.13
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 1.7
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 1.28
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Mimikyu-Busted": [
+  {
+   "item": "Life Orb",
+   "pct": 30.21
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 21.28
+  },
+  {
+   "item": "White Herb",
+   "pct": 13.19
+  },
+  {
+   "item": "Spell Tag",
+   "pct": 12.77
+  },
+  {
+   "item": "Fairy Feather",
+   "pct": 6.81
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 6.81
+  },
+  {
+   "item": "Leftovers",
+   "pct": 3.83
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 2.13
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 1.7
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 1.28
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Minior-Meteor": [
+  {
+   "item": "White Herb",
+   "pct": 99.99
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.01
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Morpeko": [
+  {
+   "item": "Focus Sash",
+   "pct": 85.71
+  },
+  {
+   "item": "Life Orb",
+   "pct": 14.29
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Morpeko-Hangry": [
+  {
+   "item": "Focus Sash",
+   "pct": 83.33
+  },
+  {
+   "item": "Life Orb",
+   "pct": 16.67
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Mr. Mime": [
+  {
+   "item": "Sitrus Berry",
+   "pct": 33.33
+  },
+  {
+   "item": "Babiri Berry",
+   "pct": 22.22
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 7.41
+  },
+  {
+   "item": "Grassy Seed",
+   "pct": 7.41
+  },
+  {
+   "item": "Light Clay",
+   "pct": 7.41
+  },
+  {
+   "item": "Kasib Berry",
+   "pct": 7.41
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 3.7
+  },
+  {
+   "item": "Focus Band",
+   "pct": 3.7
+  },
+  {
+   "item": "Kebia Berry",
+   "pct": 3.7
+  },
+  {
+   "item": "Colbur Berry",
+   "pct": 3.7
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Mr. Rime": [
+  {
+   "item": "Focus Sash",
+   "pct": 48.15
+  },
+  {
+   "item": "Leftovers",
+   "pct": 14.81
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 11.11
+  },
+  {
+   "item": "Iron Ball",
+   "pct": 7.41
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 7.41
+  },
+  {
+   "item": "Life Orb",
+   "pct": 3.7
+  },
+  {
+   "item": "Never-Melt Ice",
+   "pct": 3.7
+  },
+  {
+   "item": "Bright Powder",
+   "pct": 3.7
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Mudsdale": [
+  {
+   "item": "Life Orb",
+   "pct": 35.65
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 24.35
+  },
+  {
+   "item": "Leftovers",
+   "pct": 16.52
+  },
+  {
+   "item": "Soft Sand",
+   "pct": 8.7
+  },
+  {
+   "item": "Rindo Berry",
+   "pct": 4.35
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 4.35
+  },
+  {
+   "item": "Passho Berry",
+   "pct": 3.48
+  },
+  {
+   "item": "Yache Berry",
+   "pct": 0.87
+  },
+  {
+   "item": "Iron Ball",
+   "pct": 0.87
+  },
+  {
+   "item": "Bright Powder",
+   "pct": 0.87
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Musharna": [
+  {
+   "item": "Leftovers",
+   "pct": 45.45
+  },
+  {
+   "item": "Colbur Berry",
+   "pct": 18.18
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 18.18
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 15.15
+  },
+  {
+   "item": "Grassy Seed",
+   "pct": 3.03
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Ninetales": [
+  {
+   "item": "Choice Scarf",
+   "pct": 50.29
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 12.28
+  },
+  {
+   "item": "Charcoal",
+   "pct": 8.77
+  },
+  {
+   "item": "Heat Rock",
+   "pct": 8.19
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 7.02
+  },
+  {
+   "item": "Life Orb",
+   "pct": 6.43
+  },
+  {
+   "item": "Shuca Berry",
+   "pct": 2.34
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 1.75
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 1.75
+  },
+  {
+   "item": "Iron Ball",
+   "pct": 1.17
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Ninetales-Alola": [
+  {
+   "item": "Light Clay",
+   "pct": 29.67
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 26.37
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 24.18
+  },
+  {
+   "item": "Never-Melt Ice",
+   "pct": 14.29
+  },
+  {
+   "item": "Life Orb",
+   "pct": 3.3
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 1.1
+  },
+  {
+   "item": "Grassy Seed",
+   "pct": 1.1
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Noivern": [
+  {
+   "item": "Focus Sash",
+   "pct": 69.23
+  },
+  {
+   "item": "Life Orb",
+   "pct": 5.49
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 4.4
+  },
+  {
+   "item": "Dragon Fang",
+   "pct": 3.3
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 3.3
+  },
+  {
+   "item": "Yache Berry",
+   "pct": 3.3
+  },
+  {
+   "item": "Roseli Berry",
+   "pct": 3.3
+  },
+  {
+   "item": "Haban Berry",
+   "pct": 3.3
+  },
+  {
+   "item": "White Herb",
+   "pct": 2.2
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 2.2
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Oranguru": [
+  {
+   "item": "Mental Herb",
+   "pct": 42.58
+  },
+  {
+   "item": "Colbur Berry",
+   "pct": 32.03
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 14.06
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 2.73
+  },
+  {
+   "item": "Iron Ball",
+   "pct": 2.73
+  },
+  {
+   "item": "Leftovers",
+   "pct": 2.34
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 1.17
+  },
+  {
+   "item": "Bright Powder",
+   "pct": 0.78
+  },
+  {
+   "item": "White Herb",
+   "pct": 0.78
+  },
+  {
+   "item": "Twisted Spoon",
+   "pct": 0.78
+  },
+  {
+   "item": "__other__",
+   "pct": 0.02
+  }
+ ],
+ "Orthworm": [
+  {
+   "item": "Sitrus Berry",
+   "pct": 60.53
+  },
+  {
+   "item": "Leftovers",
+   "pct": 27.63
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 2.63
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 2.63
+  },
+  {
+   "item": "Muscle Band",
+   "pct": 1.32
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 1.32
+  },
+  {
+   "item": "Shell Bell",
+   "pct": 1.32
+  },
+  {
+   "item": "Chople Berry",
+   "pct": 1.32
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 1.32
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Overqwil": [
+  {
+   "item": "Leftovers",
+   "pct": 45.45
+  },
+  {
+   "item": "Life Orb",
+   "pct": 35.61
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 6.82
+  },
+  {
+   "item": "Shuca Berry",
+   "pct": 4.55
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 2.27
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 1.52
+  },
+  {
+   "item": "Bright Powder",
+   "pct": 1.52
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.76
+  },
+  {
+   "item": "Chople Berry",
+   "pct": 0.76
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 0.76
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Palafin": [
+  {
+   "item": "Mystic Water",
+   "pct": 50.0
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 50.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Palafin-Hero": [
+  {
+   "item": "Mystic Water",
+   "pct": 50.0
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 50.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Pangoro": [
+  {
+   "item": "Life Orb",
+   "pct": 44.0
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 24.0
+  },
+  {
+   "item": "Roseli Berry",
+   "pct": 20.0
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 4.0
+  },
+  {
+   "item": "Muscle Band",
+   "pct": 4.0
+  },
+  {
+   "item": "Chople Berry",
+   "pct": 4.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Passimian": [
+  {
+   "item": "Hard Stone",
+   "pct": 25.0
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 25.0
+  },
+  {
+   "item": "Leftovers",
+   "pct": 25.0
+  },
+  {
+   "item": "Black Belt",
+   "pct": 25.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Pawmot": [
+  {
+   "item": "Focus Sash",
+   "pct": 83.55
+  },
+  {
+   "item": "Leppa Berry",
+   "pct": 4.44
+  },
+  {
+   "item": "White Herb",
+   "pct": 3.13
+  },
+  {
+   "item": "Life Orb",
+   "pct": 2.35
+  },
+  {
+   "item": "Eject Button",
+   "pct": 1.83
+  },
+  {
+   "item": "Psychic Seed",
+   "pct": 1.57
+  },
+  {
+   "item": "Air Balloon",
+   "pct": 1.04
+  },
+  {
+   "item": "Shuca Berry",
+   "pct": 0.78
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 0.78
+  },
+  {
+   "item": "Iron Ball",
+   "pct": 0.52
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Pelipper": [
+  {
+   "item": "Sitrus Berry",
+   "pct": 45.43
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 38.93
+  },
+  {
+   "item": "Damp Rock",
+   "pct": 6.54
+  },
+  {
+   "item": "Life Orb",
+   "pct": 4.59
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 1.39
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.78
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.66
+  },
+  {
+   "item": "Wacan Berry",
+   "pct": 0.62
+  },
+  {
+   "item": "Mystic Water",
+   "pct": 0.55
+  },
+  {
+   "item": "Sharp Beak",
+   "pct": 0.51
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Perrserker": [
+  {
+   "item": "Chople Berry",
+   "pct": 21.43
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 14.29
+  },
+  {
+   "item": "Leftovers",
+   "pct": 14.29
+  },
+  {
+   "item": "Grassy Seed",
+   "pct": 14.29
+  },
+  {
+   "item": "Life Orb",
+   "pct": 14.29
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 7.14
+  },
+  {
+   "item": "Psychic Seed",
+   "pct": 7.14
+  },
+  {
+   "item": "Iron Ball",
+   "pct": 7.14
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Persian": [
+  {
+   "item": "Wise Glasses",
+   "pct": 50.0
+  },
+  {
+   "item": "Chople Berry",
+   "pct": 50.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Persian-Alola": [
+  {
+   "item": "Choice Scarf",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Pidgeot": [
+  {
+   "item": "Pidgeotite",
+   "pct": 96.49
+  },
+  {
+   "item": "Sharp Beak",
+   "pct": 3.51
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Pidgeot-Mega": [
+  {
+   "item": "Pidgeotite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Pikachu": [
+  {
+   "item": "Light Ball",
+   "pct": 81.63
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 18.37
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Pincurchin": [
+  {
+   "item": "Magnet",
+   "pct": 21.82
+  },
+  {
+   "item": "Life Orb",
+   "pct": 18.18
+  },
+  {
+   "item": "Terrain Extender",
+   "pct": 16.36
+  },
+  {
+   "item": "Electric Seed",
+   "pct": 14.55
+  },
+  {
+   "item": "Eject Button",
+   "pct": 7.27
+  },
+  {
+   "item": "Air Balloon",
+   "pct": 5.45
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 5.45
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 3.64
+  },
+  {
+   "item": "Shuca Berry",
+   "pct": 3.64
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 3.64
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Pinsir": [
+  {
+   "item": "Pinsirite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Pinsir-Mega": [
+  {
+   "item": "Pinsirite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Politoed": [
+  {
+   "item": "Sitrus Berry",
+   "pct": 61.45
+  },
+  {
+   "item": "Mystic Water",
+   "pct": 16.24
+  },
+  {
+   "item": "Leftovers",
+   "pct": 8.21
+  },
+  {
+   "item": "Life Orb",
+   "pct": 6.13
+  },
+  {
+   "item": "Damp Rock",
+   "pct": 3.33
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 2.56
+  },
+  {
+   "item": "Wacan Berry",
+   "pct": 0.65
+  },
+  {
+   "item": "Eject Button",
+   "pct": 0.59
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.42
+  },
+  {
+   "item": "Zoom Lens",
+   "pct": 0.42
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Polteageist": [
+  {
+   "item": "Focus Sash",
+   "pct": 40.0
+  },
+  {
+   "item": "Colbur Berry",
+   "pct": 20.0
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 20.0
+  },
+  {
+   "item": "White Herb",
+   "pct": 20.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Polteageist-Antique": [
+  {
+   "item": "Focus Sash",
+   "pct": 40.0
+  },
+  {
+   "item": "Colbur Berry",
+   "pct": 20.0
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 20.0
+  },
+  {
+   "item": "White Herb",
+   "pct": 20.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Primarina": [
+  {
+   "item": "Leftovers",
+   "pct": 37.85
+  },
+  {
+   "item": "Life Orb",
+   "pct": 26.15
+  },
+  {
+   "item": "Mystic Water",
+   "pct": 14.9
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 10.43
+  },
+  {
+   "item": "Grassy Seed",
+   "pct": 6.26
+  },
+  {
+   "item": "Fairy Feather",
+   "pct": 1.34
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 1.27
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.67
+  },
+  {
+   "item": "Kebia Berry",
+   "pct": 0.67
+  },
+  {
+   "item": "Wise Glasses",
+   "pct": 0.45
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Pyroar": [
+  {
+   "item": "Pyroarite",
+   "pct": 99.36
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 0.43
+  },
+  {
+   "item": "Charcoal",
+   "pct": 0.21
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Pyroar-Mega": [
+  {
+   "item": "Pyroarite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Quaquaval": [
+  {
+   "item": "Iron Ball",
+   "pct": 16.0
+  },
+  {
+   "item": "Mystic Water",
+   "pct": 14.0
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 14.0
+  },
+  {
+   "item": "Life Orb",
+   "pct": 14.0
+  },
+  {
+   "item": "Leftovers",
+   "pct": 10.0
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 10.0
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 8.0
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 6.0
+  },
+  {
+   "item": "White Herb",
+   "pct": 4.0
+  },
+  {
+   "item": "Scope Lens",
+   "pct": 4.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Qwilfish": [
+  {
+   "item": "Choice Scarf",
+   "pct": 71.43
+  },
+  {
+   "item": "Leftovers",
+   "pct": 14.29
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 14.29
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Raichu": [
+  {
+   "item": "Focus Sash",
+   "pct": 58.1
+  },
+  {
+   "item": "Shuca Berry",
+   "pct": 9.52
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 8.57
+  },
+  {
+   "item": "Magnet",
+   "pct": 8.57
+  },
+  {
+   "item": "Life Orb",
+   "pct": 3.81
+  },
+  {
+   "item": "Lum Berry",
+   "pct": 2.86
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 2.86
+  },
+  {
+   "item": "Bright Powder",
+   "pct": 1.9
+  },
+  {
+   "item": "Air Balloon",
+   "pct": 1.9
+  },
+  {
+   "item": "Light Clay",
+   "pct": 1.9
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Raichu-Alola": [
+  {
+   "item": "Raichunite Y",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Raichu-Mega-X": [
+  {
+   "item": "Raichunite X",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Raichu-Mega-Y": [
+  {
+   "item": "Raichunite X",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Rampardos": [
+  {
+   "item": "Life Orb",
+   "pct": 74.07
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 14.81
+  },
+  {
+   "item": "Hard Stone",
+   "pct": 7.41
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 3.7
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Reuniclus": [
+  {
+   "item": "Life Orb",
+   "pct": 60.87
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 11.59
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 10.14
+  },
+  {
+   "item": "Twisted Spoon",
+   "pct": 5.8
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 2.9
+  },
+  {
+   "item": "Leftovers",
+   "pct": 2.9
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 1.45
+  },
+  {
+   "item": "Zoom Lens",
+   "pct": 1.45
+  },
+  {
+   "item": "Colbur Berry",
+   "pct": 1.45
+  },
+  {
+   "item": "Air Balloon",
+   "pct": 1.45
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Rhyperior": [
+  {
+   "item": "Life Orb",
+   "pct": 51.06
+  },
+  {
+   "item": "White Herb",
+   "pct": 12.77
+  },
+  {
+   "item": "Passho Berry",
+   "pct": 12.77
+  },
+  {
+   "item": "Rindo Berry",
+   "pct": 6.38
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 6.38
+  },
+  {
+   "item": "Dragon Fang",
+   "pct": 2.13
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 2.13
+  },
+  {
+   "item": "Leftovers",
+   "pct": 2.13
+  },
+  {
+   "item": "Focus Band",
+   "pct": 2.13
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 2.13
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Rillaboom": [
+  {
+   "item": "Miracle Seed",
+   "pct": 71.19
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 7.92
+  },
+  {
+   "item": "Life Orb",
+   "pct": 6.48
+  },
+  {
+   "item": "Eject Button",
+   "pct": 5.24
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 4.06
+  },
+  {
+   "item": "Grassy Seed",
+   "pct": 1.57
+  },
+  {
+   "item": "Leftovers",
+   "pct": 1.47
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 1.13
+  },
+  {
+   "item": "Kebia Berry",
+   "pct": 0.52
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 0.43
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Roserade": [
+  {
+   "item": "Focus Sash",
+   "pct": 50.0
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 30.0
+  },
+  {
+   "item": "Miracle Seed",
+   "pct": 10.0
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 10.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Rotom": [
+  {
+   "item": "Choice Scarf",
+   "pct": 33.33
+  },
+  {
+   "item": "White Herb",
+   "pct": 11.11
+  },
+  {
+   "item": "Magnet",
+   "pct": 11.11
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 11.11
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 11.11
+  },
+  {
+   "item": "Leftovers",
+   "pct": 11.11
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 11.11
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Rotom-Fan": [
+  {
+   "item": "Choice Scarf",
+   "pct": 33.33
+  },
+  {
+   "item": "Yache Berry",
+   "pct": 33.33
+  },
+  {
+   "item": "Light Clay",
+   "pct": 16.67
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 16.67
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Rotom-Frost": [
+  {
+   "item": "Choice Scarf",
+   "pct": 38.71
+  },
+  {
+   "item": "Never-Melt Ice",
+   "pct": 29.03
+  },
+  {
+   "item": "Life Orb",
+   "pct": 9.68
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 6.45
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 3.23
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 3.23
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 3.23
+  },
+  {
+   "item": "Magnet",
+   "pct": 3.23
+  },
+  {
+   "item": "Leftovers",
+   "pct": 3.23
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Rotom-Heat": [
+  {
+   "item": "Sitrus Berry",
+   "pct": 46.88
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 28.13
+  },
+  {
+   "item": "Leftovers",
+   "pct": 9.38
+  },
+  {
+   "item": "Passho Berry",
+   "pct": 9.38
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 3.13
+  },
+  {
+   "item": "Life Orb",
+   "pct": 3.13
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Rotom-Mow": [
+  {
+   "item": "Choice Scarf",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Rotom-Wash": [
+  {
+   "item": "Sitrus Berry",
+   "pct": 33.33
+  },
+  {
+   "item": "Leftovers",
+   "pct": 25.0
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 16.67
+  },
+  {
+   "item": "Rindo Berry",
+   "pct": 12.5
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 8.33
+  },
+  {
+   "item": "Life Orb",
+   "pct": 4.17
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Runerigus": [
+  {
+   "item": "Sitrus Berry",
+   "pct": 25.58
+  },
+  {
+   "item": "Leftovers",
+   "pct": 20.93
+  },
+  {
+   "item": "Passho Berry",
+   "pct": 11.63
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 9.3
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 6.98
+  },
+  {
+   "item": "Colbur Berry",
+   "pct": 6.98
+  },
+  {
+   "item": "Grassy Seed",
+   "pct": 6.98
+  },
+  {
+   "item": "Kasib Berry",
+   "pct": 4.65
+  },
+  {
+   "item": "Zoom Lens",
+   "pct": 4.65
+  },
+  {
+   "item": "Yache Berry",
+   "pct": 2.33
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Sableye": [
+  {
+   "item": "Roseli Berry",
+   "pct": 40.71
+  },
+  {
+   "item": "Light Clay",
+   "pct": 36.82
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 6.84
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 6.25
+  },
+  {
+   "item": "Sablenite",
+   "pct": 3.29
+  },
+  {
+   "item": "Leftovers",
+   "pct": 2.2
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 1.44
+  },
+  {
+   "item": "Damp Rock",
+   "pct": 1.1
+  },
+  {
+   "item": "Bright Powder",
+   "pct": 0.84
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 0.51
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Sableye-Mega": [
+  {
+   "item": "Sablenite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Salamence": [
+  {
+   "item": "Salamencite",
+   "pct": 99.41
+  },
+  {
+   "item": "Life Orb",
+   "pct": 0.28
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 0.09
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 0.05
+  },
+  {
+   "item": "Yache Berry",
+   "pct": 0.05
+  },
+  {
+   "item": "Haban Berry",
+   "pct": 0.02
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 0.02
+  },
+  {
+   "item": "Sharp Beak",
+   "pct": 0.02
+  },
+  {
+   "item": "Sablenite",
+   "pct": 0.02
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.02
+  },
+  {
+   "item": "__other__",
+   "pct": 0.02
+  }
+ ],
+ "Salamence-Mega": [
+  {
+   "item": "Salamencite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Salazzle": [
+  {
+   "item": "Focus Sash",
+   "pct": 79.63
+  },
+  {
+   "item": "Life Orb",
+   "pct": 5.56
+  },
+  {
+   "item": "Wise Glasses",
+   "pct": 3.7
+  },
+  {
+   "item": "Bright Powder",
+   "pct": 3.7
+  },
+  {
+   "item": "Shuca Berry",
+   "pct": 1.85
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 1.85
+  },
+  {
+   "item": "Air Balloon",
+   "pct": 1.85
+  },
+  {
+   "item": "Payapa Berry",
+   "pct": 1.85
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Samurott": [
+  {
+   "item": "White Herb",
+   "pct": 33.33
+  },
+  {
+   "item": "Mystic Water",
+   "pct": 33.33
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 33.33
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Samurott-Hisui": [
+  {
+   "item": "Focus Sash",
+   "pct": 60.0
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 40.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Sandaconda": [
+  {
+   "item": "Bright Powder",
+   "pct": 75.0
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 12.5
+  },
+  {
+   "item": "Shed Shell",
+   "pct": 12.5
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Sceptile": [
+  {
+   "item": "Sceptilite",
+   "pct": 88.16
+  },
+  {
+   "item": "White Herb",
+   "pct": 3.95
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 3.62
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 0.99
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.99
+  },
+  {
+   "item": "Electric Seed",
+   "pct": 0.99
+  },
+  {
+   "item": "Light Ball",
+   "pct": 0.33
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 0.33
+  },
+  {
+   "item": "Lum Berry",
+   "pct": 0.33
+  },
+  {
+   "item": "Sceptilite",
+   "pct": 0.33
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Sceptile-Mega": [
+  {
+   "item": "Sceptilite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Scizor": [
+  {
+   "item": "Scizorite",
+   "pct": 62.83
+  },
+  {
+   "item": "Life Orb",
+   "pct": 20.35
+  },
+  {
+   "item": "Metal Coat",
+   "pct": 8.55
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 2.8
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 1.77
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 1.62
+  },
+  {
+   "item": "White Herb",
+   "pct": 0.74
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 0.44
+  },
+  {
+   "item": "Silver Powder",
+   "pct": 0.44
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 0.44
+  },
+  {
+   "item": "__other__",
+   "pct": 0.02
+  }
+ ],
+ "Scizor-Mega": [
+  {
+   "item": "Scizorite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Scolipede": [
+  {
+   "item": "Scolipite",
+   "pct": 83.91
+  },
+  {
+   "item": "Life Orb",
+   "pct": 6.9
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 3.45
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 2.3
+  },
+  {
+   "item": "Bright Powder",
+   "pct": 1.15
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 1.15
+  },
+  {
+   "item": "White Herb",
+   "pct": 1.15
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Scolipede-Mega": [
+  {
+   "item": "Scolipite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Scovillain": [
+  {
+   "item": "Scovillainite",
+   "pct": 98.96
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.43
+  },
+  {
+   "item": "Scolipite",
+   "pct": 0.26
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 0.26
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.09
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Scovillain-Mega": [
+  {
+   "item": "Scovillainite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Scrafty": [
+  {
+   "item": "Scraftinite",
+   "pct": 79.23
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 5.19
+  },
+  {
+   "item": "Roseli Berry",
+   "pct": 4.04
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 4.04
+  },
+  {
+   "item": "Leftovers",
+   "pct": 2.31
+  },
+  {
+   "item": "Life Orb",
+   "pct": 2.31
+  },
+  {
+   "item": "Chople Berry",
+   "pct": 1.35
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 0.77
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.38
+  },
+  {
+   "item": "Eject Button",
+   "pct": 0.38
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Scrafty-Mega": [
+  {
+   "item": "Scraftinite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Serperior": [
+  {
+   "item": "Sitrus Berry",
+   "pct": 33.33
+  },
+  {
+   "item": "Miracle Seed",
+   "pct": 20.43
+  },
+  {
+   "item": "Leftovers",
+   "pct": 16.13
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 9.68
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 5.38
+  },
+  {
+   "item": "Life Orb",
+   "pct": 5.38
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 3.23
+  },
+  {
+   "item": "Light Clay",
+   "pct": 3.23
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 2.15
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 1.08
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Sharpedo": [
+  {
+   "item": "Sharpedonite",
+   "pct": 84.85
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 6.06
+  },
+  {
+   "item": "Life Orb",
+   "pct": 6.06
+  },
+  {
+   "item": "King's Rock",
+   "pct": 3.03
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Sharpedo-Mega": [
+  {
+   "item": "Sharpedonite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Simipour": [
+  {
+   "item": "Focus Sash",
+   "pct": 53.85
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 23.08
+  },
+  {
+   "item": "Mystic Water",
+   "pct": 7.69
+  },
+  {
+   "item": "Leftovers",
+   "pct": 7.69
+  },
+  {
+   "item": "King's Rock",
+   "pct": 7.69
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Simisage": [
+  {
+   "item": "Focus Sash",
+   "pct": 60.0
+  },
+  {
+   "item": "Life Orb",
+   "pct": 20.0
+  },
+  {
+   "item": "Miracle Seed",
+   "pct": 20.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Simisear": [
+  {
+   "item": "Focus Sash",
+   "pct": 40.0
+  },
+  {
+   "item": "Life Orb",
+   "pct": 40.0
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 20.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Sinistcha": [
+  {
+   "item": "Kasib Berry",
+   "pct": 27.22
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 22.77
+  },
+  {
+   "item": "Colbur Berry",
+   "pct": 20.08
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 13.13
+  },
+  {
+   "item": "Coba Berry",
+   "pct": 7.01
+  },
+  {
+   "item": "Leftovers",
+   "pct": 6.13
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 1.9
+  },
+  {
+   "item": "Big Root",
+   "pct": 0.79
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 0.55
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 0.42
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Sinistcha-Masterpiece": [
+  {
+   "item": "Colbur Berry",
+   "pct": 37.25
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 21.57
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 17.65
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 11.76
+  },
+  {
+   "item": "Coba Berry",
+   "pct": 9.8
+  },
+  {
+   "item": "Kasib Berry",
+   "pct": 1.96
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Sirfetch\u2019d": [
+  {
+   "item": "Leek",
+   "pct": 81.82
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 5.45
+  },
+  {
+   "item": "Life Orb",
+   "pct": 4.55
+  },
+  {
+   "item": "Black Belt",
+   "pct": 4.55
+  },
+  {
+   "item": "Muscle Band",
+   "pct": 1.82
+  },
+  {
+   "item": "Sharp Beak",
+   "pct": 0.91
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 0.91
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Skarmory": [
+  {
+   "item": "Skarmorite",
+   "pct": 91.85
+  },
+  {
+   "item": "Leftovers",
+   "pct": 3.8
+  },
+  {
+   "item": "Sharp Beak",
+   "pct": 1.09
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.54
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 0.54
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.54
+  },
+  {
+   "item": "Psychic Seed",
+   "pct": 0.54
+  },
+  {
+   "item": "Hard Stone",
+   "pct": 0.54
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 0.54
+  },
+  {
+   "item": "__other__",
+   "pct": 0.02
+  }
+ ],
+ "Skarmory-Mega": [
+  {
+   "item": "Skarmorite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Skeledirge": [
+  {
+   "item": "Leftovers",
+   "pct": 47.46
+  },
+  {
+   "item": "Charcoal",
+   "pct": 13.56
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 11.86
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 6.78
+  },
+  {
+   "item": "Life Orb",
+   "pct": 6.78
+  },
+  {
+   "item": "Colbur Berry",
+   "pct": 3.39
+  },
+  {
+   "item": "Shuca Berry",
+   "pct": 3.39
+  },
+  {
+   "item": "Shell Bell",
+   "pct": 3.39
+  },
+  {
+   "item": "Kasib Berry",
+   "pct": 1.69
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 1.69
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Slowbro": [
+  {
+   "item": "Slowbronite",
+   "pct": 80.0
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 6.25
+  },
+  {
+   "item": "Leftovers",
+   "pct": 6.25
+  },
+  {
+   "item": "Colbur Berry",
+   "pct": 3.75
+  },
+  {
+   "item": "Lum Berry",
+   "pct": 1.25
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 1.25
+  },
+  {
+   "item": "Rindo Berry",
+   "pct": 1.25
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Slowbro-Galar": [
+  {
+   "item": "Quick Claw",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Slowbro-Mega": [
+  {
+   "item": "Slowbronite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Slowking": [
+  {
+   "item": "Colbur Berry",
+   "pct": 32.0
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 28.0
+  },
+  {
+   "item": "Leftovers",
+   "pct": 20.0
+  },
+  {
+   "item": "Shell Bell",
+   "pct": 8.0
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 4.0
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 4.0
+  },
+  {
+   "item": "Rindo Berry",
+   "pct": 4.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Slowking-Galar": [
+  {
+   "item": "Sitrus Berry",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Slurpuff": [
+  {
+   "item": "Psychic Seed",
+   "pct": 50.0
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 25.0
+  },
+  {
+   "item": "Electric Seed",
+   "pct": 16.67
+  },
+  {
+   "item": "Red Card",
+   "pct": 8.33
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Sneasler": [
+  {
+   "item": "White Herb",
+   "pct": 42.42
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 26.41
+  },
+  {
+   "item": "Grassy Seed",
+   "pct": 16.21
+  },
+  {
+   "item": "Psychic Seed",
+   "pct": 12.18
+  },
+  {
+   "item": "Life Orb",
+   "pct": 1.34
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 0.68
+  },
+  {
+   "item": "Iron Ball",
+   "pct": 0.22
+  },
+  {
+   "item": "Electric Seed",
+   "pct": 0.22
+  },
+  {
+   "item": "Lum Berry",
+   "pct": 0.19
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 0.14
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Snorlax": [
+  {
+   "item": "Leftovers",
+   "pct": 72.87
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 18.99
+  },
+  {
+   "item": "Chople Berry",
+   "pct": 3.1
+  },
+  {
+   "item": "Silk Scarf",
+   "pct": 1.55
+  },
+  {
+   "item": "Lum Berry",
+   "pct": 0.78
+  },
+  {
+   "item": "Chesto Berry",
+   "pct": 0.78
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.78
+  },
+  {
+   "item": "Life Orb",
+   "pct": 0.39
+  },
+  {
+   "item": "Metronome",
+   "pct": 0.39
+  },
+  {
+   "item": "King's Rock",
+   "pct": 0.39
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Spiritomb": [
+  {
+   "item": "Roseli Berry",
+   "pct": 50.72
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 24.64
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 8.7
+  },
+  {
+   "item": "Leftovers",
+   "pct": 5.8
+  },
+  {
+   "item": "Psychic Seed",
+   "pct": 4.35
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 1.45
+  },
+  {
+   "item": "Black Glasses",
+   "pct": 1.45
+  },
+  {
+   "item": "Life Orb",
+   "pct": 1.45
+  },
+  {
+   "item": "Focus Band",
+   "pct": 1.45
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Squawkabilly": [
+  {
+   "item": "Choice Scarf",
+   "pct": 71.43
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 14.29
+  },
+  {
+   "item": "Leftovers",
+   "pct": 7.14
+  },
+  {
+   "item": "Eject Button",
+   "pct": 7.14
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Squawkabilly-Blue": [
+  {
+   "item": "Choice Scarf",
+   "pct": 69.23
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 15.38
+  },
+  {
+   "item": "Leftovers",
+   "pct": 7.69
+  },
+  {
+   "item": "Eject Button",
+   "pct": 7.69
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Squawkabilly-White": [
+  {
+   "item": "Choice Scarf",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Squawkabilly-Yellow": [
+  {
+   "item": "Choice Scarf",
+   "pct": 69.23
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 15.38
+  },
+  {
+   "item": "Leftovers",
+   "pct": 7.69
+  },
+  {
+   "item": "Eject Button",
+   "pct": 7.69
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Staraptor": [
+  {
+   "item": "Staraptite",
+   "pct": 94.16
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 5.35
+  },
+  {
+   "item": "Lum Berry",
+   "pct": 0.12
+  },
+  {
+   "item": "Staraptite",
+   "pct": 0.09
+  },
+  {
+   "item": "Starminite",
+   "pct": 0.07
+  },
+  {
+   "item": "White Herb",
+   "pct": 0.05
+  },
+  {
+   "item": "Life Orb",
+   "pct": 0.05
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.05
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 0.05
+  },
+  {
+   "item": "Bright Powder",
+   "pct": 0.02
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Staraptor-Mega": [
+  {
+   "item": "Staraptite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Starmie": [
+  {
+   "item": "Starminite",
+   "pct": 85.93
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 7.04
+  },
+  {
+   "item": "Life Orb",
+   "pct": 2.51
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 1.51
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 1.01
+  },
+  {
+   "item": "Never-Melt Ice",
+   "pct": 0.5
+  },
+  {
+   "item": "Mystic Water",
+   "pct": 0.5
+  },
+  {
+   "item": "Wise Glasses",
+   "pct": 0.5
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.5
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Starmie-Mega": [
+  {
+   "item": "Starminite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Steelix": [
+  {
+   "item": "Steelixite",
+   "pct": 86.29
+  },
+  {
+   "item": "Leftovers",
+   "pct": 4.84
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 2.42
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 1.61
+  },
+  {
+   "item": "Soft Sand",
+   "pct": 0.81
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.81
+  },
+  {
+   "item": "Life Orb",
+   "pct": 0.81
+  },
+  {
+   "item": "Lum Berry",
+   "pct": 0.81
+  },
+  {
+   "item": "Chople Berry",
+   "pct": 0.81
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 0.81
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Steelix-Mega": [
+  {
+   "item": "Steelixite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Stunfisk": [
+  {
+   "item": "Bright Powder",
+   "pct": 50.0
+  },
+  {
+   "item": "Life Orb",
+   "pct": 20.0
+  },
+  {
+   "item": "Shuca Berry",
+   "pct": 10.0
+  },
+  {
+   "item": "Wise Glasses",
+   "pct": 10.0
+  },
+  {
+   "item": "Leftovers",
+   "pct": 10.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Stunfisk-Galar": [
+  {
+   "item": "Sitrus Berry",
+   "pct": 33.33
+  },
+  {
+   "item": "Binding Band",
+   "pct": 33.33
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 33.33
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Swalot": [
+  {
+   "item": "Leftovers",
+   "pct": 46.15
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 30.77
+  },
+  {
+   "item": "Life Orb",
+   "pct": 15.38
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 7.69
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Swampert": [
+  {
+   "item": "Swampertite",
+   "pct": 95.31
+  },
+  {
+   "item": "Leftovers",
+   "pct": 2.4
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 1.26
+  },
+  {
+   "item": "Life Orb",
+   "pct": 0.5
+  },
+  {
+   "item": "Rindo Berry",
+   "pct": 0.27
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 0.15
+  },
+  {
+   "item": "Mystic Water",
+   "pct": 0.04
+  },
+  {
+   "item": "Lum Berry",
+   "pct": 0.04
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 0.04
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Swampert-Mega": [
+  {
+   "item": "Swampertite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Sylveon": [
+  {
+   "item": "Fairy Feather",
+   "pct": 92.71
+  },
+  {
+   "item": "Life Orb",
+   "pct": 4.64
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.99
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.73
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 0.28
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.17
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 0.17
+  },
+  {
+   "item": "Babiri Berry",
+   "pct": 0.1
+  },
+  {
+   "item": "Grassy Seed",
+   "pct": 0.1
+  },
+  {
+   "item": "Kebia Berry",
+   "pct": 0.09
+  },
+  {
+   "item": "__other__",
+   "pct": 0.02
+  }
+ ],
+ "Talonflame": [
+  {
+   "item": "Sharp Beak",
+   "pct": 62.41
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 18.8
+  },
+  {
+   "item": "Life Orb",
+   "pct": 8.61
+  },
+  {
+   "item": "Charcoal",
+   "pct": 3.89
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 3.24
+  },
+  {
+   "item": "Charti Berry",
+   "pct": 1.76
+  },
+  {
+   "item": "Leftovers",
+   "pct": 1.3
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Tauros": [
+  {
+   "item": "Rindo Berry",
+   "pct": 31.25
+  },
+  {
+   "item": "Life Orb",
+   "pct": 25.0
+  },
+  {
+   "item": "Magnet",
+   "pct": 12.5
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 12.5
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 6.25
+  },
+  {
+   "item": "Muscle Band",
+   "pct": 6.25
+  },
+  {
+   "item": "Air Balloon",
+   "pct": 6.25
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Tauros-Paldea-Aqua": [
+  {
+   "item": "Mystic Water",
+   "pct": 28.45
+  },
+  {
+   "item": "White Herb",
+   "pct": 24.14
+  },
+  {
+   "item": "Life Orb",
+   "pct": 17.24
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 12.07
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 4.31
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 4.31
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 3.45
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 2.59
+  },
+  {
+   "item": "Roseli Berry",
+   "pct": 1.72
+  },
+  {
+   "item": "Payapa Berry",
+   "pct": 1.72
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Tauros-Paldea-Blaze": [
+  {
+   "item": "Sitrus Berry",
+   "pct": 18.18
+  },
+  {
+   "item": "White Herb",
+   "pct": 18.18
+  },
+  {
+   "item": "Life Orb",
+   "pct": 18.18
+  },
+  {
+   "item": "Leftovers",
+   "pct": 13.64
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 13.64
+  },
+  {
+   "item": "Black Belt",
+   "pct": 4.55
+  },
+  {
+   "item": "Shuca Berry",
+   "pct": 4.55
+  },
+  {
+   "item": "Passho Berry",
+   "pct": 4.55
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 4.55
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Tauros-Paldea-Combat": [
+  {
+   "item": "Sitrus Berry",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Thievul": [
+  {
+   "item": "Psychic Seed",
+   "pct": 75.0
+  },
+  {
+   "item": "Grassy Seed",
+   "pct": 25.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Tinkaton": [
+  {
+   "item": "Shuca Berry",
+   "pct": 29.45
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 17.15
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 15.21
+  },
+  {
+   "item": "Metal Coat",
+   "pct": 14.24
+  },
+  {
+   "item": "Leftovers",
+   "pct": 7.44
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 6.47
+  },
+  {
+   "item": "Life Orb",
+   "pct": 3.88
+  },
+  {
+   "item": "Eject Button",
+   "pct": 3.24
+  },
+  {
+   "item": "Iron Ball",
+   "pct": 1.62
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 1.29
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Torkoal": [
+  {
+   "item": "Charcoal",
+   "pct": 87.92
+  },
+  {
+   "item": "Leftovers",
+   "pct": 4.88
+  },
+  {
+   "item": "Heat Rock",
+   "pct": 2.65
+  },
+  {
+   "item": "Life Orb",
+   "pct": 2.37
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 1.42
+  },
+  {
+   "item": "Eject Button",
+   "pct": 0.24
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.19
+  },
+  {
+   "item": "Passho Berry",
+   "pct": 0.14
+  },
+  {
+   "item": "White Herb",
+   "pct": 0.09
+  },
+  {
+   "item": "Wise Glasses",
+   "pct": 0.09
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Torterra": [
+  {
+   "item": "White Herb",
+   "pct": 41.3
+  },
+  {
+   "item": "Life Orb",
+   "pct": 21.74
+  },
+  {
+   "item": "Leftovers",
+   "pct": 13.04
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 8.7
+  },
+  {
+   "item": "Yache Berry",
+   "pct": 6.52
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 4.35
+  },
+  {
+   "item": "Soft Sand",
+   "pct": 2.17
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 2.17
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Toucannon": [
+  {
+   "item": "King's Rock",
+   "pct": 36.67
+  },
+  {
+   "item": "Life Orb",
+   "pct": 26.67
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 16.67
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 10.0
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 3.33
+  },
+  {
+   "item": "White Herb",
+   "pct": 3.33
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 3.33
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Toxapex": [
+  {
+   "item": "Leftovers",
+   "pct": 95.73
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 2.41
+  },
+  {
+   "item": "Binding Band",
+   "pct": 0.83
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 0.37
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.19
+  },
+  {
+   "item": "Shell Bell",
+   "pct": 0.19
+  },
+  {
+   "item": "Mystic Water",
+   "pct": 0.09
+  },
+  {
+   "item": "Shuca Berry",
+   "pct": 0.09
+  },
+  {
+   "item": "Life Orb",
+   "pct": 0.09
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Toxicroak": [
+  {
+   "item": "Focus Sash",
+   "pct": 35.29
+  },
+  {
+   "item": "White Herb",
+   "pct": 17.65
+  },
+  {
+   "item": "Life Orb",
+   "pct": 11.76
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 9.8
+  },
+  {
+   "item": "Shuca Berry",
+   "pct": 7.84
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 5.88
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 3.92
+  },
+  {
+   "item": "Payapa Berry",
+   "pct": 3.92
+  },
+  {
+   "item": "Scope Lens",
+   "pct": 1.96
+  },
+  {
+   "item": "Bright Powder",
+   "pct": 1.96
+  },
+  {
+   "item": "__other__",
+   "pct": 0.02
+  }
+ ],
+ "Toxtricity": [
+  {
+   "item": "Choice Scarf",
+   "pct": 80.0
+  },
+  {
+   "item": "Life Orb",
+   "pct": 20.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Toxtricity-Low-Key": [
+  {
+   "item": "Life Orb",
+   "pct": 57.14
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 28.57
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 14.29
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Trevenant": [
+  {
+   "item": "Sitrus Berry",
+   "pct": 90.91
+  },
+  {
+   "item": "Chesto Berry",
+   "pct": 4.55
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 4.55
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Tsareena": [
+  {
+   "item": "Wide Lens",
+   "pct": 45.96
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 17.7
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 12.27
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 9.16
+  },
+  {
+   "item": "Miracle Seed",
+   "pct": 4.66
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 3.73
+  },
+  {
+   "item": "Coba Berry",
+   "pct": 1.86
+  },
+  {
+   "item": "Life Orb",
+   "pct": 1.86
+  },
+  {
+   "item": "White Herb",
+   "pct": 1.71
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 1.09
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Typhlosion": [
+  {
+   "item": "Choice Scarf",
+   "pct": 48.65
+  },
+  {
+   "item": "Charcoal",
+   "pct": 35.14
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 10.81
+  },
+  {
+   "item": "Leftovers",
+   "pct": 2.7
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 2.7
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Typhlosion-Hisui": [
+  {
+   "item": "Choice Scarf",
+   "pct": 80.0
+  },
+  {
+   "item": "Life Orb",
+   "pct": 10.0
+  },
+  {
+   "item": "Spell Tag",
+   "pct": 3.33
+  },
+  {
+   "item": "Charcoal",
+   "pct": 3.33
+  },
+  {
+   "item": "Scope Lens",
+   "pct": 3.33
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Tyranitar": [
+  {
+   "item": "Tyranitarite",
+   "pct": 78.45
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 9.92
+  },
+  {
+   "item": "Chople Berry",
+   "pct": 4.42
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 3.28
+  },
+  {
+   "item": "Life Orb",
+   "pct": 1.41
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.85
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.64
+  },
+  {
+   "item": "Passho Berry",
+   "pct": 0.5
+  },
+  {
+   "item": "Smooth Rock",
+   "pct": 0.32
+  },
+  {
+   "item": "White Herb",
+   "pct": 0.2
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Tyranitar-Mega": [
+  {
+   "item": "Tyranitarite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Tyrantrum": [
+  {
+   "item": "Choice Scarf",
+   "pct": 29.17
+  },
+  {
+   "item": "Life Orb",
+   "pct": 29.17
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 12.5
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 12.5
+  },
+  {
+   "item": "Chople Berry",
+   "pct": 8.33
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 4.17
+  },
+  {
+   "item": "Roseli Berry",
+   "pct": 4.17
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Umbreon": [
+  {
+   "item": "Leftovers",
+   "pct": 54.74
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 24.21
+  },
+  {
+   "item": "Chople Berry",
+   "pct": 6.32
+  },
+  {
+   "item": "Black Glasses",
+   "pct": 6.32
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 2.11
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 2.11
+  },
+  {
+   "item": "Lum Berry",
+   "pct": 1.05
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 1.05
+  },
+  {
+   "item": "Electric Seed",
+   "pct": 1.05
+  },
+  {
+   "item": "Psychic Seed",
+   "pct": 1.05
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Vanilluxe": [
+  {
+   "item": "Choice Scarf",
+   "pct": 42.65
+  },
+  {
+   "item": "Never-Melt Ice",
+   "pct": 42.18
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 4.74
+  },
+  {
+   "item": "Light Clay",
+   "pct": 2.84
+  },
+  {
+   "item": "Chople Berry",
+   "pct": 1.9
+  },
+  {
+   "item": "Leftovers",
+   "pct": 1.9
+  },
+  {
+   "item": "Life Orb",
+   "pct": 1.42
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.95
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 0.95
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.47
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Vaporeon": [
+  {
+   "item": "Leftovers",
+   "pct": 64.44
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 22.22
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 4.44
+  },
+  {
+   "item": "Wacan Berry",
+   "pct": 2.22
+  },
+  {
+   "item": "Mystic Water",
+   "pct": 2.22
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 2.22
+  },
+  {
+   "item": "Life Orb",
+   "pct": 2.22
+  },
+  {
+   "item": "__other__",
+   "pct": 0.02
+  }
+ ],
+ "Venusaur": [
+  {
+   "item": "Focus Sash",
+   "pct": 38.31
+  },
+  {
+   "item": "Venusaurite",
+   "pct": 33.94
+  },
+  {
+   "item": "Life Orb",
+   "pct": 19.25
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 3.27
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 1.77
+  },
+  {
+   "item": "Leftovers",
+   "pct": 1.21
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 1.07
+  },
+  {
+   "item": "Miracle Seed",
+   "pct": 0.75
+  },
+  {
+   "item": "Coba Berry",
+   "pct": 0.21
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 0.21
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Venusaur-Mega": [
+  {
+   "item": "Venusaurite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Victreebel": [
+  {
+   "item": "Victreebelite",
+   "pct": 78.43
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 7.84
+  },
+  {
+   "item": "Life Orb",
+   "pct": 5.88
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 3.92
+  },
+  {
+   "item": "Miracle Seed",
+   "pct": 1.96
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 1.96
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Victreebel-Mega": [
+  {
+   "item": "Victreebelite",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Vileplume": [
+  {
+   "item": "Focus Sash",
+   "pct": 82.16
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 7.06
+  },
+  {
+   "item": "Big Root",
+   "pct": 4.83
+  },
+  {
+   "item": "Life Orb",
+   "pct": 1.86
+  },
+  {
+   "item": "Leftovers",
+   "pct": 1.12
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 1.12
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 0.74
+  },
+  {
+   "item": "Scope Lens",
+   "pct": 0.37
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 0.37
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 0.37
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Vivillon": [
+  {
+   "item": "Focus Sash",
+   "pct": 81.84
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 16.58
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.63
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.21
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.21
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 0.11
+  },
+  {
+   "item": "Focus Band",
+   "pct": 0.11
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 0.11
+  },
+  {
+   "item": "Charti Berry",
+   "pct": 0.11
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 0.11
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Vivillon-Archipelago": [
+  {
+   "item": "Focus Sash",
+   "pct": 81.84
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 16.58
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.63
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.21
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.21
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 0.11
+  },
+  {
+   "item": "Focus Band",
+   "pct": 0.11
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 0.11
+  },
+  {
+   "item": "Charti Berry",
+   "pct": 0.11
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 0.11
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Vivillon-Continental": [
+  {
+   "item": "Focus Sash",
+   "pct": 81.84
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 16.58
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.63
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.21
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.21
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 0.11
+  },
+  {
+   "item": "Focus Band",
+   "pct": 0.11
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 0.11
+  },
+  {
+   "item": "Charti Berry",
+   "pct": 0.11
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 0.11
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Vivillon-Elegant": [
+  {
+   "item": "Focus Sash",
+   "pct": 81.84
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 16.58
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.63
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.21
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.21
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 0.11
+  },
+  {
+   "item": "Focus Band",
+   "pct": 0.11
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 0.11
+  },
+  {
+   "item": "Charti Berry",
+   "pct": 0.11
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 0.11
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Vivillon-Fancy": [
+  {
+   "item": "Focus Sash",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Vivillon-Garden": [
+  {
+   "item": "Focus Sash",
+   "pct": 81.84
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 16.58
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.63
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.21
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.21
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 0.11
+  },
+  {
+   "item": "Focus Band",
+   "pct": 0.11
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 0.11
+  },
+  {
+   "item": "Charti Berry",
+   "pct": 0.11
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 0.11
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Vivillon-High Plains": [
+  {
+   "item": "Choice Scarf",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Vivillon-Icy Snow": [
+  {
+   "item": "Focus Sash",
+   "pct": 81.84
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 16.58
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.63
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.21
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.21
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 0.11
+  },
+  {
+   "item": "Focus Band",
+   "pct": 0.11
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 0.11
+  },
+  {
+   "item": "Charti Berry",
+   "pct": 0.11
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 0.11
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Vivillon-Jungle": [
+  {
+   "item": "Focus Sash",
+   "pct": 81.84
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 16.58
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.63
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.21
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.21
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 0.11
+  },
+  {
+   "item": "Focus Band",
+   "pct": 0.11
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 0.11
+  },
+  {
+   "item": "Charti Berry",
+   "pct": 0.11
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 0.11
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Vivillon-Marine": [
+  {
+   "item": "Focus Sash",
+   "pct": 81.84
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 16.58
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.63
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.21
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.21
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 0.11
+  },
+  {
+   "item": "Focus Band",
+   "pct": 0.11
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 0.11
+  },
+  {
+   "item": "Charti Berry",
+   "pct": 0.11
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 0.11
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Vivillon-Modern": [
+  {
+   "item": "Focus Sash",
+   "pct": 81.84
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 16.58
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.63
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.21
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.21
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 0.11
+  },
+  {
+   "item": "Focus Band",
+   "pct": 0.11
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 0.11
+  },
+  {
+   "item": "Charti Berry",
+   "pct": 0.11
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 0.11
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Vivillon-Monsoon": [
+  {
+   "item": "Focus Sash",
+   "pct": 81.84
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 16.58
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.63
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.21
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.21
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 0.11
+  },
+  {
+   "item": "Focus Band",
+   "pct": 0.11
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 0.11
+  },
+  {
+   "item": "Charti Berry",
+   "pct": 0.11
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 0.11
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Vivillon-Ocean": [
+  {
+   "item": "Focus Sash",
+   "pct": 81.84
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 16.58
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.63
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.21
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.21
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 0.11
+  },
+  {
+   "item": "Focus Band",
+   "pct": 0.11
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 0.11
+  },
+  {
+   "item": "Charti Berry",
+   "pct": 0.11
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 0.11
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Vivillon-Pokeball": [
+  {
+   "item": "Focus Sash",
+   "pct": 81.84
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 16.58
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.63
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.21
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.21
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 0.11
+  },
+  {
+   "item": "Focus Band",
+   "pct": 0.11
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 0.11
+  },
+  {
+   "item": "Charti Berry",
+   "pct": 0.11
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 0.11
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Vivillon-Polar": [
+  {
+   "item": "Focus Sash",
+   "pct": 81.84
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 16.58
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.63
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.21
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.21
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 0.11
+  },
+  {
+   "item": "Focus Band",
+   "pct": 0.11
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 0.11
+  },
+  {
+   "item": "Charti Berry",
+   "pct": 0.11
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 0.11
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Vivillon-River": [
+  {
+   "item": "Focus Sash",
+   "pct": 81.84
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 16.58
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.63
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.21
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.21
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 0.11
+  },
+  {
+   "item": "Focus Band",
+   "pct": 0.11
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 0.11
+  },
+  {
+   "item": "Charti Berry",
+   "pct": 0.11
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 0.11
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Vivillon-Sandstorm": [
+  {
+   "item": "Focus Sash",
+   "pct": 81.84
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 16.58
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.63
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.21
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.21
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 0.11
+  },
+  {
+   "item": "Focus Band",
+   "pct": 0.11
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 0.11
+  },
+  {
+   "item": "Charti Berry",
+   "pct": 0.11
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 0.11
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Vivillon-Savanna": [
+  {
+   "item": "Focus Sash",
+   "pct": 81.84
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 16.58
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.63
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.21
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.21
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 0.11
+  },
+  {
+   "item": "Focus Band",
+   "pct": 0.11
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 0.11
+  },
+  {
+   "item": "Charti Berry",
+   "pct": 0.11
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 0.11
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Vivillon-Sun": [
+  {
+   "item": "Focus Sash",
+   "pct": 81.84
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 16.58
+  },
+  {
+   "item": "Quick Claw",
+   "pct": 0.63
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.21
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 0.21
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 0.11
+  },
+  {
+   "item": "Focus Band",
+   "pct": 0.11
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 0.11
+  },
+  {
+   "item": "Charti Berry",
+   "pct": 0.11
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 0.11
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Vivillon-Tundra": [
+  {
+   "item": "Focus Sash",
+   "pct": 100.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Volcarona": [
+  {
+   "item": "Grassy Seed",
+   "pct": 36.26
+  },
+  {
+   "item": "Rocky Helmet",
+   "pct": 31.2
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 14.33
+  },
+  {
+   "item": "Leftovers",
+   "pct": 8.11
+  },
+  {
+   "item": "Charti Berry",
+   "pct": 3.66
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 3.05
+  },
+  {
+   "item": "Life Orb",
+   "pct": 1.33
+  },
+  {
+   "item": "Charcoal",
+   "pct": 0.94
+  },
+  {
+   "item": "Passho Berry",
+   "pct": 0.56
+  },
+  {
+   "item": "Psychic Seed",
+   "pct": 0.56
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Watchog": [
+  {
+   "item": "Focus Sash",
+   "pct": 33.33
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 33.33
+  },
+  {
+   "item": "Chople Berry",
+   "pct": 33.33
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Weavile": [
+  {
+   "item": "Focus Sash",
+   "pct": 77.08
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 11.11
+  },
+  {
+   "item": "Life Orb",
+   "pct": 5.21
+  },
+  {
+   "item": "King's Rock",
+   "pct": 2.08
+  },
+  {
+   "item": "White Herb",
+   "pct": 1.04
+  },
+  {
+   "item": "Black Glasses",
+   "pct": 1.04
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 1.04
+  },
+  {
+   "item": "Never-Melt Ice",
+   "pct": 0.69
+  },
+  {
+   "item": "Roseli Berry",
+   "pct": 0.35
+  },
+  {
+   "item": "Bright Powder",
+   "pct": 0.35
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Whimsicott": [
+  {
+   "item": "Focus Sash",
+   "pct": 77.0
+  },
+  {
+   "item": "Fairy Feather",
+   "pct": 8.52
+  },
+  {
+   "item": "Occa Berry",
+   "pct": 7.48
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 2.45
+  },
+  {
+   "item": "Coba Berry",
+   "pct": 1.49
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 1.24
+  },
+  {
+   "item": "Kebia Berry",
+   "pct": 0.6
+  },
+  {
+   "item": "Life Orb",
+   "pct": 0.59
+  },
+  {
+   "item": "Babiri Berry",
+   "pct": 0.34
+  },
+  {
+   "item": "Leftovers",
+   "pct": 0.29
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Wigglytuff": [
+  {
+   "item": "Life Orb",
+   "pct": 45.0
+  },
+  {
+   "item": "Leftovers",
+   "pct": 25.0
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 10.0
+  },
+  {
+   "item": "Fairy Feather",
+   "pct": 10.0
+  },
+  {
+   "item": "Psychic Seed",
+   "pct": 5.0
+  },
+  {
+   "item": "Grassy Seed",
+   "pct": 5.0
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Wyrdeer": [
+  {
+   "item": "Colbur Berry",
+   "pct": 38.46
+  },
+  {
+   "item": "Sitrus Berry",
+   "pct": 25.0
+  },
+  {
+   "item": "Leftovers",
+   "pct": 7.69
+  },
+  {
+   "item": "Mental Herb",
+   "pct": 5.77
+  },
+  {
+   "item": "Wide Lens",
+   "pct": 5.77
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 5.77
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 3.85
+  },
+  {
+   "item": "Psychic Seed",
+   "pct": 3.85
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 1.92
+  },
+  {
+   "item": "Light Clay",
+   "pct": 1.92
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ],
+ "Zoroark": [
+  {
+   "item": "Focus Sash",
+   "pct": 64.71
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 11.76
+  },
+  {
+   "item": "Life Orb",
+   "pct": 11.76
+  },
+  {
+   "item": "Black Glasses",
+   "pct": 5.88
+  },
+  {
+   "item": "Bright Powder",
+   "pct": 5.88
+  },
+  {
+   "item": "__other__",
+   "pct": 0.01
+  }
+ ],
+ "Zoroark-Hisui": [
+  {
+   "item": "Life Orb",
+   "pct": 42.86
+  },
+  {
+   "item": "Focus Sash",
+   "pct": 28.57
+  },
+  {
+   "item": "Choice Scarf",
+   "pct": 21.43
+  },
+  {
+   "item": "Expert Belt",
+   "pct": 7.14
+  },
+  {
+   "item": "__other__",
+   "pct": 0.0
+  }
+ ]
+}

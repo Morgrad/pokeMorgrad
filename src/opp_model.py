@@ -124,6 +124,11 @@ def ability_distribution(species, known_ability: Optional[str] = None) -> Dict[s
     db_name = resolve_species(species)
     if db_name is None:
         return {}
+    entry = damage.DB.get_species(db_name)
+    if (entry.get("forme") or "").startswith("Mega") and entry.get("abilities"):
+        # priors hold the paste (pre-Mega) ability; a Mega'd mon has its Mega ability for sure
+        names = entry["abilities"]
+        return {to_id(a): 1.0 / len(names) for a in names}
     table = _ability_priors()
     key = _prior_key(db_name, table)
     if key:
