@@ -914,3 +914,24 @@ had pointed at `batch_parse.py`). Verification gates: `docs/refactor_verificatio
 
 Checkpoint contract held throughout — no state_dict key, arch value, or dimension
 constant renamed/resized.
+
+---
+
+## Prior regeneration deferred (2026-10-15)
+
+Normalizer fix landed (`cb50dc2`): `normalize_species_name()` in `src/regmc_db.py`
++ patches to `build_move_priors.py` / `build_ev_priors.py`. Prior JSON
+regeneration is deferred until the pokemon-zone + pokebase scrapes complete —
+no point rebuilding from 350 teams when the corpus is about to grow.
+
+**Current on-disk state (do not run GA):**
+- `species_move_priors.json` — ladder source (191 species), clean
+- `species_build_priors.json` — empty `{}`
+- `species_ability_priors.json` — empty `{}`
+
+**Corpus wiped 2026-10-15 19:39** by WSL `/tmp` reset (both `/tmp/vgc_scraped`
+and `/tmp/vgc_raw`). Recovery: re-run `scrape_vgcpastes.py` (fetch-csv →
+filter-balanced → fetch-teams) + pokemon-zone + pokebase scrapers, then
+`tools/build_move_priors.py` and `tools/build_ev_priors.py`.
+
+GA runs are blocked until priors are regenerated.
