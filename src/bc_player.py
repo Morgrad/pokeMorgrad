@@ -123,7 +123,7 @@ class BCPlayer(Player):
     # ---- state conversion ----
 
     def _state_to_dict(self, battle: DoubleBattle):
-        def mon_view(mon, is_opp=False):
+        def mon_view(mon):
             if mon is None or mon.species is None:
                 return None
             revealed = []

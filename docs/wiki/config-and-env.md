@@ -28,7 +28,7 @@ Contents
 | 8001 | island B in parallel run; also eval/diagnostics (`tools/test_pilots.py:26` hard-codes it) | `run/ga_parallel.sh` |
 | 8002 | island C in parallel run | `run/ga_parallel.sh` |
 
-Start command (all scripts): `cd ~/pokemon-showdown && nohup node pokemon-showdown start <port> --no-security > /tmp/showdown_<port>.log 2>&1 &`. `ops/start_server.sh [port]` (default 8000) kills and restarts only that port's server and logs to `/tmp/showdown_<port>.log`. `ga_parallel.sh:26-40` starts any of 8000-8002 that does not answer `curl localhost:<port>`, waits 8s, aborts if one is down. Port-to-island map is `ga_parallel.sh:95-100` (A=8000, B=8001, C=8002). Other ops: `ops/stop_all.sh` (kills 8000, leaves 8001), `ops/stop_everything.sh`, `ops/watch_server.sh` (watches 8000 only).
+Start command (all scripts): `cd ~/pokemon-showdown && nohup node pokemon-showdown start <port> --no-security > /tmp/showdown_<port>.log 2>&1 &`. `ops/start_server.sh [port]` (default 8000) kills and restarts only that port's server and logs to `/tmp/showdown_<port>.log`. `ga_parallel.sh:26-40` starts any of 8000-8002 that does not answer `curl localhost:<port>`, waits 8s, aborts if one is down. Port-to-island map is `ga_parallel.sh:95-100` (A=8000, B=8001, C=8002). Other ops: `ops/watch_server.sh` (watches 8000 only).
 
 Each island process runs with `GA_CONCURRENCY=8` and its own `SHOWDOWN_PORT` (`ga_parallel.sh:60`); `tools/watch_islands.py` kills an island whose `/tmp/ga_<run>_<X>.log` is stale for 300s (`ga_parallel.sh:65`) and the loop respawns it from checkpoint with the remaining time budget (lines 52-90). Details of operation: `docs/OPERATIONS.md`.
 

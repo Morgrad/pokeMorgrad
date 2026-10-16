@@ -126,7 +126,7 @@ pokeMorgrad/
 │ └── build_species_priors.py build species_move_priors.json
 │
 ├── ops/ server management
-│ └── start_server.sh, stop_all.sh, stop_everything.sh, watch_server.sh
+│ └── start_server.sh, watch_server.sh
 │
 ├── output/ generated (gitignored)
 │ ├── models/ bc_best.pt, bc_best_move.pt, ...
@@ -1240,5 +1240,4 @@ mega as the first visible feature, speed stage 2.
 (compact aligned one-liners) and E402 for `tools/*`, `run/*`, `src/battle.py` (sys.path/env set before imports). `tools/verify.sh` passes end to end.
 Dead-code pass (same commit): deleted `ga_core.run_ga` + `SEED_POOL` (REFACTOR B1), `regmc_db.all_abilities / is_legal_ability / mega_stones_for / moves_by_category`,
 `SmartPlayer.RETURN_DAMAGE_WEIGHT / PROTECT_HP_THRESHOLD`, `tools/scrape_tournament.parse_nature`, `batch_parse.n_preview_actions`, the unused `LOG` in `run/ga_overnight.sh`.
-Deliberately kept: `damage_rolls(defender_ability, defender_grounded)` and the `is_opp` view flag (unused params, public API), `regmc_db.is_legal_move`/`get_ability`, the `archive/` tree,
-`ops/stop_all.sh` + `stop_everything.sh` (still target the removed `vgc_bench.train` / `evaluate_team_v2.py` processes: stale, left for your call).
+Second pass (user-approved): deleted `ops/stop_all.sh`, `ops/stop_everything.sh`, `archive/run_v1/`, the untracked `apply_stratify.py` and `tools/pilot_probe.py`, unused params `damage_rolls(defender_grounded, defender_ability)` and `is_opp` (bc_player, generate_heuristic_dataset), and `regmc_db.get_ability / is_legal_move`.

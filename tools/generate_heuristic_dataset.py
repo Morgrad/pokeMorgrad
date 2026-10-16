@@ -103,7 +103,7 @@ def _canonical_ability(raw, encoder):
     return _ABILITY_BY_SD.get(raw)
 
 
-def _mon_view(mon, encoder, is_opp=False):
+def _mon_view(mon, encoder):
     if mon is None or mon.species is None:
         return None
     revealed = []

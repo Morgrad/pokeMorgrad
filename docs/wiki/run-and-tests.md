@@ -104,8 +104,6 @@ Covers `effective_speed` modifiers, ability/weather/terrain conditions, `p_faste
 Four shell helpers for the Showdown server (none run here).
 - `ops/start_server.sh [port]`: kills only `pokemon-showdown start <port>` (default 8000), restarts it with `--no-security` from `$SHOWDOWN_DIR`, log `/tmp/showdown_<port>.log`, curl check.
 - `ops/watch_server.sh`: 30s loop that restarts via `start_server.sh` if :8000 is down. Also contains a training-stall killer targeting `~/vgc-bench` (TB dir `~/vgc-bench/results/logs_sp`, 300s stall); only the server-health half applies to this repo.
-- `ops/stop_all.sh`: kills `vgc_bench.train`, `pokemon-showdown start 8000`, tensorboard, `watch_server.sh`. Targets the separate vgc-bench project.
-- `ops/stop_everything.sh`: runs `stop_all.sh`, then kills `pokemon-showdown start 8001` and `evaluate_team_v2.py` (a file not present in this repo's listing: legacy).
 - `start_server.sh` is port-scoped (it used to pkill every Showdown process, which could take down 8001/8002 mid-run). `ga_parallel.sh` starts its own servers and does not use ops/. `ops/watch_server.sh` still watches 8000 only.
 
 ## Inconsistencies noted

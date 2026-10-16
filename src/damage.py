@@ -12,7 +12,7 @@ Modifier coverage (all optional kwargs, defaults = no modifier):
   - terrain:      'electric' | 'grassy' | 'psychic' | 'misty'
   - attacker_boosts / defender_boosts: dict of stat -> stage (-6..+6)
   - reflect / light_screen / aurora_veil: bool
-  - attacker_ability / defender_ability: for damage-relevant abilities
+  - attacker_ability: for damage-relevant abilities
 
 Order of operations follows Showdown's battle-actions.modifyDamage exactly.
 """
@@ -187,9 +187,9 @@ def damage_rolls(attacker_species, attacker_evs, attacker_nature,
                  crit=False, burn=False,
                  weather=None, terrain=None,
                  attacker_boosts=None, defender_boosts=None,
-                 attacker_grounded=True, defender_grounded=True,
+                 attacker_grounded=True,
                  reflect=False, light_screen=False, aurora_veil=False,
-                 attacker_ability=None, defender_ability=None):
+                 attacker_ability=None):
     mv = DB.get_move(move_name)
     if not mv or mv.get("category") == "Status":
         return []

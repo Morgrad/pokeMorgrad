@@ -90,4 +90,4 @@ Champion semantics, per code (`src/ga_core.py:1542-1556`): the un-suffixed file 
 
 ## archive/
 
-4.5 MB, historical, not imported by live code: `old_bot/` (earlier neural/rule pilots, `train_bc.py`, `vocab.json`), `old_ga/` (v2/v3 GA checkpoints, `ga_set_v5.py`), `old_ops/` (watchdog, start_training, restart_showdown), `one_offs/` (replay download/parse, regional scrapers, `scrape_limitless.py`), `pools/` (`real_teams_681_limitless`, opponent analysis), `run_v1/` (`ga_counter_*.py`), `tools/opponent_gen.py`, `replays/` (empty). Treat as read-only history.
+4.5 MB, historical, not imported by live code: `old_bot/` (earlier neural/rule pilots, `train_bc.py`, `vocab.json`), `old_ga/` (v2/v3 GA checkpoints, `ga_set_v5.py`), `old_ops/` (watchdog, start_training, restart_showdown), `one_offs/` (replay download/parse, regional scrapers, `scrape_limitless.py`), `pools/` (`real_teams_681_limitless`, opponent analysis), `tools/opponent_gen.py`, `replays/` (empty). Treat as read-only history.

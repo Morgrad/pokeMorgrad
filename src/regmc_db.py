@@ -167,21 +167,8 @@ def get_move(name):
     return idx["moves_by_id"].get(norm(name))
 
 
-def get_ability(name):
-    if name is None:
-        return None
-    idx = _indexes()
-    if name in idx["abilities_by_name"]:
-        return idx["abilities_by_name"][name]
-    return idx["abilities_by_id"].get(norm(name))
-
-
 def is_legal_item(name):
     return get_item(name) is not None
-
-
-def is_legal_move(name):
-    return get_move(name) is not None
 
 
 def species_can_learn(species, move):
