@@ -76,6 +76,15 @@ Pure (torch-free, poke_env-free) probability that we move before an opposing mon
 - Not modelled: Unburden/Quick Feet/Slow Start, Quick Claw/Custap/Lagging Tail/Stall. (Unrevealed Scarf and Mega speed are modelled via archetypes.)
 - Tests: `tests/test_speed_model.py` (9).
 
+### battle_memory.py (new 2026-10-16, step 2 of the new VGC pilot)
+`BattleMemory.feed(split_line)` is pure (poke_env-free): one Showdown protocol line in, state out. `BattleMemoryMixin` (put BEFORE the poke_env Player base) overrides `_handle_battle_message`, feeds every line of a block first, then calls super, so memory is complete when `choose_move` runs; `memory_for(battle)`. Memory keeps its own `turn` (equals `battle.turn`, checked live).
+- Mega: exact form from `|detailschange|` (always immediately before `|-mega|`), stone from `|-mega|`, `mega_used[side]`, `mega_available(side)`. `repair_mega_forms(battle, mem)` fixes a poke_env bug: `mega_evolve("Garchompite Z")` applies Garchomp-Mega (Spe 92) instead of Garchomp-Mega-Z (151); the mixin re-applies the logged form after each block.
+- Conditions: `weather`, `conditions[(scope,name)]` (Trick Room, Tailwind, terrains, screens, hazards with layers) with start turn, source, setter, `history` (end_reason expired/replaced). `turns_left(cond, now)` -> (min, max) incl. the current turn; max assumes Rocks/Light Clay/Terrain Extender. Conditions set after the residual tick (turn 0, end-of-turn replacements) start next turn. Validated on 5006 real replays (Tailwind 4 turns in 930/930; Trick Room/terrain/weather 5 turns in >90%).
+- Action order: `actions[turn]`, `turn_order(turn)` (chosen switches then moves/cant; `[from]` copies except lockedmove are not actions; pivot/replacement/drag switches are `chosen=False`), `first_mover[turn]`, `speed_pairs(turn)` (consecutive same-priority moves on untainted turns; taint = After You, Quash, Quick Claw, Custap, Dancer, Instruct). Caller still discounts Trick Room and Speed abilities/items.
+- Protect: `protect_success_prob(ident)` = 1/3^chain for consecutive turns, fail resets (real replays: 67% fail on the 2nd use). Wide Guard/Quick Guard/Mat Block do NOT share the counter.
+- Speed flags: `speed_flags(ident)` -> item_consumed, status, slow_start, turns_since_switch_in (inputs for Unburden/Quick Feet/Slow Start; not yet used by speed_model).
+- Tests: `tests/test_battle_memory.py` (20: 16 synthetic/edge-case + 4 on real replays). Live check: 6 poke_env battles on :8000, memory turn == battle.turn and Mega flags agree with poke_env.
+
 ### doubles_eval.py (171 lines)
 Pure-logic joint scoring of a PAIR of attack actions (numpy + damage; no poke_env).
 - Value = sum over targets of `weight * (E[capped dmg]/max_hp + KO_BONUS * P(KO))`, ally targets negative (`doubles_eval.py:135-150`).

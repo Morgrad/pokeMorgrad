@@ -71,6 +71,7 @@ python tests/test_speed_model.py
 python tests/test_blend_priors.py
 python tests/test_archetypes.py
 python tests/test_mega_z_lines.py
+python tests/test_battle_memory.py
 ```
 Each file inserts the repo root into `sys.path`, so it works from any cwd with the venv active. The `__main__` runner iterates `test_*` functions in sorted order, prints results, exits 1 on failure. It catches only `AssertionError`, so any other exception crashes the runner with a traceback instead of a per-test fail.
 
@@ -90,6 +91,9 @@ Pure helpers of `tools/blend_priors.py`: nature canonicalization, misspelled meg
 
 ### tests/test_archetypes.py (6 tests) and tests/test_mega_z_lines.py (10 tests)
 Synthetic posterior tests (count weighting, item/move reveal, Mega-form filter) and real-data golden tests for Garchomp / Lucario / Absol Mega-Z lines (set given item + moves, post-Mega Speed 203, unrevealed Scarf, Levitate vs Sand Force).
+
+### tests/test_battle_memory.py (20 tests)
+Synthetic edge cases (Z-line Mega, copied moves, flinch, pivot/replacement/drag switches, speed-pair taint, weather/terrain/Trick Room/Tailwind turns left, Protect chain, Slow Start) and four checks on the first 600-2000 logs in `data/showdown_replays` (skipped if absent): Mega exact and once per side, condition durations, Protect 2/3 fail, first mover.
 
 ### tests/test_speed_model.py (9 tests)
 Covers `effective_speed` modifiers, ability/weather/terrain conditions, `p_faster` (certain, tie, Trick Room, weighted mixture, opponent mods, empty belief), `belief_for` on real species and `opp_model.ability_distribution`. Run: `python tests/test_speed_model.py`.
