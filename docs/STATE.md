@@ -960,3 +960,24 @@ against Showdown dex deferred to post-scrape session.
 **Next step:** scrape pokemon-zone + pokebase for real spreads, moves,
 items, teammate co-occurrence. Regenerate all three prior files.
 GA smoke OK on current priors; full run wait for post-scrape state.
+
+**validate_team corrections (2026-10-15, post-audit):** two false-positive
+classes in `validate_team` fixed. Species names are canonicalized via
+`normalize_species_name()` before lookup, and `species_has_ability`
+accepts abilities inherited from the base species or sibling forme
+(Showdown-legal for mega-form pastes). Audit `Invalid regional teams`
+dropped from 116/150 to 2/150.
+
+Remaining 2 are DB gaps, not validation bugs. Showdown accepts both,
+our `regmc_db.json` doesn't reflect them:
+
+- `Sinistcha-Masterpiece`: `moves=[]` in DB — `build_regmc_db.js` did
+  not populate forme learnsets.
+- `Glimmora`: `frankfurt_150.txt` runs `Adaptability`, which is not in
+  Glimmora's DB ability list. Showdown accepts the paste.
+
+Both deferred — DB rebuild is a separate work item and neither blocks
+the GA (genomes are built with canonical names and don't hit these
+edge cases). Add `Lucario-Mega-Z` to the same list: real species,
+Showdown-legal, absent from DB.
+
