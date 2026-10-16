@@ -1,0 +1,215 @@
+"""Doubles pilot: vanilla decisions, joint-optimised attack allocation.
+
+Layering (deliberately conservative):
+  1. SimpleHeuristicsPlayer decides what each slot does (switch / status / attack).
+  2. For slots where it chose a plain damaging move, we re-pick the move + target of
+     *both* attackers together, scoring the pair with src.doubles_eval against
+     estimated opposing builds (src.opp_model). Slots it chose anything else for
+     (switches, setup, Protect, Fake Out, charge/recharge, unmodelled moves) are
+     left exactly as vanilla chose them.
+  3. Any exception, forced switch, or no-gain result falls back to the vanilla order.
+
+Mega evolution is not used: poke_env's heuristic never mega-evolves, and keeping
+that behaviour isolates the effect of target allocation.
+"""
+from __future__ import annotations
+
+import logging
+from functools import lru_cache
+from typing import Dict, List, Optional
+
+from poke_env.battle import DoubleBattle, Move, Pokemon
+from poke_env.battle.status import Status
+from poke_env.player import SimpleHeuristicsPlayer
+from poke_env.player.battle_order import DoubleBattleOrder, SingleBattleOrder
+
+from src import damage, doubles_eval as DE, opp_model
+from src.smart_player import _boosts_dict, _terrain_name, _type_to_db, _weather_name
+
+logger = logging.getLogger(__name__)
+
+# Moves whose value is not "damage now": leave vanilla's choice alone.
+LOCKED_MOVES = {
+    "fakeout", "firstimpression", "suckerpunch", "upperhand", "focuspunch",
+    "explosion", "selfdestruct", "mistyexplosion", "finalgambit", "mindblown",
+}
+# Damage depends on stats the evaluator doesn't feed the formula: treat as unmodelled.
+UNMODELLED_MOVES = {
+    "foulplay", "bodypress", "psyshock", "psystrike", "secretsword",
+    "photongeyser", "shellsidearm", "terablast", "hiddenpower",
+}
+ITEM_ATK_MULT = {"choiceband": ("atk", 1.5), "choicespecs": ("spa", 1.5)}
+ABILITY_ATK_MULT = {"hugepower": ("atk", 2.0), "purepower": ("atk", 2.0)}
+ITEM_FINAL_MULT = {"lifeorb": 1.3}
+
+
+@lru_cache(maxsize=1)
+def _move_types():
+    return frozenset(m["type"] for m in damage._raw_db()["moves"].values() if m.get("type"))
+
+
+def _is_attack_candidate(move: Move) -> bool:
+    mid = move.id
+    if mid in LOCKED_MOVES or mid in UNMODELLED_MOVES:
+        return False
+    mv = damage.DB.get_move(mid)
+    if not mv or mv.get("category") == "Status" or (mv.get("basePower") or 0) <= 0:
+        return False
+    flags = mv.get("flags") or {}
+    if flags.get("charge") or flags.get("recharge"):
+        return False
+    return (mv.get("target") or "") in ("normal", "any", "allAdjacentFoes", "allAdjacent")
+
+
+class DoublesPilot(SimpleHeuristicsPlayer):
+    def __init__(self, *args, ko_bonus: float = DE.KO_BONUS, min_gain: float = DE.MIN_GAIN,
+                 **kwargs):
+        super().__init__(*args, **kwargs)
+        self.ko_bonus = ko_bonus
+        self.min_gain = min_gain
+        self.stats_counter = {"turns": 0, "overrides": 0, "errors": 0}
+
+    def choose_move(self, battle):
+        base = super().choose_move(battle)
+        if not isinstance(battle, DoubleBattle):
+            return base
+        self.stats_counter["turns"] += 1
+        try:
+            improved = self._improve(battle, base)
+        except Exception:
+            self.stats_counter["errors"] += 1
+            logger.exception("DoublesPilot fell back to vanilla order")
+            return base
+        if improved is not base:
+            self.stats_counter["overrides"] += 1
+        return improved
+
+    # ---- world construction -------------------------------------------------
+
+    def _attacker(self, mon: Pokemon) -> Optional[DE.Attacker]:
+        stats = dict(mon.stats or {})
+        if not stats or stats.get("atk") is None:
+            return None
+        stats = {k: int(v) for k, v in stats.items() if v is not None}
+        item = opp_model.to_id(mon.item) if mon.item else ""
+        ability = opp_model.to_id(mon.ability) if mon.ability else ""
+        for table, key in ((ITEM_ATK_MULT, item), (ABILITY_ATK_MULT, ability)):
+            if key in table:
+                stat, mult = table[key]
+                stats[stat] = int(stats[stat] * mult)
+        return DE.Attacker(
+            stats=stats,
+            types=[_type_to_db(t) for t in mon.types if t is not None],
+            boosts=_boosts_dict(mon),
+            burn=mon.status == Status.BRN,
+            ability="Guts" if ability == "guts" else None,
+            final_mult=ITEM_FINAL_MULT.get(item, 1.0),
+        )
+
+    def _foe(self, mon: Pokemon) -> Optional[DE.Combatant]:
+        builds = opp_model.opponent_builds(mon.species)
+        if not builds:
+            return None
+        frac = mon.current_hp_fraction
+        hyps = [DE.Hypothesis(b.weight, b.stats, b.max_hp, max(1, round(frac * b.max_hp)))
+                for b in builds]
+        types = [_type_to_db(t) for t in mon.types if t is not None]
+        immune = {t: opp_model.immunity_prob(mon.species, t, mon.ability) for t in _move_types()}
+        return DE.Combatant(hyps, types, _boosts_dict(mon), False,
+                            {t: p for t, p in immune.items() if p > 0})
+
+    def _ally(self, mon: Pokemon) -> Optional[DE.Combatant]:
+        stats = {k: int(v) for k, v in (mon.stats or {}).items() if v is not None}
+        if not stats or not mon.max_hp:
+            return None
+        stats["hp"] = int(mon.max_hp)
+        ab = mon.ability
+        immune = {t: 1.0 for t in _move_types()
+                  if ab and opp_model.IMMUNITY_ABILITIES.get(opp_model.to_id(ab)) == t}
+        return DE.Combatant([DE.Hypothesis(1.0, stats, int(mon.max_hp), max(1, int(mon.current_hp)))],
+                            [_type_to_db(t) for t in mon.types if t is not None],
+                            _boosts_dict(mon), True, immune)
+
+    # ---- order <-> action ---------------------------------------------------
+
+    @staticmethod
+    def _action(slot: int, order: SingleBattleOrder, world: Dict[str, DE.Combatant]) -> Optional[DE.Action]:
+        move = getattr(order, "order", None)
+        if not isinstance(move, Move) or not _is_attack_candidate(move):
+            return None
+        target = (damage.DB.get_move(move.id).get("target") or "")
+        foes = tuple(t for t in ("o0", "o1") if t in world)
+        partner = f"a{1 - slot}"
+        if target in ("normal", "any"):
+            code = order.move_target
+            if code not in (1, 2) or f"o{code - 1}" not in world:
+                return None
+            return DE.Action(slot, move.id, (f"o{code - 1}",))
+        if target == "allAdjacentFoes":
+            return DE.Action(slot, move.id, foes) if foes else None
+        if target == "allAdjacent":
+            tg = foes + ((partner,) if partner in world else ())
+            return DE.Action(slot, move.id, tg) if foes else None
+        return None
+
+    # ---- decision -----------------------------------------------------------
+
+    def _improve(self, battle: DoubleBattle, base):
+        if (any(battle.force_switch) or not isinstance(base, DoubleBattleOrder)
+                or not battle.valid_orders):
+            return base
+
+        world: Dict[str, DE.Combatant] = {}
+        for i, mon in enumerate(battle.opponent_active_pokemon):
+            if mon is not None and not mon.fainted:
+                c = self._foe(mon)
+                if c is None:
+                    return base
+                world[f"o{i}"] = c
+        if not world:
+            return base
+        attackers: Dict[int, DE.Attacker] = {}
+        for i, mon in enumerate(battle.active_pokemon):
+            if mon is not None and not mon.fainted:
+                a = self._attacker(mon)
+                if a is not None:
+                    attackers[i] = a
+                c = self._ally(mon)
+                if c is not None:
+                    world[f"a{i}"] = c
+
+        base_orders = [base.first_order, base.second_order]
+        cand_orders: List[List[SingleBattleOrder]] = []
+        cand_actions: List[List[Optional[DE.Action]]] = []
+        for slot in (0, 1):
+            bo = base_orders[slot]
+            free = (slot in attackers and isinstance(bo.order, Move)
+                    and _is_attack_candidate(bo.order))
+            if not free:
+                cand_orders.append([bo])
+                cand_actions.append([None])
+                continue
+            # baseline action is None when vanilla aimed at an ally / dead slot: any real attack beats it
+            orders, actions, seen = [bo], [self._action(slot, bo, world)], {bo.message}
+            for o in battle.valid_orders[slot]:
+                if (not isinstance(o.order, Move) or o.message in seen
+                        or o.mega != bo.mega or o.terastallize != bo.terastallize
+                        or o.dynamax != bo.dynamax or o.z_move != bo.z_move):
+                    continue
+                act = self._action(slot, o, world)
+                if act is not None:
+                    seen.add(o.message)
+                    orders.append(o)
+                    actions.append(act)
+            cand_orders.append(orders)
+            cand_actions.append(actions)
+
+        if len(cand_orders[0]) == 1 and len(cand_orders[1]) == 1:
+            return base
+
+        ev = DE.Evaluator(attackers, world, _weather_name(battle), _terrain_name(battle),
+                          ko_bonus=self.ko_bonus)
+        ia, ib, _, _ = DE.choose_pair(ev, cand_actions[0], cand_actions[1], self.min_gain)
+        if (ia, ib) == (0, 0):
+            return base
+        return DoubleBattleOrder(cand_orders[0][ia], cand_orders[1][ib])

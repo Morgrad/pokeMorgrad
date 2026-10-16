@@ -991,3 +991,48 @@ the GA (genomes are built with canonical names and don't hit these
 edge cases). Add `Lucario-Mega-Z` to the same list: real species,
 Showdown-legal, absent from DB.
 
+
+### 5.21 DoublesPilot — joint attack allocation (2026-10-15)
+
+Replacement for the inert SmartPlayer (§5.20). Design: **vanilla decides, we
+re-allocate attacks.** `SimpleHeuristicsPlayer` picks what each slot does; for
+slots where it chose a plain damaging move, `DoublesPilot` re-picks move+target
+of *both* slots jointly. Switches, setup, Protect, Fake Out, charge/recharge,
+force-switch turns and any exception fall back to vanilla's order
+(`stats_counter` = turns/overrides/errors).
+
+- `src/opp_model.py` — hidden opponent stats: top-3 `species_build_priors`
+  builds as a weighted mixture; ability-immunity probability from
+  `species_ability_priors` (revealed ability = certain).
+- `src/doubles_eval.py` — pure logic. Score unit = expected fraction of target
+  max HP removed + `KO_BONUS` x P(KO), minus the same on our own ally (spread
+  moves hitting the partner). Pair KO odds come from the outer sum of both
+  attackers' 16 rolls on the same hypothesis, so focus-fire, overkill
+  redirection and ally-hurting spread moves fall out of one number.
+- `src/doubles_pilot.py` — poke_env glue. Select with `--pilot doubles`
+  (`src/eval.py`, `src/battle.py:make_player`).
+- Tests: `python tests/test_doubles_eval.py` (10). pytest not installed.
+
+**Bug fixed on the way:** `damage._CODE_TO_MULT` mapped code 4 -> 0.0 but the DB
+immune code is 3, so *every type immunity was x1.0* (Earthquake "hit" Flying).
+Regression test `test_type_immunities_deal_zero`. Any earlier damage-based
+number (BC features, SmartPlayer) used the wrong chart for immunities.
+
+**Results** (baseline team vs held-out pool, `--concurrency 8`, immunity fix in):
+heuristic 53.2 / 52.5 (1000 each) vs doubles 60.5 / 57.2 (1000 each); pooled
+2000 each 52.9 vs 58.9, +6.0 pts, z ~ 3.8. Other teams, 500 battles each
+(heuristic -> doubles): CHAMPION_2026-10-12 56.4 -> 57.8, ga_p1_island_A
+53.0 -> 55.6, baltimore_105 50.4 -> 54.8 (each within noise, sign consistent).
+Traceback lines in eval output are poke_env `ConnectionClosedOK` at teardown,
+not pilot errors (0 "fell back" log lines).
+
+**FINDING: vanilla `SimpleHeuristicsPlayer` never mega-evolves** (21 mega
+opportunities, 0 used). Affects the GA fitness pilot and every opponent;
+mega-dependent teams are undervalued by the fitness function. `DoublesPilot`
+keeps this behaviour on purpose; evaluate mega as its own change.
+
+**Untuned / not modelled:** `KO_BONUS=0.5`, `MIN_GAIN=0.01` are hand-set. No
+speed order, Protect/Fake Out/redirection, retaliation, secondary effects or
+defender item/ability modifiers. Deferred roadmap steps 4-6: each tactic needs
+its own >=1000-2000-battle A/B (noise floor ~ +/-5 pts per 500), so they are
+sequenced one at a time on top of this evaluator.

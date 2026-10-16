@@ -9,8 +9,9 @@ had to be applied to `ga_core._run_battle` AND `eval.run_battle` separately. It
 lives here once now.
 
 The two callers differ in exactly three knobs, all explicit keyword args:
-    pilot      "heuristic" (the GA, and eval's reference pilot) or "bc" (eval's
-               neural pilot). The opponent is ALWAYS heuristic.
+    pilot      "heuristic" (the GA, and eval's reference pilot), "bc" (eval's
+               neural pilot) or "doubles" (experimental joint-attack pilot).
+               The opponent is ALWAYS heuristic.
     timeout    seconds before a hung battle is abandoned as None (both use 20).
     min_turns  the GA drops battles under 3 turns — a Showdown desync/forfeit, not
                a real game — so they don't poison fitness. eval scores every
@@ -83,6 +84,9 @@ def make_player(pilot, team_str, uid, prefix, battle_format):
     if pilot == "bc":
         from src.bc_player import BCPlayer      # lazy: keeps torch/ROCm out of the heuristic path
         cls = BCPlayer
+    elif pilot == "doubles":
+        from src.doubles_pilot import DoublesPilot   # lazy: only the experimental pilot pays for it
+        cls = DoublesPilot
     else:
         cls = SimpleHeuristicsPlayer
     return cls(

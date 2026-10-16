@@ -10,6 +10,7 @@ Usage:
   python -m src.eval team1.txt team2.txt            # specific teams
   python -m src.eval --pilot heuristic              # fast (no torch / no BC)
   python -m src.eval --pilot bc                     # real eval with the neural pilot
+  python -m src.eval --pilot doubles                # experimental joint-attack pilot
   python -m src.eval --opponents all                # use all 300 training teams
   python -m src.eval --seeds 100 200 300 400 500    # more seeds
 """
@@ -153,7 +154,7 @@ def main():
     parser.add_argument("--opponents", choices=["heldout", "all"], default="heldout",
                         help="heldout = 100 eval teams, all = 300 training teams")
     parser.add_argument("--seeds", type=int, nargs="+", default=DEFAULT_SEEDS)
-    parser.add_argument("--pilot", choices=["heuristic", "bc", "both"], default="both")
+    parser.add_argument("--pilot", choices=["heuristic", "bc", "doubles", "both"], default="both")
     parser.add_argument("--concurrency", type=int, default=CONCURRENCY)
     args = parser.parse_args()
     asyncio.run(main_async(args))
