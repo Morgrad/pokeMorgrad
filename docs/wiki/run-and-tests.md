@@ -67,6 +67,7 @@ Run directly (pytest is NOT installed):
 source ~/venv-pokemorgad/bin/activate
 python tests/test_damage.py
 python tests/test_doubles_eval.py
+python tests/test_speed_model.py
 ```
 Each file inserts the repo root into `sys.path`, so it works from any cwd with the venv active. The `__main__` runner iterates `test_*` functions in sorted order, prints results, exits 1 on failure. It catches only `AssertionError`, so any other exception crashes the runner with a traceback instead of a per-test fail.
 
@@ -80,6 +81,9 @@ Pins `src/damage.py` outputs. Pins were captured from the implementation, not an
 - `test_stats_variant_matches_pin`: `damage_rolls_from_stats` gives 188..224.
 - `test_type_immunities_deal_zero`: regression for the immune-code-3 fix (commit f9c354c).
 - `test_rolls_are_sorted_and_16_long`; `test_range_and_ko_chance` ((134,147,162), 0.0).
+
+### tests/test_speed_model.py (8 tests)
+Covers `effective_speed` modifiers, ability/weather/terrain conditions, `p_faster` (certain, tie, Trick Room, weighted mixture, opponent mods, empty belief), `belief_for` on real species and `opp_model.ability_distribution`. Run: `python tests/test_speed_model.py`.
 
 ### tests/test_doubles_eval.py (135 lines)
 10 tests over `src/opp_model.py` and `src/doubles_eval.py`, using helper builders `attacker/foe/ally/one_hit_rolls`. They read the real `data/species_build_priors.json` and `data/regmc_db.json`.

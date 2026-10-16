@@ -116,17 +116,14 @@ def opponent_builds(species, k: int = TOP_K) -> List[Build]:
             for e in raw]
 
 
-def immunity_prob(species, move_type: str, known_ability: Optional[str] = None) -> float:
-    """P(target's ability nullifies a `move_type` attack).
-
-    A revealed ability is certain; otherwise use the ability priors (falling back to
-    a uniform guess over the species' DB abilities).
-    """
+def ability_distribution(species, known_ability: Optional[str] = None) -> Dict[str, float]:
+    """{ability id: probability} for `species`. A revealed ability is certain; otherwise the
+    ability priors, falling back to a uniform guess over the species' DB abilities."""
     if known_ability:
-        return 1.0 if IMMUNITY_ABILITIES.get(to_id(known_ability)) == move_type else 0.0
+        return {to_id(known_ability): 1.0}
     db_name = resolve_species(species)
     if db_name is None:
-        return 0.0
+        return {}
     table = _ability_priors()
     key = _prior_key(db_name, table)
     if key:
@@ -135,6 +132,14 @@ def immunity_prob(species, move_type: str, known_ability: Optional[str] = None) 
         entries = {a: 1 for a in damage.DB.get_species(db_name).get("abilities", [])}
     total = float(sum(entries.values()))
     if total <= 0:
-        return 0.0
-    return sum(c for a, c in entries.items()
-               if IMMUNITY_ABILITIES.get(to_id(a)) == move_type) / total
+        return {}
+    out: Dict[str, float] = {}
+    for a, c in entries.items():
+        out[to_id(a)] = out.get(to_id(a), 0.0) + c / total
+    return out
+
+
+def immunity_prob(species, move_type: str, known_ability: Optional[str] = None) -> float:
+    """P(target's ability nullifies a `move_type` attack)."""
+    return sum(p for a, p in ability_distribution(species, known_ability).items()
+               if IMMUNITY_ABILITIES.get(a) == move_type)

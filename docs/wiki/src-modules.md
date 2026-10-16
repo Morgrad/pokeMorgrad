@@ -6,7 +6,7 @@ Imports below are intra-repo (`src.*`) only. Dependency direction: arrows mean "
 ## Contents
 - [Dependency map](#dependency-map)
 - [Foundation: paths, regmc_db, showdown_validator](#paths-regmc_db-showdown_validator)
-- [Damage stack: damage, opp_model, doubles_eval, doubles_pilot, smart_player](#damage-stack)
+- [Damage stack: damage, opp_model, speed_model, doubles_eval, doubles_pilot, smart_player](#damage-stack)
 - [GA: ga_core (by section), battle, eval, audit_before_launch](#ga_corepy)
 - [BC stack (torch): state_encoder, bc_model, bc_player, bc_train](#bc-stack-torch)
 - [Env vars read by src/](#env-vars-read-by-src)
@@ -15,14 +15,15 @@ Imports below are intra-repo (`src.*`) only. Dependency direction: arrows mean "
 ```
 paths  <-- regmc_db, state_encoder, showdown_validator, damage, opp_model, ga_core, bc_player, bc_train, eval
 regmc_db <-- damage, ga_core, audit_before_launch
-damage <-- smart_player, doubles_eval, opp_model, doubles_pilot
+damage <-- smart_player, doubles_eval, opp_model, speed_model, doubles_pilot
+opp_model <-- speed_model
 opp_model, doubles_eval, smart_player <-- doubles_pilot
 battle <-- ga_core, eval            (battle lazily imports bc_player / doubles_pilot)
 state_encoder <-- bc_model <-- bc_player, bc_train ; state_encoder <-- bc_player, bc_train
 ga_core <-- eval, audit_before_launch ; ga_core <-- run/*
 ```
 - Torch-importing modules: `state_encoder` (torch at `state_encoder.py:30`), `bc_model`, `bc_player`, `bc_train`.
-- Torch-free: `paths, regmc_db, showdown_validator, damage, opp_model, doubles_eval, smart_player, doubles_pilot, ga_core, battle, eval`.
+- Torch-free: `paths, regmc_db, showdown_validator, damage, opp_model, speed_model, doubles_eval, smart_player, doubles_pilot, ga_core, battle, eval`.
   `battle` reaches torch only through the lazy `BCPlayer` import (`battle.py:84-86`); `DoublesPilot` import is also lazy (`battle.py:87-89`).
 
 ---
@@ -58,11 +59,19 @@ Champions-format damage estimator mirroring Showdown's `data/mods/champions` mat
 - Imports `regmc_db`, `paths`. Torch-free. Reads `data/regmc_db.json` via `_raw_db()`.
 - Gotchas: `defender_ability`, `defender_grounded` are accepted by `damage_rolls` but unused in the math; `defender_level` is used for the defender stat. The docstring lists `defender_ability` as "damage-relevant" (`damage.py:15`) but nothing consumes it.
 
-### opp_model.py (140 lines)
+### opp_model.py (~155 lines)
 Torch-free, poke_env-free model of hidden opposing builds.
 - `Build` dataclass (weight, stats, max_hp); `opponent_builds(species)` returns up to `TOP_K=3` weighted builds from `data/species_build_priors.json`, else a generic spread (Adamant/Modest, 32 HP / 32 offense / 2 Spe).
-- `_prior_key` falls back to the base species for `-Mega` forms; `resolve_species`, `stats_for`, `immunity_prob(species, move_type, ability)` mixes `data/species_ability_priors.json` with the `IMMUNITY_ABILITIES` map. LEVEL=50.
-- Imports `damage`, `paths`. Importers: doubles_pilot, tests.
+- `_prior_key` falls back to the base species for `-Mega` forms; `resolve_species`, `stats_for`, `ability_distribution(species, known_ability=None)` -> `{ability id: prob}` from `data/species_ability_priors.json` (revealed ability = certain, DB abilities uniform if no prior); `immunity_prob(species, move_type, ability)` is built on it with the `IMMUNITY_ABILITIES` map. LEVEL=50.
+- Imports `damage`, `paths`. Importers: doubles_pilot, speed_model, tests.
+
+### speed_model.py (~105 lines, new 2026-10-16, stage 1 of the new VGC pilot)
+Pure (torch-free, poke_env-free) probability that we move before an opposing mon. See STATE.md §5.22 for the plan.
+- `SpeedMods(stage, paralyzed, tailwind, scarf, weather, terrain)`: battle-time modifiers on one mon's Speed. `effective_speed(stat, mods, ability)`: floor after the stage multiplier, then Scarf x1.5, weather/terrain speed ability x2 (`SPEED_ABILITIES`: swiftswim/rain, chlorophyll/sun, sandrush/sand, slushrush/snow, surgesurfer/electric), Tailwind x2, paralysis x0.5.
+- `SpeedHypothesis(weight, stat, ability)`; `SpeedBelief(hypotheses)` (weights renormalized): `speeds(mods)`, `p_faster(our_speed, mods, trick_room)` (ties 0.5, Trick Room inverts, empty belief = 0.5).
+- `belief_for(species, known_ability=None)`: top-3 builds (opp_model) x ability distribution. Stage 1 = prior only. Stage 2 (not built): `observe_*` to reweight from observed move order.
+- Not modelled: Scarf on an unrevealed item, Unburden/Quick Feet/Slow Start, Mega speed changes, Quick Claw/Custap/Lagging Tail/Stall.
+- Tests: `tests/test_speed_model.py` (8).
 
 ### doubles_eval.py (171 lines)
 Pure-logic joint scoring of a PAIR of attack actions (numpy + damage; no poke_env).

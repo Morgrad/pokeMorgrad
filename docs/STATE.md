@@ -1052,3 +1052,74 @@ matters; 0.01 kept. SE on a pooled cell is ~0.8 pts.
 Ops notes: three evals in parallel took ~17-18 min per 4000-battle config (solo is
 ~48 s per 1000), so parallel gives only ~1.7x total. Showdown instances on 8001/8002
 died once mid-sweep (connection refused); check them before any multi-port run.
+
+### 5.22 New VGC pilot — plan, decisions and progress (started 2026-10-16)
+
+**Why.** Vanilla `SimpleHeuristicsPlayer` (and so `DoublesPilot`, the GA fitness pilot
+and every opponent) never mega-evolves, never uses Protect/Fake Out, never switches
+or pivots in doubles. poke_env only implements singles; its doubles `choose_move`
+(`baselines.py:390`) runs the singles heuristic per slot with no ally awareness.
+The goal is a real doubles pilot. Format `gen9championsvgc2026regmc`: **Mega
+Evolution legal, Terastallization NOT legal** (never model Tera).
+
+**Decisions (user, 2026-10-16).**
+- Keep `DoublesPilot` until the new pilot has enough progress to migrate to it.
+- Must-have features (order is ours to choose): weather awareness; Protect
+  (defensive, predictive, stalling terrain/perish/weather); Fake Out awareness
+  (terrains + abilities that block priority); pivot when it matters;
+  defensive/predictive switching (position awareness); decide save-mega vs
+  mega-now; "including but not limited to".
+- Agreed build order: foundation -> mega -> Protect -> Fake Out -> weather -> pivot -> switching.
+- Validation = hand-built scenario tests + action-rate counters (mega/Protect/
+  Fake Out/switch/pivot rates), not per-feature win-rate A/B. Old evals are
+  allowed to become obsolete.
+- Opponent speed = **option B, staged**: probability `p_faster(ours, theirs)` from
+  the prior build mixture first; later reweight from observed move order.
+- Always discuss before changing code; update these md files at every checkpoint.
+
+**Planned foundation (5 new files, pure/torch-free where possible).**
+1. `src/speed_model.py` — DONE (stage 1), see below.
+2. `src/battle_memory.py` — per-battle tracking poke_env lacks: weather start
+   turn, who moved first, revealed items/abilities after Mega, protect-failure
+   counts, per-turn event log (parse `_replay_data` or hook messages).
+3. `src/turn_sim.py` — expected-value simulation of one turn for a candidate
+   joint action (ours) vs a distribution over opponent actions, using
+   damage.py + speed_model + doubles_eval scoring.
+4. `src/opp_actions.py` — opponent action prior (Protect/Fake Out/switch odds,
+   likely targets) from revealed moves + builds.
+5. `src/vgc_pilot.py` — `VGCPilot(Player)` glue: enumerate orders (including
+   `mega=True`), score with turn_sim, pick; counters for action rates.
+Then wiki pages for architecture/pilots, retire `SmartPlayer` (move
+`_boosts_dict/_terrain_name/_type_to_db/_weather_name` out of `smart_player.py`).
+
+**Progress.**
+- 2026-10-16 slice 1: `src/speed_model.py` + `tests/test_speed_model.py` (8 tests)
+  + `opp_model.ability_distribution` (public; `immunity_prob` now built on it,
+  behaviour unchanged). `tools/verify.sh` now runs the three test files.
+  Not wired into any player yet.
+
+**Next.** (a) `battle_memory.py` (decide the event source first: parse
+`battle._replay_data` vs overriding `_handle_battle_message`); (b) `turn_sim.py`
+single-slot version first, then joint; (c) mega as the first visible feature so it
+shows in replays; (d) speed stage 2 (observe move order).
+
+**poke_env 0.16.1 facts relied on** (paths under site-packages/poke_env/battle/;
+`abs`=abstract_battle.py, `pk`=pokemon.py, `db`=double_battle.py):
+- `Pokemon.first_turn` (pk:1018) works for Fake Out eligibility. `protect_counter`
+  (pk:1249) still increments on a failed Protect because `|-fail|` is ignored (abs:19).
+- `moves` holds only revealed moves. `item` is `"unknown_item"` until revealed and
+  stays unknown after the opponent Megas (`mega_evolve`, pk:430, doesn't set the stone).
+- `last_move` has no turn stamp; there is no event log (private `_replay_data`, abs:144).
+- `weather` is `Dict[Weather,int]` but the stored turn is the last weather message,
+  not the real start: track the start turn ourselves. `fields`/`field_start` and
+  `side_conditions`/`opponent_side_conditions` keep start turns (Tailwind, screens,
+  terrains, Trick Room).
+- `available_switches`, `available_moves`, `can_mega_evolve` are per-slot lists;
+  `valid_orders` includes `mega=True` variants; `used_mega_evolve` /
+  `opponent_used_mega_evolve` exist. Opponent speed / move order is NOT tracked.
+- `Move` has `priority`, `target`, `self_switch` (pivots), `force_switch`,
+  `breaks_protect`, `stalling_move`, `is_protect_move`.
+- Orders: `SingleBattleOrder(order, mega, z_move, dynamax, terastallize, move_target)`;
+  targets -1/-2 own slots, 1/2 opponent slots, 0 none. `DoubleBattleOrder.join_orders`
+  rejects mega on both slots and the same switch twice; a hand-built order is not validated.
+- poke_env reads its own gen9 move data, not `data/regmc_db.json`.

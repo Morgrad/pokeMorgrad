@@ -17,7 +17,7 @@ Contents
 
 - Venv: `~/venv-pokemorgad` on this host. Activate with `source ~/venv-pokemorgad/bin/activate`. `run/ga_parallel.sh:16` and `tools/verify.sh:4` hard-code this. README setup says `.venv` (stale for this host).
 - `pyproject.toml`: project `pokemorgrad` 0.1.0, `requires-python >=3.10`, setuptools build, `packages = ["src"]` only (`run/` and `tools/` are not packaged; run `python -m run.ga_island`, `python -m src.eval` from the repo root). Dependencies: `torch>=2.0`, `numpy`, `poke-env>=0.8`. Optional `dev`: `ruff`, `pytest`. Ruff: line-length 100, target py310, select `E,F,W,I`, ignore `E501`. No pytest config section. `bs4` and `openpyxl` (used by tools/scrape_*) are not declared.
-- Tests: `tests/test_damage.py`, `tests/test_doubles_eval.py` (pytest).
+- Tests: `tests/test_damage.py`, `tests/test_doubles_eval.py`, `tests/test_speed_model.py` (plain scripts, pytest also works).
 - Showdown/Node: Showdown checkout at `~/pokemon-showdown` (run with `node pokemon-showdown ...`).
 
 ## Showdown servers
