@@ -1,7 +1,6 @@
 Sneasler @ Psychic Seed  
 Ability: Unburden  
 Level: 50  
-Tera Type: Fighting  
 EVs: 32 Atk / 4 SpD / 30 Spe  
 Adamant Nature  
 - Close Combat  
