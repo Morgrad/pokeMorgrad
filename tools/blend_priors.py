@@ -136,7 +136,6 @@ def main() -> None:
     by_slug = {slug(s["name"]): s for s in DB.all_species()}
     natures = {n["name"] for n in DB.all_natures()}
     move_name = {m["id"]: m["name"] for m in DB.all_moves()}
-    item_name = {i["id"]: i["name"] for i in DB.all_items()}
     log = defaultdict(int)
     log["ability_distrusted"] = []
     log["moves_dropped"] = []

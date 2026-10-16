@@ -30,7 +30,6 @@ Action shapes:
 """
 import json
 import sys
-from pathlib import Path
 
 # --- Format constants (gen 9 VGC) ---
 # These mirror in-game durations; we only flag the window, we don't tick it down

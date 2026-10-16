@@ -70,7 +70,6 @@ output/models/bc_best.pt ◄─── src/bc_player.py loads it as a poke_env Pl
 ▼
 ┌───────────────────────────────────┐
 │ src/ga_core.py │
-│ run_ga() single-pop (debug) │
 │ run_islands() island model (prod)│
 └──────────────┬────────────────────┘
 │
@@ -781,8 +780,7 @@ Harmless warning to ignore: `agent.cpp:608] sysfs nodes path
   pipeline runs without re-scraping.
 - **Held-out eval is sacred.** Fitness uses `pool_split.json["train"]` (300).
   Final eval uses `["holdout"]` (100). Never mix.
-- **GA has two tiers in one file.** `run_ga` = single-population debug.
-  `run_islands` = production with migration, stagnation restart, checkpointing.
+- **GA is `run_islands`**: migration, stagnation restart, checkpointing. (The single-population `run_ga` debug path was deleted 2026-10-16.)
 
 ---
 
@@ -1231,7 +1229,16 @@ is a separate form (Sand Force). Revealed Garchompite Z + Power Gem: item poster
 - The foe's `mon.item` stays `unknown_item` after it Megas (poke_env), so a Mega'd foe is identified by species, not item.
 - The mega decision itself (does the foe Mega this turn?) is not modelled; `p_faster(mega=...)` takes it as an input.
 - Still deferred: Unburden / Quick Feet / Slow Start, Quick Claw / Custap / Lagging Tail / Stall, speed stage 2 (observed order).
-- `tools/verify.sh` stops at `ruff` when it is not installed.
+- ~~`tools/verify.sh` stopped at `ruff`~~ and ~~three tools read `/tmp/vgc_scraped`~~: both fixed (see below).
 
 **Next.** `battle_memory.py` (decide event source: `battle._replay_data` vs overriding `_handle_battle_message`), `turn_sim.py`,
 mega as the first visible feature, speed stage 2.
+
+**Cleanup after the archetype commit (2026-10-16).** `build_move_priors.py`, `swap_pool.py` and `build_real_ev_holdout.py` now read
+`data/scraped/vgcpastes/{teams,raw}` (no /tmp left in `tools/ src/ run/`). ruff installed in the venv (dev extra): 44 autofixes
+(import order, f-strings without placeholders, unused imports), 2 unused variables removed, and `pyproject.toml` now ignores E701/E702
+(compact aligned one-liners) and E402 for `tools/*`, `run/*`, `src/battle.py` (sys.path/env set before imports). `tools/verify.sh` passes end to end.
+Dead-code pass (same commit): deleted `ga_core.run_ga` + `SEED_POOL` (REFACTOR B1), `regmc_db.all_abilities / is_legal_ability / mega_stones_for / moves_by_category`,
+`SmartPlayer.RETURN_DAMAGE_WEIGHT / PROTECT_HP_THRESHOLD`, `tools/scrape_tournament.parse_nature`, `batch_parse.n_preview_actions`, the unused `LOG` in `run/ga_overnight.sh`.
+Deliberately kept: `damage_rolls(defender_ability, defender_grounded)` and the `is_opp` view flag (unused params, public API), `regmc_db.is_legal_move`/`get_ability`, the `archive/` tree,
+`ops/stop_all.sh` + `stop_everything.sh` (still target the removed `vgc_bench.train` / `evaluate_team_v2.py` processes: stale, left for your call).

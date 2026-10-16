@@ -26,6 +26,7 @@ CHECKPOINT CONTRACT (read the banner by the constants below before editing):
     Comment freely; do NOT renumber or resize.
 """
 import json
+
 import numpy as np
 import torch
 

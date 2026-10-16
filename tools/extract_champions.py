@@ -11,7 +11,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path.home() / "pokeMorgrad"))
-from src.ga_core import genome_to_text, CHAMPION_DIR
+from src.ga_core import CHAMPION_DIR, genome_to_text
 
 CKPT_ROOT = Path.home() / "pokeMorgrad" / "output" / "checkpoints" / "v6"
 

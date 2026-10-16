@@ -26,13 +26,14 @@ Design constraints (both prevent real breakage, not just style):
     and `--pilot heuristic` eval) never pays the torch import cost.
 """
 import asyncio
-import os
 
 # --- Suppress benign poke_env protocol noise --------------------------------
 # poke_env logs certain VGC messages at CRITICAL even though they're
 # harmless (open-team-sheet handshake repeats across every battle).
 # Filter them at the logger so the console stays readable.
 import logging as _logging
+import os
+
 
 class _DropVGCNoise(_logging.Filter):
     _PATTERNS = (
@@ -82,10 +83,10 @@ def make_player(pilot, team_str, uid, prefix, battle_format):
     The BCPlayer import is lazy so this stays torch-free for the heuristic path.
     """
     if pilot == "bc":
-        from src.bc_player import BCPlayer      # lazy: keeps torch/ROCm out of the heuristic path
+        from src.bc_player import BCPlayer  # lazy: keeps torch/ROCm out of the heuristic path
         cls = BCPlayer
     elif pilot == "doubles":
-        from src.doubles_pilot import DoublesPilot   # lazy: only the experimental pilot pays for it
+        from src.doubles_pilot import DoublesPilot  # lazy: only the experimental pilot pays for it
         cls = DoublesPilot
     else:
         cls = SimpleHeuristicsPlayer

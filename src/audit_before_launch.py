@@ -4,8 +4,8 @@ Checks every layer of the data + generation pipeline.
 """
 import random
 
-from src import regmc_db as DB
 from src import ga_core as G
+from src import regmc_db as DB
 from src.paths import data_path
 
 
@@ -152,7 +152,7 @@ def main():
                     print(f"  Invalid after {i} mutations: {errs[:2]}")
                     break
         else:
-            print(f"  After 2000 mutations: lock held, checking final validity...")
+            print("  After 2000 mutations: lock held, checking final validity...")
             ok, errs = DB.validate_team(G.genome_to_text(g))
             print(f"  Final: {'VALID' if ok else 'INVALID: ' + str(errs[:2])}")
 

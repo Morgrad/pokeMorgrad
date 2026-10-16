@@ -11,16 +11,17 @@
 Each line is a decision point with state + chosen action.
 Skips decisions where chosen action is incomplete.
 """
-import sys
 import glob
 import json
 import os
+import sys
 
 _TOOLS_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.dirname(_TOOLS_DIR))  # repo root, for `src.paths`
 sys.path.insert(0, _TOOLS_DIR)                    # for sibling `replay_tracker`
-from src.paths import data_path
 from replay_tracker import Tracker
+
+from src.paths import data_path
 
 REPLAY_DIR = data_path("showdown_replays")
 OUT_PATH = data_path("training_data.jsonl")
@@ -34,7 +35,6 @@ n_replays_ok = 0
 n_replays_fail = 0
 n_decisions = 0
 n_decisions_skipped = 0
-n_preview_actions = 0  # future
 
 with open(OUT_PATH, "w") as fout:
     for i, fpath in enumerate(files, 1):
@@ -64,7 +64,7 @@ with open(OUT_PATH, "w") as fout:
             print(f"  {i}/{len(files)}  ok={n_replays_ok}  fail={n_replays_fail}  decisions={n_decisions}")
 
 print()
-print(f"DONE")
+print("DONE")
 print(f"  replays OK:       {n_replays_ok}")
 print(f"  replays failed:   {n_replays_fail}")
 print(f"  decisions kept:   {n_decisions}")

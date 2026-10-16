@@ -16,7 +16,7 @@ REPO = Path.home() / "pokeMorgrad"
 sys.path.insert(0, str(REPO))
 from src import regmc_db as DB
 
-SCRAPED = Path("/tmp/vgc_scraped")
+SCRAPED = REPO / "data" / "scraped" / "vgcpastes" / "teams"
 OUT = REPO / "data" / "species_move_priors.json"
 BAK = REPO / "data" / "species_move_priors.ladder.bak.json"
 
@@ -87,7 +87,7 @@ def main():
 
     # --- coverage delta ---
     old = json.loads(BAK.read_text()) if BAK.exists() else {}
-    print(f"\n=== coverage delta ===")
+    print("\n=== coverage delta ===")
     print(f"  ladder source:      {len(old)} species")
     print(f"  tournament source:  {len(out)} species")
     new_only = set(out.keys()) - set(old.keys())

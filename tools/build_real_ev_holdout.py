@@ -5,7 +5,7 @@ Usage:
     python3 tools/build_real_ev_holdout.py --apply
 
 Steps:
-1. Validate every /tmp/vgc_scraped/*.txt via showdown validate-team
+1. Validate every data/scraped/vgcpastes/teams/*.txt via showdown validate-team
 2. Compute species+item signature
 3. Reject any file matching:
    - p4's train pool (data/regional_teams/vgc_*.txt)
@@ -28,7 +28,7 @@ REPO = Path.home() / "pokeMorgrad"
 sys.path.insert(0, str(REPO))
 from src import regmc_db as DB
 
-SCRAPED = Path("/tmp/vgc_scraped")
+SCRAPED = REPO / "data" / "scraped" / "vgcpastes" / "teams"
 POOL = REPO / "data" / "regional_teams"
 SPLIT = REPO / "data" / "pool_split.json"
 SHOWDOWN = Path(os.environ.get("SHOWDOWN_DIR", Path.home() / "pokemon-showdown"))
@@ -133,7 +133,7 @@ def main():
 
     # --- stratified holdout pick ---
     import json as _json
-    _meta = _json.loads(Path("/tmp/vgc_raw/m-c.csv").read_text())
+    _meta = _json.loads(Path("data/scraped/vgcpastes/raw/m-c.csv").read_text())
     _meta_by_id = {m["Team ID"]: m for m in _meta}
 
     def _provenance(f):
@@ -160,7 +160,7 @@ def main():
     if len(new_holdout_files) < HOLDOUT_SIZE:
         new_holdout_files += tier3[:HOLDOUT_SIZE - len(new_holdout_files)]
 
-    print(f"\n  provenance of holdout candidates:")
+    print("\n  provenance of holdout candidates:")
     print(f"    tournament: {len(tier1)}")
     print(f"    video:      {len(tier2)}")
     print(f"    empty:      {len(tier3)}")
@@ -172,14 +172,14 @@ def main():
 
     # tournament breakdown
     from collections import Counter
-    meta = json.loads(Path("/tmp/vgc_raw/m-c.csv").read_text())
+    meta = json.loads(Path("data/scraped/vgcpastes/raw/m-c.csv").read_text())
     meta_by_id = {m["Team ID"]: m for m in meta}
     tc = Counter()
     for f in new_holdout_files:
         tid = f.stem  # e.g. MC210
         tourn = (meta_by_id.get(tid, {}).get("Tournament / Event") or "").strip()
         tc[tourn] += 1
-    print(f"\n  new holdout tournaments (top 10):")
+    print("\n  new holdout tournaments (top 10):")
     for k, v in tc.most_common(10):
         print(f"    {(k or '(empty)')[:50]:<50} {v}")
 

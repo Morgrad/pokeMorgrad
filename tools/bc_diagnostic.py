@@ -16,8 +16,8 @@ import random
 import sys
 from collections import Counter, defaultdict
 
-from poke_env.player import SimpleHeuristicsPlayer
 from poke_env import AccountConfiguration
+from poke_env.player import SimpleHeuristicsPlayer
 
 from src.bc_player import BCPlayer
 from src.ga_core import FORMAT, regional_pool

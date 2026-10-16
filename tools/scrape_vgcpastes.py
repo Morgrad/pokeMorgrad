@@ -153,7 +153,7 @@ def cmd_report():
     print(f"\n=== tournaments ({len(tourns)}, top 30) ===")
     for k, v in tourns.most_common(30):
         print(f"  {(k or '(empty)')[:60]:<60} {v}")
-    print(f"\n=== EVs ===")
+    print("\n=== EVs ===")
     for k, v in evs.most_common():
         print(f"  {(k or '(empty)'):<20} {v}")
 

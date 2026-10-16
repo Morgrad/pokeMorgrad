@@ -4,10 +4,9 @@ ga_core.py — GA engine for counter-meta VGC team search.
 Evolves 6-mon teams against a pool of real top-cut teams, using a poke_env
 pilot (heuristic by default) to play out battles for the fitness signal.
 
-Entry points:
-  run_ga(...)        single-population generational GA — legacy/debug only.
+Entry point:
   run_islands(...)   multi-island GA with ring migration, stagnation restart,
-                     and JSON checkpointing — THIS is the production path.
+                     and JSON checkpointing.
 
 Vocabulary used throughout:
   genome       = list of 6 mon dicts {species, item, ability, nature, evs, moves}
@@ -58,7 +57,6 @@ BATTLE_TIMEOUT = 20     # seconds before a battle is abandoned as hung (returns 
 MIN_TURNS = 3           # Battles ending < 3 turns are almost always a Showdown desync/forfeit,
                         # not a real game — discard so they don't poison the fitness signal.
 # (The retry-uid stride lives in src/battle.py now — RETRY_STRIDE there.)
-SEED_POOL = 30          # When seeding a population from real teams, draw from the first N teams.
 
 # --- Champion selection ---
 # Reserve a slice of the training pool that the GA never samples for fitness.
@@ -893,7 +891,7 @@ def crossover(p1, p2, constraints):
 # The battle harness itself (player construction, timeout, retry, websocket
 # cleanup) lives in src/battle.py, shared with eval. The GA passes this module
 # semaphore, FORMAT, and its own knobs (BATTLE_TIMEOUT, MIN_TURNS) into it.
-_SEM = None   # module-global concurrency gate; set by run_ga / run_islands.
+_SEM = None   # module-global concurrency gate; set by run_islands.
 
 
 def _log_score(idx, total, fit, wins, valid_n, mons, tag=""):
@@ -964,97 +962,6 @@ async def evaluate(mons, opponents, idx, total):
     fit = sum(all_valid) / len(all_valid)
     _log_score(idx, total, fit, sum(all_valid), len(all_valid), mons)
     return fit
-
-
-# =============================================================================
-# SIMPLE GA (single population) — LEGACY / debug only
-# =============================================================================
-# run_islands (below) is the production path. run_ga is kept for quick local
-# debugging of the evolve loop without the island/migration machinery; it has no
-# live callers in run/ and is not checkpointed.
-async def run_ga(locked, pop_size, generations, battles_per_genome, concurrency,
-                 seed_path=None, label="latest"):
-    """Single-population generational GA. Legacy/debug — see run_islands for prod."""
-    global _SEM
-    _SEM = asyncio.Semaphore(concurrency)
-    random.seed(42)
-    opponents = regional_pool()
-    if not opponents:
-        print("ERROR: no regional teams loaded")
-        return
-    print(f"=== GA (locked: {locked or 'none'}) ===")
-    print(f"Pop {pop_size}, Gens {generations}, Battles/genome {battles_per_genome}")
-    print(f"Opponents: {len(opponents)} regional teams")
-
-    population = []
-    if seed_path and os.path.exists(seed_path):
-        g = text_to_genome(open(seed_path).read())
-        if g:
-            population.append(g)
-            print(f"Seeded with {os.path.basename(seed_path)}")
-    for _ in range(min(3, pop_size - len(population))):
-        text = random.choice(opponents[:SEED_POOL])
-        g = text_to_genome(text)
-        if not g:
-            continue
-        for slot, want in locked.items():
-            sp = _SPECIES_BY_NAME.get(g[slot]["species"]) if g[slot] else None
-            if not sp or sp["baseSpecies"] != _SPECIES_BY_NAME[want]["baseSpecies"]:
-                mon = _fresh_mon(want, {m["item"] for m in g if m})
-                if mon is None:
-                    continue
-                g[slot] = mon
-        population.append(g)
-    while len(population) < pop_size:
-        g = build_random_genome(locked)
-        if g:
-            population.append(g)
-
-    population = filter_legal_genomes(population, locked)
-    print(f"After legality gate: {len(population)} valid genomes")
-
-    history = []
-    all_time_best = {"fit": -1, "genome": None, "gen": None}
-    t0 = time.time()
-    for gen in range(generations):
-        print(f"\n[{time.strftime('%H:%M:%S')}] === GEN {gen+1}/{generations}  "
-              f"({(time.time()-t0)/60:.1f} min) ===")
-        gen_opps = random.sample(opponents, min(len(opponents), battles_per_genome))
-        fits = await asyncio.gather(*[evaluate(g, gen_opps, i, len(population))
-                                       for i, g in enumerate(population)])
-        ranked = sorted(zip(fits, population), key=lambda x: -x[0])
-        print(f"  -> Best: {ranked[0][0]*100:.1f}%  Avg: {sum(fits)/len(fits)*100:.1f}%")
-        if ranked[0][0] > all_time_best["fit"]:
-            all_time_best = {"fit": ranked[0][0], "genome": ranked[0][1], "gen": gen+1}
-            print(f"     NEW ALL-TIME BEST: {ranked[0][0]*100:.1f}% (gen {gen+1})")
-
-        history.append({
-            "gen": gen+1, "best": ranked[0][0],
-            "avg": sum(fits)/len(fits),
-            "species": [m["species"] for m in ranked[0][1]],
-        })
-        champ = output_path("champions", f"ga_{label}.txt")
-        os.makedirs(os.path.dirname(champ), exist_ok=True)
-        open(champ, "w").write(genome_to_text(all_time_best["genome"]))
-        json.dump(history, open(output_path("ga_history.json"), "w"), indent=2)
-
-        if gen == generations - 1:
-            break
-        # Elitism: keep the top fifth (≥2) verbatim, fill the rest by breeding
-        # crossovers of the elite pool. run_islands.breed uses a larger top-third
-        # — single-pop can afford a tighter elite since there's no migration to
-        # reseed diversity.
-        n_elites = max(2, pop_size // 5)
-        elites = [g for _, g in ranked[:n_elites]]
-        new_pop = [copy.deepcopy(g) for g in elites]
-        while len(new_pop) < pop_size:
-            p1, p2 = random.sample(elites, 2)
-            new_pop.append(mutate(crossover(p1, p2, locked), locked))
-        population = filter_legal_genomes(new_pop, locked)
-
-    print(f"\n=== DONE ===")
-    print(f"All-time best: {all_time_best['fit']*100:.1f}% (gen {all_time_best['gen']})")
-    print(genome_to_text(all_time_best["genome"]))
 
 
 # =============================================================================
@@ -1290,11 +1197,11 @@ def restart_showdown():
     for _ in range(15):   # poll up to ~15s for the server to accept connections
         try:
             urllib.request.urlopen(f"http://localhost:{SHOWDOWN_PORT}", timeout=2)
-            print(f"  [showdown] back up")
+            print("  [showdown] back up")
             return True
         except Exception:
             time.sleep(1)
-    print(f"  [showdown] FAILED")
+    print("  [showdown] FAILED")
     return False
 
 
@@ -1535,7 +1442,7 @@ async def run_islands(
         print(f"  >> checkpoint: {os.path.basename(ckpt_path)}")
 
     os.makedirs(CHAMPION_DIR, exist_ok=True)
-    print(f"\n=== DONE ===")
+    print("\n=== DONE ===")
     for isl in islands:
         # Primary champion = train best (val-selection was dropped, see STATE.md);
         # fall back to the val best only if no train genome exists.

@@ -24,7 +24,8 @@ from poke_env.battle.status import Status
 from poke_env.player import SimpleHeuristicsPlayer
 from poke_env.player.battle_order import DoubleBattleOrder, SingleBattleOrder
 
-from src import damage, doubles_eval as DE, opp_model
+from src import damage, opp_model
+from src import doubles_eval as DE
 from src.smart_player import _boosts_dict, _terrain_name, _type_to_db, _weather_name
 
 logger = logging.getLogger(__name__)

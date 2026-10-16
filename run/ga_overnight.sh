@@ -5,7 +5,6 @@ REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SHOWDOWN_DIR="${SHOWDOWN_DIR:-$HOME/pokemon-showdown}"
 
 STAMP=$(date +%Y%m%d_%H%M%S)
-LOG=/tmp/ga_overnight.log
 
 echo "===== $(date) OVERNIGHT CHAIN START ====="
 

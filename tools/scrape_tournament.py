@@ -12,10 +12,7 @@ Source format: https://limitlessvgc.com/tournaments/<id>/teams
 Each page has N teams; each team = 6 <div class="pkmn"> inside
 <div class="teamlist-pokemon">.
 """
-import os
-import re
 import sys
-import time
 import urllib.request
 from pathlib import Path
 
@@ -45,10 +42,6 @@ def fetch(url):
 
 def parse_ability(text):
     return text.replace("Ability:", "").strip() if text else ""
-
-
-def parse_nature(text):
-    return text.replace("Nature", "").strip() if text else ""
 
 
 def evs_for_moves(moves):
@@ -83,13 +76,11 @@ def parse_team(container):
         name_el = p.find("div", class_="name")
         item_el = p.find("div", class_="item")
         abil_el = p.find("div", class_="ability")
-        nat_el = p.find("div", class_="nature")
         moves_el = p.find("ul", class_="moves")
 
         species = name_el.get_text(strip=True) if name_el else ""
         item = item_el.get_text(strip=True) if item_el else "Leftovers"
         ability = parse_ability(abil_el.get_text(strip=True)) if abil_el else "Pressure"
-        nature_listed = parse_nature(nat_el.get_text(strip=True)) if nat_el else None
         moves = [li.get_text(strip=True) for li in moves_el.find_all("li")] if moves_el else []
 
         if not species or not moves:

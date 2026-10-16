@@ -16,7 +16,7 @@ from __future__ import annotations
 import logging
 from typing import Optional
 
-from poke_env.battle import Pokemon, Move, AbstractBattle
+from poke_env.battle import Move, Pokemon
 from poke_env.player import SimpleHeuristicsPlayer
 
 from src import damage
@@ -111,8 +111,6 @@ class SmartPlayer(SimpleHeuristicsPlayer):
 
     KO_BONUS = 8.0
     DAMAGE_WEIGHT = 3.0
-    RETURN_DAMAGE_WEIGHT = 1.0
-    PROTECT_HP_THRESHOLD = 0.25
 
     @classmethod
     def _score_move_with_damage(cls, attacker: Pokemon, opponent: Pokemon,
@@ -168,7 +166,7 @@ class SmartPlayer(SimpleHeuristicsPlayer):
             return SimpleHeuristicsPlayer.choose_singles_move(battle)
 
         # If parent wanted to switch or use a non-damaging move, keep it.
-        order, parent_score = parent_result
+        order, _ = parent_result
         order_move = getattr(order, "order", None)
         is_move = hasattr(order_move, "id") and hasattr(order_move, "category")
         if not is_move:
@@ -188,7 +186,6 @@ class SmartPlayer(SimpleHeuristicsPlayer):
 
         # Only override the parent if we found a strictly better damaging move.
         # Compare against parent's score heuristic scaled to our units:
-        # parent_score is base_power-ish, in the hundreds. Normalize crudely.
         try:
             parent_move = order_move
             parent_move_score = SmartPlayer._score_move_with_damage(

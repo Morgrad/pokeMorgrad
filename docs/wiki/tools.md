@@ -19,7 +19,7 @@ There are two scrape sources and they feed different artifacts.
 ```
 Showdown ladder replays                      VGCPastes sheet / Limitless tournaments
   scrape_replays.py                            scrape_vgcpastes.py   scrape_tournament.py
-    -> data/showdown_replays/*.json              -> /tmp/vgc_scraped/*.txt   -> data/regional_teams/<prefix>_NN.txt
+    -> data/showdown_replays/*.json              -> data/scraped/vgcpastes/teams/*.txt -> data/regional_teams/<prefix>_NN.txt
   build_training_data.py (+replay_tracker.py)  swap_pool.py / build_real_ev_holdout.py   normalize_tournament.py
     -> data/training_data.jsonl                  -> regional_teams/vgc_*.txt, real_ev_*.txt, pool_split.json
   build_species_priors.py                      extend_train_pool.py -> pool_split.json["train"] (append only)
@@ -48,8 +48,8 @@ Pool files live in `data/regional_teams/`; the split is `data/pool_split.json` (
 |---|---|---|---|---|
 | `normalize_tournament.py` | PIPE | `python3 tools/normalize_tournament.py <prefix>` (e.g. `louisville`) | `data/regional_teams/<prefix>_*.txt` | Rewrites those files in place (species-name fixes like "Female Indeedee" -> "Indeedee-F", strips "Held Item:" artifacts); unfixable files moved to `data/regional_teams/_rejected/`. Idempotent |
 | `extend_train_pool.py` | PIPE | `python3 tools/extend_train_pool.py <prefix>` | `regional_teams/<prefix>_*.txt`, `pool_split.json`, `pool_split_golden.json` | Appends filenames to `pool_split.json["train"]`; refuses if any are in holdout; warns (interactive y/N prompt) if holdout differs from golden. Never edits holdout (lines 7-13, 49-55) |
-| `swap_pool.py` | ONE-OFF (done 2026-10-15) | `python3 tools/swap_pool.py --dry-run` or `--apply` | `/tmp/vgc_scraped/*.txt`; validates each via `node pokemon-showdown validate-team` in `~/pokemon-showdown` (hard-coded, line 33); dedups by (species,item) signature vs new, holdout, train | `--apply`: moves old train files to `regional_teams/_archive_YYYY-MM-DD/`, copies new teams as `vgc_<id>.txt`, backs up split to `pool_split.json.bak`, rewrites train (holdout unchanged) |
-| `build_real_ev_holdout.py` | ONE-OFF (done 2026-10-15) | `python3 tools/build_real_ev_holdout.py --dry-run` or `--apply` | `/tmp/vgc_scraped/*.txt`; rejects overlaps with `vgc_*.txt` train and the old holdout; seed 20261015 (line 35), HOLDOUT_SIZE 100 | `regional_teams/real_ev_NN.txt`; backs up split to `pool_split.mixed_holdout.bak`; new holdout = the 100 real-EV teams, train unchanged. Has a duplicated provenance/meta block (apply_stratify.py was patched into it) |
+| `swap_pool.py` | ONE-OFF (done 2026-10-15) | `python3 tools/swap_pool.py --dry-run` or `--apply` | `data/scraped/vgcpastes/teams/*.txt`; validates each via `node pokemon-showdown validate-team` in `~/pokemon-showdown` (hard-coded, line 33); dedups by (species,item) signature vs new, holdout, train | `--apply`: moves old train files to `regional_teams/_archive_YYYY-MM-DD/`, copies new teams as `vgc_<id>.txt`, backs up split to `pool_split.json.bak`, rewrites train (holdout unchanged) |
+| `build_real_ev_holdout.py` | ONE-OFF (done 2026-10-15) | `python3 tools/build_real_ev_holdout.py --dry-run` or `--apply` | `data/scraped/vgcpastes/teams/*.txt`; rejects overlaps with `vgc_*.txt` train and the old holdout; seed 20261015 (line 35), HOLDOUT_SIZE 100 | `regional_teams/real_ev_NN.txt`; backs up split to `pool_split.mixed_holdout.bak`; new holdout = the 100 real-EV teams, train unchanged. Has a duplicated provenance/meta block (apply_stratify.py was patched into it) |
 | `regenerate_split.py` | LEGACY / DANGEROUS | `python3 tools/regenerate_split.py [seed=20261015]` | Globs ALL `data/regional_teams/*.txt` (line 23) | Overwrites `pool_split.json` with a fresh shuffled 100-holdout split. Today that would mix vgc_/real_ev_/tournament files and destroy the frozen holdout. Do not run |
 
 ## 3. Build priors and DB
@@ -61,7 +61,7 @@ Pool files live in `data/regional_teams/`; the split is `data/pool_split.json` (
 | `scrape_metavgc.py` | PIPE | `python tools/scrape_metavgc.py {fetch\|parse}` | metavgc.com `/pokemon/<slug>` (slugs from `regmc_db`, 1.5 s apart, raw cached) | `data/scraped/metavgc/raw/*.html`, `species.json` (moves, builds, abilities, items with %) |
 | `build_archetypes.py` | PIPE | `python tools/build_archetypes.py [--dry-run]` | `data/regional_teams/*.txt` + `data/scraped/vgcpastes/teams/*.txt` (dedup by content) | `data/species_archetypes.json` (item+nature set groups; see STATE 5.24) |
 | `blend_priors.py` | PIPE | `python tools/blend_priors.py [--dry-run]` | `*.corpus.json` priors + `scraped/metavgc/species.json` | `species_{build,ability,item}_priors.json`, `species_move_usage.json` (see STATE 5.23) |
-| `build_move_priors.py` | PIPE, PENDING | `python3 tools/build_move_priors.py` (no args) | `/tmp/vgc_scraped/*.txt` | Overwrites `data/species_move_priors.json` with tournament-sourced top-20 moves (MAX_MOVES line 23); first copies the old file to `species_move_priors.ladder.bak.json` if absent. On disk today the live file is still byte-identical to the ladder backup (md5 match), so this has not been applied |
+| `build_move_priors.py` | PIPE, PENDING | `python3 tools/build_move_priors.py` (no args) | `data/scraped/vgcpastes/teams/*.txt` | Overwrites `data/species_move_priors.json` with tournament-sourced top-20 moves (MAX_MOVES line 23); first copies the old file to `species_move_priors.ladder.bak.json` if absent. On disk today the live file is still byte-identical to the ladder backup (md5 match), so this has not been applied |
 | `build_species_priors.py` | PIPE | `python3 tools/build_species_priors.py` | `data/training_data.jsonl` | `data/species_move_priors.json` (ladder-derived, TOP_N_MOVES=30, line 25). Writes the SAME file as `build_move_priors.py`; whichever runs last wins. Consumed by BC mask (`src/bc_train.py:28`, `src/bc_player.py:34`) |
 
 ## 4. Training data
@@ -93,11 +93,11 @@ Pool files live in `data/regional_teams/`; the split is `data/pool_split.json` (
 | `batch_parse.py` | LEGACY | Header (lines 1-8) says do not use: predates `side_won`/`target_*` schema and degrades `bc_train`. Replaced by `build_training_data.py`. Still in tools/ (docs say "archived") |
 | `pilot_probe.py.bak` | backup | Older copy of `pilot_probe.py` (129 vs 155 lines). Backup only |
 | `scrape_louisville.py.bak` | backup | Older Louisville-specific scraper; superseded by `scrape_tournament.py`. Backup only |
-| `../apply_stratify.py` (repo root, untracked) | ONE-OFF, already applied | A bash heredoc (`cd ~/pokeMorgrad && python3 - <<'PYEOF' ...`) saved with a `.py` extension; it is not valid Python. It patches `tools/build_real_ev_holdout.py` to a provenance-stratified pick (reads `/tmp/vgc_raw/m-c.csv`). Safe to delete |
+| `../apply_stratify.py` (repo root, untracked) | ONE-OFF, already applied | A bash heredoc (`cd ~/pokeMorgrad && python3 - <<'PYEOF' ...`) saved with a `.py` extension; it is not valid Python. It patches `tools/build_real_ev_holdout.py` to a provenance-stratified pick (reads `data/scraped/vgcpastes/raw/m-c.csv`). Safe to delete |
 
 ## Cross-cutting caveats
 
 - Many tools hard-code `Path.home() / "pokeMorgrad"` instead of `src.paths` (`swap_pool`, `build_*_priors`, `extend_train_pool`, `extract_champions`, `normalize_tournament`, `scrape_tournament`, `test_pilots`, `log_milestone`, `regenerate_split`). Moving the repo again or setting `POKEMORGRAD_ROOT` does not redirect them; `sed` the string if the directory is renamed.
-- `scrape_vgcpastes.py`, `build_ev_priors.py` and `build_archetypes.py` use `data/scraped/vgcpastes/`. `build_move_priors.py`, `swap_pool.py` and `build_real_ev_holdout.py` (and `apply_stratify.py`) still read `/tmp/vgc_scraped/` + `/tmp/vgc_raw/` (stale after a WSL restart): known issue, not repointed yet.
+- `scrape_vgcpastes.py`, `build_ev_priors.py` and `build_archetypes.py` use `data/scraped/vgcpastes/`. `build_move_priors.py`, `swap_pool.py` and `build_real_ev_holdout.py` also read `data/scraped/vgcpastes/{teams,raw}` now (no /tmp dependency left).
 - `bs4` (scrape_tournament) and `openpyxl` (scrape_vgcpastes) are in the optional extra: `pip install -e ".[scrape]"`.
 - `species_build_priors.json` is documented as the sampler for `ga_core._random_mon` (build_ev_priors.py lines 11-13) but `src/ga_core.py` never reads it; only `src/opp_model.py:63` does (battle-time opponent build guess for DoublesPilot).

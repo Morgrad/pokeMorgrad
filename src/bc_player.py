@@ -14,20 +14,21 @@ import os
 import numpy as np
 import torch
 import torch.nn.functional as F
-
-from poke_env.player import Player
 from poke_env.battle import DoubleBattle
-from poke_env.battle.pokemon import Pokemon
 from poke_env.battle.move import Move
+from poke_env.battle.pokemon import Pokemon
+from poke_env.player import Player
 from poke_env.player.battle_order import DoubleBattleOrder
 
-from src.state_encoder import StateEncoder
 from src.bc_model import (
-    BCModel, BCModelV3, build_move_mask,
-    TYPE_MOVE, TYPE_SWITCH,
+    TYPE_MOVE,
+    TYPE_SWITCH,
+    BCModel,
+    BCModelV3,
+    build_move_mask,
 )
-
 from src.paths import data_path, output_path
+from src.state_encoder import StateEncoder
 
 DEFAULT_MODEL_PATH = output_path("models", "bc_best.pt")
 MODEL_PATH = os.environ.get("BC_PILOT_PATH", DEFAULT_MODEL_PATH)

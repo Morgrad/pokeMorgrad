@@ -150,7 +150,7 @@ Low priority.
 section 5.2) lived in the genome-repair paths. Every change here needs a
 GA smoke test before commit.
 
-### B1 — delete `run_ga` legacy single-population path
+### B1 — delete `run_ga` legacy single-population path (DONE 2026-10-16)
 `src/ga_core.py` lines 965-1047 (approximately 85 lines). The function's
 own comment says it has no live callers and is not checkpointed. It is a
 drifting mini-copy of `run_islands`'s evolve loop.

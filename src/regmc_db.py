@@ -87,10 +87,6 @@ def all_moves():
     return list(load_db()["moves"].values())
 
 
-def all_abilities():
-    return list(load_db()["abilities"].values())
-
-
 def all_natures():
     return list(load_db()["natures"].values())
 
@@ -188,19 +184,6 @@ def is_legal_move(name):
     return get_move(name) is not None
 
 
-def is_legal_ability(name):
-    return get_ability(name) is not None
-
-
-def mega_stones_for(species):
-    """Return list of mega stone item names for a species (by name or dict)."""
-    if isinstance(species, str):
-        sp = get_species(species)
-    else:
-        sp = species
-    return sp["megaStones"] if sp else []
-
-
 def species_can_learn(species, move):
     """True if species can learn move (normalized comparison)."""
     sp = get_species(species) if isinstance(species, str) else species
@@ -236,19 +219,6 @@ def species_has_ability(species, ability):
             if any(norm(a) == target for a in c["abilities"]):
                 return True
     return False
-
-
-def moves_by_category(species, category):
-    """Return legal moves for species filtered by category (Physical/Special/Status)."""
-    sp = get_species(species) if isinstance(species, str) else species
-    if not sp:
-        return []
-    out = []
-    for mname in sp["moves"]:
-        mv = get_move(mname)
-        if mv and mv["category"] == category:
-            out.append(mname)
-    return out
 
 
 # ============================================================

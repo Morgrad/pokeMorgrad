@@ -22,7 +22,7 @@ import numpy as np
 import torch
 import torch.nn as nn
 
-from src.state_encoder import N_SLOTS, N_MOVES_PER, CONT_DIM
+from src.state_encoder import CONT_DIM, N_MOVES_PER, N_SLOTS
 
 # =============================================================================
 # CHECKPOINT CONTRACT — DO NOT RENAME OR RESIZE

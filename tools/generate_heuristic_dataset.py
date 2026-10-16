@@ -16,22 +16,20 @@ generalizes to the GA loop.
 import argparse
 import asyncio
 import json
-import os
 import random
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from poke_env.player import SimpleHeuristicsPlayer
 from poke_env import AccountConfiguration
 from poke_env.battle.move import Move
 from poke_env.battle.pokemon import Pokemon
+from poke_env.player import SimpleHeuristicsPlayer
 from poke_env.player.battle_order import DoubleBattleOrder
 
 from src import ga_core as G
 from src.state_encoder import StateEncoder
-
 
 FORMAT = G.FORMAT
 TIMEOUT = 30

@@ -36,7 +36,7 @@ Single source of truth for repo-relative locations.
 
 ## regmc_db.py (397 lines)
 Canonical, torch-free data layer over `data/regmc_db.json` (cached with `lru_cache`).
-- Lookups: `get_species/get_item/get_move/get_ability`, `all_species`, `all_species_base` (forme is None), `normalize_species_name` (strips `(M)/(F)` and nicknames), `species_has_ability` (formes inherit from base or sibling formes), `species_can_learn`, `moves_by_category`, `mega_stones_for`.
+- Lookups: `get_species/get_item/get_move/get_ability`, `all_species`, `all_species_base` (forme is None), `normalize_species_name` (strips `(M)/(F)` and nicknames), `species_has_ability` (formes inherit from base or sibling formes), `species_can_learn`.
 - `parse_team(text)` parses Showdown paste into mon dicts; `validate_team(mons)` is the LOCAL legality check: 6 mons, species clause, item clause, legal item, ability, exactly 4 distinct learnable moves, EVs <= 66 total and <= 32 per stat.
 - Importers: damage, ga_core, audit_before_launch. Has a `__main__` smoke test.
 - Gotcha: this is the DB-based check; the authoritative check is Showdown via `showdown_validator`.
@@ -103,7 +103,7 @@ Pure-logic joint scoring of a PAIR of attack actions (numpy + damage; no poke_en
 
 | Lines | Section | Content |
 |---|---|---|
-| 1-109 | Header + constants | `FORMAT="gen9championsvgc2026regmc"`, `UID_MAX`, `EV_BUDGET=66`, `EV_STAT_CAP=32`, `MAX_REBUILD_TRIES=20`, `BATTLE_TIMEOUT=20`, `MIN_TURNS=3`, `SEED_POOL=30`, `VAL_POOL_SIZE=30`, `TRAIN_SAMPLE_SIZE` (env `GA_TRAIN_SAMPLE`, 250, `:75`), `VAL_SPLIT_SEED=42`, early-stop (`EARLY_STOP_MIN_BATTLES=50`, `EARLY_STOP_WIN_RATE=0.15`), `CANONICAL_ITEMS`, `PROTECT_MOVES`, `FAKEOUT_MOVES` |
+| 1-109 | Header + constants | `FORMAT="gen9championsvgc2026regmc"`, `UID_MAX`, `EV_BUDGET=66`, `EV_STAT_CAP=32`, `MAX_REBUILD_TRIES=20`, `BATTLE_TIMEOUT=20`, `MIN_TURNS=3`, `VAL_POOL_SIZE=30`, `TRAIN_SAMPLE_SIZE` (env `GA_TRAIN_SAMPLE`, 250, `:75`), `VAL_SPLIT_SEED=42`, early-stop (`EARLY_STOP_MIN_BATTLES=50`, `EARLY_STOP_WIN_RATE=0.15`), `CANONICAL_ITEMS`, `PROTECT_MOVES`, `FAKEOUT_MOVES` |
 | 110-229 | Cached roster + data loaders | `_BASE_SPECIES`, `move_priors_for` (`data/species_move_priors.json`, top 8), `meta_items_for` (`data/meta_items.json`), `_load_teams` (resolves by basename in `data/regional_teams`; raises if a non-empty list loads zero), `regional_pool` (pool_split.json "train", else glob), `_split_train_val` (deterministic shuffle), `heldout_pool` ("holdout") |
 | 230-530 | Set generation | `_legal_items_for` (lru_cache; mega stone / itemUser filtering), `_species_role` (physical/special/support), `_random_mon` (priors-first, role-matched; EVs/nature follow role; excludes "randomNormal" target moves), `_pick_item_for` (mega stone -> meta-weighted -> canonical -> any legal), `build_random_genome(constraints)` |
 | 532-560 | Serialization | `genome_to_text` (Level 50, always writes `EVs:`), `text_to_genome` (None unless exactly 6 mons) |
@@ -111,15 +111,14 @@ Pure-logic joint scoring of a PAIR of attack actions (numpy + damage; no poke_en
 | 630-701 | Legality filter | `filter_legal_genomes` (`:633`): batched `SV.check_teams`, rebuild failed slots up to 20 tries, then composition pass. Output may be SHORTER than input |
 | 703-890 | Operators | `mutate_species/item/ability/nature/evs/move`, `mutate(mons, constraints, n=1-4)` on a deepcopy over free slots; `crossover` (per-slot parent pick; locked slots take the parent holding the species; species/item clause repair) |
 | 892-969 | Fitness | `async evaluate(mons, opponents, idx, total)` (`:910`) |
-| 971-1060 | Legacy `run_ga` | single population, elites `max(2, pop//5)`, writes `output/champions/ga_{label}.txt`, `output/ga_history.json`, `random.seed(42)`. No live callers found in `run/` |
-| 1062-1557 | Island model | `Island`, `ring_migrate`, `restart_showdown`, checkpoints, `breed`, `_eval_on_subset`, `run_islands` |
+| 967-1462 | Island model | `Island`, `ring_migrate`, `restart_showdown`, checkpoints, `breed`, `_eval_on_subset`, `run_islands` |
 
 ### Key behaviours (ga_core)
 - Genome = list of 6 dicts `{species, item, ability, nature, evs, moves}`; constraints = `{slot: species}` (locked slots). Island constraint keys are stringified for JSON.
 - `evaluate`: invalid genomes (local `DB.validate_team`) score 0.0; plays 50 "head" battles first and aborts if head fitness < 0.15, else plays the tail; `None` battle results are dropped from the denominator. Pilot is always the heuristic here (via `battle.run_battle`, `min_turns=3`).
 - Train/val: training pool is split with seed 42 into train / `VAL_POOL_SIZE=30` val; heldout pool is for final eval only. Per-generation opponent sample = `min(battles_per_genome, TRAIN_SAMPLE_SIZE, len(train_pool))`.
-- `_SEM` is a module-global semaphore set by `run_ga`/`run_islands`.
-- `Island` (`:1091`): name, constraints, population, fitness, `best_ever`, `best_val_ever`, stagnation, history, `seed_paths`; `to_dict/from_dict`.
+- `_SEM` is a module-global semaphore set by `run_islands`.
+- `Island` (`:997`): name, constraints, population, fitness, `best_ever`, `best_val_ever`, stagnation, history, `seed_paths`; `to_dict/from_dict`.
 - `inject_immigrants(island, n)` replaces the worst n; `ring_migrate(n=2)`: island i receives from i-1, replaces worst, strips foreign locked species (`_strip_species`).
 - `restart_showdown` (`:1275`): `pkill -9 -f "pokemon-showdown start {port}"`, relaunch `node pokemon-showdown start {port} --no-security`, polls up to 15s.
 - `save_checkpoint` writes `output/checkpoints/v6/<run_id>/gen_NNNN.json`, keeping newest plus multiples of 5; `load_latest_checkpoint` resumes.

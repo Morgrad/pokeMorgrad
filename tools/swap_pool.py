@@ -5,7 +5,7 @@ Usage:
     python3 tools/swap_pool.py --apply      # do the archive + swap
 
 Pipeline:
-  1. Validate every file in /tmp/vgc_scraped/ via showdown validate-team
+  1. Validate every file in data/scraped/vgcpastes/teams/ via showdown validate-team
   2. Dedup new-vs-new by (species, item) signature
   3. Dedup new-vs-holdout (drop matches — holdout must stay pure)
   4. Dedup new-vs-current-train (drop matches — don't double-count)
@@ -28,7 +28,7 @@ REPO = Path.home() / "pokeMorgrad"
 sys.path.insert(0, str(REPO))
 from src import regmc_db as DB
 
-NEW_DIR = Path("/tmp/vgc_scraped")
+NEW_DIR = REPO / "data" / "scraped" / "vgcpastes" / "teams"
 POOL_DIR = REPO / "data" / "regional_teams"
 SPLIT_PATH = REPO / "data" / "pool_split.json"
 SHOWDOWN_DIR = Path(os.environ.get("SHOWDOWN_DIR", Path.home() / "pokemon-showdown"))
@@ -142,7 +142,7 @@ def main():
     print(f"  unparsable:          {len(unparsable)}")
 
     # ---- 4. Report & apply ----
-    print(f"\n=== PLAN ===")
+    print("\n=== PLAN ===")
     print(f"  archive {len(current_train)} files -> {ARCHIVE_DIR}")
     print(f"  copy    {len(kept)} files -> {POOL_DIR}/vgc_<id>.txt")
     print(f"  new train count: {len(kept)}")
@@ -154,7 +154,7 @@ def main():
         return
 
     # ---- 5. Apply ----
-    print(f"\n=== APPLYING ===")
+    print("\n=== APPLYING ===")
     ARCHIVE_DIR.mkdir(exist_ok=True)
     archived = 0
     for name in current_train:

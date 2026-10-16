@@ -59,7 +59,7 @@ Single-process, all three islands together (ring migration every 5 gens): `pytho
 Sequential chain on one server (port 8000): `python -m run.ga_run run1 2.5`, then `run2 2.5`, then `python -m src.eval` on the baseline and the six champions.
 - Starts Showdown on 8000 if needed plus a 30s watchdog loop; kills processes matching `ga_run.py` / `ga_core`.
 - DESTRUCTIVE: `rm -rf` of the run1 and run2 checkpoint directories before starting (so no resume).
-- Does not set `GA_CONCURRENCY` (falls to ga_run's default 3). Logs in `/tmp`; marker `/tmp/ga_overnight_done_$STAMP`. `LOG` variable is unused.
+- Does not set `GA_CONCURRENCY` (falls to ga_run's default 3). Logs in `/tmp`; marker `/tmp/ga_overnight_done_$STAMP`.
 
 ## tests/
 Run directly (pytest is NOT installed):

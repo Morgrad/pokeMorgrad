@@ -152,7 +152,6 @@ and is not here, add it.
 | MAX_REBUILD_TRIES | 20 | Rebuild attempts before dropping an illegal genome |
 | BATTLE_TIMEOUT | 20 | Seconds before a battle is abandoned |
 | MIN_TURNS | 3 | Battles shorter than this are dropped as desyncs |
-| SEED_POOL | 30 | First N regional teams used to seed a random population |
 | VAL_POOL_SIZE / VAL_SPLIT_SEED | 30 / 42 | Validation-slice size and split seed |
 | EARLY_STOP_MIN_BATTLES | 50 | Head batch size before early-abort decision |
 | EARLY_STOP_WIN_RATE | 0.15 | Below this head rate, the tail is skipped |

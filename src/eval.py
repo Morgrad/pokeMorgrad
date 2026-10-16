@@ -19,8 +19,8 @@ import asyncio
 import os
 import random
 
-from src import ga_core as G
 from src import battle as B
+from src import ga_core as G
 from src.paths import data_path
 
 FORMAT = G.FORMAT          # canonical format registry (defined in ga_core)

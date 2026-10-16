@@ -12,7 +12,13 @@ Usage:
 
 Writes: data/showdown_replays_meta/index.json and data/showdown_replays/*.json
 """
-import urllib.request, urllib.error, json, os, sys, time, random
+import json
+import os
+import random
+import sys
+import time
+import urllib.error
+import urllib.request
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from src.paths import data_path

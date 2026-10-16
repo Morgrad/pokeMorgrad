@@ -14,15 +14,20 @@ import time
 import numpy as np
 import torch
 import torch.nn.functional as F
-from torch.utils.data import Dataset, DataLoader
+from torch.utils.data import DataLoader, Dataset
 
-from src.state_encoder import StateEncoder
 from src.bc_model import (
-    BCModel, BCModelV3, build_move_mask, save_checkpoint,
-    NEG_INF, TYPE_MOVE, TYPE_SWITCH, TYPE_NONE,
+    NEG_INF,
+    TYPE_MOVE,
+    TYPE_NONE,
+    TYPE_SWITCH,
+    BCModel,
+    BCModelV3,
+    build_move_mask,
+    save_checkpoint,
 )
-
 from src.paths import data_path, output_path
+from src.state_encoder import StateEncoder
 
 DATA = os.environ.get("BC_DATA", data_path("training_data.jsonl"))   # override for heuristic-imitation runs
 PRIORS_PATH = data_path("species_move_priors.json")

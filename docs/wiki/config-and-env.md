@@ -16,7 +16,7 @@ Contents
 ## Python environment and pyproject
 
 - Venv: `~/venv-pokemorgad` on this host. Activate with `source ~/venv-pokemorgad/bin/activate`. `run/ga_parallel.sh:16` and `tools/verify.sh:4` hard-code this. README setup says `.venv` (stale for this host).
-- `pyproject.toml`: project `pokemorgrad` 0.1.0, `requires-python >=3.10`, setuptools build, `packages = ["src"]` only (`run/` and `tools/` are not packaged; run `python -m run.ga_island`, `python -m src.eval` from the repo root). Dependencies: `torch>=2.0`, `numpy`, `poke-env>=0.8`. Optional `dev`: `ruff`, `pytest`. Ruff: line-length 100, target py310, select `E,F,W,I`, ignore `E501`. No pytest config section. `bs4` and `openpyxl` (used by tools/scrape_*) are not declared.
+- `pyproject.toml`: project `pokemorgrad` 0.1.0, `requires-python >=3.10`, setuptools build, `packages = ["src"]` only (`run/` and `tools/` are not packaged; run `python -m run.ga_island`, `python -m src.eval` from the repo root). Dependencies: `torch>=2.0`, `numpy`, `poke-env>=0.8`. Optional `dev`: `ruff`, `pytest`. Ruff: line-length 100, target py310, select `E,F,W,I`, ignore `E501,E701,E702`, per-file E402 ignore for `tools/*`, `run/*`, `src/battle.py`. No pytest config section. `bs4` and `openpyxl` (used by tools/scrape_*) are not declared.
 - Tests: `tests/test_damage.py`, `tests/test_doubles_eval.py`, `tests/test_speed_model.py`, `tests/test_blend_priors.py`, `tests/test_archetypes.py`, `tests/test_mega_z_lines.py` (plain scripts, pytest also works).
 - Showdown/Node: Showdown checkout at `~/pokemon-showdown` (run with `node pokemon-showdown ...`).
 
@@ -83,7 +83,6 @@ Defined at `ga_core.py:39-107`; changing them changes GA behavior.
 | `MAX_REBUILD_TRIES` | `20` | Attempts to rebuild an illegal genome before dropping it |
 | `BATTLE_TIMEOUT` | `20` s | Hung battle becomes `None`, not a loss |
 | `MIN_TURNS` | `3` | GA discards battles shorter than this (desync/forfeit) |
-| `SEED_POOL` | `30` | Seeding population from real teams draws from first N teams |
 | `VAL_POOL_SIZE` / `VAL_SPLIT_SEED` | `30` / `42` | Validation slice carved from train pool (ga_core.py:202,1449) |
 | `TRAIN_SAMPLE_SIZE` | `250` (`GA_TRAIN_SAMPLE`) | Per-generation opponent sample |
 | `EARLY_STOP_MIN_BATTLES` / `EARLY_STOP_WIN_RATE` | `50` / `0.15` | A genome scoring below 15% after 50 battles skips the remaining battles |
@@ -121,7 +120,7 @@ Island specs: `ga_island.py:44-49`: A = lock slot 0 to Umbreon, seeded with `bas
 | `LOCKED_MOVES`, `UNMODELLED_MOVES` | sets | `src/doubles_pilot.py:33-41` | Moves left to vanilla / excluded from allocation |
 | `ITEM_ATK_MULT`, `ABILITY_ATK_MULT`, `ITEM_FINAL_MULT` | band/specs 1.5, huge/pure power 2.0, life orb 1.3 | `doubles_pilot.py:42-44` | Attacker modifiers fed to the damage formula |
 | `TOP_K`, `LEVEL` | `3`, `50` | `src/opp_model.py:21-22` | Opponent builds per species in the mixture; battle level |
-| `SmartPlayer.KO_BONUS` etc. | 8.0, DAMAGE_WEIGHT 3.0, RETURN_DAMAGE_WEIGHT 1.0, PROTECT_HP_THRESHOLD 0.25 | `src/smart_player.py:112-115` | Class constants of the older SmartPlayer; only used by `tools/test_pilots.py` (not by the GA/eval pilot switch) |
+| `SmartPlayer.KO_BONUS` etc. | 8.0, DAMAGE_WEIGHT 3.0 | `src/smart_player.py:112-113` | Class constants of the older SmartPlayer; only used by `tools/test_pilots.py` (not by the GA/eval pilot switch) |
 | `eval.TIMEOUT` | `20` s | `src/eval.py:28` | Battle timeout; eval uses `min_turns=0` so every finished game counts |
 | `eval.DEFAULT_SEEDS` | `[100,200,300]` | `src/eval.py:30` | |
 

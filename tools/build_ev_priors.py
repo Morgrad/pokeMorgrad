@@ -18,7 +18,6 @@ Format per entry (list, most-common-first):
     {"evs": {"hp": 2, "atk": 32, "spe": 32}, "nature": "Jolly", "count": 47}
 """
 import json
-import re
 import sys
 from collections import Counter, defaultdict
 from pathlib import Path

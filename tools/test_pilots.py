@@ -20,8 +20,9 @@ sys.path.insert(0, str(REPO))
 
 from poke_env import AccountConfiguration, ServerConfiguration
 from poke_env.player import SimpleHeuristicsPlayer
-from src.smart_player import SmartPlayer
+
 from src.ga_core import heldout_pool
+from src.smart_player import SmartPlayer
 
 PORT = 8001
 FORMAT = "gen9championsvgc2026regmc"
@@ -90,7 +91,7 @@ async def main(n_teams, battles_per_team, concurrency):
     tie = sum(1 for r in results if r == "tie")
     errors = [r for r in results if isinstance(r, str) and r.startswith("error")]
 
-    print(f"\n=== results ===")
+    print("\n=== results ===")
     print(f"  teams: {n_teams}, battles/team: {battles_per_team}, total: {total}")
     print(f"  concurrency: {concurrency}, elapsed: {elapsed:.1f}s "
           f"({elapsed/total*1000:.0f} ms/battle)")
@@ -114,11 +115,11 @@ async def main(n_teams, battles_per_team, concurrency):
         hi = min(1.0, centre + half) * 100
         print(f"  smart win rate: {p*100:.1f}%  95% CI [{lo:.1f}-{hi:.1f}]")
         if p > 0.5 and lo > 50:
-            print(f"  -> SmartPlayer significantly better than vanilla")
+            print("  -> SmartPlayer significantly better than vanilla")
         elif p < 0.5 and hi < 50:
-            print(f"  -> SmartPlayer significantly WORSE than vanilla")
+            print("  -> SmartPlayer significantly WORSE than vanilla")
         else:
-            print(f"  -> inconclusive at this sample size")
+            print("  -> inconclusive at this sample size")
 
 
 if __name__ == "__main__":
