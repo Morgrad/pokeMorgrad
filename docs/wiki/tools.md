@@ -94,7 +94,7 @@ Pool files live in `data/regional_teams/`; the split is `data/pool_split.json` (
 
 ## Cross-cutting caveats
 
-- Many tools hard-code `Path.home() / "project"` instead of `src.paths` (`swap_pool`, `build_*_priors`, `extend_train_pool`, `extract_champions`, `normalize_tournament`, `scrape_tournament`, `test_pilots`, `log_milestone`). Moving the repo or setting `POKEMORGRAD_ROOT` does not redirect them.
+- Many tools hard-code `Path.home() / "pokeMorgrad"` instead of `src.paths` (`swap_pool`, `build_*_priors`, `extend_train_pool`, `extract_champions`, `normalize_tournament`, `scrape_tournament`, `test_pilots`, `log_milestone`, `regenerate_split`). Moving the repo again or setting `POKEMORGRAD_ROOT` does not redirect them; `sed` the string if the directory is renamed.
 - The VGCPastes-derived tools read `/tmp/vgc_scraped/` (and `/tmp/vgc_raw/`). `/tmp` is wiped on WSL restart, so re-run `scrape_vgcpastes.py fetch-csv ... fetch-teams` before `build_ev_priors.py`, `build_move_priors.py`, `swap_pool.py` or `build_real_ev_holdout.py`.
-- Missing from pyproject `dependencies`: `bs4` (scrape_tournament) and `openpyxl` (scrape_vgcpastes).
+- `bs4` (scrape_tournament) and `openpyxl` (scrape_vgcpastes) are in the optional extra: `pip install -e ".[scrape]"`.
 - `species_build_priors.json` is documented as the sampler for `ga_core._random_mon` (build_ev_priors.py lines 11-13) but `src/ga_core.py` never reads it; only `src/opp_model.py:63` does (battle-time opponent build guess for DoublesPilot).

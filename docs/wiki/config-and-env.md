@@ -28,7 +28,7 @@ Contents
 | 8001 | island B in parallel run; also eval/diagnostics (`tools/test_pilots.py:26` hard-codes it) | `run/ga_parallel.sh` |
 | 8002 | island C in parallel run | `run/ga_parallel.sh` |
 
-Start command (all scripts): `cd ~/pokemon-showdown && nohup node pokemon-showdown start <port> --no-security > /tmp/showdown_<port>.log 2>&1 &`. `ops/start_server.sh` first `pkill -9 -f pokemon-showdown` (kills ALL ports) then starts 8000 only and logs to `/tmp/showdown.log`. `ga_parallel.sh:26-40` starts any of 8000-8002 that does not answer `curl localhost:<port>`, waits 8s, aborts if one is down. Port-to-island map is `ga_parallel.sh:95-100` (A=8000, B=8001, C=8002). Other ops: `ops/stop_all.sh` (kills 8000, leaves 8001), `ops/stop_everything.sh`, `ops/watch_server.sh` (watches 8000 only).
+Start command (all scripts): `cd ~/pokemon-showdown && nohup node pokemon-showdown start <port> --no-security > /tmp/showdown_<port>.log 2>&1 &`. `ops/start_server.sh [port]` (default 8000) kills and restarts only that port's server and logs to `/tmp/showdown_<port>.log`. `ga_parallel.sh:26-40` starts any of 8000-8002 that does not answer `curl localhost:<port>`, waits 8s, aborts if one is down. Port-to-island map is `ga_parallel.sh:95-100` (A=8000, B=8001, C=8002). Other ops: `ops/stop_all.sh` (kills 8000, leaves 8001), `ops/stop_everything.sh`, `ops/watch_server.sh` (watches 8000 only).
 
 Each island process runs with `GA_CONCURRENCY=8` and its own `SHOWDOWN_PORT` (`ga_parallel.sh:60`); `tools/watch_islands.py` kills an island whose `/tmp/ga_<run>_<X>.log` is stale for 300s (`ga_parallel.sh:65`) and the loop respawns it from checkpoint with the remaining time budget (lines 52-90). Details of operation: `docs/OPERATIONS.md`.
 
@@ -43,7 +43,7 @@ Each island process runs with `GA_CONCURRENCY=8` and its own `SHOWDOWN_PORT` (`g
 | `DOUBLES_KO_BONUS` | `1.0` (falls back to `doubles_eval.KO_BONUS`) | `src/doubles_pilot.py:70-71` | KO term weight in DoublesPilot's pair score. Sweep 0-4 on 2026-10-16 found a plateau from 1.0 up, 0 about 4 points worse (comment `doubles_eval.py:27`). Overridden by the `ko_bonus=` constructor arg |
 | `DOUBLES_MIN_GAIN` | `0.01` (falls back to `doubles_eval.MIN_GAIN`) | `src/doubles_pilot.py:72-73` | Minimum improvement over vanilla's pair before DoublesPilot deviates |
 | `POKEMORGRAD_ROOT` | unset (repo root = parent of `src/`) | `src/paths.py:15` | Override repo root; must contain `data/` or raises. `data_path`/`output_path`/`src_path` derive from it. Tools that hard-code `~/pokeMorgrad` ignore it |
-| `SHOWDOWN_DIR` | `~/pokemon-showdown` | `src/paths.py:43` (`showdown_dir()`); `src/showdown_validate.js:5`; `tools/build_regmc_db.js:13`; `ops/start_server.sh:2`; `run/ga_overnight.sh:5` | Showdown checkout. NOT honored by `src/ga_core.py:1071` (hard-coded `~/pokemon-showdown` for restarts), `run/ga_parallel.sh:29`, or `tools/swap_pool.py:33` |
+| `SHOWDOWN_DIR` | `~/pokemon-showdown` | `src/paths.py:43` (`showdown_dir()`); `src/showdown_validate.js:5`; `tools/build_regmc_db.js:13`; `ops/start_server.sh:2`; `run/ga_overnight.sh:5` | Showdown checkout. Also honored by `src/ga_core.py` (restarts), `run/ga_parallel.sh`, `tools/swap_pool.py`, `tools/build_real_ev_holdout.py` |
 | `BC_DATA` | `data/training_data.jsonl` | `src/bc_train.py:27` | Training JSONL (use heuristic variants for imitation runs) |
 | `BC_OUT` | `bc_best.pt` | `src/bc_train.py:30` | Output filename under `output/models/` |
 | `BC_MODEL` | `v2` | `src/bc_train.py:31` | BC architecture variant selector |
@@ -79,7 +79,6 @@ Defined at `ga_core.py:39-107`; changing them changes GA behavior.
 |---|---|---|
 | `FORMAT` | `gen9championsvgc2026regmc` | Showdown format string used everywhere |
 | `UID_MAX` | `10**9` | Range of random per-battle account ids |
-| `META_ITEM_BIAS` | `0.70` | P(draw item from `meta_items.json` usage) vs any legal item |
 | `EV_BUDGET` / `EV_STAT_CAP` | `66` / `32` | Total EVs per mutated spread and per-stat cap (Champions-style 32-point scale) |
 | `MAX_REBUILD_TRIES` | `20` | Attempts to rebuild an illegal genome before dropping it |
 | `BATTLE_TIMEOUT` | `20` s | Hung battle becomes `None`, not a loss |

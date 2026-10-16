@@ -116,9 +116,9 @@ Pure-logic joint scoring of a PAIR of attack actions (numpy + damage; no poke_en
 - Outputs at end (`ga_core.py:1540-1556`): `output/champions/ga_<run_id>_island_<name>.txt` and `..._train.txt`.
 
 ### Gotchas (ga_core)
-- `META_ITEM_BIAS=0.70` (`:50`) is defined and never referenced anywhere in src/, run/, tools/ (grep). Item choice uses meta items via `_pick_item_for` regardless.
-- Champion selection comments say "by validation score" (`:1542`) but the code picks `best_ever` (train-selected) whenever it exists, so `ga_<id>_island_X.txt` and `_X_train.txt` are identical in practice; val is only a fallback.
-- `SHOWDOWN_DIR` is hard-coded `os.path.expanduser("~/pokemon-showdown")` (`:1071`), ignoring `paths.showdown_dir()` / env `SHOWDOWN_DIR`. `SHOWDOWN_PORT` is read from env at import (`:1072`).
+- `META_ITEM_BIAS` was an unused constant and has been removed. Item choice uses meta items via `_pick_item_for`.
+- Champion selection is train-best by design (STATE.md §5, val-selection dropped); `ga_<id>_island_X.txt` and `_X_train.txt` are identical in practice, val is only a fallback. The code comment now says so.
+- `SHOWDOWN_DIR = paths.showdown_dir()` (env `SHOWDOWN_DIR` honored). `SHOWDOWN_PORT` is read from env at import.
 - `FORMAT` and `UID_MAX` are shared with eval via import from here.
 
 ---
@@ -139,7 +139,7 @@ CLI `python -m src.eval` for evaluating team files (default `baseline_team.txt`)
 - Gotcha: the HEUR/BC/Delta comparison table only covers heuristic and bc pilots; `doubles` is not in it.
 
 ## audit_before_launch.py (188 lines)
-Pre-launch sanity script; has NO `__main__` guard, so everything runs at import. Run as `python -m src.audit_before_launch`.
+Pre-launch sanity script; logic lives in `main()` behind a `__main__` guard (importing it is silent). Run as `python -m src.audit_before_launch`.
 - Nine sections: DB integrity, name sanity, mega stones, regional teams validate, fuzz 500 Umbreon-locked genomes, fuzz 500 free, 2000 mutations, 500 crossovers, baseline team.
 - Uses `DB.validate_team` (local), not the Showdown validator. Seeds random with 0, 42, 1. Imports `regmc_db`, `ga_core`, `paths`.
 

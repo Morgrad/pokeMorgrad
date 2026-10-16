@@ -89,15 +89,14 @@ Pins `src/damage.py` outputs. Pins were captured from the implementation, not an
 
 ## ops/
 Four shell helpers for the Showdown server (none run here).
-- `ops/start_server.sh`: `pkill -9 -f "pokemon-showdown"`, starts Showdown on 8000 with `--no-security` from `$SHOWDOWN_DIR`, log `/tmp/showdown.log`, curl check.
+- `ops/start_server.sh [port]`: kills only `pokemon-showdown start <port>` (default 8000), restarts it with `--no-security` from `$SHOWDOWN_DIR`, log `/tmp/showdown_<port>.log`, curl check.
 - `ops/watch_server.sh`: 30s loop that restarts via `start_server.sh` if :8000 is down. Also contains a training-stall killer targeting `~/vgc-bench` (TB dir `~/vgc-bench/results/logs_sp`, 300s stall); only the server-health half applies to this repo.
 - `ops/stop_all.sh`: kills `vgc_bench.train`, `pokemon-showdown start 8000`, tensorboard, `watch_server.sh`. Targets the separate vgc-bench project.
 - `ops/stop_everything.sh`: runs `stop_all.sh`, then kills `pokemon-showdown start 8001` and `evaluate_team_v2.py` (a file not present in this repo's listing: legacy).
-- Caution for parallel mode: `start_server.sh` pkills EVERY Showdown process, so it also kills ports 8001/8002 mid-run. `ga_parallel.sh` starts its own servers and does not use ops/.
+- `start_server.sh` is port-scoped (it used to pkill every Showdown process, which could take down 8001/8002 mid-run). `ga_parallel.sh` starts its own servers and does not use ops/. `ops/watch_server.sh` still watches 8000 only.
 
 ## Inconsistencies noted
 - `GA_CONCURRENCY` default differs: 8 (ga_island.py, ga_parallel.sh) vs "3" (ga_core, ga_run, eval). docs/STATE.md §5.9 is reported to say battle.py reads it; it does not (battle.py reads only `SHOWDOWN_PORT`).
 - `ga_run.py` docstring says "B = free, C = free" but the code locks Umbreon on B; its docstring also suggests `python ga_run.py`, which would fail without `-m`.
-- `ga_overnight.sh` comments say 5h per run but the code runs 2.5h each.
+- `ga_overnight.sh` labels now say 2.5h per run, matching the code.
 - `ga_parallel.sh` `_train.txt` champion files keep the doubled name after the rename step; `REPO_ROOT` is defined at `:93` but referenced inside a function defined earlier (`:65`), fine only because the function is called afterwards.
-- `ga_core.SHOWDOWN_DIR` hard-coded, versus the `SHOWDOWN_DIR` env honoured by scripts.
