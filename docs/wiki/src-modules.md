@@ -19,12 +19,12 @@ damage <-- smart_player, doubles_eval, opp_model, speed_model, doubles_pilot
 opp_model <-- speed_model
 regmc_db <-- battle_memory   (move priority); battle_memory <-- (future) turn_sim, vgc_pilot
 opp_model, doubles_eval, smart_player <-- doubles_pilot
-battle <-- ga_core, eval            (battle lazily imports bc_player / doubles_pilot)
+battle <-- ga_core, eval            (battle lazily imports bc_player / doubles_pilot / vgc_pilot)
 state_encoder <-- bc_model <-- bc_player, bc_train ; state_encoder <-- bc_player, bc_train
 ga_core <-- eval, audit_before_launch ; ga_core <-- run/*
 ```
 - Torch-importing modules: `state_encoder` (torch at `state_encoder.py:30`), `bc_model`, `bc_player`, `bc_train`.
-- Torch-free: `paths, regmc_db, showdown_validator, damage, opp_model, speed_model, battle_memory (poke_env only imported inside `repair_mega_forms`), doubles_eval, smart_player, doubles_pilot, ga_core, battle, eval`.
+- Torch-free: `paths, regmc_db, showdown_validator, damage, opp_model, speed_model, battle_memory (poke_env only imported inside `repair_mega_forms`), doubles_eval, smart_player, doubles_pilot, vgc_pilot, ga_core, battle, eval`.
   `battle` reaches torch only through the lazy `BCPlayer` import (`battle.py:84-86`); `DoublesPilot` import is also lazy (`battle.py:87-89`).
 
 ---
@@ -97,9 +97,15 @@ Pure-logic joint scoring of a PAIR of attack actions (numpy + damage; no poke_en
 ### doubles_pilot.py (219 lines)
 `DoublesPilot(SimpleHeuristicsPlayer)`: vanilla decision, then re-picks move + target of both attackers jointly when both slots chose plain damaging moves.
 - Constants `LOCKED_MOVES`, `UNMODELLED_MOVES` (leave vanilla's choice), item/ability multipliers (Choice Band/Specs, Huge/Pure Power, Life Orb).
-- `_attacker` (needs `mon.stats`), `_foe` (opp_model mixture; unknown species returns base), `_ally`, `_action`, `_improve` (skips on force_switch; mega never used), `choose_move` (any exception falls back to base; `stats_counter` = turns/overrides/errors).
+- `_attacker` (needs `mon.stats`), `_foe` (opp_model mixture; unknown species returns base), `_ally`, `_action`, `_improve` (skips on force_switch; never Megas, `VGCPilot` adds it), `choose_move` (any exception falls back to base; `stats_counter` = turns/overrides/errors).
 - Env: `DOUBLES_KO_BONUS`, `DOUBLES_MIN_GAIN` (`doubles_pilot.py:70-73`; constructor kwargs win).
-- Imports `damage, doubles_eval, opp_model` and four helpers from `smart_player` (`_boosts_dict, _terrain_name, _type_to_db, _weather_name`). Torch-free; created lazily by `battle.make_player` for `pilot="doubles"`.
+- Imports `damage, doubles_eval, opp_model` and four helpers from `smart_player` (`_boosts_dict, _terrain_name, _type_to_db, _weather_name`). Torch-free; created lazily by `battle.make_player` for `pilot="doubles"`; `VGCPilot` subclasses it.
+
+### vgc_pilot.py (new)
+`VGCPilot(BattleMemoryMixin, DoublesPilot)`: DoublesPilot's decision, then adds Mega to the first slot whose `can_mega_evolve` is true while `memory.mega_available(player_role)`.
+- `mega_variant(order, valid)` finds the `mega=True` twin (same move id and `move_target`) in `battle.valid_orders[slot]`; `add_mega(battle, base, mega_free)` returns `(order, slot|None)`. Switch orders never Mega; at most one Mega per turn (poke_env also forbids two).
+- `stats_counter` adds `mega_opportunities / mega_used / mega_errors` (errors fall back to the base order). Torch-free; `battle.make_player` creates it lazily for `pilot="vgc"`. Tests: `tests/test_vgc_pilot.py` (4, synthetic orders).
+- Predictive by default; no OTS use yet (`accept_open_team_sheet` is not set).
 
 ### smart_player.py (205 lines)
 `SmartPlayer(SimpleHeuristicsPlayer)` overriding `choose_singles_move` (a SINGLES hook) with damage-calc scoring (KO_BONUS=8.0 etc.).

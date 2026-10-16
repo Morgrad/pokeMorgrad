@@ -88,6 +88,9 @@ def make_player(pilot, team_str, uid, prefix, battle_format):
     elif pilot == "doubles":
         from src.doubles_pilot import DoublesPilot  # lazy: only the experimental pilot pays for it
         cls = DoublesPilot
+    elif pilot == "vgc":
+        from src.vgc_pilot import VGCPilot  # lazy: new pilot, torch-free
+        cls = VGCPilot
     else:
         cls = SimpleHeuristicsPlayer
     return cls(
