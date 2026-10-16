@@ -1036,3 +1036,19 @@ speed order, Protect/Fake Out/redirection, retaliation, secondary effects or
 defender item/ability modifiers. Deferred roadmap steps 4-6: each tactic needs
 its own >=1000-2000-battle A/B (noise floor ~ +/-5 pts per 500), so they are
 sequenced one at a time on top of this evaluator.
+
+**Tuning sweep (2026-10-16).** 2000 battles per team per value, baseline team +
+CHAMPION_2026-10-12, three Showdown instances in parallel (`SHOWDOWN_PORT`).
+`DOUBLES_KO_BONUS` / `DOUBLES_MIN_GAIN` env vars override the defaults for sweeps.
+
+| KO_BONUS (MIN_GAIN 0.01) | 0 | 0.25 | 0.5 | 1 | 2 | 4 |
+|---|---|---|---|---|---|---|
+| pooled win % (4000) | 56.3 | 58.5 | 59.3 | 60.5 | 60.6 | 60.5 |
+
+Plateau from 1.0 up, so `KO_BONUS` default is now **1.0**. `MIN_GAIN` (KO_BONUS 1):
+0 -> 60.2, 0.01 -> 60.5, 0.03 -> 58.9, 0.06 -> 59.1 (0.12 not finished). It barely
+matters; 0.01 kept. SE on a pooled cell is ~0.8 pts.
+
+Ops notes: three evals in parallel took ~17-18 min per 4000-battle config (solo is
+~48 s per 1000), so parallel gives only ~1.7x total. Showdown instances on 8001/8002
+died once mid-sweep (connection refused); check them before any multi-port run.

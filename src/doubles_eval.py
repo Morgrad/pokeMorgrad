@@ -24,7 +24,7 @@ import numpy as np
 
 from src import damage
 
-KO_BONUS = 0.5      # hand-set: a KO is worth an extra half-mon of tempo. Not tuned.
+KO_BONUS = 1.0      # swept 0-4 (2026-10-16): plateau from 1.0 up; 0 is ~4 pts worse
 ALLY_WEIGHT = 1.0   # damage/KO on our own mon costs as much as it gains on a foe
 MIN_GAIN = 0.01     # deviate from the baseline pair only for a real improvement
 

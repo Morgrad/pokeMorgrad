@@ -15,6 +15,7 @@ that behaviour isolates the effect of target allocation.
 from __future__ import annotations
 
 import logging
+import os
 from functools import lru_cache
 from typing import Dict, List, Optional
 
@@ -62,11 +63,14 @@ def _is_attack_candidate(move: Move) -> bool:
 
 
 class DoublesPilot(SimpleHeuristicsPlayer):
-    def __init__(self, *args, ko_bonus: float = DE.KO_BONUS, min_gain: float = DE.MIN_GAIN,
+    def __init__(self, *args, ko_bonus: Optional[float] = None, min_gain: Optional[float] = None,
                  **kwargs):
         super().__init__(*args, **kwargs)
-        self.ko_bonus = ko_bonus
-        self.min_gain = min_gain
+        # env overrides let eval sweeps tune without code edits
+        self.ko_bonus = ko_bonus if ko_bonus is not None else float(
+            os.environ.get("DOUBLES_KO_BONUS", DE.KO_BONUS))
+        self.min_gain = min_gain if min_gain is not None else float(
+            os.environ.get("DOUBLES_MIN_GAIN", DE.MIN_GAIN))
         self.stats_counter = {"turns": 0, "overrides": 0, "errors": 0}
 
     def choose_move(self, battle):
