@@ -917,21 +917,46 @@ constant renamed/resized.
 
 ---
 
-## Prior regeneration deferred (2026-10-15)
+## Prior regeneration — partial, pending scrape (2026-10-15)
 
-Normalizer fix landed (`cb50dc2`): `normalize_species_name()` in `src/regmc_db.py`
-+ patches to `build_move_priors.py` / `build_ev_priors.py`. Prior JSON
-regeneration is deferred until the pokemon-zone + pokebase scrapes complete —
-no point rebuilding from 350 teams when the corpus is about to grow.
+Normalizer fix landed (`cb50dc2`): `normalize_species_name()` in
+`src/regmc_db.py` + patches to `build_move_priors.py` / `build_ev_priors.py`.
 
-**Current on-disk state (do not run GA):**
-- `species_move_priors.json` — ladder source (191 species), clean
-- `species_build_priors.json` — empty `{}`
-- `species_ability_priors.json` — empty `{}`
+**Current on-disk state (as of 2026-10-15 21:00):**
+- `species_move_priors.json` — ladder source (191 species); tournament
+  regeneration pending post-scrape
+- `species_build_priors.json` — regenerated from 350-team corpus:
+  256 keys (139 species + 117 species@item), 0 malformed keys
+- `species_ability_priors.json` — regenerated, 139 species
 
-**Corpus wiped 2026-10-15 19:39** by WSL `/tmp` reset (both `/tmp/vgc_scraped`
-and `/tmp/vgc_raw`). Recovery: re-run `scrape_vgcpastes.py` (fetch-csv →
-filter-balanced → fetch-teams) + pokemon-zone + pokebase scrapers, then
-`tools/build_move_priors.py` and `tools/build_ev_priors.py`.
+**Corpus wipe (2026-10-15 19:39):** WSL `/tmp` reset wiped
+`/tmp/vgc_scraped` and `/tmp/vgc_raw`. Recovered by copying 350 files
+from `data/regional_teams/*.txt`. Original 560-team corpus is gone;
+pokemon-zone + pokebase scrape is the path to a larger corpus.
 
-GA runs are blocked until priors are regenerated.
+**Data quality notes:**
+- Corpus = 350 files in `data/regional_teams/*.txt` (train + holdout +
+  non-split; priors are meta-level aggregate, not per-team — see below)
+- 1 unresolved species instance: `Lucario-Mega-Z (F)` — see DB gap below
+- Suspect cluster: `Incineroar @ Sitrus Berry` top spread is
+  `32 Atk / 2 HP / 32 Spe Jolly (n=28)`, which does not match any
+  known tournament Incineroar pattern. Possibly a fallback-default
+  contamination from `normalize_tournament.py`'s EV-fill path.
+  Regenerating from scraped sources should resolve.
+
+**Prior corpus scope (design decision, 2026-10-15):** priors are
+meta-level aggregate signal, not per-team. The corpus includes train,
+holdout, and non-split tournament teams. §9's "held-out eval is
+sacred" governs the *fitness function* and *final eval*, not the
+priors vocabulary. Rationale: priors answer "what does the meta look
+like," not "what team is this."
+
+**DB gap (2026-10-15):** `regmc_db.json` has `Lucario-Mega` but not
+`Lucario-Mega-Z`. Pokebase ranks Mega Lucario Z #2 most popular.
+Other megas possibly missing (Raichu-X/Y, Absol-Z, Garchomp-Z all
+appear in pokebase HTML but not in DB's 73-mega list). Rebuild check
+against Showdown dex deferred to post-scrape session.
+
+**Next step:** scrape pokemon-zone + pokebase for real spreads, moves,
+items, teammate co-occurrence. Regenerate all three prior files.
+GA smoke OK on current priors; full run wait for post-scrape state.
