@@ -108,6 +108,51 @@ def get_species(name):
     return None
 
 
+def normalize_species_name(raw):
+    """
+    Canonicalize a species string from a Showdown team paste.
+
+    Handles three artifacts common in tournament-sourced pastes:
+      1. Trailing gender marker on a cosmetic species:
+             "Hatterene (F)"     -> "Hatterene"
+      2. Gender marker on a form-suffixed species (marker redundant):
+             "Indeedee-F (F)"    -> "Indeedee-F"
+             "Basculegion (M)"   -> "Basculegion"
+      3. Nickname prefix:
+             "Aang (Staraptor)"  -> "Staraptor"
+
+    Returns the raw string unchanged if nothing resolves; callers should
+    log unresolved names and skip.
+    """
+    if not raw:
+        return raw
+    s = raw.strip()
+    if not s:
+        return s
+
+    sp = get_species(s)
+    if sp:
+        return sp["name"]
+
+    # Trailing "(M)"/"(F)".
+    m = re.match(r"^(.*?)\s*\((M|F)\)\s*$", s)
+    if m:
+        base, g = m.group(1).strip(), m.group(2)
+        sp = get_species(f"{base}-{g}") or get_species(base)
+        if sp:
+            return sp["name"]
+        s = base  # fall through: "Nickname (Species) (M)"
+
+    # Nickname: "<nick> (<species>)".
+    m = re.match(r"^.*?\(([^()]+)\)\s*$", s)
+    if m:
+        sp = get_species(m.group(1).strip())
+        if sp:
+            return sp["name"]
+
+    return raw
+
+
 def get_item(name):
     if name is None:
         return None

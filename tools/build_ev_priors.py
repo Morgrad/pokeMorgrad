@@ -54,6 +54,7 @@ def main():
     print(f"reading {len(files)} teams...")
 
     # Counters keyed by species and by (species, item)
+    unresolved = Counter()  # raw species strings we couldn't canonicalize
     species_build = defaultdict(Counter)      # species -> Counter[(evs_tuple, nature)]
     item_build = defaultdict(Counter)         # (species, item) -> Counter[...]
     species_ability = defaultdict(Counter)    # species -> Counter[ability]
@@ -72,8 +73,11 @@ def main():
         parsed += 1
 
         for m in mons:
-            sp = (m.get("species") or "").strip()
-            if not sp:
+            raw_sp = (m.get("species") or "").strip()
+            sp = DB.normalize_species_name(raw_sp)
+            if not sp or not DB.get_species(sp):
+                if raw_sp:
+                    unresolved[raw_sp] += 1
                 continue
             item = normalize_item(m.get("item"))
             evs = m.get("evs") or {}
@@ -91,6 +95,11 @@ def main():
             print(f"  {i+1}/{len(files)}  parsed={parsed} skipped={skipped}")
 
     print(f"\nparsed: {parsed}  skipped: {skipped}")
+    if unresolved:
+        print(f"unresolved species names: {len(unresolved)} unique, "
+              f"{sum(unresolved.values())} occurrences")
+        for name, c in unresolved.most_common(10):
+            print(f"  {c:>4}  {name}")
     print(f"species with builds:    {len(species_build)}")
     print(f"species+item with builds: {len(item_build)}")
     print(f"species with abilities: {len(species_ability)}")
