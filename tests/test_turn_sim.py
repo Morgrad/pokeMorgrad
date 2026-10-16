@@ -140,6 +140,30 @@ def test_choose_pair_works_and_is_fast_enough():
     assert dt < 8
 
 
+def test_mirror_foes_focus_fire_when_only_the_pair_kills():
+    one = DE.Evaluator({0: atk()}, {"o0": mine()})
+    r = one.rolls(DE.Action(0, "bodyslam", ("o0",)), "o0", 0)
+    hp = int(r.mean() * 1.5)                      # one hit cannot KO the target, two always do
+    world = {"o0": foe(), "o1": foe(), "a0": mine(cur=hp), "a1": mine()}
+    ts = sim(world, {"o0": fi(100), "o1": fi(100)})
+    plan = ts._plan({})
+    assert set(plan) == {"o0", "o1"} and plan["o0"].targets == plan["o1"].targets == ("a0",)
+
+
+def test_mirror_foe_avoids_a_spread_move_that_hurts_its_partner():
+    world = {"o0": foe(), "o1": foe(), "a0": mine(), "a1": mine()}
+    ts = sim(world, {"o0": fi(100, ("earthquake", "bodyslam")), "o1": TS.FoeInfo([], [(1.0, 100)])})
+    assert ts._plan({})["o0"].move == "bodyslam"
+    alone = sim({"o0": foe(), "a0": mine(), "a1": mine()}, {"o0": fi(100, ("earthquake", "bodyslam"))})
+    assert alone._plan({})["o0"].move == "earthquake"      # no partner to hurt: the stronger spread wins
+
+
+def test_mirror_foe_with_no_known_attack_does_nothing():
+    world = {"o0": foe(), "a0": mine()}
+    ts = sim(world, {"o0": TS.FoeInfo([], [(1.0, 100)])})
+    assert ts._plan({}) == {}
+
+
 # ---- DoublesPilot wiring (real poke_env Pokemon / orders, no server) -------------------------------
 
 def _mon(species, stats, hp_frac=1.0):

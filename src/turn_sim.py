@@ -10,8 +10,11 @@ Model (deliberately small, each point is a follow-up if it proves to matter):
   - Foe hypotheses (stats/types/HP) come from the Combatants, pruned to the `max_hyps` heaviest.
     The foe's Speed is a separate weighted list `FoeInfo.speeds` (src.speed_model), independent of
     the damage hypothesis (the Mega case is therefore only correlated through the shared q).
-  - Each foe makes ONE attack per turn: its best known damaging move on its best target, chosen once
-    by expected value (stand-in for an opponent action model; no Protect / Fake Out / switching).
+  - Mirror foe: each foe makes ONE attack per turn, and the foes pick their attacks the way our own
+    pilot does: the pair of (move, target) that maximises `doubles_eval` pair value from THEIR side
+    (focus fire, no overkill, spread moves that hurt their partner are avoided), given the hypothesis
+    being simulated (so a foe with the Mega stats picks with them). Stand-in for an opponent action
+    model fitted from replays; no Protect / Fake Out / switching, and foe-on-foe damage is not applied.
   - HP is propagated as a probability vector per combatant; an actor acts with the probability it is
     still alive when its turn comes. Accuracy is per hit; no crits, secondary effects or items.
   - Value = sum over foes of (HP fraction removed + KO_BONUS * P(KO)) minus the same for our mons
@@ -91,7 +94,8 @@ class TurnSim(DE.Evaluator):
         self.trick_room = trick_room
         self.foes = {f: i for f, i in foes.items() if f in pruned}
         self._foe_rolls_cache: Dict[tuple, np.ndarray] = {}
-        self._foe_act: Dict[str, Optional[FoeAct]] = {f: self._choose_foe_act(f) for f in self.foes}
+        self._plans: Dict[tuple, Dict[str, FoeAct]] = {}
+        self._orders: Dict[tuple, Dict[int, float]] = {}
 
     # ---- foe action model (stand-in) ---------------------------------------------------------
 
@@ -112,25 +116,53 @@ class TurnSim(DE.Evaluator):
         mv = damage.DB.get_move(move)
         return DE._accuracy(move) * (1.0 - self.world[tid].immune_prob.get(mv["type"], 0.0))
 
-    def _choose_foe_act(self, fid: str) -> Optional[FoeAct]:
+    def _plan(self, hi: Dict[str, int]) -> Dict[str, FoeAct]:
+        """Mirror policy: the foes' attack pair that maximises their own doubles_eval value, given
+        the hypothesis index `hi[fid]` each foe is being simulated with."""
+        key = tuple(sorted((f, hi.get(f, 0)) for f in self.foes))
+        if key in self._plans:
+            return self._plans[key]
         mine = [t for t in ("a0", "a1") if t in self.world]
-        if not mine:
-            return None
-        best, best_v = None, 0.0
-        for move in self.foes[fid].moves:
-            if not self.modelable(move):
-                continue
-            opts = [(t,) for t in mine] if _is_single(move) else [tuple(mine)]
-            for tg in opts:
-                v = 0.0
-                for hi, h in enumerate(self.world[fid].hyps):
-                    for t in tg:
-                        e, k = DE._capped(self._foe_rolls(fid, hi, move, t, len(tg)), self.world[t].hyps[0].cur_hp)
-                        v += h.weight * self._foe_p_hit(move, t) * (
-                            e / self.world[t].hyps[0].max_hp + self.ko_bonus * k)
-                if v > best_v:
-                    best, best_v = FoeAct(move, tg, move_priority(move)), v
-        return best
+        view: Dict[str, DE.Combatant] = {}
+        for t in mine:                                       # our mons are the targets in their view
+            c = self.world[t]
+            view["o" + t[1]] = DE.Combatant(c.hyps[:1], c.types, c.boosts, False, c.immune_prob)
+        attackers: Dict[int, DE.Attacker] = {}
+        for f in self.foes:
+            fc, j = self.world[f], int(f[1])
+            h = fc.hyps[hi.get(f, 0)]
+            attackers[j] = DE.Attacker(dict(h.stats), h.types or fc.types, fc.boosts)
+            view[f"a{j}"] = DE.Combatant([DE.Hypothesis(1.0, h.stats, h.max_hp, h.cur_hp, h.types)],
+                                         fc.types, fc.boosts, True, fc.immune_prob)
+        cands: Dict[int, List[Optional[DE.Action]]] = {0: [None], 1: [None]}
+        for f, info in self.foes.items():
+            j = int(f[1])
+            for move in info.moves:
+                if not self.modelable(move) or not mine:
+                    continue
+                tg = (damage.DB.get_move(move).get("target") or "")
+                if tg in SINGLE_TARGET:
+                    cands[j] += [DE.Action(j, move, ("o" + t[1],)) for t in mine]
+                elif tg == "allAdjacentFoes":
+                    cands[j].append(DE.Action(j, move, tuple("o" + t[1] for t in mine)))
+                elif tg == "allAdjacent":
+                    partner = f"a{1 - j}"
+                    cands[j].append(DE.Action(j, move, tuple("o" + t[1] for t in mine)
+                                              + ((partner,) if partner in view else ())))
+        ev = DE.Evaluator(attackers, view, self.weather, self.terrain, self.ko_bonus, self.ally_weight)
+        best, best_v = (None, None), float("-inf")
+        for a in cands[0]:
+            for b in cands[1]:
+                v = ev.pair_value((a, b))
+                if v > best_v + 1e-12:
+                    best, best_v = (a, b), v
+        plan = {}
+        for act in best:
+            if act is not None:
+                targets = tuple("a" + t[1] for t in act.targets if t.startswith("o"))
+                plan[f"o{act.attacker}"] = FoeAct(act.move, targets, move_priority(act.move))
+        self._plans[key] = plan
+        return plan
 
     # ---- move order --------------------------------------------------------------------------
 
@@ -142,14 +174,16 @@ class TurnSim(DE.Evaluator):
             return 0.5
         return 1.0 if (mine > foe_speed) != self.trick_room else 0.0
 
-    def _order_dist(self, fid: str, ours: Sequence[DE.Action]) -> Dict[int, float]:
+    def _order_dist(self, fid: str, ours: Sequence[DE.Action], foe_prio: int) -> Dict[int, float]:
         """{k: P(exactly the first k of our (sorted) actions move before this foe)}."""
-        fa = self._foe_act[fid]
+        key = (fid, foe_prio, tuple(ours))
+        if key in self._orders:
+            return self._orders[key]
         out: Dict[int, float] = {}
         for w, spd in self.foes[fid].speeds:
             dist = {0: 1.0}
             for a in ours:
-                p1 = self._ours_first(a.attacker, move_priority(a.move), fa.priority, spd)
+                p1 = self._ours_first(a.attacker, move_priority(a.move), foe_prio, spd)
                 nxt: Dict[int, float] = {}
                 for k, pk in dist.items():
                     if p1 > 0:
@@ -159,6 +193,7 @@ class TurnSim(DE.Evaluator):
                 dist = nxt
             for k, pk in dist.items():
                 out[k] = out.get(k, 0.0) + w * pk
+        self._orders[key] = out
         return out
 
     def _sort_ours(self, acts: Sequence[DE.Action]) -> List[DE.Action]:
@@ -168,7 +203,8 @@ class TurnSim(DE.Evaluator):
 
     # ---- scenario ----------------------------------------------------------------------------
 
-    def _run(self, ours: List[DE.Action], hi: Dict[str, int], cut: Dict[str, int]) -> float:
+    def _run(self, ours: List[DE.Action], hi: Dict[str, int], cut: Dict[str, int],
+             plan: Dict[str, FoeAct]) -> float:
         pmf = {t: _pmf(c.hyps[hi.get(t, 0)]) for t, c in self.world.items()}
         start = {t: float(min(c.hyps[hi.get(t, 0)].cur_hp, c.hyps[hi.get(t, 0)].max_hp))
                  for t, c in self.world.items()}
@@ -192,7 +228,7 @@ class TurnSim(DE.Evaluator):
                                         pa * self.p_hit(ra, other) * p_redirect)
 
         def foe_hit(fid: str) -> None:
-            fa = self._foe_act[fid]
+            fa = plan[fid]
             pf = alive(fid)
             single = _is_single(fa.move) and len(fa.targets) == 1
             for t in fa.targets:
@@ -207,9 +243,8 @@ class TurnSim(DE.Evaluator):
                                         pf * self._foe_p_hit(fa.move, o) * dead)
 
         slots: List[List[str]] = [[] for _ in range(len(ours) + 1)]
-        for f in self._foe_act:
-            if self._foe_act[f] is not None:
-                slots[cut[f]].append(f)
+        for f in plan:
+            slots[cut[f]].append(f)
         for k in range(len(ours) + 1):
             for f in slots[k]:
                 foe_hit(f)
@@ -229,11 +264,8 @@ class TurnSim(DE.Evaluator):
         key = tuple(acts)
         if key in self._joint:
             return self._joint[key]
-        foes = list(self._foe_act)
-        hyp_axes = [list(enumerate(self.world[f].hyps)) for f in foes if f.startswith("o")]
-        hyp_ids = [f for f in foes if f.startswith("o")]
-        order = {f: self._order_dist(f, acts) for f in foes if self._foe_act[f] is not None}
-        order_ids = list(order)
+        hyp_ids = [f for f in self.world if f.startswith("o")]
+        hyp_axes = [list(enumerate(self.world[f].hyps)) for f in hyp_ids]
         total = 0.0
         for combo in itertools.product(*hyp_axes):
             wh = 1.0
@@ -241,6 +273,9 @@ class TurnSim(DE.Evaluator):
             for fid, (i, h) in zip(hyp_ids, combo):
                 wh *= h.weight
                 hi[fid] = i
+            plan = self._plan(hi)
+            order = {f: self._order_dist(f, acts, plan[f].priority) for f in plan}
+            order_ids = list(order)
             for cuts in itertools.product(*[list(order[f].items()) for f in order_ids]):
                 w = wh
                 cut = {}
@@ -248,6 +283,6 @@ class TurnSim(DE.Evaluator):
                     w *= pk
                     cut[fid] = k
                 if w >= MIN_SCENARIO_P:
-                    total += w * self._run(acts, hi, cut)
+                    total += w * self._run(acts, hi, cut, plan)
         self._joint[key] = total
         return total
