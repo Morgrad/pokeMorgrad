@@ -12,8 +12,8 @@ set -u
 HOURS=${1:-4.0}
 RUN_ID=${2:-p1}
 
-cd ~/project
-source ~/llm-env/bin/activate
+cd ~/pokeMorgrad
+source ~/venv-pokemorgad/bin/activate
 export PYTHONUNBUFFERED=1
 
 echo "=== parallel GA: ${HOURS}h x 3 islands, run_id=${RUN_ID} ==="
@@ -29,7 +29,7 @@ for port in 8000 8001 8002; do
     cd ~/pokemon-showdown
     nohup node pokemon-showdown start "$port" --no-security \
       > "/tmp/showdown_${port}.log" 2>&1 &
-    cd ~/project
+    cd ~/pokeMorgrad
   fi
 done
 sleep 8

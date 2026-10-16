@@ -224,7 +224,7 @@ and is not here, add it.
 | RNG | Random Number Generator |
 | PID | Process ID |
 | JSON / JSONL | Data formats |
-| venv | Python virtual environment (~/llm-env) |
+| venv | Python virtual environment (~/venv-pokemorgad) |
 | preflight | The pre-launch check script |
 
 ---

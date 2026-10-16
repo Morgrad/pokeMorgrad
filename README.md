@@ -118,7 +118,7 @@ their worst half.
 
 ## Repository layout
 
-    ~/project/
+    ~/pokeMorgrad/
     ├── data/          inputs
     │   ├── regmc_db.json              canonical format data
     │   ├── baseline_team.txt          reference team, seeds GA island A

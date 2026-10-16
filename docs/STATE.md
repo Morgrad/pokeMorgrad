@@ -228,9 +228,9 @@ confirming v3 was better. Reverted. All future model promotions require
 
 ### 5.7 Hardcoded host paths broke portability (resolved 2026-10-13)
 
-**Symptom:** The repo was copied from an earlier host (`morgrad`, `~/project`)
+**Symptom:** The repo was copied from an earlier host (`morgrad`, `~/pokeMorgrad`)
 to this one (`sberumen`, `~/pokeMorgrad`), but older modules still had absolute
-paths baked in — `os.path.expanduser("~/project/data/...")` in Python and
+paths baked in — `os.path.expanduser("~/pokeMorgrad/data/...")` in Python and
 `/home/morgrad/pokemon-showdown/dist` in the JS bridges. Anything importing
 `regmc_db` or `state_encoder` failed, and `data/pool_split.json` listed teams by
 absolute `/home/morgrad/...` path, so `ga_core` silently loaded an **empty**
@@ -721,15 +721,15 @@ after each commit. Usage: `python3 tools/log_milestone.py "Title" "Summary"`.
 
 - **Host:** Windows 11 + WSL2 (Fedora Linux 42)
 - **GPU:** AMD 7900 XTX (ROCm 6.x) — torch uses `cuda` device name
-- **Venv:** `~/llm-env/` (`source ~/llm-env/bin/activate`)
+- **Venv:** `~/venv-pokemorgad/` (`source ~/venv-pokemorgad/bin/activate`)
 - **Showdown server:** `~/pokemon-showdown/` on `localhost:8000`
 - **Python:** 3.12
 - **Key deps:** `torch>=2.0`, `numpy`, `poke-env>=0.8`
 
-ROCm perf env vars set in `~/llm-env/bin/activate` (not tracked in repo):
+ROCm perf env vars set in `~/venv-pokemorgad/bin/activate` (not tracked in repo):
   GPU_MAX_HEAP_SIZE=100, GPU_MAX_ALLOC_PERCENT=100, HSA_ENABLE_SDMA=0,
   MIOPEN_FIND_MODE=2, MIOPEN_FIND_ENFORCE=3. Append these exports after
-  recreating the venv (`cat >> ~/llm-env/bin/activate <<'EOF' ... EOF`).
+  recreating the venv (`cat >> ~/venv-pokemorgad/bin/activate <<'EOF' ... EOF`).
 
 Harmless warning to ignore: `agent.cpp:608] sysfs nodes path
 '/sys/class/kfd/kfd/topology/nodes' does not exist` — ROCm probing WSL2.
@@ -803,7 +803,7 @@ Full log in `STATE_history.md`.
 
 ## 11. How to resume work (for an agent)
 
-1. `cd ~/pokeMorgrad && source ~/llm-env/bin/activate`
+1. `cd ~/pokeMorgrad && source ~/venv-pokemorgad/bin/activate`
 2. Run `python -m src.audit_before_launch`. If it passes, the data layer is
    healthy.
 3. Check §5 "Active bugs" — pick the top item and reproduce it.
@@ -837,12 +837,12 @@ The path refactor was done by inspection on a host where the toolchain could not
 be executed. Run these on the WSL (Fedora) host, from the repo root, with the
 venv active and Showdown up on `:8000`. Each should pass before the commit.
 
-    cd ~/pokeMorgrad && source ~/llm-env/bin/activate
+    cd ~/pokeMorgrad && source ~/venv-pokemorgad/bin/activate
 
 1. **No dead host paths remain in the live tree** (expect zero hits; `archive/`
    is frozen history and intentionally excluded, as is this doc's own prose):
 
-        grep -rniE '~/project|/home/morgrad' \
+        grep -rniE '~/pokeMorgrad|/home/morgrad' \
           --include='*.py' --include='*.js' --include='*.sh' --include='*.json' \
           src run tools ops data README.md
 

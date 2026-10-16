@@ -10,7 +10,7 @@ LOG=/tmp/ga_overnight.log
 echo "===== $(date) OVERNIGHT CHAIN START ====="
 
 cd "$REPO_ROOT"
-source ~/llm-env/bin/activate
+source ~/venv-pokemorgad/bin/activate
 export PYTHONUNBUFFERED=1
 
 # Kill stale GA processes

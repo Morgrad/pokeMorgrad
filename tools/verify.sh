@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
-cd ~/project            # or ~/pokeMorgrad
-source ~/llm-env/bin/activate
+cd ~/pokeMorgrad
+source ~/venv-pokemorgad/bin/activate
 
 step() { echo; echo "=== $1 ==="; }
 

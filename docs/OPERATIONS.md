@@ -17,8 +17,8 @@ minutes without any error. Always check Showdown first.
 
 ## 0. Health check (run this first, always)
 
-    cd ~/project
-    source ~/llm-env/bin/activate
+    cd ~/pokeMorgrad
+    source ~/venv-pokemorgad/bin/activate
 
     echo "=== Showdown ==="
     curl -s http://localhost:8000 > /dev/null && echo "UP" || echo "DOWN"
@@ -33,7 +33,7 @@ minutes without any error. Always check Showdown first.
     ls -lat output/checkpoints/v6/run2/ 2>/dev/null | head -3
 
     echo "=== Disk ==="
-    df -h ~/project | tail -1
+    df -h ~/pokeMorgrad | tail -1
 
 Healthy output for a running GA: Showdown UP, `python -m run.ga_run run{1,2}`
 in the process list at high CPU, `bash run/ga_overnight.sh` present, checkpoints
@@ -63,8 +63,8 @@ Red flags:
 
 Before any overnight run:
 
-    cd ~/project
-    source ~/llm-env/bin/activate
+    cd ~/pokeMorgrad
+    source ~/venv-pokemorgad/bin/activate
     GA_CONCURRENCY=8 python3 tools/preflight.py
 
 Runs ~16 checks in about two seconds:
@@ -123,8 +123,8 @@ When to restart:
 Runs `run1` (5.5h) → `run2` (5.5h, warm-start) → final eval → done marker.
 Handles Showdown startup, watchdog, and cleanup.
 
-    cd ~/project
-    source ~/llm-env/bin/activate
+    cd ~/pokeMorgrad
+    source ~/venv-pokemorgad/bin/activate
     GA_CONCURRENCY=8 nohup bash run/ga_overnight.sh > /tmp/ga_overnight_launch.log 2>&1 &
     echo "PID $!"
     sleep 60
@@ -146,8 +146,8 @@ Requires Showdown to already be up. Does not chain to eval.
 
     curl -s http://localhost:8000 > /dev/null || (cd ~/pokemon-showdown && nohup node pokemon-showdown start 8000 --no-security > /tmp/showdown.log 2>&1 & sleep 8)
 
-    cd ~/project
-    source ~/llm-env/bin/activate
+    cd ~/pokeMorgrad
+    source ~/venv-pokemorgad/bin/activate
     GA_CONCURRENCY=8 nohup python -m run.ga_run run2 5.5 > /tmp/ga_run2.log 2>&1 &
     echo "PID $!"
     sleep 30
@@ -158,8 +158,8 @@ Requires Showdown to already be up. Does not chain to eval.
 Checkpoints are saved every generation. Relaunching with the same `run_id`
 resumes from the latest checkpoint automatically.
 
-    cd ~/project
-    source ~/llm-env/bin/activate
+    cd ~/pokeMorgrad
+    source ~/venv-pokemorgad/bin/activate
     GA_CONCURRENCY=8 nohup python -m run.ga_run run2 5.5 > /tmp/ga_run2.log 2>&1 &
     sleep 20
     head -5 /tmp/ga_run2.log
@@ -248,8 +248,8 @@ run eval, then resume (§3).
 
 Basic eval (heuristic pilot, 5 seeds, held-out pool):
 
-    cd ~/project
-    source ~/llm-env/bin/activate
+    cd ~/pokeMorgrad
+    source ~/venv-pokemorgad/bin/activate
     python3 -m src.eval \
         output/champions/ga_run1_island_A.txt \
         output/champions/ga_run1_island_B.txt \
@@ -290,8 +290,8 @@ by ±2.2. Always run at least five seeds for decisions.
 
 Train the neural pilot on a dataset:
 
-    cd ~/project
-    source ~/llm-env/bin/activate
+    cd ~/pokeMorgrad
+    source ~/venv-pokemorgad/bin/activate
     BC_DATA=data/training_data.jsonl \
     BC_OUT=bc_new.pt \
     BC_EPOCHS=40 \
@@ -362,8 +362,8 @@ Reads `data/showdown_replays/`, writes `data/species_move_priors.json`.
 BC vs heuristic decision comparison (used to find the loop bug and target
 scoring bug):
 
-    cd ~/project
-    source ~/llm-env/bin/activate
+    cd ~/pokeMorgrad
+    source ~/venv-pokemorgad/bin/activate
     BC_PILOT_PATH=output/models/bc_heuristic_v1c.pt \
         python3 tools/bc_diagnostic.py 15
 
@@ -462,7 +462,7 @@ Zone.Identifier files (Windows metadata):
 | `[Invalid choice] Can't switch: ... can only switch in once` | Double-same-species switch from BC pilot | Fixed 2026-10-14 in `bc_player.choose_move` collision handler |
 | `KeyError: 'round'` in poke_env | Round chain mechanic not parsed | Harmless, battle returns None |
 | `Greninja (Greninja-Bond) does not exist in Gen 9` | Illegal form in genome | Fixed 2026-10-14 (legality gate in generator) |
-| `ModuleNotFoundError: src.*` | Not in repo root, or venv not active | `cd ~/project && source ~/llm-env/bin/activate` |
+| `ModuleNotFoundError: src.*` | Not in repo root, or venv not active | `cd ~/pokeMorgrad && source ~/venv-pokemorgad/bin/activate` |
 | `ModuleNotFoundError: poke_env` | venv not active | Same |
 | `FileNotFoundError: bc_best.pt` | Model missing or moved | `ls output/models/`; restore from git or backup |
 | GA checkpoint exists but starts at gen 1 | Wrong run_id, or checkpoint dir mismatch | Check `output/checkpoints/v6/<run_id>/` matches `run/ga_run.py` args |
@@ -542,15 +542,15 @@ Never modify `src/` in the hour before a long run.
 | GPU | AMD 7900 XTX (ROCm 7.2) |
 | Torch | 2.14.1+rocm7.2 |
 | Python | 3.12 |
-| Venv | `~/llm-env` |
-| Repo root | `~/project` on PC, `~/pokeMorgrad` on the laptop |
+| Venv | `~/venv-pokemorgad` |
+| Repo root | `~/pokeMorgrad` on PC, `~/pokeMorgrad` on the laptop |
 | Showdown | `~/pokemon-showdown`, port 8000 |
 | Default GA concurrency | 3 (override to 8 with `GA_CONCURRENCY=8`) |
 | Model | `output/models/bc_best.pt` |
 | Champions | `output/champions/ga_<run>_island_<X>.txt` |
 | Checkpoints | `output/checkpoints/v6/run{1,2}/gen_NNNN.json` |
 
-ROCm environment variables live in `~/llm-env/bin/activate`:
+ROCm environment variables live in `~/venv-pokemorgad/bin/activate`:
 
     GPU_MAX_HEAP_SIZE=100
     GPU_MAX_ALLOC_PERCENT=100
@@ -558,7 +558,7 @@ ROCm environment variables live in `~/llm-env/bin/activate`:
     MIOPEN_FIND_MODE=2
     MIOPEN_FIND_ENFORCE=3
 
-`python` may not exist outside the venv. Always `source ~/llm-env/bin/activate`
+`python` may not exist outside the venv. Always `source ~/venv-pokemorgad/bin/activate`
 first, or use `python3` explicitly.
 
 Harmless warning, ignore: `agent.cpp:608] sysfs nodes path
@@ -585,8 +585,8 @@ limit — use the file pattern:
 
 1. In VS Code, Ctrl+N for a new file
 2. Paste the script content (editor has no size limit)
-3. Save as `~/project/apply_X.py` with `.py` extension
-4. In the terminal: `cd ~/project && python3 apply_X.py`
+3. Save as `~/pokeMorgrad/apply_X.py` with `.py` extension
+4. In the terminal: `cd ~/pokeMorgrad && python3 apply_X.py`
 5. Verify, then `rm apply_X.py`
 
 ---
@@ -608,7 +608,7 @@ in `cell.hyperlink.target` (via `openpyxl`).
 
 ### Commands
 
-    cd ~/project && source ~/llm-env/bin/activate
+    cd ~/pokeMorgrad && source ~/venv-pokemorgad/bin/activate
     python3 tools/scrape_vgcpastes.py fetch-csv          # XLSX + hyperlink extraction
     python3 tools/scrape_vgcpastes.py report             # rank/tournament/EVs dist
     python3 tools/scrape_vgcpastes.py filter-balanced    # EVs=Yes + Tier-1/2
@@ -694,7 +694,7 @@ Preferred for any run above one hour. See STATE.md §5.18.
 
 ### Launch
 
-    cd ~/project && source ~/llm-env/bin/activate
+    cd ~/pokeMorgrad && source ~/venv-pokemorgad/bin/activate
     pkill -9 -f "run.ga_island" 2>/dev/null; sleep 1
     nohup bash run/ga_parallel.sh 2.5 p2 > /tmp/ga_p2_launch.log 2>&1 &
     echo "launch PID $!"
@@ -729,7 +729,7 @@ Both are valid; eval tells you which is better. Background: STATE.md §5.18.
 
 Wait for all three to finish (`=== DONE ===` in all three logs), then:
 
-    cd ~/project && source ~/llm-env/bin/activate
+    cd ~/pokeMorgrad && source ~/venv-pokemorgad/bin/activate
     python -m src.eval \
       output/champions/ga_p2_island_A.txt \
       output/champions/ga_p2_island_A_train.txt \
