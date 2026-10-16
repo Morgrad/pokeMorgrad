@@ -215,7 +215,27 @@ def species_has_ability(species, ability):
     if not sp:
         return False
     target = norm(ability)
-    return any(norm(a) == target for a in sp["abilities"])
+    if any(norm(a) == target for a in sp["abilities"]):
+        return True
+    # Mega-form pastes carry the pre-mega ability (e.g. Salamence-Mega @
+    # Salamencite with Ability: Intimidate). Showdown accepts it because
+    # the mon enters as the base species and megas on switch. Match that.
+    # Formes (Mega, Mega-X/Y/Z, Eternal, Masterpiece, ...) can carry an
+    # ability inherited from the base species or from a sibling forme.
+    # Showdown accepts this in pastes (e.g. Salamence-Mega @ Salamencite
+    # with Ability: Intimidate; Floette-Mega with Flower Veil). Match it.
+    if sp.get("forme"):
+        candidates = []
+        base = get_species(sp["baseSpecies"])
+        if base:
+            candidates.append(base)
+        for sib in all_species():
+            if sib["baseSpecies"] == sp["baseSpecies"] and sib["name"] != sp["name"]:
+                candidates.append(sib)
+        for c in candidates:
+            if any(norm(a) == target for a in c["abilities"]):
+                return True
+    return False
 
 
 def moves_by_category(species, category):
@@ -289,7 +309,7 @@ def validate_team(text):
     # Species Clause: 6 unique base species
     base_species = []
     for m in mons:
-        sp = get_species(m["species"])
+        sp = get_species(normalize_species_name(m["species"]))
         if sp is None:
             errors.append(f"unknown species: {m['species']}")
             continue
@@ -305,7 +325,7 @@ def validate_team(text):
 
     # Per-mon checks
     for m in mons:
-        sp = get_species(m["species"])
+        sp = get_species(normalize_species_name(m["species"]))
         if sp is None:
             continue
 
