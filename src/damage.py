@@ -33,7 +33,7 @@ def _raw_db():
     return json.loads(_DB_PATH.read_text())
 
 
-_CODE_TO_MULT = {0: 1.0, 1: 2.0, 2: 0.5, 4: 0.0}
+_CODE_TO_MULT = {0: 1.0, 1: 2.0, 2: 0.5, 3: 0.0}   # Showdown damageTaken codes; 3 = immune
 
 
 NATURE_MODS = {

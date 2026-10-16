@@ -61,6 +61,18 @@ def test_stats_variant_matches_pin():
     assert rolls[0] == 188 and rolls[-1] == 224
 
 
+def test_type_immunities_deal_zero():
+    for mv, defender in [("earthquake", ["Flying"]), ("bodyslam", ["Ghost"]),
+                         ("thunderbolt", ["Ground"]), ("dragonclaw", ["Fairy"]),
+                         ("sludgebomb", ["Steel"])]:
+        rolls = D.damage_rolls_from_stats(
+            {"atk": 150, "spa": 150}, ["Normal"], {}, mv,
+            {"def": 100, "spd": 100, "hp": 150}, defender, {})
+        assert rolls == [0] * 16, (mv, defender, rolls)
+    assert D._effectiveness("Ground", ["Dragon", "Flying"]) == 0.0
+    assert D._effectiveness("Ground", ["Fire", "Dark"]) == 2.0
+
+
 def test_rolls_are_sorted_and_16_long():
     rolls = D.damage_rolls(**GARCHOMP_EQ)
     assert len(rolls) == 16 and rolls == sorted(rolls)
