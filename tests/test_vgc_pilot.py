@@ -51,6 +51,15 @@ def test_no_mega_when_used_or_unavailable():
     assert add_mega(battle([False, False], v), base, True) == (base, None)
 
 
+def test_score_picks_the_better_mega_when_both_can():
+    v = [[so("protect"), so("protect", 0, True)], [so("closecombat", 1), so("closecombat", 1, True)]]
+    base = DoubleBattleOrder(so("protect"), so("closecombat", 1))
+    out, slot = add_mega(battle([True, True], v), base, True, score=lambda sl: (10, 0) if sl == 1 else (5, 0))
+    assert slot == 1 and out.second_order.mega and not out.first_order.mega
+    out, slot = add_mega(battle([True, True], v), base, True, score=lambda sl: (5, 9) if sl == 0 else (5, 1))
+    assert slot == 0
+
+
 if __name__ == "__main__":
     for n, f in list(globals().items()):
         if n.startswith("test_"):

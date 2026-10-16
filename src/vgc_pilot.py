@@ -1,8 +1,10 @@
-"""VGC pilot (thin first layer): DoublesPilot + battle memory + Mega on first opportunity.
+"""VGC pilot (thin layer): DoublesPilot + battle memory + Mega logic.
 
 Policy is predictive by default (opp_model priors); it never requires Open Team Sheets.
-Mega: our side may Mega once per battle, and 79% of real Megas happen on the mon's first
-opportunity, so we Mega as soon as a slot can, on the order the base layer already chose.
+Own Mega: once per battle, as soon as a slot can (79% of real Megas happen on the first
+opportunity; win rate shows no gain from delaying). When both slots can, the mon with the larger
+offence gain goes first (humans do 74%). Foe Mega: src.mega_model gives P(Mega this turn) per
+foe mon, and the damage hypotheses are split into pre/post-Mega stats with that probability.
 """
 from __future__ import annotations
 
@@ -14,6 +16,8 @@ from poke_env.player.battle_order import DoubleBattleOrder, SingleBattleOrder
 
 from src.battle_memory import BattleMemoryMixin
 from src.doubles_pilot import DoublesPilot
+from src.mega_model import foe_mega_probs, mega_gain
+from src.opp_model import resolve_species
 
 logger = logging.getLogger(__name__)
 
@@ -29,28 +33,49 @@ def mega_variant(order: SingleBattleOrder, valid) -> Optional[SingleBattleOrder]
     return None
 
 
-def add_mega(battle: DoubleBattle, base, mega_free: bool):
-    """Return (order, slot) with Mega added to the first slot that can use it, else (base, None)."""
+def add_mega(battle: DoubleBattle, base, mega_free: bool, score=None):
+    """Return (order, slot) with Mega added to one slot, else (base, None).
+
+    Candidates are slots that can Mega and whose base order is a move with a Mega twin; the
+    highest `score(slot)` wins (ties and no score: lower slot)."""
     if not mega_free or not isinstance(base, DoubleBattleOrder) or not battle.valid_orders:
         return base, None
     orders = [base.first_order, base.second_order]
-    for slot in (0, 1):
-        if not battle.can_mega_evolve[slot]:
-            continue
-        twin = mega_variant(orders[slot], battle.valid_orders[slot])
-        if twin is None:
-            continue
-        orders[slot] = twin
-        return DoubleBattleOrder(orders[0], orders[1]), slot
-    return base, None
+    twins = {slot: mega_variant(orders[slot], battle.valid_orders[slot]) for slot in (0, 1)
+             if battle.can_mega_evolve[slot]}
+    twins = {slot: t for slot, t in twins.items() if t is not None}
+    if not twins:
+        return base, None
+    slot = max(twins, key=lambda sl: ((score(sl) if score else 0), -sl))
+    orders[slot] = twins[slot]
+    return DoubleBattleOrder(orders[0], orders[1]), slot
 
 
 class VGCPilot(BattleMemoryMixin, DoublesPilot):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.stats_counter.update({"mega_opportunities": 0, "mega_used": 0, "mega_errors": 0})
+        self.stats_counter.update({"mega_opportunities": 0, "mega_used": 0, "mega_errors": 0,
+                                   "foe_mega_errors": 0, "foe_mega_turns": 0})
+        self._foe_mega: dict = {}
+
+    def _mega_prob(self, mon) -> float:
+        return self._foe_mega.get(mon.name, 0.0)
+
+    @staticmethod
+    def _mega_score(battle, slot):
+        mon = battle.active_pokemon[slot]
+        return mega_gain(resolve_species(mon.species) or "", mon.item or "") or (-1, -1)
 
     def choose_move(self, battle):
+        self._foe_mega = {}
+        if isinstance(battle, DoubleBattle):
+            try:
+                foe = "p2" if battle.player_role == "p1" else "p1"
+                self._foe_mega = foe_mega_probs(self.memory_for(battle), foe)
+                self.stats_counter["foe_mega_turns"] += bool(self._foe_mega)
+            except Exception:
+                self.stats_counter["foe_mega_errors"] += 1
+                logger.exception("foe Mega prediction failed; assuming none")
         order = super().choose_move(battle)
         if not isinstance(battle, DoubleBattle) or any(battle.force_switch):
             return order
@@ -59,7 +84,7 @@ class VGCPilot(BattleMemoryMixin, DoublesPilot):
             free = mem.mega_available(battle.player_role)
             if free and any(battle.can_mega_evolve):
                 self.stats_counter["mega_opportunities"] += 1
-            order, slot = add_mega(battle, order, free)
+            order, slot = add_mega(battle, order, free, lambda sl: self._mega_score(battle, sl))
             if slot is not None:
                 self.stats_counter["mega_used"] += 1
         except Exception:

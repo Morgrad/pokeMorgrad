@@ -6,7 +6,7 @@ Imports below are intra-repo (`src.*`) only. Dependency direction: arrows mean "
 ## Contents
 - [Dependency map](#dependency-map)
 - [Foundation: paths, regmc_db, showdown_validator](#paths-regmc_db-showdown_validator)
-- [Damage stack: damage, opp_model, speed_model, battle_memory, doubles_eval, doubles_pilot, smart_player](#damage-stack)
+- [Damage stack: damage, opp_model, speed_model, mega_model, battle_memory, doubles_eval, doubles_pilot, smart_player](#damage-stack)
 - [GA: ga_core (by section), battle, eval, audit_before_launch](#ga_corepy)
 - [BC stack (torch): state_encoder, bc_model, bc_player, bc_train](#bc-stack-torch)
 - [Env vars read by src/](#env-vars-read-by-src)
@@ -24,7 +24,7 @@ state_encoder <-- bc_model <-- bc_player, bc_train ; state_encoder <-- bc_player
 ga_core <-- eval, audit_before_launch ; ga_core <-- run/*
 ```
 - Torch-importing modules: `state_encoder` (torch at `state_encoder.py:30`), `bc_model`, `bc_player`, `bc_train`.
-- Torch-free: `paths, regmc_db, showdown_validator, damage, opp_model, speed_model, battle_memory (poke_env only imported inside `repair_mega_forms`), doubles_eval, smart_player, doubles_pilot, vgc_pilot, ga_core, battle, eval`.
+- Torch-free: `paths, regmc_db, showdown_validator, damage, opp_model, speed_model, mega_model, battle_memory (poke_env only imported inside `repair_mega_forms`), doubles_eval, smart_player, doubles_pilot, vgc_pilot, ga_core, battle, eval`.
   `battle` reaches torch only through the lazy `BCPlayer` import (`battle.py:84-86`); `DoublesPilot` import is also lazy (`battle.py:87-89`).
 
 ---
@@ -72,13 +72,14 @@ Pure posterior over real-set archetypes (item+nature groups per species, `data/s
 ### speed_model.py (~105 lines, new 2026-10-16, stage 1 of the new VGC pilot)
 Pure (torch-free, poke_env-free) probability that we move before an opposing mon. See STATE.md §5.22 for the plan.
 - `SpeedMods(stage, paralyzed, tailwind, scarf, weather, terrain)`: battle-time modifiers on one mon's Speed. `effective_speed(stat, mods, ability)`: floor after the stage multiplier, then Scarf x1.5, weather/terrain speed ability x2 (`SPEED_ABILITIES`: swiftswim/rain, chlorophyll/sun, sandrush/sand, slushrush/snow, surgesurfer/electric), Tailwind x2, paralysis x0.5.
-- `SpeedHypothesis(weight, stat, ability, scarf=False, mega_stat=None)`; `SpeedBelief(hypotheses)` (weights renormalized): `speeds(mods, mega)`, `p_faster(our_speed, mods, trick_room, mega)` (`mega=True`: sets that Mega use the post-Mega Speed) (ties 0.5, Trick Room inverts, empty belief = 0.5).
+- `SpeedHypothesis(weight, stat, ability, scarf=False, mega_stat=None)`; `SpeedBelief(hypotheses)` (weights renormalized): `speeds(mods, mega)`, `p_faster(our_speed, mods, trick_room, mega)` (`mega` = P(this mon Megas now), True = 1.0: only hypotheses carrying `mega_stat` can Evolve, each with `conditional_q(mega, their total weight)`, split into post/pre-Mega speed) (ties 0.5, Trick Room inverts, empty belief = 0.5).
 - `belief_for(species, known_ability=None, item=None, moves_seen=())`: opp_model builds (conditioned on item/moves) x ability distribution; a Choice Scarf set carries `scarf`, a Mega set carries `mega_stat`. Stage 1 = prior only. Stage 2 (not built): `observe_*` to reweight from observed move order.
 - Not modelled: Unburden/Quick Feet/Slow Start, Quick Claw/Custap/Lagging Tail/Stall. (Unrevealed Scarf and Mega speed are modelled via archetypes.)
 - Tests: `tests/test_speed_model.py` (9).
 
 ### battle_memory.py (new 2026-10-16, step 2 of the new VGC pilot)
 `BattleMemory.feed(split_line)` is pure (poke_env-free): one Showdown protocol line in, state out. `BattleMemoryMixin` (put BEFORE the poke_env Player base) overrides `_handle_battle_message`, feeds every line of a block first, then calls super, so memory is complete when `choose_move` runs; `memory_for(battle)`. Memory keeps its own `turn` (equals `battle.turn`, checked live).
+- Slots: `active` (slot -> mon name, set on switch/drag) and `active_mons(side)` (records, fainted ones until replaced).
 - Mega: exact form from `|detailschange|` (always immediately before `|-mega|`), stone from `|-mega|`, `mega_used[side]`, `mega_available(side)`. `repair_mega_forms(battle, mem)` fixes a poke_env bug: `mega_evolve("Garchompite Z")` applies Garchomp-Mega (Spe 92) instead of Garchomp-Mega-Z (151); the mixin re-applies the logged form after each block.
 - Conditions: `weather`, `conditions[(scope,name)]` (Trick Room, Tailwind, terrains, screens, hazards with layers) with start turn, source, setter, `history` (end_reason expired/replaced). `turns_left(cond, now)` -> (min, max) incl. the current turn; max assumes Rocks/Light Clay/Terrain Extender. Conditions set after the residual tick (turn 0, end-of-turn replacements) start next turn. Validated on 5006 real replays (Tailwind 4 turns in 930/930; Trick Room/terrain/weather 5 turns in >90%).
 - Action order: `actions[turn]`, `turn_order(turn)` (chosen switches then moves/cant; `[from]` copies except lockedmove are not actions; pivot/replacement/drag switches are `chosen=False`), `first_mover[turn]`, `speed_pairs(turn)` (consecutive same-priority moves on untainted turns; taint = After You, Quash, Quick Claw, Custap, Dancer, Instruct). Caller still discounts Trick Room and Speed abilities/items.
@@ -101,10 +102,17 @@ Pure-logic joint scoring of a PAIR of attack actions (numpy + damage; no poke_en
 - Env: `DOUBLES_KO_BONUS`, `DOUBLES_MIN_GAIN` (`doubles_pilot.py:70-73`; constructor kwargs win).
 - Imports `damage, doubles_eval, opp_model` and four helpers from `smart_player` (`_boosts_dict, _terrain_name, _type_to_db, _weather_name`). Torch-free; created lazily by `battle.make_player` for `pilot="doubles"`; `VGCPilot` subclasses it.
 
-### vgc_pilot.py (new)
-`VGCPilot(BattleMemoryMixin, DoublesPilot)`: DoublesPilot's decision, then adds Mega to the first slot whose `can_mega_evolve` is true while `memory.mega_available(player_role)`.
-- `mega_variant(order, valid)` finds the `mega=True` twin (same move id and `move_target`) in `battle.valid_orders[slot]`; `add_mega(battle, base, mega_free)` returns `(order, slot|None)`. Switch orders never Mega; at most one Mega per turn (poke_env also forbids two).
-- `stats_counter` adds `mega_opportunities / mega_used / mega_errors` (errors fall back to the base order). Torch-free; `battle.make_player` creates it lazily for `pilot="vgc"`. Tests: `tests/test_vgc_pilot.py` (4, synthetic orders).
+### mega_model.py (new)
+Foe Mega prediction from real ladder replays. `candidates(mem, side, turn=None)` = active, non-fainted, not-yet-Mega'd mons of Mega-capable species while the side's Mega is unused, with `k` (turns already had the chance = turn - max(switch_in_turn+1, 1)), `ncand`, `lead`, item flags. `p_mega_now(species, k, ncand, lead, item, consumed)` = cell table (`cell_key`: k0 lead/back, k1, k2, k3+ x 1|2 candidates) x per-species factor from `data/mega_rates.json`; revealed non-stone item -> 0, consumed item -> 0.02. `foe_mega_probs(mem, side)` renormalises so a side's probabilities sum to at most 1 (one Mega per side). `conditional_q(p_now, form_mass)` turns the marginal into P(Megas | set carries the stone). `mega_gain(species, stone)` = (offence gain, Speed gain) for our own Mega choice.
+- Fit: `tools/build_mega_rates.py [--dry-run]` (5006 replays, 15755 decision points). Holdout log-loss (fit even files, score odd): flat 0.693, by k only 0.628, cell table 0.601, cell x species 0.555.
+- Tests: `tests/test_mega_model.py` (7).
+
+### vgc_pilot.py
+`VGCPilot(BattleMemoryMixin, DoublesPilot)`: foe Mega prediction, then DoublesPilot's decision, then our own Mega.
+- Foe: `choose_move` computes `foe_mega_probs` into `_foe_mega`; `DoublesPilot._mega_prob(mon)` (0.0 in the base pilot, overridden here) feeds `_foe`, which splits each Mega-capable build's weight into post-Mega (`form_stats`) and pre-Mega stats with `conditional_q`. Types/abilities of the Mega form are not mixed in yet.
+- Own: `mega_variant(order, valid)` finds the `mega=True` twin (same move id and `move_target`); `add_mega(battle, base, mega_free, score=None)` picks the slot with the highest `score` among slots that can Mega and have a move twin (score = `mega_gain` of the held stone; ties go to the lower slot). Switch orders never Mega; at most one Mega per turn.
+- No Mega "hold" rule: replay win rate shows no difference by timing (turn 1 41.9%, first-opportunity later 41.8%, delayed 43.1%, never 46.1%; confounded), so we Mega on the first opportunity.
+- `stats_counter` adds `mega_opportunities / mega_used / mega_errors / foe_mega_turns / foe_mega_errors` (errors fall back to the base order). Torch-free; `battle.make_player` creates it lazily for `pilot="vgc"`. Tests: `tests/test_vgc_pilot.py` (5, synthetic orders).
 - Predictive by default; no OTS use yet (`accept_open_team_sheet` is not set).
 
 ### smart_player.py (205 lines)

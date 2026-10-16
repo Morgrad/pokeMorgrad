@@ -26,6 +26,7 @@ from poke_env.player.battle_order import DoubleBattleOrder, SingleBattleOrder
 
 from src import damage, opp_model
 from src import doubles_eval as DE
+from src.mega_model import conditional_q
 from src.smart_player import _boosts_dict, _terrain_name, _type_to_db, _weather_name
 
 logger = logging.getLogger(__name__)
@@ -111,14 +112,27 @@ class DoublesPilot(SimpleHeuristicsPlayer):
             final_mult=ITEM_FINAL_MULT.get(item, 1.0),
         )
 
+    def _mega_prob(self, mon: Pokemon) -> float:
+        """P(this foe Mega Evolves this turn); the base pilot never models it."""
+        return 0.0
+
     def _foe(self, mon: Pokemon) -> Optional[DE.Combatant]:
         builds = opp_model.opponent_builds(mon.species, item=mon.item, moves_seen=list(mon.moves),
                                            ability=mon.ability)
         if not builds:
             return None
         frac = mon.current_hp_fraction
-        hyps = [DE.Hypothesis(b.weight, b.stats, b.max_hp, max(1, round(frac * b.max_hp)))
-                for b in builds]
+        q = conditional_q(self._mega_prob(mon), sum(b.weight for b in builds if b.form_stats))
+        hyps = []
+        for b in builds:
+            if b.form_stats and q > 0:
+                hyps.append(DE.Hypothesis(b.weight * q, b.form_stats, b.form_stats["hp"],
+                                          max(1, round(frac * b.form_stats["hp"]))))
+                if q < 1:
+                    hyps.append(DE.Hypothesis(b.weight * (1 - q), b.stats, b.max_hp,
+                                              max(1, round(frac * b.max_hp))))
+            else:
+                hyps.append(DE.Hypothesis(b.weight, b.stats, b.max_hp, max(1, round(frac * b.max_hp))))
         types = [_type_to_db(t) for t in mon.types if t is not None]
         immune = {t: opp_model.immunity_prob(mon.species, t, mon.ability) for t in _move_types()}
         return DE.Combatant(hyps, types, _boosts_dict(mon), False,

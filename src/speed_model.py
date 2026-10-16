@@ -21,6 +21,7 @@ from dataclasses import dataclass
 from typing import List, Optional
 
 from src import damage, opp_model
+from src.mega_model import conditional_q
 
 # ability id -> (kind, condition) that doubles the holder's Speed
 SPEED_ABILITIES = {
@@ -81,15 +82,24 @@ class SpeedBelief:
     def __bool__(self) -> bool:
         return bool(self.hypotheses)
 
-    def speeds(self, mods: SpeedMods = SpeedMods(), mega: bool = False) -> List[tuple]:
-        """[(weight, effective speed)] under the given modifiers. `mega`: sets that can Mega
-        Evolve do so this turn (Mega Evolution happens before move order is decided)."""
-        return [(h.weight, effective_speed(h.mega_stat if mega and h.mega_stat else h.stat,
-                                           mods, h.ability, h.scarf))
-                for h in self.hypotheses]
+    def speeds(self, mods: SpeedMods = SpeedMods(), mega: float = 0.0) -> List[tuple]:
+        """[(weight, effective speed)] under the given modifiers. `mega` = P(this mon Mega
+        Evolves this turn) (True = 1.0); Mega Evolution happens before move order is decided.
+        Only hypotheses carrying a Mega form can Evolve, so each does with probability
+        min(1, mega / their total weight)."""
+        q = conditional_q(float(mega), sum(h.weight for h in self.hypotheses if h.mega_stat))
+        out = []
+        for h in self.hypotheses:
+            if h.mega_stat and q > 0:
+                out.append((h.weight * q, effective_speed(h.mega_stat, mods, h.ability, h.scarf)))
+                if q < 1:
+                    out.append((h.weight * (1 - q), effective_speed(h.stat, mods, h.ability, h.scarf)))
+            else:
+                out.append((h.weight, effective_speed(h.stat, mods, h.ability, h.scarf)))
+        return out
 
     def p_faster(self, our_speed: int, mods: SpeedMods = SpeedMods(),
-                 trick_room: bool = False, mega: bool = False) -> float:
+                 trick_room: bool = False, mega: float = 0.0) -> float:
         """P(we move before this opponent) among same-priority moves. 0.5 if no hypotheses."""
         if not self.hypotheses:
             return 0.5

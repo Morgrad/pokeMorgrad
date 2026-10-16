@@ -134,6 +134,7 @@ class BattleMemory:
         self._megaed_now: set = set()
         self.repaired: set = set()
         self.ots: Dict[str, List[dict]] = {}     # Open Team Sheet sets by side, when shown
+        self.active: Dict[str, str] = {}         # 'p1a' -> mon name currently in that slot
 
     # ---- queries -------------------------------------------------------------------
     def mon(self, ident: str) -> Optional[MonRecord]:
@@ -153,6 +154,10 @@ class BattleMemory:
                 if want == st["id"] or (want.startswith(st["id"]) and "mega" in want[len(st["id"]):]):
                     return st
         return None
+
+    def active_mons(self, side: str) -> List[MonRecord]:
+        """Records of the mons currently in `side`'s slots (fainted ones included until replaced)."""
+        return [r for slot in "ab" if (n := self.active.get(side + slot)) and (r := self.mon_by(side, n))]
 
     def mega_available(self, side: str) -> bool:
         return self.mega_used.get(side) is None
@@ -257,6 +262,7 @@ class BattleMemory:
         rec = self._rec(ident)
         rec.species = _species(details)
         rec.switch_in_turn = self.turn
+        self.active[ident[:3]] = rec.name
         rec.slow_start = False
         rec.protect_chain = 0
         rec.protect_last_turn = None
