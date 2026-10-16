@@ -700,9 +700,19 @@ across 500-battle evals. ±5 pts. Never trust single eval <3-pt gap.
 **`src/smart_player.py`** — subclass of `SimpleHeuristicsPlayer`.
 - Overrides `choose_singles_move` to score damaging moves via damage.py.
 - Adds KO bonus (+8), HP-fraction weight (3x), accuracy weighting.
-- Falls back to parent behavior on any exception — pure upside.
-- **NOT verified in live battles yet.** First test: head-to-head vs
-  vanilla heuristic, N=200, tomorrow.
+- Falls back to parent behavior on any exception.
+- **FINDING (2026-10-15): functionally inert.** `_score_move_with_damage`
+  returns `None` when the defender's def/spd are 0, and poke_env never
+  populates opponent `stats` in live battles. Instrumented over 10 live
+  battles: 690 calls, 0 scored. Its 42.5% result was noise around vanilla.
+  Tuning `KO_BONUS` cannot help; needs a replacement design.
+
+**Refactor (2026-10-15, behavior-preserving).** `damage.py` now has one shared
+`_rolls_core` behind `damage_rolls` / `damage_rolls_from_stats` (public
+signatures unchanged); `ga_core`/`eval`/`bc_train`/`bc_player` use
+`src.paths` (REFACTOR A1) and `ga_core.UID_MAX` (A3). Verified bit-identical
+on ~12k randomized damage cases. Regression pins: `python tests/test_damage.py`
+(pytest not installed; file has a `__main__` runner).
 
 **`tools/log_milestone.py`** — appends a dated entry to STATE_history.md
 after each commit. Usage: `python3 tools/log_milestone.py "Title" "Summary"`.

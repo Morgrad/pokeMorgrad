@@ -34,18 +34,11 @@ from functools import lru_cache
 from src import battle as B
 from src import regmc_db as DB
 from src import showdown_validator as SV
+from src.paths import data_path, output_path
 
 FORMAT = "gen9championsvgc2026regmc"
   # canonical format registry; battle.py callers pass this in
-
-# Repo root = parent of this file's directory (src/)
-_REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
-def _p(*parts):
-    """Path relative to repo root."""
-    return os.path.join(_REPO_ROOT, *parts)
-
+UID_MAX = 10**9   # upper bound of the random per-battle account id space
 
 # -----------------------------------------------------------------------------
 # Tuning knobs — every value here was hand-tuned against the Reg M-C pool.
@@ -123,7 +116,7 @@ _BASE_SPECIES = [s for s in DB.all_species_base() if s["moves"]]
 _SPECIES_BY_NAME = {s["name"]: s for s in _BASE_SPECIES}
 _ITEMS = list(DB.all_items())
 _NATURES = [n["name"] for n in DB.all_natures()]
-_REGIONAL_DIR = _p("data", "regional_teams")
+_REGIONAL_DIR = data_path("regional_teams")
 
 
 _MOVE_PRIORS = None
@@ -135,7 +128,7 @@ def move_priors_for(species_name, top_n=8):
     """
     global _MOVE_PRIORS
     if _MOVE_PRIORS is None:
-        path = _p("data", "species_move_priors.json")
+        path = data_path("species_move_priors.json")
         _MOVE_PRIORS = json.load(open(path)) if os.path.exists(path) else {}
     entries = _MOVE_PRIORS.get(species_name, [])
     if not entries:
@@ -155,7 +148,7 @@ def meta_items_for(species_name):
     """
     global _META_ITEMS
     if _META_ITEMS is None:
-        path = _p("data", "meta_items.json")
+        path = data_path("meta_items.json")
         _META_ITEMS = json.load(open(path)) if os.path.exists(path) else {}
     entries = _META_ITEMS.get(species_name, [])
     return [(e["item"], e["count"]) for e in entries] if entries else None
@@ -195,7 +188,7 @@ def regional_pool():
     """Training pool of team strings."""
     global _REGIONAL
     if _REGIONAL is None:
-        split_path = _p("data", "pool_split.json")
+        split_path = data_path("pool_split.json")
         if os.path.exists(split_path):
             split = json.load(open(split_path))
             _REGIONAL = _load_teams(split.get("train", []), "training")
@@ -225,7 +218,7 @@ def heldout_pool():
     """Held-out pool (100 teams). Used for final eval only."""
     global _HELDOUT
     if _HELDOUT is None:
-        split_path = _p("data", "pool_split.json")
+        split_path = data_path("pool_split.json")
         if os.path.exists(split_path):
             split = json.load(open(split_path))
             _HELDOUT = _load_teams(split.get("holdout", []), "held-out")
@@ -935,7 +928,7 @@ async def evaluate(mons, opponents, idx, total):
         return 0.0
 
     def _battle(opp):
-        return B.run_battle(text, opp, random.randint(1, 10**9), _SEM, FORMAT,
+        return B.run_battle(text, opp, random.randint(1, UID_MAX), _SEM, FORMAT,
                             pilot="heuristic", timeout=BATTLE_TIMEOUT,
                             min_turns=MIN_TURNS)
 
@@ -1042,10 +1035,10 @@ async def run_ga(locked, pop_size, generations, battles_per_genome, concurrency,
             "avg": sum(fits)/len(fits),
             "species": [m["species"] for m in ranked[0][1]],
         })
-        champ = _p("output", "champions", f"ga_{label}.txt")
+        champ = output_path("champions", f"ga_{label}.txt")
         os.makedirs(os.path.dirname(champ), exist_ok=True)
         open(champ, "w").write(genome_to_text(all_time_best["genome"]))
-        json.dump(history, open(_p("output", "ga_history.json"), "w"), indent=2)
+        json.dump(history, open(output_path("ga_history.json"), "w"), indent=2)
 
         if gen == generations - 1:
             break
@@ -1073,8 +1066,8 @@ async def run_ga(locked, pop_size, generations, battles_per_genome, concurrency,
 # locking a different species, evolving in parallel. Top genomes migrate around a
 # ring every few generations; stagnant islands restart their worst half. State is
 # JSON-checkpointed every generation so a multi-hour run survives a crash/restart.
-CHECKPOINT_DIR = _p("output", "checkpoints", "v6")
-CHAMPION_DIR = _p("output", "champions")
+CHECKPOINT_DIR = output_path("checkpoints", "v6")
+CHAMPION_DIR = output_path("champions")
 SHOWDOWN_DIR = os.path.expanduser("~/pokemon-showdown")
 SHOWDOWN_PORT = int(os.environ.get("SHOWDOWN_PORT", "8000"))
 
@@ -1386,7 +1379,7 @@ async def _eval_on_subset(genome, opponents, verbose=False):
     ok, errs = DB.validate_team(text)
     if not ok:
         return 0.0
-    tasks = [B.run_battle(text, o, random.randint(1, 10**9), _SEM, FORMAT,
+    tasks = [B.run_battle(text, o, random.randint(1, UID_MAX), _SEM, FORMAT,
                           pilot="heuristic", timeout=BATTLE_TIMEOUT,
                           min_turns=MIN_TURNS)
              for o in opponents]

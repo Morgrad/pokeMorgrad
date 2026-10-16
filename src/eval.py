@@ -20,18 +20,13 @@ import random
 
 from src import ga_core as G
 from src import battle as B
+from src.paths import data_path
 
 FORMAT = G.FORMAT          # canonical format registry (defined in ga_core)
 CONCURRENCY = int(os.environ.get("GA_CONCURRENCY", "3"))   # simultaneous battles per server
 TIMEOUT = 20              # seconds before a battle is abandoned as hung (→ None)
-UID_MAX = 10**9          # upper bound of the random per-battle account id space
+UID_MAX = G.UID_MAX      # upper bound of the random per-battle account id space
 DEFAULT_SEEDS = [100, 200, 300]
-
-_REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
-def _p(*parts):
-    return os.path.join(_REPO_ROOT, *parts)
 
 
 def wilson_ci(wins: int, games: int, z: float = 1.96) -> tuple[float, float]:
@@ -88,7 +83,7 @@ async def main_async(args):
     Defaults to the baseline team vs the held-out pool with both pilots. With two
     pilots it also prints a per-team HEUR/BC/Delta comparison.
     """
-    teams = args.teams or [_p("data", "baseline_team.txt")]
+    teams = args.teams or [data_path("baseline_team.txt")]
 
     if args.opponents == "all":
         opponents = G.regional_pool()

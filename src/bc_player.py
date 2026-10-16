@@ -27,10 +27,11 @@ from src.bc_model import (
     TYPE_MOVE, TYPE_SWITCH,
 )
 
-_REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DEFAULT_MODEL_PATH = os.path.join(_REPO_ROOT, "output", "models", "bc_best.pt")
+from src.paths import data_path, output_path
+
+DEFAULT_MODEL_PATH = output_path("models", "bc_best.pt")
 MODEL_PATH = os.environ.get("BC_PILOT_PATH", DEFAULT_MODEL_PATH)
-PRIORS_PATH = os.path.join(_REPO_ROOT, "data", "species_move_priors.json")
+PRIORS_PATH = data_path("species_move_priors.json")
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
 _MODEL_CACHE = {}

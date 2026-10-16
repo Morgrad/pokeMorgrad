@@ -31,6 +31,10 @@ One session, 60 to 90 minutes. Verify after each file. If any import
 chain breaks, the failure shows up immediately in `python3 -c "import X"`.
 
 ### A1 — four private copies of path resolution
+Status: fixed 2026-10-15. All four modules now import `data_path`/`output_path`
+from `src.paths`; local `_REPO_ROOT`/`_p` removed. Resolved path constants
+verified identical before/after.
+
 `src/paths.py` is the declared single source of truth. But four modules
 re-define `_REPO_ROOT` and `_p()` locally:
 
@@ -53,6 +57,9 @@ Verification:
 - Run `python3 -m src.audit_before_launch` clean
 
 ### A2 — EV caps declared twice with a "keep in lockstep" comment
+Status: stale as of 2026-10-15 — no duplicate constants found in the current
+tree; nothing to do. Re-grep before reviving.
+
 `src/regmc_db.py:24` declares `EV_MAX_PER_STAT=32`, `EV_MAX_TOTAL=66`.
 `src/ga_core.py:58` declares `EV_STAT_CAP=32`, `EV_BUDGET=66`.
 
@@ -64,6 +71,10 @@ import them into `ga_core`.
 Verification: `python3 -c "from src.ga_core import EV_STAT_CAP, EV_BUDGET; print(EV_STAT_CAP, EV_BUDGET)"` prints `32 66`.
 
 ### A3 — duplicated battle constants across `eval.py` and `ga_core.py`
+Status: partly fixed 2026-10-15. `UID_MAX` now lives in `ga_core` (both
+`randint` sites use it) and `eval.UID_MAX = G.UID_MAX`. `FORMAT` was already
+shared. The timeout constants were left alone.
+
 Both files define `FORMAT`, the battle timeout, and read
 `GA_CONCURRENCY`. `eval.py` names `UID_MAX=10**9`; `ga_core.py` inlines
 the same value at every `random.randint(1, 10**9)` call.

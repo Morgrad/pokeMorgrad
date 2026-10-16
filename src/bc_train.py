@@ -22,16 +22,11 @@ from src.bc_model import (
     NEG_INF, TYPE_MOVE, TYPE_SWITCH, TYPE_NONE,
 )
 
-_REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+from src.paths import data_path, output_path
 
-
-def _p(*parts):
-    return os.path.join(_REPO_ROOT, *parts)
-
-
-DATA = os.environ.get("BC_DATA", _p("data", "training_data.jsonl"))   # override for heuristic-imitation runs
-PRIORS_PATH = _p("data", "species_move_priors.json")
-MODEL_DIR = _p("output", "models")
+DATA = os.environ.get("BC_DATA", data_path("training_data.jsonl"))   # override for heuristic-imitation runs
+PRIORS_PATH = data_path("species_move_priors.json")
+MODEL_DIR = output_path("models")
 BEST_MODEL_PATH = os.path.join(MODEL_DIR, os.environ.get("BC_OUT", "bc_best.pt"))
 MODEL_ARCH = os.environ.get("BC_MODEL", "v2")
 

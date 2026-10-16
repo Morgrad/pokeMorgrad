@@ -23,8 +23,9 @@ from functools import lru_cache
 from pathlib import Path
 
 from src import regmc_db as DB
+from src.paths import data_path
 
-_DB_PATH = Path.home() / "project" / "data" / "regmc_db.json"
+_DB_PATH = Path(data_path("regmc_db.json"))
 
 
 @lru_cache(maxsize=1)
@@ -128,6 +129,57 @@ def _screen_mult(category, is_doubles, reflect, light_screen, aurora_veil, crit)
     return 1.0
 
 
+def _rolls_core(mv, a_stat, d_stat, atk_types, def_types, level,
+                is_doubles, include_spread, crit, burn, weather, terrain,
+                attacker_grounded, attacker_ability,
+                reflect, light_screen, aurora_veil):
+    """Shared damage math. a_stat/d_stat are post-stage attack/defense values."""
+    category = mv["category"].lower()
+    power = mv.get("basePower") or 0
+
+    if weather == "sand" and category == "special" and "Rock" in def_types:
+        d_stat *= 1.5
+    elif weather == "snow" and category == "physical" and "Ice" in def_types:
+        d_stat *= 1.5
+
+    if a_stat == 0 or d_stat == 0:
+        return []
+
+    base = ((2 * level) // 5 + 2) * power * int(a_stat) // int(d_stat)
+    base = base // 50 + 2
+
+    if include_spread and _is_spread(mv, is_doubles):
+        base = int(base * 0.75)
+
+    wm = _weather_mult(weather, mv["type"])
+    if wm != 1.0:
+        base = int(base * wm)
+
+    if crit:
+        base = int(base * 1.5)
+
+    rolls = [int(base * (85 + i) / 100) for i in range(16)]
+
+    stab = 1.5 if mv["type"] in atk_types else 1.0
+    eff = _effectiveness(mv["type"], def_types)
+    burn_m = 0.5 if (burn and category == "physical" and attacker_ability != "Guts") else 1.0
+    terrain_m = _terrain_mult(terrain, mv["type"]) if attacker_grounded else 1.0
+    screen_m = _screen_mult(category, is_doubles, reflect, light_screen,
+                            aurora_veil, crit)
+
+    out = []
+    for r in rolls:
+        r = int(r * stab)
+        r = int(r * eff)
+        r = int(r * burn_m)
+        r = int(r * terrain_m)
+        r = int(r * screen_m)
+        if eff > 0 and r < 1:
+            r = 1
+        out.append(r)
+    return out
+
+
 def damage_rolls(attacker_species, attacker_evs, attacker_nature,
                  move_name, defender_species, defender_evs, defender_nature,
                  attacker_level=50, defender_level=50, is_doubles=True,
@@ -173,49 +225,11 @@ def damage_rolls(attacker_species, attacker_evs, attacker_nature,
         a_stat = a_base * _stage_mult(ab.get("spa", 0))
         d_stat = d_base * _stage_mult(db_.get("spd", 0))
 
-    if weather == "sand" and category == "special" and "Rock" in dfd.get("types", []):
-        d_stat *= 1.5
-    elif weather == "snow" and category == "physical" and "Ice" in dfd.get("types", []):
-        d_stat *= 1.5
-
-    if a_stat == 0 or d_stat == 0:
-        return []
-
-    base = ((2 * attacker_level) // 5 + 2) * power * int(a_stat) // int(d_stat)
-    base = base // 50 + 2
-
-    if include_spread and _is_spread(mv, is_doubles):
-        base = int(base * 0.75)
-
-    wm = _weather_mult(weather, mv["type"])
-    if wm != 1.0:
-        base = int(base * wm)
-
-    if crit:
-        base = int(base * 1.5)
-
-    rolls = [int(base * (85 + i) / 100) for i in range(16)]
-
-    stab = 1.5 if mv["type"] in atk.get("types", []) else 1.0
-    eff = _effectiveness(mv["type"], dfd.get("types", []))
-    burn_m = 1.0
-    if burn and category == "physical" and attacker_ability != "Guts":
-        burn_m = 0.5
-    terrain_m = _terrain_mult(terrain, mv["type"]) if attacker_grounded else 1.0
-    screen_m = _screen_mult(category, is_doubles, reflect, light_screen,
-                            aurora_veil, crit)
-
-    out = []
-    for r in rolls:
-        r = int(r * stab)
-        r = int(r * eff)
-        r = int(r * burn_m)
-        r = int(r * terrain_m)
-        r = int(r * screen_m)
-        if eff > 0 and r < 1:
-            r = 1
-        out.append(r)
-    return out
+    return _rolls_core(mv, a_stat, d_stat, atk.get("types", []),
+                       dfd.get("types", []), attacker_level,
+                       is_doubles, include_spread, crit, burn, weather, terrain,
+                       attacker_grounded, attacker_ability,
+                       reflect, light_screen, aurora_veil)
 
 
 def damage_range(attacker_species, attacker_evs, attacker_nature,
@@ -285,40 +299,7 @@ def damage_rolls_from_stats(attacker_stats, attacker_types, attacker_boosts,
         a = attacker_stats.get("spa", 0) * _stage_mult(ab.get("spa", 0))
         d = defender_stats.get("spd", 0) * _stage_mult(db_.get("spd", 0))
 
-    if weather == "sand" and category == "special" and "Rock" in defender_types:
-        d *= 1.5
-    elif weather == "snow" and category == "physical" and "Ice" in defender_types:
-        d *= 1.5
-    if a == 0 or d == 0:
-        return []
-
-    base = ((2 * 50) // 5 + 2) * power * int(a) // int(d)
-    base = base // 50 + 2
-    if include_spread and _is_spread(mv, is_doubles):
-        base = int(base * 0.75)
-    wm = _weather_mult(weather, mv["type"])
-    if wm != 1.0:
-        base = int(base * wm)
-    if crit:
-        base = int(base * 1.5)
-
-    rolls = [int(base * (85 + i) / 100) for i in range(16)]
-
-    stab = 1.5 if mv["type"] in attacker_types else 1.0
-    eff = _effectiveness(mv["type"], defender_types)
-    burn_m = 0.5 if (burn and category == "physical" and attacker_ability != "Guts") else 1.0
-    terrain_m = _terrain_mult(terrain, mv["type"]) if attacker_grounded else 1.0
-    screen_m = _screen_mult(category, is_doubles, reflect, light_screen,
-                            aurora_veil, crit)
-
-    out = []
-    for r in rolls:
-        r = int(r * stab)
-        r = int(r * eff)
-        r = int(r * burn_m)
-        r = int(r * terrain_m)
-        r = int(r * screen_m)
-        if eff > 0 and r < 1:
-            r = 1
-        out.append(r)
-    return out
+    return _rolls_core(mv, a, d, attacker_types, defender_types, 50,
+                       is_doubles, include_spread, crit, burn, weather, terrain,
+                       attacker_grounded, attacker_ability,
+                       reflect, light_screen, aurora_veil)
