@@ -17,7 +17,7 @@ paths  <-- regmc_db, state_encoder, showdown_validator, damage, opp_model, ga_co
 regmc_db <-- damage, ga_core, audit_before_launch
 damage <-- smart_player, doubles_eval, opp_model, speed_model, doubles_pilot
 opp_model <-- speed_model
-regmc_db <-- battle_memory   (move priority); battle_memory <-- (future) turn_sim, vgc_pilot
+regmc_db <-- battle_memory   (move priority); battle_memory <-- vgc_pilot; speed_model + doubles_eval <-- turn_sim <-- doubles_pilot (flag)
 opp_model, doubles_eval, smart_player <-- doubles_pilot
 battle <-- ga_core, eval            (battle lazily imports bc_player / doubles_pilot / vgc_pilot)
 state_encoder <-- bc_model <-- bc_player, bc_train ; state_encoder <-- bc_player, bc_train
@@ -95,12 +95,21 @@ Pure-logic joint scoring of a PAIR of attack actions (numpy + damage; no poke_en
 - Dataclasses `Hypothesis` (optional `types` overrides the combatant's types for that hypothesis, used for post-Mega forms), `Combatant, Attacker, Action`; `Evaluator` (roll cache, `p_hit = accuracy * (1 - immune)`, two attackers on one target combined via outer sum of rolls, `_hits` at `:117`); `choose_pair` (index 0 is the vanilla baseline; deviate only if gain > `min_gain`, `:153-171`).
 - Explicitly not modelled: speed order, Protect/Fake Out/redirection, retaliation, secondary effects, defender item/ability modifiers (`:14-16`).
 
-### doubles_pilot.py (219 lines)
+### doubles_pilot.py (~270 lines)
 `DoublesPilot(SimpleHeuristicsPlayer)`: vanilla decision, then re-picks move + target of both attackers jointly when both slots chose plain damaging moves.
 - Constants `LOCKED_MOVES`, `UNMODELLED_MOVES` (leave vanilla's choice), item/ability multipliers (Choice Band/Specs, Huge/Pure Power, Life Orb).
 - `_attacker` (needs `mon.stats`), `_foe` (opp_model mixture; unknown species returns base), `_ally`, `_action`, `_improve` (skips on force_switch; never Megas, `VGCPilot` adds it), `choose_move` (any exception falls back to base; `stats_counter` = turns/overrides/errors).
-- Env: `DOUBLES_KO_BONUS`, `DOUBLES_MIN_GAIN` (`doubles_pilot.py:70-73`; constructor kwargs win).
+- Env: `DOUBLES_KO_BONUS`, `DOUBLES_MIN_GAIN`, `DOUBLES_TURN_SIM=1` (constructor kwargs win). `use_turn_sim` (default off) swaps the `Evaluator` for `turn_sim.TurnSim`; inputs built by `_our_speed`, `_foe_info` (speed belief via `speed_model.belief_for(...).speeds(mods, mega=_mega_prob)`, known attack moves or a Body Slam / Hyper Voice proxy) and `_speed_mods` (stage, paralysis, Tailwind, Scarf, weather, terrain); Trick Room from `battle.fields`. Counter `sim_turns`.
 - Imports `damage, doubles_eval, opp_model` and four helpers from `smart_player` (`_boosts_dict, _terrain_name, _type_to_db, _weather_name`). Torch-free; created lazily by `battle.make_player` for `pilot="doubles"`; `VGCPilot` subclasses it.
+
+### turn_sim.py (new)
+Pure one-turn simulation, drop-in for `doubles_eval.Evaluator` (`TurnSim(attackers, world, our_speed, foes, trick_room, ...)`, same `pair_value`/`choose_pair`).
+- Plays the turn in move order (priority, then Speed, Trick Room reverses). `FoeInfo(moves, speeds)`: `speeds` = `[(weight, effective Speed)]` from `speed_model` (Speed `None` = coin flip); order is collapsed to P(first k of our sorted actions move before this foe).
+- HP is a probability vector per combatant; an actor acts with the probability it is still alive; accuracy per hit. Single-target moves whose target already fainted retarget to the other foe (ours and the foe's).
+- Foe: ONE attack per turn, best known damaging move on its best target, picked once by expected value (stand-in for `opp_actions.py`). Foe hypotheses pruned to the 4 heaviest.
+- Value = foe (HP fraction + KO_BONUS * P(KO)) minus ours (retaliation and own spread damage). With no foe actions it equals the Evaluator.
+- Not modelled: Protect / Fake Out / switches, crits, secondary effects, items/abilities on the foe's damage, foe Speed correlated with its damage hypothesis (independent except via the Mega q), Unburden/Quick Feet/Slow Start, Quick Claw/Custap.
+- Tests: `tests/test_turn_sim.py` (12: order, Trick Room, priority, retaliation prevention, unknown Speed, Mega q mixture, retargeting, spread, speed of `choose_pair` ~0.17s for 36 pairs, pilot wiring with real `Pokemon`).
 
 ### mega_model.py (new)
 Foe Mega prediction from real ladder replays. `candidates(mem, side, turn=None)` = active, non-fainted, not-yet-Mega'd mons of Mega-capable species while the side's Mega is unused, with `k` (turns already had the chance = turn - max(switch_in_turn+1, 1)), `ncand`, `lead`, item flags. `p_mega_now(species, k, ncand, lead, item, consumed)` = cell table (`cell_key`: k0 lead/back, k1, k2, k3+ x 1|2 candidates) x per-species factor from `data/mega_rates.json`; revealed non-stone item -> 0, consumed item -> 0.02. `foe_mega_probs(mem, side)` renormalises so a side's probabilities sum to at most 1 (one Mega per side). `conditional_q(p_now, form_mass)` turns the marginal into P(Megas | set carries the stone). `mega_gain(species, stone)` = (offence gain, Speed gain) for our own Mega choice.

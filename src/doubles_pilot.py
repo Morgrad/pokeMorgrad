@@ -9,8 +9,10 @@ Layering (deliberately conservative):
      left exactly as vanilla chose them.
   3. Any exception, forced switch, or no-gain result falls back to the vanilla order.
 
-Mega evolution is not used: poke_env's heuristic never mega-evolves, and keeping
-that behaviour isolates the effect of target allocation.
+Optional `use_turn_sim` (env DOUBLES_TURN_SIM=1) scores the pairs with src.turn_sim instead:
+move order (speed_model), foe retaliation and retargeting. Off by default.
+
+Mega evolution is not used here: poke_env's heuristic never mega-evolves (VGCPilot adds it).
 """
 from __future__ import annotations
 
@@ -19,12 +21,12 @@ import os
 from functools import lru_cache
 from typing import Dict, List, Optional
 
-from poke_env.battle import DoubleBattle, Move, Pokemon
+from poke_env.battle import DoubleBattle, Field, Move, Pokemon, SideCondition
 from poke_env.battle.status import Status
 from poke_env.player import SimpleHeuristicsPlayer
 from poke_env.player.battle_order import DoubleBattleOrder, SingleBattleOrder
 
-from src import damage, opp_model
+from src import damage, opp_model, speed_model, turn_sim
 from src import doubles_eval as DE
 from src.mega_model import conditional_q
 from src.smart_player import _boosts_dict, _terrain_name, _type_to_db, _weather_name
@@ -66,14 +68,16 @@ def _is_attack_candidate(move: Move) -> bool:
 
 class DoublesPilot(SimpleHeuristicsPlayer):
     def __init__(self, *args, ko_bonus: Optional[float] = None, min_gain: Optional[float] = None,
-                 **kwargs):
+                 use_turn_sim: Optional[bool] = None, **kwargs):
         super().__init__(*args, **kwargs)
         # env overrides let eval sweeps tune without code edits
         self.ko_bonus = ko_bonus if ko_bonus is not None else float(
             os.environ.get("DOUBLES_KO_BONUS", DE.KO_BONUS))
         self.min_gain = min_gain if min_gain is not None else float(
             os.environ.get("DOUBLES_MIN_GAIN", DE.MIN_GAIN))
-        self.stats_counter = {"turns": 0, "overrides": 0, "errors": 0}
+        self.use_turn_sim = use_turn_sim if use_turn_sim is not None else (
+            os.environ.get("DOUBLES_TURN_SIM", "0") == "1")
+        self.stats_counter = {"turns": 0, "overrides": 0, "errors": 0, "sim_turns": 0}
 
     def choose_move(self, battle):
         base = super().choose_move(battle)
@@ -142,6 +146,35 @@ class DoublesPilot(SimpleHeuristicsPlayer):
                   for t in _move_types()}
         return DE.Combatant(hyps, types, _boosts_dict(mon), False,
                             {t: p for t, p in immune.items() if p > 0})
+
+    # ---- turn_sim inputs ----------------------------------------------------------------
+
+    @staticmethod
+    def _speed_mods(mon: Pokemon, battle: DoubleBattle, own: bool, scarf: bool = False) -> speed_model.SpeedMods:
+        conds = battle.side_conditions if own else battle.opponent_side_conditions
+        return speed_model.SpeedMods(
+            stage=int(mon.boosts.get("spe", 0)), paralyzed=mon.status == Status.PAR,
+            tailwind=SideCondition.TAILWIND in conds, scarf=scarf,
+            weather=_weather_name(battle), terrain=_terrain_name(battle))
+
+    def _our_speed(self, mon: Pokemon, battle: DoubleBattle) -> Optional[int]:
+        spe = (mon.stats or {}).get("spe")
+        if spe is None:
+            return None
+        scarf = opp_model.to_id(mon.item or "") == "choicescarf"
+        ability = opp_model.to_id(mon.ability) if mon.ability else None
+        return speed_model.effective_speed(int(spe), self._speed_mods(mon, battle, True, scarf), ability)
+
+    def _foe_info(self, mon: Pokemon, battle: DoubleBattle, comb: DE.Combatant) -> turn_sim.FoeInfo:
+        belief = speed_model.belief_for(mon.species, known_ability=mon.ability, item=mon.item,
+                                        moves_seen=list(mon.moves))
+        speeds = belief.speeds(self._speed_mods(mon, battle, False), self._mega_prob(mon)) \
+            if belief else [(1.0, None)]
+        moves = [m.id for m in mon.moves.values() if _is_attack_candidate(m)]
+        if not moves:      # nothing revealed: assume a neutral move off its better attacking stat
+            st = comb.hyps[0].stats
+            moves = ["bodyslam" if st["atk"] >= st["spa"] else "hypervoice"]
+        return turn_sim.FoeInfo(moves, speeds)
 
     def _ally(self, mon: Pokemon) -> Optional[DE.Combatant]:
         stats = {k: int(v) for k, v in (mon.stats or {}).items() if v is not None}
@@ -232,8 +265,17 @@ class DoublesPilot(SimpleHeuristicsPlayer):
         if len(cand_orders[0]) == 1 and len(cand_orders[1]) == 1:
             return base
 
-        ev = DE.Evaluator(attackers, world, _weather_name(battle), _terrain_name(battle),
-                          ko_bonus=self.ko_bonus)
+        if self.use_turn_sim:
+            ours = {i: self._our_speed(battle.active_pokemon[i], battle) for i in attackers}
+            foes = {f"o{i}": self._foe_info(mon, battle, world[f"o{i}"])
+                    for i, mon in enumerate(battle.opponent_active_pokemon) if f"o{i}" in world}
+            ev = turn_sim.TurnSim(attackers, world, {i: v for i, v in ours.items() if v is not None},
+                                  foes, Field.TRICK_ROOM in battle.fields, _weather_name(battle),
+                                  _terrain_name(battle), ko_bonus=self.ko_bonus)
+            self.stats_counter["sim_turns"] += 1
+        else:
+            ev = DE.Evaluator(attackers, world, _weather_name(battle), _terrain_name(battle),
+                              ko_bonus=self.ko_bonus)
         ia, ib, _, _ = DE.choose_pair(ev, cand_actions[0], cand_actions[1], self.min_gain)
         if (ia, ib) == (0, 0):
             return base
