@@ -27,7 +27,7 @@ REPO = Path.home() / "pokeMorgrad"
 sys.path.insert(0, str(REPO))
 from src import regmc_db as DB
 
-SCRAPED = Path("/tmp/vgc_scraped")
+SCRAPED = REPO / "data" / "scraped" / "vgcpastes" / "teams"
 OUT_BUILD = REPO / "data" / "species_build_priors.corpus.json"
 OUT_ABILITY = REPO / "data" / "species_ability_priors.corpus.json"
 

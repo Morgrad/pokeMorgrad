@@ -1180,12 +1180,10 @@ distrusted (Decidueye-Hisui, Lycanroc, Lycanroc-Midnight, Meowstic-F, Ninetales-
 Samurott-Hisui, Slowbro-Galar, the three Tauros-Paldea forms, Typhlosion-Hisui). Curly apostrophes in move names.
 
 **Known issues.**
-- Pre-Mega key mixes populations: corpus `Garchomp` includes Mega holders, the metavgc `garchomp` page is mostly
-  non-Mega builds (top build comes out Modest 48%). Better: weight the base and `-mega` pages by P(mega).
+- ~~Pre-Mega key mixes populations~~ (Garchomp): solved in 5.24 by set archetypes, not by P(mega) weighting.
 - DB has an empty movepool for Vivillon-Fancy, Vivillon-Pokeball, Gourgeist-Super, Polteageist-Antique,
   Sinistcha-Masterpiece (fall back to the base species' pool). Ogerpon `-tera` slugs ignored.
-- `build_ev_priors.py` still reads `/tmp/vgc_scraped`, which no longer exists, so it cannot regenerate the
-  corpus files until the scrape is redone (`tools/scrape_vgcpastes.py`). The `.corpus.json` files are the frozen input.
+- ~~`build_ev_priors.py` read `/tmp/vgc_scraped`~~: fixed in 5.24 (reads `data/scraped/vgcpastes/teams`).
 - pokebase.app and pokemon-zone.com deliberately not scraped (robots / Cloudflare).
 
 **Rollback.** Git tag `pre-blended-priors` (`git checkout pre-blended-priors -- data/`) and file copies in
@@ -1193,3 +1191,47 @@ Samurott-Hisui, Slowbro-Galar, the three Tauros-Paldea forms, Typhlosion-Hisui).
 
 **Next.** Refine the pre-Mega mixture; extend the corpus from the sheet's 647 teams; use the item priors for
 Scarf (5.22 deferred item 1); then `battle_memory.py` / `turn_sim.py`.
+
+### 5.24 Set archetypes, Garchomp/Mega-Z correctness, corpus extension (2026-10-16)
+
+**Trigger.** Garchomp audit: the marginal priors mixed the regular physical Garchomp (Life Orb / Choice Scarf, Jolly/Adamant)
+with the Mega-Z special one (Garchompite Z, Modest), and the metavgc pages are Z-blind (no Garchomp-Mega-Z page; Absol-Mega-Z
+shows Absolite 100%). User gate: nothing of `battle_memory.py` starts until Garchomp is right on spread + moves + item.
+
+**Done.**
+- Corpus extended: `tools/scrape_vgcpastes.py fetch-csv | filter-balanced --all-tournaments | fetch-teams` now writes under
+  `data/scraped/vgcpastes/` (gitignored, was /tmp): 558 teams (all EVs=Yes teams, dedup by pokepaste id). Corpus priors
+  regenerated (`build_ev_priors.py` now reads that dir: 166 species), then `blend_priors.py`.
+- `tools/build_archetypes.py` -> `data/species_archetypes.json` (tracked): 648 unique teams (regional_teams + scraped, dedup
+  by content), 3888 sets, 145 species, 612 archetypes. Archetype = (item, nature) group of real sets with spreads, move counts,
+  ability counts. A Mega form is stored under its base species (pastes carry the base + stone), `form` comes from the stone.
+  metavgc is NOT used here, so its Z-blind pages cannot skew the Z sets.
+- `src/archetypes.py`: posterior = group count x P(evidence | group); revealed item (mismatch x0.02), Mega form (only groups
+  whose stone yields it), revealed moves (smoothed K=2, floor 0.02), ability. Soft, so a paste that omits a move never zeroes a set.
+- `src/opp_model.py`: `opponent_builds(species, k, item, moves_seen, ability)` uses archetypes for species with >= 5 real sets
+  (67 species, incl. Garchomp 126, Lucario 32, Absol 17) and the blended marginal priors otherwise (metavgc fills the thin species).
+  `Build` gained `item`, `form`, `form_stats` (stats after Mega). Public `item_distribution`, `move_distribution`.
+  A Mega species ignores the ability evidence (the table holds pre-Mega paste abilities).
+- `src/speed_model.py`: `belief_for(species, known_ability, item, moves_seen)`; hypotheses carry `scarf` (an unrevealed
+  Choice Scarf set is modelled by its archetype share) and `mega_stat`; `p_faster(..., mega=True)` uses post-Mega Speed
+  (Garchomp-Z 154 pre-Mega, 203 after). Closes deferred items "unrevealed Scarf" and "Mega speed changes" (the caller still has to
+  decide whether the foe Megas this turn: that is `turn_sim`'s job).
+- `src/doubles_pilot._foe` now passes the foe's revealed item, moves and ability into `opponent_builds`.
+- DB: `Lucario-Mega-Z` was dropped because Showdown flags Aura Guard as `isNonstandard: Future`; `build_regmc_db.js` now keeps a
+  Mega's inherent ability (392 species). Z lines in the DB: Absol-Mega-Z, Garchomp-Mega-Z, Lucario-Mega-Z.
+- Tests: `tests/test_archetypes.py` (6 synthetic), `tests/test_mega_z_lines.py` (10 real-data golden tests). Both are in `tools/verify.sh`.
+
+**Garchomp acceptance (all pass on real data).** No info: Garchompite Z Modest 58% top, Z mass 68% of the top 6. Scarf or Life Orb
+revealed: Z mass < 5%. Power Gem / Draco Meteor / Earth Power / Flamethrower: Z mass > 90%, top build Modest 32 SpA. Dragon Claw /
+Stomping Tantrum / Rock Slide: Z mass < 15%, Atk > SpA. `Garchomp-Mega-Z`: Spe 203, SpA 212, Levitate; plain `Garchomp-Mega`
+is a separate form (Sand Force). Revealed Garchompite Z + Power Gem: item posterior 91% Z.
+
+**Known issues / limits.**
+- Only 67 of 145 corpus species have >= 5 sets; the rest use the marginal blend. Rare Mega form with 1 set (plain Garchompite) is a single build.
+- The foe's `mon.item` stays `unknown_item` after it Megas (poke_env), so a Mega'd foe is identified by species, not item.
+- The mega decision itself (does the foe Mega this turn?) is not modelled; `p_faster(mega=...)` takes it as an input.
+- Still deferred: Unburden / Quick Feet / Slow Start, Quick Claw / Custap / Lagging Tail / Stall, speed stage 2 (observed order).
+- `tools/verify.sh` stops at `ruff` when it is not installed.
+
+**Next.** `battle_memory.py` (decide event source: `battle._replay_data` vs overriding `_handle_battle_message`), `turn_sim.py`,
+mega as the first visible feature, speed stage 2.

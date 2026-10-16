@@ -69,6 +69,8 @@ python tests/test_damage.py
 python tests/test_doubles_eval.py
 python tests/test_speed_model.py
 python tests/test_blend_priors.py
+python tests/test_archetypes.py
+python tests/test_mega_z_lines.py
 ```
 Each file inserts the repo root into `sys.path`, so it works from any cwd with the venv active. The `__main__` runner iterates `test_*` functions in sorted order, prints results, exits 1 on failure. It catches only `AssertionError`, so any other exception crashes the runner with a traceback instead of a per-test fail.
 
@@ -85,6 +87,9 @@ Pins `src/damage.py` outputs. Pins were captured from the implementation, not an
 
 ### tests/test_blend_priors.py (4 tests)
 Pure helpers of `tools/blend_priors.py`: nature canonicalization, misspelled mega stones, corpus-vs-metavgc weighting, Mega/regional ability legality.
+
+### tests/test_archetypes.py (6 tests) and tests/test_mega_z_lines.py (10 tests)
+Synthetic posterior tests (count weighting, item/move reveal, Mega-form filter) and real-data golden tests for Garchomp / Lucario / Absol Mega-Z lines (set given item + moves, post-Mega Speed 203, unrevealed Scarf, Levitate vs Sand Force).
 
 ### tests/test_speed_model.py (9 tests)
 Covers `effective_speed` modifiers, ability/weather/terrain conditions, `p_faster` (certain, tie, Trick Room, weighted mixture, opponent mods, empty belief), `belief_for` on real species and `opp_model.ability_distribution`. Run: `python tests/test_speed_model.py`.

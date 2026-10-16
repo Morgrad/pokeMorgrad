@@ -52,7 +52,10 @@ for (const s of d.species.all()) {
     for (const key of Object.keys(s.abilities)) {
         const aName = s.abilities[key];
         const a = d.abilities.get(aName);
-        if (a && a.exists && !a.isNonstandard) abils.push(aName);
+        // a legal Mega keeps its inherent ability even when Showdown flags it "Future"
+        // (Lucario-Mega-Z's Aura Guard); without this the species vanished from the DB
+        const isMega = (s.forme || '').startsWith('Mega');
+        if (a && a.exists && (!a.isNonstandard || isMega)) abils.push(aName);
     }
     if (abils.length === 0) continue;
 

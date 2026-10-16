@@ -61,16 +61,19 @@ Champions-format damage estimator mirroring Showdown's `data/mods/champions` mat
 
 ### opp_model.py (~155 lines)
 Torch-free, poke_env-free model of hidden opposing builds.
-- `Build` dataclass (weight, stats, max_hp); `opponent_builds(species)` returns up to `TOP_K=3` weighted builds from `data/species_build_priors.json`, else a generic spread (Adamant/Modest, 32 HP / 32 offense / 2 Spe).
+- `Build` dataclass (weight, nature, evs, stats, item, form, form_stats; `max_hp`); `opponent_builds(species, k=None, item=None, moves_seen=(), ability=None)`: with >= 5 real sets in `data/species_archetypes.json` (via `src/archetypes.py`) it returns the top `ARCHETYPE_K=6` builds of the posterior given the revealed item / moves / ability / Mega form (`form_stats` = stats after the Mega); otherwise up to `TOP_K=3` marginal builds from `data/species_build_priors.json`, else a generic spread (Adamant/Modest, 32 HP / 32 offense / 2 Spe). `item_distribution` / `move_distribution(species, item, moves_seen)` give the marginals ({} without real sets). See STATE.md §5.24.
 - `_prior_key` falls back to the base species for `-Mega` forms; `resolve_species`, `stats_for`, `ability_distribution(species, known_ability=None)` -> `{ability id: prob}` (a Mega form returns its DB Mega ability with certainty, because the priors hold the paste/pre-Mega ability) from `data/species_ability_priors.json` (revealed ability = certain, DB abilities uniform if no prior); `immunity_prob(species, move_type, ability)` is built on it with the `IMMUNITY_ABILITIES` map. LEVEL=50.
-- Imports `damage`, `paths`. Importers: doubles_pilot, speed_model, tests.
+- Imports `archetypes`, `damage`, `paths`. Importers: doubles_pilot, speed_model, tests.
+
+### archetypes.py (new 2026-10-16)
+Pure posterior over real-set archetypes (item+nature groups per species, `data/species_archetypes.json`). `posterior(entry, item, moves_seen, ability, form)` -> `[(weight, archetype)]`: count x P(evidence|group), item mismatch x0.02, smoothed move/ability likelihood (K=2, floor 0.02), Mega-form filter with fallback. `item_distribution`, `move_distribution`, `load_table`. Tests: `tests/test_archetypes.py`, `tests/test_mega_z_lines.py`.
 
 ### speed_model.py (~105 lines, new 2026-10-16, stage 1 of the new VGC pilot)
 Pure (torch-free, poke_env-free) probability that we move before an opposing mon. See STATE.md §5.22 for the plan.
 - `SpeedMods(stage, paralyzed, tailwind, scarf, weather, terrain)`: battle-time modifiers on one mon's Speed. `effective_speed(stat, mods, ability)`: floor after the stage multiplier, then Scarf x1.5, weather/terrain speed ability x2 (`SPEED_ABILITIES`: swiftswim/rain, chlorophyll/sun, sandrush/sand, slushrush/snow, surgesurfer/electric), Tailwind x2, paralysis x0.5.
-- `SpeedHypothesis(weight, stat, ability)`; `SpeedBelief(hypotheses)` (weights renormalized): `speeds(mods)`, `p_faster(our_speed, mods, trick_room)` (ties 0.5, Trick Room inverts, empty belief = 0.5).
-- `belief_for(species, known_ability=None)`: top-3 builds (opp_model) x ability distribution. Stage 1 = prior only. Stage 2 (not built): `observe_*` to reweight from observed move order.
-- Not modelled: Scarf on an unrevealed item, Unburden/Quick Feet/Slow Start, Mega speed changes, Quick Claw/Custap/Lagging Tail/Stall.
+- `SpeedHypothesis(weight, stat, ability, scarf=False, mega_stat=None)`; `SpeedBelief(hypotheses)` (weights renormalized): `speeds(mods, mega)`, `p_faster(our_speed, mods, trick_room, mega)` (`mega=True`: sets that Mega use the post-Mega Speed) (ties 0.5, Trick Room inverts, empty belief = 0.5).
+- `belief_for(species, known_ability=None, item=None, moves_seen=())`: opp_model builds (conditioned on item/moves) x ability distribution; a Choice Scarf set carries `scarf`, a Mega set carries `mega_stat`. Stage 1 = prior only. Stage 2 (not built): `observe_*` to reweight from observed move order.
+- Not modelled: Unburden/Quick Feet/Slow Start, Quick Claw/Custap/Lagging Tail/Stall. (Unrevealed Scarf and Mega speed are modelled via archetypes.)
 - Tests: `tests/test_speed_model.py` (9).
 
 ### doubles_eval.py (171 lines)

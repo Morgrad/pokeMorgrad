@@ -6,6 +6,26 @@
         "hp": 2,
         "spe": 32
       },
+      "nature": "Adamant",
+      "count": 3
+    },
+    {
+      "evs": {
+        "atk": 19,
+        "def": 4,
+        "hp": 11,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "hp": 1,
+        "spd": 1,
+        "spe": 32
+      },
       "nature": "Jolly",
       "count": 2
     }
@@ -13,9 +33,10 @@
   "Absol-Mega-Z @ Absolite Z": [
     {
       "evs": {
-        "atk": 32,
-        "hp": 2,
-        "spe": 32
+        "def": 11,
+        "hp": 21,
+        "spd": 4,
+        "spe": 30
       },
       "nature": "Jolly",
       "count": 1
@@ -29,7 +50,7 @@
         "spe": 32
       },
       "nature": "Jolly",
-      "count": 2
+      "count": 3
     },
     {
       "evs": {
@@ -51,7 +72,19 @@
         "spe": 32
       },
       "nature": "Jolly",
-      "count": 3
+      "count": 6
+    }
+  ],
+  "Alakazam @ Alakazite": [
+    {
+      "evs": {
+        "def": 1,
+        "hp": 1,
+        "spa": 32,
+        "spe": 32
+      },
+      "nature": "Timid",
+      "count": 1
     }
   ],
   "Annihilape @ Choice Scarf": [
@@ -62,7 +95,19 @@
         "spe": 32
       },
       "nature": "Jolly",
-      "count": 6
+      "count": 2
+    }
+  ],
+  "Arcanine-Hisui @ Choice Scarf": [
+    {
+      "evs": {
+        "atk": 32,
+        "def": 1,
+        "spd": 1,
+        "spe": 32
+      },
+      "nature": "Adamant",
+      "count": 1
     }
   ],
   "Arcanine-Hisui @ Focus Sash": [
@@ -73,7 +118,7 @@
         "spe": 32
       },
       "nature": "Jolly",
-      "count": 34
+      "count": 37
     },
     {
       "evs": {
@@ -83,18 +128,98 @@
         "spe": 32
       },
       "nature": "Jolly",
-      "count": 8
+      "count": 13
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "def": 1,
+        "hp": 1,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 3
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "def": 1,
+        "spd": 1,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 3
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "def": 2,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 2
     }
   ],
-  "Archaludon @ Leftovers": [
+  "Archaludon @ Choice Scarf": [
     {
       "evs": {
         "hp": 2,
         "spa": 32,
         "spe": 32
       },
+      "nature": "Timid",
+      "count": 2
+    }
+  ],
+  "Archaludon @ Leftovers": [
+    {
+      "evs": {
+        "def": 1,
+        "hp": 32,
+        "spa": 1,
+        "spd": 32
+      },
+      "nature": "Bold",
+      "count": 4
+    },
+    {
+      "evs": {
+        "hp": 32,
+        "spa": 5,
+        "spd": 26,
+        "spe": 3
+      },
       "nature": "Modest",
-      "count": 15
+      "count": 3
+    },
+    {
+      "evs": {
+        "hp": 32,
+        "spa": 1,
+        "spd": 32,
+        "spe": 1
+      },
+      "nature": "Calm",
+      "count": 3
+    },
+    {
+      "evs": {
+        "hp": 32,
+        "spa": 25,
+        "spe": 9
+      },
+      "nature": "Modest",
+      "count": 3
+    },
+    {
+      "evs": {
+        "def": 1,
+        "hp": 30,
+        "spd": 21,
+        "spe": 14
+      },
+      "nature": "Bold",
+      "count": 3
     },
     {
       "evs": {
@@ -109,32 +234,22 @@
     {
       "evs": {
         "def": 1,
-        "hp": 32,
+        "hp": 30,
         "spa": 1,
-        "spd": 32
+        "spd": 19,
+        "spe": 15
       },
       "nature": "Bold",
       "count": 3
     },
     {
       "evs": {
-        "def": 1,
         "hp": 32,
-        "spa": 5,
+        "spa": 6,
         "spd": 25,
         "spe": 3
       },
       "nature": "Modest",
-      "count": 2
-    },
-    {
-      "evs": {
-        "def": 1,
-        "hp": 30,
-        "spd": 25,
-        "spe": 10
-      },
-      "nature": "Calm",
       "count": 2
     },
     {
@@ -150,32 +265,41 @@
     {
       "evs": {
         "hp": 32,
-        "spa": 1,
-        "spd": 32,
-        "spe": 1
+        "spa": 5,
+        "spd": 29
+      },
+      "nature": "Modest",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 1,
+        "hp": 32,
+        "spa": 5,
+        "spd": 25,
+        "spe": 3
+      },
+      "nature": "Modest",
+      "count": 2
+    },
+    {
+      "evs": {
+        "hp": 32,
+        "spa": 7,
+        "spd": 19,
+        "spe": 8
+      },
+      "nature": "Modest",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 1,
+        "hp": 30,
+        "spd": 25,
+        "spe": 10
       },
       "nature": "Calm",
-      "count": 2
-    },
-    {
-      "evs": {
-        "def": 1,
-        "hp": 30,
-        "spd": 21,
-        "spe": 14
-      },
-      "nature": "Bold",
-      "count": 2
-    },
-    {
-      "evs": {
-        "def": 1,
-        "hp": 30,
-        "spa": 1,
-        "spd": 19,
-        "spe": 15
-      },
-      "nature": "Bold",
       "count": 2
     }
   ],
@@ -187,7 +311,7 @@
         "spe": 32
       },
       "nature": "Modest",
-      "count": 7
+      "count": 9
     },
     {
       "evs": {
@@ -197,19 +321,10 @@
         "spe": 32
       },
       "nature": "Modest",
-      "count": 2
+      "count": 4
     }
   ],
   "Armarouge @ Life Orb": [
-    {
-      "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Modest",
-      "count": 2
-    },
     {
       "evs": {
         "hp": 29,
@@ -217,15 +332,55 @@
         "spd": 5
       },
       "nature": "Quiet",
+      "count": 4
+    },
+    {
+      "evs": {
+        "hp": 9,
+        "spa": 32,
+        "spe": 25
+      },
+      "nature": "Modest",
+      "count": 4
+    },
+    {
+      "evs": {
+        "def": 2,
+        "hp": 32,
+        "spa": 32
+      },
+      "nature": "Quiet",
+      "count": 2
+    },
+    {
+      "evs": {
+        "hp": 32,
+        "spa": 32,
+        "spd": 2
+      },
+      "nature": "Modest",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 2,
+        "hp": 10,
+        "spa": 32,
+        "spd": 2,
+        "spe": 20
+      },
+      "nature": "Modest",
       "count": 2
     }
   ],
   "Armarouge @ Twisted Spoon": [
     {
       "evs": {
-        "hp": 2,
+        "def": 1,
+        "hp": 9,
         "spa": 32,
-        "spe": 32
+        "spd": 1,
+        "spe": 23
       },
       "nature": "Modest",
       "count": 1
@@ -239,7 +394,16 @@
         "spe": 32
       },
       "nature": "Jolly",
-      "count": 15
+      "count": 10
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "def": 2,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 7
     },
     {
       "evs": {
@@ -269,9 +433,27 @@
       },
       "nature": "Jolly",
       "count": 2
+    },
+    {
+      "evs": {
+        "atk": 20,
+        "def": 14,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 2
     }
   ],
   "Basculegion @ Focus Sash": [
+    {
+      "evs": {
+        "atk": 32,
+        "def": 2,
+        "spe": 32
+      },
+      "nature": "Adamant",
+      "count": 7
+    },
     {
       "evs": {
         "atk": 32,
@@ -279,7 +461,7 @@
         "spe": 32
       },
       "nature": "Adamant",
-      "count": 4
+      "count": 5
     },
     {
       "evs": {
@@ -288,17 +470,48 @@
         "spe": 32
       },
       "nature": "Jolly",
-      "count": 2
+      "count": 3
     }
   ],
   "Basculegion @ Life Orb": [
+    {
+      "evs": {
+        "atk": 31,
+        "def": 11,
+        "hp": 4,
+        "spe": 20
+      },
+      "nature": "Adamant",
+      "count": 3
+    },
+    {
+      "evs": {
+        "atk": 18,
+        "def": 4,
+        "hp": 4,
+        "spd": 15,
+        "spe": 25
+      },
+      "nature": "Adamant",
+      "count": 3
+    },
     {
       "evs": {
         "atk": 32,
         "hp": 2,
         "spe": 32
       },
-      "nature": "Jolly",
+      "nature": "Adamant",
+      "count": 3
+    },
+    {
+      "evs": {
+        "atk": 18,
+        "def": 32,
+        "hp": 6,
+        "spe": 10
+      },
+      "nature": "Adamant",
       "count": 2
     },
     {
@@ -310,29 +523,41 @@
       },
       "nature": "Adamant",
       "count": 2
+    },
+    {
+      "evs": {
+        "atk": 28,
+        "def": 11,
+        "spe": 27
+      },
+      "nature": "Adamant",
+      "count": 2
     }
   ],
   "Basculegion @ Mystic Water": [
     {
       "evs": {
-        "atk": 32,
-        "hp": 2,
-        "spe": 32
+        "atk": 23,
+        "def": 13,
+        "hp": 4,
+        "spe": 26
       },
-      "nature": "Jolly",
-      "count": 1
+      "nature": "Adamant",
+      "count": 2
     }
   ],
-  "Basculegion-F @ Focus Sash": [
+  "Basculegion-F @ Choice Scarf": [
     {
       "evs": {
-        "hp": 2,
+        "def": 2,
         "spa": 32,
         "spe": 32
       },
       "nature": "Modest",
-      "count": 4
-    },
+      "count": 2
+    }
+  ],
+  "Basculegion-F @ Focus Sash": [
     {
       "evs": {
         "def": 1,
@@ -341,7 +566,28 @@
         "spe": 32
       },
       "nature": "Modest",
-      "count": 3
+      "count": 5
+    },
+    {
+      "evs": {
+        "hp": 2,
+        "spa": 32,
+        "spe": 32
+      },
+      "nature": "Modest",
+      "count": 2
+    }
+  ],
+  "Basculegion-F @ Life Orb": [
+    {
+      "evs": {
+        "def": 13,
+        "hp": 4,
+        "spa": 30,
+        "spe": 19
+      },
+      "nature": "Modest",
+      "count": 1
     }
   ],
   "Baxcalibur @ Baxcalibrite": [
@@ -353,31 +599,75 @@
         "spe": 26
       },
       "nature": "Adamant",
+      "count": 3
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "hp": 2,
+        "spe": 32
+      },
+      "nature": "Adamant",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "hp": 32,
+        "spd": 1,
+        "spe": 1
+      },
+      "nature": "Adamant",
+      "count": 2
+    }
+  ],
+  "Baxcalibur @ Life Orb": [
+    {
+      "evs": {
+        "atk": 32,
+        "def": 4,
+        "hp": 19,
+        "spd": 4,
+        "spe": 7
+      },
+      "nature": "Adamant",
       "count": 2
     }
   ],
   "Baxcalibur-Mega @ Baxcalibrite": [
     {
       "evs": {
-        "atk": 3,
-        "def": 2,
-        "hp": 12,
-        "spd": 18,
-        "spe": 31
+        "atk": 31,
+        "def": 1,
+        "hp": 27,
+        "spd": 1,
+        "spe": 6
       },
-      "nature": "Jolly",
+      "nature": "Adamant",
       "count": 1
+    }
+  ],
+  "Bellibolt @ Leftovers": [
+    {
+      "evs": {
+        "def": 1,
+        "hp": 32,
+        "spa": 32,
+        "spd": 1
+      },
+      "nature": "Modest",
+      "count": 2
     }
   ],
   "Blastoise @ Blastoisinite": [
     {
       "evs": {
-        "hp": 2,
+        "hp": 32,
         "spa": 32,
-        "spe": 32
+        "spd": 2
       },
-      "nature": "Modest",
-      "count": 3
+      "nature": "Quiet",
+      "count": 1
     }
   ],
   "Blastoise-Mega @ Blastoisinite": [
@@ -391,6 +681,17 @@
       "count": 3
     }
   ],
+  "Blaziken @ Blazikenite": [
+    {
+      "evs": {
+        "atk": 32,
+        "hp": 2,
+        "spe": 32
+      },
+      "nature": "Adamant",
+      "count": 2
+    }
+  ],
   "Camerupt @ Cameruptite": [
     {
       "evs": {
@@ -399,18 +700,62 @@
         "spa": 32
       },
       "nature": "Quiet",
+      "count": 4
+    }
+  ],
+  "Ceruledge @ Grassy Seed": [
+    {
+      "evs": {
+        "atk": 25,
+        "def": 2,
+        "hp": 32,
+        "spe": 7
+      },
+      "nature": "Adamant",
+      "count": 1
+    }
+  ],
+  "Charizard @ Charizardite X": [
+    {
+      "evs": {
+        "atk": 30,
+        "hp": 4,
+        "spe": 32
+      },
+      "nature": "Adamant",
       "count": 3
     }
   ],
   "Charizard @ Charizardite Y": [
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
+        "def": 14,
+        "hp": 12,
+        "spa": 8,
         "spe": 32
       },
+      "nature": "Timid",
+      "count": 4
+    },
+    {
+      "evs": {
+        "def": 12,
+        "hp": 32,
+        "spa": 1,
+        "spe": 21
+      },
       "nature": "Modest",
-      "count": 10
+      "count": 3
+    },
+    {
+      "evs": {
+        "def": 14,
+        "hp": 8,
+        "spa": 20,
+        "spe": 24
+      },
+      "nature": "Timid",
+      "count": 3
     },
     {
       "evs": {
@@ -421,16 +766,6 @@
       },
       "nature": "Timid",
       "count": 3
-    },
-    {
-      "evs": {
-        "def": 12,
-        "hp": 32,
-        "spa": 1,
-        "spe": 21
-      },
-      "nature": "Modest",
-      "count": 2
     }
   ],
   "Charizard-Mega-Y @ Charizardite Y": [
@@ -449,24 +784,17 @@
   "Corviknight @ Psychic Seed": [
     {
       "evs": {
-        "atk": 32,
-        "hp": 2,
-        "spe": 32
+        "atk": 18,
+        "def": 2,
+        "hp": 32,
+        "spd": 5,
+        "spe": 9
       },
-      "nature": "Jolly",
-      "count": 2
+      "nature": "Careful",
+      "count": 1
     }
   ],
   "Delphox @ Delphoxite": [
-    {
-      "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Modest",
-      "count": 7
-    },
     {
       "evs": {
         "def": 14,
@@ -475,7 +803,29 @@
         "spe": 32
       },
       "nature": "Timid",
+      "count": 3
+    }
+  ],
+  "Delphox @ Life Orb": [
+    {
+      "evs": {
+        "hp": 2,
+        "spa": 32,
+        "spe": 32
+      },
+      "nature": "Timid",
       "count": 2
+    }
+  ],
+  "Dragapult @ Focus Sash": [
+    {
+      "evs": {
+        "hp": 2,
+        "spa": 32,
+        "spe": 32
+      },
+      "nature": "Timid",
+      "count": 4
     }
   ],
   "Dragapult @ Life Orb": [
@@ -486,7 +836,7 @@
         "spe": 32
       },
       "nature": "Modest",
-      "count": 8
+      "count": 6
     },
     {
       "evs": {
@@ -506,7 +856,16 @@
         "spe": 32
       },
       "nature": "Modest",
-      "count": 5
+      "count": 4
+    },
+    {
+      "evs": {
+        "hp": 23,
+        "spa": 30,
+        "spe": 13
+      },
+      "nature": "Modest",
+      "count": 2
     },
     {
       "evs": {
@@ -516,6 +875,17 @@
       },
       "nature": "Modest",
       "count": 2
+    }
+  ],
+  "Dragonite @ Life Orb": [
+    {
+      "evs": {
+        "atk": 26,
+        "hp": 32,
+        "spe": 8
+      },
+      "nature": "Adamant",
+      "count": 1
     }
   ],
   "Espathra @ Electric Seed": [
@@ -537,17 +907,8 @@
         "hp": 2,
         "spe": 32
       },
-      "nature": "Jolly",
-      "count": 12
-    },
-    {
-      "evs": {
-        "atk": 32,
-        "hp": 2,
-        "spe": 32
-      },
       "nature": "Adamant",
-      "count": 5
+      "count": 15
     },
     {
       "evs": {
@@ -556,7 +917,34 @@
         "spe": 32
       },
       "nature": "Adamant",
+      "count": 7
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "hp": 2,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 4
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "def": 2,
+        "spe": 32
+      },
+      "nature": "Jolly",
       "count": 3
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "spd": 2,
+        "spe": 32
+      },
+      "nature": "Adamant",
+      "count": 2
     },
     {
       "evs": {
@@ -568,6 +956,17 @@
       "count": 2
     }
   ],
+  "Excadrill @ Life Orb": [
+    {
+      "evs": {
+        "atk": 32,
+        "hp": 2,
+        "spe": 32
+      },
+      "nature": "Adamant",
+      "count": 3
+    }
+  ],
   "Farigiraf @ Colbur Berry": [
     {
       "evs": {
@@ -576,31 +975,22 @@
         "spd": 14
       },
       "nature": "Bold",
-      "count": 1
+      "count": 2
     }
   ],
   "Farigiraf @ Grassy Seed": [
     {
       "evs": {
-        "def": 11,
-        "hp": 31,
+        "def": 31,
+        "hp": 24,
         "spa": 1,
-        "spd": 23
+        "spd": 10
       },
-      "nature": "Calm",
+      "nature": "Bold",
       "count": 1
     }
   ],
   "Farigiraf @ Sitrus Berry": [
-    {
-      "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Modest",
-      "count": 14
-    },
     {
       "evs": {
         "def": 20,
@@ -608,10 +998,85 @@
         "spd": 17
       },
       "nature": "Bold",
-      "count": 5
+      "count": 6
+    },
+    {
+      "evs": {
+        "def": 20,
+        "hp": 27,
+        "spd": 19
+      },
+      "nature": "Bold",
+      "count": 3
+    },
+    {
+      "evs": {
+        "def": 32,
+        "hp": 32,
+        "spd": 2
+      },
+      "nature": "Bold",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 20,
+        "hp": 32,
+        "spd": 14
+      },
+      "nature": "Bold",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 20,
+        "hp": 29,
+        "spd": 17
+      },
+      "nature": "Relaxed",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 16,
+        "hp": 29,
+        "spd": 21
+      },
+      "nature": "Sassy",
+      "count": 2
     }
   ],
   "Floette-Eternal @ Floettite": [
+    {
+      "evs": {
+        "def": 8,
+        "hp": 4,
+        "spa": 32,
+        "spe": 22
+      },
+      "nature": "Timid",
+      "count": 5
+    },
+    {
+      "evs": {
+        "def": 1,
+        "hp": 28,
+        "spa": 5,
+        "spe": 32
+      },
+      "nature": "Modest",
+      "count": 4
+    },
+    {
+      "evs": {
+        "def": 4,
+        "hp": 22,
+        "spa": 20,
+        "spe": 20
+      },
+      "nature": "Modest",
+      "count": 3
+    },
     {
       "evs": {
         "hp": 2,
@@ -619,7 +1084,66 @@
         "spe": 32
       },
       "nature": "Modest",
-      "count": 16
+      "count": 3
+    },
+    {
+      "evs": {
+        "def": 23,
+        "hp": 10,
+        "spa": 1,
+        "spe": 32
+      },
+      "nature": "Timid",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 14,
+        "hp": 4,
+        "spa": 26,
+        "spe": 22
+      },
+      "nature": "Timid",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 20,
+        "hp": 32,
+        "spa": 5,
+        "spe": 9
+      },
+      "nature": "Modest",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 20,
+        "hp": 27,
+        "spa": 15,
+        "spe": 4
+      },
+      "nature": "Modest",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 20,
+        "hp": 28,
+        "spa": 15,
+        "spe": 3
+      },
+      "nature": "Modest",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 29,
+        "hp": 32,
+        "spa": 5
+      },
+      "nature": "Modest",
+      "count": 2
     },
     {
       "evs": {
@@ -633,11 +1157,41 @@
     },
     {
       "evs": {
+        "def": 22,
+        "hp": 22,
+        "spa": 1,
+        "spe": 21
+      },
+      "nature": "Modest",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 22,
+        "hp": 17,
+        "spa": 5,
+        "spe": 22
+      },
+      "nature": "Modest",
+      "count": 2
+    },
+    {
+      "evs": {
         "hp": 2,
         "spa": 32,
         "spe": 32
       },
       "nature": "Timid",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 20,
+        "hp": 2,
+        "spa": 12,
+        "spe": 32
+      },
+      "nature": "Modest",
       "count": 2
     }
   ],
@@ -657,12 +1211,14 @@
   "Froslass @ Froslassite": [
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
+        "def": 8,
+        "hp": 15,
+        "spa": 9,
+        "spd": 2,
         "spe": 32
       },
-      "nature": "Modest",
-      "count": 8
+      "nature": "Timid",
+      "count": 3
     },
     {
       "evs": {
@@ -672,14 +1228,25 @@
       },
       "nature": "Timid",
       "count": 2
+    },
+    {
+      "evs": {
+        "def": 15,
+        "hp": 10,
+        "spa": 9,
+        "spe": 32
+      },
+      "nature": "Timid",
+      "count": 2
     }
   ],
   "Froslass-Mega @ Froslassite": [
     {
       "evs": {
-        "hp": 25,
-        "spd": 14,
-        "spe": 27
+        "def": 10,
+        "hp": 15,
+        "spa": 9,
+        "spe": 32
       },
       "nature": "Timid",
       "count": 1
@@ -693,22 +1260,22 @@
         "spe": 32
       },
       "nature": "Adamant",
-      "count": 5
-    },
-    {
-      "evs": {
-        "atk": 32,
-        "hp": 2,
-        "spe": 32
-      },
-      "nature": "Jolly",
-      "count": 4
+      "count": 6
     },
     {
       "evs": {
         "atk": 32,
         "hp": 6,
         "spe": 28
+      },
+      "nature": "Adamant",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 20,
+        "hp": 14,
+        "spe": 32
       },
       "nature": "Adamant",
       "count": 2
@@ -722,13 +1289,65 @@
         "spe": 32
       },
       "nature": "Modest",
-      "count": 21
+      "count": 16
+    },
+    {
+      "evs": {
+        "def": 3,
+        "hp": 11,
+        "spa": 19,
+        "spd": 3,
+        "spe": 30
+      },
+      "nature": "Modest",
+      "count": 3
+    },
+    {
+      "evs": {
+        "hp": 5,
+        "spa": 29,
+        "spe": 32
+      },
+      "nature": "Modest",
+      "count": 3
+    },
+    {
+      "evs": {
+        "def": 1,
+        "spa": 32,
+        "spd": 1,
+        "spe": 32
+      },
+      "nature": "Modest",
+      "count": 3
+    },
+    {
+      "evs": {
+        "def": 1,
+        "hp": 24,
+        "spa": 32,
+        "spd": 7,
+        "spe": 2
+      },
+      "nature": "Timid",
+      "count": 2
     },
     {
       "evs": {
         "hp": 18,
         "spa": 29,
         "spe": 19
+      },
+      "nature": "Modest",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 6,
+        "hp": 8,
+        "spa": 21,
+        "spd": 1,
+        "spe": 30
       },
       "nature": "Modest",
       "count": 2
@@ -742,6 +1361,28 @@
       },
       "nature": "Modest",
       "count": 2
+    },
+    {
+      "evs": {
+        "hp": 2,
+        "spa": 32,
+        "spe": 32
+      },
+      "nature": "Timid",
+      "count": 2
+    }
+  ],
+  "Garchomp @ Haban Berry": [
+    {
+      "evs": {
+        "atk": 1,
+        "def": 15,
+        "hp": 32,
+        "spd": 17,
+        "spe": 1
+      },
+      "nature": "Impish",
+      "count": 2
     }
   ],
   "Garchomp @ Life Orb": [
@@ -752,7 +1393,16 @@
         "spe": 32
       },
       "nature": "Jolly",
-      "count": 7
+      "count": 4
+    },
+    {
+      "evs": {
+        "atk": 28,
+        "hp": 6,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 2
     }
   ],
   "Garchomp-Mega-Z @ Garchompite Z": [
@@ -769,12 +1419,72 @@
   "Gardevoir @ Gardevoirite": [
     {
       "evs": {
+        "def": 17,
+        "hp": 28,
+        "spa": 10,
+        "spe": 11
+      },
+      "nature": "Modest",
+      "count": 5
+    },
+    {
+      "evs": {
         "hp": 2,
         "spa": 32,
         "spe": 32
       },
       "nature": "Modest",
-      "count": 7
+      "count": 3
+    },
+    {
+      "evs": {
+        "def": 9,
+        "hp": 32,
+        "spa": 25
+      },
+      "nature": "Modest",
+      "count": 3
+    },
+    {
+      "evs": {
+        "def": 15,
+        "hp": 32,
+        "spa": 15,
+        "spe": 4
+      },
+      "nature": "Modest",
+      "count": 3
+    },
+    {
+      "evs": {
+        "def": 25,
+        "hp": 32,
+        "spa": 5,
+        "spd": 3,
+        "spe": 1
+      },
+      "nature": "Modest",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 8,
+        "hp": 32,
+        "spa": 15,
+        "spe": 11
+      },
+      "nature": "Modest",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 10,
+        "hp": 32,
+        "spa": 15,
+        "spe": 9
+      },
+      "nature": "Modest",
+      "count": 2
     }
   ],
   "Gardevoir-Mega @ Gardevoirite": [
@@ -785,18 +1495,19 @@
         "spe": 11
       },
       "nature": "Modest",
-      "count": 1
+      "count": 2
     }
   ],
   "Gengar @ Gengarite": [
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
+        "def": 6,
+        "hp": 32,
+        "spd": 8,
+        "spe": 20
       },
       "nature": "Modest",
-      "count": 8
+      "count": 4
     },
     {
       "evs": {
@@ -809,36 +1520,81 @@
     },
     {
       "evs": {
-        "def": 6,
-        "hp": 32,
-        "spd": 8,
-        "spe": 20
+        "def": 1,
+        "hp": 30,
+        "spa": 1,
+        "spd": 28,
+        "spe": 6
       },
       "nature": "Modest",
       "count": 2
     }
   ],
+  "Gholdengo @ Choice Scarf": [
+    {
+      "evs": {
+        "hp": 2,
+        "spa": 32,
+        "spe": 32
+      },
+      "nature": "Modest",
+      "count": 1
+    }
+  ],
   "Gholdengo @ Focus Sash": [
     {
       "evs": {
-        "hp": 1,
+        "hp": 2,
         "spa": 32,
-        "spd": 1,
         "spe": 32
       },
-      "nature": "Timid",
+      "nature": "Modest",
+      "count": 2
+    }
+  ],
+  "Gholdengo @ Grassy Seed": [
+    {
+      "evs": {
+        "def": 11,
+        "hp": 14,
+        "spa": 27,
+        "spd": 4,
+        "spe": 10
+      },
+      "nature": "Modest",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 5,
+        "hp": 5,
+        "spa": 24,
+        "spe": 32
+      },
+      "nature": "Modest",
+      "count": 2
+    }
+  ],
+  "Gholdengo @ Leftovers": [
+    {
+      "evs": {
+        "hp": 30,
+        "spa": 7,
+        "spe": 29
+      },
+      "nature": "Modest",
       "count": 1
     }
   ],
   "Gholdengo @ Life Orb": [
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
+        "hp": 17,
+        "spa": 17,
         "spe": 32
       },
       "nature": "Modest",
-      "count": 25
+      "count": 9
     },
     {
       "evs": {
@@ -847,7 +1603,7 @@
         "spe": 32
       },
       "nature": "Timid",
-      "count": 5
+      "count": 7
     },
     {
       "evs": {
@@ -856,25 +1612,7 @@
         "spe": 32
       },
       "nature": "Timid",
-      "count": 5
-    },
-    {
-      "evs": {
-        "hp": 17,
-        "spa": 17,
-        "spe": 32
-      },
-      "nature": "Timid",
-      "count": 3
-    },
-    {
-      "evs": {
-        "hp": 17,
-        "spa": 17,
-        "spe": 32
-      },
-      "nature": "Modest",
-      "count": 3
+      "count": 7
     },
     {
       "evs": {
@@ -883,6 +1621,56 @@
         "spe": 32
       },
       "nature": "Modest",
+      "count": 6
+    },
+    {
+      "evs": {
+        "hp": 17,
+        "spa": 17,
+        "spe": 32
+      },
+      "nature": "Timid",
+      "count": 6
+    },
+    {
+      "evs": {
+        "hp": 2,
+        "spa": 32,
+        "spe": 32
+      },
+      "nature": "Modest",
+      "count": 3
+    },
+    {
+      "evs": {
+        "def": 2,
+        "hp": 27,
+        "spa": 1,
+        "spd": 22,
+        "spe": 14
+      },
+      "nature": "Modest",
+      "count": 3
+    },
+    {
+      "evs": {
+        "def": 1,
+        "hp": 1,
+        "spa": 32,
+        "spe": 32
+      },
+      "nature": "Timid",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 1,
+        "hp": 15,
+        "spa": 17,
+        "spd": 1,
+        "spe": 32
+      },
+      "nature": "Timid",
       "count": 2
     },
     {
@@ -891,6 +1679,16 @@
         "spa": 7,
         "spd": 31,
         "spe": 14
+      },
+      "nature": "Modest",
+      "count": 2
+    },
+    {
+      "evs": {
+        "hp": 17,
+        "spa": 7,
+        "spd": 15,
+        "spe": 27
       },
       "nature": "Modest",
       "count": 2
@@ -903,8 +1701,28 @@
         "spa": 32,
         "spe": 32
       },
+      "nature": "Timid",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 1,
+        "hp": 1,
+        "spa": 32,
+        "spe": 32
+      },
       "nature": "Modest",
-      "count": 1
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 1,
+        "hp": 1,
+        "spa": 32,
+        "spe": 32
+      },
+      "nature": "Timid",
+      "count": 2
     }
   ],
   "Glimmora @ Glimmoranite": [
@@ -914,20 +1732,42 @@
         "spa": 32,
         "spe": 32
       },
+      "nature": "Timid",
+      "count": 4
+    },
+    {
+      "evs": {
+        "hp": 2,
+        "spa": 32,
+        "spe": 32
+      },
       "nature": "Modest",
-      "count": 8
+      "count": 3
+    },
+    {
+      "evs": {
+        "hp": 1,
+        "spa": 32,
+        "spd": 1,
+        "spe": 32
+      },
+      "nature": "Timid",
+      "count": 2
+    }
+  ],
+  "Glimmora @ Life Orb": [
+    {
+      "evs": {
+        "hp": 1,
+        "spa": 32,
+        "spd": 1,
+        "spe": 32
+      },
+      "nature": "Timid",
+      "count": 2
     }
   ],
   "Golisopod @ Golisopite": [
-    {
-      "evs": {
-        "atk": 32,
-        "hp": 2,
-        "spe": 32
-      },
-      "nature": "Jolly",
-      "count": 9
-    },
     {
       "evs": {
         "atk": 32,
@@ -935,7 +1775,25 @@
         "spd": 2
       },
       "nature": "Adamant",
-      "count": 8
+      "count": 19
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "hp": 32,
+        "spd": 2
+      },
+      "nature": "Brave",
+      "count": 12
+    },
+    {
+      "evs": {
+        "atk": 25,
+        "hp": 32,
+        "spd": 9
+      },
+      "nature": "Adamant",
+      "count": 9
     },
     {
       "evs": {
@@ -949,30 +1807,49 @@
     },
     {
       "evs": {
-        "atk": 25,
-        "hp": 32,
-        "spd": 9
-      },
-      "nature": "Adamant",
-      "count": 3
-    },
-    {
-      "evs": {
         "atk": 32,
         "hp": 31,
         "spd": 2,
         "spe": 1
       },
       "nature": "Adamant",
-      "count": 3
+      "count": 4
     },
     {
       "evs": {
         "atk": 32,
         "hp": 32,
-        "spd": 2
+        "spe": 2
+      },
+      "nature": "Adamant",
+      "count": 3
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "def": 1,
+        "hp": 32,
+        "spd": 1
       },
       "nature": "Brave",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "def": 2,
+        "hp": 32
+      },
+      "nature": "Adamant",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 30,
+        "hp": 32,
+        "spd": 4
+      },
+      "nature": "Adamant",
       "count": 2
     }
   ],
@@ -992,24 +1869,43 @@
   "Grimmsnarl @ Light Clay": [
     {
       "evs": {
-        "atk": 32,
-        "hp": 2,
-        "spe": 32
+        "def": 20,
+        "hp": 31,
+        "spd": 15
       },
-      "nature": "Jolly",
-      "count": 4
+      "nature": "Sassy",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 19,
+        "hp": 32,
+        "spd": 15
+      },
+      "nature": "Sassy",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 27,
+        "hp": 32,
+        "spd": 7
+      },
+      "nature": "Careful",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 20,
+        "hp": 31,
+        "spd": 14,
+        "spe": 1
+      },
+      "nature": "Impish",
+      "count": 2
     }
   ],
   "Hatterene @ Life Orb": [
-    {
-      "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Modest",
-      "count": 2
-    },
     {
       "evs": {
         "def": 2,
@@ -1017,7 +1913,7 @@
         "spa": 32
       },
       "nature": "Quiet",
-      "count": 2
+      "count": 4
     },
     {
       "evs": {
@@ -1026,60 +1922,30 @@
         "spa": 32
       },
       "nature": "Quiet",
-      "count": 2
+      "count": 4
+    }
+  ],
+  "Hydreigon @ Choice Scarf": [
+    {
+      "evs": {
+        "hp": 2,
+        "spa": 32,
+        "spe": 32
+      },
+      "nature": "Modest",
+      "count": 4
     }
   ],
   "Incineroar @ Chople Berry": [
     {
       "evs": {
-        "atk": 32,
-        "hp": 2,
-        "spe": 32
-      },
-      "nature": "Jolly",
-      "count": 5
-    }
-  ],
-  "Incineroar @ Passho Berry": [
-    {
-      "evs": {
-        "atk": 32,
-        "hp": 2,
-        "spe": 32
-      },
-      "nature": "Jolly",
-      "count": 2
-    },
-    {
-      "evs": {
-        "def": 15,
-        "hp": 31,
-        "spd": 20
-      },
-      "nature": "Sassy",
-      "count": 2
-    }
-  ],
-  "Incineroar @ Rocky Helmet": [
-    {
-      "evs": {
-        "def": 14,
-        "hp": 32,
-        "spd": 20
+        "atk": 5,
+        "def": 16,
+        "hp": 29,
+        "spd": 16
       },
       "nature": "Impish",
-      "count": 1
-    }
-  ],
-  "Incineroar @ Sitrus Berry": [
-    {
-      "evs": {
-        "atk": 32,
-        "hp": 2,
-        "spe": 32
-      },
-      "nature": "Jolly",
-      "count": 28
+      "count": 3
     },
     {
       "evs": {
@@ -1088,7 +1954,90 @@
         "spd": 20
       },
       "nature": "Careful",
-      "count": 3
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 15,
+        "def": 6,
+        "hp": 32,
+        "spd": 13
+      },
+      "nature": "Adamant",
+      "count": 2
+    }
+  ],
+  "Incineroar @ Leftovers": [
+    {
+      "evs": {
+        "def": 16,
+        "hp": 30,
+        "spd": 20
+      },
+      "nature": "Careful",
+      "count": 1
+    }
+  ],
+  "Incineroar @ Life Orb": [
+    {
+      "evs": {
+        "atk": 32,
+        "hp": 2,
+        "spe": 32
+      },
+      "nature": "Adamant",
+      "count": 2
+    }
+  ],
+  "Incineroar @ Passho Berry": [
+    {
+      "evs": {
+        "def": 15,
+        "hp": 31,
+        "spd": 20
+      },
+      "nature": "Sassy",
+      "count": 4
+    },
+    {
+      "evs": {
+        "def": 24,
+        "hp": 30,
+        "spd": 12
+      },
+      "nature": "Relaxed",
+      "count": 2
+    }
+  ],
+  "Incineroar @ Rocky Helmet": [
+    {
+      "evs": {
+        "def": 23,
+        "hp": 32,
+        "spd": 11
+      },
+      "nature": "Impish",
+      "count": 1
+    }
+  ],
+  "Incineroar @ Sitrus Berry": [
+    {
+      "evs": {
+        "def": 14,
+        "hp": 32,
+        "spd": 20
+      },
+      "nature": "Careful",
+      "count": 7
+    },
+    {
+      "evs": {
+        "def": 20,
+        "hp": 32,
+        "spd": 14
+      },
+      "nature": "Impish",
+      "count": 5
     },
     {
       "evs": {
@@ -1099,15 +2048,54 @@
         "spe": 5
       },
       "nature": "Careful",
-      "count": 2
+      "count": 4
     },
     {
       "evs": {
-        "def": 32,
-        "hp": 32,
-        "spd": 2
+        "def": 21,
+        "hp": 31,
+        "spd": 7,
+        "spe": 7
       },
       "nature": "Impish",
+      "count": 3
+    },
+    {
+      "evs": {
+        "def": 1,
+        "hp": 30,
+        "spd": 12,
+        "spe": 23
+      },
+      "nature": "Careful",
+      "count": 3
+    },
+    {
+      "evs": {
+        "def": 21,
+        "hp": 32,
+        "spd": 11,
+        "spe": 2
+      },
+      "nature": "Impish",
+      "count": 3
+    },
+    {
+      "evs": {
+        "def": 14,
+        "hp": 32,
+        "spd": 20
+      },
+      "nature": "Sassy",
+      "count": 3
+    },
+    {
+      "evs": {
+        "def": 21,
+        "hp": 31,
+        "spd": 14
+      },
+      "nature": "Relaxed",
       "count": 2
     },
     {
@@ -1122,9 +2110,79 @@
     },
     {
       "evs": {
-        "def": 20,
+        "def": 1,
         "hp": 32,
-        "spd": 14
+        "spd": 10,
+        "spe": 23
+      },
+      "nature": "Careful",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 6,
+        "def": 15,
+        "hp": 32,
+        "spd": 10,
+        "spe": 3
+      },
+      "nature": "Careful",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 11,
+        "hp": 32,
+        "spd": 20,
+        "spe": 3
+      },
+      "nature": "Careful",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 32,
+        "hp": 32,
+        "spd": 2
+      },
+      "nature": "Impish",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 4,
+        "hp": 32,
+        "spd": 30
+      },
+      "nature": "Sassy",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 13,
+        "hp": 32,
+        "spd": 20,
+        "spe": 1
+      },
+      "nature": "Careful",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 2,
+        "hp": 28,
+        "spd": 10,
+        "spe": 26
+      },
+      "nature": "Careful",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 10,
+        "hp": 24,
+        "spd": 27,
+        "spe": 5
       },
       "nature": "Impish",
       "count": 2
@@ -1138,16 +2196,44 @@
       },
       "nature": "Impish",
       "count": 2
-    }
-  ],
-  "Incineroar @ White Herb": [
+    },
     {
       "evs": {
-        "atk": 31,
-        "def": 3,
-        "hp": 32
+        "def": 18,
+        "hp": 32,
+        "spd": 10,
+        "spe": 6
       },
-      "nature": "Brave",
+      "nature": "Careful",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 14,
+        "hp": 32,
+        "spd": 20
+      },
+      "nature": "Adamant",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 21,
+        "hp": 31,
+        "spd": 12,
+        "spe": 2
+      },
+      "nature": "Impish",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 12,
+        "hp": 32,
+        "spd": 21,
+        "spe": 1
+      },
+      "nature": "Impish",
       "count": 2
     }
   ],
@@ -1158,7 +2244,7 @@
         "spa": 32,
         "spe": 32
       },
-      "nature": "Modest",
+      "nature": "Timid",
       "count": 6
     },
     {
@@ -1167,8 +2253,8 @@
         "spa": 32,
         "spe": 32
       },
-      "nature": "Timid",
-      "count": 3
+      "nature": "Modest",
+      "count": 6
     }
   ],
   "Indeedee @ Focus Sash": [
@@ -1179,11 +2265,11 @@
         "spe": 32
       },
       "nature": "Timid",
-      "count": 5
+      "count": 11
     },
     {
       "evs": {
-        "hp": 2,
+        "def": 2,
         "spa": 32,
         "spe": 32
       },
@@ -1191,16 +2277,18 @@
       "count": 2
     }
   ],
-  "Indeedee-F @ Colbur Berry": [
+  "Indeedee @ Twisted Spoon": [
     {
       "evs": {
         "hp": 2,
         "spa": 32,
         "spe": 32
       },
-      "nature": "Modest",
-      "count": 4
-    },
+      "nature": "Timid",
+      "count": 2
+    }
+  ],
+  "Indeedee-F @ Colbur Berry": [
     {
       "evs": {
         "def": 32,
@@ -1208,7 +2296,7 @@
         "spd": 2
       },
       "nature": "Relaxed",
-      "count": 4
+      "count": 9
     },
     {
       "evs": {
@@ -1217,18 +2305,36 @@
         "spd": 2
       },
       "nature": "Bold",
+      "count": 4
+    },
+    {
+      "evs": {
+        "def": 19,
+        "hp": 30,
+        "spd": 17
+      },
+      "nature": "Bold",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 25,
+        "hp": 32,
+        "spd": 9
+      },
+      "nature": "Calm",
       "count": 2
     }
   ],
   "Indeedee-F @ Psychic Seed": [
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
+        "def": 32,
+        "hp": 32,
+        "spd": 2
       },
-      "nature": "Modest",
-      "count": 3
+      "nature": "Bold",
+      "count": 9
     },
     {
       "evs": {
@@ -1237,7 +2343,7 @@
         "spd": 2
       },
       "nature": "Relaxed",
-      "count": 3
+      "count": 5
     }
   ],
   "Indeedee-F @ Rocky Helmet": [
@@ -1247,17 +2353,8 @@
         "hp": 32,
         "spd": 2
       },
-      "nature": "Bold",
-      "count": 10
-    },
-    {
-      "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Modest",
-      "count": 6
+      "nature": "Relaxed",
+      "count": 21
     },
     {
       "evs": {
@@ -1265,8 +2362,17 @@
         "hp": 32,
         "spd": 2
       },
+      "nature": "Bold",
+      "count": 20
+    },
+    {
+      "evs": {
+        "def": 32,
+        "hp": 32,
+        "spa": 2
+      },
       "nature": "Relaxed",
-      "count": 6
+      "count": 3
     },
     {
       "evs": {
@@ -1276,6 +2382,15 @@
       },
       "nature": "Relaxed",
       "count": 3
+    },
+    {
+      "evs": {
+        "def": 25,
+        "hp": 32,
+        "spd": 9
+      },
+      "nature": "Bold",
+      "count": 2
     }
   ],
   "Indeedee-F @ Sitrus Berry": [
@@ -1286,29 +2401,29 @@
         "spd": 2
       },
       "nature": "Relaxed",
-      "count": 3
+      "count": 7
     }
   ],
   "Kingambit @ Black Glasses": [
     {
       "evs": {
         "atk": 32,
-        "hp": 2,
-        "spe": 32
+        "hp": 32,
+        "spd": 2
       },
-      "nature": "Jolly",
+      "nature": "Brave",
       "count": 4
-    }
-  ],
-  "Kingambit @ Chople Berry": [
+    },
     {
       "evs": {
-        "atk": 32,
-        "hp": 2,
-        "spe": 32
+        "atk": 25,
+        "def": 3,
+        "hp": 32,
+        "spd": 5,
+        "spe": 1
       },
-      "nature": "Jolly",
-      "count": 13
+      "nature": "Adamant",
+      "count": 2
     },
     {
       "evs": {
@@ -1318,6 +2433,17 @@
       },
       "nature": "Adamant",
       "count": 2
+    }
+  ],
+  "Kingambit @ Chople Berry": [
+    {
+      "evs": {
+        "atk": 15,
+        "hp": 32,
+        "spd": 19
+      },
+      "nature": "Adamant",
+      "count": 8
     },
     {
       "evs": {
@@ -1326,6 +2452,25 @@
         "hp": 32
       },
       "nature": "Adamant",
+      "count": 4
+    },
+    {
+      "evs": {
+        "atk": 25,
+        "def": 2,
+        "hp": 31,
+        "spe": 8
+      },
+      "nature": "Adamant",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "hp": 32,
+        "spd": 2
+      },
+      "nature": "Brave",
       "count": 2
     },
     {
@@ -1334,6 +2479,96 @@
         "hp": 32,
         "spd": 18,
         "spe": 1
+      },
+      "nature": "Adamant",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 25,
+        "def": 2,
+        "hp": 32,
+        "spd": 6,
+        "spe": 1
+      },
+      "nature": "Adamant",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "hp": 2,
+        "spe": 32
+      },
+      "nature": "Adamant",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 15,
+        "hp": 23,
+        "spe": 28
+      },
+      "nature": "Adamant",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 25,
+        "def": 1,
+        "hp": 31,
+        "spe": 9
+      },
+      "nature": "Adamant",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 15,
+        "def": 14,
+        "hp": 32,
+        "spd": 4,
+        "spe": 1
+      },
+      "nature": "Adamant",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 15,
+        "def": 15,
+        "hp": 32,
+        "spd": 4
+      },
+      "nature": "Adamant",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 17,
+        "def": 16,
+        "hp": 32,
+        "spe": 1
+      },
+      "nature": "Adamant",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 15,
+        "def": 2,
+        "hp": 32,
+        "spd": 8,
+        "spe": 9
+      },
+      "nature": "Adamant",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 25,
+        "hp": 32,
+        "spe": 9
       },
       "nature": "Adamant",
       "count": 2
@@ -1347,22 +2582,32 @@
         "spe": 32
       },
       "nature": "Adamant",
-      "count": 10
-    },
-    {
-      "evs": {
-        "atk": 32,
-        "hp": 2,
-        "spe": 32
-      },
-      "nature": "Jolly",
-      "count": 4
+      "count": 21
     },
     {
       "evs": {
         "atk": 32,
         "hp": 1,
         "spd": 1,
+        "spe": 32
+      },
+      "nature": "Adamant",
+      "count": 5
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "spd": 2,
+        "spe": 32
+      },
+      "nature": "Adamant",
+      "count": 5
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "def": 1,
+        "hp": 1,
         "spe": 32
       },
       "nature": "Adamant",
@@ -1373,21 +2618,21 @@
     {
       "evs": {
         "atk": 32,
-        "hp": 2,
-        "spe": 32
-      },
-      "nature": "Jolly",
-      "count": 8
-    },
-    {
-      "evs": {
-        "atk": 32,
         "hp": 32,
         "spd": 1,
         "spe": 1
       },
       "nature": "Adamant",
-      "count": 2
+      "count": 7
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "hp": 32,
+        "spd": 2
+      },
+      "nature": "Adamant",
+      "count": 4
     },
     {
       "evs": {
@@ -1395,6 +2640,16 @@
         "def": 1,
         "hp": 32,
         "spe": 1
+      },
+      "nature": "Adamant",
+      "count": 4
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "hp": 30,
+        "spd": 1,
+        "spe": 3
       },
       "nature": "Adamant",
       "count": 2
@@ -1413,23 +2668,24 @@
   "Kingambit @ Occa Berry": [
     {
       "evs": {
-        "atk": 32,
-        "hp": 2,
-        "spe": 32
+        "atk": 25,
+        "def": 3,
+        "hp": 32,
+        "spd": 6
       },
-      "nature": "Jolly",
-      "count": 2
+      "nature": "Adamant",
+      "count": 1
     }
   ],
   "Kommo-o @ Leftovers": [
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
+        "hp": 10,
+        "spa": 24,
         "spe": 32
       },
       "nature": "Modest",
-      "count": 4
+      "count": 2
     },
     {
       "evs": {
@@ -1441,18 +2697,20 @@
       },
       "nature": "Timid",
       "count": 2
-    }
-  ],
-  "Kommo-o @ Life Orb": [
+    },
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
+        "def": 1,
+        "hp": 10,
+        "spa": 22,
+        "spd": 1,
         "spe": 32
       },
       "nature": "Modest",
-      "count": 3
-    },
+      "count": 2
+    }
+  ],
+  "Kommo-o @ Life Orb": [
     {
       "evs": {
         "hp": 2,
@@ -1471,10 +2729,50 @@
         "spe": 32
       },
       "nature": "Modest",
-      "count": 3
+      "count": 6
+    },
+    {
+      "evs": {
+        "hp": 2,
+        "spa": 32,
+        "spe": 32
+      },
+      "nature": "Timid",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 2,
+        "hp": 32,
+        "spe": 32
+      },
+      "nature": "Modest",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 2,
+        "hp": 32,
+        "spa": 7,
+        "spd": 8,
+        "spe": 17
+      },
+      "nature": "Timid",
+      "count": 2
     }
   ],
-  "Mawile @ Mawilite": [
+  "Lycanroc-Dusk @ Focus Sash": [
+    {
+      "evs": {
+        "atk": 32,
+        "def": 2,
+        "spe": 32
+      },
+      "nature": "Adamant",
+      "count": 1
+    }
+  ],
+  "Maushold-Four @ Wide Lens": [
     {
       "evs": {
         "atk": 32,
@@ -1485,7 +2783,57 @@
       "count": 2
     }
   ],
+  "Mawile @ Mawilite": [
+    {
+      "evs": {
+        "atk": 32,
+        "hp": 32,
+        "spd": 2
+      },
+      "nature": "Brave",
+      "count": 2
+    }
+  ],
+  "Meowstic-F @ Meowsticite": [
+    {
+      "evs": {
+        "hp": 2,
+        "spa": 32,
+        "spe": 32
+      },
+      "nature": "Timid",
+      "count": 3
+    },
+    {
+      "evs": {
+        "def": 4,
+        "hp": 16,
+        "spa": 17,
+        "spe": 29
+      },
+      "nature": "Timid",
+      "count": 2
+    }
+  ],
   "Metagross @ Metagrossite": [
+    {
+      "evs": {
+        "atk": 15,
+        "hp": 24,
+        "spe": 27
+      },
+      "nature": "Adamant",
+      "count": 4
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "hp": 2,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 2
+    },
     {
       "evs": {
         "atk": 15,
@@ -1497,16 +2845,56 @@
       "count": 2
     }
   ],
-  "Milotic @ Leftovers": [
+  "Milotic @ Grassy Seed": [
     {
       "evs": {
-        "def": 27,
-        "hp": 31,
-        "spa": 6,
-        "spe": 2
+        "def": 31,
+        "hp": 22,
+        "spa": 1,
+        "spd": 12
       },
       "nature": "Calm",
       "count": 1
+    }
+  ],
+  "Milotic @ Leftovers": [
+    {
+      "evs": {
+        "def": 31,
+        "hp": 23,
+        "spd": 12
+      },
+      "nature": "Bold",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 29,
+        "hp": 32,
+        "spd": 5
+      },
+      "nature": "Calm",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 20,
+        "hp": 20,
+        "spa": 10,
+        "spd": 15,
+        "spe": 1
+      },
+      "nature": "Bold",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 32,
+        "hp": 32,
+        "spd": 2
+      },
+      "nature": "Calm",
+      "count": 2
     }
   ],
   "Milotic @ Psychic Seed": [
@@ -1524,21 +2912,45 @@
   "Milotic @ Sitrus Berry": [
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Modest",
-      "count": 4
-    },
-    {
-      "evs": {
         "def": 11,
         "hp": 32,
         "spa": 10,
         "spe": 13
       },
       "nature": "Modest",
+      "count": 4
+    },
+    {
+      "evs": {
+        "def": 19,
+        "hp": 32,
+        "spa": 10,
+        "spe": 5
+      },
+      "nature": "Modest",
+      "count": 4
+    }
+  ],
+  "Ninetales-Alola @ Light Clay": [
+    {
+      "evs": {
+        "def": 7,
+        "hp": 5,
+        "spa": 22,
+        "spe": 32
+      },
+      "nature": "Timid",
+      "count": 2
+    }
+  ],
+  "Ninetales-Alola @ Never-Melt Ice": [
+    {
+      "evs": {
+        "hp": 2,
+        "spa": 32,
+        "spe": 32
+      },
+      "nature": "Timid",
       "count": 2
     }
   ],
@@ -1550,19 +2962,10 @@
         "spe": 32
       },
       "nature": "Jolly",
-      "count": 9
+      "count": 13
     }
   ],
   "Pelipper @ Damp Rock": [
-    {
-      "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Modest",
-      "count": 3
-    },
     {
       "evs": {
         "def": 10,
@@ -1571,7 +2974,7 @@
         "spd": 7
       },
       "nature": "Bold",
-      "count": 3
+      "count": 4
     }
   ],
   "Pelipper @ Focus Sash": [
@@ -1582,7 +2985,7 @@
         "spe": 32
       },
       "nature": "Modest",
-      "count": 12
+      "count": 9
     },
     {
       "evs": {
@@ -1591,15 +2994,37 @@
         "spe": 32
       },
       "nature": "Timid",
-      "count": 4
+      "count": 7
+    },
+    {
+      "evs": {
+        "def": 1,
+        "hp": 2,
+        "spa": 30,
+        "spd": 1,
+        "spe": 32
+      },
+      "nature": "Timid",
+      "count": 2
+    },
+    {
+      "evs": {
+        "hp": 31,
+        "spa": 8,
+        "spd": 25,
+        "spe": 2
+      },
+      "nature": "Bold",
+      "count": 2
     }
   ],
   "Pelipper @ Life Orb": [
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
+        "hp": 31,
+        "spa": 15,
+        "spd": 10,
+        "spe": 10
       },
       "nature": "Modest",
       "count": 1
@@ -1608,12 +3033,23 @@
   "Pelipper @ Sitrus Berry": [
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
+        "hp": 31,
+        "spa": 25,
+        "spe": 10
       },
       "nature": "Modest",
       "count": 3
+    },
+    {
+      "evs": {
+        "def": 2,
+        "hp": 31,
+        "spa": 5,
+        "spd": 16,
+        "spe": 12
+      },
+      "nature": "Modest",
+      "count": 2
     }
   ],
   "Politoed @ Mystic Water": [
@@ -1625,32 +3061,24 @@
       },
       "nature": "Modest",
       "count": 5
-    },
-    {
-      "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Modest",
-      "count": 2
     }
   ],
   "Politoed @ Sitrus Berry": [
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Modest",
-      "count": 4
-    },
-    {
-      "evs": {
         "def": 23,
         "hp": 31,
         "spd": 12
+      },
+      "nature": "Calm",
+      "count": 5
+    },
+    {
+      "evs": {
+        "def": 24,
+        "hp": 32,
+        "spd": 7,
+        "spe": 3
       },
       "nature": "Calm",
       "count": 2
@@ -1659,9 +3087,10 @@
   "Primarina @ Grassy Seed": [
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
+        "def": 14,
+        "hp": 32,
+        "spa": 5,
+        "spe": 15
       },
       "nature": "Modest",
       "count": 1
@@ -1670,12 +3099,13 @@
   "Primarina @ Leftovers": [
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
+        "def": 1,
+        "hp": 28,
+        "spa": 14,
+        "spe": 23
       },
       "nature": "Modest",
-      "count": 3
+      "count": 1
     }
   ],
   "Pyroar @ Pyroarite": [
@@ -1685,14 +3115,14 @@
         "spa": 32,
         "spe": 32
       },
-      "nature": "Modest",
-      "count": 2
+      "nature": "Timid",
+      "count": 3
     },
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
+        "hp": 30,
+        "spa": 9,
+        "spe": 27
       },
       "nature": "Timid",
       "count": 2
@@ -1701,24 +3131,15 @@
   "Raichu @ Raichunite X": [
     {
       "evs": {
-        "atk": 32,
-        "hp": 2,
+        "def": 2,
+        "hp": 32,
         "spe": 32
       },
-      "nature": "Jolly",
+      "nature": "Timid",
       "count": 1
     }
   ],
   "Raichu @ Raichunite Y": [
-    {
-      "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Modest",
-      "count": 25
-    },
     {
       "evs": {
         "def": 11,
@@ -1726,7 +3147,26 @@
         "spe": 23
       },
       "nature": "Timid",
-      "count": 2
+      "count": 7
+    },
+    {
+      "evs": {
+        "def": 21,
+        "hp": 20,
+        "spe": 25
+      },
+      "nature": "Timid",
+      "count": 4
+    },
+    {
+      "evs": {
+        "def": 11,
+        "hp": 30,
+        "spa": 2,
+        "spe": 23
+      },
+      "nature": "Timid",
+      "count": 3
     },
     {
       "evs": {
@@ -1736,12 +3176,41 @@
         "spe": 32
       },
       "nature": "Timid",
+      "count": 3
+    },
+    {
+      "evs": {
+        "def": 11,
+        "hp": 25,
+        "spa": 2,
+        "spe": 28
+      },
+      "nature": "Timid",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 8,
+        "hp": 32,
+        "spd": 1,
+        "spe": 25
+      },
+      "nature": "Timid",
       "count": 2
     },
     {
       "evs": {
         "def": 32,
         "hp": 2,
+        "spe": 32
+      },
+      "nature": "Timid",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 4,
+        "hp": 30,
         "spe": 32
       },
       "nature": "Timid",
@@ -1758,19 +3227,28 @@
     },
     {
       "evs": {
-        "def": 21,
-        "hp": 17,
-        "spe": 28
+        "def": 5,
+        "hp": 29,
+        "spe": 32
       },
       "nature": "Timid",
       "count": 2
     },
     {
       "evs": {
-        "def": 11,
-        "hp": 30,
-        "spa": 2,
-        "spe": 23
+        "def": 2,
+        "hp": 32,
+        "spd": 3,
+        "spe": 29
+      },
+      "nature": "Timid",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 21,
+        "hp": 17,
+        "spe": 28
       },
       "nature": "Timid",
       "count": 2
@@ -1790,44 +3268,70 @@
   "Rillaboom @ Eject Button": [
     {
       "evs": {
-        "atk": 32,
-        "hp": 2,
-        "spe": 32
-      },
-      "nature": "Jolly",
-      "count": 4
-    },
-    {
-      "evs": {
         "def": 4,
         "hp": 32,
         "spd": 30
       },
       "nature": "Sassy",
-      "count": 3
+      "count": 6
     }
   ],
   "Rillaboom @ Expert Belt": [
     {
       "evs": {
-        "atk": 15,
-        "def": 11,
-        "hp": 32,
-        "spe": 8
+        "atk": 25,
+        "def": 1,
+        "hp": 20,
+        "spd": 9,
+        "spe": 11
       },
       "nature": "Adamant",
-      "count": 1
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 15,
+        "def": 2,
+        "hp": 17,
+        "spd": 17,
+        "spe": 15
+      },
+      "nature": "Adamant",
+      "count": 2
+    }
+  ],
+  "Rillaboom @ Leftovers": [
+    {
+      "evs": {
+        "atk": 25,
+        "def": 4,
+        "hp": 17,
+        "spd": 10,
+        "spe": 10
+      },
+      "nature": "Adamant",
+      "count": 2
     }
   ],
   "Rillaboom @ Life Orb": [
     {
       "evs": {
-        "atk": 32,
-        "hp": 2,
-        "spe": 32
+        "atk": 15,
+        "hp": 24,
+        "spd": 14,
+        "spe": 13
       },
-      "nature": "Jolly",
-      "count": 5
+      "nature": "Adamant",
+      "count": 3
+    },
+    {
+      "evs": {
+        "atk": 2,
+        "hp": 32,
+        "spd": 32
+      },
+      "nature": "Adamant",
+      "count": 2
     },
     {
       "evs": {
@@ -1843,11 +3347,11 @@
     {
       "evs": {
         "atk": 32,
-        "hp": 2,
-        "spe": 32
+        "hp": 32,
+        "spd": 2
       },
-      "nature": "Jolly",
-      "count": 38
+      "nature": "Adamant",
+      "count": 6
     },
     {
       "evs": {
@@ -1856,16 +3360,35 @@
         "spd": 19
       },
       "nature": "Adamant",
+      "count": 5
+    },
+    {
+      "evs": {
+        "hp": 32,
+        "spd": 25,
+        "spe": 9
+      },
+      "nature": "Adamant",
+      "count": 4
+    },
+    {
+      "evs": {
+        "atk": 15,
+        "hp": 32,
+        "spd": 18,
+        "spe": 1
+      },
+      "nature": "Adamant",
       "count": 4
     },
     {
       "evs": {
         "atk": 32,
         "hp": 32,
-        "spd": 2
+        "spe": 2
       },
       "nature": "Adamant",
-      "count": 3
+      "count": 4
     },
     {
       "evs": {
@@ -1874,6 +3397,47 @@
         "hp": 17,
         "spd": 10,
         "spe": 13
+      },
+      "nature": "Adamant",
+      "count": 4
+    },
+    {
+      "evs": {
+        "atk": 15,
+        "hp": 32,
+        "spd": 16,
+        "spe": 3
+      },
+      "nature": "Adamant",
+      "count": 3
+    },
+    {
+      "evs": {
+        "atk": 15,
+        "hp": 24,
+        "spd": 14,
+        "spe": 13
+      },
+      "nature": "Adamant",
+      "count": 3
+    },
+    {
+      "evs": {
+        "atk": 25,
+        "hp": 17,
+        "spd": 15,
+        "spe": 9
+      },
+      "nature": "Adamant",
+      "count": 3
+    },
+    {
+      "evs": {
+        "atk": 15,
+        "def": 2,
+        "hp": 32,
+        "spd": 10,
+        "spe": 7
       },
       "nature": "Adamant",
       "count": 3
@@ -1892,30 +3456,60 @@
     {
       "evs": {
         "atk": 15,
-        "hp": 24,
-        "spd": 14,
+        "hp": 32,
+        "spd": 6,
         "spe": 13
       },
       "nature": "Adamant",
-      "count": 2
+      "count": 3
     },
     {
       "evs": {
-        "atk": 15,
+        "atk": 26,
         "hp": 32,
-        "spd": 18,
-        "spe": 1
+        "spe": 8
+      },
+      "nature": "Adamant",
+      "count": 3
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "hp": 17,
+        "spd": 9,
+        "spe": 8
       },
       "nature": "Adamant",
       "count": 2
     },
     {
       "evs": {
-        "atk": 30,
-        "def": 2,
-        "hp": 28,
-        "spd": 4,
-        "spe": 2
+        "atk": 25,
+        "def": 6,
+        "hp": 21,
+        "spd": 6,
+        "spe": 8
+      },
+      "nature": "Adamant",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 25,
+        "def": 5,
+        "hp": 18,
+        "spd": 10,
+        "spe": 8
+      },
+      "nature": "Adamant",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 25,
+        "hp": 18,
+        "spd": 3,
+        "spe": 20
       },
       "nature": "Adamant",
       "count": 2
@@ -1923,7 +3517,17 @@
     {
       "evs": {
         "atk": 32,
+        "hp": 28,
+        "spe": 6
+      },
+      "nature": "Adamant",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 5,
         "hp": 32,
+        "spd": 27,
         "spe": 2
       },
       "nature": "Adamant",
@@ -1931,32 +3535,60 @@
     },
     {
       "evs": {
-        "atk": 16,
+        "atk": 25,
+        "hp": 32,
+        "spe": 9
+      },
+      "nature": "Adamant",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 15,
+        "def": 5,
+        "hp": 32,
+        "spd": 14
+      },
+      "nature": "Adamant",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 25,
+        "hp": 32,
+        "spd": 8,
+        "spe": 1
+      },
+      "nature": "Adamant",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 25,
         "def": 1,
+        "hp": 30,
+        "spd": 2,
+        "spe": 8
+      },
+      "nature": "Adamant",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 25,
+        "hp": 18,
+        "spd": 20,
+        "spe": 3
+      },
+      "nature": "Adamant",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 5,
         "hp": 32,
-        "spd": 7,
+        "spd": 19,
         "spe": 10
-      },
-      "nature": "Adamant",
-      "count": 2
-    },
-    {
-      "evs": {
-        "atk": 15,
-        "def": 2,
-        "hp": 32,
-        "spd": 10,
-        "spe": 7
-      },
-      "nature": "Adamant",
-      "count": 2
-    },
-    {
-      "evs": {
-        "atk": 15,
-        "hp": 32,
-        "spd": 6,
-        "spe": 13
       },
       "nature": "Adamant",
       "count": 2
@@ -1965,23 +3597,58 @@
   "Rillaboom @ Occa Berry": [
     {
       "evs": {
-        "atk": 32,
-        "hp": 2,
-        "spe": 32
+        "atk": 5,
+        "def": 1,
+        "hp": 21,
+        "spd": 32,
+        "spe": 7
       },
-      "nature": "Jolly",
-      "count": 5
+      "nature": "Adamant",
+      "count": 3
+    },
+    {
+      "evs": {
+        "atk": 5,
+        "hp": 32,
+        "spd": 21,
+        "spe": 8
+      },
+      "nature": "Adamant",
+      "count": 2
     }
   ],
   "Rillaboom @ Sitrus Berry": [
     {
       "evs": {
-        "atk": 32,
-        "hp": 2,
-        "spe": 32
+        "atk": 25,
+        "def": 5,
+        "hp": 26,
+        "spd": 5,
+        "spe": 5
       },
-      "nature": "Jolly",
-      "count": 1
+      "nature": "Adamant",
+      "count": 3
+    },
+    {
+      "evs": {
+        "atk": 5,
+        "hp": 32,
+        "spd": 21,
+        "spe": 8
+      },
+      "nature": "Adamant",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 31,
+        "def": 2,
+        "hp": 29,
+        "spd": 1,
+        "spe": 3
+      },
+      "nature": "Adamant",
+      "count": 2
     }
   ],
   "Salamence @ Salamencite": [
@@ -1991,8 +3658,8 @@
         "spa": 32,
         "spe": 32
       },
-      "nature": "Modest",
-      "count": 27
+      "nature": "Timid",
+      "count": 49
     },
     {
       "evs": {
@@ -2000,8 +3667,8 @@
         "spa": 32,
         "spe": 32
       },
-      "nature": "Timid",
-      "count": 20
+      "nature": "Modest",
+      "count": 10
     },
     {
       "evs": {
@@ -2011,7 +3678,7 @@
         "spe": 32
       },
       "nature": "Timid",
-      "count": 3
+      "count": 9
     },
     {
       "evs": {
@@ -2021,6 +3688,72 @@
         "spe": 32
       },
       "nature": "Modest",
+      "count": 4
+    },
+    {
+      "evs": {
+        "atk": 1,
+        "hp": 1,
+        "spa": 32,
+        "spe": 32
+      },
+      "nature": "Naive",
+      "count": 3
+    },
+    {
+      "evs": {
+        "hp": 2,
+        "spa": 32,
+        "spe": 32
+      },
+      "nature": "Naive",
+      "count": 3
+    },
+    {
+      "evs": {
+        "atk": 18,
+        "spa": 16,
+        "spe": 32
+      },
+      "nature": "Hasty",
+      "count": 3
+    },
+    {
+      "evs": {
+        "hp": 3,
+        "spa": 31,
+        "spe": 32
+      },
+      "nature": "Timid",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "hp": 2,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 21,
+        "hp": 1,
+        "spa": 15,
+        "spe": 29
+      },
+      "nature": "Naive",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 1,
+        "hp": 1,
+        "spa": 32,
+        "spe": 32
+      },
+      "nature": "Timid",
       "count": 2
     },
     {
@@ -2031,6 +3764,25 @@
         "spe": 32
       },
       "nature": "Timid",
+      "count": 2
+    },
+    {
+      "evs": {
+        "hp": 5,
+        "spa": 29,
+        "spe": 32
+      },
+      "nature": "Timid",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 1,
+        "hp": 13,
+        "spd": 28,
+        "spe": 24
+      },
+      "nature": "Hasty",
       "count": 2
     }
   ],
@@ -2054,37 +3806,60 @@
       "count": 2
     }
   ],
+  "Scovillain @ Scovillainite": [
+    {
+      "evs": {
+        "def": 27,
+        "hp": 31,
+        "spd": 8
+      },
+      "nature": "Bold",
+      "count": 1
+    }
+  ],
   "Sinistcha @ Colbur Berry": [
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
+        "def": 14,
+        "hp": 32,
+        "spd": 19,
+        "spe": 1
       },
-      "nature": "Modest",
-      "count": 4
+      "nature": "Bold",
+      "count": 2
     }
   ],
   "Sinistcha @ Kasib Berry": [
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
+        "def": 14,
+        "hp": 32,
+        "spd": 20
       },
-      "nature": "Modest",
+      "nature": "Bold",
       "count": 1
     }
   ],
   "Sinistcha @ Sitrus Berry": [
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
+        "def": 13,
+        "hp": 32,
+        "spd": 21
       },
-      "nature": "Modest",
-      "count": 3
+      "nature": "Relaxed",
+      "count": 1
+    }
+  ],
+  "Sirfetch\u2019d @ Leek": [
+    {
+      "evs": {
+        "atk": 32,
+        "hp": 22,
+        "spe": 12
+      },
+      "nature": "Adamant",
+      "count": 1
     }
   ],
   "Sneasler @ Focus Sash": [
@@ -2095,7 +3870,44 @@
         "spe": 32
       },
       "nature": "Jolly",
-      "count": 14
+      "count": 23
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "def": 2,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 4
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "hp": 2,
+        "spe": 32
+      },
+      "nature": "Adamant",
+      "count": 3
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "def": 2,
+        "spe": 32
+      },
+      "nature": "Adamant",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "def": 1,
+        "hp": 1,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 2
     }
   ],
   "Sneasler @ Grassy Seed": [
@@ -2105,17 +3917,8 @@
         "hp": 2,
         "spe": 32
       },
-      "nature": "Jolly",
-      "count": 8
-    },
-    {
-      "evs": {
-        "atk": 32,
-        "hp": 2,
-        "spe": 32
-      },
       "nature": "Adamant",
-      "count": 8
+      "count": 14
     },
     {
       "evs": {
@@ -2124,7 +3927,67 @@
         "spe": 30
       },
       "nature": "Adamant",
-      "count": 4
+      "count": 6
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "hp": 2,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 5
+    },
+    {
+      "evs": {
+        "atk": 10,
+        "def": 7,
+        "hp": 32,
+        "spe": 17
+      },
+      "nature": "Adamant",
+      "count": 3
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "def": 2,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 3
+    },
+    {
+      "evs": {
+        "atk": 10,
+        "def": 2,
+        "hp": 21,
+        "spd": 1,
+        "spe": 32
+      },
+      "nature": "Adamant",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 30,
+        "def": 1,
+        "hp": 20,
+        "spe": 15
+      },
+      "nature": "Adamant",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 12,
+        "def": 1,
+        "hp": 20,
+        "spd": 1,
+        "spe": 32
+      },
+      "nature": "Adamant",
+      "count": 2
     },
     {
       "evs": {
@@ -2132,6 +3995,15 @@
         "hp": 17,
         "spd": 7,
         "spe": 32
+      },
+      "nature": "Adamant",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 20,
+        "hp": 28,
+        "spe": 18
       },
       "nature": "Adamant",
       "count": 2
@@ -2145,7 +4017,7 @@
         "spe": 32
       },
       "nature": "Adamant",
-      "count": 10
+      "count": 25
     },
     {
       "evs": {
@@ -2154,7 +4026,27 @@
         "spe": 32
       },
       "nature": "Jolly",
-      "count": 9
+      "count": 3
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "def": 1,
+        "hp": 1,
+        "spe": 32
+      },
+      "nature": "Adamant",
+      "count": 3
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "def": 1,
+        "spd": 1,
+        "spe": 32
+      },
+      "nature": "Adamant",
+      "count": 2
     },
     {
       "evs": {
@@ -2165,6 +4057,33 @@
       },
       "nature": "Adamant",
       "count": 2
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "spd": 2,
+        "spe": 32
+      },
+      "nature": "Adamant",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "hp": 12,
+        "spe": 22
+      },
+      "nature": "Adamant",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "def": 2,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 2
     }
   ],
   "Sneasler @ White Herb": [
@@ -2174,7 +4093,7 @@
         "hp": 2,
         "spe": 32
       },
-      "nature": "Jolly",
+      "nature": "Adamant",
       "count": 15
     },
     {
@@ -2183,8 +4102,29 @@
         "hp": 2,
         "spe": 32
       },
+      "nature": "Jolly",
+      "count": 10
+    },
+    {
+      "evs": {
+        "atk": 25,
+        "def": 4,
+        "hp": 18,
+        "spd": 1,
+        "spe": 18
+      },
       "nature": "Adamant",
-      "count": 8
+      "count": 3
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "hp": 12,
+        "spd": 4,
+        "spe": 18
+      },
+      "nature": "Jolly",
+      "count": 3
     },
     {
       "evs": {
@@ -2192,6 +4132,45 @@
         "def": 17,
         "hp": 5,
         "spe": 32
+      },
+      "nature": "Adamant",
+      "count": 3
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "def": 2,
+        "spe": 32
+      },
+      "nature": "Adamant",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "def": 2,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 10,
+        "def": 12,
+        "hp": 12,
+        "spd": 2,
+        "spe": 30
+      },
+      "nature": "Adamant",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 10,
+        "def": 19,
+        "hp": 20,
+        "spe": 17
       },
       "nature": "Adamant",
       "count": 2
@@ -2208,24 +4187,56 @@
     },
     {
       "evs": {
+        "def": 13,
+        "hp": 22,
+        "spd": 1,
+        "spe": 30
+      },
+      "nature": "Adamant",
+      "count": 2
+    },
+    {
+      "evs": {
         "atk": 20,
         "hp": 16,
         "spe": 30
       },
       "nature": "Adamant",
       "count": 2
+    },
+    {
+      "evs": {
+        "atk": 14,
+        "hp": 21,
+        "spd": 1,
+        "spe": 30
+      },
+      "nature": "Adamant",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 30,
+        "hp": 10,
+        "spd": 8,
+        "spe": 18
+      },
+      "nature": "Adamant",
+      "count": 2
+    }
+  ],
+  "Snorlax @ Leftovers": [
+    {
+      "evs": {
+        "def": 32,
+        "hp": 32,
+        "spd": 2
+      },
+      "nature": "Relaxed",
+      "count": 1
     }
   ],
   "Staraptor @ Staraptite": [
-    {
-      "evs": {
-        "atk": 32,
-        "hp": 2,
-        "spe": 32
-      },
-      "nature": "Jolly",
-      "count": 10
-    },
     {
       "evs": {
         "atk": 9,
@@ -2233,18 +4244,55 @@
         "spe": 32
       },
       "nature": "Jolly",
-      "count": 3
-    }
-  ],
-  "Starmie @ Starminite": [
+      "count": 4
+    },
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
+        "atk": 15,
+        "hp": 19,
         "spe": 32
       },
-      "nature": "Modest",
-      "count": 1
+      "nature": "Jolly",
+      "count": 3
+    },
+    {
+      "evs": {
+        "atk": 1,
+        "hp": 29,
+        "spd": 4,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 12,
+        "hp": 22,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 19,
+        "hp": 15,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 2,
+        "def": 1,
+        "hp": 29,
+        "spd": 2,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 2
     }
   ],
   "Swampert @ Swampertite": [
@@ -2254,57 +4302,125 @@
         "hp": 2,
         "spe": 32
       },
-      "nature": "Jolly",
-      "count": 3
+      "nature": "Adamant",
+      "count": 9
     },
     {
       "evs": {
         "atk": 32,
-        "hp": 2,
-        "spe": 32
+        "hp": 11,
+        "spe": 23
       },
       "nature": "Adamant",
-      "count": 3
+      "count": 2
     }
   ],
   "Swampert-Mega @ Swampertite": [
     {
       "evs": {
         "atk": 30,
-        "def": 2,
-        "hp": 7,
-        "spd": 3,
-        "spe": 24
+        "hp": 14,
+        "spe": 22
       },
       "nature": "Adamant",
-      "count": 1
+      "count": 2
     }
   ],
   "Sylveon @ Fairy Feather": [
-    {
-      "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Modest",
-      "count": 8
-    },
-    {
-      "evs": {
-        "def": 20,
-        "hp": 32,
-        "spd": 14
-      },
-      "nature": "Calm",
-      "count": 3
-    },
     {
       "evs": {
         "def": 22,
         "hp": 9,
         "spa": 20,
         "spe": 15
+      },
+      "nature": "Modest",
+      "count": 5
+    },
+    {
+      "evs": {
+        "def": 2,
+        "hp": 32,
+        "spa": 32
+      },
+      "nature": "Modest",
+      "count": 3
+    },
+    {
+      "evs": {
+        "def": 22,
+        "hp": 9,
+        "spa": 30,
+        "spe": 5
+      },
+      "nature": "Modest",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 6,
+        "hp": 21,
+        "spa": 24,
+        "spe": 15
+      },
+      "nature": "Modest",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 17,
+        "hp": 3,
+        "spa": 30,
+        "spe": 16
+      },
+      "nature": "Modest",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 22,
+        "hp": 13,
+        "spa": 23,
+        "spe": 8
+      },
+      "nature": "Modest",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 30,
+        "hp": 1,
+        "spa": 20,
+        "spe": 15
+      },
+      "nature": "Modest",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 25,
+        "hp": 31,
+        "spa": 10
+      },
+      "nature": "Modest",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 32,
+        "hp": 13,
+        "spa": 20,
+        "spe": 1
+      },
+      "nature": "Modest",
+      "count": 2
+    },
+    {
+      "evs": {
+        "def": 6,
+        "hp": 23,
+        "spa": 20,
+        "spe": 17
       },
       "nature": "Modest",
       "count": 2
@@ -2314,32 +4430,14 @@
     {
       "evs": {
         "atk": 32,
-        "hp": 7,
-        "spe": 27
+        "hp": 2,
+        "spe": 32
       },
-      "nature": "Adamant",
-      "count": 1
+      "nature": "Jolly",
+      "count": 2
     }
   ],
   "Torkoal @ Charcoal": [
-    {
-      "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Modest",
-      "count": 4
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "spa": 32,
-        "spd": 2
-      },
-      "nature": "Quiet",
-      "count": 3
-    },
     {
       "evs": {
         "def": 1,
@@ -2348,23 +4446,112 @@
         "spd": 1
       },
       "nature": "Quiet",
+      "count": 11
+    },
+    {
+      "evs": {
+        "hp": 32,
+        "spa": 32,
+        "spd": 2
+      },
+      "nature": "Quiet",
+      "count": 10
+    },
+    {
+      "evs": {
+        "def": 2,
+        "hp": 32,
+        "spa": 32
+      },
+      "nature": "Quiet",
+      "count": 4
+    },
+    {
+      "evs": {
+        "hp": 30,
+        "spa": 32,
+        "spd": 4
+      },
+      "nature": "Quiet",
+      "count": 4
+    }
+  ],
+  "Toxapex @ Leftovers": [
+    {
+      "evs": {
+        "def": 8,
+        "hp": 32,
+        "spd": 26
+      },
+      "nature": "Bold",
+      "count": 1
+    }
+  ],
+  "Typhlosion-Hisui @ Choice Scarf": [
+    {
+      "evs": {
+        "def": 1,
+        "hp": 1,
+        "spa": 32,
+        "spe": 32
+      },
+      "nature": "Timid",
+      "count": 1
+    }
+  ],
+  "Tyranitar @ Choice Scarf": [
+    {
+      "evs": {
+        "atk": 32,
+        "def": 1,
+        "spd": 1,
+        "spe": 32
+      },
+      "nature": "Jolly",
       "count": 2
     }
   ],
   "Tyranitar @ Tyranitarite": [
     {
       "evs": {
-        "atk": 32,
-        "hp": 2,
+        "atk": 17,
+        "hp": 17,
         "spe": 32
       },
       "nature": "Jolly",
-      "count": 13
+      "count": 3
     },
     {
       "evs": {
         "atk": 26,
         "hp": 8,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 3
+    },
+    {
+      "evs": {
+        "atk": 17,
+        "hp": 17,
+        "spe": 32
+      },
+      "nature": "Adamant",
+      "count": 3
+    },
+    {
+      "evs": {
+        "atk": 16,
+        "hp": 22,
+        "spe": 28
+      },
+      "nature": "Adamant",
+      "count": 2
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "hp": 2,
         "spe": 32
       },
       "nature": "Jolly",
@@ -2374,14 +4561,23 @@
   "Tyranitar-Mega @ Tyranitarite": [
     {
       "evs": {
-        "atk": 6,
-        "def": 10,
-        "hp": 30,
-        "spd": 10,
-        "spe": 10
+        "atk": 17,
+        "hp": 17,
+        "spe": 32
       },
-      "nature": "Adamant",
+      "nature": "Jolly",
       "count": 1
+    }
+  ],
+  "Vanilluxe @ Choice Scarf": [
+    {
+      "evs": {
+        "hp": 2,
+        "spa": 32,
+        "spe": 32
+      },
+      "nature": "Timid",
+      "count": 2
     }
   ],
   "Venusaur @ Focus Sash": [
@@ -2402,28 +4598,52 @@
       },
       "nature": "Timid",
       "count": 3
-    }
-  ],
-  "Vivillon @ Focus Sash": [
+    },
     {
       "evs": {
-        "hp": 2,
+        "hp": 1,
         "spa": 32,
+        "spd": 1,
         "spe": 32
       },
       "nature": "Modest",
       "count": 2
     }
   ],
-  "Volcarona @ Grassy Seed": [
+  "Venusaur @ Life Orb": [
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
+        "hp": 4,
+        "spa": 30,
         "spe": 32
       },
       "nature": "Modest",
-      "count": 7
+      "count": 2
+    }
+  ],
+  "Venusaur @ Wide Lens": [
+    {
+      "evs": {
+        "def": 12,
+        "hp": 4,
+        "spa": 32,
+        "spe": 18
+      },
+      "nature": "Timid",
+      "count": 1
+    }
+  ],
+  "Volcarona @ Grassy Seed": [
+    {
+      "evs": {
+        "def": 15,
+        "hp": 21,
+        "spa": 5,
+        "spd": 1,
+        "spe": 24
+      },
+      "nature": "Modest",
+      "count": 2
     },
     {
       "evs": {
@@ -2436,16 +4656,19 @@
       "count": 2
     }
   ],
-  "Volcarona @ Rocky Helmet": [
+  "Volcarona @ Leftovers": [
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
+        "def": 32,
+        "hp": 32,
+        "spa": 1,
+        "spd": 1
       },
-      "nature": "Modest",
-      "count": 3
-    },
+      "nature": "Bold",
+      "count": 1
+    }
+  ],
+  "Volcarona @ Rocky Helmet": [
     {
       "evs": {
         "def": 32,
@@ -2466,15 +4689,15 @@
       "count": 2
     }
   ],
-  "Volcarona @ Sitrus Berry": [
+  "Whimsicott @ Babiri Berry": [
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
+        "spa": 26,
+        "spd": 21,
+        "spe": 19
       },
-      "nature": "Modest",
-      "count": 5
+      "nature": "Timid",
+      "count": 2
     }
   ],
   "Whimsicott @ Focus Sash": [
@@ -2485,16 +4708,17 @@
         "spe": 32
       },
       "nature": "Timid",
-      "count": 8
+      "count": 12
     },
     {
       "evs": {
-        "hp": 2,
+        "def": 1,
+        "hp": 1,
         "spa": 32,
         "spe": 32
       },
-      "nature": "Modest",
-      "count": 3
+      "nature": "Timid",
+      "count": 2
     }
   ],
   "Abomasnow": [
@@ -2506,6 +4730,16 @@
       },
       "nature": "Quiet",
       "count": 7.212
+    },
+    {
+      "evs": {
+        "def": 1,
+        "hp": 32,
+        "spa": 32,
+        "spd": 1
+      },
+      "nature": "Quiet",
+      "count": 1.0
     },
     {
       "evs": {
@@ -2579,15 +4813,6 @@
         "spd": 13
       },
       "nature": "Brave",
-      "count": 0.082
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "def": 2,
-        "spa": 32
-      },
-      "nature": "Sassy",
       "count": 0.082
     }
   ],
@@ -2691,8 +4916,28 @@
         "hp": 2,
         "spe": 32
       },
+      "nature": "Adamant",
+      "count": 3.357
+    },
+    {
+      "evs": {
+        "atk": 19,
+        "def": 4,
+        "hp": 11,
+        "spe": 32
+      },
       "nature": "Jolly",
-      "count": 3.071
+      "count": 2.0
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "hp": 1,
+        "spd": 1,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 2.0
     },
     {
       "evs": {
@@ -2702,6 +4947,15 @@
       },
       "nature": "Jolly",
       "count": 1.429
+    },
+    {
+      "evs": {
+        "hp": 2,
+        "atk": 32,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 1.071
     },
     {
       "evs": {
@@ -2720,15 +4974,6 @@
         "spd": 3
       },
       "nature": "Brave",
-      "count": 0.357
-    },
-    {
-      "evs": {
-        "hp": 2,
-        "atk": 32,
-        "spe": 32
-      },
-      "nature": "Adamant",
       "count": 0.357
     },
     {
@@ -2838,12 +5083,12 @@
   "Absol-Mega-Z": [
     {
       "evs": {
-        "atk": 32,
         "hp": 2,
+        "atk": 32,
         "spe": 32
       },
       "nature": "Jolly",
-      "count": 6.021
+      "count": 5.021
     },
     {
       "evs": {
@@ -2871,6 +5116,16 @@
       },
       "nature": "Adamant",
       "count": 1.181
+    },
+    {
+      "evs": {
+        "def": 11,
+        "hp": 21,
+        "spd": 4,
+        "spe": 30
+      },
+      "nature": "Jolly",
+      "count": 1.0
     },
     {
       "evs": {
@@ -2919,16 +5174,6 @@
       },
       "nature": "Brave",
       "count": 0.042
-    },
-    {
-      "evs": {
-        "hp": 27,
-        "atk": 32,
-        "def": 4,
-        "spd": 3
-      },
-      "nature": "Serious",
-      "count": 0.042
     }
   ],
   "Aegislash": [
@@ -2943,21 +5188,21 @@
     },
     {
       "evs": {
+        "atk": 32,
+        "hp": 2,
+        "spe": 32
+      },
+      "nature": "Adamant",
+      "count": 3.0
+    },
+    {
+      "evs": {
         "hp": 24,
         "atk": 30,
         "spe": 12
       },
       "nature": "Adamant",
       "count": 1.159
-    },
-    {
-      "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Modest",
-      "count": 1.0
     },
     {
       "evs": {
@@ -3125,7 +5370,7 @@
         "spe": 32
       },
       "nature": "Jolly",
-      "count": 8.549
+      "count": 12.549
     },
     {
       "evs": {
@@ -3333,6 +5578,15 @@
     },
     {
       "evs": {
+        "atk": 18,
+        "spa": 32,
+        "spe": 16
+      },
+      "nature": "Quiet",
+      "count": 1.0
+    },
+    {
+      "evs": {
         "hp": 2,
         "def": 32,
         "spd": 32
@@ -3392,15 +5646,6 @@
         "spd": 2
       },
       "nature": "Sassy",
-      "count": 0.194
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "def": 2,
-        "spd": 32
-      },
-      "nature": "Careful",
       "count": 0.194
     }
   ],
@@ -3522,7 +5767,7 @@
         "spe": 32
       },
       "nature": "Timid",
-      "count": 1.0
+      "count": 2.0
     },
     {
       "evs": {
@@ -3664,11 +5909,11 @@
     },
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
+        "def": 32,
+        "hp": 32,
+        "spd": 2
       },
-      "nature": "Modest",
+      "nature": "Bold",
       "count": 1.0
     },
     {
@@ -4748,15 +6993,6 @@
   "Annihilape": [
     {
       "evs": {
-        "atk": 32,
-        "hp": 2,
-        "spe": 32
-      },
-      "nature": "Jolly",
-      "count": 6.081
-    },
-    {
-      "evs": {
         "hp": 32,
         "spd": 2,
         "spe": 32
@@ -4772,6 +7008,24 @@
       },
       "nature": "Adamant",
       "count": 2.487
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "hp": 2,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 2.081
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "hp": 2,
+        "spe": 32
+      },
+      "nature": "Adamant",
+      "count": 2.06
     },
     {
       "evs": {
@@ -4801,15 +7055,6 @@
       },
       "nature": "Brave",
       "count": 0.091
-    },
-    {
-      "evs": {
-        "hp": 2,
-        "atk": 32,
-        "spe": 32
-      },
-      "nature": "Adamant",
-      "count": 0.06
     },
     {
       "evs": {
@@ -5086,6 +7331,14 @@
     {
       "evs": {
         "hp": 32,
+        "spa": 32
+      },
+      "nature": "Modest",
+      "count": 1.0
+    },
+    {
+      "evs": {
+        "hp": 32,
         "def": 30,
         "spd": 4
       },
@@ -5218,7 +7471,7 @@
         "spe": 32
       },
       "nature": "Jolly",
-      "count": 43.202
+      "count": 46.202
     },
     {
       "evs": {
@@ -5228,13 +7481,42 @@
         "spe": 32
       },
       "nature": "Jolly",
-      "count": 8.0
+      "count": 13.0
     },
     {
       "evs": {
         "atk": 32,
         "def": 1,
         "hp": 1,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 5.0
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "def": 1,
+        "spd": 1,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 3.0
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "def": 1,
+        "spd": 1,
+        "spe": 32
+      },
+      "nature": "Adamant",
+      "count": 2.0
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "def": 2,
         "spe": 32
       },
       "nature": "Jolly",
@@ -5275,45 +7557,27 @@
       },
       "nature": "Hasty",
       "count": 0.021
-    },
-    {
-      "evs": {
-        "hp": 31,
-        "def": 20,
-        "spd": 5,
-        "spe": 10
-      },
-      "nature": "Timid",
-      "count": 0.01
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "atk": 32,
-        "spd": 2
-      },
-      "nature": "Lonely",
-      "count": 0.01
-    },
-    {
-      "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Timid",
-      "count": 0.01
     }
   ],
   "Archaludon": [
     {
       "evs": {
+        "def": 1,
+        "hp": 32,
+        "spa": 1,
+        "spd": 32
+      },
+      "nature": "Bold",
+      "count": 4.0
+    },
+    {
+      "evs": {
         "hp": 2,
         "spa": 32,
         "spe": 32
       },
-      "nature": "Modest",
-      "count": 15.0
+      "nature": "Timid",
+      "count": 3.553
     },
     {
       "evs": {
@@ -5328,6 +7592,45 @@
     },
     {
       "evs": {
+        "hp": 32,
+        "spa": 5,
+        "spd": 26,
+        "spe": 3
+      },
+      "nature": "Modest",
+      "count": 3.0
+    },
+    {
+      "evs": {
+        "hp": 32,
+        "spa": 1,
+        "spd": 32,
+        "spe": 1
+      },
+      "nature": "Calm",
+      "count": 3.0
+    },
+    {
+      "evs": {
+        "hp": 32,
+        "spa": 25,
+        "spe": 9
+      },
+      "nature": "Modest",
+      "count": 3.0
+    },
+    {
+      "evs": {
+        "def": 1,
+        "hp": 30,
+        "spd": 21,
+        "spe": 14
+      },
+      "nature": "Bold",
+      "count": 3.0
+    },
+    {
+      "evs": {
         "def": 1,
         "hp": 32,
         "spd": 24,
@@ -5339,9 +7642,10 @@
     {
       "evs": {
         "def": 1,
-        "hp": 32,
+        "hp": 30,
         "spa": 1,
-        "spd": 32
+        "spd": 19,
+        "spe": 15
       },
       "nature": "Bold",
       "count": 3.0
@@ -5356,57 +7660,6 @@
       },
       "nature": "Calm",
       "count": 2.294
-    },
-    {
-      "evs": {
-        "def": 1,
-        "hp": 32,
-        "spa": 5,
-        "spd": 25,
-        "spe": 3
-      },
-      "nature": "Modest",
-      "count": 2.0
-    },
-    {
-      "evs": {
-        "def": 1,
-        "hp": 30,
-        "spd": 25,
-        "spe": 10
-      },
-      "nature": "Calm",
-      "count": 2.0
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "spa": 1,
-        "spd": 29,
-        "spe": 4
-      },
-      "nature": "Modest",
-      "count": 2.0
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "spa": 1,
-        "spd": 32,
-        "spe": 1
-      },
-      "nature": "Calm",
-      "count": 2.0
-    },
-    {
-      "evs": {
-        "def": 1,
-        "hp": 30,
-        "spd": 21,
-        "spe": 14
-      },
-      "nature": "Bold",
-      "count": 2.0
     }
   ],
   "Ariados": [
@@ -5510,7 +7763,7 @@
         "spe": 32
       },
       "nature": "Modest",
-      "count": 11.0
+      "count": 10.0
     },
     {
       "evs": {
@@ -5525,6 +7778,52 @@
     {
       "evs": {
         "hp": 32,
+        "spa": 32,
+        "spd": 2
+      },
+      "nature": "Modest",
+      "count": 4.094
+    },
+    {
+      "evs": {
+        "hp": 29,
+        "spa": 32,
+        "spd": 5
+      },
+      "nature": "Quiet",
+      "count": 4.0
+    },
+    {
+      "evs": {
+        "hp": 9,
+        "spa": 32,
+        "spe": 25
+      },
+      "nature": "Modest",
+      "count": 4.0
+    },
+    {
+      "evs": {
+        "def": 2,
+        "hp": 32,
+        "spa": 32
+      },
+      "nature": "Quiet",
+      "count": 4.0
+    },
+    {
+      "evs": {
+        "hp": 1,
+        "spa": 32,
+        "spd": 1,
+        "spe": 32
+      },
+      "nature": "Modest",
+      "count": 4.0
+    },
+    {
+      "evs": {
+        "hp": 32,
         "def": 12,
         "spa": 20,
         "spd": 2
@@ -5534,28 +7833,11 @@
     },
     {
       "evs": {
-        "hp": 32,
+        "def": 2,
+        "hp": 10,
         "spa": 32,
-        "spd": 2
-      },
-      "nature": "Modest",
-      "count": 3.094
-    },
-    {
-      "evs": {
-        "hp": 29,
-        "spa": 32,
-        "spd": 5
-      },
-      "nature": "Quiet",
-      "count": 2.0
-    },
-    {
-      "evs": {
-        "hp": 1,
-        "spa": 32,
-        "spd": 1,
-        "spe": 32
+        "spd": 2,
+        "spe": 20
       },
       "nature": "Modest",
       "count": 2.0
@@ -5569,34 +7851,6 @@
       },
       "nature": "Timid",
       "count": 0.463
-    },
-    {
-      "evs": {
-        "hp": 1,
-        "spa": 32,
-        "spd": 1,
-        "spe": 32
-      },
-      "nature": "Timid",
-      "count": 0.189
-    },
-    {
-      "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Timid",
-      "count": 0.126
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "def": 14,
-        "spa": 20
-      },
-      "nature": "Relaxed",
-      "count": 0.095
     }
   ],
   "Aromatisse": [
@@ -6413,7 +8667,16 @@
         "spe": 32
       },
       "nature": "Jolly",
-      "count": 20.0
+      "count": 12.0
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "def": 2,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 10.0
     },
     {
       "evs": {
@@ -6422,7 +8685,16 @@
         "spe": 32
       },
       "nature": "Adamant",
-      "count": 6.0
+      "count": 10.0
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "def": 2,
+        "spe": 32
+      },
+      "nature": "Adamant",
+      "count": 8.0
     },
     {
       "evs": {
@@ -6446,61 +8718,43 @@
     },
     {
       "evs": {
+        "atk": 20,
+        "def": 14,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 3.0
+    },
+    {
+      "evs": {
+        "atk": 31,
+        "def": 11,
+        "hp": 4,
+        "spe": 20
+      },
+      "nature": "Adamant",
+      "count": 3.0
+    },
+    {
+      "evs": {
+        "atk": 18,
+        "def": 4,
+        "hp": 4,
+        "spd": 15,
+        "spe": 25
+      },
+      "nature": "Adamant",
+      "count": 3.0
+    },
+    {
+      "evs": {
         "atk": 23,
         "def": 13,
         "hp": 4,
         "spe": 26
       },
       "nature": "Adamant",
-      "count": 2.0
-    },
-    {
-      "evs": {
-        "atk": 18,
-        "def": 12,
-        "hp": 4,
-        "spe": 32
-      },
-      "nature": "Adamant",
-      "count": 2.0
-    },
-    {
-      "evs": {
-        "atk": 20,
-        "def": 5,
-        "hp": 4,
-        "spd": 5,
-        "spe": 32
-      },
-      "nature": "Jolly",
-      "count": 2.0
-    },
-    {
-      "evs": {
-        "atk": 24,
-        "def": 18,
-        "spe": 24
-      },
-      "nature": "Jolly",
-      "count": 2.0
-    },
-    {
-      "evs": {
-        "atk": 32,
-        "def": 2,
-        "spe": 32
-      },
-      "nature": "Jolly",
-      "count": 2.0
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "atk": 32,
-        "def": 2
-      },
-      "nature": "Brave",
-      "count": 0.013
+      "count": 3.0
     }
   ],
   "Basculegion-F": [
@@ -6511,7 +8765,17 @@
         "spe": 32
       },
       "nature": "Modest",
-      "count": 8.073
+      "count": 6.073
+    },
+    {
+      "evs": {
+        "def": 1,
+        "spa": 32,
+        "spd": 1,
+        "spe": 32
+      },
+      "nature": "Modest",
+      "count": 5.0
     },
     {
       "evs": {
@@ -6526,22 +8790,21 @@
     },
     {
       "evs": {
-        "def": 1,
-        "spa": 32,
-        "spd": 1,
-        "spe": 32
-      },
-      "nature": "Modest",
-      "count": 3.0
-    },
-    {
-      "evs": {
         "atk": 32,
         "spd": 2,
         "spe": 32
       },
       "nature": "Jolly",
       "count": 2.746
+    },
+    {
+      "evs": {
+        "def": 2,
+        "spa": 32,
+        "spe": 32
+      },
+      "nature": "Modest",
+      "count": 2.0
     },
     {
       "evs": {
@@ -6586,16 +8849,6 @@
         "spe": 32
       },
       "nature": "Calm",
-      "count": 0.025
-    },
-    {
-      "evs": {
-        "atk": 32,
-        "def": 1,
-        "spd": 1,
-        "spe": 32
-      },
-      "nature": "Adamant",
       "count": 0.025
     }
   ],
@@ -6677,7 +8930,7 @@
         "spe": 32
       },
       "nature": "Adamant",
-      "count": 2.334
+      "count": 4.334
     },
     {
       "evs": {
@@ -6685,6 +8938,27 @@
         "def": 3,
         "hp": 21,
         "spe": 26
+      },
+      "nature": "Adamant",
+      "count": 3.0
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "hp": 32,
+        "spd": 1,
+        "spe": 1
+      },
+      "nature": "Adamant",
+      "count": 2.0
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "def": 4,
+        "hp": 19,
+        "spd": 4,
+        "spe": 7
       },
       "nature": "Adamant",
       "count": 2.0
@@ -6733,24 +9007,6 @@
       },
       "nature": "Brave",
       "count": 0.167
-    },
-    {
-      "evs": {
-        "atk": 32,
-        "spd": 21,
-        "spe": 13
-      },
-      "nature": "Jolly",
-      "count": 0.143
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "def": 32,
-        "spe": 2
-      },
-      "nature": "Impish",
-      "count": 0.119
     }
   ],
   "Baxcalibur-Mega": [
@@ -6765,13 +9021,13 @@
     },
     {
       "evs": {
-        "atk": 3,
-        "def": 2,
-        "hp": 12,
-        "spd": 18,
-        "spe": 31
+        "atk": 31,
+        "def": 1,
+        "hp": 27,
+        "spd": 1,
+        "spe": 6
       },
-      "nature": "Jolly",
+      "nature": "Adamant",
       "count": 1.0
     },
     {
@@ -7042,6 +9298,16 @@
     },
     {
       "evs": {
+        "def": 1,
+        "hp": 32,
+        "spa": 32,
+        "spd": 1
+      },
+      "nature": "Modest",
+      "count": 2.0
+    },
+    {
+      "evs": {
         "hp": 31,
         "def": 13,
         "spa": 17,
@@ -7120,15 +9386,6 @@
       },
       "nature": "Relaxed",
       "count": 0.198
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "spa": 32,
-        "spe": 2
-      },
-      "nature": "Modest",
-      "count": 0.198
     }
   ],
   "Blastoise": [
@@ -7139,7 +9396,7 @@
         "spe": 32
       },
       "nature": "Modest",
-      "count": 8.209
+      "count": 5.209
     },
     {
       "evs": {
@@ -7149,6 +9406,15 @@
       },
       "nature": "Careful",
       "count": 3.471
+    },
+    {
+      "evs": {
+        "hp": 32,
+        "spa": 32,
+        "spd": 2
+      },
+      "nature": "Quiet",
+      "count": 1.0
     },
     {
       "evs": {
@@ -7211,15 +9477,6 @@
         "spa": 2
       },
       "nature": "Sassy",
-      "count": 0.012
-    },
-    {
-      "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Serious",
       "count": 0.012
     }
   ],
@@ -7333,8 +9590,17 @@
         "hp": 2,
         "spe": 32
       },
+      "nature": "Adamant",
+      "count": 2.15
+    },
+    {
+      "evs": {
+        "hp": 2,
+        "atk": 32,
+        "spe": 32
+      },
       "nature": "Jolly",
-      "count": 1.599
+      "count": 0.599
     },
     {
       "evs": {
@@ -7353,15 +9619,6 @@
       },
       "nature": "Timid",
       "count": 0.242
-    },
-    {
-      "evs": {
-        "hp": 2,
-        "atk": 32,
-        "spe": 32
-      },
-      "nature": "Adamant",
-      "count": 0.15
     },
     {
       "evs": {
@@ -7519,7 +9776,7 @@
         "spa": 32
       },
       "nature": "Quiet",
-      "count": 3.063
+      "count": 4.063
     },
     {
       "evs": {
@@ -7716,21 +9973,22 @@
     },
     {
       "evs": {
-        "atk": 32,
-        "hp": 2,
-        "spe": 32
-      },
-      "nature": "Jolly",
-      "count": 2.0
-    },
-    {
-      "evs": {
         "hp": 31,
         "atk": 25,
         "def": 10
       },
       "nature": "Jolly",
       "count": 1.093
+    },
+    {
+      "evs": {
+        "atk": 25,
+        "def": 2,
+        "hp": 32,
+        "spe": 7
+      },
+      "nature": "Adamant",
+      "count": 1.0
     },
     {
       "evs": {
@@ -7808,7 +10066,7 @@
         "spe": 32
       },
       "nature": "Modest",
-      "count": 2.082
+      "count": 3.082
     },
     {
       "evs": {
@@ -7993,16 +10251,25 @@
         "spe": 32
       },
       "nature": "Modest",
-      "count": 20.0
+      "count": 10.0
     },
     {
       "evs": {
-        "def": 18,
-        "hp": 16,
-        "spa": 3,
-        "spe": 29
+        "def": 14,
+        "hp": 12,
+        "spa": 8,
+        "spe": 32
       },
       "nature": "Timid",
+      "count": 4.0
+    },
+    {
+      "evs": {
+        "atk": 30,
+        "hp": 4,
+        "spe": 32
+      },
+      "nature": "Adamant",
       "count": 3.0
     },
     {
@@ -8013,7 +10280,27 @@
         "spe": 21
       },
       "nature": "Modest",
-      "count": 2.0
+      "count": 3.0
+    },
+    {
+      "evs": {
+        "def": 14,
+        "hp": 8,
+        "spa": 20,
+        "spe": 24
+      },
+      "nature": "Timid",
+      "count": 3.0
+    },
+    {
+      "evs": {
+        "def": 18,
+        "hp": 16,
+        "spa": 3,
+        "spe": 29
+      },
+      "nature": "Timid",
+      "count": 3.0
     }
   ],
   "Charizard-Mega-X": [
@@ -8402,12 +10689,12 @@
   "Chimecho": [
     {
       "evs": {
-        "hp": 32,
         "def": 2,
+        "hp": 32,
         "spa": 32
       },
       "nature": "Quiet",
-      "count": 3.387
+      "count": 4.387
     },
     {
       "evs": {
@@ -8585,6 +10872,15 @@
       },
       "nature": "Adamant",
       "count": 3.542
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "hp": 2,
+        "spe": 32
+      },
+      "nature": "Adamant",
+      "count": 2.0
     }
   ],
   "Clawitzer": [
@@ -8605,6 +10901,15 @@
       },
       "nature": "Modest",
       "count": 3.581
+    },
+    {
+      "evs": {
+        "def": 17,
+        "spa": 32,
+        "spd": 17
+      },
+      "nature": "Modest",
+      "count": 1.0
     },
     {
       "evs": {
@@ -9000,15 +11305,6 @@
     },
     {
       "evs": {
-        "atk": 32,
-        "hp": 2,
-        "spe": 32
-      },
-      "nature": "Jolly",
-      "count": 3.146
-    },
-    {
-      "evs": {
         "hp": 32,
         "def": 5,
         "spd": 26,
@@ -9029,12 +11325,30 @@
     },
     {
       "evs": {
+        "def": 15,
+        "hp": 19,
+        "spd": 32
+      },
+      "nature": "Impish",
+      "count": 1.0
+    },
+    {
+      "evs": {
         "hp": 27,
         "atk": 23,
         "spe": 16
       },
       "nature": "Adamant",
       "count": 0.503
+    },
+    {
+      "evs": {
+        "hp": 2,
+        "atk": 32,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 0.146
     },
     {
       "evs": {
@@ -9071,15 +11385,6 @@
       },
       "nature": "Careful",
       "count": 0.046
-    },
-    {
-      "evs": {
-        "hp": 27,
-        "atk": 23,
-        "spe": 16
-      },
-      "nature": "Relaxed",
-      "count": 0.037
     }
   ],
   "Crabominable": [
@@ -9094,12 +11399,12 @@
     },
     {
       "evs": {
-        "hp": 32,
         "atk": 32,
+        "hp": 32,
         "spd": 2
       },
       "nature": "Brave",
-      "count": 2.288
+      "count": 3.288
     },
     {
       "evs": {
@@ -9442,8 +11747,8 @@
         "spa": 32,
         "spe": 32
       },
-      "nature": "Modest",
-      "count": 7.033
+      "nature": "Timid",
+      "count": 3.059
     },
     {
       "evs": {
@@ -9453,7 +11758,7 @@
         "spe": 32
       },
       "nature": "Timid",
-      "count": 2.0
+      "count": 3.0
     },
     {
       "evs": {
@@ -9471,8 +11776,8 @@
         "spa": 32,
         "spe": 32
       },
-      "nature": "Timid",
-      "count": 0.059
+      "nature": "Modest",
+      "count": 0.033
     },
     {
       "evs": {
@@ -9758,6 +12063,17 @@
       "count": 0.238
     }
   ],
+  "Dragalge": [
+    {
+      "evs": {
+        "hp": 23,
+        "spa": 24,
+        "spe": 19
+      },
+      "nature": "Modest",
+      "count": 1.0
+    }
+  ],
   "Dragalge-Mega": [
     {
       "evs": {
@@ -9857,8 +12173,8 @@
         "spa": 32,
         "spe": 32
       },
-      "nature": "Modest",
-      "count": 10.367
+      "nature": "Timid",
+      "count": 9.564
     },
     {
       "evs": {
@@ -9866,8 +12182,8 @@
         "spa": 32,
         "spe": 32
       },
-      "nature": "Timid",
-      "count": 7.564
+      "nature": "Modest",
+      "count": 7.367
     },
     {
       "evs": {
@@ -9946,7 +12262,7 @@
         "spe": 32
       },
       "nature": "Modest",
-      "count": 11.009
+      "count": 10.009
     },
     {
       "evs": {
@@ -9956,6 +12272,15 @@
       },
       "nature": "Adamant",
       "count": 2.788
+    },
+    {
+      "evs": {
+        "hp": 23,
+        "spa": 30,
+        "spe": 13
+      },
+      "nature": "Modest",
+      "count": 2.0
     },
     {
       "evs": {
@@ -10020,15 +12345,6 @@
       },
       "nature": "Mild",
       "count": 0.023
-    },
-    {
-      "evs": {
-        "hp": 2,
-        "atk": 32,
-        "spa": 32
-      },
-      "nature": "Quiet",
-      "count": 0.018
     }
   ],
   "Dragonite-Mega": [
@@ -10735,11 +13051,11 @@
     },
     {
       "evs": {
-        "hp": 30,
-        "spa": 31,
-        "spe": 5
+        "def": 32,
+        "hp": 32,
+        "spe": 2
       },
-      "nature": "Modest",
+      "nature": "Bold",
       "count": 1.0
     },
     {
@@ -10828,15 +13144,6 @@
     },
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Modest",
-      "count": 1.89
-    },
-    {
-      "evs": {
         "hp": 1,
         "def": 1,
         "spa": 32,
@@ -10844,6 +13151,25 @@
       },
       "nature": "Modest",
       "count": 1.314
+    },
+    {
+      "evs": {
+        "def": 7,
+        "hp": 32,
+        "spd": 14,
+        "spe": 13
+      },
+      "nature": "Timid",
+      "count": 1.0
+    },
+    {
+      "evs": {
+        "hp": 2,
+        "spa": 32,
+        "spe": 32
+      },
+      "nature": "Modest",
+      "count": 0.89
     },
     {
       "evs": {
@@ -10902,15 +13228,6 @@
       },
       "nature": "Hardy",
       "count": 0.042
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "def": 2,
-        "spd": 32
-      },
-      "nature": "Sassy",
-      "count": 0.042
     }
   ],
   "Espeon": [
@@ -10959,17 +13276,8 @@
         "hp": 2,
         "spe": 32
       },
-      "nature": "Jolly",
-      "count": 15.607
-    },
-    {
-      "evs": {
-        "atk": 32,
-        "hp": 2,
-        "spe": 32
-      },
       "nature": "Adamant",
-      "count": 12.359
+      "count": 25.359
     },
     {
       "evs": {
@@ -10978,7 +13286,16 @@
         "spe": 32
       },
       "nature": "Adamant",
-      "count": 3.0
+      "count": 7.0
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "hp": 2,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 6.607
     },
     {
       "evs": {
@@ -10988,6 +13305,24 @@
       },
       "nature": "Jolly",
       "count": 3.0
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "def": 2,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 3.0
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "spd": 2,
+        "spe": 32
+      },
+      "nature": "Adamant",
+      "count": 2.0
     },
     {
       "evs": {
@@ -11019,11 +13354,6 @@
     {
       "evs": {},
       "nature": "Lonely",
-      "count": 0.004
-    },
-    {
-      "evs": {},
-      "nature": "Brave",
       "count": 0.004
     }
   ],
@@ -11325,21 +13655,30 @@
   "Farigiraf": [
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Modest",
-      "count": 14.0
-    },
-    {
-      "evs": {
         "def": 20,
         "hp": 29,
         "spd": 17
       },
       "nature": "Bold",
-      "count": 6.0
+      "count": 7.0
+    },
+    {
+      "evs": {
+        "def": 20,
+        "hp": 32,
+        "spd": 14
+      },
+      "nature": "Bold",
+      "count": 5.0
+    },
+    {
+      "evs": {
+        "def": 20,
+        "hp": 27,
+        "spd": 19
+      },
+      "nature": "Bold",
+      "count": 3.0
     },
     {
       "evs": {
@@ -11349,6 +13688,33 @@
       },
       "nature": "Bold",
       "count": 2.113
+    },
+    {
+      "evs": {
+        "def": 32,
+        "hp": 32,
+        "spd": 2
+      },
+      "nature": "Bold",
+      "count": 2.0
+    },
+    {
+      "evs": {
+        "def": 20,
+        "hp": 29,
+        "spd": 17
+      },
+      "nature": "Relaxed",
+      "count": 2.0
+    },
+    {
+      "evs": {
+        "def": 16,
+        "hp": 29,
+        "spd": 21
+      },
+      "nature": "Sassy",
+      "count": 2.0
     },
     {
       "evs": {
@@ -11376,42 +13742,6 @@
       },
       "nature": "Bold",
       "count": 1.139
-    },
-    {
-      "evs": {
-        "hp": 30,
-        "def": 21,
-        "spd": 15
-      },
-      "nature": "Relaxed",
-      "count": 1.129
-    },
-    {
-      "evs": {
-        "hp": 29,
-        "def": 12,
-        "spd": 25
-      },
-      "nature": "Sassy",
-      "count": 1.107
-    },
-    {
-      "evs": {
-        "hp": 21,
-        "def": 18,
-        "spd": 27
-      },
-      "nature": "Modest",
-      "count": 0.776
-    },
-    {
-      "evs": {
-        "hp": 31,
-        "def": 24,
-        "spd": 11
-      },
-      "nature": "Relaxed",
-      "count": 0.419
     }
   ],
   "Feraligatr": [
@@ -11674,7 +14004,27 @@
         "spe": 32
       },
       "nature": "Modest",
-      "count": 23.354
+      "count": 10.354
+    },
+    {
+      "evs": {
+        "def": 8,
+        "hp": 4,
+        "spa": 32,
+        "spe": 22
+      },
+      "nature": "Timid",
+      "count": 5.0
+    },
+    {
+      "evs": {
+        "def": 1,
+        "hp": 28,
+        "spa": 5,
+        "spe": 32
+      },
+      "nature": "Modest",
+      "count": 4.0
     },
     {
       "evs": {
@@ -11687,49 +14037,63 @@
     },
     {
       "evs": {
-        "def": 13,
+        "def": 4,
+        "hp": 22,
+        "spa": 20,
+        "spe": 20
+      },
+      "nature": "Modest",
+      "count": 3.0
+    },
+    {
+      "evs": {
+        "def": 23,
+        "hp": 10,
+        "spa": 1,
+        "spe": 32
+      },
+      "nature": "Timid",
+      "count": 2.0
+    },
+    {
+      "evs": {
+        "def": 14,
+        "hp": 4,
+        "spa": 26,
+        "spe": 22
+      },
+      "nature": "Timid",
+      "count": 2.0
+    },
+    {
+      "evs": {
+        "def": 20,
         "hp": 32,
         "spa": 5,
-        "spe": 16
+        "spe": 9
       },
       "nature": "Modest",
       "count": 2.0
     },
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
+        "def": 20,
+        "hp": 27,
+        "spa": 15,
+        "spe": 4
       },
-      "nature": "Bold",
-      "count": 0.769
+      "nature": "Modest",
+      "count": 2.0
     },
     {
       "evs": {
-        "hp": 32,
-        "def": 32,
-        "spd": 2
+        "def": 20,
+        "hp": 28,
+        "spa": 15,
+        "spe": 3
       },
-      "nature": "Bold",
-      "count": 0.038
-    },
-    {
-      "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Quiet",
-      "count": 0.019
-    },
-    {
-      "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Naive",
-      "count": 0.019
+      "nature": "Modest",
+      "count": 2.0
     }
   ],
   "Floette-Mega": [
@@ -11966,15 +14330,6 @@
   "Froslass": [
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Modest",
-      "count": 8.0
-    },
-    {
-      "evs": {
         "hp": 25,
         "spd": 26,
         "spe": 15
@@ -11993,12 +14348,33 @@
     },
     {
       "evs": {
+        "def": 8,
+        "hp": 15,
+        "spa": 9,
+        "spd": 2,
+        "spe": 32
+      },
+      "nature": "Timid",
+      "count": 3.0
+    },
+    {
+      "evs": {
         "hp": 2,
         "spa": 32,
         "spe": 32
       },
       "nature": "Timid",
       "count": 2.054
+    },
+    {
+      "evs": {
+        "def": 15,
+        "hp": 10,
+        "spa": 9,
+        "spe": 32
+      },
+      "nature": "Timid",
+      "count": 2.0
     },
     {
       "evs": {
@@ -12044,15 +14420,6 @@
       },
       "nature": "Jolly",
       "count": 0.015
-    },
-    {
-      "evs": {
-        "def": 18,
-        "spd": 16,
-        "spe": 32
-      },
-      "nature": "Calm",
-      "count": 0.012
     }
   ],
   "Froslass-Mega": [
@@ -12064,15 +14431,6 @@
       },
       "nature": "Timid",
       "count": 2.956
-    },
-    {
-      "evs": {
-        "hp": 25,
-        "spd": 14,
-        "spe": 27
-      },
-      "nature": "Timid",
-      "count": 1.606
     },
     {
       "evs": {
@@ -12092,6 +14450,16 @@
       },
       "nature": "Timid",
       "count": 1.061
+    },
+    {
+      "evs": {
+        "def": 10,
+        "hp": 15,
+        "spa": 9,
+        "spe": 32
+      },
+      "nature": "Timid",
+      "count": 1.0
     },
     {
       "evs": {
@@ -12135,6 +14503,15 @@
     },
     {
       "evs": {
+        "hp": 25,
+        "spd": 14,
+        "spe": 27
+      },
+      "nature": "Timid",
+      "count": 0.606
+    },
+    {
+      "evs": {
         "hp": 24,
         "spa": 8,
         "spd": 4,
@@ -12142,15 +14519,6 @@
       },
       "nature": "Modest",
       "count": 0.451
-    },
-    {
-      "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Modest",
-      "count": 0.445
     }
   ],
   "Furfrou": [
@@ -12187,12 +14555,12 @@
   "Gallade": [
     {
       "evs": {
-        "hp": 32,
         "atk": 32,
-        "def": 2
+        "def": 2,
+        "hp": 32
       },
-      "nature": "Adamant",
-      "count": 2.779
+      "nature": "Brave",
+      "count": 4.589
     },
     {
       "evs": {
@@ -12200,8 +14568,8 @@
         "atk": 32,
         "def": 2
       },
-      "nature": "Brave",
-      "count": 2.589
+      "nature": "Adamant",
+      "count": 2.779
     },
     {
       "evs": {
@@ -12415,16 +14783,7 @@
         "spe": 32
       },
       "nature": "Modest",
-      "count": 21.128
-    },
-    {
-      "evs": {
-        "atk": 32,
-        "hp": 2,
-        "spe": 32
-      },
-      "nature": "Jolly",
-      "count": 15.127
+      "count": 16.128
     },
     {
       "evs": {
@@ -12433,7 +14792,16 @@
         "spe": 32
       },
       "nature": "Adamant",
-      "count": 7.533
+      "count": 8.533
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "hp": 2,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 7.127
     },
     {
       "evs": {
@@ -12446,42 +14814,42 @@
     },
     {
       "evs": {
-        "hp": 18,
-        "spa": 29,
-        "spe": 19
+        "def": 3,
+        "hp": 11,
+        "spa": 19,
+        "spd": 3,
+        "spe": 30
       },
       "nature": "Modest",
-      "count": 2.0
+      "count": 3.0
     },
     {
       "evs": {
-        "def": 1,
-        "hp": 4,
+        "atk": 28,
+        "hp": 6,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 3.0
+    },
+    {
+      "evs": {
+        "hp": 5,
         "spa": 29,
         "spe": 32
       },
       "nature": "Modest",
-      "count": 2.0
+      "count": 3.0
     },
     {
       "evs": {
-        "atk": 32,
-        "hp": 6,
-        "spe": 28
-      },
-      "nature": "Adamant",
-      "count": 2.0
-    },
-    {
-      "evs": {
-        "hp": 15,
-        "atk": 21,
         "def": 1,
-        "spd": 25,
-        "spe": 4
+        "spa": 32,
+        "spd": 1,
+        "spe": 32
       },
-      "nature": "Adamant",
-      "count": 0.149
+      "nature": "Modest",
+      "count": 3.0
     },
     {
       "evs": {
@@ -12490,17 +14858,18 @@
         "spe": 32
       },
       "nature": "Timid",
-      "count": 0.021
+      "count": 2.021
     },
     {
       "evs": {
-        "hp": 16,
-        "atk": 32,
-        "def": 13,
-        "spd": 5
+        "def": 1,
+        "hp": 24,
+        "spa": 32,
+        "spd": 7,
+        "spe": 2
       },
-      "nature": "Brave",
-      "count": 0.011
+      "nature": "Timid",
+      "count": 2.0
     }
   ],
   "Garchomp-Mega": [
@@ -12628,12 +14997,72 @@
     },
     {
       "evs": {
+        "def": 17,
+        "hp": 28,
+        "spa": 10,
+        "spe": 11
+      },
+      "nature": "Modest",
+      "count": 5.0
+    },
+    {
+      "evs": {
         "hp": 2,
         "spa": 32,
         "spe": 32
       },
       "nature": "Modest",
-      "count": 7.154
+      "count": 3.154
+    },
+    {
+      "evs": {
+        "def": 9,
+        "hp": 32,
+        "spa": 25
+      },
+      "nature": "Modest",
+      "count": 3.0
+    },
+    {
+      "evs": {
+        "def": 15,
+        "hp": 32,
+        "spa": 15,
+        "spe": 4
+      },
+      "nature": "Modest",
+      "count": 3.0
+    },
+    {
+      "evs": {
+        "def": 25,
+        "hp": 32,
+        "spa": 5,
+        "spd": 3,
+        "spe": 1
+      },
+      "nature": "Modest",
+      "count": 2.0
+    },
+    {
+      "evs": {
+        "def": 8,
+        "hp": 32,
+        "spa": 15,
+        "spe": 11
+      },
+      "nature": "Modest",
+      "count": 2.0
+    },
+    {
+      "evs": {
+        "def": 10,
+        "hp": 32,
+        "spa": 15,
+        "spe": 9
+      },
+      "nature": "Modest",
+      "count": 2.0
     },
     {
       "evs": {
@@ -12654,55 +15083,6 @@
       },
       "nature": "Quiet",
       "count": 0.368
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "def": 2,
-        "spa": 32
-      },
-      "nature": "Quiet",
-      "count": 0.258
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "def": 22,
-        "spa": 6,
-        "spd": 1,
-        "spe": 5
-      },
-      "nature": "Bold",
-      "count": 0.088
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "spa": 32,
-        "spd": 2
-      },
-      "nature": "Quiet",
-      "count": 0.033
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "def": 26,
-        "spd": 8
-      },
-      "nature": "Calm",
-      "count": 0.027
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "def": 22,
-        "spa": 6,
-        "spd": 1,
-        "spe": 5
-      },
-      "nature": "Calm",
-      "count": 0.022
     }
   ],
   "Gardevoir-Mega": [
@@ -12727,20 +15107,20 @@
     {
       "evs": {
         "hp": 32,
+        "spa": 23,
+        "spe": 11
+      },
+      "nature": "Modest",
+      "count": 2.0
+    },
+    {
+      "evs": {
+        "hp": 32,
         "def": 2,
         "spa": 32
       },
       "nature": "Modest",
       "count": 1.621
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "spa": 23,
-        "spe": 11
-      },
-      "nature": "Modest",
-      "count": 1.0
     },
     {
       "evs": {
@@ -12894,15 +15274,6 @@
   "Gengar": [
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Modest",
-      "count": 8.0
-    },
-    {
-      "evs": {
         "hp": 32,
         "def": 9,
         "spd": 11,
@@ -12910,6 +15281,16 @@
       },
       "nature": "Timid",
       "count": 5.414
+    },
+    {
+      "evs": {
+        "def": 6,
+        "hp": 32,
+        "spd": 8,
+        "spe": 20
+      },
+      "nature": "Modest",
+      "count": 4.0
     },
     {
       "evs": {
@@ -12932,10 +15313,11 @@
     },
     {
       "evs": {
-        "def": 6,
-        "hp": 32,
-        "spd": 8,
-        "spe": 20
+        "def": 1,
+        "hp": 30,
+        "spa": 1,
+        "spd": 28,
+        "spe": 6
       },
       "nature": "Modest",
       "count": 2.0
@@ -12991,13 +15373,13 @@
   "Gengar-Mega": [
     {
       "evs": {
-        "hp": 20,
         "def": 4,
+        "hp": 20,
         "spa": 10,
         "spe": 32
       },
       "nature": "Modest",
-      "count": 4.05
+      "count": 5.05
     },
     {
       "evs": {
@@ -13018,17 +15400,6 @@
       },
       "nature": "Timid",
       "count": 1.239
-    },
-    {
-      "evs": {
-        "def": 8,
-        "hp": 30,
-        "spa": 5,
-        "spd": 16,
-        "spe": 7
-      },
-      "nature": "Modest",
-      "count": 1.0
     },
     {
       "evs": {
@@ -13090,18 +15461,20 @@
       },
       "nature": "Timid",
       "count": 0.258
+    },
+    {
+      "evs": {
+        "hp": 30,
+        "def": 19,
+        "spa": 1,
+        "spd": 10,
+        "spe": 6
+      },
+      "nature": "Timid",
+      "count": 0.241
     }
   ],
   "Gholdengo": [
-    {
-      "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Modest",
-      "count": 28.023
-    },
     {
       "evs": {
         "hp": 17,
@@ -13109,7 +15482,7 @@
         "spe": 32
       },
       "nature": "Modest",
-      "count": 7.006
+      "count": 14.006
     },
     {
       "evs": {
@@ -13118,7 +15491,16 @@
         "spe": 32
       },
       "nature": "Timid",
-      "count": 6.408
+      "count": 8.408
+    },
+    {
+      "evs": {
+        "hp": 7,
+        "spa": 27,
+        "spe": 32
+      },
+      "nature": "Modest",
+      "count": 8.0
     },
     {
       "evs": {
@@ -13127,7 +15509,16 @@
         "spe": 32
       },
       "nature": "Timid",
-      "count": 5.0
+      "count": 8.0
+    },
+    {
+      "evs": {
+        "hp": 2,
+        "spa": 32,
+        "spe": 32
+      },
+      "nature": "Modest",
+      "count": 7.023
     },
     {
       "evs": {
@@ -13136,6 +15527,27 @@
         "spe": 32
       },
       "nature": "Timid",
+      "count": 6.0
+    },
+    {
+      "evs": {
+        "def": 1,
+        "hp": 1,
+        "spa": 32,
+        "spe": 32
+      },
+      "nature": "Timid",
+      "count": 3.0
+    },
+    {
+      "evs": {
+        "def": 2,
+        "hp": 27,
+        "spa": 1,
+        "spd": 22,
+        "spe": 14
+      },
+      "nature": "Modest",
       "count": 3.0
     },
     {
@@ -13151,41 +15563,14 @@
     },
     {
       "evs": {
-        "hp": 7,
-        "spa": 27,
-        "spe": 32
-      },
-      "nature": "Modest",
-      "count": 2.0
-    },
-    {
-      "evs": {
+        "def": 11,
         "hp": 14,
-        "spa": 7,
-        "spd": 31,
-        "spe": 14
+        "spa": 27,
+        "spd": 4,
+        "spe": 10
       },
       "nature": "Modest",
       "count": 2.0
-    },
-    {
-      "evs": {
-        "hp": 1,
-        "spa": 32,
-        "spd": 1,
-        "spe": 32
-      },
-      "nature": "Modest",
-      "count": 2.0
-    },
-    {
-      "evs": {
-        "hp": 26,
-        "spa": 32,
-        "spe": 8
-      },
-      "nature": "Modest",
-      "count": 1.988
     }
   ],
   "Glaceon": [
@@ -13432,22 +15817,32 @@
   "Glimmora": [
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Modest",
-      "count": 9.693
-    },
-    {
-      "evs": {
         "hp": 1,
         "spa": 32,
         "spd": 1,
         "spe": 32
       },
       "nature": "Timid",
-      "count": 5.037
+      "count": 8.037
+    },
+    {
+      "evs": {
+        "hp": 2,
+        "spa": 32,
+        "spe": 32
+      },
+      "nature": "Timid",
+      "count": 6.016
+    },
+    {
+      "evs": {
+        "def": 1,
+        "hp": 1,
+        "spa": 32,
+        "spe": 32
+      },
+      "nature": "Modest",
+      "count": 4.49
     },
     {
       "evs": {
@@ -13462,23 +15857,13 @@
     },
     {
       "evs": {
-        "hp": 1,
         "def": 1,
+        "hp": 1,
         "spa": 32,
         "spe": 32
       },
       "nature": "Timid",
-      "count": 1.763
-    },
-    {
-      "evs": {
-        "hp": 1,
-        "def": 1,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Modest",
-      "count": 0.49
+      "count": 3.763
     },
     {
       "evs": {
@@ -13486,8 +15871,8 @@
         "spa": 32,
         "spe": 32
       },
-      "nature": "Timid",
-      "count": 0.016
+      "nature": "Modest",
+      "count": 3.693
     },
     {
       "evs": {
@@ -13659,6 +16044,15 @@
     },
     {
       "evs": {
+        "atk": 25,
+        "hp": 15,
+        "spe": 26
+      },
+      "nature": "Adamant",
+      "count": 1.0
+    },
+    {
+      "evs": {
         "hp": 32,
         "def": 5,
         "spd": 29
@@ -13711,11 +16105,6 @@
       },
       "nature": "Calm",
       "count": 0.092
-    },
-    {
-      "evs": {},
-      "nature": "Naive",
-      "count": 0.092
     }
   ],
   "Gogoat": [
@@ -13732,18 +16121,19 @@
       "evs": {},
       "nature": "Jolly",
       "count": 2.0
+    },
+    {
+      "evs": {
+        "atk": 27,
+        "hp": 26,
+        "spd": 6,
+        "spe": 7
+      },
+      "nature": "Adamant",
+      "count": 1.0
     }
   ],
   "Golisopod": [
-    {
-      "evs": {
-        "atk": 32,
-        "hp": 2,
-        "spe": 32
-      },
-      "nature": "Jolly",
-      "count": 9.0
-    },
     {
       "evs": {
         "atk": 32,
@@ -13751,7 +16141,34 @@
         "spd": 2
       },
       "nature": "Adamant",
-      "count": 8.52
+      "count": 19.52
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "hp": 32,
+        "spd": 2
+      },
+      "nature": "Brave",
+      "count": 12.18
+    },
+    {
+      "evs": {
+        "atk": 25,
+        "hp": 32,
+        "spd": 9
+      },
+      "nature": "Adamant",
+      "count": 9.0
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "def": 2,
+        "hp": 32
+      },
+      "nature": "Adamant",
+      "count": 6.457
     },
     {
       "evs": {
@@ -13765,21 +16182,12 @@
     },
     {
       "evs": {
-        "hp": 32,
         "atk": 32,
-        "def": 2
-      },
-      "nature": "Adamant",
-      "count": 4.457
-    },
-    {
-      "evs": {
-        "atk": 25,
         "hp": 32,
-        "spd": 9
+        "spe": 2
       },
       "nature": "Adamant",
-      "count": 3.0
+      "count": 4.648
     },
     {
       "evs": {
@@ -13789,16 +16197,7 @@
         "spe": 1
       },
       "nature": "Adamant",
-      "count": 3.0
-    },
-    {
-      "evs": {
-        "atk": 32,
-        "hp": 32,
-        "spd": 2
-      },
-      "nature": "Brave",
-      "count": 2.18
+      "count": 4.0
     },
     {
       "evs": {
@@ -13811,21 +16210,22 @@
     },
     {
       "evs": {
-        "hp": 32,
         "atk": 32,
-        "spe": 2
+        "def": 1,
+        "hp": 32,
+        "spd": 1
       },
-      "nature": "Adamant",
-      "count": 1.648
+      "nature": "Brave",
+      "count": 2.0
     },
     {
       "evs": {
-        "hp": 2,
-        "atk": 32,
-        "spe": 32
+        "atk": 30,
+        "hp": 32,
+        "spd": 4
       },
       "nature": "Adamant",
-      "count": 0.58
+      "count": 2.0
     }
   ],
   "Golisopod-Mega": [
@@ -14163,15 +16563,6 @@
       },
       "nature": "Modest",
       "count": 5.001
-    },
-    {
-      "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Modest",
-      "count": 1.0
     },
     {
       "evs": {
@@ -14621,11 +17012,11 @@
     {
       "evs": {
         "atk": 32,
-        "hp": 2,
-        "spe": 32
+        "hp": 32,
+        "spd": 2
       },
-      "nature": "Jolly",
-      "count": 1.0
+      "nature": "Brave",
+      "count": 2.0
     },
     {
       "evs": {
@@ -14852,6 +17243,15 @@
   "Grimmsnarl": [
     {
       "evs": {
+        "def": 19,
+        "hp": 32,
+        "spd": 15
+      },
+      "nature": "Sassy",
+      "count": 4.822
+    },
+    {
+      "evs": {
         "hp": 32,
         "def": 17,
         "spd": 15,
@@ -14862,21 +17262,31 @@
     },
     {
       "evs": {
-        "atk": 32,
-        "hp": 2,
-        "spe": 32
-      },
-      "nature": "Jolly",
-      "count": 4.0
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "def": 19,
+        "def": 20,
+        "hp": 31,
         "spd": 15
       },
       "nature": "Sassy",
-      "count": 2.822
+      "count": 2.0
+    },
+    {
+      "evs": {
+        "def": 27,
+        "hp": 32,
+        "spd": 7
+      },
+      "nature": "Careful",
+      "count": 2.0
+    },
+    {
+      "evs": {
+        "def": 20,
+        "hp": 31,
+        "spd": 14,
+        "spe": 1
+      },
+      "nature": "Impish",
+      "count": 2.0
     },
     {
       "evs": {
@@ -14923,24 +17333,6 @@
       },
       "nature": "Adamant",
       "count": 0.136
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "def": 19,
-        "spd": 15
-      },
-      "nature": "Relaxed",
-      "count": 0.109
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "def": 19,
-        "spd": 15
-      },
-      "nature": "Bold",
-      "count": 0.09
     }
   ],
   "Gyarados": [
@@ -14974,11 +17366,11 @@
     },
     {
       "evs": {
-        "atk": 29,
-        "hp": 31,
-        "spe": 6
+        "atk": 32,
+        "def": 2,
+        "spe": 32
       },
-      "nature": "Adamant",
+      "nature": "Jolly",
       "count": 1.0
     },
     {
@@ -15143,16 +17535,7 @@
         "spa": 32
       },
       "nature": "Quiet",
-      "count": 11.123
-    },
-    {
-      "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Modest",
-      "count": 2.0
+      "count": 13.123
     },
     {
       "evs": {
@@ -15161,7 +17544,7 @@
         "spa": 32
       },
       "nature": "Quiet",
-      "count": 2.0
+      "count": 4.0
     },
     {
       "evs": {
@@ -15225,6 +17608,16 @@
       },
       "nature": "Bold",
       "count": 0.049
+    },
+    {
+      "evs": {
+        "hp": 25,
+        "def": 11,
+        "spa": 16,
+        "spd": 14
+      },
+      "nature": "Bold",
+      "count": 0.032
     }
   ],
   "Hawlucha": [
@@ -15245,6 +17638,11 @@
       },
       "nature": "Adamant",
       "count": 1.326
+    },
+    {
+      "evs": {},
+      "nature": "Jolly",
+      "count": 1.0
     },
     {
       "evs": {
@@ -15655,11 +18053,11 @@
     },
     {
       "evs": {
-        "atk": 32,
-        "hp": 2,
-        "spe": 32
+        "def": 6,
+        "hp": 32,
+        "spd": 28
       },
-      "nature": "Jolly",
+      "nature": "Careful",
       "count": 1.0
     },
     {
@@ -15914,6 +18312,15 @@
     },
     {
       "evs": {
+        "atk": 32,
+        "hp": 9,
+        "spe": 25
+      },
+      "nature": "Adamant",
+      "count": 1.0
+    },
+    {
+      "evs": {
         "hp": 2,
         "atk": 32,
         "spe": 32
@@ -16038,7 +18445,7 @@
         "spe": 32
       },
       "nature": "Modest",
-      "count": 7.544
+      "count": 11.544
     },
     {
       "evs": {
@@ -16048,17 +18455,6 @@
       },
       "nature": "Timid",
       "count": 2.377
-    },
-    {
-      "evs": {
-        "def": 1,
-        "hp": 4,
-        "spa": 32,
-        "spd": 1,
-        "spe": 28
-      },
-      "nature": "Timid",
-      "count": 1.0
     },
     {
       "evs": {
@@ -16122,17 +18518,44 @@
       },
       "nature": "Quiet",
       "count": 0.008
+    },
+    {
+      "evs": {
+        "def": 32,
+        "spa": 32,
+        "spe": 2
+      },
+      "nature": "Bold",
+      "count": 0.008
     }
   ],
   "Incineroar": [
     {
       "evs": {
-        "atk": 32,
-        "hp": 2,
-        "spe": 32
+        "def": 14,
+        "hp": 32,
+        "spd": 20
       },
-      "nature": "Jolly",
-      "count": 37.0
+      "nature": "Careful",
+      "count": 10.0
+    },
+    {
+      "evs": {
+        "def": 20,
+        "hp": 32,
+        "spd": 14
+      },
+      "nature": "Impish",
+      "count": 7.0
+    },
+    {
+      "evs": {
+        "def": 15,
+        "hp": 31,
+        "spd": 20
+      },
+      "nature": "Sassy",
+      "count": 5.0
     },
     {
       "evs": {
@@ -16145,6 +18568,17 @@
     },
     {
       "evs": {
+        "atk": 1,
+        "def": 8,
+        "hp": 32,
+        "spd": 20,
+        "spe": 5
+      },
+      "nature": "Careful",
+      "count": 4.0
+    },
+    {
+      "evs": {
         "hp": 32,
         "def": 2,
         "spd": 32
@@ -16154,12 +18588,31 @@
     },
     {
       "evs": {
-        "def": 20,
-        "hp": 32,
-        "spd": 10,
-        "spe": 4
+        "def": 21,
+        "hp": 31,
+        "spd": 7,
+        "spe": 7
       },
       "nature": "Impish",
+      "count": 3.0
+    },
+    {
+      "evs": {
+        "def": 21,
+        "hp": 31,
+        "spd": 14
+      },
+      "nature": "Relaxed",
+      "count": 3.0
+    },
+    {
+      "evs": {
+        "def": 1,
+        "hp": 30,
+        "spd": 12,
+        "spe": 23
+      },
+      "nature": "Careful",
       "count": 3.0
     },
     {
@@ -16171,53 +18624,6 @@
       },
       "nature": "Impish",
       "count": 3.0
-    },
-    {
-      "evs": {
-        "def": 14,
-        "hp": 32,
-        "spd": 20
-      },
-      "nature": "Careful",
-      "count": 3.0
-    },
-    {
-      "evs": {
-        "def": 15,
-        "hp": 31,
-        "spd": 20
-      },
-      "nature": "Sassy",
-      "count": 3.0
-    },
-    {
-      "evs": {
-        "def": 20,
-        "hp": 32,
-        "spd": 14
-      },
-      "nature": "Impish",
-      "count": 3.0
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "atk": 32,
-        "def": 2
-      },
-      "nature": "Adamant",
-      "count": 2.554
-    },
-    {
-      "evs": {
-        "atk": 1,
-        "def": 8,
-        "hp": 32,
-        "spd": 20,
-        "spe": 5
-      },
-      "nature": "Careful",
-      "count": 2.0
     }
   ],
   "Indeedee": [
@@ -16228,7 +18634,7 @@
         "spe": 32
       },
       "nature": "Timid",
-      "count": 8.875
+      "count": 19.875
     },
     {
       "evs": {
@@ -16237,7 +18643,7 @@
         "spe": 32
       },
       "nature": "Modest",
-      "count": 8.0
+      "count": 7.0
     },
     {
       "evs": {
@@ -16250,12 +18656,30 @@
     },
     {
       "evs": {
+        "def": 2,
+        "spa": 32,
+        "spe": 32
+      },
+      "nature": "Timid",
+      "count": 3.0
+    },
+    {
+      "evs": {
         "spa": 32,
         "spd": 2,
         "spe": 32
       },
       "nature": "Timid",
       "count": 2.934
+    },
+    {
+      "evs": {
+        "def": 2,
+        "spa": 32,
+        "spe": 32
+      },
+      "nature": "Modest",
+      "count": 2.0
     },
     {
       "evs": {
@@ -16292,24 +18716,6 @@
       },
       "nature": "Bold",
       "count": 0.058
-    },
-    {
-      "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Bold",
-      "count": 0.046
-    },
-    {
-      "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Calm",
-      "count": 0.046
     }
   ],
   "Indeedee-F": [
@@ -16320,7 +18726,7 @@
         "spd": 2
       },
       "nature": "Relaxed",
-      "count": 21.349
+      "count": 48.349
     },
     {
       "evs": {
@@ -16329,16 +18735,16 @@
         "spd": 2
       },
       "nature": "Bold",
-      "count": 17.843
+      "count": 40.843
     },
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
+        "def": 25,
+        "hp": 32,
+        "spd": 9
       },
-      "nature": "Modest",
-      "count": 14.0
+      "nature": "Bold",
+      "count": 4.0
     },
     {
       "evs": {
@@ -16348,6 +18754,42 @@
       },
       "nature": "Relaxed",
       "count": 4.0
+    },
+    {
+      "evs": {
+        "def": 32,
+        "hp": 32,
+        "spd": 2
+      },
+      "nature": "Sassy",
+      "count": 3.0
+    },
+    {
+      "evs": {
+        "def": 32,
+        "hp": 32,
+        "spa": 2
+      },
+      "nature": "Relaxed",
+      "count": 3.0
+    },
+    {
+      "evs": {
+        "def": 19,
+        "hp": 30,
+        "spd": 17
+      },
+      "nature": "Bold",
+      "count": 2.0
+    },
+    {
+      "evs": {
+        "def": 25,
+        "hp": 32,
+        "spd": 9
+      },
+      "nature": "Calm",
+      "count": 2.0
     },
     {
       "evs": {
@@ -16367,42 +18809,6 @@
       },
       "nature": "Calm",
       "count": 0.871
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "spa": 2,
-        "spd": 32
-      },
-      "nature": "Sassy",
-      "count": 0.569
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "spa": 32,
-        "spd": 2
-      },
-      "nature": "Modest",
-      "count": 0.109
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "spa": 32,
-        "spd": 2
-      },
-      "nature": "Quiet",
-      "count": 0.095
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "def": 32,
-        "spd": 2
-      },
-      "nature": "Calm",
-      "count": 0.069
     }
   ],
   "Infernape": [
@@ -16574,11 +18980,12 @@
     {
       "evs": {
         "atk": 32,
-        "hp": 2,
-        "spe": 32
+        "def": 12,
+        "hp": 14,
+        "spd": 8
       },
-      "nature": "Jolly",
-      "count": 1.344
+      "nature": "Adamant",
+      "count": 1.0
     },
     {
       "evs": {
@@ -16597,6 +19004,15 @@
       },
       "nature": "Brave",
       "count": 0.356
+    },
+    {
+      "evs": {
+        "hp": 2,
+        "atk": 32,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 0.344
     },
     {
       "evs": {
@@ -16737,36 +19153,17 @@
         "hp": 2,
         "spe": 32
       },
-      "nature": "Jolly",
-      "count": 31.0
-    },
-    {
-      "evs": {
-        "atk": 32,
-        "hp": 2,
-        "spe": 32
-      },
       "nature": "Adamant",
-      "count": 11.0
+      "count": 24.0
     },
     {
       "evs": {
-        "hp": 32,
         "atk": 32,
+        "hp": 32,
         "spd": 2
       },
       "nature": "Adamant",
-      "count": 9.324
-    },
-    {
-      "evs": {
-        "atk": 32,
-        "def": 1,
-        "hp": 32,
-        "spe": 1
-      },
-      "nature": "Adamant",
-      "count": 4.0
+      "count": 14.324
     },
     {
       "evs": {
@@ -16775,7 +19172,7 @@
         "spd": 19
       },
       "nature": "Adamant",
-      "count": 3.0
+      "count": 12.0
     },
     {
       "evs": {
@@ -16785,7 +19182,7 @@
         "spe": 1
       },
       "nature": "Adamant",
-      "count": 3.0
+      "count": 9.0
     },
     {
       "evs": {
@@ -16794,27 +19191,46 @@
         "spd": 2
       },
       "nature": "Brave",
-      "count": 2.537
+      "count": 7.537
     },
     {
       "evs": {
         "atk": 32,
-        "hp": 24,
-        "spe": 10
-      },
-      "nature": "Adamant",
-      "count": 2.0
-    },
-    {
-      "evs": {
-        "atk": 25,
-        "def": 3,
+        "def": 1,
         "hp": 32,
-        "spd": 5,
         "spe": 1
       },
       "nature": "Adamant",
-      "count": 2.0
+      "count": 6.0
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "hp": 1,
+        "spd": 1,
+        "spe": 32
+      },
+      "nature": "Adamant",
+      "count": 5.0
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "spd": 2,
+        "spe": 32
+      },
+      "nature": "Adamant",
+      "count": 5.0
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "hp": 30,
+        "spd": 1,
+        "spe": 3
+      },
+      "nature": "Adamant",
+      "count": 4.0
     },
     {
       "evs": {
@@ -16823,7 +19239,7 @@
         "hp": 32
       },
       "nature": "Adamant",
-      "count": 2.0
+      "count": 4.0
     }
   ],
   "Kleavor": [
@@ -16912,9 +19328,10 @@
     },
     {
       "evs": {
-        "hp": 2,
+        "def": 1,
+        "hp": 32,
         "spa": 32,
-        "spe": 32
+        "spd": 1
       },
       "nature": "Modest",
       "count": 1.0
@@ -16990,8 +19407,8 @@
         "spa": 32,
         "spe": 32
       },
-      "nature": "Modest",
-      "count": 15.047
+      "nature": "Timid",
+      "count": 6.267
     },
     {
       "evs": {
@@ -16999,8 +19416,17 @@
         "spa": 32,
         "spe": 32
       },
-      "nature": "Timid",
-      "count": 6.267
+      "nature": "Modest",
+      "count": 6.047
+    },
+    {
+      "evs": {
+        "hp": 10,
+        "spa": 24,
+        "spe": 32
+      },
+      "nature": "Modest",
+      "count": 2.0
     },
     {
       "evs": {
@@ -17011,6 +19437,17 @@
         "spe": 26
       },
       "nature": "Timid",
+      "count": 2.0
+    },
+    {
+      "evs": {
+        "def": 1,
+        "hp": 10,
+        "spa": 22,
+        "spd": 1,
+        "spe": 32
+      },
+      "nature": "Modest",
       "count": 2.0
     },
     {
@@ -17059,24 +19496,6 @@
       },
       "nature": "Naive",
       "count": 0.051
-    },
-    {
-      "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Calm",
-      "count": 0.051
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "def": 2,
-        "spe": 32
-      },
-      "nature": "Jolly",
-      "count": 0.044
     }
   ],
   "Krookodile": [
@@ -17395,6 +19814,15 @@
   "Lucario": [
     {
       "evs": {
+        "hp": 2,
+        "spa": 32,
+        "spe": 32
+      },
+      "nature": "Modest",
+      "count": 6.611
+    },
+    {
+      "evs": {
         "atk": 32,
         "spa": 2,
         "spe": 32
@@ -17408,17 +19836,28 @@
         "spa": 32,
         "spe": 32
       },
-      "nature": "Modest",
-      "count": 3.611
+      "nature": "Timid",
+      "count": 3.389
     },
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
+        "def": 2,
+        "hp": 32,
         "spe": 32
       },
+      "nature": "Modest",
+      "count": 2.0
+    },
+    {
+      "evs": {
+        "def": 2,
+        "hp": 32,
+        "spa": 7,
+        "spd": 8,
+        "spe": 17
+      },
       "nature": "Timid",
-      "count": 1.389
+      "count": 2.0
     },
     {
       "evs": {
@@ -17464,24 +19903,6 @@
       },
       "nature": "Adamant",
       "count": 0.167
-    },
-    {
-      "evs": {
-        "hp": 10,
-        "spa": 32,
-        "spe": 24
-      },
-      "nature": "Modest",
-      "count": 0.167
-    },
-    {
-      "evs": {
-        "hp": 2,
-        "atk": 32,
-        "spe": 32
-      },
-      "nature": "Lonely",
-      "count": 0.111
     }
   ],
   "Lucario-Mega": [
@@ -17574,6 +19995,19 @@
       },
       "nature": "Jolly",
       "count": 0.113
+    }
+  ],
+  "Lucario-Mega-Z": [
+    {
+      "evs": {
+        "def": 5,
+        "hp": 8,
+        "spa": 16,
+        "spd": 5,
+        "spe": 32
+      },
+      "nature": "Timid",
+      "count": 1.0
     }
   ],
   "Luxray": [
@@ -17725,10 +20159,10 @@
     {
       "evs": {
         "atk": 32,
-        "hp": 2,
+        "def": 2,
         "spe": 32
       },
-      "nature": "Jolly",
+      "nature": "Adamant",
       "count": 1.0
     }
   ],
@@ -17906,6 +20340,15 @@
     },
     {
       "evs": {
+        "def": 12,
+        "hp": 32,
+        "spd": 22
+      },
+      "nature": "Relaxed",
+      "count": 1.0
+    },
+    {
+      "evs": {
         "hp": 32,
         "def": 32,
         "spd": 2
@@ -17957,15 +20400,6 @@
         "spe": 32
       },
       "nature": "Jolly",
-      "count": 0.244
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "atk": 32,
-        "spd": 2
-      },
-      "nature": "Adamant",
       "count": 0.244
     }
   ],
@@ -18160,7 +20594,7 @@
         "spe": 32
       },
       "nature": "Timid",
-      "count": 9.568
+      "count": 10.568
     },
     {
       "evs": {
@@ -18338,21 +20772,21 @@
     },
     {
       "evs": {
+        "atk": 32,
+        "hp": 2,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 2.0
+    },
+    {
+      "evs": {
         "hp": 32,
         "def": 2,
         "spe": 32
       },
       "nature": "Timid",
       "count": 1.091
-    },
-    {
-      "evs": {
-        "atk": 32,
-        "spd": 2,
-        "spe": 32
-      },
-      "nature": "Jolly",
-      "count": 1.0
     },
     {
       "evs": {
@@ -18390,12 +20824,12 @@
   "Mawile": [
     {
       "evs": {
-        "hp": 32,
         "atk": 32,
+        "hp": 32,
         "spd": 2
       },
       "nature": "Brave",
-      "count": 5.225
+      "count": 7.225
     },
     {
       "evs": {
@@ -18405,15 +20839,6 @@
       },
       "nature": "Adamant",
       "count": 4.62
-    },
-    {
-      "evs": {
-        "atk": 32,
-        "hp": 2,
-        "spe": 32
-      },
-      "nature": "Jolly",
-      "count": 2.0
     },
     {
       "evs": {
@@ -18776,6 +21201,15 @@
     },
     {
       "evs": {
+        "hp": 2,
+        "spa": 32,
+        "spe": 32
+      },
+      "nature": "Modest",
+      "count": 2.0
+    },
+    {
+      "evs": {
         "hp": 32,
         "spa": 32,
         "spe": 2
@@ -19062,7 +21496,17 @@
         "spe": 32
       },
       "nature": "Timid",
-      "count": 1.0
+      "count": 3.0
+    },
+    {
+      "evs": {
+        "def": 4,
+        "hp": 16,
+        "spa": 17,
+        "spe": 29
+      },
+      "nature": "Timid",
+      "count": 2.0
     },
     {
       "evs": {
@@ -19203,12 +21647,30 @@
     },
     {
       "evs": {
+        "atk": 15,
+        "hp": 24,
+        "spe": 27
+      },
+      "nature": "Adamant",
+      "count": 4.0
+    },
+    {
+      "evs": {
         "hp": 32,
         "atk": 32,
         "def": 2
       },
       "nature": "Adamant",
       "count": 2.715
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "hp": 2,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 2.13
     },
     {
       "evs": {
@@ -19261,30 +21723,12 @@
     },
     {
       "evs": {
-        "hp": 2,
-        "atk": 32,
-        "spe": 32
-      },
-      "nature": "Jolly",
-      "count": 0.13
-    },
-    {
-      "evs": {
         "hp": 32,
         "atk": 7,
         "spe": 27
       },
       "nature": "Impish",
       "count": 0.115
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "atk": 32,
-        "def": 2
-      },
-      "nature": "Brave",
-      "count": 0.075
     }
   ],
   "Metagross-Mega": [
@@ -19383,15 +21827,6 @@
   "Milotic": [
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Modest",
-      "count": 5.0
-    },
-    {
-      "evs": {
         "hp": 32,
         "def": 22,
         "spa": 8,
@@ -19399,6 +21834,35 @@
       },
       "nature": "Bold",
       "count": 4.02
+    },
+    {
+      "evs": {
+        "def": 11,
+        "hp": 32,
+        "spa": 10,
+        "spe": 13
+      },
+      "nature": "Modest",
+      "count": 4.0
+    },
+    {
+      "evs": {
+        "def": 19,
+        "hp": 32,
+        "spa": 10,
+        "spe": 5
+      },
+      "nature": "Modest",
+      "count": 4.0
+    },
+    {
+      "evs": {
+        "def": 29,
+        "hp": 32,
+        "spd": 5
+      },
+      "nature": "Calm",
+      "count": 3.0
     },
     {
       "evs": {
@@ -19423,12 +21887,31 @@
     },
     {
       "evs": {
-        "def": 11,
-        "hp": 32,
-        "spa": 10,
-        "spe": 13
+        "def": 31,
+        "hp": 23,
+        "spd": 12
       },
-      "nature": "Modest",
+      "nature": "Bold",
+      "count": 2.0
+    },
+    {
+      "evs": {
+        "def": 20,
+        "hp": 20,
+        "spa": 10,
+        "spd": 15,
+        "spe": 1
+      },
+      "nature": "Bold",
+      "count": 2.0
+    },
+    {
+      "evs": {
+        "def": 32,
+        "hp": 32,
+        "spd": 2
+      },
+      "nature": "Calm",
       "count": 2.0
     },
     {
@@ -19440,45 +21923,6 @@
       },
       "nature": "Calm",
       "count": 2.0
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "spa": 6,
-        "spd": 26,
-        "spe": 2
-      },
-      "nature": "Calm",
-      "count": 1.185
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "def": 2,
-        "spa": 32
-      },
-      "nature": "Modest",
-      "count": 0.155
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "def": 21,
-        "spa": 11,
-        "spe": 2
-      },
-      "nature": "Quiet",
-      "count": 0.088
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "def": 21,
-        "spa": 11,
-        "spe": 2
-      },
-      "nature": "Timid",
-      "count": 0.085
     }
   ],
   "Mimikyu": [
@@ -19489,7 +21933,7 @@
         "spd": 2
       },
       "nature": "Brave",
-      "count": 4.968
+      "count": 5.968
     },
     {
       "evs": {
@@ -19500,6 +21944,16 @@
       },
       "nature": "Adamant",
       "count": 4.211
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "def": 1,
+        "hp": 1,
+        "spe": 32
+      },
+      "nature": "Adamant",
+      "count": 2.0
     },
     {
       "evs": {
@@ -19564,16 +22018,6 @@
       },
       "nature": "Relaxed",
       "count": 0.081
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "def": 1,
-        "spa": 32,
-        "spd": 1
-      },
-      "nature": "Quiet",
-      "count": 0.04
     }
   ],
   "Mimikyu-Busted": [
@@ -19982,6 +22426,15 @@
     },
     {
       "evs": {
+        "atk": 32,
+        "hp": 32,
+        "spd": 2
+      },
+      "nature": "Brave",
+      "count": 1.0
+    },
+    {
+      "evs": {
         "hp": 32,
         "def": 15,
         "spd": 19
@@ -20034,16 +22487,6 @@
         "spd": 3
       },
       "nature": "Relaxed",
-      "count": 0.086
-    },
-    {
-      "evs": {
-        "hp": 2,
-        "atk": 4,
-        "def": 28,
-        "spd": 32
-      },
-      "nature": "Careful",
       "count": 0.086
     }
   ],
@@ -20153,21 +22596,22 @@
     {
       "evs": {
         "def": 1,
+        "hp": 1,
+        "spa": 32,
+        "spe": 32
+      },
+      "nature": "Timid",
+      "count": 2.0
+    },
+    {
+      "evs": {
+        "def": 1,
         "spa": 32,
         "spd": 1,
         "spe": 32
       },
       "nature": "Modest",
       "count": 1.028
-    },
-    {
-      "evs": {
-        "def": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Timid",
-      "count": 1.0
     },
     {
       "evs": {
@@ -20230,6 +22674,15 @@
   "Ninetales-Alola": [
     {
       "evs": {
+        "hp": 2,
+        "spa": 32,
+        "spe": 32
+      },
+      "nature": "Timid",
+      "count": 6.626
+    },
+    {
+      "evs": {
         "hp": 1,
         "def": 1,
         "spa": 32,
@@ -20240,12 +22693,13 @@
     },
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
+        "def": 7,
+        "hp": 5,
+        "spa": 22,
         "spe": 32
       },
       "nature": "Timid",
-      "count": 3.626
+      "count": 2.0
     },
     {
       "evs": {
@@ -20254,7 +22708,7 @@
         "spe": 32
       },
       "nature": "Modest",
-      "count": 1.989
+      "count": 0.989
     },
     {
       "evs": {
@@ -20521,11 +22975,11 @@
     },
     {
       "evs": {
-        "atk": 32,
-        "hp": 2,
-        "spe": 32
+        "def": 9,
+        "hp": 32,
+        "spd": 25
       },
-      "nature": "Jolly",
+      "nature": "Careful",
       "count": 1.0
     },
     {
@@ -20708,7 +23162,7 @@
         "spe": 32
       },
       "nature": "Jolly",
-      "count": 10.0
+      "count": 14.0
     },
     {
       "evs": {
@@ -20801,7 +23255,16 @@
         "spe": 32
       },
       "nature": "Modest",
-      "count": 19.027
+      "count": 10.027
+    },
+    {
+      "evs": {
+        "hp": 2,
+        "spa": 32,
+        "spe": 32
+      },
+      "nature": "Timid",
+      "count": 9.633
     },
     {
       "evs": {
@@ -20816,77 +23279,74 @@
     },
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Timid",
-      "count": 5.633
-    },
-    {
-      "evs": {
         "def": 10,
         "hp": 32,
         "spa": 17,
         "spd": 7
       },
       "nature": "Bold",
+      "count": 4.0
+    },
+    {
+      "evs": {
+        "hp": 31,
+        "spa": 25,
+        "spe": 10
+      },
+      "nature": "Modest",
       "count": 3.0
     },
     {
       "evs": {
-        "hp": 31,
-        "spd": 25,
-        "spe": 10
-      },
-      "nature": "Bold",
-      "count": 1.383
-    },
-    {
-      "evs": {
-        "hp": 31,
-        "spd": 25,
-        "spe": 10
+        "def": 1,
+        "hp": 2,
+        "spa": 30,
+        "spd": 1,
+        "spe": 32
       },
       "nature": "Timid",
-      "count": 0.389
+      "count": 2.0
+    },
+    {
+      "evs": {
+        "def": 2,
+        "hp": 31,
+        "spa": 5,
+        "spd": 16,
+        "spe": 12
+      },
+      "nature": "Modest",
+      "count": 2.0
+    },
+    {
+      "evs": {
+        "def": 1,
+        "hp": 32,
+        "spa": 5,
+        "spd": 17,
+        "spe": 11
+      },
+      "nature": "Modest",
+      "count": 2.0
     },
     {
       "evs": {
         "hp": 31,
-        "spa": 1,
-        "spd": 32,
+        "spa": 8,
+        "spd": 25,
         "spe": 2
       },
-      "nature": "Calm",
-      "count": 0.257
-    },
-    {
-      "evs": {
-        "hp": 31,
-        "spd": 25,
-        "spe": 10
-      },
-      "nature": "Calm",
-      "count": 0.133
-    },
-    {
-      "evs": {
-        "hp": 31,
-        "spd": 25,
-        "spe": 10
-      },
-      "nature": "Quiet",
-      "count": 0.108
+      "nature": "Bold",
+      "count": 2.0
     },
     {
       "evs": {
         "hp": 32,
-        "def": 32,
+        "spa": 32,
         "spd": 2
       },
-      "nature": "Bold",
-      "count": 0.052
+      "nature": "Modest",
+      "count": 2.0
     }
   ],
   "Perrserker": [
@@ -20919,6 +23379,15 @@
     },
     {
       "evs": {
+        "atk": 32,
+        "hp": 32,
+        "spd": 2
+      },
+      "nature": "Brave",
+      "count": 1.714
+    },
+    {
+      "evs": {
         "hp": 32,
         "atk": 32,
         "def": 2
@@ -20933,15 +23402,6 @@
         "spd": 2
       },
       "nature": "Sassy",
-      "count": 0.714
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "atk": 32,
-        "spd": 2
-      },
-      "nature": "Brave",
       "count": 0.714
     },
     {
@@ -20984,6 +23444,15 @@
       },
       "nature": "Timid",
       "count": 10.0
+    },
+    {
+      "evs": {
+        "def": 2,
+        "hp": 32,
+        "spe": 32
+      },
+      "nature": "Timid",
+      "count": 1.0
     }
   ],
   "Pidgeot": [
@@ -21013,15 +23482,6 @@
       },
       "nature": "Timid",
       "count": 1.053
-    },
-    {
-      "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Modest",
-      "count": 1.0
     },
     {
       "evs": {
@@ -21261,7 +23721,7 @@
         "spd": 2
       },
       "nature": "Quiet",
-      "count": 5.37
+      "count": 6.37
     },
     {
       "evs": {
@@ -21470,22 +23930,22 @@
   "Politoed": [
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Modest",
-      "count": 6.0
-    },
-    {
-      "evs": {
-        "hp": 32,
         "def": 24,
+        "hp": 32,
         "spd": 7,
         "spe": 3
       },
       "nature": "Calm",
-      "count": 5.38
+      "count": 7.38
+    },
+    {
+      "evs": {
+        "def": 23,
+        "hp": 31,
+        "spd": 12
+      },
+      "nature": "Calm",
+      "count": 5.0
     },
     {
       "evs": {
@@ -21498,9 +23958,9 @@
     },
     {
       "evs": {
-        "def": 23,
-        "hp": 31,
-        "spd": 12
+        "def": 24,
+        "hp": 32,
+        "spd": 10
       },
       "nature": "Calm",
       "count": 2.0
@@ -21663,22 +24123,13 @@
   "Primarina": [
     {
       "evs": {
-        "hp": 28,
         "def": 1,
+        "hp": 28,
         "spa": 14,
         "spe": 23
       },
       "nature": "Modest",
-      "count": 7.937
-    },
-    {
-      "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Modest",
-      "count": 6.0
+      "count": 8.937
     },
     {
       "evs": {
@@ -21755,6 +24206,15 @@
       },
       "nature": "Modest",
       "count": 0.052
+    },
+    {
+      "evs": {
+        "hp": 32,
+        "def": 20,
+        "spa": 14
+      },
+      "nature": "Relaxed",
+      "count": 0.045
     }
   ],
   "Pyroar": [
@@ -21765,7 +24225,16 @@
         "spe": 32
       },
       "nature": "Timid",
-      "count": 11.615
+      "count": 12.615
+    },
+    {
+      "evs": {
+        "hp": 30,
+        "spa": 9,
+        "spe": 27
+      },
+      "nature": "Timid",
+      "count": 2.0
     },
     {
       "evs": {
@@ -21774,7 +24243,7 @@
         "spe": 32
       },
       "nature": "Modest",
-      "count": 2.343
+      "count": 0.343
     },
     {
       "evs": {
@@ -21970,15 +24439,6 @@
         "spa": 32,
         "spe": 32
       },
-      "nature": "Modest",
-      "count": 25.367
-    },
-    {
-      "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
       "nature": "Timid",
       "count": 7.797
     },
@@ -21989,7 +24449,26 @@
         "spe": 23
       },
       "nature": "Timid",
-      "count": 2.0
+      "count": 7.0
+    },
+    {
+      "evs": {
+        "def": 21,
+        "hp": 20,
+        "spe": 25
+      },
+      "nature": "Timid",
+      "count": 4.0
+    },
+    {
+      "evs": {
+        "def": 11,
+        "hp": 30,
+        "spa": 2,
+        "spe": 23
+      },
+      "nature": "Timid",
+      "count": 3.0
     },
     {
       "evs": {
@@ -21997,6 +24476,26 @@
         "hp": 32,
         "spd": 1,
         "spe": 32
+      },
+      "nature": "Timid",
+      "count": 3.0
+    },
+    {
+      "evs": {
+        "def": 11,
+        "hp": 25,
+        "spa": 2,
+        "spe": 28
+      },
+      "nature": "Timid",
+      "count": 2.0
+    },
+    {
+      "evs": {
+        "def": 8,
+        "hp": 32,
+        "spd": 1,
+        "spe": 25
       },
       "nature": "Timid",
       "count": 2.0
@@ -22012,49 +24511,21 @@
     },
     {
       "evs": {
+        "def": 4,
+        "hp": 30,
+        "spe": 32
+      },
+      "nature": "Timid",
+      "count": 2.0
+    },
+    {
+      "evs": {
         "def": 9,
         "hp": 25,
         "spe": 32
       },
       "nature": "Timid",
       "count": 2.0
-    },
-    {
-      "evs": {
-        "def": 21,
-        "hp": 17,
-        "spe": 28
-      },
-      "nature": "Timid",
-      "count": 2.0
-    },
-    {
-      "evs": {
-        "def": 11,
-        "hp": 30,
-        "spa": 2,
-        "spe": 23
-      },
-      "nature": "Timid",
-      "count": 2.0
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "def": 2,
-        "spe": 32
-      },
-      "nature": "Jolly",
-      "count": 0.734
-    },
-    {
-      "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Hasty",
-      "count": 0.642
     }
   ],
   "Raichu-Alola": [
@@ -22066,6 +24537,15 @@
       },
       "nature": "Hasty",
       "count": 10.0
+    },
+    {
+      "evs": {
+        "hp": 2,
+        "spa": 32,
+        "spe": 32
+      },
+      "nature": "Modest",
+      "count": 1.0
     }
   ],
   "Raichu-Mega-X": [
@@ -22423,30 +24903,12 @@
   "Rillaboom": [
     {
       "evs": {
-        "atk": 32,
-        "hp": 2,
-        "spe": 32
-      },
-      "nature": "Jolly",
-      "count": 53.0
-    },
-    {
-      "evs": {
         "atk": 15,
         "hp": 32,
         "spd": 19
       },
       "nature": "Adamant",
-      "count": 8.012
-    },
-    {
-      "evs": {
-        "def": 4,
-        "hp": 32,
-        "spd": 30
-      },
-      "nature": "Sassy",
-      "count": 3.0
+      "count": 10.012
     },
     {
       "evs": {
@@ -22456,7 +24918,16 @@
         "spe": 13
       },
       "nature": "Adamant",
-      "count": 3.0
+      "count": 7.0
+    },
+    {
+      "evs": {
+        "def": 4,
+        "hp": 32,
+        "spd": 30
+      },
+      "nature": "Sassy",
+      "count": 6.0
     },
     {
       "evs": {
@@ -22465,56 +24936,67 @@
         "spd": 2
       },
       "nature": "Adamant",
-      "count": 3.0
+      "count": 6.0
     },
     {
       "evs": {
-        "atk": 25,
-        "def": 1,
-        "hp": 17,
-        "spd": 10,
-        "spe": 13
-      },
-      "nature": "Adamant",
-      "count": 3.0
-    },
-    {
-      "evs": {
-        "atk": 25,
-        "def": 4,
-        "hp": 17,
-        "spd": 7,
-        "spe": 13
-      },
-      "nature": "Adamant",
-      "count": 3.0
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "atk": 6,
-        "spd": 28
-      },
-      "nature": "Adamant",
-      "count": 2.215
-    },
-    {
-      "evs": {
-        "hp": 32,
         "atk": 5,
-        "spd": 29
+        "hp": 32,
+        "spd": 21,
+        "spe": 8
       },
       "nature": "Adamant",
-      "count": 2.057
+      "count": 5.0
     },
     {
       "evs": {
-        "atk": 28,
-        "hp": 24,
-        "spe": 14
+        "atk": 32,
+        "hp": 32,
+        "spe": 2
       },
       "nature": "Adamant",
-      "count": 2.0
+      "count": 5.0
+    },
+    {
+      "evs": {
+        "hp": 32,
+        "spd": 25,
+        "spe": 9
+      },
+      "nature": "Adamant",
+      "count": 4.0
+    },
+    {
+      "evs": {
+        "atk": 5,
+        "def": 1,
+        "hp": 21,
+        "spd": 32,
+        "spe": 7
+      },
+      "nature": "Adamant",
+      "count": 4.0
+    },
+    {
+      "evs": {
+        "atk": 15,
+        "hp": 32,
+        "spd": 18,
+        "spe": 1
+      },
+      "nature": "Adamant",
+      "count": 4.0
+    },
+    {
+      "evs": {
+        "atk": 25,
+        "def": 5,
+        "hp": 18,
+        "spd": 10,
+        "spe": 8
+      },
+      "nature": "Adamant",
+      "count": 4.0
     }
   ],
   "Roserade": [
@@ -22673,7 +25155,7 @@
         "spe": 32
       },
       "nature": "Timid",
-      "count": 4.75
+      "count": 3.75
     },
     {
       "evs": {
@@ -22702,6 +25184,15 @@
       },
       "nature": "Modest",
       "count": 1.25
+    },
+    {
+      "evs": {
+        "def": 17,
+        "hp": 32,
+        "spa": 17
+      },
+      "nature": "Bold",
+      "count": 1.0
     },
     {
       "evs": {
@@ -22764,11 +25255,11 @@
     },
     {
       "evs": {
-        "def": 9,
-        "hp": 32,
-        "spa": 5,
-        "spd": 5,
-        "spe": 15
+        "def": 3,
+        "hp": 31,
+        "spa": 15,
+        "spd": 4,
+        "spe": 13
       },
       "nature": "Modest",
       "count": 1.0
@@ -22952,11 +25443,11 @@
     },
     {
       "evs": {
-        "atk": 32,
-        "hp": 2,
-        "spe": 32
+        "def": 32,
+        "hp": 32,
+        "spd": 2
       },
-      "nature": "Jolly",
+      "nature": "bold",
       "count": 1.0
     },
     {
@@ -23104,8 +25595,8 @@
         "spa": 32,
         "spe": 32
       },
-      "nature": "Modest",
-      "count": 27.253
+      "nature": "Timid",
+      "count": 50.448
     },
     {
       "evs": {
@@ -23113,8 +25604,18 @@
         "spa": 32,
         "spe": 32
       },
+      "nature": "Modest",
+      "count": 10.253
+    },
+    {
+      "evs": {
+        "hp": 1,
+        "spa": 32,
+        "spd": 1,
+        "spe": 32
+      },
       "nature": "Timid",
-      "count": 21.448
+      "count": 9.0
     },
     {
       "evs": {
@@ -23132,24 +25633,41 @@
         "spd": 1,
         "spe": 32
       },
-      "nature": "Timid",
+      "nature": "Modest",
+      "count": 4.0
+    },
+    {
+      "evs": {
+        "atk": 1,
+        "hp": 1,
+        "spa": 32,
+        "spe": 32
+      },
+      "nature": "Naive",
       "count": 3.0
     },
     {
       "evs": {
-        "hp": 1,
+        "hp": 2,
         "spa": 32,
-        "spd": 1,
         "spe": 32
       },
-      "nature": "Modest",
-      "count": 2.0
+      "nature": "Naive",
+      "count": 3.0
     },
     {
       "evs": {
-        "hp": 5,
-        "spa": 15,
-        "spd": 14,
+        "atk": 18,
+        "spa": 16,
+        "spe": 32
+      },
+      "nature": "Hasty",
+      "count": 3.0
+    },
+    {
+      "evs": {
+        "hp": 3,
+        "spa": 31,
         "spe": 32
       },
       "nature": "Timid",
@@ -23157,39 +25675,12 @@
     },
     {
       "evs": {
-        "hp": 32,
-        "spa": 32,
-        "spe": 2
-      },
-      "nature": "Modest",
-      "count": 1.068
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "def": 2,
-        "spe": 32
-      },
-      "nature": "Hasty",
-      "count": 0.792
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "def": 2,
-        "spe": 32
-      },
-      "nature": "Naive",
-      "count": 0.43
-    },
-    {
-      "evs": {
+        "atk": 32,
         "hp": 2,
-        "def": 32,
-        "spa": 32
+        "spe": 32
       },
-      "nature": "Modest",
-      "count": 0.37
+      "nature": "Jolly",
+      "count": 2.0
     }
   ],
   "Salamence-Mega": [
@@ -23302,6 +25793,15 @@
       },
       "nature": "Modest",
       "count": 1.296
+    },
+    {
+      "evs": {
+        "def": 32,
+        "hp": 2,
+        "spa": 32
+      },
+      "nature": "Timid",
+      "count": 1.0
     },
     {
       "evs": {
@@ -23628,6 +26128,15 @@
     },
     {
       "evs": {
+        "atk": 32,
+        "hp": 32,
+        "spd": 2
+      },
+      "nature": "Adamant",
+      "count": 2.0
+    },
+    {
+      "evs": {
         "hp": 30,
         "atk": 32,
         "spd": 3,
@@ -23700,17 +26209,6 @@
         "hp": 32,
         "atk": 9,
         "spd": 25
-      },
-      "nature": "Careful",
-      "count": 0.015
-    },
-    {
-      "evs": {
-        "hp": 17,
-        "atk": 32,
-        "def": 1,
-        "spd": 1,
-        "spe": 15
       },
       "nature": "Careful",
       "count": 0.015
@@ -24025,9 +26523,9 @@
     },
     {
       "evs": {
-        "def": 28,
-        "hp": 32,
-        "spd": 6
+        "def": 27,
+        "hp": 31,
+        "spd": 8
       },
       "nature": "Bold",
       "count": 1.0
@@ -24217,10 +26715,9 @@
     },
     {
       "evs": {
-        "def": 4,
+        "def": 32,
         "hp": 32,
-        "spd": 4,
-        "spe": 26
+        "spd": 2
       },
       "nature": "Impish",
       "count": 1.0
@@ -24685,15 +27182,6 @@
   "Sinistcha": [
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Modest",
-      "count": 9.0
-    },
-    {
-      "evs": {
         "hp": 32,
         "def": 32,
         "spa": 2
@@ -24708,7 +27196,7 @@
         "spd": 30
       },
       "nature": "Bold",
-      "count": 2.065
+      "count": 3.065
     },
     {
       "evs": {
@@ -24716,6 +27204,24 @@
         "hp": 32,
         "spd": 19,
         "spe": 1
+      },
+      "nature": "Bold",
+      "count": 3.0
+    },
+    {
+      "evs": {
+        "def": 14,
+        "hp": 32,
+        "spd": 20
+      },
+      "nature": "Calm",
+      "count": 2.0
+    },
+    {
+      "evs": {
+        "def": 14,
+        "hp": 32,
+        "spd": 20
       },
       "nature": "Bold",
       "count": 2.0
@@ -24764,15 +27270,6 @@
       },
       "nature": "Sassy",
       "count": 0.056
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "spa": 32,
-        "spd": 2
-      },
-      "nature": "Quiet",
-      "count": 0.041
     }
   ],
   "Sinistcha-Masterpiece": [
@@ -24796,12 +27293,11 @@
     },
     {
       "evs": {
-        "def": 14,
+        "def": 32,
         "hp": 32,
-        "spd": 19,
-        "spe": 1
+        "spa": 2
       },
-      "nature": "Bold",
+      "nature": "relaxed",
       "count": 1.0
     },
     {
@@ -24877,8 +27373,8 @@
     {
       "evs": {
         "atk": 32,
-        "hp": 22,
-        "spe": 12
+        "hp": 7,
+        "spe": 27
       },
       "nature": "Adamant",
       "count": 1.0
@@ -25157,6 +27653,15 @@
     },
     {
       "evs": {
+        "hp": 32,
+        "spa": 2,
+        "spd": 32
+      },
+      "nature": "Bold",
+      "count": 1.0
+    },
+    {
+      "evs": {
         "def": 20,
         "spa": 17,
         "spd": 29
@@ -25201,15 +27706,6 @@
         "spd": 5
       },
       "nature": "Timid",
-      "count": 0.161
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "def": 32,
-        "spe": 2
-      },
-      "nature": "Bold",
       "count": 0.161
     }
   ],
@@ -25532,8 +28028,8 @@
         "hp": 2,
         "spe": 32
       },
-      "nature": "Jolly",
-      "count": 48.0
+      "nature": "Adamant",
+      "count": 57.0
     },
     {
       "evs": {
@@ -25541,8 +28037,17 @@
         "hp": 2,
         "spe": 32
       },
-      "nature": "Adamant",
-      "count": 27.0
+      "nature": "Jolly",
+      "count": 41.0
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "def": 2,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 11.0
     },
     {
       "evs": {
@@ -25551,7 +28056,7 @@
         "spe": 30
       },
       "nature": "Adamant",
-      "count": 6.0
+      "count": 8.0
     },
     {
       "evs": {
@@ -25560,7 +28065,7 @@
         "spe": 32
       },
       "nature": "Adamant",
-      "count": 5.756
+      "count": 7.756
     },
     {
       "evs": {
@@ -25569,7 +28074,7 @@
         "spe": 32
       },
       "nature": "Jolly",
-      "count": 4.172
+      "count": 6.172
     },
     {
       "evs": {
@@ -25577,47 +28082,39 @@
         "def": 2,
         "spe": 32
       },
-      "nature": "Jolly",
-      "count": 4.0
+      "nature": "Adamant",
+      "count": 5.0
     },
     {
       "evs": {
         "atk": 10,
-        "hp": 17,
-        "spd": 7,
-        "spe": 32
+        "def": 7,
+        "hp": 32,
+        "spe": 17
       },
       "nature": "Adamant",
-      "count": 3.0
-    },
-    {
-      "evs": {
-        "atk": 12,
-        "def": 17,
-        "hp": 5,
-        "spe": 32
-      },
-      "nature": "Adamant",
-      "count": 2.0
-    },
-    {
-      "evs": {
-        "atk": 20,
-        "def": 10,
-        "hp": 4,
-        "spe": 32
-      },
-      "nature": "Adamant",
-      "count": 2.0
+      "count": 4.0
     },
     {
       "evs": {
         "atk": 32,
-        "def": 2,
+        "def": 1,
+        "hp": 1,
         "spe": 32
       },
       "nature": "Adamant",
-      "count": 2.0
+      "count": 4.0
+    },
+    {
+      "evs": {
+        "atk": 25,
+        "def": 4,
+        "hp": 18,
+        "spd": 1,
+        "spe": 18
+      },
+      "nature": "Adamant",
+      "count": 3.0
     }
   ],
   "Snorlax": [
@@ -25642,9 +28139,9 @@
     },
     {
       "evs": {
-        "def": 31,
-        "hp": 21,
-        "spd": 14
+        "def": 32,
+        "hp": 32,
+        "spd": 2
       },
       "nature": "Relaxed",
       "count": 1.0
@@ -25938,22 +28435,13 @@
   "Staraptor": [
     {
       "evs": {
-        "atk": 32,
-        "hp": 2,
-        "spe": 32
-      },
-      "nature": "Jolly",
-      "count": 10.0
-    },
-    {
-      "evs": {
-        "hp": 29,
         "atk": 1,
+        "hp": 29,
         "spd": 4,
         "spe": 32
       },
       "nature": "Jolly",
-      "count": 8.58
+      "count": 10.58
     },
     {
       "evs": {
@@ -25962,7 +28450,45 @@
         "spe": 32
       },
       "nature": "Jolly",
+      "count": 4.0
+    },
+    {
+      "evs": {
+        "atk": 15,
+        "hp": 19,
+        "spe": 32
+      },
+      "nature": "Jolly",
       "count": 3.0
+    },
+    {
+      "evs": {
+        "atk": 12,
+        "hp": 22,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 2.0
+    },
+    {
+      "evs": {
+        "atk": 19,
+        "hp": 15,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 2.0
+    },
+    {
+      "evs": {
+        "atk": 2,
+        "def": 1,
+        "hp": 29,
+        "spd": 2,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 2.0
     },
     {
       "evs": {
@@ -26002,33 +28528,6 @@
       },
       "nature": "Serious",
       "count": 0.014
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "atk": 2,
-        "spe": 32
-      },
-      "nature": "Jolly",
-      "count": 0.009
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "atk": 32,
-        "def": 2
-      },
-      "nature": "Brave",
-      "count": 0.007
-    },
-    {
-      "evs": {
-        "hp": 19,
-        "def": 20,
-        "spd": 27
-      },
-      "nature": "Impish",
-      "count": 0.007
     }
   ],
   "Staraptor-Mega": [
@@ -26148,11 +28647,11 @@
     },
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
+        "atk": 32,
+        "spa": 16,
+        "spe": 18
       },
-      "nature": "Modest",
+      "nature": "Hasty",
       "count": 1.0
     },
     {
@@ -26640,6 +29139,15 @@
   "Swampert": [
     {
       "evs": {
+        "atk": 32,
+        "hp": 2,
+        "spe": 32
+      },
+      "nature": "Adamant",
+      "count": 9.0
+    },
+    {
+      "evs": {
         "hp": 32,
         "atk": 32,
         "def": 2
@@ -26650,20 +29158,11 @@
     {
       "evs": {
         "atk": 32,
-        "hp": 2,
-        "spe": 32
-      },
-      "nature": "Jolly",
-      "count": 4.0
-    },
-    {
-      "evs": {
-        "atk": 32,
-        "hp": 2,
-        "spe": 32
+        "hp": 11,
+        "spe": 23
       },
       "nature": "Adamant",
-      "count": 3.0
+      "count": 2.0
     },
     {
       "evs": {
@@ -26745,23 +29244,21 @@
     },
     {
       "evs": {
+        "atk": 30,
+        "hp": 14,
+        "spe": 22
+      },
+      "nature": "Adamant",
+      "count": 2.0
+    },
+    {
+      "evs": {
         "hp": 8,
         "atk": 30,
         "spe": 28
       },
       "nature": "Adamant",
       "count": 1.267
-    },
-    {
-      "evs": {
-        "atk": 30,
-        "def": 2,
-        "hp": 7,
-        "spd": 3,
-        "spe": 24
-      },
-      "nature": "Adamant",
-      "count": 1.0
     },
     {
       "evs": {
@@ -26840,93 +29337,95 @@
         "spe": 15
       },
       "nature": "Modest",
-      "count": 11.054
+      "count": 14.054
     },
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
+        "def": 2,
+        "hp": 32,
+        "spa": 32
       },
       "nature": "Modest",
-      "count": 10.0
-    },
-    {
-      "evs": {
-        "def": 20,
-        "hp": 32,
-        "spd": 14
-      },
-      "nature": "Calm",
       "count": 3.0
     },
     {
       "evs": {
-        "hp": 31,
-        "def": 25,
-        "spa": 10
-      },
-      "nature": "Quiet",
-      "count": 0.683
-    },
-    {
-      "evs": {
-        "hp": 9,
         "def": 22,
-        "spa": 20,
-        "spe": 15
-      },
-      "nature": "Bold",
-      "count": 0.091
-    },
-    {
-      "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Timid",
-      "count": 0.054
-    },
-    {
-      "evs": {
         "hp": 9,
-        "def": 22,
-        "spa": 20,
-        "spe": 15
-      },
-      "nature": "Sassy",
-      "count": 0.031
-    },
-    {
-      "evs": {
-        "hp": 9,
-        "def": 22,
-        "spa": 20,
-        "spe": 15
-      },
-      "nature": "Serious",
-      "count": 0.028
-    },
-    {
-      "evs": {
-        "hp": 9,
-        "def": 22,
         "spa": 30,
         "spe": 5
       },
       "nature": "Modest",
-      "count": 0.026
+      "count": 2.026
     },
     {
       "evs": {
-        "hp": 9,
+        "def": 6,
+        "hp": 21,
+        "spa": 24,
+        "spe": 15
+      },
+      "nature": "Modest",
+      "count": 2.0
+    },
+    {
+      "evs": {
+        "def": 17,
+        "hp": 3,
+        "spa": 30,
+        "spe": 16
+      },
+      "nature": "Modest",
+      "count": 2.0
+    },
+    {
+      "evs": {
         "def": 22,
+        "hp": 13,
+        "spa": 23,
+        "spe": 8
+      },
+      "nature": "Modest",
+      "count": 2.0
+    },
+    {
+      "evs": {
+        "def": 30,
+        "hp": 1,
         "spa": 20,
         "spe": 15
       },
-      "nature": "Timid",
-      "count": 0.017
+      "nature": "Modest",
+      "count": 2.0
+    },
+    {
+      "evs": {
+        "def": 25,
+        "hp": 31,
+        "spa": 10
+      },
+      "nature": "Modest",
+      "count": 2.0
+    },
+    {
+      "evs": {
+        "def": 32,
+        "hp": 13,
+        "spa": 20,
+        "spe": 1
+      },
+      "nature": "Modest",
+      "count": 2.0
+    },
+    {
+      "evs": {
+        "def": 6,
+        "hp": 23,
+        "spa": 20,
+        "spe": 17
+      },
+      "nature": "Modest",
+      "count": 2.0
     }
   ],
   "Talonflame": [
@@ -26937,7 +29436,7 @@
         "spe": 32
       },
       "nature": "Jolly",
-      "count": 10.318
+      "count": 12.318
     },
     {
       "evs": {
@@ -27089,12 +29588,12 @@
     },
     {
       "evs": {
-        "atk": 32,
         "hp": 2,
+        "atk": 32,
         "spe": 32
       },
       "nature": "Jolly",
-      "count": 1.924
+      "count": 0.924
     },
     {
       "evs": {
@@ -27275,9 +29774,8 @@
     },
     {
       "evs": {
-        "atk": 12,
-        "def": 6,
-        "hp": 20,
+        "atk": 15,
+        "hp": 23,
         "spe": 28
       },
       "nature": "Jolly",
@@ -27357,16 +29855,7 @@
         "spd": 2
       },
       "nature": "Quiet",
-      "count": 12.27
-    },
-    {
-      "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Modest",
-      "count": 4.0
+      "count": 19.27
     },
     {
       "evs": {
@@ -27376,7 +29865,25 @@
         "spd": 1
       },
       "nature": "Quiet",
-      "count": 2.0
+      "count": 11.0
+    },
+    {
+      "evs": {
+        "def": 2,
+        "hp": 32,
+        "spa": 32
+      },
+      "nature": "Quiet",
+      "count": 4.0
+    },
+    {
+      "evs": {
+        "hp": 30,
+        "spa": 32,
+        "spd": 4
+      },
+      "nature": "Quiet",
+      "count": 4.0
     },
     {
       "evs": {
@@ -27431,15 +29938,6 @@
       },
       "nature": "Calm",
       "count": 0.052
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "spa": 32,
-        "spd": 2
-      },
-      "nature": "Relaxed",
-      "count": 0.024
     }
   ],
   "Torterra": [
@@ -27451,6 +29949,16 @@
       },
       "nature": "Adamant",
       "count": 3.043
+    },
+    {
+      "evs": {
+        "atk": 11,
+        "def": 15,
+        "hp": 32,
+        "spe": 8
+      },
+      "nature": "Adamant",
+      "count": 2.0
     },
     {
       "evs": {
@@ -27878,15 +30386,6 @@
   "Tsareena": [
     {
       "evs": {
-        "atk": 32,
-        "hp": 2,
-        "spe": 32
-      },
-      "nature": "Jolly",
-      "count": 5.882
-    },
-    {
-      "evs": {
         "hp": 29,
         "atk": 10,
         "def": 4,
@@ -27897,13 +30396,22 @@
     },
     {
       "evs": {
-        "hp": 10,
+        "hp": 2,
+        "atk": 32,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 3.882
+    },
+    {
+      "evs": {
         "atk": 23,
         "def": 7,
+        "hp": 10,
         "spe": 26
       },
       "nature": "Adamant",
-      "count": 1.133
+      "count": 3.133
     },
     {
       "evs": {
@@ -27990,6 +30498,15 @@
     },
     {
       "evs": {
+        "spa": 32,
+        "spd": 2,
+        "spe": 32
+      },
+      "nature": "Modest",
+      "count": 1.0
+    },
+    {
+      "evs": {
         "hp": 2,
         "spa": 32,
         "spe": 32
@@ -28020,12 +30537,11 @@
     {
       "evs": {
         "def": 1,
-        "hp": 11,
-        "spa": 21,
-        "spd": 1,
+        "hp": 1,
+        "spa": 32,
         "spe": 32
       },
-      "nature": "Modest",
+      "nature": "Timid",
       "count": 1.0
     },
     {
@@ -28035,15 +30551,6 @@
     }
   ],
   "Tyranitar": [
-    {
-      "evs": {
-        "atk": 32,
-        "hp": 2,
-        "spe": 32
-      },
-      "nature": "Jolly",
-      "count": 14.0
-    },
     {
       "evs": {
         "hp": 32,
@@ -28064,8 +30571,63 @@
     },
     {
       "evs": {
+        "atk": 17,
+        "hp": 17,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 3.0
+    },
+    {
+      "evs": {
         "atk": 26,
         "hp": 8,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 3.0
+    },
+    {
+      "evs": {
+        "atk": 17,
+        "hp": 17,
+        "spe": 32
+      },
+      "nature": "Adamant",
+      "count": 3.0
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "def": 1,
+        "spd": 1,
+        "spe": 32
+      },
+      "nature": "Jolly",
+      "count": 2.0
+    },
+    {
+      "evs": {
+        "atk": 22,
+        "hp": 12,
+        "spe": 32
+      },
+      "nature": "Adamant",
+      "count": 2.0
+    },
+    {
+      "evs": {
+        "atk": 16,
+        "hp": 22,
+        "spe": 28
+      },
+      "nature": "Adamant",
+      "count": 2.0
+    },
+    {
+      "evs": {
+        "atk": 32,
+        "hp": 2,
         "spe": 32
       },
       "nature": "Jolly",
@@ -28079,51 +30641,6 @@
       },
       "nature": "Adamant",
       "count": 1.127
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "atk": 2,
-        "spe": 32
-      },
-      "nature": "Jolly",
-      "count": 1.109
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "atk": 32,
-        "spd": 2
-      },
-      "nature": "Adamant",
-      "count": 0.317
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "atk": 32,
-        "def": 2
-      },
-      "nature": "Brave",
-      "count": 0.092
-    },
-    {
-      "evs": {
-        "hp": 25,
-        "atk": 16,
-        "spe": 25
-      },
-      "nature": "Careful",
-      "count": 0.056
-    },
-    {
-      "evs": {
-        "hp": 25,
-        "atk": 16,
-        "spe": 25
-      },
-      "nature": "Impish",
-      "count": 0.053
     }
   ],
   "Tyranitar-Mega": [
@@ -28165,13 +30682,11 @@
     },
     {
       "evs": {
-        "atk": 6,
-        "def": 10,
-        "hp": 30,
-        "spd": 10,
-        "spe": 10
+        "atk": 17,
+        "hp": 17,
+        "spe": 32
       },
-      "nature": "Adamant",
+      "nature": "Jolly",
       "count": 1.0
     },
     {
@@ -28365,6 +30880,15 @@
     },
     {
       "evs": {
+        "hp": 2,
+        "spa": 32,
+        "spe": 32
+      },
+      "nature": "Timid",
+      "count": 2.242
+    },
+    {
+      "evs": {
         "hp": 1,
         "def": 1,
         "spa": 32,
@@ -28381,25 +30905,6 @@
       },
       "nature": "Modest",
       "count": 1.498
-    },
-    {
-      "evs": {
-        "def": 1,
-        "spa": 32,
-        "spd": 1,
-        "spe": 32
-      },
-      "nature": "Timid",
-      "count": 1.0
-    },
-    {
-      "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Timid",
-      "count": 0.242
     },
     {
       "evs": {
@@ -28436,6 +30941,15 @@
         "spe": 2
       },
       "nature": "Quiet",
+      "count": 0.097
+    },
+    {
+      "evs": {
+        "hp": 32,
+        "spa": 32,
+        "spd": 2
+      },
+      "nature": "Bold",
       "count": 0.097
     }
   ],
@@ -28569,6 +31083,25 @@
     },
     {
       "evs": {
+        "hp": 4,
+        "spa": 30,
+        "spe": 32
+      },
+      "nature": "Modest",
+      "count": 2.0
+    },
+    {
+      "evs": {
+        "hp": 1,
+        "spa": 32,
+        "spd": 1,
+        "spe": 32
+      },
+      "nature": "Modest",
+      "count": 2.0
+    },
+    {
+      "evs": {
         "hp": 32,
         "def": 21,
         "spd": 13
@@ -28611,15 +31144,6 @@
         "spe": 32
       },
       "nature": "Serious",
-      "count": 0.013
-    },
-    {
-      "evs": {
-        "hp": 30,
-        "spa": 18,
-        "spe": 18
-      },
-      "nature": "Bold",
       "count": 0.013
     }
   ],
@@ -29011,12 +31535,21 @@
     },
     {
       "evs": {
+        "def": 2,
+        "spa": 32,
+        "spe": 32
+      },
+      "nature": "Timid",
+      "count": 1.0
+    },
+    {
+      "evs": {
         "hp": 2,
         "spa": 32,
         "spe": 32
       },
       "nature": "Modest",
-      "count": 2.212
+      "count": 0.212
     },
     {
       "evs": {
@@ -30293,15 +32826,6 @@
   "Volcarona": [
     {
       "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Modest",
-      "count": 16.0
-    },
-    {
-      "evs": {
         "hp": 12,
         "def": 31,
         "spa": 5,
@@ -30339,16 +32863,6 @@
     },
     {
       "evs": {
-        "def": 15,
-        "hp": 16,
-        "spa": 5,
-        "spe": 30
-      },
-      "nature": "Modest",
-      "count": 2.0
-    },
-    {
-      "evs": {
         "def": 32,
         "hp": 32,
         "spd": 1,
@@ -30359,31 +32873,52 @@
     },
     {
       "evs": {
+        "def": 32,
+        "hp": 32,
+        "spe": 2
+      },
+      "nature": "Bold",
+      "count": 2.0
+    },
+    {
+      "evs": {
+        "def": 15,
+        "hp": 21,
+        "spa": 5,
+        "spd": 1,
+        "spe": 24
+      },
+      "nature": "Modest",
+      "count": 2.0
+    },
+    {
+      "evs": {
+        "def": 32,
+        "hp": 32,
+        "spa": 1,
+        "spd": 1
+      },
+      "nature": "Bold",
+      "count": 2.0
+    },
+    {
+      "evs": {
+        "def": 15,
+        "hp": 16,
+        "spa": 5,
+        "spe": 30
+      },
+      "nature": "Modest",
+      "count": 2.0
+    },
+    {
+      "evs": {
         "hp": 32,
         "def": 26,
         "spd": 8
       },
       "nature": "Timid",
       "count": 0.552
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "atk": 1,
-        "def": 27,
-        "spe": 6
-      },
-      "nature": "Modest",
-      "count": 0.41
-    },
-    {
-      "evs": {
-        "hp": 32,
-        "def": 26,
-        "spd": 8
-      },
-      "nature": "Calm",
-      "count": 0.295
     }
   ],
   "Watchog": [
@@ -30419,12 +32954,12 @@
   "Weavile": [
     {
       "evs": {
-        "hp": 2,
         "atk": 32,
+        "hp": 2,
         "spe": 32
       },
       "nature": "Jolly",
-      "count": 9.523
+      "count": 10.523
     },
     {
       "evs": {
@@ -30462,7 +32997,26 @@
         "spe": 32
       },
       "nature": "Timid",
-      "count": 16.643
+      "count": 20.643
+    },
+    {
+      "evs": {
+        "def": 1,
+        "hp": 1,
+        "spa": 32,
+        "spe": 32
+      },
+      "nature": "Timid",
+      "count": 2.0
+    },
+    {
+      "evs": {
+        "spa": 26,
+        "spd": 21,
+        "spe": 19
+      },
+      "nature": "Timid",
+      "count": 2.0
     },
     {
       "evs": {
@@ -30471,7 +33025,7 @@
         "spe": 32
       },
       "nature": "Modest",
-      "count": 4.756
+      "count": 0.756
     },
     {
       "evs": {
@@ -30526,15 +33080,6 @@
       },
       "nature": "Relaxed",
       "count": 0.013
-    },
-    {
-      "evs": {
-        "hp": 2,
-        "spa": 32,
-        "spe": 32
-      },
-      "nature": "Hasty",
-      "count": 0.01
     }
   ],
   "Wigglytuff": [
@@ -30724,11 +33269,12 @@
     },
     {
       "evs": {
-        "atk": 32,
-        "spa": 2,
-        "spe": 32
+        "hp": 2,
+        "spa": 32,
+        "spd": 7,
+        "spe": 25
       },
-      "nature": "Naive",
+      "nature": "Modest",
       "count": 1.0
     },
     {
@@ -30749,7 +33295,7 @@
         "spe": 32
       },
       "nature": "Timid",
-      "count": 7.429
+      "count": 8.429
     },
     {
       "evs": {

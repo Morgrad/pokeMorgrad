@@ -111,7 +111,8 @@ class DoublesPilot(SimpleHeuristicsPlayer):
         )
 
     def _foe(self, mon: Pokemon) -> Optional[DE.Combatant]:
-        builds = opp_model.opponent_builds(mon.species)
+        builds = opp_model.opponent_builds(mon.species, item=mon.item, moves_seen=list(mon.moves),
+                                           ability=mon.ability)
         if not builds:
             return None
         frac = mon.current_hp_fraction

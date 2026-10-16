@@ -3,8 +3,11 @@
 Usage:
     python3 tools/scrape_vgcpastes.py fetch-csv
     python3 tools/scrape_vgcpastes.py report
-    python3 tools/scrape_vgcpastes.py filter-balanced
+    python3 tools/scrape_vgcpastes.py filter-balanced [--all-tournaments]
     python3 tools/scrape_vgcpastes.py fetch-teams
+
+Output goes to data/scraped/vgcpastes/{raw,teams} (gitignored). --all-tournaments keeps every
+team with EVs == Yes (deduplicated by pokepaste id) instead of only the balanced tournament tiers.
 
 Sheet uses HYPERLINK formulas — CSV export loses the real URL.
 Must use XLSX + openpyxl to read cell.hyperlink.target.
@@ -21,8 +24,9 @@ import openpyxl
 
 SHEET_ID = "1axlwmzPA49rYkqXh7zHvAtSP-TKbM0ijGYBPRflLSWw"
 TAB_NAME = "Champions M-C"
-RAW_DIR = Path("/tmp/vgc_raw")
-OUT_DIR = Path("/tmp/vgc_scraped")
+BASE_DIR = Path(__file__).resolve().parent.parent / "data" / "scraped" / "vgcpastes"
+RAW_DIR = BASE_DIR / "raw"
+OUT_DIR = BASE_DIR / "teams"
 RAW_DIR.mkdir(parents=True, exist_ok=True)
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -161,7 +165,9 @@ def cmd_filter_balanced():
     col_evs = find_col(header, "evs") or ""
     col_tourn = find_col(header, "tournament") or find_col(header, "event") or ""
 
-    kept, drop_evs, drop_tourn = [], 0, 0
+    all_tourn = "--all-tournaments" in sys.argv
+    col_paste = find_col(header, "pokepaste") or ""
+    kept, drop_evs, drop_tourn, drop_dup, seen = [], 0, 0, 0, set()
     for row in rows:
         tid = (row.get(col_teamid) or "").strip()
         if not tid:
@@ -169,15 +175,21 @@ def cmd_filter_balanced():
         if (row.get(col_evs) or "").strip() != "Yes":
             drop_evs += 1
             continue
-        if (row.get(col_tourn) or "").strip() not in BALANCED_TOURNAMENTS:
+        if not all_tourn and (row.get(col_tourn) or "").strip() not in BALANCED_TOURNAMENTS:
             drop_tourn += 1
             continue
+        pid = extract_paste_id(row.get(col_paste))
+        if all_tourn and (not pid or pid in seen):
+            drop_dup += 1
+            continue
+        seen.add(pid)
         kept.append(tid)
 
     (RAW_DIR / "keep_ids.txt").write_text("\n".join(kept))
     print(f"Balanced filter: kept {len(kept)}")
     print(f"  dropped {drop_evs}  (EVs != Yes)")
     print(f"  dropped {drop_tourn}  (tournament not Tier 1+2)")
+    print(f"  dropped {drop_dup}  (no/duplicate pokepaste id)")
 
     keep_set = set(kept)
     c = Counter()

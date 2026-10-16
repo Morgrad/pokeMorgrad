@@ -13,13 +13,14 @@ from __future__ import annotations
 import json
 from dataclasses import dataclass
 from functools import lru_cache
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Sequence
 
-from src import damage
+from src import archetypes, damage
 from src.paths import data_path
 
 LEVEL = 50
 TOP_K = 3
+ARCHETYPE_K = 6          # conditioned posteriors are sharper, so keep more builds
 STATS = ("hp", "atk", "def", "spa", "spd", "spe")
 
 # ability id -> the move type it nullifies (hit probability, not damage, is what changes)
@@ -42,6 +43,9 @@ class Build:
     nature: str
     evs: Dict[str, int]
     stats: Dict[str, int]      # final level-50 stats, includes "hp"
+    item: Optional[str] = None   # the set's item (archetype path only)
+    form: Optional[str] = None   # Mega form this set turns into, e.g. "Garchomp-Mega-Z"
+    form_stats: Optional[Dict[str, int]] = None   # stats after that Mega Evolution (None if no Mega or already Mega)
 
     @property
     def max_hp(self) -> int:
@@ -99,11 +103,49 @@ def _generic_spread(db_name: str):
     return "Modest", {"hp": 32, "spa": 32, "spe": 2}
 
 
-def opponent_builds(species, k: int = TOP_K) -> List[Build]:
-    """Top-k plausible builds for `species`, weights sum to 1. Empty if species unknown."""
+def _archetype_entry(db_name: str):
+    """(table row, Mega form or None) for a species with enough real sets, else (None, None)."""
+    entry = damage.DB.get_species(db_name)
+    is_mega = (entry.get("forme") or "").startswith("Mega")
+    row = archetypes.load_table().get(entry["baseSpecies"] if is_mega else db_name)
+    if not row or row["n"] < archetypes.MIN_SETS:
+        return None, None
+    return row, (db_name if is_mega else None)
+
+
+def _archetype_builds(db_name: str, row: dict, form: Optional[str], k: int, item, moves_seen, ability) -> List[Build]:
+    merged: Dict[tuple, float] = {}
+    if form:
+        ability = None       # a Mega'd mon shows its Mega ability; the table holds paste (pre-Mega) abilities
+    for w, a in archetypes.posterior(row, item, moves_seen, ability, form):
+        spreads = a["spreads"] or [{"evs": {}, "count": 1}]
+        total = float(sum(sp["count"] for sp in spreads))
+        for sp in spreads:
+            key = (a["nature"], tuple(sorted(sp["evs"].items())), a["item"], a.get("form"))
+            merged[key] = merged.get(key, 0.0) + w * sp["count"] / total
+    top = sorted(merged.items(), key=lambda kv: -kv[1])[:k]
+    norm = sum(wt for _, wt in top)
+    return [Build(wt / norm, nat, dict(evs), stats_for(db_name, dict(evs), nat), it, fm,
+                  stats_for(fm, dict(evs), nat) if fm and fm != db_name else None)
+            for (nat, evs, it, fm), wt in top]
+
+
+def opponent_builds(species, k: Optional[int] = None, item: Optional[str] = None,
+                    moves_seen: Sequence[str] = (), ability: Optional[str] = None) -> List[Build]:
+    """Top-k plausible builds for `species`, weights sum to 1. Empty if species unknown.
+
+    With enough real sets (data/species_archetypes.json) the builds are the posterior given what
+    was seen (revealed `item`, `moves_seen`, `ability`, and a Mega species name); otherwise the
+    marginal spread priors."""
     db_name = resolve_species(species)
     if db_name is None:
         return []
+    row, form = _archetype_entry(db_name)
+    if row is not None:
+        built = _archetype_builds(db_name, row, form, k or ARCHETYPE_K, item, moves_seen, ability)
+        if built:
+            return built
+    k = k or TOP_K
     table = _build_priors()
     key = _prior_key(db_name, table)
     raw = sorted(table[key], key=lambda e: -e.get("count", 1))[:k] if key else []
@@ -148,3 +190,21 @@ def immunity_prob(species, move_type: str, known_ability: Optional[str] = None) 
     """P(target's ability nullifies a `move_type` attack)."""
     return sum(p for a, p in ability_distribution(species, known_ability).items()
                if IMMUNITY_ABILITIES.get(a) == move_type)
+
+
+def item_distribution(species, item: Optional[str] = None, moves_seen: Sequence[str] = ()) -> Dict[str, float]:
+    """{item name: probability} for an opposing `species` given what was seen. {} without real sets."""
+    db_name = resolve_species(species)
+    row, form = _archetype_entry(db_name) if db_name else (None, None)
+    if row is None:
+        return {}
+    return archetypes.item_distribution(archetypes.posterior(row, item, moves_seen, None, form))
+
+
+def move_distribution(species, item: Optional[str] = None, moves_seen: Sequence[str] = ()) -> Dict[str, float]:
+    """{move: P(the set carries it)} given what was seen. {} without real sets."""
+    db_name = resolve_species(species)
+    row, form = _archetype_entry(db_name) if db_name else (None, None)
+    if row is None:
+        return {}
+    return archetypes.move_distribution(archetypes.posterior(row, item, moves_seen, None, form))
