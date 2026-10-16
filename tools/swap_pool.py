@@ -17,20 +17,21 @@ Pipeline:
 """
 import argparse
 import json
+import os
 import shutil
 import subprocess
 import sys
 from datetime import datetime
 from pathlib import Path
 
-REPO = Path.home() / "project"
+REPO = Path.home() / "pokeMorgrad"
 sys.path.insert(0, str(REPO))
 from src import regmc_db as DB
 
 NEW_DIR = Path("/tmp/vgc_scraped")
 POOL_DIR = REPO / "data" / "regional_teams"
 SPLIT_PATH = REPO / "data" / "pool_split.json"
-SHOWDOWN_DIR = Path.home() / "pokemon-showdown"
+SHOWDOWN_DIR = Path(os.environ.get("SHOWDOWN_DIR", Path.home() / "pokemon-showdown"))
 FORMAT = "gen9championsvgc2026regmc"
 
 ARCHIVE_NAME = f"_archive_{datetime.now().strftime('%Y-%m-%d')}"

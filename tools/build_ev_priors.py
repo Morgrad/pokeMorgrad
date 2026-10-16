@@ -21,7 +21,7 @@ import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 
-REPO = Path.home() / "project"
+REPO = Path.home() / "pokeMorgrad"
 sys.path.insert(0, str(REPO))
 from src import regmc_db as DB
 

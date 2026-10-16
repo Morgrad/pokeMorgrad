@@ -15,7 +15,7 @@ import sys
 import time
 from pathlib import Path
 
-REPO = Path.home() / "project"
+REPO = Path.home() / "pokeMorgrad"
 sys.path.insert(0, str(REPO))
 
 from poke_env import AccountConfiguration, ServerConfiguration

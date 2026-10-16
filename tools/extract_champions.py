@@ -10,10 +10,10 @@ import json
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path.home() / "project"))
+sys.path.insert(0, str(Path.home() / "pokeMorgrad"))
 from src.ga_core import genome_to_text, CHAMPION_DIR
 
-CKPT_ROOT = Path.home() / "project" / "output" / "checkpoints" / "v6"
+CKPT_ROOT = Path.home() / "pokeMorgrad" / "output" / "checkpoints" / "v6"
 
 if len(sys.argv) < 2:
     print(__doc__)

@@ -34,7 +34,7 @@ from functools import lru_cache
 from src import battle as B
 from src import regmc_db as DB
 from src import showdown_validator as SV
-from src.paths import data_path, output_path
+from src.paths import data_path, output_path, showdown_dir
 
 FORMAT = "gen9championsvgc2026regmc"
   # canonical format registry; battle.py callers pass this in
@@ -47,8 +47,6 @@ UID_MAX = 10**9   # upper bound of the random per-battle account id space
 # -----------------------------------------------------------------------------
 
 # --- Set generation ---
-META_ITEM_BIAS = 0.70   # P(draw the item from real tournament usage) vs any legal item.
-                        # 0.70 keeps teams meta-plausible while still exploring off-meta tech.
 EV_BUDGET = 66          # Total EVs handed out per mutated spread. Deliberately low: these are
 EV_STAT_CAP = 32        # search seeds, not tournament sets; 66 in 32-point chunks ≈ 2 invested stats.
 
@@ -1068,7 +1066,7 @@ async def run_ga(locked, pop_size, generations, battles_per_genome, concurrency,
 # JSON-checkpointed every generation so a multi-hour run survives a crash/restart.
 CHECKPOINT_DIR = output_path("checkpoints", "v6")
 CHAMPION_DIR = output_path("champions")
-SHOWDOWN_DIR = os.path.expanduser("~/pokemon-showdown")
+SHOWDOWN_DIR = showdown_dir()
 SHOWDOWN_PORT = int(os.environ.get("SHOWDOWN_PORT", "8000"))
 
 
@@ -1539,8 +1537,8 @@ async def run_islands(
     os.makedirs(CHAMPION_DIR, exist_ok=True)
     print(f"\n=== DONE ===")
     for isl in islands:
-        # Champion by validation score, not training score. Fall back to
-        # training best if we never got a val evaluation (short runs).
+        # Primary champion = train best (val-selection was dropped, see STATE.md);
+        # fall back to the val best only if no train genome exists.
         best = isl.best_ever if isl.best_ever["genome"] else isl.best_val_ever
         label = "train" if isl.best_ever["genome"] else "val"
         if best["genome"]:

@@ -15,7 +15,7 @@ if len(sys.argv) < 3:
 TITLE = sys.argv[1]
 SUMMARY = sys.argv[2]
 
-REPO = Path.home() / "project"
+REPO = Path.home() / "pokeMorgrad"
 h = REPO / "docs" / "STATE_history.md"
 commit = subprocess.run(
     ["git", "log", "-1", "--oneline"],

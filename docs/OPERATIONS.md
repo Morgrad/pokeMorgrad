@@ -120,7 +120,7 @@ When to restart:
 
 ### Option A — overnight chain (recommended for runs above one hour)
 
-Runs `run1` (5.5h) → `run2` (5.5h, warm-start) → final eval → done marker.
+Runs `run1` (2.5h) → `run2` (2.5h, warm-start) → final eval → done marker.
 Handles Showdown startup, watchdog, and cleanup.
 
     cd ~/pokeMorgrad

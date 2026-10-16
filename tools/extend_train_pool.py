@@ -16,7 +16,7 @@ import json
 import sys
 from pathlib import Path
 
-REPO = Path.home() / "project"
+REPO = Path.home() / "pokeMorgrad"
 REGIONAL_DIR = REPO / "data" / "regional_teams"
 SPLIT_PATH = REPO / "data" / "pool_split.json"
 GOLDEN_PATH = REPO / "data" / "pool_split_golden.json"

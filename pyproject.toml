@@ -19,6 +19,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["ruff", "pytest"]
+scrape = ["beautifulsoup4", "openpyxl"]
 
 [tool.setuptools]
 packages = ["src"]

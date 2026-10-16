@@ -26,7 +26,7 @@ sleep 1
 for port in 8000 8001 8002; do
   if ! curl -s "http://localhost:$port" > /dev/null 2>&1; then
     echo "[showdown] starting :$port"
-    cd ~/pokemon-showdown
+    cd "${SHOWDOWN_DIR:-$HOME/pokemon-showdown}"
     nohup node pokemon-showdown start "$port" --no-security \
       > "/tmp/showdown_${port}.log" 2>&1 &
     cd ~/pokeMorgrad

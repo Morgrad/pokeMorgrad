@@ -15,8 +15,8 @@ import sys
 from collections import Counter
 from pathlib import Path
 
-REGIONAL_DIR = Path.home() / "project/data/regional_teams"
-SPLIT_PATH = Path.home() / "project/data/pool_split.json"
+REGIONAL_DIR = Path.home() / "pokeMorgrad/data/regional_teams"
+SPLIT_PATH = Path.home() / "pokeMorgrad/data/pool_split.json"
 SEED = int(sys.argv[1]) if len(sys.argv) > 1 else 20261015
 HOLDOUT_SIZE = 100
 

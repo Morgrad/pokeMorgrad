@@ -17,20 +17,21 @@ Steps:
 """
 import argparse
 import json
+import os
 import random
 import shutil
 import subprocess
 import sys
 from pathlib import Path
 
-REPO = Path.home() / "project"
+REPO = Path.home() / "pokeMorgrad"
 sys.path.insert(0, str(REPO))
 from src import regmc_db as DB
 
 SCRAPED = Path("/tmp/vgc_scraped")
 POOL = REPO / "data" / "regional_teams"
 SPLIT = REPO / "data" / "pool_split.json"
-SHOWDOWN = Path.home() / "pokemon-showdown"
+SHOWDOWN = Path(os.environ.get("SHOWDOWN_DIR", Path.home() / "pokemon-showdown"))
 FORMAT = "gen9championsvgc2026regmc"
 SEED = 20261015
 HOLDOUT_SIZE = 100

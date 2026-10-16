@@ -2,11 +2,11 @@
 5-hour GA run — parametrized by run_id.
 
 Usage:
-    python ga_run.py <run_id> [<hours>]
+    python -m run.ga_run <run_id> [<hours>]
 
 Islands:
-    A = Umbreon locked in slot 0
-    B = free
+    A = Umbreon locked in slot 0, seeded with the baseline team
+    B = Umbreon locked in slot 0, no baseline seed
     C = free
 """
 import asyncio
