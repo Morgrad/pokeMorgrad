@@ -21,6 +21,7 @@ Contents
 | `species_ability_priors.corpus.json` | 14 KB | corpus-only ability counts, the blend's input | `tools/build_ev_priors.py` | yes |
 | `species_archetypes.json` | ~600 KB | `{species: {n, archetypes:[{item,nature,form,count,spreads,moves,abilities}]}}`, corpus only (648 teams, 145 species) | `tools/build_archetypes.py` | yes |
 | `mega_rates.json` | ~2 KB | `{cells: {cell_key: P(Mega now)}, species_rel: {species: factor}, hold_floor, n_rows, n_stone_revealed}` | `tools/build_mega_rates.py` | yes |
+| `opp_actions.json` | small | Protect / Fake Out cell tables + per-species factors (`src/opp_actions.py`) | `tools/build_opp_actions.py` | yes (force-add) |
 | `species_item_priors.json` | ~50 KB | `{species: [{item, pct}]}` metavgc shares, DB-legal items, `__other__` = residual | `tools/blend_priors.py` | yes (not consumed yet; for Scarf modelling) |
 | `species_move_usage.json` | ~60 KB | `{species: [{move, pct}]}` metavgc shares, DB movepool only, `__other__` = residual | `tools/blend_priors.py` | yes (not consumed yet) |
 | `scraped/metavgc/` | raw html + `species.json` | metavgc scrape staging | `tools/scrape_metavgc.py` | no (gitignored) |

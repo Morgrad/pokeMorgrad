@@ -36,6 +36,7 @@ class Hypothesis:
     max_hp: int
     cur_hp: int
     types: Optional[List[str]] = None   # overrides Combatant.types (a Mega form changes typing)
+    speeds: Optional[List[Tuple[float, Optional[int]]]] = None   # (weight, effective Speed) given THIS build (turn_sim)
 
 
 @dataclass

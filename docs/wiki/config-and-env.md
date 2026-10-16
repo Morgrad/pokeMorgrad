@@ -42,6 +42,9 @@ Each island process runs with `GA_CONCURRENCY=8` and its own `SHOWDOWN_PORT` (`g
 | `GA_TRAIN_SAMPLE` | `250` | `src/ga_core.py:75` | Opponents sampled per generation from the train pool when it is larger. Current train pool is 150, so no sampling occurs |
 | `DOUBLES_KO_BONUS` | `1.0` (falls back to `doubles_eval.KO_BONUS`) | `src/doubles_pilot.py:70-71` | KO term weight in DoublesPilot's pair score. Sweep 0-4 on 2026-10-16 found a plateau from 1.0 up, 0 about 4 points worse (comment `doubles_eval.py:27`). Overridden by the `ko_bonus=` constructor arg |
 | `DOUBLES_MIN_GAIN` | `0.01` (falls back to `doubles_eval.MIN_GAIN`) | `src/doubles_pilot.py:72-73` | Minimum improvement over vanilla's pair before DoublesPilot deviates |
+| `DOUBLES_TURN_SIM` | `0` | `src/doubles_pilot.py` | `1` makes the pilot decide with `turn_sim.TurnSim` (attacks + Fake Out / Protect / switch) |
+| `DOUBLES_FOE_ACTIONS` | `1` | `src/vgc_pilot.py` | `0` stops `VGCPilot` feeding foe Protect / Fake Out odds (`opp_actions`) to the sim |
+| `DOUBLES_PASSIVE_COST` | `0.15` | `src/turn_sim.py` | tempo cost per switch / Protect in the sim (untuned) |
 | `POKEMORGRAD_ROOT` | unset (repo root = parent of `src/`) | `src/paths.py:15` | Override repo root; must contain `data/` or raises. `data_path`/`output_path`/`src_path` derive from it. Tools that hard-code `~/pokeMorgrad` ignore it |
 | `SHOWDOWN_DIR` | `~/pokemon-showdown` | `src/paths.py:43` (`showdown_dir()`); `src/showdown_validate.js:5`; `tools/build_regmc_db.js:13`; `ops/start_server.sh:2`; `run/ga_overnight.sh:5` | Showdown checkout. Also honored by `src/ga_core.py` (restarts), `run/ga_parallel.sh`, `tools/swap_pool.py`, `tools/build_real_ev_holdout.py` |
 | `BC_DATA` | `data/training_data.jsonl` | `src/bc_train.py:27` | Training JSONL (use heuristic variants for imitation runs) |

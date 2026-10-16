@@ -35,8 +35,8 @@ def sim(world, foes, speeds=(100, 100), tr=False, attackers=None):
     return TS.TurnSim(attackers or {0: atk(), 1: atk()}, world, dict(enumerate(speeds)), foes, trick_room=tr)
 
 
-def fi(speed, moves=("bodyslam",)):
-    return TS.FoeInfo(list(moves), [(1.0, speed)])
+def fi(speed, moves=("bodyslam",), **kw):
+    return TS.FoeInfo(list(moves), [(1.0, speed)], **kw)
 
 
 def test_without_foe_actions_matches_the_evaluator():
@@ -164,6 +164,87 @@ def test_mirror_foe_with_no_known_attack_does_nothing():
     assert ts._plan({}) == {}
 
 
+# ---- foe-on-foe damage, per-hypothesis Speed, Protect / Fake Out / switch --------------------------
+
+def test_foe_spread_move_damages_its_own_partner():
+    def world(immune):
+        o1 = DE.Combatant([hyp()], ["Normal"], immune_prob={"Ground": 1.0} if immune else {})
+        return {"o0": foe(), "o1": o1, "a0": mine(cur=1), "a1": mine(cur=1)}
+    foes = {"o0": fi(100, ("earthquake",)), "o1": TS.FoeInfo([], [(1.0, 100)])}
+    a = DE.Action(0, "bodyslam", ("o0",))
+    hurt = sim(world(False), foes).pair_value((a, None))
+    safe = sim(world(True), foes).pair_value((a, None))
+    assert sim(world(False), foes)._plan({})["o0"].targets == ("a0", "a1", "o1")
+    assert hurt > safe + 0.1                      # its own Earthquake chips the partner: good for us
+
+
+def test_hypothesis_speeds_are_correlated_with_the_build():
+    strong, weak = hyp(0.5, atk=250), hyp(0.5, atk=60)
+    strong.speeds, weak.speeds = [(1.0, 150)], [(1.0, 50)]
+    world = {"o0": foe(strong, weak), "a0": mine()}
+    a = DE.Action(0, "bodyslam", ("o0",))
+    kw = dict(speeds=(100,), attackers={0: atk()})
+    mixed = sim(world, {"o0": fi(100)}, **kw).pair_value((a, None))
+    parts = [sim({"o0": foe(hyp(1.0, atk=at)), "a0": mine()}, {"o0": fi(sp)}, **kw).pair_value((a, None))
+             for at, sp in ((250, 150), (60, 50))]
+    assert abs(mixed - sum(parts) / 2) < 1e-9
+
+
+def test_foe_fake_out_flinches_our_attack_whatever_the_speed():
+    world = {"o0": foe(), "a0": mine()}
+    a = DE.Action(0, "bodyslam", ("o0",))
+    kw = dict(speeds=(100,), attackers={0: atk()})
+    plain = sim(world, {"o0": fi(50, ())}, **kw).pair_value((a, None))
+    for spd in (50, 150):
+        flinched = sim(world, {"o0": fi(spd, ("bodyslam",), fakeout=1.0)}, **kw).pair_value((a, None))
+        assert flinched < plain - 0.15
+    ts = sim(world, {"o0": fi(50, ("bodyslam",), fakeout=1.0)}, **kw)
+    assert ts.pair_value((DE.Action(0, "fakeout", ("o0",)), None)) > flinched    # Fake Out vs Fake Out: ours is faster
+
+
+def test_our_fake_out_prevents_the_retaliation():
+    world = {"o0": foe(), "a0": mine()}
+    ts = sim(world, {"o0": fi(150)}, speeds=(100,), attackers={0: atk()})
+    fo, aj = DE.Action(0, "fakeout", ("o0",)), DE.Action(0, "aquajet", ("o0",))
+    assert ts.pair_value((fo, None)) > ts.pair_value((aj, None)) + 0.1
+
+
+def test_foe_protect_blocks_our_attack():
+    world = {"o0": foe(), "o1": foe(), "a0": mine()}
+    kw = dict(speeds=(100,), attackers={0: atk()})
+    a0, a1 = DE.Action(0, "bodyslam", ("o0",)), DE.Action(0, "bodyslam", ("o1",))
+    def foes(ok):
+        return {"o0": fi(50, (), protect=1.0, protect_ok=ok), "o1": TS.FoeInfo([], [(1.0, 50)])}
+    assert abs(sim(world, foes(1.0), **kw).pair_value((a0, None))) < 1e-9
+    assert sim(world, foes(0.0), **kw).pair_value((a0, None)) > 0.1       # failed Protect
+    assert sim(world, foes(1.0), **kw).pair_value((a1, None)) > 0.1       # the partner is not covered
+
+
+def test_our_protect_and_switch_absorb_a_hit_but_cost_tempo():
+    world = {"o0": foe(), "a0": mine(cur=1), "b0": mine()}
+    ts = sim(world, {"o0": fi(150)}, speeds=(100,), attackers={0: atk()})
+    stay = ts.pair_value((None, None))
+    protect = ts.pair_value((DE.Action(0, "protect", ()), None))
+    swap = ts.pair_value((DE.Action(0, TS.SWITCH, ("b0",)), None))
+    assert protect > stay + 0.5 and swap > stay + 0.3           # KO avoided
+    idle = sim(world, {"o0": TS.FoeInfo([], [(1.0, 150)])}, speeds=(100,), attackers={0: atk()})
+    assert abs(idle.pair_value((DE.Action(0, "protect", ()), None)) + TS.PASSIVE_COST) < 1e-9
+
+
+def test_two_slots_cannot_switch_to_the_same_mon():
+    world = {"o0": foe(), "a0": mine(), "a1": mine(), "b0": mine()}
+    ts = sim(world, {})
+    assert ts.pair_value((DE.Action(0, TS.SWITCH, ("b0",)), DE.Action(1, TS.SWITCH, ("b0",)))) == TS.CONFLICT
+
+
+def test_foe_fake_out_targets_the_slot_with_the_better_attack():
+    world = {"o0": foe(), "a0": mine(), "a1": mine()}
+    ts = sim(world, {"o0": fi(100, ("bodyslam",), fakeout=1.0)})
+    ts.set_candidates({0: [DE.Action(0, "bodyslam", ("o0",))], 1: [None]})
+    (kind, p, tgt), = ts._kinds["o0"]
+    assert (kind, tgt) == ("fakeout", "a0") and abs(p - 1.0) < 1e-9
+
+
 # ---- DoublesPilot wiring (real poke_env Pokemon / orders, no server) -------------------------------
 
 def _mon(species, stats, hp_frac=1.0):
@@ -177,12 +258,14 @@ def _pilot(on=True):
     from src.doubles_pilot import DoublesPilot
     p = DoublesPilot.__new__(DoublesPilot)
     p.ko_bonus, p.min_gain, p.use_turn_sim = DE.KO_BONUS, DE.MIN_GAIN, on
-    p.stats_counter = {"turns": 0, "overrides": 0, "errors": 0, "sim_turns": 0}
+    p.stats_counter = {"turns": 0, "overrides": 0, "errors": 0, "sim_turns": 0,
+                           "sim_protect": 0, "sim_switch": 0, "sim_fakeout": 0}
     return p
 
 
 def _battle(ours, foes, **kw):
     from types import SimpleNamespace as NS
+    kw.setdefault("available_switches", [[], []])
     return NS(active_pokemon=ours, opponent_active_pokemon=foes, side_conditions={},
               opponent_side_conditions={}, fields={}, weather={}, **kw)
 
@@ -223,6 +306,48 @@ def test_pilot_improve_with_turn_sim_runs_end_to_end():
     p2 = _pilot(False)
     p2._improve(b, base)
     assert p2.stats_counter["sim_turns"] == 0
+
+
+def test_pilot_sim_considers_protect_and_switch_when_our_mon_is_about_to_die():
+    from poke_env.battle import Move
+    from poke_env.player.battle_order import DoubleBattleOrder, SingleBattleOrder
+    stats = dict(hp=180, atk=150, spa=90, spd=100, spe=100, **{"def": 110})
+    fast = dict(stats, spe=200, atk=300)
+    ours = [_mon("garchomp", stats, 0.05), _mon("incineroar", stats)]
+    bench = _mon("rillaboom", stats)
+    foes = [_mon("kingambit", fast), _mon("garchomp", fast)]
+
+    def move(mid, code=None):
+        return SingleBattleOrder(Move(mid, gen=9), move_target=code if code is not None else 0)
+    v0 = [move("closecombat", 1), move("closecombat", 2), move("protect"), SingleBattleOrder(bench)]
+    v1 = [move("closecombat", 1), move("closecombat", 2)]
+    b = _battle(ours, foes, force_switch=[False, False], valid_orders=[v0, v1],
+                available_switches=[[bench], [bench]])
+    p = _pilot()
+    out = p._improve(b, DoubleBattleOrder(v0[0], v1[0]))
+    assert p.stats_counter["sim_turns"] == 1
+    assert out.first_order.message != v0[0].message              # a 5%-HP mon facing two fast attackers does not attack
+    assert p.stats_counter["sim_protect"] + p.stats_counter["sim_switch"] == 1
+
+
+def test_vgc_pilot_foe_action_probs_come_from_the_battle_memory():
+    from types import SimpleNamespace as NS
+
+    from src.battle_memory import BattleMemory
+    from src.vgc_pilot import VGCPilot
+    p = VGCPilot.__new__(VGCPilot)
+    p.foe_actions = True
+    mem = BattleMemory()
+    for line in ("|player|p1|a|1|", "|player|p2|b|1|", "|turn|1",
+                 "|switch|p2a: Rillaboom|Rillaboom, M|100/100", "|switch|p2b: Incineroar|Incineroar, M|100/100"):
+        mem.feed(line.split("|"))
+    p.memory_for = lambda battle: mem
+    foe = _mon("rillaboom", dict(hp=180, atk=150, spa=90, spd=100, spe=100, **{"def": 110}))
+    foe._name = "Rillaboom"
+    fo, pr, ok = p._foe_action_probs(foe, NS(player_role="p1"))
+    assert 0.0 <= fo <= 1.0 and 0.0 <= pr <= 1.0 and ok == 1.0
+    p.foe_actions = False
+    assert p._foe_action_probs(foe, NS(player_role="p1")) == (0.0, 0.0, 1.0)
 
 
 if __name__ == "__main__":

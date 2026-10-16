@@ -9,11 +9,13 @@ foe mon, and the damage hypotheses are split into pre/post-Mega stats with that 
 from __future__ import annotations
 
 import logging
+import os
 from typing import Optional
 
 from poke_env.battle import DoubleBattle, Move
 from poke_env.player.battle_order import DoubleBattleOrder, SingleBattleOrder
 
+from src import opp_actions
 from src.battle_memory import BattleMemoryMixin
 from src.doubles_pilot import DoublesPilot
 from src.mega_model import foe_mega_probs, mega_gain
@@ -57,6 +59,19 @@ class VGCPilot(BattleMemoryMixin, DoublesPilot):
         self.stats_counter.update({"mega_opportunities": 0, "mega_used": 0, "mega_errors": 0,
                                    "foe_mega_errors": 0, "foe_mega_turns": 0})
         self._foe_mega: dict = {}
+        self.foe_actions = os.environ.get("DOUBLES_FOE_ACTIONS", "1") == "1"
+
+    def _foe_action_probs(self, mon, battle) -> tuple:
+        if not self.foe_actions:
+            return 0.0, 0.0, 1.0
+        side = "p2" if battle.player_role == "p1" else "p1"
+        mem = self.memory_for(battle)
+        sheet = mem.ots_set(mon.species, side)
+        known = set(mon.moves) | set((sheet or {}).get("moves") or ())
+        ctx = opp_actions.foe_ctx(mem, side, mon.name, mem.turn, known_moves=known,
+                                  moves_complete=bool(sheet), hp_frac=mon.current_hp_fraction)
+        probs = opp_actions.action_probs(ctx)
+        return probs.fakeout, probs.protect, mem.protect_success_prob(f"{side}a: {mon.name}", mem.turn)
 
     def _mega_prob(self, mon) -> float:
         return self._foe_mega.get(mon.name, 0.0)
