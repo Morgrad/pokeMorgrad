@@ -35,6 +35,7 @@ class Hypothesis:
     stats: Dict[str, int]
     max_hp: int
     cur_hp: int
+    types: Optional[List[str]] = None   # overrides Combatant.types (a Mega form changes typing)
 
 
 @dataclass
@@ -105,7 +106,7 @@ class Evaluator:
             tgt = self.world[tid]
             r = damage.damage_rolls_from_stats(
                 atk.stats, atk.types, atk.boosts, action.move,
-                tgt.hyps[hi].stats, tgt.types, tgt.boosts,
+                tgt.hyps[hi].stats, tgt.hyps[hi].types or tgt.types, tgt.boosts,
                 is_doubles=True, include_spread=len(action.targets) > 1,
                 burn=atk.burn, weather=self.weather, terrain=self.terrain,
                 attacker_ability=atk.ability)

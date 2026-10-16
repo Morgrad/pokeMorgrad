@@ -86,6 +86,38 @@ def test_mega_gain():
     assert M.mega_gain("Charizard", "charizarditex")[0] > 0
 
 
+def _foe(species, q):
+    from types import SimpleNamespace as NS
+
+    from poke_env.battle import Pokemon
+
+    from src.doubles_pilot import DoublesPilot
+    return DoublesPilot._foe(NS(_mega_prob=lambda mon: q), Pokemon(gen=9, species=species))
+
+
+def test_foe_hypotheses_carry_mega_types_and_ability_immunity():
+    pre, half, full = _foe("garchomp", 0.0), _foe("garchomp", 0.5), _foe("garchomp", 1.0)
+    assert all(h.types is None for h in pre.hyps) and pre.types == ["Dragon", "Ground"]
+    assert pre.immune_prob.get("Ground", 0.0) < 0.05          # pre-Mega Garchomp is not a Levitator
+    assert abs(sum(h.weight for h in half.hyps) - 1.0) < 1e-9
+    mega_w = sum(h.weight for h in half.hyps if h.types == ["Dragon"])
+    assert abs(mega_w - 0.5) < 1e-6                            # marginal P(Mega now) is preserved by the split
+    assert full.immune_prob["Ground"] > half.immune_prob["Ground"] > pre.immune_prob.get("Ground", 0.0)
+    assert any(h.types == ["Dragon"] for h in full.hyps)
+
+
+def test_hypothesis_types_change_the_damage_roll():
+    from src import doubles_eval as DE
+    stats = {"hp": 180, "atk": 100, "def": 110, "spa": 90, "spd": 110, "spe": 80}
+    atk = DE.Attacker(stats={"hp": 200, "atk": 200, "def": 115, "spa": 100, "spd": 105, "spe": 130}, types=["Normal"])
+    tgt = DE.Combatant([DE.Hypothesis(0.5, stats, 180, 180), DE.Hypothesis(0.5, stats, 180, 180, types=["Fairy"])],
+                       ["Normal"])
+    ev = DE.Evaluator({0: atk}, {"o0": tgt})
+    act = DE.Action(0, "dragonclaw", ("o0",))
+    assert ev.rolls(act, "o0", 0).max() > 0
+    assert ev.rolls(act, "o0", 1).max() == 0                  # Dragon cannot hurt the Fairy-typed Mega hypothesis
+
+
 if __name__ == "__main__":
     for n, f in list(globals().items()):
         if n.startswith("test_"):

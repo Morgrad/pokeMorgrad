@@ -92,7 +92,7 @@ Pure (torch-free, poke_env-free) probability that we move before an opposing mon
 Pure-logic joint scoring of a PAIR of attack actions (numpy + damage; no poke_env).
 - Value = sum over targets of `weight * (E[capped dmg]/max_hp + KO_BONUS * P(KO))`, ally targets negative (`doubles_eval.py:135-150`).
 - Constants: `KO_BONUS=1.0` (swept, `:27`), `ALLY_WEIGHT=1.0`, `MIN_GAIN=0.01`.
-- Dataclasses `Hypothesis, Combatant, Attacker, Action`; `Evaluator` (roll cache, `p_hit = accuracy * (1 - immune)`, two attackers on one target combined via outer sum of rolls, `_hits` at `:117`); `choose_pair` (index 0 is the vanilla baseline; deviate only if gain > `min_gain`, `:153-171`).
+- Dataclasses `Hypothesis` (optional `types` overrides the combatant's types for that hypothesis, used for post-Mega forms), `Combatant, Attacker, Action`; `Evaluator` (roll cache, `p_hit = accuracy * (1 - immune)`, two attackers on one target combined via outer sum of rolls, `_hits` at `:117`); `choose_pair` (index 0 is the vanilla baseline; deviate only if gain > `min_gain`, `:153-171`).
 - Explicitly not modelled: speed order, Protect/Fake Out/redirection, retaliation, secondary effects, defender item/ability modifiers (`:14-16`).
 
 ### doubles_pilot.py (219 lines)
@@ -109,7 +109,7 @@ Foe Mega prediction from real ladder replays. `candidates(mem, side, turn=None)`
 
 ### vgc_pilot.py
 `VGCPilot(BattleMemoryMixin, DoublesPilot)`: foe Mega prediction, then DoublesPilot's decision, then our own Mega.
-- Foe: `choose_move` computes `foe_mega_probs` into `_foe_mega`; `DoublesPilot._mega_prob(mon)` (0.0 in the base pilot, overridden here) feeds `_foe`, which splits each Mega-capable build's weight into post-Mega (`form_stats`) and pre-Mega stats with `conditional_q`. Types/abilities of the Mega form are not mixed in yet.
+- Foe: `choose_move` computes `foe_mega_probs` into `_foe_mega`; `DoublesPilot._mega_prob(mon)` (0.0 in the base pilot, overridden here) feeds `_foe`, which splits each Mega-capable build's weight into post-Mega (`form_stats`) and pre-Mega stats with `conditional_q`. The post-Mega hypothesis also carries the Mega form's types (`Hypothesis.types`) and the immunity map mixes pre/post-Mega abilities.
 - Own: `mega_variant(order, valid)` finds the `mega=True` twin (same move id and `move_target`); `add_mega(battle, base, mega_free, score=None)` picks the slot with the highest `score` among slots that can Mega and have a move twin (score = `mega_gain` of the held stone; ties go to the lower slot). Switch orders never Mega; at most one Mega per turn.
 - No Mega "hold" rule: replay win rate shows no difference by timing (turn 1 41.9%, first-opportunity later 41.8%, delayed 43.1%, never 46.1%; confounded), so we Mega on the first opportunity.
 - `stats_counter` adds `mega_opportunities / mega_used / mega_errors / foe_mega_turns / foe_mega_errors` (errors fall back to the base order). Torch-free; `battle.make_player` creates it lazily for `pilot="vgc"`. Tests: `tests/test_vgc_pilot.py` (5, synthetic orders).

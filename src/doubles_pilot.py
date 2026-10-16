@@ -123,18 +123,23 @@ class DoublesPilot(SimpleHeuristicsPlayer):
             return None
         frac = mon.current_hp_fraction
         q = conditional_q(self._mega_prob(mon), sum(b.weight for b in builds if b.form_stats))
-        hyps = []
+        hyps, post = [], {}                 # post: Mega form -> P(this foe is that form this turn)
         for b in builds:
+            cur = max(1, round(frac * b.max_hp))
             if b.form_stats and q > 0:
                 hyps.append(DE.Hypothesis(b.weight * q, b.form_stats, b.form_stats["hp"],
-                                          max(1, round(frac * b.form_stats["hp"]))))
+                                          max(1, round(frac * b.form_stats["hp"])),
+                                          types=list(damage.DB.get_species(b.form)["types"])))
+                post[b.form] = post.get(b.form, 0.0) + b.weight * q
                 if q < 1:
-                    hyps.append(DE.Hypothesis(b.weight * (1 - q), b.stats, b.max_hp,
-                                              max(1, round(frac * b.max_hp))))
+                    hyps.append(DE.Hypothesis(b.weight * (1 - q), b.stats, b.max_hp, cur))
             else:
-                hyps.append(DE.Hypothesis(b.weight, b.stats, b.max_hp, max(1, round(frac * b.max_hp))))
+                hyps.append(DE.Hypothesis(b.weight, b.stats, b.max_hp, cur))
         types = [_type_to_db(t) for t in mon.types if t is not None]
-        immune = {t: opp_model.immunity_prob(mon.species, t, mon.ability) for t in _move_types()}
+        pm = sum(post.values())
+        immune = {t: (1 - pm) * opp_model.immunity_prob(mon.species, t, mon.ability)
+                  + sum(w * opp_model.immunity_prob(f, t) for f, w in post.items())
+                  for t in _move_types()}
         return DE.Combatant(hyps, types, _boosts_dict(mon), False,
                             {t: p for t, p in immune.items() if p > 0})
 
