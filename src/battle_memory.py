@@ -19,7 +19,7 @@ Unburden / Quick Feet / Slow Start (item consumed, status, turns since switch-in
 """
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Tuple
 
 from src import regmc_db as DB
@@ -41,6 +41,9 @@ DURATIONS = {
     "Reflect": (5, 8), "Light Screen": (5, 8), "Aurora Veil": (5, 8),
     "Gravity": (5, 5), "Magic Room": (5, 5), "Wonder Room": (5, 5),
 }
+# per-mon volatiles: base length counted like conditions (set on turn s, length L -> active s..s+L-1;
+# Yawn: asleep at the end of turn s+1, so it is still "pending" on turn s+1)
+VOLATILES = {"Taunt": 3, "Encore": 3, "Yawn": 2}
 # `-activate` lines that mean this turn's order is not decided by Speed alone
 TAINT_ACTIVATE = {"move: After You": "after_you", "move: Quash": "quash",
                   "item: Quick Claw": "quick_claw", "item: Custap Berry": "custap",
@@ -113,6 +116,7 @@ class MonRecord:
     protect_fails: int = 0
     protect_chain: int = 0         # consecutive turns of successful Protect-family use
     protect_last_turn: Optional[int] = None
+    volatiles: Dict[str, int] = field(default_factory=dict)   # VOLATILES name -> start turn
 
 
 class BattleMemory:
@@ -199,6 +203,16 @@ class BattleMemory:
         base, ext = DURATIONS[cond.kind]
         return (max(cond.start_turn + base - t, 0), max(cond.start_turn + ext - t, 0))
 
+    def volatile_left(self, ident: str, name: str, now: Optional[int] = None) -> int:
+        """Turns the volatile `name` (Taunt, Encore, Yawn) is still active on mon `ident`, counting
+        turn `now`; 0 = not active. Taunt / Encore are not extended by anything we model."""
+        rec = self.mons.get(_key(ident))
+        start = rec.volatiles.get(name) if rec else None
+        if start is None:
+            return 0
+        t = self.turn if now is None else now
+        return max(start + VOLATILES[name] - t, 0)
+
     def turn_order(self, turn: int) -> List[Action]:
         """Chosen actions in the order they resolved (switches first, then moves)."""
         return [a for a in self.actions.get(turn, []) if a.chosen and a.kind != "drag"]
@@ -266,6 +280,7 @@ class BattleMemory:
         rec.slow_start = False
         rec.protect_chain = 0
         rec.protect_last_turn = None
+        rec.volatiles.clear()
         chosen = (not drag) and not self._upkeep and not self._moved_this_turn
         self._log(ident, "drag" if drag else "switch", chosen=chosen)
 
@@ -324,7 +339,9 @@ class BattleMemory:
         self._log(p[2], "cant")
 
     def _on_faint(self, p):
-        self._rec(p[2]).fainted = True
+        rec = self._rec(p[2])
+        rec.fainted = True
+        rec.volatiles.clear()
 
     def _on_status(self, p):
         self._rec(p[2]).status = p[3]
@@ -343,10 +360,23 @@ class BattleMemory:
     def _on_start(self, p):
         if len(p) > 3 and p[3] == "ability: Slow Start":
             self._rec(p[2]).slow_start = True
+        v = self._volatile_name(p)
+        if v:
+            self._rec(p[2]).volatiles[v] = self._start_turn()
 
     def _on_end(self, p):
         if len(p) > 3 and p[3] == "Slow Start":
             self._rec(p[2]).slow_start = False
+        v = self._volatile_name(p)
+        if v:
+            self._rec(p[2]).volatiles.pop(v, None)
+
+    @staticmethod
+    def _volatile_name(p) -> Optional[str]:
+        if len(p) < 4:
+            return None
+        name = p[3][6:] if p[3].startswith("move: ") else p[3]
+        return name if name in VOLATILES else None
 
     def _on_showteam(self, p):
         sets = []

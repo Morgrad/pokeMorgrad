@@ -332,6 +332,49 @@ def test_real_replays_every_turn_has_a_consistent_first_mover():
             assert a.kind in ("move", "cant") and a.chosen
 
 
+# ---- volatiles (Taunt / Encore / Yawn durations) -------------------------------------
+def test_taunt_turns_left_and_clear_on_end():
+    m = new("""
+|switch|p2a: Milotic|Milotic, L50|100/100
+|turn|3
+|move|p1a: X|Taunt|p2a: Milotic
+|-start|p2a: Milotic|move: Taunt
+""")
+    assert m.volatile_left("p2a: Milotic", "Taunt") == 3      # active turns 3, 4, 5
+    feed(m, "|turn|4")
+    assert m.volatile_left("p2a: Milotic", "Taunt") == 2
+    feed(m, "|turn|5")
+    assert m.volatile_left("p2a: Milotic", "Taunt") == 1
+    feed(m, "|-end|p2a: Milotic|move: Taunt")
+    assert m.volatile_left("p2a: Milotic", "Taunt") == 0
+
+
+def test_volatiles_cleared_on_switch_and_faint():
+    m = new("""
+|switch|p2a: Milotic|Milotic, L50|100/100
+|turn|2
+|-start|p2a: Milotic|move: Taunt
+|-start|p2a: Milotic|Encore
+|switch|p2a: Sneasler|Sneasler, L50|100/100
+|switch|p2a: Milotic|Milotic, L50|100/100
+""")
+    assert m.volatile_left("p2a: Milotic", "Taunt") == 0
+    assert m.volatile_left("p2a: Milotic", "Encore") == 0
+    feed(m, "|-start|p2a: Milotic|move: Yawn\n|faint|p2a: Milotic")
+    assert m.volatile_left("p2a: Milotic", "Yawn") == 0
+
+
+def test_yawn_pending_until_next_turn_end():
+    m = new("""
+|switch|p2a: Milotic|Milotic, L50|100/100
+|turn|2
+|-start|p2a: Milotic|move: Yawn|[of] p1a: X
+""")
+    assert m.volatile_left("p2a: Milotic", "Yawn") == 2
+    feed(m, "|turn|3")
+    assert m.volatile_left("p2a: Milotic", "Yawn") == 1       # falls asleep at the end of this turn
+
+
 if __name__ == "__main__":
     failed = 0
     for name, fn in sorted(globals().items()):

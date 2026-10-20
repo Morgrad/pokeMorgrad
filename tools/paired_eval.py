@@ -1,5 +1,6 @@
 """Paired live comparison, same team matchups: VGCPilot with use_turn_sim off vs on (--mode turnsim, default),
 or with the support-move layer off vs on, turn_sim on in both (--mode support --support all).
+Lookahead runs: --mode lookahead (support effects on in both arms, DoublesPilot.lookahead off vs on).
 
 Each matchup (our team, heuristic opponent's team; both drawn from the held-out pool with a fixed
 seed) is played once per arm, concurrently, so both arms always have the same sample size.
@@ -67,6 +68,10 @@ async def one_battle(k, arm, ours, theirs, sem, opp="heuristic", mode="turnsim",
                 if mode == "support":
                     bot.use_turn_sim = True
                     bot.effects = SV.parse_effects(support if flag else "")
+                elif mode == "lookahead":
+                    bot.use_turn_sim = True
+                    bot.effects = SV.parse_effects(support)
+                    bot.lookahead = flag
                 else:
                     bot.use_turn_sim = flag
                 foe = B.make_player(opp, theirs, uid, "O", FMT)
@@ -276,7 +281,7 @@ if __name__ == "__main__":
     r.add_argument("--concurrency", type=int, default=3)
     r.add_argument("--out", default=None)
     r.add_argument("--opp", default="heuristic", help="opponent pilot: heuristic or ladder")
-    r.add_argument("--mode", default="turnsim", choices=("turnsim", "support"))
+    r.add_argument("--mode", default="turnsim", choices=("turnsim", "support", "lookahead"))
     r.add_argument("--support", default="all", help="effects of the 'on' arm in --mode support")
     r.add_argument("--team", default="", help="comma list of team .txt files replacing our side")
     r.add_argument("--tag", default="", help="log-file tag")

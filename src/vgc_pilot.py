@@ -83,6 +83,16 @@ class VGCPilot(BattleMemoryMixin, DoublesPilot):
         got = self._foe_probs(mon, battle)
         return got[0].trickroom if got else 0.0
 
+    def _taunt_left(self, mon, battle) -> int:
+        side = "p2" if battle.player_role == "p1" else "p1"
+        mem = self.memory_for(battle)
+        return mem.volatile_left(f"{side}a: {mon.name}", "Taunt")
+
+    def _trick_room_left(self, battle) -> int:
+        mem = self.memory_for(battle)
+        tl = mem.turns_left(mem.condition("field", "Trick Room"))
+        return tl[0] if tl else 0
+
     def _mega_prob(self, mon) -> float:
         return self._foe_mega.get(mon.name, 0.0)
 

@@ -60,6 +60,22 @@ def test_score_picks_the_better_mega_when_both_can():
     assert slot == 0
 
 
+def test_pilot_reads_taunt_and_trick_room_turns_from_memory():
+    from src.battle_memory import BattleMemory
+    from src.vgc_pilot import VGCPilot
+    mem = BattleMemory()
+    for line in ("|switch|p2a: Milotic|Milotic, L50|100/100", "|turn|3", "|-start|p2a: Milotic|move: Taunt",
+                 "|-fieldstart|move: Trick Room|[of] p2a: Milotic"):
+        mem.feed(line.split("|"))
+    pilot = VGCPilot.__new__(VGCPilot)
+    pilot.memory_for = lambda battle: mem
+    b = NS(player_role="p1")
+    assert pilot._taunt_left(NS(name="Milotic"), b) == 3
+    assert pilot._trick_room_left(b) == 5
+    mem.feed("|turn|6".split("|"))
+    assert pilot._taunt_left(NS(name="Milotic"), b) == 0 and pilot._trick_room_left(b) == 2
+
+
 if __name__ == "__main__":
     for n, f in list(globals().items()):
         if n.startswith("test_"):

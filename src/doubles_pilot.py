@@ -21,7 +21,7 @@ import os
 from functools import lru_cache
 from typing import Dict, FrozenSet, List, Optional
 
-from poke_env.battle import DoubleBattle, Field, Move, Pokemon, SideCondition
+from poke_env.battle import DoubleBattle, Effect, Field, Move, Pokemon, SideCondition
 from poke_env.battle.status import Status
 from poke_env.player import SimpleHeuristicsPlayer
 from poke_env.player.battle_order import DoubleBattleOrder, SingleBattleOrder
@@ -70,11 +70,14 @@ def _is_attack_candidate(move: Move, effects: FrozenSet[str] = frozenset()) -> b
 
 class DoublesPilot(SimpleHeuristicsPlayer):
     effects: FrozenSet[str] = frozenset()      # support-move layer (src.support_value); empty = off
+    lookahead: bool = False                    # state-delta continuation (DOUBLES_LOOKAHEAD)
 
     def __init__(self, *args, ko_bonus: Optional[float] = None, min_gain: Optional[float] = None,
-                 use_turn_sim: Optional[bool] = None, support: Optional[str] = None, **kwargs):
+                 use_turn_sim: Optional[bool] = None, support: Optional[str] = None,
+                 lookahead: Optional[bool] = None, **kwargs):
         super().__init__(*args, **kwargs)
         self.effects = SV.parse_effects(support)
+        self.lookahead = SV.lookahead_enabled(lookahead) and bool(self.effects)
         # env overrides let eval sweeps tune without code edits
         self.ko_bonus = ko_bonus if ko_bonus is not None else float(
             os.environ.get("DOUBLES_KO_BONUS", DE.KO_BONUS))
@@ -195,7 +198,17 @@ class DoublesPilot(SimpleHeuristicsPlayer):
         fakeout, protect, protect_ok = self._foe_action_probs(mon, battle)
         abilities = opp_model.ability_distribution(mon.species, mon.ability) or None
         return turn_sim.FoeInfo(moves, speeds, fakeout, protect, protect_ok,
-                                self._foe_trick_room_prob(mon, battle), abilities)
+                                self._foe_trick_room_prob(mon, battle), abilities,
+                                self._taunt_left(mon, battle))
+
+    def _taunt_left(self, mon: Pokemon, battle: DoubleBattle) -> int:
+        """Turns `mon` stays Taunted, counting this one (poke_env only knows presence: assume a full 3)."""
+        return 3 if Effect.TAUNT in mon.effects else 0
+
+    def _trick_room_left(self, battle: DoubleBattle) -> int:
+        """Turns Trick Room lasts, counting this one; 0 = down."""
+        start = battle.fields.get(Field.TRICK_ROOM)
+        return 0 if start is None else max(5 - (battle.turn - start), 1)
 
     def _foe_trick_room_prob(self, mon: Pokemon, battle: DoubleBattle) -> float:
         """P(a foe sets Trick Room this turn); the base pilot has no action model."""
@@ -344,6 +357,29 @@ class DoublesPilot(SimpleHeuristicsPlayer):
             return DE.Action(slot, turn_sim.FAKE_OUT, (f"o{order.move_target - 1}",))
         return None
 
+    def _log_lookahead(self, battle, la, fine, coarse, cand_orders, cand_actions, picked, best_v, base_v) -> None:
+        """Diagnostic (env DOUBLES_LA_LOG=path): replay the decision without the lookahead, count and log differences."""
+        import json
+        fine.disable_lookahead()
+        coarse.disable_lookahead()
+        ja, jb, alt_v, alt_base = turn_sim.choose_pair_refined(coarse, fine, cand_actions[0], cand_actions[1],
+                                                               self.min_gain, turn_sim.TOP_K)
+        fine.enable_lookahead(la)
+        coarse.enable_lookahead(la)
+        differs = (ja, jb) != picked
+        self.stats_counter["la_diff"] = self.stats_counter.get("la_diff", 0) + int(differs)
+        if not differs:
+            return
+        name = lambda ia, ib: [cand_orders[0][ia].message, cand_orders[1][ib].message]  # noqa: E731
+        row = {"turn": battle.turn, "with": name(*picked), "without": name(ja, jb),
+               "v_with": [round(best_v, 3), round(base_v, 3)], "v_without": [round(alt_v, 3), round(alt_base, 3)],
+               "dv": {str(k): round(v, 3) for k, v in la._dv.items()},
+               "v1": {str(k): round(v, 3) for k, v in la._v1.items()},
+               "foes": {f: round(i.trickroom, 2) for f, i in fine.foes.items()},
+               "hp": {t: [round(h.cur_hp / max(h.max_hp, 1), 2) for h in c.hyps][:1] for t, c in fine.world.items()}}
+        with open(os.environ["DOUBLES_LA_LOG"], "a") as f:
+            f.write(json.dumps(row) + "\n")
+
     def _improve_sim(self, battle: DoubleBattle, base, world: Dict[str, DE.Combatant],
                      attackers: Dict[int, DE.Attacker]):
         bench: Dict[str, str] = {}
@@ -390,18 +426,28 @@ class DoublesPilot(SimpleHeuristicsPlayer):
                 for i, mon in enumerate(battle.opponent_active_pokemon) if f"o{i}" in world}
         args = (attackers, world, ours, foes, Field.TRICK_ROOM in battle.fields, _weather_name(battle),
                 _terrain_name(battle))
-        fine = turn_sim.TurnSim(*args, ko_bonus=self.ko_bonus, effects=self.effects)
+        tr_left = self._trick_room_left(battle)
+        fine = turn_sim.TurnSim(*args, ko_bonus=self.ko_bonus, effects=self.effects, tr_left=tr_left)
         coarse = turn_sim.TurnSim(*args, ko_bonus=self.ko_bonus, max_hyps=turn_sim.COARSE_HYPS,
-                                  min_outcome_p=turn_sim.COARSE_OUTCOME_P, effects=self.effects)
+                                  min_outcome_p=turn_sim.COARSE_OUTCOME_P, effects=self.effects,
+                                  tr_left=tr_left)
         for ev in (fine, coarse):
             ev.set_candidates({0: cand_actions[0], 1: cand_actions[1]})
+        if self.lookahead and any(a is not None and (turn_sim.is_support(a) or SV.foe_drop(a.move) is not None)
+                                  for acts in cand_actions for a in acts):
+            la = turn_sim.LookAhead(coarse)
+            fine.enable_lookahead(la)
+            coarse.enable_lookahead(la)
+            self.stats_counter["sim_lookahead"] = self.stats_counter.get("sim_lookahead", 0) + 1
         for slot in (0, 1):
             keep = fine.shortlist(cand_actions[slot], turn_sim.SHORTLIST)
             cand_orders[slot] = [cand_orders[slot][i] for i in keep]
             cand_actions[slot] = [cand_actions[slot][i] for i in keep]
         self.stats_counter["sim_turns"] += 1
-        ia, ib, _, _ = turn_sim.choose_pair_refined(coarse, fine, cand_actions[0], cand_actions[1],
-                                                    self.min_gain, turn_sim.TOP_K)
+        ia, ib, best_v, base_v = turn_sim.choose_pair_refined(coarse, fine, cand_actions[0], cand_actions[1],
+                                                              self.min_gain, turn_sim.TOP_K)
+        if coarse.la is not None and os.environ.get("DOUBLES_LA_LOG"):
+            self._log_lookahead(battle, coarse.la, fine, coarse, cand_orders, cand_actions, (ia, ib), best_v, base_v)
         if (ia, ib) == (0, 0):
             return base
         for slot, i in ((0, ia), (1, ib)):

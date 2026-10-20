@@ -25,6 +25,9 @@ SUPPORT_COST = float(os.environ.get("DOUBLES_SUPPORT_COST", 0.15))       # tempo
 SUPPORT_HORIZON = float(os.environ.get("DOUBLES_SUPPORT_HORIZON", 2.0))  # further turns a stat drop keeps paying
 FOE_STAY = float(os.environ.get("DOUBLES_SUPPORT_STAY", 0.7))            # P(the dropped foe is still in play)
 TR_HORIZON = float(os.environ.get("DOUBLES_TR_HORIZON", 2.0))            # turns of Trick Room a Taunt denies
+DEFAULT_LOOKAHEAD = False       # state-delta continuation (turn_sim.LookAhead); flip after the paired result
+LOOKAHEAD_GAMMA = float(os.environ.get("DOUBLES_LOOKAHEAD_GAMMA", 0.7))  # per-turn discount of a later turn
+TR_TURNS_AFTER_SET = 4          # Trick Room set this turn is still up for the next 4 turns
 HELPING_HAND_MULT = 1.5
 MAX_STAGE = 6
 
@@ -33,6 +36,18 @@ BLOCK_ATK = frozenset({"hypercutter"})
 BLOCK_SECONDARY = frozenset({"shielddust"})
 BLOCK_STATUS = frozenset({"magicbounce", "goodasgold"})
 PUNISH = {"defiant": "atk", "competitive": "spa"}     # +2 in this stat whenever a stat is lowered by a foe
+
+
+def lookahead_enabled(flag: Optional[bool] = None) -> bool:
+    """None: env DOUBLES_LOOKAHEAD (1/0), then DEFAULT_LOOKAHEAD."""
+    if flag is not None:
+        return flag
+    return os.environ.get("DOUBLES_LOOKAHEAD", "1" if DEFAULT_LOOKAHEAD else "0") == "1"
+
+
+def discounted_turns(n: int, gamma: float = LOOKAHEAD_GAMMA) -> float:
+    """Value weight of an effect that is still active for the next `n` turns: gamma + gamma^2 + ... + gamma^n."""
+    return sum(gamma ** k for k in range(1, n + 1))
 
 
 def parse_effects(spec: Optional[str] = None) -> FrozenSet[str]:

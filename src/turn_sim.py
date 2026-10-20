@@ -33,7 +33,7 @@ from __future__ import annotations
 
 import itertools
 import os
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from functools import lru_cache
 from typing import Dict, FrozenSet, List, Optional, Sequence, Set, Tuple
 
@@ -71,6 +71,7 @@ class FoeInfo:
     protect_ok: float = 1.0                       # P(that Protect works)
     trickroom: float = 0.0                        # P(sets Trick Room this turn); read only when a Taunt is a candidate
     abilities: Optional[Dict[str, float]] = None  # ability id -> P, for stat-drop blockers / punishers
+    taunt_left: int = 0                           # turns it stays Taunted (counting this one): no Protect / Trick Room
 
 
 @dataclass(frozen=True)
@@ -149,12 +150,13 @@ class TurnSim(DE.Evaluator):
                  ko_bonus: float = DE.KO_BONUS, ally_weight: float = DE.ALLY_WEIGHT,
                  max_hyps: int = MAX_HYPS, passive_cost: float = PASSIVE_COST,
                  min_outcome_p: float = MIN_OUTCOME_P, effects: FrozenSet[str] = frozenset(),
-                 support_cost: float = SV.SUPPORT_COST):
+                 support_cost: float = SV.SUPPORT_COST, tr_left: int = 0):
         pruned = {t: (_prune(c, max_hyps) if t.startswith("o") else c) for t, c in world.items()}
         super().__init__(attackers, pruned, weather, terrain, ko_bonus, ally_weight, effects)
         self.support_cost = support_cost
         self.our_speed = our_speed
         self.trick_room = trick_room
+        self.tr_left = tr_left if trick_room else 0       # turns of Trick Room left incl. this one
         self.passive_cost = passive_cost
         self.min_outcome_p = min_outcome_p
         self.foes = {f: i for f, i in foes.items() if f in pruned}
@@ -168,6 +170,8 @@ class TurnSim(DE.Evaluator):
         self._tr_cost_v: Optional[float] = None
         self._gains: Dict[tuple, float] = {}
         self._drop_outs: Dict[tuple, list] = {}
+        self.la: Optional["LookAhead"] = None         # state-delta continuation; None = the heuristic terms
+        self._sink = None                             # (weight, hi, pmf) callback used to build the leaf state
         self._build_kinds()
 
     # ---- foe outcomes ------------------------------------------------------------------------
@@ -186,6 +190,16 @@ class TurnSim(DE.Evaluator):
         self._tr_cost_v = None
         self._joint.clear()
         self._build_kinds()
+
+    def enable_lookahead(self, la: Optional["LookAhead"] = None) -> "LookAhead":
+        """Value state changes by their next-turn effect (see LookAhead); call after `set_candidates`."""
+        self.la = la or LookAhead(self)
+        self._joint.clear()
+        return self.la
+
+    def disable_lookahead(self) -> None:
+        self.la = None
+        self._joint.clear()
 
     def shortlist(self, acts: Sequence[Optional[DE.Action]], k: int) -> List[int]:
         """Indices worth simulating: the baseline (0), every Fake Out / Protect / switch, and the `k`
@@ -207,8 +221,9 @@ class TurnSim(DE.Evaluator):
         self._kinds: Dict[str, List[Tuple[str, float, Optional[str]]]] = {}
         for f, info in self.foes.items():
             pf = min(max(info.fakeout, 0.0), 1.0) if mine else 0.0
-            pp = min(max(info.protect, 0.0), 1.0 - pf)
-            pt = min(max(info.trickroom, 0.0), 1.0 - pf - pp) if self._tr_active else 0.0
+            taunted = info.taunt_left > 0                    # a Taunted foe cannot select Protect or Trick Room
+            pp = 0.0 if taunted else min(max(info.protect, 0.0), 1.0 - pf)
+            pt = min(max(info.trickroom, 0.0), 1.0 - pf - pp) if self._tr_active and not taunted else 0.0
             ok = min(max(info.protect_ok, 0.0), 1.0)
             raw: List[Tuple[str, float, Optional[str]]] = [("atk", 1.0 - pf - pp - pt, None)]
             raw += [("fakeout", pf * wt, t) for t, wt in zip(mine, w)]
@@ -394,7 +409,8 @@ class TurnSim(DE.Evaluator):
     # ---- scenario ----------------------------------------------------------------------------
 
     def _run(self, ours: List[DE.Action], hi: Dict[str, int], foe_acts: Dict[str, FoeAct],
-             cut: Dict[str, int], protecting: Set[str], trfoes: FrozenSet[str] = frozenset()) -> float:
+             cut: Dict[str, int], protecting: Set[str], trfoes: FrozenSet[str] = frozenset(),
+             wt: float = 0.0) -> float:
         pmf: Dict[str, np.ndarray] = {}
         start: Dict[str, float] = {}
         occ = {"a0": "a0", "a1": "a1"}            # our slot -> id of the mon standing in it
@@ -451,8 +467,9 @@ class TurnSim(DE.Evaluator):
                     k2 = (SV.shifted(sh[0], da), SV.shifted(sh[1], ds))
                     new[k2] = new.get(k2, 0.0) + p * q * pr
             fdrop[tid] = new
-            extra[0] += (self.ally_weight * SV.SUPPORT_HORIZON * SV.FOE_STAY * p * alive(tid)
-                         * self._drop_gain(drop, tid, hi))
+            if self.la is None:
+                extra[0] += (self.ally_weight * SV.SUPPORT_HORIZON * SV.FOE_STAY * p * alive(tid)
+                             * self._drop_gain(drop, tid, hi))
 
         snarl = "snarl" in self.effects
 
@@ -532,8 +549,18 @@ class TurnSim(DE.Evaluator):
                 our_hit(k, ours[k])
 
         total = extra[0]
-        for f in trfoes:                       # Taunt (+0) lands before Trick Room (-7), so it fails
-            total += self._tr_cost() * (1.0 - taunted.get(f, 0.0))
+        if self.la is not None:
+            for f, dist in fdrop.items():
+                for sh, q in dist.items():
+                    if sh != (0, 0):
+                        total += q * alive(f) * self.la.h_drop * self.la.dv(("drop", f, sh[0], sh[1]))
+            for f in trfoes:
+                total += self.la.h_tr * self.la.dv(("tr",)) * (1.0 - taunted.get(f, 0.0)) * alive(f)
+        else:
+            for f in trfoes:                   # Taunt (+0) lands before Trick Room (-7), so it fails
+                total += self._tr_cost() * (1.0 - taunted.get(f, 0.0))
+        if self._sink is not None:
+            self._sink(wt, hi, pmf)
         for t, dist in pmf.items():
             c = self.world[t]
             h = c.hyps[hi.get(t, 0)]
@@ -569,13 +596,13 @@ class TurnSim(DE.Evaluator):
                     wk *= p
                 if wk < MIN_SCENARIO_P:
                     continue
-                total += wk * self._outcome(acts, hi, kind_ids, kinds)
+                total += wk * self._outcome(acts, hi, kind_ids, kinds, wk)
         total -= self.passive_cost * passive + self.support_cost * pure
         self._joint[key] = total
         return total
 
     def _outcome(self, acts: List[DE.Action], hi: Dict[str, int], kind_ids: List[str],
-                 kinds: Sequence[Tuple[str, float, Optional[str]]]) -> float:
+                 kinds: Sequence[Tuple[str, float, Optional[str]]], wk: float = 0.0) -> float:
         """Value of our `acts` summed over the speed-order cuts, for one hypothesis and one foe outcome."""
         acting = frozenset(f for f, (k, _, _) in zip(kind_ids, kinds) if k == "atk")
         plan = self._plan(hi, acting) if acting else {}
@@ -598,8 +625,114 @@ class TurnSim(DE.Evaluator):
             for fid, (c, pc) in zip(order_ids, cuts):
                 w *= pc
                 cut[fid] = c
-            value += w * self._run(acts, hi, foe_acts, cut, protecting, trfoes)
+            value += w * self._run(acts, hi, foe_acts, cut, protecting, trfoes, wk * w)
         return value
+
+
+class LookAhead:
+    """Next-turn value of the STATE a turn leaves behind, as differences of a coarse one-turn sim.
+
+    The leaf `s'` is the mean-field state after our best plain attack pair (expected HP per hypothesis,
+    mons likely dead removed, Trick Room one turn older). A state delta `d` (a stat drop on a foe, a
+    Trick Room going up) is worth `V1(s' + d) - V1(s')`, where `V1` is the best attack-pair value of a
+    coarse TurnSim on that state. Both terms use the same HP, so a KO this turn is not penalised
+    (V1 counts damage still to deal); the delta only changes who wins the NEXT turn's races, which is
+    what a one-turn sim cannot see (Trick Room with nobody KO'd yet, a Snarl that keeps a foe from KOing).
+    Shared by the fine and coarse sims of a decision; every V1 is cached per delta."""
+
+    def __init__(self, sim: "TurnSim"):
+        self.sim = sim
+        self.h_drop = SV.SUPPORT_HORIZON * SV.FOE_STAY
+        self.h_tr = SV.discounted_turns(SV.TR_TURNS_AFTER_SET)
+        self._eff = sim.effects & {"foulplay"}              # leaf attacks carry no drops (that is the delta)
+        self._v1: Dict[tuple, float] = {}
+        self._dv: Dict[tuple, float] = {}
+        self._cands = {s: ([a for a in acts if a is not None and not is_switch(a) and not is_protect(a)
+                            and not is_support(a) and a.move != FAKE_OUT] or [None])
+                       for s, acts in sim._cands.items()}
+        self.world, self.foes = self._leaf()
+        tl = sim.tr_left
+        self.trick_room = sim.trick_room and (tl == 0 or tl > 1)
+        self.tr_left = max(tl - 1, 0) if self.trick_room else 0
+
+    def _sim(self, world: Dict[str, DE.Combatant], foes: Dict[str, FoeInfo], trick_room: bool,
+             tr_left: int) -> "TurnSim":
+        sim = self.sim
+        return TurnSim(sim.attackers, world, sim.our_speed, foes, trick_room, sim.weather, sim.terrain,
+                       sim.ko_bonus, sim.ally_weight, COARSE_HYPS, sim.passive_cost, COARSE_OUTCOME_P,
+                       self._eff, sim.support_cost, tr_left)
+
+    def _best(self, ts: "TurnSim", cands: Dict[int, List[Optional[DE.Action]]]) -> Tuple[float, tuple]:
+        ts.set_candidates(cands)
+        keep = {s: [acts[i] for i in ts.shortlist(acts, 2)] for s, acts in cands.items()}
+        return max(((ts.pair_value((a, b)), (a, b)) for a in keep.get(0, [None]) for b in keep.get(1, [None])),
+                   key=lambda x: x[0])
+
+    def _leaf(self) -> Tuple[Dict[str, DE.Combatant], Dict[str, FoeInfo]]:
+        sim = self.sim
+        ref = self._sim(sim.world, sim.foes, sim.trick_room, sim.tr_left)
+        _, pair = self._best(ref, self._cands)
+        acc: Dict[Tuple[str, int], List[float]] = {}
+
+        def sink(wt: float, hi: Dict[str, int], pmf: Dict[str, np.ndarray]) -> None:
+            for t, c in ref.world.items():
+                h = hi.get(t, 0)
+                a = acc.setdefault((t, h), [0.0, 0.0, 0.0])
+                a[0] += wt
+                if t in pmf:
+                    a[1] += wt * (1.0 - float(pmf[t][0]))
+                    a[2] += wt * float((pmf[t] * np.arange(len(pmf[t]))).sum())
+                else:
+                    cur = float(min(c.hyps[h].cur_hp, c.hyps[h].max_hp))
+                    a[1] += wt
+                    a[2] += wt * cur
+        ref._joint.clear()
+        ref._sink = sink
+        ref.pair_value(pair)
+        world: Dict[str, DE.Combatant] = {}
+        for t, c in sim.world.items():
+            tot = sum(acc.get((t, j), [0.0])[0] for j in range(len(c.hyps)))
+            alive = sum(acc.get((t, j), [0.0, 0.0])[1] for j in range(len(c.hyps)))
+            if tot <= 0.0 or alive / tot < 0.5:
+                continue
+            hyps = []
+            for j, h in enumerate(c.hyps):
+                a = acc.get((t, j))
+                cur = max(1, round(a[2] / a[1])) if a and a[1] > 1e-9 else h.cur_hp
+                hyps.append(DE.Hypothesis(h.weight, h.stats, h.max_hp, min(cur, h.max_hp), h.types, h.speeds))
+            world[t] = DE.Combatant(hyps, c.types, c.boosts, c.is_ally, c.immune_prob)
+        foes = {f: replace(i, taunt_left=max(i.taunt_left - 1, 0)) for f, i in sim.foes.items() if f in world}
+        return world, foes
+
+    def _cands_in(self, world: Dict[str, DE.Combatant]) -> Dict[int, List[Optional[DE.Action]]]:
+        out: Dict[int, List[Optional[DE.Action]]] = {}
+        for slot, acts in self._cands.items():
+            ok = [a for a in acts if a is not None and f"a{slot}" in world
+                  and all(t in world for t in a.targets)]
+            out[slot] = ok or [None]
+        return out
+
+    def v1(self, key: tuple = ()) -> float:
+        """Best attack-pair value next turn; `key` = () for the leaf itself or a delta."""
+        if key not in self._v1:
+            world, foes, tr, tl = self.world, self.foes, self.trick_room, self.tr_left
+            if key and key[0] == "drop":
+                _, f, da, ds = key
+                if f in world:
+                    c = world[f]
+                    world = {**world, f: DE.Combatant(c.hyps, c.types, {
+                        **c.boosts, "atk": SV.shifted(c.boosts.get("atk", 0), da),
+                        "spa": SV.shifted(c.boosts.get("spa", 0), ds)}, c.is_ally, c.immune_prob)}
+            elif key == ("tr",):
+                tr, tl = True, SV.TR_TURNS_AFTER_SET
+            self._v1[key] = self._best(self._sim(world, foes, tr, tl), self._cands_in(world))[0]
+        return self._v1[key]
+
+    def dv(self, key: tuple) -> float:
+        if key not in self._dv:
+            absent = key[0] == "drop" and key[1] not in self.world
+            self._dv[key] = 0.0 if absent else self.v1(key) - self.v1()
+        return self._dv[key]
 
 
 def choose_pair_refined(coarse: "TurnSim", fine: "TurnSim", cands_a: Sequence[Optional[DE.Action]],
