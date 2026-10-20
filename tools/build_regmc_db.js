@@ -102,6 +102,10 @@ console.log('Items:', itemCount);
 // ============ 3. MOVES ============
 const moves = {};
 let moveCount = 0;
+const EFFECT_FIELDS = ['boosts', 'self', 'secondary', 'status', 'volatileStatus', 'heal', 'drain',
+    'sideCondition', 'slotCondition', 'weather', 'terrain', 'pseudoWeather', 'selfSwitch',
+    'forceSwitch', 'overrideOffensivePokemon', 'overrideOffensiveStat', 'overrideDefensiveStat',
+    'recoil', 'multihit', 'critRatio', 'willCrit'];
 for (const mv of d.moves.all()) {
     if (mv.isNonstandard) continue;
     if (!mv.name) continue;
@@ -117,6 +121,12 @@ for (const mv of d.moves.all()) {
         target: mv.target,
         flags: mv.flags || {},
     };
+    // Effect data (only the fields a move actually has), read by src/support_value-style logic.
+    for (const k of EFFECT_FIELDS) {
+        if (mv[k] === undefined || mv[k] === null || mv[k] === false || (k === 'critRatio' && mv[k] === 1)) continue;
+        moves[mv.name][k] = mv[k];
+    }
+    if (mv.secondaries && !mv.secondary) moves[mv.name].secondaries = mv.secondaries;   // multi-effect moves
     moveCount++;
 }
 console.log('Moves:', moveCount);

@@ -3,7 +3,7 @@
     "format": "gen9championsvgc2026regmc",
     "formatName": "[Gen 9 Champions] VGC 2026 Reg M-C",
     "mod": "champions",
-    "built": "2026-10-16T18:13:44.416Z",
+    "built": "2026-10-20T18:52:31.101Z",
     "showdownPath": "/home/morgrad/pokemon-showdown/dist"
   },
   "rules": {
@@ -3104,6 +3104,12 @@
       "flags": {
         "protect": 1,
         "mirror": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "boosts": {
+          "spd": -1
+        }
       }
     },
     "Baneful Bunker": {
@@ -3119,7 +3125,8 @@
       "flags": {
         "noassist": 1,
         "failcopycat": 1
-      }
+      },
+      "volatileStatus": "banefulbunker"
     },
     "Beak Blast": {
       "name": "Beak Blast",
@@ -3175,7 +3182,11 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "multihit": [
+        2,
+        5
+      ]
     },
     "Burn Up": {
       "name": "Burn Up",
@@ -3192,7 +3203,8 @@
         "mirror": 1,
         "defrost": 1,
         "metronome": 1
-      }
+      },
+      "self": {}
     },
     "Clangorous Soul": {
       "name": "Clangorous Soul",
@@ -3208,6 +3220,13 @@
         "snatch": 1,
         "sound": 1,
         "dance": 1
+      },
+      "boosts": {
+        "atk": 1,
+        "def": 1,
+        "spa": 1,
+        "spd": 1,
+        "spe": 1
       }
     },
     "Corrosive Gas": {
@@ -3243,7 +3262,8 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "critRatio": 2
     },
     "Crush Claw": {
       "name": "Crush Claw",
@@ -3261,6 +3281,12 @@
         "mirror": 1,
         "metronome": 1,
         "slicing": 1
+      },
+      "secondary": {
+        "chance": 50,
+        "boosts": {
+          "def": -1
+        }
       }
     },
     "Curse": {
@@ -3294,6 +3320,9 @@
         "mirror": 1,
         "metronome": 1,
         "slicing": 1
+      },
+      "secondary": {
+        "chance": 30
       }
     },
     "Disable": {
@@ -3312,7 +3341,8 @@
         "mirror": 1,
         "bypasssub": 1,
         "metronome": 1
-      }
+      },
+      "volatileStatus": "disable"
     },
     "Double Shock": {
       "name": "Double Shock",
@@ -3329,7 +3359,8 @@
         "protect": 1,
         "mirror": 1,
         "punch": 1
-      }
+      },
+      "self": {}
     },
     "Dragon Cheer": {
       "name": "Dragon Cheer",
@@ -3346,7 +3377,8 @@
         "allyanim": 1,
         "metronome": 1,
         "sound": 1
-      }
+      },
+      "volatileStatus": "dragoncheer"
     },
     "Dragon Claw": {
       "name": "Dragon Claw",
@@ -3381,7 +3413,8 @@
         "mirror": 1,
         "allyanim": 1,
         "metronome": 1
-      }
+      },
+      "volatileStatus": "electrify"
     },
     "Encore": {
       "name": "Encore",
@@ -3400,7 +3433,8 @@
         "bypasssub": 1,
         "metronome": 1,
         "failencore": 1
-      }
+      },
+      "volatileStatus": "encore"
     },
     "Fake Out": {
       "name": "Fake Out",
@@ -3417,6 +3451,10 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "volatileStatus": "flinch"
       }
     },
     "Fire Lash": {
@@ -3434,6 +3472,12 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "boosts": {
+          "def": -1
+        }
       }
     },
     "First Impression": {
@@ -3482,6 +3526,12 @@
       "flags": {
         "protect": 1,
         "mirror": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "boosts": {
+          "def": -1
+        }
       }
     },
     "Growth": {
@@ -3497,6 +3547,10 @@
       "flags": {
         "snatch": 1,
         "metronome": 1
+      },
+      "boosts": {
+        "atk": 1,
+        "spa": 1
       }
     },
     "Howl": {
@@ -3514,6 +3568,9 @@
         "sound": 1,
         "bypasssub": 1,
         "metronome": 1
+      },
+      "boosts": {
+        "atk": 1
       }
     },
     "Infernal Parade": {
@@ -3530,6 +3587,10 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 30,
+        "status": "brn"
       }
     },
     "Iron Head": {
@@ -3547,6 +3608,10 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 20,
+        "volatileStatus": "flinch"
       }
     },
     "King's Shield": {
@@ -3563,7 +3628,8 @@
         "noassist": 1,
         "failcopycat": 1,
         "failinstruct": 1
-      }
+      },
+      "volatileStatus": "kingsshield"
     },
     "Light of Ruin": {
       "name": "Light of Ruin",
@@ -3578,7 +3644,11 @@
       "flags": {
         "protect": 1,
         "mirror": 1
-      }
+      },
+      "recoil": [
+        1,
+        2
+      ]
     },
     "Make It Rain": {
       "name": "Make It Rain",
@@ -3593,6 +3663,11 @@
       "flags": {
         "protect": 1,
         "mirror": 1
+      },
+      "self": {
+        "boosts": {
+          "spa": -2
+        }
       }
     },
     "Meteor Assault": {
@@ -3610,6 +3685,9 @@
         "protect": 1,
         "mirror": 1,
         "failinstruct": 1
+      },
+      "self": {
+        "volatileStatus": "mustrecharge"
       }
     },
     "Milk Drink": {
@@ -3626,7 +3704,11 @@
         "snatch": 1,
         "heal": 1,
         "metronome": 1
-      }
+      },
+      "heal": [
+        1,
+        2
+      ]
     },
     "Moonblast": {
       "name": "Moonblast",
@@ -3642,6 +3724,12 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 10,
+        "boosts": {
+          "spa": -1
+        }
       }
     },
     "Mountain Gale": {
@@ -3658,6 +3746,10 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 30,
+        "volatileStatus": "flinch"
       }
     },
     "Night Daze": {
@@ -3674,6 +3766,12 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 40,
+        "boosts": {
+          "accuracy": -1
+        }
       }
     },
     "Night Slash": {
@@ -3692,7 +3790,8 @@
         "mirror": 1,
         "metronome": 1,
         "slicing": 1
-      }
+      },
+      "critRatio": 2
     },
     "Octolock": {
       "name": "Octolock",
@@ -3708,7 +3807,8 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "volatileStatus": "octolock"
     },
     "Power Shift": {
       "name": "Power Shift",
@@ -3722,7 +3822,8 @@
       "target": "self",
       "flags": {
         "snatch": 1
-      }
+      },
+      "volatileStatus": "powershift"
     },
     "Protect": {
       "name": "Protect",
@@ -3737,7 +3838,8 @@
       "flags": {
         "noassist": 1,
         "failcopycat": 1
-      }
+      },
+      "volatileStatus": "protect"
     },
     "Psyshield Bash": {
       "name": "Psyshield Bash",
@@ -3754,6 +3856,14 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "self": {
+          "boosts": {
+            "def": 1
+          }
+        }
       }
     },
     "Rage Fist": {
@@ -3786,6 +3896,10 @@
       "flags": {
         "protect": 1,
         "mirror": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "volatileStatus": "saltcure"
       }
     },
     "Sandstorm": {
@@ -3801,7 +3915,8 @@
       "flags": {
         "metronome": 1,
         "wind": 1
-      }
+      },
+      "weather": "Sandstorm"
     },
     "Shadow Claw": {
       "name": "Shadow Claw",
@@ -3819,7 +3934,8 @@
         "mirror": 1,
         "metronome": 1,
         "slicing": 1
-      }
+      },
+      "critRatio": 2
     },
     "Slash": {
       "name": "Slash",
@@ -3837,7 +3953,8 @@
         "mirror": 1,
         "metronome": 1,
         "slicing": 1
-      }
+      },
+      "critRatio": 2
     },
     "Snap Trap": {
       "name": "Snap Trap",
@@ -3853,7 +3970,8 @@
         "contact": 1,
         "protect": 1,
         "mirror": 1
-      }
+      },
+      "volatileStatus": "partiallytrapped"
     },
     "Snipe Shot": {
       "name": "Snipe Shot",
@@ -3869,7 +3987,8 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "critRatio": 2
     },
     "Snowscape": {
       "name": "Snowscape",
@@ -3881,7 +4000,8 @@
       "pp": 5,
       "priority": 0,
       "target": "all",
-      "flags": {}
+      "flags": {},
+      "weather": "snowscape"
     },
     "Spiky Shield": {
       "name": "Spiky Shield",
@@ -3896,7 +4016,8 @@
       "flags": {
         "noassist": 1,
         "failcopycat": 1
-      }
+      },
+      "volatileStatus": "spikyshield"
     },
     "Spirit Shackle": {
       "name": "Spirit Shackle",
@@ -3912,6 +4033,9 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 100
       }
     },
     "Storm Throw": {
@@ -3929,7 +4053,8 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "willCrit": true
     },
     "Strength Sap": {
       "name": "Strength Sap",
@@ -3979,6 +4104,10 @@
         "mirror": 1,
         "metronome": 1,
         "bullet": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "volatileStatus": "syrupbomb"
       }
     },
     "Toxic Thread": {
@@ -3996,7 +4125,11 @@
         "reflectable": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "boosts": {
+        "spe": -2
+      },
+      "status": "psn"
     },
     "Trick-or-Treat": {
       "name": "Trick-or-Treat",
@@ -4031,6 +4164,12 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "boosts": {
+          "atk": -1
+        }
       }
     },
     "Wish": {
@@ -4047,7 +4186,8 @@
         "snatch": 1,
         "heal": 1,
         "metronome": 1
-      }
+      },
+      "slotCondition": "Wish"
     },
     "Accelerock": {
       "name": "Accelerock",
@@ -4079,6 +4219,9 @@
       "flags": {
         "snatch": 1,
         "metronome": 1
+      },
+      "boosts": {
+        "def": 2
       }
     },
     "Acid Spray": {
@@ -4096,6 +4239,12 @@
         "mirror": 1,
         "metronome": 1,
         "bullet": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "boosts": {
+          "spd": -2
+        }
       }
     },
     "Acrobatics": {
@@ -4177,6 +4326,9 @@
       "flags": {
         "snatch": 1,
         "metronome": 1
+      },
+      "boosts": {
+        "spe": 2
       }
     },
     "Air Cutter": {
@@ -4195,7 +4347,8 @@
         "metronome": 1,
         "slicing": 1,
         "wind": 1
-      }
+      },
+      "critRatio": 2
     },
     "Air Slash": {
       "name": "Air Slash",
@@ -4213,6 +4366,10 @@
         "distance": 1,
         "metronome": 1,
         "slicing": 1
+      },
+      "secondary": {
+        "chance": 30,
+        "volatileStatus": "flinch"
       }
     },
     "Alluring Voice": {
@@ -4231,6 +4388,9 @@
         "sound": 1,
         "bypasssub": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 100
       }
     },
     "Ally Switch": {
@@ -4260,6 +4420,9 @@
       "flags": {
         "snatch": 1,
         "metronome": 1
+      },
+      "boosts": {
+        "spd": 2
       }
     },
     "Ancient Power": {
@@ -4276,6 +4439,18 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 10,
+        "self": {
+          "boosts": {
+            "atk": 1,
+            "def": 1,
+            "spa": 1,
+            "spd": 1,
+            "spe": 1
+          }
+        }
       }
     },
     "Aqua Cutter": {
@@ -4293,7 +4468,8 @@
         "mirror": 1,
         "metronome": 1,
         "slicing": 1
-      }
+      },
+      "critRatio": 2
     },
     "Aqua Jet": {
       "name": "Aqua Jet",
@@ -4325,7 +4501,8 @@
       "flags": {
         "snatch": 1,
         "metronome": 1
-      }
+      },
+      "volatileStatus": "aquaring"
     },
     "Aqua Step": {
       "name": "Aqua Step",
@@ -4343,6 +4520,14 @@
         "mirror": 1,
         "dance": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "self": {
+          "boosts": {
+            "spe": 1
+          }
+        }
       }
     },
     "Aqua Tail": {
@@ -4375,6 +4560,12 @@
       "flags": {
         "protect": 1,
         "mirror": 1
+      },
+      "self": {
+        "boosts": {
+          "def": -1,
+          "spd": -1
+        }
       }
     },
     "Aromatic Mist": {
@@ -4390,6 +4581,9 @@
       "flags": {
         "bypasssub": 1,
         "metronome": 1
+      },
+      "boosts": {
+        "spd": 1
       }
     },
     "Assurance": {
@@ -4425,7 +4619,8 @@
         "mirror": 1,
         "bypasssub": 1,
         "metronome": 1
-      }
+      },
+      "volatileStatus": "attract"
     },
     "Aura Sphere": {
       "name": "Aura Sphere",
@@ -4459,6 +4654,14 @@
       "flags": {
         "protect": 1,
         "mirror": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "self": {
+          "boosts": {
+            "spe": 1
+          }
+        }
       }
     },
     "Aurora Veil": {
@@ -4474,7 +4677,8 @@
       "flags": {
         "snatch": 1,
         "metronome": 1
-      }
+      },
+      "sideCondition": "auroraveil"
     },
     "Avalanche": {
       "name": "Avalanche",
@@ -4508,6 +4712,10 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 30,
+        "volatileStatus": "confusion"
       }
     },
     "Baby-Doll Eyes": {
@@ -4526,6 +4734,9 @@
         "mirror": 1,
         "allyanim": 1,
         "metronome": 1
+      },
+      "boosts": {
+        "atk": -1
       }
     },
     "Barb Barrage": {
@@ -4542,6 +4753,10 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 50,
+        "status": "psn"
       }
     },
     "Baton Pass": {
@@ -4556,7 +4771,9 @@
       "target": "self",
       "flags": {
         "metronome": 1
-      }
+      },
+      "self": {},
+      "selfSwitch": "copyvolatile"
     },
     "Beat Up": {
       "name": "Beat Up",
@@ -4605,7 +4822,8 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "volatileStatus": "partiallytrapped"
     },
     "Bite": {
       "name": "Bite",
@@ -4623,6 +4841,10 @@
         "mirror": 1,
         "metronome": 1,
         "bite": 1
+      },
+      "secondary": {
+        "chance": 30,
+        "volatileStatus": "flinch"
       }
     },
     "Bitter Blade": {
@@ -4642,7 +4864,11 @@
         "heal": 1,
         "metronome": 1,
         "slicing": 1
-      }
+      },
+      "drain": [
+        1,
+        2
+      ]
     },
     "Bitter Malice": {
       "name": "Bitter Malice",
@@ -4658,6 +4884,12 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "boosts": {
+          "atk": -1
+        }
       }
     },
     "Blast Burn": {
@@ -4675,6 +4907,9 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "self": {
+        "volatileStatus": "mustrecharge"
       }
     },
     "Blaze Kick": {
@@ -4692,7 +4927,12 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "secondary": {
+        "chance": 10,
+        "status": "brn"
+      },
+      "critRatio": 2
     },
     "Blizzard": {
       "name": "Blizzard",
@@ -4709,6 +4949,10 @@
         "mirror": 1,
         "metronome": 1,
         "wind": 1
+      },
+      "secondary": {
+        "chance": 10,
+        "status": "frz"
       }
     },
     "Block": {
@@ -4741,7 +4985,8 @@
         "contact": 1,
         "protect": 1,
         "mirror": 1
-      }
+      },
+      "overrideOffensiveStat": "def"
     },
     "Body Slam": {
       "name": "Body Slam",
@@ -4760,6 +5005,10 @@
         "nonsky": 1,
         "metronome": 1,
         "minimize": 1
+      },
+      "secondary": {
+        "chance": 30,
+        "status": "par"
       }
     },
     "Boomburst": {
@@ -4801,6 +5050,10 @@
         "nosleeptalk": 1,
         "noassist": 1,
         "failinstruct": 1
+      },
+      "secondary": {
+        "chance": 30,
+        "status": "par"
       }
     },
     "Brave Bird": {
@@ -4819,7 +5072,11 @@
         "mirror": 1,
         "distance": 1,
         "metronome": 1
-      }
+      },
+      "recoil": [
+        33,
+        100
+      ]
     },
     "Breaking Swipe": {
       "name": "Breaking Swipe",
@@ -4835,6 +5092,12 @@
         "contact": 1,
         "protect": 1,
         "mirror": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "boosts": {
+          "atk": -1
+        }
       }
     },
     "Brick Break": {
@@ -4904,6 +5167,12 @@
         "sound": 1,
         "bypasssub": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 10,
+        "boosts": {
+          "spd": -1
+        }
       }
     },
     "Bulk Up": {
@@ -4919,6 +5188,10 @@
       "flags": {
         "snatch": 1,
         "metronome": 1
+      },
+      "boosts": {
+        "atk": 1,
+        "def": 1
       }
     },
     "Bulldoze": {
@@ -4936,6 +5209,12 @@
         "mirror": 1,
         "nonsky": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "boosts": {
+          "spe": -1
+        }
       }
     },
     "Bullet Punch": {
@@ -4971,7 +5250,11 @@
         "mirror": 1,
         "metronome": 1,
         "bullet": 1
-      }
+      },
+      "multihit": [
+        2,
+        5
+      ]
     },
     "Burning Jealousy": {
       "name": "Burning Jealousy",
@@ -4987,6 +5270,9 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 100
       }
     },
     "Calm Mind": {
@@ -5002,6 +5288,10 @@
       "flags": {
         "snatch": 1,
         "metronome": 1
+      },
+      "boosts": {
+        "spa": 1,
+        "spd": 1
       }
     },
     "Ceaseless Edge": {
@@ -5020,7 +5310,8 @@
         "mirror": 1,
         "metronome": 1,
         "slicing": 1
-      }
+      },
+      "secondary": {}
     },
     "Charge": {
       "name": "Charge",
@@ -5035,7 +5326,11 @@
       "flags": {
         "snatch": 1,
         "metronome": 1
-      }
+      },
+      "boosts": {
+        "spd": 1
+      },
+      "volatileStatus": "charge"
     },
     "Charge Beam": {
       "name": "Charge Beam",
@@ -5051,6 +5346,14 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 70,
+        "self": {
+          "boosts": {
+            "spa": 1
+          }
+        }
       }
     },
     "Charm": {
@@ -5069,6 +5372,9 @@
         "mirror": 1,
         "allyanim": 1,
         "metronome": 1
+      },
+      "boosts": {
+        "atk": -2
       }
     },
     "Chilling Water": {
@@ -5084,6 +5390,12 @@
       "flags": {
         "protect": 1,
         "mirror": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "boosts": {
+          "atk": -1
+        }
       }
     },
     "Chilly Reception": {
@@ -5096,7 +5408,9 @@
       "pp": 10,
       "priority": 0,
       "target": "all",
-      "flags": {}
+      "flags": {},
+      "weather": "snowscape",
+      "selfSwitch": true
     },
     "Circle Throw": {
       "name": "Circle Throw",
@@ -5115,7 +5429,8 @@
         "metronome": 1,
         "noassist": 1,
         "failcopycat": 1
-      }
+      },
+      "forceSwitch": true
     },
     "Clanging Scales": {
       "name": "Clanging Scales",
@@ -5166,6 +5481,12 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "self": {
+        "boosts": {
+          "def": -1,
+          "spd": -1
+        }
       }
     },
     "Coaching": {
@@ -5182,6 +5503,10 @@
         "bypasssub": 1,
         "allyanim": 1,
         "metronome": 1
+      },
+      "boosts": {
+        "atk": 1,
+        "def": 1
       }
     },
     "Coil": {
@@ -5197,6 +5522,11 @@
       "flags": {
         "snatch": 1,
         "metronome": 1
+      },
+      "boosts": {
+        "atk": 1,
+        "def": 1,
+        "accuracy": 1
       }
     },
     "Comeuppance": {
@@ -5231,7 +5561,8 @@
         "reflectable": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "volatileStatus": "confusion"
     },
     "Copycat": {
       "name": "Copycat",
@@ -5265,6 +5596,10 @@
       "flags": {
         "snatch": 1,
         "metronome": 1
+      },
+      "boosts": {
+        "def": 1,
+        "spd": 1
       }
     },
     "Cotton Guard": {
@@ -5280,6 +5615,9 @@
       "flags": {
         "snatch": 1,
         "metronome": 1
+      },
+      "boosts": {
+        "def": 3
       }
     },
     "Cotton Spore": {
@@ -5298,6 +5636,9 @@
         "mirror": 1,
         "metronome": 1,
         "powder": 1
+      },
+      "boosts": {
+        "spe": -2
       }
     },
     "Counter": {
@@ -5367,7 +5708,8 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "critRatio": 2
     },
     "Cross Poison": {
       "name": "Cross Poison",
@@ -5385,7 +5727,12 @@
         "mirror": 1,
         "metronome": 1,
         "slicing": 1
-      }
+      },
+      "secondary": {
+        "chance": 10,
+        "status": "psn"
+      },
+      "critRatio": 2
     },
     "Crunch": {
       "name": "Crunch",
@@ -5403,6 +5750,12 @@
         "mirror": 1,
         "metronome": 1,
         "bite": 1
+      },
+      "secondary": {
+        "chance": 20,
+        "boosts": {
+          "def": -1
+        }
       }
     },
     "Darkest Lariat": {
@@ -5438,6 +5791,10 @@
         "distance": 1,
         "metronome": 1,
         "pulse": 1
+      },
+      "secondary": {
+        "chance": 20,
+        "volatileStatus": "flinch"
       }
     },
     "Dazzling Gleam": {
@@ -5468,6 +5825,10 @@
       "target": "normal",
       "flags": {
         "allyanim": 1
+      },
+      "boosts": {
+        "atk": 2,
+        "spa": 2
       }
     },
     "Defog": {
@@ -5502,7 +5863,8 @@
         "bypasssub": 1,
         "noassist": 1,
         "failcopycat": 1
-      }
+      },
+      "volatileStatus": "destinybond"
     },
     "Detect": {
       "name": "Detect",
@@ -5517,7 +5879,8 @@
       "flags": {
         "noassist": 1,
         "failcopycat": 1
-      }
+      },
+      "volatileStatus": "protect"
     },
     "Dig": {
       "name": "Dig",
@@ -5555,6 +5918,10 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 30,
+        "status": "par"
       }
     },
     "Dive": {
@@ -5595,7 +5962,11 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "recoil": [
+        33,
+        100
+      ]
     },
     "Double Hit": {
       "name": "Double Hit",
@@ -5612,7 +5983,8 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "multihit": 2
     },
     "Double Team": {
       "name": "Double Team",
@@ -5627,6 +5999,9 @@
       "flags": {
         "snatch": 1,
         "metronome": 1
+      },
+      "boosts": {
+        "evasion": 1
       }
     },
     "Draco Meteor": {
@@ -5643,6 +6018,11 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "self": {
+        "boosts": {
+          "spa": -2
+        }
       }
     },
     "Dragon Dance": {
@@ -5659,6 +6039,10 @@
         "snatch": 1,
         "dance": 1,
         "metronome": 1
+      },
+      "boosts": {
+        "atk": 1,
+        "spe": 1
       }
     },
     "Dragon Darts": {
@@ -5676,7 +6060,8 @@
         "mirror": 1,
         "metronome": 1,
         "noparentalbond": 1
-      }
+      },
+      "multihit": 2
     },
     "Dragon Pulse": {
       "name": "Dragon Pulse",
@@ -5712,6 +6097,10 @@
         "mirror": 1,
         "metronome": 1,
         "minimize": 1
+      },
+      "secondary": {
+        "chance": 20,
+        "volatileStatus": "flinch"
       }
     },
     "Dragon Tail": {
@@ -5731,7 +6120,8 @@
         "metronome": 1,
         "noassist": 1,
         "failcopycat": 1
-      }
+      },
+      "forceSwitch": true
     },
     "Draining Kiss": {
       "name": "Draining Kiss",
@@ -5749,7 +6139,11 @@
         "mirror": 1,
         "heal": 1,
         "metronome": 1
-      }
+      },
+      "drain": [
+        3,
+        4
+      ]
     },
     "Drain Punch": {
       "name": "Drain Punch",
@@ -5768,7 +6162,11 @@
         "punch": 1,
         "heal": 1,
         "metronome": 1
-      }
+      },
+      "drain": [
+        1,
+        2
+      ]
     },
     "Drill Peck": {
       "name": "Drill Peck",
@@ -5803,7 +6201,8 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "critRatio": 2
     },
     "Drum Beating": {
       "name": "Drum Beating",
@@ -5818,6 +6217,12 @@
       "flags": {
         "protect": 1,
         "mirror": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "boosts": {
+          "spe": -1
+        }
       }
     },
     "Dual Wingbeat": {
@@ -5835,7 +6240,8 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "multihit": 2
     },
     "Dynamic Punch": {
       "name": "Dynamic Punch",
@@ -5853,6 +6259,10 @@
         "mirror": 1,
         "punch": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "volatileStatus": "confusion"
       }
     },
     "Earth Power": {
@@ -5870,6 +6280,12 @@
         "mirror": 1,
         "nonsky": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 10,
+        "boosts": {
+          "spd": -1
+        }
       }
     },
     "Earthquake": {
@@ -5904,6 +6320,9 @@
         "reflectable": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "boosts": {
+        "spa": -2
       }
     },
     "Eerie Spell": {
@@ -5922,6 +6341,9 @@
         "sound": 1,
         "bypasssub": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 100
       }
     },
     "Electric Terrain": {
@@ -5937,7 +6359,8 @@
       "flags": {
         "nonsky": 1,
         "metronome": 1
-      }
+      },
+      "terrain": "electricterrain"
     },
     "Electro Ball": {
       "name": "Electro Ball",
@@ -5987,6 +6410,12 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "boosts": {
+          "spe": -1
+        }
       }
     },
     "Endeavor": {
@@ -6020,7 +6449,8 @@
       "flags": {
         "noassist": 1,
         "failcopycat": 1
-      }
+      },
+      "volatileStatus": "endure"
     },
     "Energy Ball": {
       "name": "Energy Ball",
@@ -6037,6 +6467,12 @@
         "mirror": 1,
         "metronome": 1,
         "bullet": 1
+      },
+      "secondary": {
+        "chance": 10,
+        "boosts": {
+          "spd": -1
+        }
       }
     },
     "Entrainment": {
@@ -6120,6 +6556,10 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 10,
+        "volatileStatus": "flinch"
       }
     },
     "Extreme Speed": {
@@ -6170,7 +6610,8 @@
         "mirror": 1,
         "bypasssub": 1,
         "metronome": 1
-      }
+      },
+      "pseudoWeather": "fairylock"
     },
     "Fake Tears": {
       "name": "Fake Tears",
@@ -6188,6 +6629,9 @@
         "mirror": 1,
         "allyanim": 1,
         "metronome": 1
+      },
+      "boosts": {
+        "spd": -2
       }
     },
     "Feather Dance": {
@@ -6207,6 +6651,9 @@
         "dance": 1,
         "allyanim": 1,
         "metronome": 1
+      },
+      "boosts": {
+        "atk": -2
       }
     },
     "Feint": {
@@ -6273,6 +6720,14 @@
         "mirror": 1,
         "dance": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 50,
+        "self": {
+          "boosts": {
+            "spa": 1
+          }
+        }
       }
     },
     "Final Gambit": {
@@ -6305,6 +6760,10 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 10,
+        "status": "brn"
       }
     },
     "Fire Fang": {
@@ -6323,7 +6782,17 @@
         "mirror": 1,
         "metronome": 1,
         "bite": 1
-      }
+      },
+      "secondaries": [
+        {
+          "chance": 10,
+          "status": "brn"
+        },
+        {
+          "chance": 10,
+          "volatileStatus": "flinch"
+        }
+      ]
     },
     "Fire Punch": {
       "name": "Fire Punch",
@@ -6341,6 +6810,10 @@
         "mirror": 1,
         "punch": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 10,
+        "status": "brn"
       }
     },
     "Fire Spin": {
@@ -6357,7 +6830,8 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "volatileStatus": "partiallytrapped"
     },
     "Fissure": {
       "name": "Fissure",
@@ -6408,6 +6882,14 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "self": {
+          "boosts": {
+            "spe": 1
+          }
+        }
       }
     },
     "Flamethrower": {
@@ -6424,6 +6906,10 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 10,
+        "status": "brn"
       }
     },
     "Flare Blitz": {
@@ -6442,7 +6928,15 @@
         "mirror": 1,
         "defrost": 1,
         "metronome": 1
-      }
+      },
+      "secondary": {
+        "chance": 10,
+        "status": "brn"
+      },
+      "recoil": [
+        33,
+        100
+      ]
     },
     "Flash Cannon": {
       "name": "Flash Cannon",
@@ -6458,6 +6952,12 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 10,
+        "boosts": {
+          "spd": -1
+        }
       }
     },
     "Flatter": {
@@ -6476,7 +6976,11 @@
         "mirror": 1,
         "allyanim": 1,
         "metronome": 1
-      }
+      },
+      "boosts": {
+        "spa": 1
+      },
+      "volatileStatus": "confusion"
     },
     "Fling": {
       "name": "Fling",
@@ -6511,7 +7015,8 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "selfSwitch": true
     },
     "Flower Trick": {
       "name": "Flower Trick",
@@ -6527,7 +7032,8 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "willCrit": true
     },
     "Fly": {
       "name": "Fly",
@@ -6588,6 +7094,12 @@
         "mirror": 1,
         "metronome": 1,
         "bullet": 1
+      },
+      "secondary": {
+        "chance": 10,
+        "boosts": {
+          "spd": -1
+        }
       }
     },
     "Focus Energy": {
@@ -6603,7 +7115,8 @@
       "flags": {
         "snatch": 1,
         "metronome": 1
-      }
+      },
+      "volatileStatus": "focusenergy"
     },
     "Focus Punch": {
       "name": "Focus Punch",
@@ -6639,7 +7152,8 @@
       "flags": {
         "noassist": 1,
         "failcopycat": 1
-      }
+      },
+      "volatileStatus": "followme"
     },
     "Forest's Curse": {
       "name": "Forest's Curse",
@@ -6674,7 +7188,8 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "overrideOffensivePokemon": "target"
     },
     "Frenzy Plant": {
       "name": "Frenzy Plant",
@@ -6692,6 +7207,9 @@
         "mirror": 1,
         "nonsky": 1,
         "metronome": 1
+      },
+      "self": {
+        "volatileStatus": "mustrecharge"
       }
     },
     "Frost Breath": {
@@ -6708,7 +7226,8 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "willCrit": true
     },
     "Future Sight": {
       "name": "Future Sight",
@@ -6742,7 +7261,8 @@
         "mirror": 1,
         "allyanim": 1,
         "metronome": 1
-      }
+      },
+      "volatileStatus": "gastroacid"
     },
     "Giga Drain": {
       "name": "Giga Drain",
@@ -6759,7 +7279,11 @@
         "mirror": 1,
         "heal": 1,
         "metronome": 1
-      }
+      },
+      "drain": [
+        1,
+        2
+      ]
     },
     "Giga Impact": {
       "name": "Giga Impact",
@@ -6777,6 +7301,9 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "self": {
+        "volatileStatus": "mustrecharge"
       }
     },
     "Gigaton Hammer": {
@@ -6811,6 +7338,9 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "self": {
+        "volatileStatus": "glaiverush"
       }
     },
     "Glare": {
@@ -6828,7 +7358,8 @@
         "reflectable": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "status": "par"
     },
     "Grass Knot": {
       "name": "Grass Knot",
@@ -6878,7 +7409,8 @@
       "flags": {
         "nonsky": 1,
         "metronome": 1
-      }
+      },
+      "terrain": "grassyterrain"
     },
     "Gravity": {
       "name": "Gravity",
@@ -6893,7 +7425,8 @@
       "flags": {
         "nonsky": 1,
         "metronome": 1
-      }
+      },
+      "pseudoWeather": "gravity"
     },
     "Guard Split": {
       "name": "Guard Split",
@@ -6960,6 +7493,10 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 30,
+        "status": "psn"
       }
     },
     "Gyro Ball": {
@@ -6996,6 +7533,11 @@
         "mirror": 1,
         "punch": 1,
         "metronome": 1
+      },
+      "self": {
+        "boosts": {
+          "spe": -1
+        }
       }
     },
     "Hard Press": {
@@ -7046,6 +7588,12 @@
         "mirror": 1,
         "punch": 1,
         "metronome": 1
+      },
+      "self": {
+        "boosts": {
+          "def": -1,
+          "spd": -1
+        }
       }
     },
     "Head Smash": {
@@ -7063,7 +7611,11 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "recoil": [
+        1,
+        2
+      ]
     },
     "Heal Bell": {
       "name": "Heal Bell",
@@ -7097,7 +7649,8 @@
         "snatch": 1,
         "heal": 1,
         "metronome": 1
-      }
+      },
+      "slotCondition": "healingwish"
     },
     "Heal Pulse": {
       "name": "Heal Pulse",
@@ -7153,6 +7706,10 @@
         "mirror": 1,
         "metronome": 1,
         "wind": 1
+      },
+      "secondary": {
+        "chance": 10,
+        "status": "brn"
       }
     },
     "Heavy Slam": {
@@ -7188,7 +7745,8 @@
         "bypasssub": 1,
         "noassist": 1,
         "failcopycat": 1
-      }
+      },
+      "volatileStatus": "helpinghand"
     },
     "Hex": {
       "name": "Hex",
@@ -7274,7 +7832,11 @@
         "mirror": 1,
         "heal": 1,
         "metronome": 1
-      }
+      },
+      "drain": [
+        1,
+        2
+      ]
     },
     "Hurricane": {
       "name": "Hurricane",
@@ -7292,6 +7854,10 @@
         "distance": 1,
         "metronome": 1,
         "wind": 1
+      },
+      "secondary": {
+        "chance": 30,
+        "volatileStatus": "confusion"
       }
     },
     "Hydro Cannon": {
@@ -7309,6 +7875,9 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "self": {
+        "volatileStatus": "mustrecharge"
       }
     },
     "Hydro Pump": {
@@ -7342,6 +7911,9 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "self": {
+        "volatileStatus": "mustrecharge"
       }
     },
     "Hyper Voice": {
@@ -7377,7 +7949,8 @@
         "reflectable": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "status": "slp"
     },
     "Ice Beam": {
       "name": "Ice Beam",
@@ -7393,6 +7966,10 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 10,
+        "status": "frz"
       }
     },
     "Ice Fang": {
@@ -7411,7 +7988,17 @@
         "mirror": 1,
         "metronome": 1,
         "bite": 1
-      }
+      },
+      "secondaries": [
+        {
+          "chance": 10,
+          "status": "frz"
+        },
+        {
+          "chance": 10,
+          "volatileStatus": "flinch"
+        }
+      ]
     },
     "Ice Hammer": {
       "name": "Ice Hammer",
@@ -7429,6 +8016,11 @@
         "mirror": 1,
         "punch": 1,
         "metronome": 1
+      },
+      "self": {
+        "boosts": {
+          "spe": -1
+        }
       }
     },
     "Ice Punch": {
@@ -7447,6 +8039,10 @@
         "mirror": 1,
         "punch": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 10,
+        "status": "frz"
       }
     },
     "Ice Shard": {
@@ -7496,6 +8092,10 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 30,
+        "volatileStatus": "flinch"
       }
     },
     "Icicle Spear": {
@@ -7512,7 +8112,11 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "multihit": [
+        2,
+        5
+      ]
     },
     "Icy Wind": {
       "name": "Icy Wind",
@@ -7529,6 +8133,12 @@
         "mirror": 1,
         "metronome": 1,
         "wind": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "boosts": {
+          "spe": -1
+        }
       }
     },
     "Imprison": {
@@ -7546,7 +8156,8 @@
         "bypasssub": 1,
         "metronome": 1,
         "mustpressure": 1
-      }
+      },
+      "volatileStatus": "imprison"
     },
     "Inferno": {
       "name": "Inferno",
@@ -7562,6 +8173,10 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "status": "brn"
       }
     },
     "Infestation": {
@@ -7579,7 +8194,8 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "volatileStatus": "partiallytrapped"
     },
     "Ingrain": {
       "name": "Ingrain",
@@ -7595,7 +8211,8 @@
         "snatch": 1,
         "nonsky": 1,
         "metronome": 1
-      }
+      },
+      "volatileStatus": "ingrain"
     },
     "Instruct": {
       "name": "Instruct",
@@ -7627,6 +8244,9 @@
       "flags": {
         "snatch": 1,
         "metronome": 1
+      },
+      "boosts": {
+        "def": 2
       }
     },
     "Iron Tail": {
@@ -7644,6 +8264,12 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 30,
+        "boosts": {
+          "def": -1
+        }
       }
     },
     "Jaw Lock": {
@@ -7780,6 +8406,10 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 30,
+        "status": "brn"
       }
     },
     "Leaf Blade": {
@@ -7798,7 +8428,8 @@
         "mirror": 1,
         "metronome": 1,
         "slicing": 1
-      }
+      },
+      "critRatio": 2
     },
     "Leaf Storm": {
       "name": "Leaf Storm",
@@ -7814,6 +8445,11 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "self": {
+        "boosts": {
+          "spa": -2
+        }
       }
     },
     "Leech Life": {
@@ -7832,7 +8468,11 @@
         "mirror": 1,
         "heal": 1,
         "metronome": 1
-      }
+      },
+      "drain": [
+        1,
+        2
+      ]
     },
     "Leech Seed": {
       "name": "Leech Seed",
@@ -7849,7 +8489,8 @@
         "reflectable": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "volatileStatus": "leechseed"
     },
     "Life Dew": {
       "name": "Life Dew",
@@ -7865,7 +8506,11 @@
         "snatch": 1,
         "heal": 1,
         "bypasssub": 1
-      }
+      },
+      "heal": [
+        1,
+        4
+      ]
     },
     "Light Screen": {
       "name": "Light Screen",
@@ -7880,7 +8525,8 @@
       "flags": {
         "snatch": 1,
         "metronome": 1
-      }
+      },
+      "sideCondition": "lightscreen"
     },
     "Liquidation": {
       "name": "Liquidation",
@@ -7897,6 +8543,12 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 20,
+        "boosts": {
+          "def": -1
+        }
       }
     },
     "Lock-On": {
@@ -7947,6 +8599,12 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "boosts": {
+          "spe": -1
+        }
       }
     },
     "Lumina Crash": {
@@ -7963,6 +8621,12 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "boosts": {
+          "spd": -2
+        }
       }
     },
     "Lunge": {
@@ -7980,6 +8644,12 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "boosts": {
+          "atk": -1
+        }
       }
     },
     "Mach Punch": {
@@ -8032,7 +8702,8 @@
       "flags": {
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "pseudoWeather": "magicroom"
     },
     "Magnetic Flux": {
       "name": "Magnetic Flux",
@@ -8065,7 +8736,8 @@
         "snatch": 1,
         "gravity": 1,
         "metronome": 1
-      }
+      },
+      "volatileStatus": "magnetrise"
     },
     "Matcha Gotcha": {
       "name": "Matcha Gotcha",
@@ -8083,7 +8755,15 @@
         "defrost": 1,
         "heal": 1,
         "metronome": 1
-      }
+      },
+      "secondary": {
+        "chance": 20,
+        "status": "brn"
+      },
+      "drain": [
+        1,
+        2
+      ]
     },
     "Mean Look": {
       "name": "Mean Look",
@@ -8149,6 +8829,10 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "boosts": {
+        "atk": -2,
+        "spa": -2
       }
     },
     "Metal Burst": {
@@ -8186,6 +8870,9 @@
         "bypasssub": 1,
         "allyanim": 1,
         "metronome": 1
+      },
+      "boosts": {
+        "spd": -2
       }
     },
     "Meteor Beam": {
@@ -8221,6 +8908,14 @@
         "mirror": 1,
         "punch": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 20,
+        "self": {
+          "boosts": {
+            "atk": 1
+          }
+        }
       }
     },
     "Minimize": {
@@ -8236,7 +8931,11 @@
       "flags": {
         "snatch": 1,
         "metronome": 1
-      }
+      },
+      "boosts": {
+        "evasion": 2
+      },
+      "volatileStatus": "minimize"
     },
     "Mirror Coat": {
       "name": "Mirror Coat",
@@ -8283,7 +8982,8 @@
       "flags": {
         "nonsky": 1,
         "metronome": 1
-      }
+      },
+      "terrain": "mistyterrain"
     },
     "Moonlight": {
       "name": "Moonlight",
@@ -8332,6 +9032,10 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "status": "psn"
       }
     },
     "Muddy Water": {
@@ -8349,6 +9053,12 @@
         "mirror": 1,
         "nonsky": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 30,
+        "boosts": {
+          "accuracy": -1
+        }
       }
     },
     "Mud Shot": {
@@ -8365,6 +9075,12 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "boosts": {
+          "spe": -1
+        }
       }
     },
     "Mud-Slap": {
@@ -8381,6 +9097,12 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "boosts": {
+          "accuracy": -1
+        }
       }
     },
     "Mystical Fire": {
@@ -8397,6 +9119,12 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "boosts": {
+          "spa": -1
+        }
       }
     },
     "Nasty Plot": {
@@ -8412,6 +9140,9 @@
       "flags": {
         "snatch": 1,
         "metronome": 1
+      },
+      "boosts": {
+        "spa": 2
       }
     },
     "Night Shade": {
@@ -8447,6 +9178,10 @@
         "sound": 1,
         "bypasssub": 1,
         "metronome": 1
+      },
+      "boosts": {
+        "atk": -1,
+        "spa": -1
       }
     },
     "No Retreat": {
@@ -8462,7 +9197,15 @@
       "flags": {
         "snatch": 1,
         "metronome": 1
-      }
+      },
+      "boosts": {
+        "atk": 1,
+        "def": 1,
+        "spa": 1,
+        "spd": 1,
+        "spe": 1
+      },
+      "volatileStatus": "noretreat"
     },
     "Nuzzle": {
       "name": "Nuzzle",
@@ -8479,6 +9222,10 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "status": "par"
       }
     },
     "Outrage": {
@@ -8497,6 +9244,9 @@
         "mirror": 1,
         "metronome": 1,
         "failinstruct": 1
+      },
+      "self": {
+        "volatileStatus": "lockedmove"
       }
     },
     "Overdrive": {
@@ -8530,6 +9280,11 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "self": {
+        "boosts": {
+          "spa": -2
+        }
       }
     },
     "Pain Split": {
@@ -8564,7 +9319,11 @@
         "mirror": 1,
         "heal": 1,
         "metronome": 1
-      }
+      },
+      "drain": [
+        1,
+        2
+      ]
     },
     "Parting Shot": {
       "name": "Parting Shot",
@@ -8583,7 +9342,8 @@
         "sound": 1,
         "bypasssub": 1,
         "metronome": 1
-      }
+      },
+      "selfSwitch": true
     },
     "Payback": {
       "name": "Payback",
@@ -8653,6 +9413,9 @@
         "dance": 1,
         "metronome": 1,
         "failinstruct": 1
+      },
+      "self": {
+        "volatileStatus": "lockedmove"
       }
     },
     "Phantom Force": {
@@ -8689,7 +9452,11 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "multihit": [
+        2,
+        5
+      ]
     },
     "Play Rough": {
       "name": "Play Rough",
@@ -8706,6 +9473,12 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 10,
+        "boosts": {
+          "atk": -1
+        }
       }
     },
     "Pluck": {
@@ -8742,6 +9515,10 @@
         "mirror": 1,
         "metronome": 1,
         "bite": 1
+      },
+      "secondary": {
+        "chance": 50,
+        "status": "tox"
       }
     },
     "Poison Jab": {
@@ -8759,6 +9536,10 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 30,
+        "status": "psn"
       }
     },
     "Poison Powder": {
@@ -8777,7 +9558,8 @@
         "mirror": 1,
         "metronome": 1,
         "powder": 1
-      }
+      },
+      "status": "psn"
     },
     "Pollen Puff": {
       "name": "Pollen Puff",
@@ -8828,7 +9610,8 @@
         "protect": 1,
         "mirror": 1,
         "slicing": 1
-      }
+      },
+      "multihit": 10
     },
     "Pounce": {
       "name": "Pounce",
@@ -8844,6 +9627,12 @@
         "contact": 1,
         "protect": 1,
         "mirror": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "boosts": {
+          "spe": -1
+        }
       }
     },
     "Pound": {
@@ -8926,7 +9715,8 @@
       "flags": {
         "snatch": 1,
         "metronome": 1
-      }
+      },
+      "volatileStatus": "powertrick"
     },
     "Power Trip": {
       "name": "Power Trip",
@@ -8976,6 +9766,12 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 10,
+        "boosts": {
+          "spd": -1
+        }
       }
     },
     "Psychic Fangs": {
@@ -9012,6 +9808,10 @@
         "sound": 1,
         "bypasssub": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "volatileStatus": "healblock"
       }
     },
     "Psychic Terrain": {
@@ -9027,7 +9827,8 @@
       "flags": {
         "nonsky": 1,
         "metronome": 1
-      }
+      },
+      "terrain": "psychicterrain"
     },
     "Psycho Cut": {
       "name": "Psycho Cut",
@@ -9044,7 +9845,8 @@
         "mirror": 1,
         "metronome": 1,
         "slicing": 1
-      }
+      },
+      "critRatio": 2
     },
     "Psych Up": {
       "name": "Psych Up",
@@ -9076,7 +9878,8 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "overrideDefensiveStat": "def"
     },
     "Pyro Ball": {
       "name": "Pyro Ball",
@@ -9093,6 +9896,10 @@
         "mirror": 1,
         "defrost": 1,
         "bullet": 1
+      },
+      "secondary": {
+        "chance": 10,
+        "status": "brn"
       }
     },
     "Quash": {
@@ -9139,7 +9946,8 @@
       "target": "allySide",
       "flags": {
         "snatch": 1
-      }
+      },
+      "sideCondition": "quickguard"
     },
     "Quiver Dance": {
       "name": "Quiver Dance",
@@ -9155,6 +9963,11 @@
         "snatch": 1,
         "dance": 1,
         "metronome": 1
+      },
+      "boosts": {
+        "spa": 1,
+        "spd": 1,
+        "spe": 1
       }
     },
     "Rage Powder": {
@@ -9171,7 +9984,8 @@
         "noassist": 1,
         "failcopycat": 1,
         "powder": 1
-      }
+      },
+      "volatileStatus": "ragepowder"
     },
     "Raging Bull": {
       "name": "Raging Bull",
@@ -9202,6 +10016,9 @@
       "flags": {
         "protect": 1,
         "mirror": 1
+      },
+      "self": {
+        "volatileStatus": "lockedmove"
       }
     },
     "Rain Dance": {
@@ -9216,7 +10033,8 @@
       "target": "all",
       "flags": {
         "metronome": 1
-      }
+      },
+      "weather": "RainDance"
     },
     "Rapid Spin": {
       "name": "Rapid Spin",
@@ -9233,6 +10051,14 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "self": {
+          "boosts": {
+            "spe": 1
+          }
+        }
       }
     },
     "Razor Shell": {
@@ -9251,6 +10077,12 @@
         "mirror": 1,
         "metronome": 1,
         "slicing": 1
+      },
+      "secondary": {
+        "chance": 50,
+        "boosts": {
+          "def": -1
+        }
       }
     },
     "Recover": {
@@ -9267,7 +10099,11 @@
         "snatch": 1,
         "heal": 1,
         "metronome": 1
-      }
+      },
+      "heal": [
+        1,
+        2
+      ]
     },
     "Recycle": {
       "name": "Recycle",
@@ -9297,7 +10133,8 @@
       "flags": {
         "snatch": 1,
         "metronome": 1
-      }
+      },
+      "sideCondition": "reflect"
     },
     "Reflect Type": {
       "name": "Reflect Type",
@@ -9362,7 +10199,9 @@
       "flags": {
         "heal": 1,
         "nosketch": 1
-      }
+      },
+      "slotCondition": "revivalblessing",
+      "selfSwitch": true
     },
     "Rising Voltage": {
       "name": "Rising Voltage",
@@ -9399,7 +10238,8 @@
         "metronome": 1,
         "noassist": 1,
         "failcopycat": 1
-      }
+      },
+      "forceSwitch": true
     },
     "Rock Blast": {
       "name": "Rock Blast",
@@ -9416,7 +10256,11 @@
         "mirror": 1,
         "metronome": 1,
         "bullet": 1
-      }
+      },
+      "multihit": [
+        2,
+        5
+      ]
     },
     "Rock Polish": {
       "name": "Rock Polish",
@@ -9431,6 +10275,9 @@
       "flags": {
         "snatch": 1,
         "metronome": 1
+      },
+      "boosts": {
+        "spe": 2
       }
     },
     "Rock Slide": {
@@ -9447,6 +10294,10 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 30,
+        "volatileStatus": "flinch"
       }
     },
     "Rock Tomb": {
@@ -9463,6 +10314,12 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "boosts": {
+          "spe": -1
+        }
       }
     },
     "Rock Wrecker": {
@@ -9481,6 +10338,9 @@
         "mirror": 1,
         "metronome": 1,
         "bullet": 1
+      },
+      "self": {
+        "volatileStatus": "mustrecharge"
       }
     },
     "Role Play": {
@@ -9513,7 +10373,14 @@
         "snatch": 1,
         "heal": 1,
         "metronome": 1
-      }
+      },
+      "self": {
+        "volatileStatus": "roost"
+      },
+      "heal": [
+        1,
+        2
+      ]
     },
     "Round": {
       "name": "Round",
@@ -9564,7 +10431,8 @@
       "flags": {
         "snatch": 1,
         "metronome": 1
-      }
+      },
+      "sideCondition": "safeguard"
     },
     "Sand Tomb": {
       "name": "Sand Tomb",
@@ -9580,7 +10448,8 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "volatileStatus": "partiallytrapped"
     },
     "Scald": {
       "name": "Scald",
@@ -9597,6 +10466,10 @@
         "mirror": 1,
         "defrost": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 30,
+        "status": "brn"
       }
     },
     "Scale Shot": {
@@ -9613,7 +10486,11 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "multihit": [
+        2,
+        5
+      ]
     },
     "Scary Face": {
       "name": "Scary Face",
@@ -9631,6 +10508,9 @@
         "mirror": 1,
         "allyanim": 1,
         "metronome": 1
+      },
+      "boosts": {
+        "spe": -2
       }
     },
     "Scorching Sands": {
@@ -9648,6 +10528,10 @@
         "mirror": 1,
         "defrost": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 30,
+        "status": "brn"
       }
     },
     "Screech": {
@@ -9668,6 +10552,9 @@
         "bypasssub": 1,
         "allyanim": 1,
         "metronome": 1
+      },
+      "boosts": {
+        "def": -2
       }
     },
     "Seed Bomb": {
@@ -9737,6 +10624,12 @@
         "mirror": 1,
         "metronome": 1,
         "bullet": 1
+      },
+      "secondary": {
+        "chance": 20,
+        "boosts": {
+          "spd": -1
+        }
       }
     },
     "Shadow Punch": {
@@ -9784,7 +10677,10 @@
       "pp": 10,
       "priority": 0,
       "target": "self",
-      "flags": {}
+      "flags": {},
+      "self": {},
+      "volatileStatus": "substitute",
+      "selfSwitch": "shedtail"
     },
     "Sheer Cold": {
       "name": "Sheer Cold",
@@ -9816,6 +10712,10 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 20,
+        "status": "psn"
       }
     },
     "Shell Smash": {
@@ -9831,6 +10731,13 @@
       "flags": {
         "snatch": 1,
         "metronome": 1
+      },
+      "boosts": {
+        "def": -1,
+        "spd": -1,
+        "atk": 2,
+        "spa": 2,
+        "spe": 2
       }
     },
     "Shelter": {
@@ -9846,6 +10753,9 @@
       "flags": {
         "snatch": 1,
         "metronome": 1
+      },
+      "boosts": {
+        "def": 2
       }
     },
     "Shift Gear": {
@@ -9861,6 +10771,10 @@
       "flags": {
         "snatch": 1,
         "metronome": 1
+      },
+      "boosts": {
+        "spe": 2,
+        "atk": 1
       }
     },
     "Simple Beam": {
@@ -9898,7 +10812,8 @@
         "sound": 1,
         "bypasssub": 1,
         "metronome": 1
-      }
+      },
+      "status": "slp"
     },
     "Skill Swap": {
       "name": "Skill Swap",
@@ -9933,6 +10848,12 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "boosts": {
+          "spa": -1
+        }
       }
     },
     "Sky Attack": {
@@ -9953,7 +10874,12 @@
         "metronome": 1,
         "nosleeptalk": 1,
         "failinstruct": 1
-      }
+      },
+      "secondary": {
+        "chance": 30,
+        "volatileStatus": "flinch"
+      },
+      "critRatio": 2
     },
     "Slack Off": {
       "name": "Slack Off",
@@ -9969,7 +10895,11 @@
         "snatch": 1,
         "heal": 1,
         "metronome": 1
-      }
+      },
+      "heal": [
+        1,
+        2
+      ]
     },
     "Sleep Powder": {
       "name": "Sleep Powder",
@@ -9987,7 +10917,8 @@
         "mirror": 1,
         "metronome": 1,
         "powder": 1
-      }
+      },
+      "status": "slp"
     },
     "Sleep Talk": {
       "name": "Sleep Talk",
@@ -10023,6 +10954,10 @@
         "mirror": 1,
         "metronome": 1,
         "bullet": 1
+      },
+      "secondary": {
+        "chance": 30,
+        "status": "psn"
       }
     },
     "Sludge Wave": {
@@ -10039,6 +10974,10 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 10,
+        "status": "psn"
       }
     },
     "Smack Down": {
@@ -10056,7 +10995,8 @@
         "mirror": 1,
         "nonsky": 1,
         "metronome": 1
-      }
+      },
+      "volatileStatus": "smackdown"
     },
     "Smart Strike": {
       "name": "Smart Strike",
@@ -10090,6 +11030,12 @@
         "mirror": 1,
         "sound": 1,
         "bypasssub": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "boosts": {
+          "spa": -1
+        }
       }
     },
     "Snore": {
@@ -10107,6 +11053,10 @@
         "mirror": 1,
         "sound": 1,
         "bypasssub": 1
+      },
+      "secondary": {
+        "chance": 30,
+        "volatileStatus": "flinch"
       }
     },
     "Soak": {
@@ -10141,7 +11091,11 @@
         "snatch": 1,
         "heal": 1,
         "metronome": 1
-      }
+      },
+      "heal": [
+        1,
+        2
+      ]
     },
     "Solar Beam": {
       "name": "Solar Beam",
@@ -10199,6 +11153,10 @@
         "sound": 1,
         "bypasssub": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "volatileStatus": "sparklingaria"
       }
     },
     "Speed Swap": {
@@ -10233,6 +11191,10 @@
         "protect": 1,
         "reflectable": 1,
         "mirror": 1
+      },
+      "boosts": {
+        "atk": 2,
+        "def": -2
       }
     },
     "Spikes": {
@@ -10250,7 +11212,8 @@
         "nonsky": 1,
         "metronome": 1,
         "mustpressure": 1
-      }
+      },
+      "sideCondition": "spikes"
     },
     "Spirit Break": {
       "name": "Spirit Break",
@@ -10266,6 +11229,12 @@
         "contact": 1,
         "protect": 1,
         "mirror": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "boosts": {
+          "spa": -1
+        }
       }
     },
     "Spite": {
@@ -10317,7 +11286,8 @@
         "mirror": 1,
         "metronome": 1,
         "powder": 1
-      }
+      },
+      "status": "slp"
     },
     "Stealth Rock": {
       "name": "Stealth Rock",
@@ -10333,7 +11303,8 @@
         "reflectable": 1,
         "metronome": 1,
         "mustpressure": 1
-      }
+      },
+      "sideCondition": "stealthrock"
     },
     "Steel Beam": {
       "name": "Steel Beam",
@@ -10382,6 +11353,14 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 10,
+        "self": {
+          "boosts": {
+            "def": 1
+          }
+        }
       }
     },
     "Sticky Web": {
@@ -10397,7 +11376,8 @@
       "flags": {
         "reflectable": 1,
         "metronome": 1
-      }
+      },
+      "sideCondition": "stickyweb"
     },
     "Stockpile": {
       "name": "Stockpile",
@@ -10412,7 +11392,8 @@
       "flags": {
         "snatch": 1,
         "metronome": 1
-      }
+      },
+      "volatileStatus": "stockpile"
     },
     "Stomping Tantrum": {
       "name": "Stomping Tantrum",
@@ -10447,7 +11428,8 @@
         "mirror": 1,
         "metronome": 1,
         "slicing": 1
-      }
+      },
+      "secondary": {}
     },
     "Stone Edge": {
       "name": "Stone Edge",
@@ -10463,7 +11445,8 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "critRatio": 2
     },
     "Stored Power": {
       "name": "Stored Power",
@@ -10496,6 +11479,9 @@
         "reflectable": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "boosts": {
+        "spe": -2
       }
     },
     "Struggle": {
@@ -10535,6 +11521,12 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "boosts": {
+          "spa": -1
+        }
       }
     },
     "Stun Spore": {
@@ -10553,7 +11545,8 @@
         "mirror": 1,
         "metronome": 1,
         "powder": 1
-      }
+      },
+      "status": "par"
     },
     "Substitute": {
       "name": "Substitute",
@@ -10569,7 +11562,8 @@
         "snatch": 1,
         "nonsky": 1,
         "metronome": 1
-      }
+      },
+      "volatileStatus": "substitute"
     },
     "Sucker Punch": {
       "name": "Sucker Punch",
@@ -10600,7 +11594,8 @@
       "target": "all",
       "flags": {
         "metronome": 1
-      }
+      },
+      "weather": "sunnyday"
     },
     "Supercell Slam": {
       "name": "Supercell Slam",
@@ -10652,6 +11647,12 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "self": {
+        "boosts": {
+          "atk": -1,
+          "def": -1
+        }
       }
     },
     "Surf": {
@@ -10687,7 +11688,11 @@
         "mirror": 1,
         "allyanim": 1,
         "metronome": 1
-      }
+      },
+      "boosts": {
+        "atk": 2
+      },
+      "volatileStatus": "confusion"
     },
     "Swallow": {
       "name": "Swallow",
@@ -10720,7 +11725,8 @@
         "reflectable": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "volatileStatus": "confusion"
     },
     "Sweet Scent": {
       "name": "Sweet Scent",
@@ -10737,6 +11743,9 @@
         "reflectable": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "boosts": {
+        "evasion": -2
       }
     },
     "Switcheroo": {
@@ -10771,6 +11780,9 @@
         "snatch": 1,
         "dance": 1,
         "metronome": 1
+      },
+      "boosts": {
+        "atk": 2
       }
     },
     "Synthesis": {
@@ -10804,7 +11816,11 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "multihit": [
+        2,
+        5
+      ]
     },
     "Tailwind": {
       "name": "Tailwind",
@@ -10820,7 +11836,8 @@
         "snatch": 1,
         "metronome": 1,
         "wind": 1
-      }
+      },
+      "sideCondition": "tailwind"
     },
     "Taunt": {
       "name": "Taunt",
@@ -10838,7 +11855,8 @@
         "mirror": 1,
         "bypasssub": 1,
         "metronome": 1
-      }
+      },
+      "volatileStatus": "taunt"
     },
     "Tearful Look": {
       "name": "Tearful Look",
@@ -10854,6 +11872,10 @@
         "reflectable": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "boosts": {
+        "atk": -1,
+        "spa": -1
       }
     },
     "Teatime": {
@@ -10886,7 +11908,8 @@
         "mirror": 1,
         "dance": 1,
         "metronome": 1
-      }
+      },
+      "volatileStatus": "confusion"
     },
     "Temper Flare": {
       "name": "Temper Flare",
@@ -10957,6 +11980,9 @@
         "mirror": 1,
         "metronome": 1,
         "failinstruct": 1
+      },
+      "self": {
+        "volatileStatus": "lockedmove"
       }
     },
     "Throat Chop": {
@@ -10974,6 +12000,9 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 100
       }
     },
     "Thunder": {
@@ -10990,6 +12019,10 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 30,
+        "status": "par"
       }
     },
     "Thunderbolt": {
@@ -11006,6 +12039,10 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 10,
+        "status": "par"
       }
     },
     "Thunder Fang": {
@@ -11024,7 +12061,17 @@
         "mirror": 1,
         "metronome": 1,
         "bite": 1
-      }
+      },
+      "secondaries": [
+        {
+          "chance": 10,
+          "status": "par"
+        },
+        {
+          "chance": 10,
+          "volatileStatus": "flinch"
+        }
+      ]
     },
     "Thunder Punch": {
       "name": "Thunder Punch",
@@ -11042,6 +12089,10 @@
         "mirror": 1,
         "punch": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 10,
+        "status": "par"
       }
     },
     "Thunder Wave": {
@@ -11059,7 +12110,8 @@
         "reflectable": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "status": "par"
     },
     "Tickle": {
       "name": "Tickle",
@@ -11077,6 +12129,10 @@
         "mirror": 1,
         "allyanim": 1,
         "metronome": 1
+      },
+      "boosts": {
+        "atk": -1,
+        "def": -1
       }
     },
     "Tidy Up": {
@@ -11125,6 +12181,14 @@
         "sound": 1,
         "bypasssub": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "self": {
+          "boosts": {
+            "spa": 1
+          }
+        }
       }
     },
     "Torment": {
@@ -11143,7 +12207,8 @@
         "mirror": 1,
         "bypasssub": 1,
         "metronome": 1
-      }
+      },
+      "volatileStatus": "torment"
     },
     "Toxic": {
       "name": "Toxic",
@@ -11160,7 +12225,8 @@
         "reflectable": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "status": "tox"
     },
     "Toxic Spikes": {
       "name": "Toxic Spikes",
@@ -11177,7 +12243,8 @@
         "nonsky": 1,
         "metronome": 1,
         "mustpressure": 1
-      }
+      },
+      "sideCondition": "toxicspikes"
     },
     "Trailblaze": {
       "name": "Trailblaze",
@@ -11193,6 +12260,14 @@
         "contact": 1,
         "protect": 1,
         "mirror": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "self": {
+          "boosts": {
+            "spe": 1
+          }
+        }
       }
     },
     "Transform": {
@@ -11228,6 +12303,9 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 20
       }
     },
     "Trick": {
@@ -11261,7 +12339,8 @@
       "flags": {
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "pseudoWeather": "trickroom"
     },
     "Triple Arrows": {
       "name": "Triple Arrows",
@@ -11277,7 +12356,20 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "critRatio": 2,
+      "secondaries": [
+        {
+          "chance": 50,
+          "boosts": {
+            "def": -1
+          }
+        },
+        {
+          "chance": 30,
+          "volatileStatus": "flinch"
+        }
+      ]
     },
     "Triple Axel": {
       "name": "Triple Axel",
@@ -11294,7 +12386,8 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "multihit": 3
     },
     "Twin Beam": {
       "name": "Twin Beam",
@@ -11309,7 +12402,8 @@
       "flags": {
         "protect": 1,
         "mirror": 1
-      }
+      },
+      "multihit": 2
     },
     "Upper Hand": {
       "name": "Upper Hand",
@@ -11326,6 +12420,10 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "volatileStatus": "flinch"
       }
     },
     "Uproar": {
@@ -11346,6 +12444,9 @@
         "metronome": 1,
         "nosleeptalk": 1,
         "failinstruct": 1
+      },
+      "self": {
+        "volatileStatus": "uproar"
       }
     },
     "U-turn": {
@@ -11363,7 +12464,8 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "selfSwitch": true
     },
     "Vacuum Wave": {
       "name": "Vacuum Wave",
@@ -11411,7 +12513,8 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "selfSwitch": true
     },
     "Volt Tackle": {
       "name": "Volt Tackle",
@@ -11428,7 +12531,15 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "secondary": {
+        "chance": 10,
+        "status": "par"
+      },
+      "recoil": [
+        33,
+        100
+      ]
     },
     "Waterfall": {
       "name": "Waterfall",
@@ -11445,6 +12556,10 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 20,
+        "volatileStatus": "flinch"
       }
     },
     "Water Pulse": {
@@ -11463,6 +12578,10 @@
         "distance": 1,
         "metronome": 1,
         "pulse": 1
+      },
+      "secondary": {
+        "chance": 20,
+        "volatileStatus": "confusion"
       }
     },
     "Water Shuriken": {
@@ -11479,7 +12598,11 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "multihit": [
+        2,
+        5
+      ]
     },
     "Water Spout": {
       "name": "Water Spout",
@@ -11512,7 +12635,11 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "recoil": [
+        33,
+        100
+      ]
     },
     "Weather Ball": {
       "name": "Weather Ball",
@@ -11545,7 +12672,8 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "volatileStatus": "partiallytrapped"
     },
     "Whirlwind": {
       "name": "Whirlwind",
@@ -11566,7 +12694,8 @@
         "noassist": 1,
         "failcopycat": 1,
         "wind": 1
-      }
+      },
+      "forceSwitch": true
     },
     "Wide Guard": {
       "name": "Wide Guard",
@@ -11580,7 +12709,8 @@
       "target": "allySide",
       "flags": {
         "snatch": 1
-      }
+      },
+      "sideCondition": "wideguard"
     },
     "Wild Charge": {
       "name": "Wild Charge",
@@ -11597,7 +12727,11 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "recoil": [
+        1,
+        4
+      ]
     },
     "Will-O-Wisp": {
       "name": "Will-O-Wisp",
@@ -11614,7 +12748,8 @@
         "reflectable": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "status": "brn"
     },
     "Wonder Room": {
       "name": "Wonder Room",
@@ -11629,7 +12764,8 @@
       "flags": {
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "pseudoWeather": "wonderroom"
     },
     "Wood Hammer": {
       "name": "Wood Hammer",
@@ -11646,7 +12782,11 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "recoil": [
+        33,
+        100
+      ]
     },
     "Worry Seed": {
       "name": "Worry Seed",
@@ -11681,7 +12821,8 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "volatileStatus": "partiallytrapped"
     },
     "X-Scissor": {
       "name": "X-Scissor",
@@ -11716,7 +12857,8 @@
         "reflectable": 1,
         "mirror": 1,
         "metronome": 1
-      }
+      },
+      "volatileStatus": "yawn"
     },
     "Zap Cannon": {
       "name": "Zap Cannon",
@@ -11733,6 +12875,10 @@
         "mirror": 1,
         "metronome": 1,
         "bullet": 1
+      },
+      "secondary": {
+        "chance": 100,
+        "status": "par"
       }
     },
     "Zen Headbutt": {
@@ -11750,6 +12896,10 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 20,
+        "volatileStatus": "flinch"
       }
     },
     "Zing Zap": {
@@ -11767,6 +12917,10 @@
         "protect": 1,
         "mirror": 1,
         "metronome": 1
+      },
+      "secondary": {
+        "chance": 30,
+        "volatileStatus": "flinch"
       }
     }
   },
