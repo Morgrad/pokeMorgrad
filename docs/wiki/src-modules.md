@@ -165,7 +165,7 @@ Foe Mega prediction from real ladder replays. `candidates(mem, side, turn=None)`
 - `_SEM` is a module-global semaphore set by `run_islands`.
 - `Island` (`:997`): name, constraints, population, fitness, `best_ever`, `best_val_ever`, stagnation, history, `seed_paths`; `to_dict/from_dict`.
 - `inject_immigrants(island, n)` replaces the worst n; `ring_migrate(n=2)`: island i receives from i-1, replaces worst, strips foreign locked species (`_strip_species`).
-- `restart_showdown` (`:1275`): `pkill -9 -f "pokemon-showdown start {port}"`, relaunch `node pokemon-showdown start {port} --no-security`, polls up to 15s.
+- `restart_showdown` (`:1275`): `pkill -9 -f "pokemon-showdown start {port}"`, relaunch `node pokemon-showdown start {port} --no-security`, polls up to `wait_s`=60 s, retries the kill+launch once (`tries=2`), returns bool. `ensure_showdown()` (called at the start of `run_islands`) starts the server if it is down; `run_islands` raises `RuntimeError` if a mid-run restart fails, so the island exits non-zero and `ga_parallel.sh` respawns it from the last checkpoint. `run_islands` also loads the meta-weight usage file at startup and fails with a hint if it is missing.
 - `save_checkpoint` writes `output/checkpoints/v6/<run_id>/gen_NNNN.json`, keeping newest plus multiples of 5; `load_latest_checkpoint` resumes.
 - `breed`: elites `max(2, n//3)`, immigration rate 0.20, `filter_legal_genomes`, top up to pop size.
 - `run_islands` defaults (`:1393-1400`): pop 10, gens 999, battles 800, `concurrency=int(env GA_CONCURRENCY, "3")` (evaluated at def time), immigration 0.20, stagnation_limit 5, diversity_floor 15 unique species, migration_every 5, showdown_restart_every 10. Per gen: evaluate islands sequentially (genomes within an island concurrently) -> val-evaluate the train-best -> diversity rescue (3 immigrants) -> stagnation restart (replace worst half) -> ring migration -> checkpoint every gen.
@@ -189,7 +189,7 @@ Shared poke_env harness for GA and eval (replaces duplicated logic; see its docs
 
 ## eval.py (163 lines)
 CLI `python -m src.eval` for evaluating team files (default `baseline_team.txt`) against a pool.
-- Flags (from main_async): `--opponents heldout|all`, `--pilot heuristic|bc|doubles|both`, `--concurrency`; seeds `DEFAULT_SEEDS=[100,200,300]`, `TIMEOUT=20`; Wilson CI helper `wilson_ci`; `evaluate_team` runs seeds sequentially under one semaphore with `random.seed(seed)`.
+- Flags (from main_async): `--opponents heldout|all`, `--pilot heuristic|bc|doubles|vgc|both`, `--opp heuristic|ladder` (opponent pilot), `--concurrency`; `evaluate_team` returns `(wins, games, weighted_rate)` where `weighted_rate` is `ga_core._fitness` (the GA's meta-weighted fitness), printed as `meta-weighted`, so a holdout run with `--pilot vgc --opp ladder` is comparable with GA scores; seeds `DEFAULT_SEEDS=[100,200,300]`, `TIMEOUT=20`; Wilson CI helper `wilson_ci`; `evaluate_team` runs seeds sequentially under one semaphore with `random.seed(seed)`.
 - Env: `GA_CONCURRENCY` (default "3", `eval.py:27`).
 - Imports `ga_core` (pools, `FORMAT`, `UID_MAX`) so it is not independent of the GA module; torch only if `bc`.
 - Gotcha: the HEUR/BC/Delta comparison table only covers heuristic and bc pilots; `doubles` is not in it.

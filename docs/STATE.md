@@ -5,7 +5,7 @@
 
 # Project State
 
-**Last verified:** 2026-10-16
+**Last verified:** 2026-10-20
 **Active branch:** `main`
 **Repo:** https://github.com/Morgrad/pokeMorgrad
 
@@ -20,6 +20,8 @@
 2. GA fitness environment changed: our side = `VGCPilot` (flag on), opponent = `LadderOpponent` (heuristic + Protect/Fake Out at replay rates). Env `GA_PILOT` / `GA_OPP` override; `heuristic`/`heuristic` restores the old environment. **Old GA scores (~72% island C etc.) are NOT comparable to new-environment scores.**
 3. Fitness is meta-weighted: opponent teams count by ladder species usage (`src/meta_weights.py`, `data/species_ladder_usage.json`, rebuild with `python tools/build_meta_weights.py`; `GA_META_WEIGHTS=0` = plain win rate).
 4. Smoke GA (2 generations, 3 islands) passed: 0 crashes, 0 dropped battles, ~10 min/generation/island. No long GA has been run in the new environment.
+
+**Pre-long-run hardening (2026-10-20, fixes committed; cleanups next).** `restart_showdown` now waits 60 s and retries once, `run_islands` raises if the server does not come back (the island exits non-zero and `ga_parallel.sh` respawns it from the checkpoint) and calls `ensure_showdown()` at startup (also covers respawns); `run_islands` loads the usage file at startup (clear error if missing); `python -m src.eval` gained `--pilot vgc` and `--opp ladder` and prints the GA's meta-weighted rate so holdout scores are comparable. Tests: `tests/test_ga_robust.py` (6, in `tools/verify.sh`). Cleanups (dead `weights_by_text`, `_fitness` reuse of `MW.weighted_rate`, stale `battle.py` docstring, ruff import order in 3 old tests) are a separate commit.
 
 **Next steps, in the order agreed with the user.**
 1. **Ask the user for a go-ahead and hours + run_id** for a long GA in the new environment (`bash run/ga_parallel.sh <hours> <run_id>`, fresh run_id, e.g. `q1`). Do not launch long runs without approval.

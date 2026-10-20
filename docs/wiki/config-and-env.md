@@ -70,7 +70,8 @@ Only `src/eval.py` uses argparse (lines 150-159). `run/` scripts use positional 
 | `python -m src.eval` | `teams...` (positional) | `data/baseline_team.txt` | Team files to score |
 | | `--opponents {heldout,all}` | `heldout` | holdout pool (100) vs all train teams (help text says "300"/"100", stale: pools are 150/100) |
 | | `--seeds N...` | `100 200 300` | RNG seeds; each seed replays every opponent once |
-| | `--pilot {heuristic,bc,doubles,both}` | `both` (= heuristic + bc) | Pilot for OUR side; opponent is always `SimpleHeuristicsPlayer` (`battle.py:13`). OPERATIONS.md says heuristic default: stale |
+| | `--pilot {heuristic,bc,doubles,vgc,both}` | `both` (= heuristic + bc) | Pilot for OUR side. OPERATIONS.md says heuristic default: stale |
+| | `--opp {heuristic,ladder}` | `heuristic` | Opponent pilot (`battle.run_battle(opp_pilot=)`); `--pilot vgc --opp ladder` is the GA's fitness environment. Each result line also prints the meta-weighted rate the GA optimises |
 | | `--concurrency N` | `$GA_CONCURRENCY` or 3 | Battles per server |
 | `python -m run.ga_run [run_id] [hours]` | positional | `run1`, `5.0` | Serial 3-island GA. RNG base seed `{run1:42, run2:137, run3:999}`, else 42 (line 26); runs other than `run1` warm-start from `ga_run1_island_*.txt` champions (lines 29-32) |
 | `python -m run.ga_island [run_id] [hours]` | positional + `ISLAND_NAME` | `p1`, `4.0` | One island. Run ID becomes `<run_id>_<name>` |

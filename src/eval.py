@@ -11,6 +11,8 @@ Usage:
   python -m src.eval --pilot heuristic              # fast (no torch / no BC)
   python -m src.eval --pilot bc                     # real eval with the neural pilot
   python -m src.eval --pilot doubles                # experimental joint-attack pilot
+  python -m src.eval --pilot vgc --opp ladder       # the GA's fitness environment (also prints the
+                                                    # meta-weighted rate the GA optimises)
   python -m src.eval --opponents all                # use all 300 training teams
   python -m src.eval --seeds 100 200 300 400 500    # more seeds
 """
@@ -49,14 +51,17 @@ def wilson_ci(wins: int, games: int, z: float = 1.96) -> tuple[float, float]:
     return (max(0.0, center - half), min(1.0, center + half))
 
 
-async def evaluate_team(pilot, team_str, opponents, seeds, concurrency):
-    """Return (total_wins, total_games) for a team across all seeds × opponents.
+async def evaluate_team(pilot, team_str, opponents, seeds, concurrency, opp_pilot="heuristic"):
+    """Return (total_wins, total_games, weighted_rate) for a team across all seeds × opponents.
+
+    weighted_rate is the GA's fitness (ga_core._fitness: meta-weighted win rate, or the plain
+    rate when GA_META_WEIGHTS=0), so a holdout score is comparable with the GA's numbers.
 
     Each seed re-seeds the RNG so account ids / any sampling are reproducible per
     seed. Battles returning None (timeout/error) are excluded from both totals, so
     the win rate is over *completed* games only. Seeds run sequentially.
     """
-    total_w, total_g = 0, 0
+    outcomes, opp_texts = [], []
     # One semaphore for the whole call, not one per seed. Correct today because
     # seeds run strictly sequentially — a seed's battles all finish (the gather
     # below) before the next seed starts, so the counter is always back at full
@@ -68,14 +73,13 @@ async def evaluate_team(pilot, team_str, opponents, seeds, concurrency):
         random.seed(seed)
         tasks = [
             B.run_battle(team_str, o, random.randint(1, UID_MAX), sem, FORMAT,
-                         pilot=pilot, timeout=TIMEOUT, min_turns=0)
+                         pilot=pilot, timeout=TIMEOUT, min_turns=0, opp_pilot=opp_pilot)
             for o in opponents
         ]
-        outs = await asyncio.gather(*tasks)
-        valid = [o for o in outs if o is not None]
-        total_w += sum(valid)
-        total_g += len(valid)
-    return total_w, total_g
+        outcomes += await asyncio.gather(*tasks)
+        opp_texts += opponents
+    weighted, wins, games = G._fitness(outcomes, opp_texts)
+    return wins, games, weighted
 
 
 async def main_async(args):
@@ -99,7 +103,7 @@ async def main_async(args):
     print(f"Opponents:   {opp_label}")
     print(f"Seeds:       {args.seeds}")
     print(f"Concurrency: {args.concurrency}")
-    print(f"Pilots:      {pilots}")
+    print(f"Pilots:      {pilots}  vs opponent pilot: {args.opp}")
     print("=" * 72)
 
     results = {}
@@ -112,14 +116,14 @@ async def main_async(args):
                 print(f"  MISSING: {team_path}")
                 continue
             team_str = open(team_path).read()
-            w, g = await evaluate_team(pilot, team_str, opponents, args.seeds,
-                                       args.concurrency)
+            w, g, wfit = await evaluate_team(pilot, team_str, opponents, args.seeds,
+                                             args.concurrency, args.opp)
             results[pilot][os.path.basename(team_path)] = (w, g)
             pct = (w / g * 100) if g else 0.0
             lo, hi = wilson_ci(w, g)
             ci_str = f"[{lo*100:4.1f}-{hi*100:4.1f}]" if g else "[   n/a   ]"
             print(f"  {os.path.basename(team_path):40s} {w:4d}/{g:4d} = "
-                  f"{pct:5.1f}%  95% CI {ci_str}")
+                  f"{pct:5.1f}%  95% CI {ci_str}  meta-weighted {wfit*100:5.1f}%")
 
     if len(pilots) > 1:
         print("\n" + "=" * 92)
@@ -154,7 +158,9 @@ def main():
     parser.add_argument("--opponents", choices=["heldout", "all"], default="heldout",
                         help="heldout = 100 eval teams, all = 300 training teams")
     parser.add_argument("--seeds", type=int, nargs="+", default=DEFAULT_SEEDS)
-    parser.add_argument("--pilot", choices=["heuristic", "bc", "doubles", "both"], default="both")
+    parser.add_argument("--pilot", choices=["heuristic", "bc", "doubles", "vgc", "both"], default="both")
+    parser.add_argument("--opp", choices=["heuristic", "ladder"], default="heuristic",
+                        help="opponent pilot: heuristic (default) or ladder (the GA's Protect/Fake Out-aware opponent)")
     parser.add_argument("--concurrency", type=int, default=CONCURRENCY)
     args = parser.parse_args()
     asyncio.run(main_async(args))

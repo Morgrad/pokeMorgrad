@@ -1201,32 +1201,51 @@ def ring_migrate(islands, n=2):
             isl.fitness[ranked[-1 - j]] = 0.0
 
 
-def restart_showdown():
+def _showdown_up():
+    try:
+        urllib.request.urlopen(f"http://localhost:{SHOWDOWN_PORT}", timeout=2)
+        return True
+    except Exception:
+        return False
+
+
+def restart_showdown(wait_s=60, tries=2):
     """Kill and relaunch the local Showdown server, waiting for it to come back.
 
     Called periodically mid-run because the Node server leaks memory/sockets over
     thousands of battles. Hard-kills any process on the port, relaunches detached
     with --no-security (local-only, trusted), then polls the HTTP port for up to
-    15s. Returns True once it answers, False if it never came up.
+    `wait_s` seconds (a server a few hours old has taken >30 s to answer). Retries
+    the whole kill+launch up to `tries` times. Returns True once it answers, False
+    if it never came up.
     """
-    print(f"  [showdown] restarting on :{SHOWDOWN_PORT}...")
-    subprocess.run(["pkill", "-9", "-f", f"pokemon-showdown start {SHOWDOWN_PORT}"],
-                   stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-    time.sleep(1)
-    subprocess.Popen(
-        ["node", "pokemon-showdown", "start", str(SHOWDOWN_PORT), "--no-security"],
-        cwd=SHOWDOWN_DIR,
-        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
-    )
-    for _ in range(15):   # poll up to ~15s for the server to accept connections
-        try:
-            urllib.request.urlopen(f"http://localhost:{SHOWDOWN_PORT}", timeout=2)
-            print("  [showdown] back up")
-            return True
-        except Exception:
+    for attempt in range(1, tries + 1):
+        print(f"  [showdown] restarting on :{SHOWDOWN_PORT} (attempt {attempt}/{tries})...")
+        subprocess.run(["pkill", "-9", "-f", f"pokemon-showdown start {SHOWDOWN_PORT}"],
+                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        time.sleep(1)
+        subprocess.Popen(
+            ["node", "pokemon-showdown", "start", str(SHOWDOWN_PORT), "--no-security"],
+            cwd=SHOWDOWN_DIR,
+            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+        )
+        for _ in range(wait_s):
+            if _showdown_up():
+                print("  [showdown] back up")
+                return True
             time.sleep(1)
     print("  [showdown] FAILED")
     return False
+
+
+def ensure_showdown():
+    """Make sure a server answers on SHOWDOWN_PORT; raise if it cannot be (re)started.
+
+    The island exits non-zero, so run/ga_parallel.sh respawns it from the last checkpoint
+    instead of the GA scoring every genome 0.0 against a dead server.
+    """
+    if not _showdown_up() and not restart_showdown():
+        raise RuntimeError(f"Showdown on :{SHOWDOWN_PORT} is not answering and could not be restarted")
 
 
 def save_checkpoint(generation, islands, run_id="run1"):
@@ -1342,6 +1361,14 @@ async def run_islands(
     global _SEM
     _SEM = asyncio.Semaphore(concurrency)
 
+    if META_WEIGHTS:   # fail now, not on the first evaluation
+        try:
+            MW.load_usage()
+        except (OSError, ValueError, KeyError) as e:
+            raise RuntimeError(f"meta-weight usage file {MW.USAGE_PATH} unreadable ({e}); "
+                               "run tools/build_meta_weights.py or set GA_META_WEIGHTS=0") from e
+    ensure_showdown()
+
     islands = []
     start_gen = 0
     ckpt = load_latest_checkpoint(run_id)
@@ -1385,7 +1412,8 @@ async def run_islands(
             print(f"\n=== TIME BUDGET REACHED ({max_hours}h) at gen {gen} ===")
             break
         if gen > start_gen and (gen - start_gen) % showdown_restart_every == 0 and gen > 0:
-            restart_showdown()
+            if not restart_showdown():
+                raise RuntimeError(f"Showdown on :{SHOWDOWN_PORT} did not come back after a restart")
 
         print(f"\n[{time.strftime('%H:%M:%S')}] === GEN {gen+1}/{generations}  "
               f"({(time.time()-t0)/60:.1f} min) ===")
