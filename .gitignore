@@ -13,6 +13,7 @@ data/*
 !data/species_move_usage.json
 !data/species_archetypes.json
 !data/mega_rates.json
+!data/species_ladder_usage.json
 !data/regmc_db.json
 !data/showdown_replays_meta/
 !data/regional_teams/

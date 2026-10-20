@@ -360,7 +360,7 @@ class TurnSim(DE.Evaluator):
                     oskip[s] = 1.0 - (1.0 - oskip.get(s, 0.0)) * (1.0 - p * float((r > 0).mean()))
                 if single and t in occ and p_dead > 1e-9:
                     o = occ["a1" if t == "a0" else "a0"]
-                    if o not in blocked:
+                    if o in self.world and o not in blocked:
                         pmf[o] = _apply(get(o), self._foe_rolls(fid, hi.get(fid, 0), fa.move, o,
                                                                 hi.get(o, 0), 1),
                                         pf * self._p_hit_id(fa.move, o) * p_dead)

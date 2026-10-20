@@ -8,6 +8,7 @@ Env vars:
     ISLAND_NAME        "A" | "B" | "C"
     SHOWDOWN_PORT      8000 | 8001 | 8002
     GA_CONCURRENCY     default 8
+    GA_GENERATIONS     default 999 (set 2 for a smoke test)
 
 Args:
     argv[1]            run_id (default "p1")
@@ -65,7 +66,7 @@ asyncio.run(run_islands(
         "seed_paths": spec["seed_paths"],
     }],
     pop_per_island=10,
-    generations=999,
+    generations=int(os.environ.get("GA_GENERATIONS", "999")),
     battles_per_genome=800,
     concurrency=CONC,
     immigration_rate=0.20,

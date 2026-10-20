@@ -88,6 +88,10 @@ def make_player(pilot, team_str, uid, prefix, battle_format):
     elif pilot == "doubles":
         from src.doubles_pilot import DoublesPilot  # lazy: only the experimental pilot pays for it
         cls = DoublesPilot
+    elif pilot == "ladder":
+        # lazy: heuristic + Protect / Fake Out at ladder rates
+        from src.ladder_opp import LadderOpponent
+        cls = LadderOpponent
     elif pilot == "vgc":
         from src.vgc_pilot import VGCPilot  # lazy: new pilot, torch-free
         cls = VGCPilot
@@ -103,8 +107,8 @@ def make_player(pilot, team_str, uid, prefix, battle_format):
 
 
 async def run_battle_once(team_str, opp_str, uid, sem, battle_format,
-                          *, pilot="heuristic", timeout=20, min_turns=0):
-    """Play one battle — `pilot` on team_str vs a heuristic on opp_str — once.
+                          *, pilot="heuristic", timeout=20, min_turns=0, opp_pilot="heuristic"):
+    """Play one battle — `pilot` on team_str vs `opp_pilot` (default: the heuristic) on opp_str — once.
 
     Returns 1 (our win) / 0 (loss) / None. None means "no usable result": the
     battle errored, never finished, or (only when min_turns > 0) ended in under
@@ -116,7 +120,7 @@ async def run_battle_once(team_str, opp_str, uid, sem, battle_format,
         bot = opp = None
         try:
             bot = make_player(pilot, team_str, uid, "B", battle_format)
-            opp = make_player("heuristic", opp_str, uid, "O", battle_format)
+            opp = make_player(opp_pilot, opp_str, uid, "O", battle_format)
             await asyncio.wait_for(bot.battle_against(opp, n_battles=1), timeout=timeout)
             if bot.n_finished_battles == 0:
                 return None
@@ -142,7 +146,7 @@ async def run_battle_once(team_str, opp_str, uid, sem, battle_format,
 
 
 async def run_battle(team_str, opp_str, uid, sem, battle_format,
-                     *, pilot="heuristic", timeout=20, min_turns=0, retries=1):
+                     *, pilot="heuristic", timeout=20, min_turns=0, retries=1, opp_pilot="heuristic"):
     """Run one battle, retrying up to `retries` times on a None result.
 
     Each retry offsets the uid by RETRY_STRIDE so the next attempt logs in under a
@@ -152,7 +156,7 @@ async def run_battle(team_str, opp_str, uid, sem, battle_format,
     for attempt in range(retries + 1):
         result = await run_battle_once(
             team_str, opp_str, uid + attempt * RETRY_STRIDE, sem, battle_format,
-            pilot=pilot, timeout=timeout, min_turns=min_turns)
+            pilot=pilot, timeout=timeout, min_turns=min_turns, opp_pilot=opp_pilot)
         if result is not None:
             return result
     return None

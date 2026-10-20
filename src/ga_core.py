@@ -2,7 +2,7 @@
 ga_core.py — GA engine for counter-meta VGC team search.
 
 Evolves 6-mon teams against a pool of real top-cut teams, using a poke_env
-pilot (heuristic by default) to play out battles for the fitness signal.
+pilot (VGCPilot vs the ladder-like opponent by default, see FITNESS_PILOT) to play out battles for the fitness signal.
 
 Entry point:
   run_islands(...)   multi-island GA with ring migration, stagnation restart,
@@ -31,6 +31,7 @@ import urllib.request
 from functools import lru_cache
 
 from src import battle as B
+from src import meta_weights as MW
 from src import regmc_db as DB
 from src import showdown_validator as SV
 from src.paths import data_path, output_path, showdown_dir
@@ -57,6 +58,14 @@ BATTLE_TIMEOUT = 20     # seconds before a battle is abandoned as hung (returns 
 MIN_TURNS = 3           # Battles ending < 3 turns are almost always a Showdown desync/forfeit,
                         # not a real game — discard so they don't poison the fitness signal.
 # (The retry-uid stride lives in src/battle.py now — RETRY_STRIDE there.)
+# Who plays in the fitness battles. Our side: "vgc" = VGCPilot (turn_sim on by default: +4.5 pts over the
+# plain heuristic in paired runs); the opponent: "ladder" = heuristic + Protect / Fake Out at replay rates.
+# GA_PILOT=heuristic GA_OPP=heuristic reproduces the pre-2026-10-16 environment (scores are NOT comparable).
+FITNESS_PILOT = os.environ.get("GA_PILOT", "vgc")
+FITNESS_OPP = os.environ.get("GA_OPP", "ladder")
+# Fitness = win rate weighted by how much the ladder plays each opponent team (src/meta_weights.py,
+# data/species_ladder_usage.json). GA_META_WEIGHTS=0 gives the plain win rate.
+META_WEIGHTS = os.environ.get("GA_META_WEIGHTS", "1") == "1"
 
 # --- Champion selection ---
 # Reserve a slice of the training pool that the GA never samples for fitness.
@@ -903,6 +912,27 @@ def _log_score(idx, total, fit, wins, valid_n, mons, tag=""):
           flush=True)
 
 
+def _opp_weight(opp_text):
+    if not META_WEIGHTS:
+        return 1.0
+    w = _OPP_WEIGHT_CACHE.get(opp_text)
+    if w is None:
+        w = _OPP_WEIGHT_CACHE[opp_text] = MW.team_weight(opp_text)
+    return w
+
+
+_OPP_WEIGHT_CACHE = {}
+
+
+def _fitness(outcomes, opponents):
+    """Weighted win rate over the battles that returned a result; (fit, wins, valid_n)."""
+    pairs = [(o, _opp_weight(t)) for o, t in zip(outcomes, opponents) if o is not None]
+    if not pairs:
+        return 0.0, 0, 0
+    total_w = sum(w for _, w in pairs)
+    return sum(o * w for o, w in pairs) / total_w, sum(o for o, _ in pairs), len(pairs)
+
+
 async def evaluate(mons, opponents, idx, total):
     """Fitness = win rate of one genome across all `opponents`, run concurrently.
 
@@ -925,42 +955,36 @@ async def evaluate(mons, opponents, idx, total):
 
     def _battle(opp):
         return B.run_battle(text, opp, random.randint(1, UID_MAX), _SEM, FORMAT,
-                            pilot="heuristic", timeout=BATTLE_TIMEOUT,
-                            min_turns=MIN_TURNS)
+                            pilot=FITNESS_PILOT, timeout=BATTLE_TIMEOUT,
+                            min_turns=MIN_TURNS, opp_pilot=FITNESS_OPP)
 
     # Small pools: no early-stop possible, one batch.
     if len(opponents) <= EARLY_STOP_MIN_BATTLES:
         outcomes = await asyncio.gather(*[_battle(o) for o in opponents])
-        valid = [o for o in outcomes if o is not None]
-        if not valid:
+        fit, wins, valid_n = _fitness(outcomes, opponents)
+        if not valid_n:
             return 0.0
-        fit = sum(valid) / len(valid)
-        _log_score(idx, total, fit, sum(valid), len(valid), mons)
+        _log_score(idx, total, fit, wins, valid_n, mons)
         return fit
 
     # Phase 1 — head batch.
     head, tail = opponents[:EARLY_STOP_MIN_BATTLES], opponents[EARLY_STOP_MIN_BATTLES:]
     head_outs = await asyncio.gather(*[_battle(o) for o in head])
-    head_valid = [o for o in head_outs if o is not None]
-    if not head_valid:
+    head_fit, head_wins, head_n = _fitness(head_outs, head)
+    if not head_n:
         return 0.0
-    head_fit = sum(head_valid) / len(head_valid)
 
     # Early-abort: hopeless genome, skip the tail entirely.
     if head_fit < EARLY_STOP_WIN_RATE:
-        _log_score(idx, total, head_fit, sum(head_valid), len(head_valid), mons,
-                   tag="early-abort")
+        _log_score(idx, total, head_fit, head_wins, head_n, mons, tag="early-abort")
         return head_fit
 
     # Phase 2 — tail batch.
     tail_outs = await asyncio.gather(*[_battle(o) for o in tail])
-    tail_valid = [o for o in tail_outs if o is not None]
-
-    all_valid = head_valid + tail_valid
-    if not all_valid:
+    fit, wins, valid_n = _fitness(list(head_outs) + list(tail_outs), head + tail)
+    if not valid_n:
         return 0.0
-    fit = sum(all_valid) / len(all_valid)
-    _log_score(idx, total, fit, sum(all_valid), len(all_valid), mons)
+    _log_score(idx, total, fit, wins, valid_n, mons)
     return fit
 
 
@@ -1285,14 +1309,11 @@ async def _eval_on_subset(genome, opponents, verbose=False):
     if not ok:
         return 0.0
     tasks = [B.run_battle(text, o, random.randint(1, UID_MAX), _SEM, FORMAT,
-                          pilot="heuristic", timeout=BATTLE_TIMEOUT,
-                          min_turns=MIN_TURNS)
+                          pilot=FITNESS_PILOT, timeout=BATTLE_TIMEOUT,
+                          min_turns=MIN_TURNS, opp_pilot=FITNESS_OPP)
              for o in opponents]
     outcomes = await asyncio.gather(*tasks)
-    valid = [o for o in outcomes if o is not None]
-    if not valid:
-        return 0.0
-    return sum(valid) / len(valid)
+    return _fitness(outcomes, opponents)[0]
 
 
 async def run_islands(
@@ -1352,6 +1373,8 @@ async def run_islands(
 
     opp_pool = regional_pool()
     train_pool, val_pool = _split_train_val(opp_pool)
+    print(f"Fitness environment: our pilot={FITNESS_PILOT}  opponent pilot={FITNESS_OPP}  "
+          f"meta-weighted={META_WEIGHTS}")
     print(f"Fitness pool: {len(train_pool)} teams   "
           f"Validation slice: {len(val_pool)} teams")
     t0 = time.time()

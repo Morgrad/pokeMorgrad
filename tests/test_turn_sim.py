@@ -237,6 +237,14 @@ def test_two_slots_cannot_switch_to_the_same_mon():
     assert ts.pair_value((DE.Action(0, TS.SWITCH, ("b0",)), DE.Action(1, TS.SWITCH, ("b0",)))) == TS.CONFLICT
 
 
+def test_foe_retargeting_with_an_empty_partner_slot_does_not_crash():
+    world = {"o0": foe(), "o1": foe(), "a1": mine(cur=1)}          # slot 0 is empty (fainted, no bench)
+    ts = sim(world, {"o0": fi(150), "o1": fi(140)}, speeds=(0, 100), attackers={1: atk()})
+    hit = {f: TS.FoeAct("bodyslam", ("a1",), 0) for f in ("o0", "o1")}
+    a = DE.Action(1, "bodyslam", ("o0",))
+    ts._run([a], {}, hit, {"o0": 0, "o1": 0}, set())     # the 2nd foe finds a1 dead, has no partner to retarget to
+
+
 def test_foe_fake_out_targets_the_slot_with_the_better_attack():
     world = {"o0": foe(), "a0": mine(), "a1": mine()}
     ts = sim(world, {"o0": fi(100, ("bodyslam",), fakeout=1.0)})

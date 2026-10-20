@@ -9,8 +9,8 @@ Layering (deliberately conservative):
      left exactly as vanilla chose them.
   3. Any exception, forced switch, or no-gain result falls back to the vanilla order.
 
-Optional `use_turn_sim` (env DOUBLES_TURN_SIM=1) scores the pairs with src.turn_sim instead:
-move order (speed_model), foe retaliation and retargeting. Off by default.
+`use_turn_sim` (default on; env DOUBLES_TURN_SIM=0 turns it off) scores the pairs with src.turn_sim instead:
+move order (speed_model), foe retaliation and retargeting, Protect / Fake Out / switch candidates.
 
 Mega evolution is not used here: poke_env's heuristic never mega-evolves (VGCPilot adds it).
 """
@@ -76,7 +76,7 @@ class DoublesPilot(SimpleHeuristicsPlayer):
         self.min_gain = min_gain if min_gain is not None else float(
             os.environ.get("DOUBLES_MIN_GAIN", DE.MIN_GAIN))
         self.use_turn_sim = use_turn_sim if use_turn_sim is not None else (
-            os.environ.get("DOUBLES_TURN_SIM", "0") == "1")
+            os.environ.get("DOUBLES_TURN_SIM", "1") == "1")
         self.stats_counter = {"turns": 0, "overrides": 0, "errors": 0, "sim_turns": 0,
                               "sim_protect": 0, "sim_switch": 0, "sim_fakeout": 0}
 
