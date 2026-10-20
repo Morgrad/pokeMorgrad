@@ -19,7 +19,7 @@ from __future__ import annotations
 import logging
 import os
 from functools import lru_cache
-from typing import Dict, List, Optional
+from typing import Dict, FrozenSet, List, Optional
 
 from poke_env.battle import DoubleBattle, Field, Move, Pokemon, SideCondition
 from poke_env.battle.status import Status
@@ -28,6 +28,7 @@ from poke_env.player.battle_order import DoubleBattleOrder, SingleBattleOrder
 
 from src import damage, opp_model, speed_model, turn_sim
 from src import doubles_eval as DE
+from src import support_value as SV
 from src.mega_model import conditional_q
 from src.smart_player import _boosts_dict, _terrain_name, _type_to_db, _weather_name
 
@@ -39,6 +40,7 @@ LOCKED_MOVES = {
     "explosion", "selfdestruct", "mistyexplosion", "finalgambit", "mindblown",
 }
 # Damage depends on stats the evaluator doesn't feed the formula: treat as unmodelled.
+# (Foul Play joins them unless the "foulplay" support effect is on.)
 UNMODELLED_MOVES = {
     "foulplay", "bodypress", "psyshock", "psystrike", "secretsword",
     "photongeyser", "shellsidearm", "terablast", "hiddenpower",
@@ -53,9 +55,9 @@ def _move_types():
     return frozenset(m["type"] for m in damage._raw_db()["moves"].values() if m.get("type"))
 
 
-def _is_attack_candidate(move: Move) -> bool:
+def _is_attack_candidate(move: Move, effects: FrozenSet[str] = frozenset()) -> bool:
     mid = move.id
-    if mid in LOCKED_MOVES or mid in UNMODELLED_MOVES:
+    if mid in LOCKED_MOVES or (mid in UNMODELLED_MOVES and not (mid == "foulplay" and "foulplay" in effects)):
         return False
     mv = damage.DB.get_move(mid)
     if not mv or mv.get("category") == "Status" or (mv.get("basePower") or 0) <= 0:
@@ -67,9 +69,12 @@ def _is_attack_candidate(move: Move) -> bool:
 
 
 class DoublesPilot(SimpleHeuristicsPlayer):
+    effects: FrozenSet[str] = frozenset()      # support-move layer (src.support_value); empty = off
+
     def __init__(self, *args, ko_bonus: Optional[float] = None, min_gain: Optional[float] = None,
-                 use_turn_sim: Optional[bool] = None, **kwargs):
+                 use_turn_sim: Optional[bool] = None, support: Optional[str] = None, **kwargs):
         super().__init__(*args, **kwargs)
+        self.effects = SV.parse_effects(support)
         # env overrides let eval sweeps tune without code edits
         self.ko_bonus = ko_bonus if ko_bonus is not None else float(
             os.environ.get("DOUBLES_KO_BONUS", DE.KO_BONUS))
@@ -78,7 +83,8 @@ class DoublesPilot(SimpleHeuristicsPlayer):
         self.use_turn_sim = use_turn_sim if use_turn_sim is not None else (
             os.environ.get("DOUBLES_TURN_SIM", "1") == "1")
         self.stats_counter = {"turns": 0, "overrides": 0, "errors": 0, "sim_turns": 0,
-                              "sim_protect": 0, "sim_switch": 0, "sim_fakeout": 0}
+                              "sim_protect": 0, "sim_switch": 0, "sim_fakeout": 0,
+                              **{f"sup_{e}": 0 for e in SV.EFFECTS}}
 
     def choose_move(self, battle):
         base = super().choose_move(battle)
@@ -182,12 +188,18 @@ class DoublesPilot(SimpleHeuristicsPlayer):
                                         moves_seen=list(mon.moves))
         speeds = belief.speeds(self._speed_mods(mon, battle, False), self._mega_prob(mon)) \
             if belief else [(1.0, None)]
-        moves = [m.id for m in mon.moves.values() if _is_attack_candidate(m)]
+        moves = [m.id for m in mon.moves.values() if _is_attack_candidate(m, self.effects)]
         if not moves:      # nothing revealed: assume a neutral move off its better attacking stat
             st = comb.hyps[0].stats
             moves = ["bodyslam" if st["atk"] >= st["spa"] else "hypervoice"]
         fakeout, protect, protect_ok = self._foe_action_probs(mon, battle)
-        return turn_sim.FoeInfo(moves, speeds, fakeout, protect, protect_ok)
+        abilities = opp_model.ability_distribution(mon.species, mon.ability) or None
+        return turn_sim.FoeInfo(moves, speeds, fakeout, protect, protect_ok,
+                                self._foe_trick_room_prob(mon, battle), abilities)
+
+    def _foe_trick_room_prob(self, mon: Pokemon, battle: DoubleBattle) -> float:
+        """P(a foe sets Trick Room this turn); the base pilot has no action model."""
+        return 0.0
 
     def _foe_action_probs(self, mon: Pokemon, battle: DoubleBattle) -> tuple:
         """(P(Fake Out), P(Protect-family), P(that Protect works)) for a foe this turn; the base
@@ -208,11 +220,14 @@ class DoublesPilot(SimpleHeuristicsPlayer):
 
     # ---- order <-> action ---------------------------------------------------
 
-    @staticmethod
-    def _action(slot: int, order: SingleBattleOrder, world: Dict[str, DE.Combatant]) -> Optional[DE.Action]:
+    def _action(self, slot: int, order: SingleBattleOrder, world: Dict[str, DE.Combatant]) -> Optional[DE.Action]:
         move = getattr(order, "order", None)
-        if not isinstance(move, Move) or not _is_attack_candidate(move):
+        if not isinstance(move, Move) or not _is_attack_candidate(move, self.effects):
             return None
+        return self._targeted(slot, order, move, world)
+
+    @staticmethod
+    def _targeted(slot: int, order: SingleBattleOrder, move: Move, world: Dict[str, DE.Combatant]) -> Optional[DE.Action]:
         target = (damage.DB.get_move(move.id).get("target") or "")
         foes = tuple(t for t in ("o0", "o1") if t in world)
         partner = f"a{1 - slot}"
@@ -263,7 +278,7 @@ class DoublesPilot(SimpleHeuristicsPlayer):
         for slot in (0, 1):
             bo = base_orders[slot]
             free = (slot in attackers and isinstance(bo.order, Move)
-                    and _is_attack_candidate(bo.order))
+                    and _is_attack_candidate(bo.order, self.effects))
             if not free:
                 cand_orders.append([bo])
                 cand_actions.append([None])
@@ -287,7 +302,7 @@ class DoublesPilot(SimpleHeuristicsPlayer):
             return base
 
         ev = DE.Evaluator(attackers, world, _weather_name(battle), _terrain_name(battle),
-                          ko_bonus=self.ko_bonus)
+                          ko_bonus=self.ko_bonus, effects=self.effects)
         ia, ib, _, _ = DE.choose_pair(ev, cand_actions[0], cand_actions[1], self.min_gain)
         if (ia, ib) == (0, 0):
             return base
@@ -295,14 +310,15 @@ class DoublesPilot(SimpleHeuristicsPlayer):
 
     # ---- turn_sim decision: attacks plus Fake Out / Protect / switch --------------------------
 
-    @staticmethod
-    def _sim_kind(order: SingleBattleOrder) -> Optional[str]:
+    def _sim_kind(self, order: SingleBattleOrder) -> Optional[str]:
         o = getattr(order, "order", None)
         if isinstance(o, Pokemon):
             return "switch"
         if isinstance(o, Move):
-            if _is_attack_candidate(o):
+            if _is_attack_candidate(o, self.effects):
                 return "attack"
+            if SV.pure_enabled(o.id, self.effects):
+                return "support"
             if o.id in turn_sim.BLOCKING:
                 return "protect"
             if o.id == turn_sim.FAKE_OUT:
@@ -316,6 +332,10 @@ class DoublesPilot(SimpleHeuristicsPlayer):
             return self._action(slot, order, world)
         if kind == "protect":
             return DE.Action(slot, o.id, ())
+        if kind == "support":
+            if SV.pure_kind(o.id) == "helpinghand":
+                return DE.Action(slot, o.id, ()) if f"a{1 - slot}" in world else None
+            return self._targeted(slot, order, o, world)
         if kind == "switch":
             bid = bench.get(o.species)
             return DE.Action(slot, turn_sim.SWITCH, (bid,)) if bid else None
@@ -370,9 +390,9 @@ class DoublesPilot(SimpleHeuristicsPlayer):
                 for i, mon in enumerate(battle.opponent_active_pokemon) if f"o{i}" in world}
         args = (attackers, world, ours, foes, Field.TRICK_ROOM in battle.fields, _weather_name(battle),
                 _terrain_name(battle))
-        fine = turn_sim.TurnSim(*args, ko_bonus=self.ko_bonus)
+        fine = turn_sim.TurnSim(*args, ko_bonus=self.ko_bonus, effects=self.effects)
         coarse = turn_sim.TurnSim(*args, ko_bonus=self.ko_bonus, max_hyps=turn_sim.COARSE_HYPS,
-                                  min_outcome_p=turn_sim.COARSE_OUTCOME_P)
+                                  min_outcome_p=turn_sim.COARSE_OUTCOME_P, effects=self.effects)
         for ev in (fine, coarse):
             ev.set_candidates({0: cand_actions[0], 1: cand_actions[1]})
         for slot in (0, 1):
@@ -385,6 +405,10 @@ class DoublesPilot(SimpleHeuristicsPlayer):
         if (ia, ib) == (0, 0):
             return base
         for slot, i in ((0, ia), (1, ib)):
+            o = cand_orders[slot][i].order
+            eff = SV.effect_of(o.id) if isinstance(o, Move) else None
+            if eff in self.effects:
+                self.stats_counter[f"sup_{eff}"] = self.stats_counter.get(f"sup_{eff}", 0) + 1
             if i:
                 key = {"switch": "sim_switch", "fakeout": "sim_fakeout", "protect": "sim_protect"}.get(
                     self._sim_kind(cand_orders[slot][i]))

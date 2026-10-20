@@ -18,6 +18,10 @@ RATES = {
         "cells": {"new|lead": 0.075, "new|back": 0.10, "rev|back": 0.53},
         "parents": {"new": 0.08, "rev": 0.53},
         "species_rel": {"Incineroar": 5.0, "Garchomp": 0.01}},
+    "trickroom": {
+        "cells": {"new|a0": 0.02, "new|a1": 0.01, "rev|a0": 0.21, "rev|a1": 0.14},
+        "parents": {"new": 0.01, "rev": 0.15},
+        "species_rel": {"Hatterene": 8.0, "Garchomp": 0.0}},
 }
 
 
@@ -154,6 +158,22 @@ def test_real_rates_file_if_present():
     q = O.action_probs(ctx(species="Garchomp", age=0, lead=True), r)
     assert p.fakeout > 0.3 > 0.05 > q.fakeout
     assert O.action_probs(ctx(age=3), r).fakeout == 0.0
+
+
+def test_trick_room_rate_uses_reveal_age_and_species_until_revealed():
+    base = probs(species="Hatterene", age=1).trickroom
+    assert base > probs(species="Sableye", age=1).trickroom * 5
+    rev = probs(species="Hatterene", age=1, known_moves=frozenset({"trickroom"})).trickroom
+    assert abs(rev - 0.14) < 1e-9                              # revealed: the species factor is moot
+    assert probs(species="Hatterene", age=1, known_moves=frozenset({"trickroom"}), moves_complete=True).trickroom > 0
+    assert probs(species="Hatterene", age=1, moves_complete=True).trickroom == 0.0     # full set without it
+
+
+def test_trick_room_fits_inside_the_leftover_probability():
+    p = probs(species="Hatterene", known_moves=frozenset({"trickroom", "fakeout"}), age=0)
+    assert p.fakeout + p.protect + p.trickroom <= O.MAX_P + 1e-9
+    legacy = {k: v for k, v in RATES.items() if k != "trickroom"}
+    assert O.action_probs(ctx(), legacy).trickroom == 0.0
 
 
 if __name__ == "__main__":

@@ -5,7 +5,7 @@ Usage:
     python tools/build_opp_actions.py --dry-run  # holdout report only (fit even files, score odd)
 
 A decision point is a turn start (turn >= 1) and a non-fainted mon in a slot of either side;
-the labels are whether that mon used a Protect-family move / Fake Out during that turn (a mon
+the labels are whether that mon used a Protect-family move / Fake Out / Trick Room during that turn (a mon
 that switched out, flinched or fainted before moving is 0). Features come from
 src.opp_actions.foe_ctx, the same function the pilot calls. Each target is a cell table times a
 per-species factor shrunk toward 1.
@@ -25,10 +25,10 @@ sys.path.insert(0, str(REPO))
 from src import battle_memory as BM  # noqa: E402
 from src import opp_actions as OA  # noqa: E402
 
-SHRINK = {"protect": 3.0, "fakeout": 1.0}   # pseudo-expected-uses pulling a species factor toward 1
+SHRINK = {"protect": 3.0, "fakeout": 1.0, "trickroom": 3.0}   # pseudo-expected-uses pulling a species factor toward 1
 MIN_SPECIES_N = 5
 SMOOTH = 20.0        # pseudo-rows pulling a fine cell toward its parent cell
-TARGETS = ("protect", "fakeout")
+TARGETS = ("protect", "fakeout", "trickroom")
 
 
 def hp_of(s):
@@ -66,31 +66,38 @@ def extract(path):
     out = []
     for turn, chunk in enumerate(chunks[1:], start=1):
         pend = []
+        tr_cond = m.condition("field", "Trick Room")
+        tr_up = tr_cond is not None and tr_cond.end_turn is None
         for side in ("p1", "p2"):
             for rec in m.active_mons(side):
                 if not rec.fainted:
                     pend.append((side, rec.name, OA.foe_ctx(m, side, rec.name, turn,
-                                                           hp_frac=hp.get((side, rec.name), 1.0))))
+                                                           hp_frac=hp.get((side, rec.name), 1.0)), tr_up))
         for p in chunk:
             feed(p)
         used = defaultdict(set)
         for a in m.actions.get(turn, []):
             if a.kind == "move":
                 used[(a.side, a.name)].add(a.move)
-        for side, name, ctx in pend:
+        for side, name, ctx, tr_up in pend:
             mv = used.get((side, name), set())
-            out.append({"ctx": ctx, "species": ctx.species,
-                        "y_protect": int(bool(mv & BM.PROTECT_FAMILY)), "y_fakeout": int("fakeout" in mv)})
+            out.append({"ctx": ctx, "species": ctx.species, "tr_up": tr_up,
+                        "y_protect": int(bool(mv & BM.PROTECT_FAMILY)), "y_fakeout": int("fakeout" in mv),
+                        "y_trickroom": int("trickroom" in mv)})
     return out
 
 
 def rows_for(target, rows):
-    """Rows that count for `target`: Fake Out is only legal at age 0."""
-    return [r for r in rows if target == "protect" or r["ctx"].age == 0]
+    """Rows that count for `target`: Fake Out is only legal at age 0; Trick Room is only set while it is down."""
+    if target == "fakeout":
+        return [r for r in rows if r["ctx"].age == 0]
+    if target == "trickroom":
+        return [r for r in rows if not r["tr_up"]]
+    return rows
 
 
 def keys_of(target, ctx):
-    return (OA.protect_keys if target == "protect" else OA.fakeout_keys)(ctx)
+    return OA.KEYS[target](ctx)
 
 
 def fit_target(target, rows):
@@ -165,12 +172,16 @@ def sanity(rows, rates):
     print("  fakeout age 0 revealed  :", rate(rows, "fakeout", lambda c: c.age == 0 and "fakeout" in c.known_moves))
     print("  fakeout age 0 lead      :", rate(rows, "fakeout", lambda c: c.age == 0 and c.lead))
     print("  fakeout age 0 back      :", rate(rows, "fakeout", lambda c: c.age == 0 and not c.lead))
+    free = [r for r in rows if not r["tr_up"]]
+    print("  trickroom (TR down)     :", rate(free, "trickroom", lambda c: True))
+    print("  trickroom revealed      :", rate(free, "trickroom", lambda c: "trickroom" in c.known_moves))
+    print("  trickroom not revealed  :", rate(free, "trickroom", lambda c: "trickroom" not in c.known_moves))
     for t in TARGETS:
         rel = sorted(rates[t]["species_rel"].items(), key=lambda x: x[1])
         print(f"  {t} species factor  low: " + ", ".join(f"{s} {v}" for s, v in rel[:5]))
         print(f"  {t} species factor high: " + ", ".join(f"{s} {v}" for s, v in rel[-6:]))
-    mx = max((lambda p: p.fakeout + p.protect)(OA.action_probs(r["ctx"], rates)) for r in rows)
-    print(f"max fakeout+protect over all decision points: {mx:.3f} (cap {OA.MAX_P})")
+    mx = max((lambda p: p.fakeout + p.protect + p.trickroom)(OA.action_probs(r["ctx"], rates)) for r in rows)
+    print(f"max fakeout+protect+trickroom over all decision points: {mx:.3f} (cap {OA.MAX_P})")
 
 
 def pred_fn(target, rates, species=True):

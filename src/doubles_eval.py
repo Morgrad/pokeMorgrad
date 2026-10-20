@@ -18,11 +18,12 @@ damage modifiers on the *defender*.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Dict, List, Optional, Sequence, Tuple
+from typing import Dict, FrozenSet, List, Optional, Sequence, Tuple
 
 import numpy as np
 
 from src import damage
+from src import support_value as SV
 
 KO_BONUS = 1.0      # swept 0-4 (2026-10-16): plateau from 1.0 up; 0 is ~4 pts worse
 ALLY_WEIGHT = 1.0   # damage/KO on our own mon costs as much as it gains on a foe
@@ -81,8 +82,10 @@ class Evaluator:
 
     def __init__(self, attackers: Dict[int, Attacker], world: Dict[str, Combatant],
                  weather: Optional[str] = None, terrain: Optional[str] = None,
-                 ko_bonus: float = KO_BONUS, ally_weight: float = ALLY_WEIGHT):
+                 ko_bonus: float = KO_BONUS, ally_weight: float = ALLY_WEIGHT,
+                 effects: FrozenSet[str] = frozenset()):
         self.attackers = attackers
+        self.effects = effects
         self.world = world
         self.weather = weather
         self.terrain = terrain
@@ -105,8 +108,12 @@ class Evaluator:
         if key not in self._rolls:
             atk = self.attackers[action.attacker]
             tgt = self.world[tid]
+            stats, boosts = atk.stats, atk.boosts
+            if "foulplay" in self.effects and SV.is_foulplay(action.move):
+                stats = {**stats, "atk": tgt.hyps[hi].stats["atk"]}          # attacks with the TARGET's Attack
+                boosts = {**boosts, "atk": tgt.boosts.get("atk", 0)}
             r = damage.damage_rolls_from_stats(
-                atk.stats, atk.types, atk.boosts, action.move,
+                stats, atk.types, boosts, action.move,
                 tgt.hyps[hi].stats, tgt.hyps[hi].types or tgt.types, tgt.boosts,
                 is_doubles=True, include_spread=len(action.targets) > 1,
                 burn=atk.burn, weather=self.weather, terrain=self.terrain,

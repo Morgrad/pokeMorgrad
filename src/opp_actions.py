@@ -1,4 +1,4 @@
-"""Foe action prediction: P(a foe mon uses a Protect-family move / Fake Out THIS turn).
+"""Foe action prediction: P(a foe mon uses a Protect-family move / Fake Out / Trick Room THIS turn).
 
 Pure logic, no poke_env. The one-turn simulator branches on these two probabilities per foe
 mon. Rates come from data/opp_actions.json (tools/build_opp_actions.py, fitted on real ladder
@@ -43,6 +43,7 @@ class FoeCtx:
 class ActionProbs:
     fakeout: float                # P(uses Fake Out this turn)
     protect: float                # P(uses a Protect-family move this turn) (not that it succeeds)
+    trickroom: float = 0.0        # P(uses Trick Room this turn); only meaningful while Trick Room is not up
 
 
 def base_species(species: str) -> str:
@@ -104,9 +105,20 @@ def fakeout_keys(ctx: FoeCtx) -> Tuple[str, str]:
     return f"{parent}|{'lead' if ctx.lead else 'back'}", parent
 
 
+def trickroom_keys(ctx: FoeCtx) -> Tuple[str, str]:
+    """(cell, parent) of the Trick Room table: revealed or not x age (0 / 1 / 2+)."""
+    parent = "rev" if "trickroom" in ctx.known_moves else "new"
+    return f"{parent}|a{min(ctx.age, 2)}", parent
+
+
+KEYS = {"protect": protect_keys, "fakeout": fakeout_keys, "trickroom": trickroom_keys}
+
+
 def species_applies(ctx: FoeCtx, target: str) -> bool:
     """The species factor only describes 'does this species carry the move'; moot once revealed."""
-    return not (protect_revealed(ctx) if target == "protect" else "fakeout" in ctx.known_moves)
+    if target == "protect":
+        return not protect_revealed(ctx)
+    return target not in ctx.known_moves          # move ids: 'fakeout', 'trickroom'
 
 
 # ---- probabilities -------------------------------------------------------------------------
@@ -118,7 +130,7 @@ def _rates() -> dict:
 def cell_p(ctx: FoeCtx, target: str, r: dict) -> float:
     """Table rate for this context (no species factor)."""
     t = r[target]
-    key, parent = (protect_keys if target == "protect" else fakeout_keys)(ctx)
+    key, parent = KEYS[target](ctx)
     return t["cells"].get(key, t["parents"].get(parent, DEFAULT_CELL))
 
 
@@ -130,7 +142,7 @@ def _p_one(ctx: FoeCtx, target: str, r: dict) -> float:
 
 
 def action_probs(ctx: FoeCtx, rates: Optional[dict] = None) -> ActionProbs:
-    """P(Fake Out), P(Protect-family) this turn; fakeout + protect <= 1."""
+    """P(Fake Out), P(Protect-family) this turn (fakeout + protect <= 1), and P(Trick Room) in the leftover."""
     r = rates or _rates()
     fo = 0.0 if ctx.age > 0 else _p_one(ctx, "fakeout", r)
     pr = _p_one(ctx, "protect", r)
@@ -142,4 +154,10 @@ def action_probs(ctx: FoeCtx, rates: Optional[dict] = None) -> ActionProbs:
     total = fo + pr
     if total > MAX_P:
         fo, pr = fo * MAX_P / total, pr * MAX_P / total
-    return ActionProbs(fakeout=fo, protect=pr)
+    tr = 0.0
+    if "trickroom" in r:
+        tr = _p_one(ctx, "trickroom", r)
+        if ctx.moves_complete and "trickroom" not in ctx.known_moves:
+            tr = 0.0
+        tr = min(tr, max(MAX_P - fo - pr, 0.0))
+    return ActionProbs(fakeout=fo, protect=pr, trickroom=tr)

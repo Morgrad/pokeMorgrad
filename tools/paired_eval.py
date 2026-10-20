@@ -1,4 +1,5 @@
-"""Paired live comparison: VGCPilot with use_turn_sim off vs on, same team matchups.
+"""Paired live comparison, same team matchups: VGCPilot with use_turn_sim off vs on (--mode turnsim, default),
+or with the support-move layer off vs on, turn_sim on in both (--mode support --support all).
 
 Each matchup (our team, heuristic opponent's team; both drawn from the held-out pool with a fixed
 seed) is played once per arm, concurrently, so both arms always have the same sample size.
@@ -6,6 +7,9 @@ seed) is played once per arm, concurrently, so both arms always have the same sa
 Run one shard per Showdown server (SHOWDOWN_PORT picks the server), or all three with the wrapper:
   bash tools/paired_run.sh ladder 5500          # restarts a crashed shard, resumes from its log
   SHOWDOWN_PORT=8000 python tools/paired_eval.py run --shard 0 --shards 3 --target 5500 --opp ladder
+Support-layer runs: --mode support [--support foulplay,snarl,...|all] [--team a.txt,b.txt] [--tag NAME]; --team replaces
+our side of every matchup with those teams (cycled by matchup number; e.g. data/paired_eval/teams/umb_*.txt), --tag
+names the log files (<opp>_<tag>_shard<i>.jsonl). With env TAG / MODE / SUPPORT / TEAMS the wrapper passes them on.
 Progress / result:
   python tools/paired_eval.py status --opp ladder
   python tools/paired_eval.py report data/paired_eval/ladder_shard*.jsonl
@@ -49,8 +53,9 @@ def matchups(n=100000):
     return out
 
 
-async def one_battle(k, arm, ours, theirs, sem, opp="heuristic"):
+async def one_battle(k, arm, ours, theirs, sem, opp="heuristic", mode="turnsim", support="all"):
     from src import battle as B
+    from src import support_value as SV
     flag = arm == "on"
     for attempt in range(2):
         uid = 1_000_000 + k * 2 + (1 if flag else 0) + attempt * RETRY_STRIDE
@@ -59,7 +64,11 @@ async def one_battle(k, arm, ours, theirs, sem, opp="heuristic"):
             t0 = time.time()
             try:
                 bot = B.make_player("vgc", ours, uid, "B", FMT)
-                bot.use_turn_sim = flag
+                if mode == "support":
+                    bot.use_turn_sim = True
+                    bot.effects = SV.parse_effects(support if flag else "")
+                else:
+                    bot.use_turn_sim = flag
                 foe = B.make_player(opp, theirs, uid, "O", FMT)
                 await asyncio.wait_for(bot.battle_against(foe, n_battles=1), timeout=TIMEOUT)
                 if bot.n_finished_battles:
@@ -102,11 +111,13 @@ def finished(r):
 
 async def run(args):
     ms = matchups()
+    teams = [open(t).read() for t in args.team.split(",")] if args.team else []
     sem = asyncio.Semaphore(args.concurrency * 2)
     t_end = time.time() + args.minutes * 60 if args.minutes else float("inf")
     done = {r["k"] for r in load_rows([args.out]) if finished(r)}
     with open(args.out + ".plan", "w") as f:
-        json.dump({"target": args.target, "opp": args.opp, "shard": args.shard, "shards": args.shards,
+        json.dump({"target": args.target, "opp": args.opp, "mode": args.mode, "support": args.support,
+                   "team": args.team, "shard": args.shard, "shards": args.shards,
                    "started": time.time(), "resumed_with": len(done)}, f)
     print(f"shard {args.shard}/{args.shards} opp={args.opp}: {len(done)} done, target {args.target}", flush=True)
     todo = iter(k for k in range(args.shard, len(ms), args.shards) if k not in done)
@@ -123,7 +134,11 @@ async def run(args):
             if k is None:
                 return
             i, j, ours, theirs = ms[k]
-            res = await asyncio.gather(*(one_battle(k, a, ours, theirs, sem, args.opp) for a in ARMS))
+            if teams:
+                ti = (k // args.shards) % len(teams)
+                i, ours = f"team{ti}:{Path(args.team.split(',')[ti]).stem}", teams[ti]
+            res = await asyncio.gather(*(one_battle(k, a, ours, theirs, sem, args.opp, args.mode, args.support)
+                                         for a in ARMS))
             row = {"k": k, "ours": i, "theirs": j, "t": time.time(), **{a: r for a, r in zip(ARMS, res)}}
             out.write(json.dumps(row) + "\n")
             out.flush()
@@ -185,9 +200,20 @@ def report(paths):
     print(f"paired (both finished) n={n}: on-off = {100 * diff:+.1f} pts  95% CI [{100 * (diff - 1.96 * se):+.1f}, "
           f"{100 * (diff + 1.96 * se):+.1f}]  on-only wins {b}, off-only wins {c}, McNemar p={mcnemar_p(b, c):.3f}")
     ons = [r["on"]["counters"] for r in rows if r["on"]["win"] is not None]
-    tot = {k: sum(c.get(k, 0) for c in ons) for k in ("turns", "overrides", "sim_turns", "sim_protect",
-                                                       "sim_switch", "sim_fakeout", "errors")}
-    print("flag-on counters:", tot)
+    keys = ["turns", "overrides", "sim_turns", "sim_protect", "sim_switch", "sim_fakeout", "errors"]
+    keys += sorted({k for c in ons for k in c if k.startswith("sup_")})
+    print("flag-on counters:", {k: sum(c.get(k, 0) for c in ons) for k in keys})
+    by_team = {}
+    for r in both:
+        if isinstance(r["ours"], str):
+            by_team.setdefault(r["ours"], []).append(r)
+    for t, rs in sorted(by_team.items()):
+        b2 = sum(1 for r in rs if r["on"]["win"] and not r["off"]["win"])
+        c2 = sum(1 for r in rs if r["off"]["win"] and not r["on"]["win"])
+        d2 = (b2 - c2) / len(rs)
+        print(f"  {t}: n={len(rs)} off {100 * sum(r['off']['win'] for r in rs) / len(rs):.1f}% "
+              f"on {100 * sum(r['on']['win'] for r in rs) / len(rs):.1f}%  paired {100 * d2:+.1f} pts  "
+              f"(on-only {b2}, off-only {c2}, McNemar p={mcnemar_p(b2, c2):.3f})")
     offc = [r["off"]["counters"] for r in rows if r["off"]["win"] is not None]
     for a in ARMS:
         fc = [r[a].get("foe", {}) for r in rows if r[a]["win"] is not None]
@@ -197,12 +223,12 @@ def report(paths):
           "turns", sum(c.get("turns", 0) for c in offc), "errors", sum(c.get("errors", 0) for c in offc))
 
 
-def status(opp):
+def status(opp, tag=""):
     now = time.time()
     tot_done = tot_target = 0
     rate = 0.0
     all_rows = []
-    for p in sorted(OUT_DIR.glob(f"{opp}_shard*.jsonl")):
+    for p in sorted(OUT_DIR.glob(f"{opp}{'_' + tag if tag else ''}_shard*.jsonl")):
         rows = load_rows([str(p)])
         all_rows += rows
         good = [r for r in rows if finished(r)]
@@ -250,16 +276,21 @@ if __name__ == "__main__":
     r.add_argument("--concurrency", type=int, default=3)
     r.add_argument("--out", default=None)
     r.add_argument("--opp", default="heuristic", help="opponent pilot: heuristic or ladder")
+    r.add_argument("--mode", default="turnsim", choices=("turnsim", "support"))
+    r.add_argument("--support", default="all", help="effects of the 'on' arm in --mode support")
+    r.add_argument("--team", default="", help="comma list of team .txt files replacing our side")
+    r.add_argument("--tag", default="", help="log-file tag")
     st = sub.add_parser("status")
     st.add_argument("--opp", default="ladder")
+    st.add_argument("--tag", default="")
     q = sub.add_parser("report")
     q.add_argument("paths", nargs="+")
     a = ap.parse_args()
     if a.cmd == "report":
         report(a.paths)
     elif a.cmd == "status":
-        status(a.opp)
+        status(a.opp, a.tag)
     else:
         os.makedirs(OUT_DIR, exist_ok=True)
-        a.out = a.out or str(OUT_DIR / f"{a.opp}_shard{a.shard}.jsonl")
+        a.out = a.out or str(OUT_DIR / f"{a.opp}{'_' + a.tag if a.tag else ''}_shard{a.shard}.jsonl")
         sys.exit(asyncio.run(run(a)))

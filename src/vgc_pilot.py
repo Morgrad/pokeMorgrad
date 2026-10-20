@@ -61,17 +61,27 @@ class VGCPilot(BattleMemoryMixin, DoublesPilot):
         self._foe_mega: dict = {}
         self.foe_actions = os.environ.get("DOUBLES_FOE_ACTIONS", "1") == "1"
 
-    def _foe_action_probs(self, mon, battle) -> tuple:
+    def _foe_probs(self, mon, battle) -> Optional[tuple]:
         if not self.foe_actions:
-            return 0.0, 0.0, 1.0
+            return None
         side = "p2" if battle.player_role == "p1" else "p1"
         mem = self.memory_for(battle)
         sheet = mem.ots_set(mon.species, side)
         known = set(mon.moves) | set((sheet or {}).get("moves") or ())
         ctx = opp_actions.foe_ctx(mem, side, mon.name, mem.turn, known_moves=known,
                                   moves_complete=bool(sheet), hp_frac=mon.current_hp_fraction)
-        probs = opp_actions.action_probs(ctx)
-        return probs.fakeout, probs.protect, mem.protect_success_prob(f"{side}a: {mon.name}", mem.turn)
+        return opp_actions.action_probs(ctx), mem.protect_success_prob(f"{side}a: {mon.name}", mem.turn)
+
+    def _foe_action_probs(self, mon, battle) -> tuple:
+        got = self._foe_probs(mon, battle)
+        if got is None:
+            return 0.0, 0.0, 1.0
+        probs, ok = got
+        return probs.fakeout, probs.protect, ok
+
+    def _foe_trick_room_prob(self, mon, battle) -> float:
+        got = self._foe_probs(mon, battle)
+        return got[0].trickroom if got else 0.0
 
     def _mega_prob(self, mon) -> float:
         return self._foe_mega.get(mon.name, 0.0)

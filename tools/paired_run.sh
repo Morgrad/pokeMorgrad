@@ -4,9 +4,11 @@
 # (resumes from its log), like the GA's showdown_restart_every. A shard with no log write for STALL_S
 # seconds is killed and resumed; a crashed shard is restarted (up to 6 times in a row).
 # usage: bash tools/paired_run.sh <opp: heuristic|ladder> <target matchups per shard>
-# env: CHUNK (default 1000), STALL_S (default 300)
+# env: CHUNK (default 1000), STALL_S (default 300); TAG (log-file tag), MODE (turnsim|support), SUPPORT (effects), TEAMS (comma list of team files)
 set -u
 OPP=${1:-ladder}; TARGET=${2:-5500}; CHUNK=${CHUNK:-1000}; STALL_S=${STALL_S:-300}
+TAG=${TAG:-}; MODE=${MODE:-turnsim}; SUPPORT=${SUPPORT:-all}; TEAMS=${TEAMS:-}
+NAME=${OPP}${TAG:+_$TAG}
 cd "$(dirname "$0")/.."
 PY=${PY:-$HOME/venv-pokemorgad/bin/python}
 SD=${SHOWDOWN_DIR:-$HOME/pokemon-showdown}
@@ -26,7 +28,7 @@ restart_server() {  # kill + relaunch the Showdown server on port $1, wait until
 
 run_shard() {
   local i=$1 port=$((8000 + $1))
-  local out=data/paired_eval/${OPP}_shard$i.jsonl log=data/paired_eval/${OPP}_run$i.log
+  local out=data/paired_eval/${NAME}_shard$i.jsonl log=data/paired_eval/${NAME}_run$i.log
   local fails=0
   while true; do
     if ! restart_server "$port"; then
@@ -35,7 +37,7 @@ run_shard() {
     fi
     echo "[$(date +%T)] shard $i: server :$port restarted, launching chunk" >> "$log"
     SHOWDOWN_PORT=$port PYTHONPATH=. $PY tools/paired_eval.py run --shard "$i" --shards 3 \
-      --target "$TARGET" --chunk "$CHUNK" --opp "$OPP" >> "$log" 2>&1 &
+      --target "$TARGET" --chunk "$CHUNK" --opp "$OPP" --mode "$MODE" --support "$SUPPORT" --team "$TEAMS" --tag "$TAG" >> "$log" 2>&1 &
     local pid=$! launched; launched=$(date +%s)
     while kill -0 "$pid" 2>/dev/null; do
       sleep 20

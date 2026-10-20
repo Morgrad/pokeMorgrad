@@ -19,6 +19,10 @@ Model (deliberately small, each point is a follow-up if it proves to matter):
   - Our actions: attacks, Fake Out (flinches a foe that has not acted yet), Protect (blocks hits on
     its occupant for the turn), switch (the bench mon takes the slot's hits). Switch/Protect pay a
     small `passive_cost` (tempo: the value unit only counts damage, one turn ahead).
+  - Support layer (src.support_value, off unless `effects` names them): Foul Play uses the target's
+    Attack; Snarl / Charm lower a foe's Atk / Sp. Atk (in-turn on the foe hits that come later, plus a
+    persistence term for the turns after); Helping Hand x1.5 on the partner's attack; Taunt cancels a
+    Trick Room the foe was about to set. Pure-support actions pay `support_cost`.
   - HP is propagated as a probability vector per combatant; an actor acts with the probability it is
     still alive when its turn comes. Accuracy is per hit; no crits, secondary effects (other than
     Fake Out's flinch) or items.
@@ -37,6 +41,7 @@ import numpy as np
 
 from src import damage
 from src import doubles_eval as DE
+from src import support_value as SV
 from src.battle_memory import PROTECT_FAMILY
 
 MAX_HYPS = 4
@@ -64,6 +69,8 @@ class FoeInfo:
     fakeout: float = 0.0                          # P(uses Fake Out this turn)
     protect: float = 0.0                          # P(uses a Protect-family move this turn)
     protect_ok: float = 1.0                       # P(that Protect works)
+    trickroom: float = 0.0                        # P(sets Trick Room this turn); read only when a Taunt is a candidate
+    abilities: Optional[Dict[str, float]] = None  # ability id -> P, for stat-drop blockers / punishers
 
 
 @dataclass(frozen=True)
@@ -88,6 +95,16 @@ def is_switch(a: DE.Action) -> bool:
 
 def is_protect(a: DE.Action) -> bool:
     return a.move in BLOCKING
+
+
+def is_support(a: DE.Action) -> bool:
+    """Pure-support action (Helping Hand, Taunt, a status stat drop): no damage, valued by its effect."""
+    return not is_switch(a) and SV.pure_kind(a.move) is not None
+
+
+@lru_cache(maxsize=None)
+def _is_physical(move: str) -> bool:
+    return (damage.DB.get_move(move) or {}).get("category") == "Physical"
 
 
 @lru_cache(maxsize=None)
@@ -131,9 +148,11 @@ class TurnSim(DE.Evaluator):
                  weather: Optional[str] = None, terrain: Optional[str] = None,
                  ko_bonus: float = DE.KO_BONUS, ally_weight: float = DE.ALLY_WEIGHT,
                  max_hyps: int = MAX_HYPS, passive_cost: float = PASSIVE_COST,
-                 min_outcome_p: float = MIN_OUTCOME_P):
+                 min_outcome_p: float = MIN_OUTCOME_P, effects: FrozenSet[str] = frozenset(),
+                 support_cost: float = SV.SUPPORT_COST):
         pruned = {t: (_prune(c, max_hyps) if t.startswith("o") else c) for t, c in world.items()}
-        super().__init__(attackers, pruned, weather, terrain, ko_bonus, ally_weight)
+        super().__init__(attackers, pruned, weather, terrain, ko_bonus, ally_weight, effects)
+        self.support_cost = support_cost
         self.our_speed = our_speed
         self.trick_room = trick_room
         self.passive_cost = passive_cost
@@ -144,6 +163,11 @@ class TurnSim(DE.Evaluator):
         self._orders: Dict[tuple, Dict[int, float]] = {}
         self._p_hits: Dict[tuple, float] = {}
         self._threat: Dict[int, float] = {}
+        self._cands: Dict[int, Sequence[Optional[DE.Action]]] = {}
+        self._tr_active = False                       # a Taunt is a candidate and Trick Room is down
+        self._tr_cost_v: Optional[float] = None
+        self._gains: Dict[tuple, float] = {}
+        self._drop_outs: Dict[tuple, list] = {}
         self._build_kinds()
 
     # ---- foe outcomes ------------------------------------------------------------------------
@@ -151,10 +175,15 @@ class TurnSim(DE.Evaluator):
     def set_candidates(self, cands: Dict[int, Sequence[Optional[DE.Action]]]) -> None:
         """Our candidate actions per slot: a foe's Fake Out goes to the slot whose attack is worth most."""
         self._threat = {}
+        self._cands = dict(cands)
         for slot, acts in cands.items():
             vals = [DE.Evaluator.pair_value(self, (a,)) for a in acts
-                    if a is not None and not is_switch(a) and not is_protect(a) and a.attacker in self.attackers]
+                    if a is not None and not is_switch(a) and not is_protect(a) and not is_support(a)
+                    and a.attacker in self.attackers]
             self._threat[slot] = max(vals + [0.0])
+        self._tr_active = ("taunt" in self.effects and not self.trick_room
+                           and any(a is not None and a.move == "taunt" for acts in cands.values() for a in acts))
+        self._tr_cost_v = None
         self._joint.clear()
         self._build_kinds()
 
@@ -163,7 +192,7 @@ class TurnSim(DE.Evaluator):
         best other attacks by their solo (no-order) value."""
         keep, plain = {0}, []
         for i, a in enumerate(acts):
-            if a is None or is_switch(a) or is_protect(a) or a.move == FAKE_OUT:
+            if a is None or is_switch(a) or is_protect(a) or is_support(a) or a.move == FAKE_OUT:
                 keep.add(i)
             elif i:
                 plain.append((DE.Evaluator.pair_value(self, (a,)), i))
@@ -179,23 +208,35 @@ class TurnSim(DE.Evaluator):
         for f, info in self.foes.items():
             pf = min(max(info.fakeout, 0.0), 1.0) if mine else 0.0
             pp = min(max(info.protect, 0.0), 1.0 - pf)
+            pt = min(max(info.trickroom, 0.0), 1.0 - pf - pp) if self._tr_active else 0.0
             ok = min(max(info.protect_ok, 0.0), 1.0)
-            raw: List[Tuple[str, float, Optional[str]]] = [("atk", 1.0 - pf - pp, None)]
+            raw: List[Tuple[str, float, Optional[str]]] = [("atk", 1.0 - pf - pp - pt, None)]
             raw += [("fakeout", pf * wt, t) for t, wt in zip(mine, w)]
             raw += [("protect", pp * ok, None), ("idle", pp * (1.0 - ok), None)]
+            if pt > 0.0:
+                raw.append(("tr", pt, None))
             raw = [r for r in raw if r[1] >= self.min_outcome_p]
             s = sum(r[1] for r in raw)
             self._kinds[f] = [(k, p / s, t) for k, p, t in raw]
 
     # ---- foe action model (stand-in) ---------------------------------------------------------
 
-    def _foe_rolls(self, fid: str, hf: int, move: str, tid: str, ht: int, n_targets: int) -> np.ndarray:
-        key = (fid, hf, move, tid, ht, n_targets)
+    def _foe_rolls(self, fid: str, hf: int, move: str, tid: str, ht: int, n_targets: int,
+                   dlt: int = 0) -> np.ndarray:
+        """Damage rolls of a foe move; `dlt` = stages added to the foe's attacking stat (Snarl / Charm)."""
+        key = (fid, hf, move, tid, ht, n_targets, dlt)
         if key not in self._foe_rolls_cache:
             fc, tc = self.world[fid], self.world[tid]
             fh, th = fc.hyps[hf], tc.hyps[ht]
+            stats, boosts = fh.stats, fc.boosts
+            if dlt:
+                stat = "atk" if _is_physical(move) else "spa"
+                boosts = {**boosts, stat: SV.shifted(boosts.get(stat, 0), dlt)}
+            if "foulplay" in self.effects and SV.is_foulplay(move):
+                stats = {**stats, "atk": th.stats["atk"]}
+                boosts = {**boosts, "atk": tc.boosts.get("atk", 0)}
             r = damage.damage_rolls_from_stats(
-                fh.stats, fh.types or fc.types, fc.boosts, move,
+                stats, fh.types or fc.types, boosts, move,
                 th.stats, th.types or tc.types, tc.boosts,
                 is_doubles=True, include_spread=n_targets > 1,
                 weather=self.weather, terrain=self.terrain)
@@ -245,7 +286,8 @@ class TurnSim(DE.Evaluator):
                     partner = f"a{1 - j}"
                     cands[j].append(DE.Action(j, move, tuple(_flip(t) for t in mine)
                                               + ((partner,) if partner in view else ())))
-        ev = DE.Evaluator(attackers, view, self.weather, self.terrain, self.ko_bonus, self.ally_weight)
+        ev = DE.Evaluator(attackers, view, self.weather, self.terrain, self.ko_bonus, self.ally_weight,
+                          self.effects)
         best, best_v = (None, None), float("-inf")
         for a in cands[0]:
             for b in cands[1]:
@@ -298,16 +340,71 @@ class TurnSim(DE.Evaluator):
         return sorted(acts, key=lambda a: (-act_priority(a), sign * self.our_speed.get(a.attacker, 0),
                                            a.attacker))
 
+    def _drop_outcomes(self, drop: SV.Drop, fid: str) -> list:
+        key = (drop, fid)
+        if key not in self._drop_outs:
+            info = self.foes.get(fid)
+            self._drop_outs[key] = SV.drop_outcomes(drop, info.abilities if info else None)
+        return self._drop_outs[key]
+
+    def _drop_gain(self, drop: SV.Drop, fid: str, hi: Dict[str, int]) -> float:
+        """Expected fraction of our mons' HP that one landed `drop` on foe `fid` saves per later turn,
+        against the move the mirror policy has that foe use (damage only, no KO bonus)."""
+        foe_ids = [f for f in self.world if f.startswith("o")]
+        key = (drop, fid, tuple((f, hi.get(f, 0)) for f in foe_ids))
+        if key in self._gains:
+            return self._gains[key]
+        fa = self._plan(hi).get(fid)
+        gain = 0.0
+        if fa is not None:
+            phys = _is_physical(fa.move)
+            outs = self._drop_outcomes(drop, fid)
+            for t in fa.targets:
+                if not t.startswith("a") or t not in self.world:
+                    continue
+                th = self.world[t].hyps[hi.get(t, 0)]
+                scale = self._p_hit_id(fa.move, t) / th.max_hp
+
+                def dmg(dlt: int) -> float:
+                    r = self._foe_rolls(fid, hi.get(fid, 0), fa.move, t, hi.get(t, 0), len(fa.targets), dlt)
+                    return float(np.minimum(r, th.cur_hp).mean()) * scale
+                base = dmg(0)
+                gain += sum(pr * (base - dmg(da if phys else ds)) for pr, da, ds in outs)
+        self._gains[key] = gain
+        return gain
+
+    def _tr_cost(self) -> float:
+        """Value (our view, usually < 0) of a Trick Room going up: the best attack pair with Trick Room
+        up minus without, over `TR_HORIZON` turns. Taunt prevents it, so this is what Taunt earns."""
+        if self._tr_cost_v is None:
+            cands = {s: ([a for a in acts if a is not None and not is_switch(a) and not is_protect(a)
+                          and not is_support(a) and a.move != FAKE_OUT] or [None])
+                     for s, acts in self._cands.items()}
+
+            def best(tr: bool) -> float:
+                sim = TurnSim(self.attackers, self.world, self.our_speed, self.foes, tr, self.weather,
+                              self.terrain, self.ko_bonus, self.ally_weight, COARSE_HYPS, self.passive_cost,
+                              COARSE_OUTCOME_P, self.effects, self.support_cost)
+                sim.set_candidates(cands)
+                keep = {s: [acts[i] for i in sim.shortlist(acts, 2)] for s, acts in cands.items()}
+                return max(sim.pair_value((a, b)) for a in keep.get(0, [None]) for b in keep.get(1, [None]))
+            self._tr_cost_v = SV.TR_HORIZON * (best(True) - best(False))
+        return self._tr_cost_v
+
     # ---- scenario ----------------------------------------------------------------------------
 
     def _run(self, ours: List[DE.Action], hi: Dict[str, int], foe_acts: Dict[str, FoeAct],
-             cut: Dict[str, int], protecting: Set[str]) -> float:
+             cut: Dict[str, int], protecting: Set[str], trfoes: FrozenSet[str] = frozenset()) -> float:
         pmf: Dict[str, np.ndarray] = {}
         start: Dict[str, float] = {}
         occ = {"a0": "a0", "a1": "a1"}            # our slot -> id of the mon standing in it
         blocked: Set[str] = set(protecting)       # ids whose incoming hits are blocked
         fskip: Dict[str, float] = {}              # foe -> P(flinched before acting)
         oskip: Dict[int, float] = {}              # our slot -> P(flinched before acting)
+        fdrop: Dict[str, Dict[Tuple[int, int], float]] = {}   # foe -> {(d_atk, d_spa) stages: P}
+        helped: Dict[int, float] = {}             # our slot -> P(its next attack gets Helping Hand)
+        taunted: Dict[str, float] = {}            # foe -> P(a Taunt landed on it)
+        extra = [0.0]                             # persistence value of landed stat drops
 
         def get(t: str) -> np.ndarray:
             if t not in pmf:
@@ -319,6 +416,46 @@ class TurnSim(DE.Evaluator):
         def alive(t: str) -> float:
             return 1.0 - get(t)[0] if t in self.world else 1.0
 
+        def hit_pmf(t: str, r: np.ndarray, p: float, ph: float = 0.0) -> np.ndarray:
+            if ph <= 0.0:
+                return _apply(get(t), r, p)
+            boosted = (r * SV.HELPING_HAND_MULT).astype(np.int64)
+            return (1.0 - ph) * _apply(get(t), r, p) + ph * _apply(get(t), boosted, p)
+
+        def foe_mix(fid: str, move: str, tid: str, n: int) -> List[Tuple[float, np.ndarray]]:
+            """Rolls of a foe hit, mixed over the Atk / Sp. Atk stage drops it carries this turn."""
+            dist = fdrop.get(fid)
+            hf, ht = hi.get(fid, 0), hi.get(tid, 0)
+            if not dist:
+                return [(1.0, self._foe_rolls(fid, hf, move, tid, ht, n))]
+            i = 0 if _is_physical(move) else 1
+            marg: Dict[int, float] = {}
+            for sh, q in dist.items():
+                marg[sh[i]] = marg.get(sh[i], 0.0) + q
+            return [(q, self._foe_rolls(fid, hf, move, tid, ht, n, d)) for d, q in marg.items()]
+
+        def apply_mix(t: str, mix: List[Tuple[float, np.ndarray]], p: float) -> np.ndarray:
+            if len(mix) == 1:
+                return _apply(get(t), mix[0][1], p)
+            return sum(q * _apply(get(t), r, p) for q, r in mix)
+
+        def land(tid: str, p: float, drop: SV.Drop) -> None:
+            """A stat drop hits foe `tid` with probability `p`: in-turn stage distribution + persistence."""
+            if p <= 0.0 or tid not in self.foes:
+                return
+            outs = self._drop_outcomes(drop, tid)
+            new: Dict[Tuple[int, int], float] = {}
+            for sh, q in (fdrop.get(tid) or {(0, 0): 1.0}).items():
+                new[sh] = new.get(sh, 0.0) + (1.0 - p) * q
+                for pr, da, ds in outs:
+                    k2 = (SV.shifted(sh[0], da), SV.shifted(sh[1], ds))
+                    new[k2] = new.get(k2, 0.0) + p * q * pr
+            fdrop[tid] = new
+            extra[0] += (self.ally_weight * SV.SUPPORT_HORIZON * SV.FOE_STAY * p * alive(tid)
+                         * self._drop_gain(drop, tid, hi))
+
+        snarl = "snarl" in self.effects
+
         def our_hit(k: int, a: DE.Action) -> None:
             if is_switch(a):
                 occ[f"a{a.attacker}"] = a.targets[0]
@@ -328,22 +465,44 @@ class TurnSim(DE.Evaluator):
                 blocked.add(me)
                 return
             pa = alive(me) * (1.0 - oskip.get(a.attacker, 0.0))
+            pk = SV.pure_kind(a.move)
+            if pk == "helpinghand":
+                ps = 1 - a.attacker
+                helped[ps] = 1.0 - (1.0 - helped.get(ps, 0.0)) * (1.0 - pa)
+                return
+            if pk:
+                for t in a.targets:
+                    tid = occ.get(t, t)
+                    if tid not in self.foes:
+                        continue
+                    p = pa * DE._accuracy(a.move) * (tid not in blocked)   # status moves ignore type immunity
+                    if pk == "taunt":
+                        taunted[tid] = 1.0 - (1.0 - taunted.get(tid, 0.0)) * (1.0 - p)
+                    else:
+                        land(tid, p, SV.foe_drop(a.move))
+                return
+            ph = helped.pop(a.attacker, 0.0)
+            drop = SV.foe_drop(a.move) if snarl else None
+            if drop is not None and drop.kind != "secondary":
+                drop = None
             single = _is_single(a.move) and len(a.targets) == 1
             for t in a.targets:
                 tid = occ.get(t, t)
                 p = pa * self._p_hit_id(a.move, tid) * (tid not in blocked)
                 p_dead = get(tid)[0]
                 r = self.rolls(a, tid, hi.get(tid, 0))
-                pmf[tid] = _apply(get(tid), r, p)
+                pmf[tid] = hit_pmf(tid, r, p, ph)
                 if a.move == FAKE_OUT and tid in cut and cut[tid] > k:
                     pfl = p * float((r > 0).mean())
                     fskip[tid] = 1.0 - (1.0 - fskip.get(tid, 0.0)) * (1.0 - pfl)
+                if drop is not None and t.startswith("o"):
+                    land(tid, p, drop)
                 if single and t.startswith("o") and p_dead > 1e-9:
                     other = "o1" if t == "o0" else "o0"
                     if other in self.world and other not in blocked:
                         ra = DE.Action(a.attacker, a.move, (other,))
-                        pmf[other] = _apply(get(other), self.rolls(ra, other, hi.get(other, 0)),
-                                            pa * self._p_hit_id(a.move, other) * p_dead)
+                        pmf[other] = hit_pmf(other, self.rolls(ra, other, hi.get(other, 0)),
+                                             pa * self._p_hit_id(a.move, other) * p_dead, ph)
 
         def foe_hit(fid: str, fa: FoeAct) -> None:
             pf = alive(fid) * (1.0 - fskip.get(fid, 0.0))
@@ -353,17 +512,15 @@ class TurnSim(DE.Evaluator):
                 tid = occ.get(t, t)
                 p = pf * self._p_hit_id(fa.move, tid) * (tid not in blocked)
                 p_dead = get(tid)[0]
-                r = self._foe_rolls(fid, hi.get(fid, 0), fa.move, tid, hi.get(tid, 0), n)
-                pmf[tid] = _apply(get(tid), r, p)
+                mix = foe_mix(fid, fa.move, tid, n)
+                pmf[tid] = apply_mix(tid, mix, p)
                 if fa.move == FAKE_OUT and t in occ:
                     s = int(t[1])
-                    oskip[s] = 1.0 - (1.0 - oskip.get(s, 0.0)) * (1.0 - p * float((r > 0).mean()))
+                    oskip[s] = 1.0 - (1.0 - oskip.get(s, 0.0)) * (1.0 - p * float((mix[0][1] > 0).mean()))
                 if single and t in occ and p_dead > 1e-9:
                     o = occ["a1" if t == "a0" else "a0"]
                     if o in self.world and o not in blocked:
-                        pmf[o] = _apply(get(o), self._foe_rolls(fid, hi.get(fid, 0), fa.move, o,
-                                                                hi.get(o, 0), 1),
-                                        pf * self._p_hit_id(fa.move, o) * p_dead)
+                        pmf[o] = apply_mix(o, foe_mix(fid, fa.move, o, 1), pf * self._p_hit_id(fa.move, o) * p_dead)
 
         slots: List[List[str]] = [[] for _ in range(len(ours) + 1)]
         for f in foe_acts:
@@ -374,7 +531,9 @@ class TurnSim(DE.Evaluator):
             if k < len(ours):
                 our_hit(k, ours[k])
 
-        total = 0.0
+        total = extra[0]
+        for f in trfoes:                       # Taunt (+0) lands before Trick Room (-7), so it fails
+            total += self._tr_cost() * (1.0 - taunted.get(f, 0.0))
         for t, dist in pmf.items():
             c = self.world[t]
             h = c.hyps[hi.get(t, 0)]
@@ -393,6 +552,7 @@ class TurnSim(DE.Evaluator):
             self._joint[key] = CONFLICT
             return CONFLICT
         passive = sum(is_switch(a) or is_protect(a) for a in acts)
+        pure = sum(is_support(a) for a in acts)
         foe_ids = [f for f in self.world if f.startswith("o")]
         hyp_axes = [list(enumerate(self.world[f].hyps)) for f in foe_ids]
         kind_ids = list(self._kinds)
@@ -410,7 +570,7 @@ class TurnSim(DE.Evaluator):
                 if wk < MIN_SCENARIO_P:
                     continue
                 total += wk * self._outcome(acts, hi, kind_ids, kinds)
-        total -= self.passive_cost * passive
+        total -= self.passive_cost * passive + self.support_cost * pure
         self._joint[key] = total
         return total
 
@@ -421,6 +581,7 @@ class TurnSim(DE.Evaluator):
         plan = self._plan(hi, acting) if acting else {}
         foe_acts: Dict[str, FoeAct] = {}
         protecting: Set[str] = set()
+        trfoes = frozenset(f for f, (k, _, _) in zip(kind_ids, kinds) if k == "tr")
         for f, (k, _, tgt) in zip(kind_ids, kinds):
             if k == "atk" and f in plan:
                 foe_acts[f] = plan[f]
@@ -437,7 +598,7 @@ class TurnSim(DE.Evaluator):
             for fid, (c, pc) in zip(order_ids, cuts):
                 w *= pc
                 cut[fid] = c
-            value += w * self._run(acts, hi, foe_acts, cut, protecting)
+            value += w * self._run(acts, hi, foe_acts, cut, protecting, trfoes)
         return value
 
 
