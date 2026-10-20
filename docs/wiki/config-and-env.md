@@ -40,9 +40,13 @@ Each island process runs with `GA_CONCURRENCY=8` and its own `SHOWDOWN_PORT` (`g
 | `GA_CONCURRENCY` | `3` (src/eval.py:27, ga_core.py:1398, run/ga_run.py:60); `8` in `run/ga_island.py:38`; `8` forced by ga_parallel.sh:60 | same files | Simultaneous battles per server. Serial GA/eval default 3; parallel island default 8. Also the default for `eval --concurrency` |
 | `ISLAND_NAME` | `A` | `run/ga_island.py:36` | Island selector, uppercased; must be A, B or C (else exit 1, lines 51-53). Selects constraints, seed paths, RNG seed (below) |
 | `GA_TRAIN_SAMPLE` | `250` | `src/ga_core.py:75` | Opponents sampled per generation from the train pool when it is larger. Current train pool is 150, so no sampling occurs |
+| `GA_PILOT` | `vgc` | `src/ga_core.py` (`FITNESS_PILOT`) | Our pilot in GA fitness battles (`heuristic`, `vgc`, `doubles`, `bc`). `heuristic` + `GA_OPP=heuristic` = the pre-2026-10-16 environment; scores are not comparable across settings |
+| `GA_OPP` | `ladder` | `src/ga_core.py` (`FITNESS_OPP`) | Opponent pilot in GA fitness battles (`ladder` = heuristic + Protect/Fake Out at replay rates, or `heuristic`) |
+| `GA_META_WEIGHTS` | `1` | `src/ga_core.py` (`META_WEIGHTS`) | `1` = fitness is the win rate weighted by ladder usage of each opponent team (`data/species_ladder_usage.json`); `0` = plain win rate |
+| `GA_GENERATIONS` | `999` | `run/ga_island.py` | Generation cap for one island process (2 for a smoke test) |
 | `DOUBLES_KO_BONUS` | `1.0` (falls back to `doubles_eval.KO_BONUS`) | `src/doubles_pilot.py:70-71` | KO term weight in DoublesPilot's pair score. Sweep 0-4 on 2026-10-16 found a plateau from 1.0 up, 0 about 4 points worse (comment `doubles_eval.py:27`). Overridden by the `ko_bonus=` constructor arg |
 | `DOUBLES_MIN_GAIN` | `0.01` (falls back to `doubles_eval.MIN_GAIN`) | `src/doubles_pilot.py:72-73` | Minimum improvement over vanilla's pair before DoublesPilot deviates |
-| `DOUBLES_TURN_SIM` | `0` | `src/doubles_pilot.py` | `1` makes the pilot decide with `turn_sim.TurnSim` (attacks + Fake Out / Protect / switch) |
+| `DOUBLES_TURN_SIM` | `1` | `src/doubles_pilot.py` | on by default (paired +4.5 / +4.7 pts, p<0.001); `0` turns off the `turn_sim` decision; when on the pilot decides with `turn_sim.TurnSim` (attacks + Fake Out / Protect / switch) |
 | `DOUBLES_FOE_ACTIONS` | `1` | `src/vgc_pilot.py` | `0` stops `VGCPilot` feeding foe Protect / Fake Out odds (`opp_actions`) to the sim |
 | `DOUBLES_PASSIVE_COST` | `0.15` | `src/turn_sim.py` | tempo cost per switch / Protect in the sim (untuned) |
 | `POKEMORGRAD_ROOT` | unset (repo root = parent of `src/`) | `src/paths.py:15` | Override repo root; must contain `data/` or raises. `data_path`/`output_path`/`src_path` derive from it. Tools that hard-code `~/pokeMorgrad` ignore it |
