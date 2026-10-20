@@ -6,6 +6,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "tools"))
 
 import blend_priors as B  # noqa: E402
+
 from src import regmc_db as DB  # noqa: E402
 
 NATURES = {n["name"] for n in DB.all_natures()}

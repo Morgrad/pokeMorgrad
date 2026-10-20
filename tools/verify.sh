@@ -5,7 +5,7 @@ source ~/venv-pokemorgad/bin/activate
 
 step() { echo; echo "=== $1 ==="; }
 
-step "ruff";       ruff check src run tools
+step "ruff";       ruff check src run tools tests
 step "imports";    python -c "import src.ga_core, src.eval, src.bc_train, src.bc_player, src.bc_model"
 step "imports2";   python -c "import src.paths, src.regmc_db, src.state_encoder, src.audit_before_launch"
 step "paths";      python -c "from src.paths import data_path; print(data_path('regmc_db.json'))"

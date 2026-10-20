@@ -912,6 +912,9 @@ def _log_score(idx, total, fit, wins, valid_n, mons, tag=""):
           flush=True)
 
 
+_OPP_WEIGHT_CACHE = {}
+
+
 def _opp_weight(opp_text):
     if not META_WEIGHTS:
         return 1.0
@@ -921,16 +924,10 @@ def _opp_weight(opp_text):
     return w
 
 
-_OPP_WEIGHT_CACHE = {}
-
-
 def _fitness(outcomes, opponents):
     """Weighted win rate over the battles that returned a result; (fit, wins, valid_n)."""
-    pairs = [(o, _opp_weight(t)) for o, t in zip(outcomes, opponents) if o is not None]
-    if not pairs:
-        return 0.0, 0, 0
-    total_w = sum(w for _, w in pairs)
-    return sum(o * w for o, w in pairs) / total_w, sum(o for o, _ in pairs), len(pairs)
+    valid = [o for o in outcomes if o is not None]
+    return MW.weighted_rate(outcomes, [_opp_weight(t) for t in opponents]), sum(valid), len(valid)
 
 
 async def evaluate(mons, opponents, idx, total):

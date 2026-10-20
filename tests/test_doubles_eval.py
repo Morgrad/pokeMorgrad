@@ -7,7 +7,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from src import damage, opp_model as O, doubles_eval as DE  # noqa: E402
+from src import doubles_eval as DE
+from src import opp_model as O  # noqa: E402
 
 GARCH = dict(atk=200, spa=100, spe=130, **{"def": 115, "spd": 105})
 

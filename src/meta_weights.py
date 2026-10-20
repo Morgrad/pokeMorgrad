@@ -78,10 +78,6 @@ def team_weight(text: str, usage: Optional[dict] = None, floor: float = FLOOR) -
     return sum(max(usage.get(k, 0.0), floor) for k in keys) / len(keys)
 
 
-def weights_by_text(teams, usage: Optional[dict] = None) -> dict:
-    return {t: team_weight(t, usage) for t in teams}
-
-
 def weighted_rate(outcomes, weights) -> float:
     """Weighted win rate; outcomes of None (no usable result) are dropped. 0.0 if nothing is usable."""
     pairs = [(o, w) for o, w in zip(outcomes, weights) if o is not None]

@@ -7,7 +7,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from src import opp_model as O, speed_model as S  # noqa: E402
+from src import opp_model as O  # noqa: E402
+from src import speed_model as S
 
 M = S.SpeedMods
 

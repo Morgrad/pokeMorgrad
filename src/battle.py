@@ -8,10 +8,12 @@ to be patched in tandem — see STATE.md §5.3, where the "no retry on timeout" 
 had to be applied to `ga_core._run_battle` AND `eval.run_battle` separately. It
 lives here once now.
 
-The two callers differ in exactly three knobs, all explicit keyword args:
-    pilot      "heuristic" (the GA, and eval's reference pilot), "bc" (eval's
-               neural pilot) or "doubles" (experimental joint-attack pilot).
-               The opponent is ALWAYS heuristic.
+The two callers differ in a few knobs, all explicit keyword args:
+    pilot      our side: "heuristic", "bc" (neural), "doubles" (joint-attack pilot),
+               "vgc" (VGCPilot, the GA's fitness pilot) or "ladder" (heuristic +
+               Protect / Fake Out at ladder rates); see make_player.
+    opp_pilot  the opponent's pilot, same names; default "heuristic". The GA plays
+               "ladder" (ga_core.FITNESS_OPP).
     timeout    seconds before a hung battle is abandoned as None (both use 20).
     min_turns  the GA drops battles under 3 turns — a Showdown desync/forfeit, not
                a real game — so they don't poison fitness. eval scores every
