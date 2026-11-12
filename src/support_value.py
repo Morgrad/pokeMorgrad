@@ -7,6 +7,7 @@ Effects (slice 1), each gated by name so a paired run can switch them one at a t
   charm        a Status move that lowers the target's Atk / Sp. Atk (Charm, Growl, Noble Roar ...).
   helpinghand  Helping Hand: x1.5 on the partner's attack this turn.
   taunt        Taunt: a Trick Room the taunted foe was about to set fails (Taunt +0 beats Trick Room -7).
+  heal         a Status move that restores a fraction of the user's own HP (Recover, Roost, Moonlight ...).
 `DOUBLES_SUPPORT` is a comma list of these or `all`; empty = layer off (behaviour identical to before).
 """
 from __future__ import annotations
@@ -18,7 +19,7 @@ from typing import Dict, FrozenSet, List, Mapping, Optional, Tuple
 
 from src import damage
 
-EFFECTS = ("foulplay", "snarl", "charm", "helpinghand", "taunt")
+EFFECTS = ("foulplay", "snarl", "charm", "helpinghand", "taunt", "heal")
 DEFAULT_SUPPORT = ""             # flipped to "all" once the paired validation is positive
 
 SUPPORT_COST = float(os.environ.get("DOUBLES_SUPPORT_COST", 0.15))       # tempo cost of a pure-support turn
@@ -91,9 +92,35 @@ def foe_drop(move: str) -> Optional[Drop]:
     return Drop(deltas, chance, kind) if deltas else None
 
 
+# Weather-dependent heals the DB keeps as a function, not a fraction: {move: (clear, sun, bad weather)}.
+WEATHER_HEALS = {"moonlight": (0.5, 2 / 3, 0.25), "synthesis": (0.5, 2 / 3, 0.25), "morningsun": (0.5, 2 / 3, 0.25)}
+BAD_WEATHER = frozenset({"rain", "sand", "snow", "hail"})
+
+
+def _mid(move: str) -> str:
+    return "".join(c for c in move.lower() if c.isalnum())
+
+
+@lru_cache(maxsize=None)
+def _fixed_heal(move: str) -> float:
+    mv = damage.DB.get_move(move)
+    if not mv or mv.get("category") != "Status" or mv.get("target") not in ("self", "adjacentAllyOrSelf"):
+        return 0.0
+    n, d = mv.get("heal") or (0, 1)
+    return n / d
+
+
+def heal_fraction(move: str, weather: Optional[str] = None) -> float:
+    """Fraction of its max HP the user restores with `move` (0.0: not a self-heal)."""
+    w = WEATHER_HEALS.get(_mid(move))
+    if w is not None:
+        return w[1] if weather == "sun" else w[2] if weather in BAD_WEATHER else w[0]
+    return _fixed_heal(move)
+
+
 @lru_cache(maxsize=None)
 def pure_kind(move: str) -> Optional[str]:
-    """'helpinghand' | 'taunt' | 'drop' for a move that does no damage and is valued only by its effect."""
+    """'helpinghand' | 'taunt' | 'heal' | 'drop' for a move that does no damage and is valued only by its effect."""
     mv = damage.DB.get_move(move)
     if not mv:
         return None
@@ -102,6 +129,8 @@ def pure_kind(move: str) -> Optional[str]:
         return "helpinghand"
     if mid == "taunt":
         return "taunt"
+    if heal_fraction(move) > 0.0:
+        return "heal"
     if mv.get("category") == "Status" and foe_drop(move) is not None:
         return "drop"
     return None

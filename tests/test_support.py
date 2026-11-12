@@ -251,6 +251,67 @@ def test_pilot_builds_support_candidates_and_counts_them():
     assert {off._sim_kind(o) for o in v0[:-1]} == {None}                  # layer off: Foul Play / Charm / Taunt stay locked
 
 
+# ---- heals ---------------------------------------------------------------------------------------------
+
+def test_heal_fraction_reads_the_db_and_the_weather_table():
+    assert SV.heal_fraction("recover") == 0.5 and SV.heal_fraction("roost") == 0.5
+    assert SV.heal_fraction("moonlight") == 0.5 and SV.heal_fraction("moonlight", "sun") > 0.6
+    assert SV.heal_fraction("moonlight", "rain") == 0.25 and SV.heal_fraction("synthesis", "sand") == 0.25
+    assert SV.heal_fraction("earthquake") == 0.0 and SV.heal_fraction("wish") == 0.0 and SV.heal_fraction("rest") == 0.0
+    assert SV.pure_kind("moonlight") == "heal" and SV.effect_of("recover") == "heal"
+    assert SV.pure_enabled("moonlight", frozenset({"heal"})) and not SV.pure_enabled("moonlight", frozenset({"taunt"}))
+
+
+def _heal_setup(cur, speeds=(250, 250), foe_speed=100, **kw):
+    world = {"o0": foe(), "a0": mine(cur=cur), "a1": mine()}
+    foes = {"o0": TS.FoeInfo(["bodyslam"], [(1.0, foe_speed)])}
+    s = sim(foes, speeds=speeds, world=world, effects=frozenset({"heal"}), **kw)
+    return s, A(0, "moonlight"), A(1, "bodyslam", "o0")
+
+
+def test_heal_is_worth_a_turn_when_hurt_and_nothing_at_full_hp():
+    hurt, heal, hit = _heal_setup(70)
+    full, heal_f, hit_f = _heal_setup(180)
+    assert hurt.pair_value((heal, hit)) - hurt.pair_value((None, hit)) > 0.15
+    assert abs(full.pair_value((heal_f, hit_f)) - full.pair_value((None, hit_f))) < 1e-9     # no tempo cost either
+
+
+def test_heal_saves_a_mon_from_a_ko_only_when_it_moves_first():
+    for speeds, saved in (((250, 250), True), ((30, 30), False)):
+        s, heal, hit = _heal_setup(40, speeds=speeds, foe_speed=100)
+        gain = s.pair_value((heal, hit)) - s.pair_value((None, hit))
+        assert (gain > 0.5) if saved else (gain < 0.3)              # a heal after the KOing hit changes nothing
+
+
+def test_a_healer_that_is_ko_d_first_does_not_heal():
+    heal = A(0, "moonlight")
+    quiet = sim({"o0": TS.FoeInfo([], [(1.0, 300)])}, speeds=(30, 30), effects=frozenset({"heal"}),
+                world={"o0": foe(), "a0": mine(cur=70), "a1": mine()})
+    assert quiet.pair_value((heal, None)) > 0.1                       # a quiet foe: the heal pays
+    killer = sim({"o0": TS.FoeInfo(["bodyslam"], [(1.0, 300)])}, speeds=(30, 30), effects=frozenset({"heal"}),
+                 world={"o0": foe(atk=1000), "a0": mine(cur=1)})
+    assert abs(killer.pair_value((heal, None)) - killer.pair_value((None, None))) < 1e-6   # dead before it moves
+
+
+def test_heal_is_identity_when_the_effect_is_off():
+    world = {"o0": foe(), "a0": mine(cur=70), "a1": mine()}
+    foes = {"o0": TS.FoeInfo(["bodyslam"], [(1.0, 100)])}
+    off = sim(foes, world=world, effects=frozenset())
+    assert not SV.pure_enabled("moonlight", off.effects)
+
+
+def test_pilot_offers_heals_only_when_the_effect_is_on():
+    from poke_env.battle import Move
+    from poke_env.player.battle_order import SingleBattleOrder
+
+    from tests.test_turn_sim import _pilot
+    o = SingleBattleOrder(Move("moonlight", gen=9))
+    p = _pilot()
+    assert p._sim_kind(o) is None
+    p.effects = frozenset({"heal"})
+    assert p._sim_kind(o) == "support"
+
+
 # ---- lookahead (state-delta continuation) -----------------------------------------------------------------
 
 def _tr_setup(foe_cur, tr_left=0, trick_room=False):

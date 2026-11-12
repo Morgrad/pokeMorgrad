@@ -346,8 +346,13 @@ class DoublesPilot(SimpleHeuristicsPlayer):
         if kind == "protect":
             return DE.Action(slot, o.id, ())
         if kind == "support":
-            if SV.pure_kind(o.id) == "helpinghand":
+            pk = SV.pure_kind(o.id)
+            if pk == "heal":
+                return DE.Action(slot, o.id, ())
+            if pk == "helpinghand":
                 return DE.Action(slot, o.id, ()) if f"a{1 - slot}" in world else None
+            # For taunt and other support moves that need targets (like Charm, Foul Play, etc.),
+            # we use the same target resolution logic as attacks
             return self._targeted(slot, order, o, world)
         if kind == "switch":
             bid = bench.get(o.species)

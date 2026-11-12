@@ -22,7 +22,8 @@ Model (deliberately small, each point is a follow-up if it proves to matter):
   - Support layer (src.support_value, off unless `effects` names them): Foul Play uses the target's
     Attack; Snarl / Charm lower a foe's Atk / Sp. Atk (in-turn on the foe hits that come later, plus a
     persistence term for the turns after); Helping Hand x1.5 on the partner's attack; Taunt cancels a
-    Trick Room the foe was about to set. Pure-support actions pay `support_cost`.
+    Trick Room the foe was about to set; a self-heal restores HP at its place in the move order (no
+    `support_cost`: the lost attack is already the opportunity cost). Other pure-support actions pay `support_cost`.
   - HP is propagated as a probability vector per combatant; an actor acts with the probability it is
     still alive when its turn comes. Accuracy is per hit; no crits, secondary effects (other than
     Fake Out's flinch) or items.
@@ -438,6 +439,16 @@ class TurnSim(DE.Evaluator):
             boosted = (r * SV.HELPING_HAND_MULT).astype(np.int64)
             return (1.0 - ph) * _apply(get(t), r, p) + ph * _apply(get(t), boosted, p)
 
+        def heal_pmf(t: str, frac: float, p: float) -> np.ndarray:
+            """HP distribution after a self-heal of `frac` of max HP that goes off with probability `p`."""
+            old = get(t)
+            n = len(old)
+            up = np.zeros(n)
+            up[0] = old[0]
+            amount = int(frac * (n - 1))
+            np.add.at(up, np.minimum(np.arange(1, n) + amount, n - 1), old[1:])
+            return (1.0 - p) * old + p * up
+
         def foe_mix(fid: str, move: str, tid: str, n: int) -> List[Tuple[float, np.ndarray]]:
             """Rolls of a foe hit, mixed over the Atk / Sp. Atk stage drops it carries this turn."""
             dist = fdrop.get(fid)
@@ -486,6 +497,9 @@ class TurnSim(DE.Evaluator):
             if pk == "helpinghand":
                 ps = 1 - a.attacker
                 helped[ps] = 1.0 - (1.0 - helped.get(ps, 0.0)) * (1.0 - pa)
+                return
+            if pk == "heal":
+                pmf[me] = heal_pmf(me, SV.heal_fraction(a.move, self.weather), pa)
                 return
             if pk:
                 for t in a.targets:
@@ -579,7 +593,7 @@ class TurnSim(DE.Evaluator):
             self._joint[key] = CONFLICT
             return CONFLICT
         passive = sum(is_switch(a) or is_protect(a) for a in acts)
-        pure = sum(is_support(a) for a in acts)
+        pure = sum(is_support(a) and SV.pure_kind(a.move) != "heal" for a in acts)
         foe_ids = [f for f in self.world if f.startswith("o")]
         hyp_axes = [list(enumerate(self.world[f].hyps)) for f in foe_ids]
         kind_ids = list(self._kinds)
