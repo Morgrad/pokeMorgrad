@@ -20,7 +20,7 @@ from typing import Dict, FrozenSet, List, Mapping, Optional, Tuple
 from src import damage
 
 EFFECTS = ("foulplay", "snarl", "charm", "helpinghand", "taunt", "heal")
-DEFAULT_SUPPORT = ""             # flipped to "all" once the paired validation is positive
+DEFAULT_SUPPORT = "all"             # support layer enabled by default after validation
 
 SUPPORT_COST = float(os.environ.get("DOUBLES_SUPPORT_COST", 0.15))       # tempo cost of a pure-support turn
 SUPPORT_HORIZON = float(os.environ.get("DOUBLES_SUPPORT_HORIZON", 2.0))  # further turns a stat drop keeps paying
