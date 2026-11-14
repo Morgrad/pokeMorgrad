@@ -2,6 +2,7 @@
 """Debug script to understand Taunt support move issue"""
 
 import sys
+
 sys.path.insert(0, '.')
 
 from src import support_value as SV
