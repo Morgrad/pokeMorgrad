@@ -924,10 +924,23 @@ def _opp_weight(opp_text):
     return w
 
 
+def __count_valid_outcomes(outcomes):
+    """Count valid (non-None) outcomes from battles."""
+    valid = [o for o in outcomes if o is not None]
+    return len(valid), sum(valid)
+
+def __calculate_win_rate(outcomes, opponents):
+    """Calculate weighted win rate using meta weights."""
+    return MW.weighted_rate(outcomes, [_opp_weight(t) for t in opponents])
+
 def _fitness(outcomes, opponents):
     """Weighted win rate over the battles that returned a result; (fit, wins, valid_n)."""
-    valid = [o for o in outcomes if o is not None]
-    return MW.weighted_rate(outcomes, [_opp_weight(t) for t in opponents]), sum(valid), len(valid)
+    valid_count, wins = __count_valid_outcomes(outcomes)
+    if valid_count == 0:
+        return 0.0, 0, 0
+
+    win_rate = __calculate_win_rate(outcomes, opponents)
+    return win_rate, wins, valid_count
 
 
 async def evaluate(mons, opponents, idx, total):
