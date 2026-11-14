@@ -136,7 +136,6 @@ def test_choose_pair_works_and_is_fast_enough():
     ia, ib, best, base = DE.choose_pair(ts, c0, c1)
     dt = time.time() - t0
     assert best >= base
-    print(f"choose_pair over {len(c0)}x{len(c1)} pairs: {dt:.2f}s")
     assert dt < 8
 
 
