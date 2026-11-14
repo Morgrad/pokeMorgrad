@@ -401,8 +401,13 @@ def test_lookahead_costs_little_extra_time():
 
 
 if __name__ == "__main__":
+    failed = 0
     for n, f in list(globals().items()):
         if n.startswith("test_"):
-            f()
-            print("ok", n)
-    print("PASS")
+            try:
+                f()
+                print(f"PASS {n}")
+            except AssertionError as e:
+                failed += 1
+                print(f"FAIL {n}: {e!r}")
+    sys.exit(1 if failed else 0)

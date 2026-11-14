@@ -102,7 +102,13 @@ def test_eval_reports_the_ga_fitness():
 
 
 if __name__ == "__main__":
+    failed = 0
     for name, fn in list(globals().items()):
         if name.startswith("test_"):
-            fn()
-            print("ok", name)
+            try:
+                fn()
+                print(f"PASS {name}")
+            except AssertionError as e:
+                failed += 1
+                print(f"FAIL {name}: {e!r}")
+    sys.exit(1 if failed else 0)

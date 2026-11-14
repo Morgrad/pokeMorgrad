@@ -99,5 +99,5 @@ if __name__ == "__main__":
     for n, f in list(globals().items()):
         if n.startswith("test_"):
             f()
-            print("ok", n)
+            print(f"PASS {n}")
     print("PASS")
