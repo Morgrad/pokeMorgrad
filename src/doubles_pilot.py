@@ -385,8 +385,7 @@ class DoublesPilot(SimpleHeuristicsPlayer):
         with open(os.environ["DOUBLES_LA_LOG"], "a") as f:
             f.write(json.dumps(row) + "\n")
 
-    def _improve_sim(self, battle: DoubleBattle, base, world: Dict[str, DE.Combatant],
-                     attackers: Dict[int, DE.Attacker]):
+    def _populate_bench(self, battle: DoubleBattle, world: Dict[str, DE.Combatant]) -> Dict[str, str]:
         bench: Dict[str, str] = {}
         for slot_switches in battle.available_switches or []:
             for m in slot_switches:
@@ -394,6 +393,11 @@ class DoublesPilot(SimpleHeuristicsPlayer):
                 if c is not None:
                     bench[m.species] = f"b{len(bench)}"
                     world[bench[m.species]] = c
+        return bench
+
+    def _improve_sim(self, battle: DoubleBattle, base, world: Dict[str, DE.Combatant],
+                     attackers: Dict[int, DE.Attacker]):
+        bench = self._populate_bench(battle, world)
 
         base_orders = [base.first_order, base.second_order]
         cand_orders: List[List[SingleBattleOrder]] = []
