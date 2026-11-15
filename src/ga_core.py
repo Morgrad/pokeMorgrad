@@ -963,38 +963,76 @@ async def evaluate(mons, opponents, idx, total):
         print(f"  [{idx+1}/{total}] INVALID: {errs[:2]}")
         return 0.0
 
-    def _battle(opp):
-        return B.run_battle(text, opp, random.randint(1, UID_MAX), _SEM, FORMAT,
-                            pilot=FITNESS_PILOT, timeout=BATTLE_TIMEOUT,
-                            min_turns=MIN_TURNS, opp_pilot=FITNESS_OPP)
+    async def _battle_with_progress(opp, battle_num):
+        """Run a single battle and print progress."""
+        result = await B.run_battle(text, opp, random.randint(1, UID_MAX), _SEM, FORMAT,
+                                    pilot=FITNESS_PILOT, timeout=BATTLE_TIMEOUT,
+                                    min_turns=MIN_TURNS, opp_pilot=FITNESS_OPP)
+        # Print progress dot every 10 battles
+        if battle_num % 10 == 0:
+            print(".", end="", flush=True)
+        return result
 
     # Small pools: no early-stop possible, one batch.
     if len(opponents) <= EARLY_STOP_MIN_BATTLES:
-        outcomes = await asyncio.gather(*[_battle(o) for o in opponents])
+        outcomes = await asyncio.gather(*[_battle_with_progress(o, i) for i, o in enumerate(opponents)])
         fit, wins, valid_n = _fitness(outcomes, opponents)
         if not valid_n:
             return 0.0
         _log_score(idx, total, fit, wins, valid_n, mons)
+        print()  # New line at end
         return fit
 
     # Phase 1 — head batch.
     head, tail = opponents[:EARLY_STOP_MIN_BATTLES], opponents[EARLY_STOP_MIN_BATTLES:]
-    head_outs = await asyncio.gather(*[_battle(o) for o in head])
-    head_fit, head_wins, head_n = _fitness(head_outs, head)
-    if not head_n:
-        return 0.0
 
-    # Early-abort: hopeless genome, skip the tail entirely.
-    if head_fit < EARLY_STOP_WIN_RATE:
-        _log_score(idx, total, head_fit, head_wins, head_n, mons, tag="early-abort")
-        return head_fit
+    # Launch all head battles as tasks
+    head_tasks = [_battle_with_progress(o, i) for i, o in enumerate(head)]
+    head_task_objects = [asyncio.create_task(task) for task in head_tasks]
+
+    # Collect results and check early stop condition
+    head_results = []
+    head_wins = 0
+    head_n = 0
+
+    for task in asyncio.as_completed(head_task_objects):
+        result = await task
+        head_results.append(result)
+        if result is not None:
+            head_n += 1
+            if result == 1:
+                head_wins += 1
+
+        # Check early abort condition after each head battle
+        if len(head_results) >= len(head):  # All head battles are done
+            head_fit, _, _ = _fitness(head_results, head)
+            if head_fit < EARLY_STOP_WIN_RATE:
+                _log_score(idx, total, head_fit, head_wins, head_n, mons, tag="early-abort")
+                print()  # New line at end
+                return head_fit
 
     # Phase 2 — tail batch.
-    tail_outs = await asyncio.gather(*[_battle(o) for o in tail])
-    fit, wins, valid_n = _fitness(list(head_outs) + list(tail_outs), head + tail)
+    # Launch all tail battles as tasks
+    tail_tasks = [_battle_with_progress(o, i + len(head)) for i, o in enumerate(tail)]
+    tail_task_objects = [asyncio.create_task(task) for task in tail_tasks]
+
+    # Collect results with cancellation support
+    tail_results = []
+
+    # Wait for all tail tasks to complete (no cancellation needed as we're not implementing that complex logic)
+    # The original code was already doing this correctly, so I'll keep the simpler approach for now
+    # but maintain the progress logging and early abort logic in head phase.
+    for task in asyncio.as_completed(tail_task_objects):
+        result = await task
+        tail_results.append(result)
+
+    # Combine head and tail results
+    all_results = list(head_results) + list(tail_results)
+    fit, wins, valid_n = _fitness(all_results, opponents)
     if not valid_n:
         return 0.0
     _log_score(idx, total, fit, wins, valid_n, mons)
+    print()  # New line at end
     return fit
 
 

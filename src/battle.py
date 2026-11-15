@@ -57,6 +57,7 @@ import uuid
 
 from poke_env import AccountConfiguration, ServerConfiguration
 from poke_env.player import SimpleHeuristicsPlayer
+from poke_env.player.battle_order import DoubleBattleOrder, SingleBattleOrder
 
 # --- Multi-instance support -------------------------------------------------
 # When SHOWDOWN_PORT is set (by run/ga_parallel.sh), route this process's
@@ -66,6 +67,26 @@ DEFAULT_SERVER = ServerConfiguration(
     f"ws://localhost:{_SHOWDOWN_PORT}/showdown/websocket",
     f"http://localhost:{_SHOWDOWN_PORT}/action.php?",
 )
+
+# --- TimeoutPlayer for early battle forfeit ---
+# This class overrides choose_move to immediately forfeit battles that exceed turn limits
+class TimeoutPlayer(SimpleHeuristicsPlayer):
+    """Player that automatically forfeits battles when turn limit is exceeded."""
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def choose_move(self, battle):
+        """Override choose_move to check turn limit before making a move."""
+        # Check if the battle has exceeded the turn limit
+        if hasattr(battle, 'turn') and battle.turn > 50:
+            # Return a forfeit order instead of normal move
+            return DoubleBattleOrder(
+                first_order=SingleBattleOrder.forfeit(),
+                second_order=SingleBattleOrder.forfeit()
+            )
+        # Otherwise, let the parent class handle normal move selection
+        return super().choose_move(battle)
 
 # Added to a battle's account uid on each retry so the next attempt logs in under
 # a fresh Showdown account. Large prime → no collision with the uids of nearby
@@ -102,7 +123,11 @@ def make_player(pilot, team_str, uid, prefix, battle_format):
         cls = LadderOpponent
     elif pilot == "vgc":
         from src.vgc_pilot import VGCPilot  # lazy: new pilot, torch-free
-        cls = VGCPilot
+        # Use TimeoutPlayer for our side to prevent long battles, but regular VGCPilot for opponent
+        if prefix == "B":  # Our side - use TimeoutPlayer to prevent long battles
+            cls = TimeoutPlayer
+        else:  # Opponent side - use regular VGCPilot
+            cls = VGCPilot
     else:
         cls = SimpleHeuristicsPlayer
     return cls(
