@@ -62,7 +62,7 @@ run_island() {
       > "/tmp/ga_${RUN_ID}_${name}.log" 2>&1 &
     local pid=$!
 
-    python3 "$REPO_ROOT/tools/watch_islands.py" "$RUN_ID" "$name" "$pid" 300 \
+    python3 "$REPO_ROOT/tools/watch_islands.py" "$RUN_ID" "$name" "$pid" 1800 \
       > "/tmp/ga_${RUN_ID}_${name}_watchdog.log" 2>&1 &
     local wd_pid=$!
 
