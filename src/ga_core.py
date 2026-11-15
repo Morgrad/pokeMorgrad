@@ -987,25 +987,27 @@ async def evaluate(mons, opponents, idx, total):
     head_tasks = [_battle_with_progress(o, i) for i, o in enumerate(head)]
     head_task_objects = [asyncio.create_task(task) for task in head_tasks]
 
-    # Collect results and check early stop condition
     head_results = []
     head_wins = 0
     head_n = 0
+    pending = set(head_task_objects)
 
-    for task in asyncio.as_completed(head_task_objects):
-        result = await task
-        head_results.append(result)
-        if result is not None:
-            head_n += 1
-            if result == 1:
-                head_wins += 1
-
-        # Check early abort condition after each head battle
-        if len(head_results) >= len(head):  # All head battles are done
-            head_fit, _, _ = _fitness(head_results, head)
+    while pending:
+        done, pending = await asyncio.wait(pending, return_when=asyncio.FIRST_COMPLETED)
+        for task in done:
+            result = task.result()
+            head_results.append(result)
+            if result is not None:
+                head_n += 1
+                if result == 1:
+                    head_wins += 1
+        if len(head_results) >= EARLY_STOP_MIN_BATTLES and head_n > 0:
+            head_fit, _, _ = _fitness(head_results, head[:len(head_results)])
             if head_fit < EARLY_STOP_WIN_RATE:
+                for task in pending:
+                    task.cancel()
                 _log_score(idx, total, head_fit, head_wins, head_n, mons, tag="early-abort")
-                print()  # New line at end
+                print()
                 return head_fit
 
     # Phase 2 — tail batch.
