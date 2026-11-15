@@ -36,6 +36,8 @@ import asyncio
 import logging as _logging
 import os
 
+from src.vgc_pilot import VGCPilot
+
 
 class _DropVGCNoise(_logging.Filter):
     _PATTERNS = (
@@ -70,7 +72,7 @@ DEFAULT_SERVER = ServerConfiguration(
 
 # --- TimeoutPlayer for early battle forfeit ---
 # This class overrides choose_move to immediately forfeit battles that exceed turn limits
-class TimeoutPlayer(SimpleHeuristicsPlayer):
+class TimeoutPlayer(VGCPilot):
     """Player that automatically forfeits battles when turn limit is exceeded."""
 
     def __init__(self, *args, **kwargs):

@@ -67,7 +67,7 @@ asyncio.run(run_islands(
     }],
     pop_per_island=10,
     generations=int(os.environ.get("GA_GENERATIONS", "999")),
-    battles_per_genome=800,
+    battles_per_genome=50,
     concurrency=CONC,
     immigration_rate=0.20,
     stagnation_limit=5,
