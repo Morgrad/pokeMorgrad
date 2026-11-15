@@ -24,19 +24,31 @@ sleep 1
 
 # Ensure Showdown on 8000, 8001, 8002
 for port in 8000 8001 8002; do
-  if ! curl -s "http://localhost:$port" > /dev/null 2>&1; then
+  if ! curl -s --max-time 2 "http://localhost:$port" > /dev/null 2>&1; then
     echo "[showdown] starting :$port"
-    cd "${SHOWDOWN_DIR:-$HOME/pokemon-showdown}"
-    nohup node pokemon-showdown start "$port" --no-security \
-      > "/tmp/showdown_${port}.log" 2>&1 &
-    cd ~/pokeMorgrad
+    (
+      cd "${SHOWDOWN_DIR:-$HOME/pokemon-showdown}" && \
+      nohup node pokemon-showdown start "$port" --no-security \
+        > "/tmp/showdown_${port}.log" 2>&1 < /dev/null &
+    )
   fi
 done
-sleep 8
+
+# Poll for readiness instead of blind sleep
 for port in 8000 8001 8002; do
-  curl -s "http://localhost:$port" > /dev/null \
-    && echo "[showdown] :$port UP" \
-    || { echo "[showdown] :$port DOWN - abort"; exit 1; }
+  ready=0
+  for _ in $(seq 1 60); do
+    if curl -s --max-time 2 "http://localhost:$port" > /dev/null 2>&1; then
+      echo "[showdown] :$port UP"
+      ready=1
+      break
+    fi
+    sleep 1
+  done
+  if [ "$ready" = "0" ]; then
+    echo "[showdown] :$port DOWN - abort"
+    exit 1
+  fi
 done
 
 # Launch three island processes, each with a watchdog + auto-respawn loop.
