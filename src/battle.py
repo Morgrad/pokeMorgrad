@@ -59,7 +59,7 @@ import uuid
 
 from poke_env import AccountConfiguration, ServerConfiguration
 from poke_env.player import SimpleHeuristicsPlayer
-from poke_env.player.battle_order import DoubleBattleOrder, ForfeitBattleOrder, SingleBattleOrder
+from poke_env.player.battle_order import DoubleBattleOrder, ForfeitBattleOrder
 
 # --- Multi-instance support -------------------------------------------------
 # When SHOWDOWN_PORT is set (by run/ga_parallel.sh), route this process's
