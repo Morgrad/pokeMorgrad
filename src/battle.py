@@ -84,6 +84,13 @@ def make_player(pilot, team_str, uid, prefix, battle_format):
     interleaving — same seed, different results at different concurrencies.)
     The BCPlayer import is lazy so this stays torch-free for the heuristic path.
     """
+    import os
+    import time
+
+    # Add unique process identifier to prevent race condition when fork() is used
+    # (ga_parallel.sh spawns 3 islands via fork(), so all inherit same RNG state)
+    _unique_suffix = f"{os.getpid()}{int(time.time() * 1000) % 100000}"
+
     if pilot == "bc":
         from src.bc_player import BCPlayer  # lazy: keeps torch/ROCm out of the heuristic path
         cls = BCPlayer
@@ -104,7 +111,7 @@ def make_player(pilot, team_str, uid, prefix, battle_format):
         team=team_str,
         max_concurrent_battles=1,
         server_configuration=DEFAULT_SERVER,
-        account_configuration=AccountConfiguration.generate(f"{prefix}{uid}", rand=True),
+        account_configuration=AccountConfiguration.generate(f"{prefix}{uid}_{_unique_suffix}", rand=True),
     )
 
 
