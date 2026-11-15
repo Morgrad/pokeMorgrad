@@ -968,9 +968,6 @@ async def evaluate(mons, opponents, idx, total):
         result = await B.run_battle(text, opp, random.randint(1, UID_MAX), _SEM, FORMAT,
                                     pilot=FITNESS_PILOT, timeout=BATTLE_TIMEOUT,
                                     min_turns=MIN_TURNS, opp_pilot=FITNESS_OPP)
-        # Print progress dot every 10 battles
-        if battle_num % 10 == 0:
-            print(".", end="", flush=True)
         return result
 
     # Small pools: no early-stop possible, one batch.
