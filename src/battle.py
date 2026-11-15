@@ -136,6 +136,12 @@ async def run_battle_once(team_str, opp_str, uid, sem, battle_format,
                 if turns < min_turns:
                     return None
             return 1 if bot.n_won_battles > 0 else 0
+        except KeyError as e:
+            # Handle the specific KeyError: 'round' issue mentioned in the bug report
+            if "'round'" in str(e):
+                _logging.getLogger(__name__).warning(f"Battle failed with KeyError: 'round': {e}")
+                return None
+            raise  # Re-raise if it's a different KeyError
         except Exception:
             return None
         finally:
