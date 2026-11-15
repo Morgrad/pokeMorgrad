@@ -59,7 +59,7 @@ import uuid
 
 from poke_env import AccountConfiguration, ServerConfiguration
 from poke_env.player import SimpleHeuristicsPlayer
-from poke_env.player.battle_order import DoubleBattleOrder, SingleBattleOrder
+from poke_env.player.battle_order import DoubleBattleOrder, ForfeitBattleOrder, SingleBattleOrder
 
 # --- Multi-instance support -------------------------------------------------
 # When SHOWDOWN_PORT is set (by run/ga_parallel.sh), route this process's
@@ -84,8 +84,8 @@ class TimeoutPlayer(VGCPilot):
         if hasattr(battle, 'turn') and battle.turn > 50:
             # Return a forfeit order instead of normal move
             return DoubleBattleOrder(
-                first_order=SingleBattleOrder.forfeit(),
-                second_order=SingleBattleOrder.forfeit()
+                first_order=ForfeitBattleOrder(),
+                second_order=ForfeitBattleOrder()
             )
         # Otherwise, let the parent class handle normal move selection
         return super().choose_move(battle)
