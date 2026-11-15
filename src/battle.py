@@ -104,7 +104,7 @@ def make_player(pilot, team_str, uid, prefix, battle_format):
         team=team_str,
         max_concurrent_battles=1,
         server_configuration=DEFAULT_SERVER,
-        account_configuration=AccountConfiguration.generate(f"{prefix}{uid}", rand=False),
+        account_configuration=AccountConfiguration.generate(f"{prefix}{uid}", rand=True),
     )
 
 
