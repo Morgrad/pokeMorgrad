@@ -141,6 +141,13 @@ async def run_battle_once(team_str, opp_str, uid, sem, battle_format,
                     turns = 0
                 if turns < min_turns:
                     return None
+            # Add turn limit check to prevent battles from running excessively long
+            try:
+                turns = getattr(list(bot.battles.values())[-1], "turn", 0)
+            except Exception:
+                turns = 0
+            if turns > 50:
+                return None
             return 1 if bot.n_won_battles > 0 else 0
         except KeyError as e:
             # Handle the specific KeyError: 'round' issue mentioned in the bug report
