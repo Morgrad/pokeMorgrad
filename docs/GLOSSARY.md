@@ -375,7 +375,7 @@ Keep entries terse. One line each where possible.
 | Term | Meaning |
 |---|---|
 | Parallel GA | Three processes, three islands, three Showdown instances |
-| Island process | One `python -m run.ga_island` invocation, drives one island |
+| Island process | One `python -m run.ga_island` invocation, drives one island; supports GA_REPLAY_LOG environment variables for battle replay logging |
 | SHOWDOWN_PORT | Env var; routes a process to its own Showdown instance |
 | Val champion | Genome picked by val-slice score; `ga_<run>_island_<X>.txt` |
 | Train champion | Genome picked by training fitness; `..._train.txt` suffix |
