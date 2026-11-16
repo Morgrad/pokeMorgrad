@@ -968,3 +968,14 @@ Findings:
 - Baseline team contains Tailwind + Taunt + Nasty Plot - three tools the GA
   never evolves because the pilot has no signal for them.
 - 62.4% is vs heuristic, not vs human. Real strength likely lower.
+
+## 2026-11-15 — Replay Logging Pipeline Landed
+
+Implemented end-to-end replay logging for the GA:
+- `src/decision_logger.py`: writes JSONL files per battle to output/replay_log/.
+- `src/replay_filters.py`: gates saves on fitness > 0.75, loss+0.65, weather/terrain/TR triggers, or 2% random.
+- `src/battle.py`: `run_battle` now returns `(result, battle_log)` and calls the filter/callback.
+- `src/ga_core.py`: threads `save_filter`/`save_callback` down to every `run_battle` call.
+- `run/ga_island.py`: reads `GA_REPLAY_LOG`, `GA_REPLAY_DIR`, `GA_REPLAY_MAX_PER_GEN` env vars.
+
+Known limitation: `battle_history` is currently empty because `poke_env` clears the battle log before the callback reads it. Will fix in a follow-up by pulling `battle._data` or using a `BattleMemory` hook.
