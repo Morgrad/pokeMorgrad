@@ -179,6 +179,7 @@ and is not here, add it.
 | src/showdown_validator.py | Python wrapper around the Node validator |
 | src/showdown_validate.js | Node bridge |
 | run/ga_run.py | 5.5-hour GA launcher |
+| run/ga_island.py | Single-island launcher, supports GA_REPLAY_LOG env var |
 | run/ga_overnight.sh | 11-hour chain: run1 + run2 + eval |
 | tools/preflight.py | Pre-launch sanity checks |
 | tools/bc_diagnostic.py | BC vs heuristic decision comparison |

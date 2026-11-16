@@ -9,14 +9,17 @@ Env vars:
     SHOWDOWN_PORT      8000 | 8001 | 8002
     GA_CONCURRENCY     default 8
     GA_GENERATIONS     default 999 (set 2 for a smoke test)
+    GA_REPLAY_LOG      if set, enables replay logging
+    GA_REPLAY_MAX_PER_GEN default 50
+    GA_REPLAY_DIR      default "output/replay_log"
 
 Args:
     argv[1]            run_id (default "p1")
     argv[2]            hours (default 4.0)
 
 Island specs mirror run/ga_run.py:
-    A = Umbreon locked slot 0, seeded from baseline
-    B = Umbreon locked slot 0, no seed
+    A = seeded from baseline
+    B = seeded from q5 candidate C
     C = fully free, no seed
 
 Umbreon lock removed 2026-11-15; pilot cannot use Taunt/Yawn (see STATE_history).
@@ -52,7 +55,6 @@ GA_REPLAY_LOG = os.environ.get("GA_REPLAY_LOG", "")
 GA_REPLAY_MAX_PER_GEN = int(os.environ.get("GA_REPLAY_MAX_PER_GEN", "50"))
 GA_REPLAY_DIR = os.environ.get("GA_REPLAY_DIR", "output/replay_log")
 
-# Initialize logger if replay logging is enabled
 logger = None
 if GA_REPLAY_LOG:
     logger = DecisionLogger(GA_REPLAY_DIR, max_rows_per_battle=GA_REPLAY_MAX_PER_GEN)
@@ -69,13 +71,25 @@ if NAME not in SPECS:
     sys.exit(1)
 
 random.seed(SEEDS[NAME])
-
 spec = SPECS[NAME]
-print(f"=== island {NAME} | run_id={RUN_ID}_{NAME} | port={PORT} | "
-      f"{HOURS}h | conc={CONC} | seed={SEEDS[NAME]} ===", flush=True)
 
-# Closure for save_callback that enforces GA_REPLAY_MAX_PER_GEN
+def save_callback(battle_history, genome_species, fitness, outcome):
+    if logger:
+        logger.log_turn(
+            battle_id=f"{NAME}_{random.randint(100000, 999999)}",
+            island=NAME,
+            gen=0,
+            genome_fitness=fitness,
+            outcome=outcome,
+            our_team=genome_species,
+            opp_team=[], our_active=[], opp_active=[], our_hp=[], opp_hp=[],
+            field={}, legal_moves=[], chosen="", heuristic_choice="", target=""
+        )
+
 async def run_island_with_logging():
+    print(f"=== island {NAME} | run_id={RUN_ID}_{NAME} | port={PORT} | "
+          f"{HOURS}h | conc={CONC} | seed={SEEDS[NAME]} ===", flush=True)
+    
     try:
         await run_islands(
             island_specs=[{
@@ -90,10 +104,12 @@ async def run_island_with_logging():
             immigration_rate=0.20,
             stagnation_limit=5,
             diversity_floor=15,
-            migration_every=999,        # single island -> disable ring migration
+            migration_every=999,
             showdown_restart_every=10,
             max_hours=HOURS,
-            run_id=f"{RUN_ID}_{NAME}",  # checkpoints: v6/p1_A, v6/p1_B, v6/p1_C
+            run_id=f"{RUN_ID}_{NAME}",
+            save_filter=default_ga_filter if GA_REPLAY_LOG else None,
+            save_callback=save_callback if GA_REPLAY_LOG else None,
         )
     finally:
         if logger is not None:
