@@ -1,74 +1,25 @@
-"""Doubles pilot: vanilla decisions, joint-optimised attack allocation.
-
-Layering (deliberately conservative):
-  1. SimpleHeuristicsPlayer decides what each slot does (switch / status / attack).
-  2. For slots where it chose a plain damaging move, we re-pick the move + target of
-     *both* attackers together, scoring the pair with src.doubles_eval against
-     estimated opposing builds (src.opp_model). Slots it chose anything else for
-     (switches, setup, Protect, Fake Out, charge/recharge, unmodelled moves) are
-     left exactly as vanilla chose them.
-  3. Any exception, forced switch, or no-gain result falls back to the vanilla order.
-
-`use_turn_sim` (default on; env DOUBLES_TURN_SIM=0 turns it off) scores the pairs with src.turn_sim instead:
-move order (speed_model), foe retaliation and retargeting, Protect / Fake Out / switch candidates.
-
-Mega evolution is not used here: poke_env's heuristic never mega-evolves (VGCPilot adds it).
-"""
 from __future__ import annotations
 
 import logging
 import os
-from functools import lru_cache
 from typing import Dict, FrozenSet, List, Optional
 
-from poke_env.battle import DoubleBattle, Effect, Field, Move, Pokemon, SideCondition
-from poke_env.battle.status import Status
+from poke_env.battle import DoubleBattle, Field, Move
 from poke_env.player import SimpleHeuristicsPlayer
 from poke_env.player.battle_order import DoubleBattleOrder, SingleBattleOrder
 
-from src import damage, opp_model, speed_model, turn_sim
 from src import doubles_eval as DE
 from src import support_value as SV
-from src.mega_model import conditional_q
-from src.smart_player import _boosts_dict, _terrain_name, _type_to_db, _weather_name
+from src import turn_sim
+from src.pilot_actions import PilotActionsMixin
+from src.pilot_sim_input import PilotSimInputMixin
+from src.pilot_world import PilotWorldMixin, _is_attack_candidate
+from src.smart_player import _terrain_name, _weather_name
 
 logger = logging.getLogger(__name__)
 
-# Moves whose value is not "damage now": leave vanilla's choice alone.
-LOCKED_MOVES = {
-    "fakeout", "firstimpression", "suckerpunch", "upperhand", "focuspunch",
-    "explosion", "selfdestruct", "mistyexplosion", "finalgambit", "mindblown",
-}
-# Damage depends on stats the evaluator doesn't feed the formula: treat as unmodelled.
-# (Foul Play joins them unless the "foulplay" support effect is on.)
-UNMODELLED_MOVES = {
-    "foulplay", "bodypress", "psyshock", "psystrike", "secretsword",
-    "photongeyser", "shellsidearm", "terablast", "hiddenpower",
-}
-ITEM_ATK_MULT = {"choiceband": ("atk", 1.5), "choicespecs": ("spa", 1.5)}
-ABILITY_ATK_MULT = {"hugepower": ("atk", 2.0), "purepower": ("atk", 2.0)}
-ITEM_FINAL_MULT = {"lifeorb": 1.3}
+class DoublesPilot(PilotSimInputMixin, PilotActionsMixin, PilotWorldMixin, SimpleHeuristicsPlayer):
 
-
-@lru_cache(maxsize=1)
-def _move_types():
-    return frozenset(m["type"] for m in damage._raw_db()["moves"].values() if m.get("type"))
-
-
-def _is_attack_candidate(move: Move, effects: FrozenSet[str] = frozenset()) -> bool:
-    mid = move.id
-    if mid in LOCKED_MOVES or (mid in UNMODELLED_MOVES and not (mid == "foulplay" and "foulplay" in effects)):
-        return False
-    mv = damage.DB.get_move(mid)
-    if not mv or mv.get("category") == "Status" or (mv.get("basePower") or 0) <= 0:
-        return False
-    flags = mv.get("flags") or {}
-    if flags.get("charge") or flags.get("recharge"):
-        return False
-    return (mv.get("target") or "") in ("normal", "any", "allAdjacentFoes", "allAdjacent")
-
-
-class DoublesPilot(SimpleHeuristicsPlayer):
     effects: FrozenSet[str] = frozenset()      # support-move layer (src.support_value); empty = off
     lookahead: bool = False                    # state-delta continuation (DOUBLES_LOOKAHEAD)
 
@@ -106,157 +57,17 @@ class DoublesPilot(SimpleHeuristicsPlayer):
 
     # ---- world construction -------------------------------------------------
 
-    def _attacker(self, mon: Pokemon) -> Optional[DE.Attacker]:
-        stats = dict(mon.stats or {})
-        if not stats or stats.get("atk") is None:
-            return None
-        stats = {k: int(v) for k, v in stats.items() if v is not None}
-        item = opp_model.to_id(mon.item) if mon.item else ""
-        ability = opp_model.to_id(mon.ability) if mon.ability else ""
-        for table, key in ((ITEM_ATK_MULT, item), (ABILITY_ATK_MULT, ability)):
-            if key in table:
-                stat, mult = table[key]
-                stats[stat] = int(stats[stat] * mult)
-        return DE.Attacker(
-            stats=stats,
-            types=[_type_to_db(t) for t in mon.types if t is not None],
-            boosts=_boosts_dict(mon),
-            burn=mon.status == Status.BRN,
-            ability="Guts" if ability == "guts" else None,
-            final_mult=ITEM_FINAL_MULT.get(item, 1.0),
-        )
 
-    def _mega_prob(self, mon: Pokemon) -> float:
-        """P(this foe Mega Evolves this turn); the base pilot never models it."""
-        return 0.0
 
-    def _foe(self, mon: Pokemon, battle: Optional[DoubleBattle] = None) -> Optional[DE.Combatant]:
-        """Damage hypotheses for a foe; with `battle`, each also carries its own Speed list."""
-        builds = opp_model.opponent_builds(mon.species, item=mon.item, moves_seen=list(mon.moves),
-                                           ability=mon.ability)
-        if not builds:
-            return None
-        mods = self._speed_mods(mon, battle, False) if battle is not None else None
-        abilities = (opp_model.ability_distribution(mon.species, mon.ability) or {None: 1.0}) if mods else {}
 
-        def speeds(stat: int, b) -> Optional[list]:
-            if mods is None:
-                return None
-            scarf = opp_model.to_id(b.item or "") == "choicescarf"
-            return [(pa, speed_model.effective_speed(stat, mods, a, scarf)) for a, pa in abilities.items()]
-        frac = mon.current_hp_fraction
-        q = conditional_q(self._mega_prob(mon), sum(b.weight for b in builds if b.form_stats))
-        hyps, post = [], {}                 # post: Mega form -> P(this foe is that form this turn)
-        for b in builds:
-            cur = max(1, round(frac * b.max_hp))
-            if b.form_stats and q > 0:
-                hyps.append(DE.Hypothesis(b.weight * q, b.form_stats, b.form_stats["hp"],
-                                          max(1, round(frac * b.form_stats["hp"])),
-                                          types=list(damage.DB.get_species(b.form)["types"]),
-                                          speeds=speeds(b.form_stats["spe"], b)))
-                post[b.form] = post.get(b.form, 0.0) + b.weight * q
-                if q < 1:
-                    hyps.append(DE.Hypothesis(b.weight * (1 - q), b.stats, b.max_hp, cur,
-                                              speeds=speeds(b.stats["spe"], b)))
-            else:
-                hyps.append(DE.Hypothesis(b.weight, b.stats, b.max_hp, cur, speeds=speeds(b.stats["spe"], b)))
-        types = [_type_to_db(t) for t in mon.types if t is not None]
-        pm = sum(post.values())
-        immune = {t: (1 - pm) * opp_model.immunity_prob(mon.species, t, mon.ability)
-                  + sum(w * opp_model.immunity_prob(f, t) for f, w in post.items())
-                  for t in _move_types()}
-        return DE.Combatant(hyps, types, _boosts_dict(mon), False,
-                            {t: p for t, p in immune.items() if p > 0})
 
-    # ---- turn_sim inputs ----------------------------------------------------------------
 
-    @staticmethod
-    def _speed_mods(mon: Pokemon, battle: DoubleBattle, own: bool, scarf: bool = False) -> speed_model.SpeedMods:
-        conds = battle.side_conditions if own else battle.opponent_side_conditions
-        return speed_model.SpeedMods(
-            stage=int(mon.boosts.get("spe", 0)), paralyzed=mon.status == Status.PAR,
-            tailwind=SideCondition.TAILWIND in conds, scarf=scarf,
-            weather=_weather_name(battle), terrain=_terrain_name(battle))
 
-    def _our_speed(self, mon: Pokemon, battle: DoubleBattle) -> Optional[int]:
-        spe = (mon.stats or {}).get("spe")
-        if spe is None:
-            return None
-        scarf = opp_model.to_id(mon.item or "") == "choicescarf"
-        ability = opp_model.to_id(mon.ability) if mon.ability else None
-        return speed_model.effective_speed(int(spe), self._speed_mods(mon, battle, True, scarf), ability)
 
-    def _foe_info(self, mon: Pokemon, battle: DoubleBattle, comb: DE.Combatant) -> turn_sim.FoeInfo:
-        belief = speed_model.belief_for(mon.species, known_ability=mon.ability, item=mon.item,
-                                        moves_seen=list(mon.moves))
-        speeds = belief.speeds(self._speed_mods(mon, battle, False), self._mega_prob(mon)) \
-            if belief else [(1.0, None)]
-        moves = [m.id for m in mon.moves.values() if _is_attack_candidate(m, self.effects)]
-        if not moves:      # nothing revealed: assume a neutral move off its better attacking stat
-            st = comb.hyps[0].stats
-            moves = ["bodyslam" if st["atk"] >= st["spa"] else "hypervoice"]
-        fakeout, protect, protect_ok = self._foe_action_probs(mon, battle)
-        abilities = opp_model.ability_distribution(mon.species, mon.ability) or None
-        return turn_sim.FoeInfo(moves, speeds, fakeout, protect, protect_ok,
-                                self._foe_trick_room_prob(mon, battle), abilities,
-                                self._taunt_left(mon, battle))
 
-    def _taunt_left(self, mon: Pokemon, battle: DoubleBattle) -> int:
-        """Turns `mon` stays Taunted, counting this one (poke_env only knows presence: assume a full 3)."""
-        return 3 if Effect.TAUNT in mon.effects else 0
 
-    def _trick_room_left(self, battle: DoubleBattle) -> int:
-        """Turns Trick Room lasts, counting this one; 0 = down."""
-        start = battle.fields.get(Field.TRICK_ROOM)
-        return 0 if start is None else max(5 - (battle.turn - start), 1)
 
-    def _foe_trick_room_prob(self, mon: Pokemon, battle: DoubleBattle) -> float:
-        """P(a foe sets Trick Room this turn); the base pilot has no action model."""
-        return 0.0
 
-    def _foe_action_probs(self, mon: Pokemon, battle: DoubleBattle) -> tuple:
-        """(P(Fake Out), P(Protect-family), P(that Protect works)) for a foe this turn; the base
-        pilot has no action model (VGCPilot fits one from replays)."""
-        return 0.0, 0.0, 1.0
-
-    def _ally(self, mon: Pokemon) -> Optional[DE.Combatant]:
-        stats = {k: int(v) for k, v in (mon.stats or {}).items() if v is not None}
-        if not stats or not mon.max_hp:
-            return None
-        stats["hp"] = int(mon.max_hp)
-        ab = mon.ability
-        immune = {t: 1.0 for t in _move_types()
-                  if ab and opp_model.IMMUNITY_ABILITIES.get(opp_model.to_id(ab)) == t}
-        return DE.Combatant([DE.Hypothesis(1.0, stats, int(mon.max_hp), max(1, int(mon.current_hp)))],
-                            [_type_to_db(t) for t in mon.types if t is not None],
-                            _boosts_dict(mon), True, immune)
-
-    # ---- order <-> action ---------------------------------------------------
-
-    def _action(self, slot: int, order: SingleBattleOrder, world: Dict[str, DE.Combatant]) -> Optional[DE.Action]:
-        move = getattr(order, "order", None)
-        if not isinstance(move, Move) or not _is_attack_candidate(move, self.effects):
-            return None
-        return self._targeted(slot, order, move, world)
-
-    @staticmethod
-    def _targeted(slot: int, order: SingleBattleOrder, move: Move, world: Dict[str, DE.Combatant]) -> Optional[DE.Action]:
-        target = (damage.DB.get_move(move.id).get("target") or "")
-        foes = tuple(t for t in ("o0", "o1") if t in world)
-        partner = f"a{1 - slot}"
-        if target in ("normal", "any"):
-            code = order.move_target
-            if code not in (1, 2) or f"o{code - 1}" not in world:
-                return None
-            return DE.Action(slot, move.id, (f"o{code - 1}",))
-        if target == "allAdjacentFoes":
-            return DE.Action(slot, move.id, foes) if foes else None
-        if target == "allAdjacent":
-            tg = foes + ((partner,) if partner in world else ())
-            return DE.Action(slot, move.id, tg) if foes else None
-        return None
-
-    # ---- decision -----------------------------------------------------------
 
     def _improve(self, battle: DoubleBattle, base):
         if (any(battle.force_switch) or not isinstance(base, DoubleBattleOrder)
@@ -323,44 +134,7 @@ class DoublesPilot(SimpleHeuristicsPlayer):
 
     # ---- turn_sim decision: attacks plus Fake Out / Protect / switch --------------------------
 
-    def _sim_kind(self, order: SingleBattleOrder) -> Optional[str]:
-        o = getattr(order, "order", None)
-        if isinstance(o, Pokemon):
-            return "switch"
-        if isinstance(o, Move):
-            if _is_attack_candidate(o, self.effects):
-                return "attack"
-            if SV.pure_enabled(o.id, self.effects):
-                return "support"
-            if o.id in turn_sim.BLOCKING:
-                return "protect"
-            if o.id == turn_sim.FAKE_OUT:
-                return "fakeout"
-        return None
 
-    def _sim_action(self, slot: int, order: SingleBattleOrder, mon: Pokemon, world: Dict[str, DE.Combatant],
-                    bench: Dict[str, str]) -> Optional[DE.Action]:
-        kind, o = self._sim_kind(order), order.order
-        if kind == "attack":
-            return self._action(slot, order, world)
-        if kind == "protect":
-            return DE.Action(slot, o.id, ())
-        if kind == "support":
-            pk = SV.pure_kind(o.id)
-            if pk == "heal":
-                return DE.Action(slot, o.id, ())
-            if pk == "helpinghand":
-                return DE.Action(slot, o.id, ()) if f"a{1 - slot}" in world else None
-            # For taunt and other support moves that need targets (like Charm, Foul Play, etc.),
-            # we use the same target resolution logic as attacks
-            return self._targeted(slot, order, o, world)
-        if kind == "switch":
-            bid = bench.get(o.species)
-            return DE.Action(slot, turn_sim.SWITCH, (bid,)) if bid else None
-        if kind == "fakeout" and mon.first_turn and order.move_target in (1, 2) \
-                and f"o{order.move_target - 1}" in world:
-            return DE.Action(slot, turn_sim.FAKE_OUT, (f"o{order.move_target - 1}",))
-        return None
 
     def _log_lookahead(self, battle, la, fine, coarse, cand_orders, cand_actions, picked, best_v, base_v) -> None:
         """Diagnostic (env DOUBLES_LA_LOG=path): replay the decision without the lookahead, count and log differences."""
