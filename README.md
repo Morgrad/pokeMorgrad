@@ -77,7 +77,7 @@ usable teams today.
     └─────────────────┘    games than the heuristic bot)
 
 The GA's fitness signal is `SimpleHeuristicsPlayer`, poke_env's built-in
-rule-based bot, which wins around 57 percent against the held-out pool. The
+rule-based bot, which wins around 53.6 percent against the held-out pool (measured 2026-11-15, 500 battles × 5 seeds). The
 BC pilot is not currently used as the GA's evaluator because it plays worse
 than the heuristic.
 
@@ -213,7 +213,7 @@ Full command reference and failure modes: `docs/OPERATIONS.md`.
 
 Authoritative numbers live in `docs/STATE.md`. Orientation only:
 
-- **Heuristic pilot baseline**: around 57 percent against the held-out pool.
+- **Heuristic pilot baseline**: around 53.6 percent against the held-out pool (measured 2026-11-15, 500 battles × 5 seeds).
   Every champion is measured against this.
 - **Best held-out champion so far**: **71.6 percent** (p1 island C, 2026-10-14). p3 (2026-10-15) hit 66.4%
   on the same holdout with a 445-team pool — larger pool correlated with
