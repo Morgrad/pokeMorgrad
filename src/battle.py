@@ -11,6 +11,7 @@ from poke_env import AccountConfiguration, ServerConfiguration
 from poke_env.player import SimpleHeuristicsPlayer
 from poke_env.player.battle_order import DoubleBattleOrder, ForfeitBattleOrder
 
+from src.battle_runner import run_battle, run_battle_once
 from src.player_factory import DEFAULT_SERVER, RETRY_STRIDE, TimeoutPlayer, make_player
 from src.vgc_pilot import VGCPilot
 
