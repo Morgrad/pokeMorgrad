@@ -950,3 +950,21 @@ Commit: 743fe4e docs: §14 prior cross-validation vs pokebase.app
 Move priors sourced from 5000 ladder replays; build/ability priors from 560 tournament teams. 145 species have build+ability but NO move priors — they fall back to random. Fix tomorrow: rebuild move priors from VGCPastes (tournament source), then pokebase comparison.
 
 Commit: 77176bc docs: §15 prior source mismatch — move priors from ladder, others from tournaments
+
+## 2026-11-15 — q5 run results (8h, 3 islands, parallel)
+
+    A (Umbreon+seed)   train 85.9% -> held-out 49.2%  [44.8-53.6]
+    B (Umbreon)        train 85.3% -> held-out 47.0%  [42.7-51.4]
+    C (unlocked)       train 89.8% -> held-out 62.4%  [58.1-66.5]  <- candidate
+    baseline (human)                                53.6%  [49.2-57.9]
+
+Findings:
+- C is the only usable champion. 62.4% is within the 58-64% constraint band.
+- A, B overfit catastrophically (-37/-38 points train-to-heldout).
+- Root cause: GA fitness pilot (SimpleHeuristicsPlayer) cannot use Taunt/Yawn.
+  The doubles_pilot.py Taunt fix (COMMIT_SUMMARY.md) does not affect the GA path.
+  Umbreon-locked islands A/B dedicate a slot to a mon the pilot plays at half
+  effectiveness. Lock is temporarily removed pending pilot fix.
+- Baseline team contains Tailwind + Taunt + Nasty Plot - three tools the GA
+  never evolves because the pilot has no signal for them.
+- 62.4% is vs heuristic, not vs human. Real strength likely lower.
