@@ -171,7 +171,9 @@ and is not here, add it.
 | src/bc_train.py | BC training loop |
 | src/bc_player.py | poke_env Player wrapping the BC model |
 | src/ga_core.py | GA engine: genome build, mutate, crossover, islands |
-| src/battle.py | Shared battle runner (make_player, run_battle) |
+| src/battle.py | Shared battle runner (make_player, run_battle) with optional save_filter and save_callback parameters |
+| src/decision_logger.py | logs per-turn decision streams to JSONL |
+| src/replay_filters.py | gating logic for saving replays |
 | src/eval.py | Unified evaluation CLI |
 | src/audit_before_launch.py | Pre-flight data-integrity checks |
 | src/showdown_validator.py | Python wrapper around the Node validator |
