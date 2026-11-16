@@ -2,7 +2,11 @@
 Scrape real Reg M-C team lists from the Limitless API.
 Docs: https://docs.limitlesstcg.com/developer.html  (no key required)
 """
-import json, os, sys, time, urllib.request
+import json
+import os
+import sys
+import time
+import urllib.request
 
 API = "https://play.limitlesstcg.com/api"
 REG = "M-C"

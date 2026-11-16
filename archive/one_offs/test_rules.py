@@ -1,16 +1,17 @@
 """Run A/B tests for each rule individually against v1 baseline."""
 import asyncio
 import os
-import subprocess
 import sys
+
 from poke_env import AccountConfiguration
 
 # Import v1 baseline (no extra rules)
 os.environ["TACTICAL_RULES"] = ""
 import importlib
+
 import tactical_rules
+
 importlib.reload(tactical_rules)
-from neural_player import NeuralPlayer
 
 # We'll subprocess each test so env var takes effect cleanly
 RULE_IDS = ["A", "B", "C", "D", "F", "G"]  # skip E (no-op)

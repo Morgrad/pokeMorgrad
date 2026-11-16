@@ -1,11 +1,12 @@
 import json
-import torch
-import torch.nn as nn
 import random
 import sys
+
+import torch
+import torch.nn as nn
+from poke_env.battle.move import Move
 from poke_env.player import Player
 from poke_env.player.battle_order import DoubleBattleOrder
-from poke_env.battle.move import Move
 from tactical_rules import RuleEngine
 
 

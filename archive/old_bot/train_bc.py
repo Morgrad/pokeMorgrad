@@ -1,10 +1,10 @@
 import json
+from collections import Counter
+
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from torch.utils.data import Dataset, DataLoader
-from collections import Counter
-import numpy as np
+from torch.utils.data import DataLoader, Dataset
 
 # ---------- Build vocabularies from the data ----------
 print("Loading parsed replays...")

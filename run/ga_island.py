@@ -37,9 +37,9 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO_ROOT))
 
+from src.decision_logger import DecisionLogger
 from src.ga_core import run_islands
 from src.paths import data_path
-from src.decision_logger import DecisionLogger
 from src.replay_filters import default_ga_filter
 
 NAME = os.environ.get("ISLAND_NAME", "A").upper()
@@ -89,7 +89,7 @@ def save_callback(battle_history, genome_species, fitness, outcome):
 async def run_island_with_logging():
     print(f"=== island {NAME} | run_id={RUN_ID}_{NAME} | port={PORT} | "
           f"{HOURS}h | conc={CONC} | seed={SEEDS[NAME]} ===", flush=True)
-    
+
     try:
         await run_islands(
             island_specs=[{

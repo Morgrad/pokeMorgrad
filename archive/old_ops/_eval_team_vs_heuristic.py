@@ -1,11 +1,16 @@
-import asyncio, json, os, random, sys, time
+import asyncio
+import json
+import os
+import random
+import sys
 from pathlib import Path
+
 sys.path.insert(0, os.path.expanduser("~/project"))
 from neural_player import NeuralPlayer
+from opponent_gen import team_to_showdown as species_to_team_string
 from poke_env import AccountConfiguration
 from poke_env.player import SimpleHeuristicsPlayer
 from poke_env.ps_client import ServerConfiguration
-from opponent_gen import team_to_showdown as species_to_team_string
 
 FORMAT = "gen9championsvgc2026regmc"
 CONCURRENCY = 3

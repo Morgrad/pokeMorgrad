@@ -17,9 +17,10 @@ from functools import lru_cache
 
 sys.path.insert(0, os.path.expanduser("~/project"))
 
-from poke_env.player import SimpleHeuristicsPlayer
 from poke_env import AccountConfiguration
+from poke_env.player import SimpleHeuristicsPlayer
 from real_team_loader import load_real_teams
+
 import regmc_db as DB
 
 # ============================================================
@@ -465,7 +466,7 @@ async def main():
     # Save champion
     all_best = max(history, key=lambda g: g["best_fitness"])
     best = all_best["rankings"][0]
-    print(f"\n=== GA v5 COMPLETE ===")
+    print("\n=== GA v5 COMPLETE ===")
     print(f"Best (Gen {all_best['gen']}): {best['fitness']*100:.1f}%")
     print(f"Species: {' / '.join(best['species'])}")
     os.makedirs("champions", exist_ok=True)

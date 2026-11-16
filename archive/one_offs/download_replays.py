@@ -1,7 +1,7 @@
-import requests
-import time
 import json
-import os
+import time
+
+import requests
 from tqdm import tqdm
 
 FORMAT = "gen9championsvgc2026regmc"

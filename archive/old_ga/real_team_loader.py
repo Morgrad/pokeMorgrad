@@ -1,5 +1,7 @@
 """Load real tournament teams (Showdown format text) from ~/project/real_teams/."""
-import os, random, glob
+import glob
+import os
+import random
 
 REAL_DIR = os.path.expanduser("~/project/real_teams")
 _cache = None

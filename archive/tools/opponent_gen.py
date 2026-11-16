@@ -1,5 +1,6 @@
 """Generate fully legal Showdown teams for any species using regmc_learnsets.json."""
-import json, random
+import json
+import random
 
 LEARNSETS = json.load(open("regmc_learnsets.json"))
 MOVE_INFO = json.load(open("regmc_moves.json"))

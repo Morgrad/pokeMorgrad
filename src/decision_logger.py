@@ -1,6 +1,7 @@
 import json
 import os
 
+
 class DecisionLogger:
     def __init__(self, output_dir: str, max_rows_per_battle: int = 50):
         self.output_dir = output_dir
@@ -13,7 +14,7 @@ class DecisionLogger:
                  our_active: list, opp_active: list, our_hp: list, opp_hp: list,
                  field: dict, legal_moves: list, chosen: str,
                  heuristic_choice: str, target: str, battle_history: list = None) -> None:
-        
+
         turn_index = self.battle_turns.get(battle_id, 0)
         if turn_index >= self.max_rows_per_battle:
             return

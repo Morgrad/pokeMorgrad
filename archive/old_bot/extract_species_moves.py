@@ -1,4 +1,5 @@
-import json, re
+import json
+import re
 from collections import Counter, defaultdict
 
 # Parse every |move| line from raw replays
@@ -59,4 +60,4 @@ for sp in list(result.keys())[:10]:
     moves = ", ".join(result[sp]["moves"])
     print(f"  {sp:<20} {moves}")
 
-print(f"\n✅ Saved species_real_moves.json")
+print("\n✅ Saved species_real_moves.json")

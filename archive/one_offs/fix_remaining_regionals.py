@@ -4,7 +4,11 @@ Fix 6 remaining regional team failures:
 - Illegal abilities (typos/errors in Limitless data)
 - Drop files that can't be fixed cleanly
 """
-import os, glob, re, sys
+import glob
+import os
+import re
+import sys
+
 sys.path.insert(0, os.path.expanduser("~/project"))
 import regmc_db as DB
 

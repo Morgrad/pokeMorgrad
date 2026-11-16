@@ -2,8 +2,13 @@
 Per-opponent win rate for a team vs every team in real_teams/.
 Outputs a sorted list of the worst matchups.
 """
-import asyncio, glob, os, random, sys
+import asyncio
+import glob
+import os
+import random
+import sys
 from pathlib import Path
+
 sys.path.insert(0, os.path.expanduser("~/project/src"))
 from poke_env import AccountConfiguration
 from poke_env.player import SimpleHeuristicsPlayer

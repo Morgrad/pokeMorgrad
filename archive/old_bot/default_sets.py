@@ -76,7 +76,7 @@ def species_to_team_string(species_list):
 
         lines.append(f"{species} @ {item}")
         lines.append(f"Ability: {ability}")
-        lines.append(f"Level: 50")
+        lines.append("Level: 50")
         lines.append(f"{nature} Nature")
         ev_parts = [f"{v} {k.upper()}" for k, v in evs.items() if v > 0]
         lines.append(f"EVs: {' / '.join(ev_parts)}")

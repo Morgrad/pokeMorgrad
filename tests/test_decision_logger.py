@@ -8,6 +8,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 
 from src.decision_logger import DecisionLogger
 
+
 def test_decision_logger():
     test_dir = "/tmp/test_decisions"
     if os.path.exists(test_dir):
@@ -15,7 +16,7 @@ def test_decision_logger():
 
     logger = DecisionLogger(test_dir, max_rows_per_battle=5)
     battle_id = "test_battle_1"
-    
+
     # Log 10 rows (should truncate to 5)
     for i in range(10):
         logger.log_turn(

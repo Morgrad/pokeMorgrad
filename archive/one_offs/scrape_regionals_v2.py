@@ -7,7 +7,12 @@ Each page has N teams; each team = 6 <div class="pkmn"> inside <div class="teaml
 Output: ~/project/regional_teams/<tournament>_teamNN.txt in Showdown format.
 EVs are inferred (Limitless doesn't publish them).
 """
-import os, re, sys, time, urllib.request
+import os
+import re
+import sys
+import time
+import urllib.request
+
 from bs4 import BeautifulSoup
 
 TOURNAMENTS = {
@@ -22,6 +27,7 @@ os.makedirs(OUT_DIR, exist_ok=True)
 # Move category lookup (from regmc_db) — used for EV heuristic
 sys.path.insert(0, os.path.expanduser("~/project"))
 import regmc_db as DB
+
 
 def fetch(url):
     req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})

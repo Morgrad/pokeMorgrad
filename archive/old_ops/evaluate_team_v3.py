@@ -1,6 +1,11 @@
 """SimpleHeuristics pilot, real team opponents."""
-import asyncio, glob, os, random, sys
+import asyncio
+import glob
+import os
+import random
+import sys
 from pathlib import Path
+
 sys.path.insert(0, os.path.expanduser("~/project"))
 from poke_env import AccountConfiguration
 from poke_env.player import SimpleHeuristicsPlayer

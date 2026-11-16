@@ -1,6 +1,7 @@
 import json
 from collections import Counter
 
+
 def parse_replay(replay):
     log = replay.get("log", "")
     if not log:

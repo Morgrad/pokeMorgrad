@@ -8,6 +8,7 @@ import uuid
 
 from poke_env import AccountConfiguration, ServerConfiguration
 from poke_env.player import SimpleHeuristicsPlayer
+from poke_env.player.battle_order import DoubleBattleOrder, ForfeitBattleOrder
 
 from src.vgc_pilot import VGCPilot
 

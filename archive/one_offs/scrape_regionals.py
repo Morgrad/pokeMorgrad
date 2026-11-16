@@ -1,4 +1,6 @@
-import json, urllib.request, os, time
+import json
+import os
+import urllib.request
 
 API = "https://play.limitlesstcg.com/api"
 OUT_DIR = os.path.expanduser("~/project/regional_teams")

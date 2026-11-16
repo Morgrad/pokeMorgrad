@@ -2,7 +2,10 @@
 Fix species name mismatches in regional teams and drop malformed ones.
 Limitless uses "Hisuian Arcanine"; Showdown uses "Arcanine-Hisui".
 """
-import os, glob, re, sys
+import glob
+import os
+import sys
+
 sys.path.insert(0, os.path.expanduser("~/project"))
 import regmc_db as DB
 

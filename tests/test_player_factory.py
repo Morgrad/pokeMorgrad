@@ -1,5 +1,5 @@
-import sys
 import os
+import sys
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
@@ -9,7 +9,6 @@ from src.player_factory import make_player
 test_player_factory.py — unit tests for player_factory module.
 """
 
-from src.player_factory import make_player
 
 
 def test_player_factory():
