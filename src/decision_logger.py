@@ -12,7 +12,7 @@ class DecisionLogger:
                  outcome: str, our_team: list, opp_team: list,
                  our_active: list, opp_active: list, our_hp: list, opp_hp: list,
                  field: dict, legal_moves: list, chosen: str,
-                 heuristic_choice: str, target: str) -> None:
+                 heuristic_choice: str, target: str, battle_history: list = None) -> None:
         
         turn_index = self.battle_turns.get(battle_id, 0)
         if turn_index >= self.max_rows_per_battle:
@@ -36,7 +36,8 @@ class DecisionLogger:
             "chosen": chosen,
             "heuristic_choice": heuristic_choice,
             "target": target,
-            "turn_index": turn_index
+            "turn_index": turn_index,
+            "battle_history": battle_history
         }
 
         filepath = os.path.join(self.output_dir, f"{battle_id}.jsonl")

@@ -943,7 +943,7 @@ def _fitness(outcomes, opponents):
     return win_rate, wins, valid_count
 
 
-async def evaluate(mons, opponents, idx, total):
+async def evaluate(mons, opponents, idx, total, save_filter=None, save_callback=None):
     """Fitness = win rate of one genome across all `opponents`, run concurrently.
 
     Two-phase: play EARLY_STOP_MIN_BATTLES first; if that head score is below
@@ -967,7 +967,8 @@ async def evaluate(mons, opponents, idx, total):
         """Run a single battle and print progress."""
         result = await B.run_battle(text, opp, random.randint(1, UID_MAX), _SEM, FORMAT,
                                     pilot=FITNESS_PILOT, timeout=BATTLE_TIMEOUT,
-                                    min_turns=MIN_TURNS, opp_pilot=FITNESS_OPP)
+                                    min_turns=MIN_TURNS, opp_pilot=FITNESS_OPP,
+                                    save_filter=save_filter, save_callback=save_callback)
         return result
 
     # Small pools: no early-stop possible, one batch.
@@ -1395,6 +1396,8 @@ async def run_islands(
     showdown_restart_every=10,
     max_hours=None,
     run_id="run1",
+    save_filter=None,
+    save_callback=None,
 ):
     """Production GA driver: evolve N islands with migration, restart, checkpoints.
 
@@ -1469,7 +1472,7 @@ async def run_islands(
             n_sample = min(battles_per_genome, TRAIN_SAMPLE_SIZE, len(train_pool))
             gen_opps = random.sample(train_pool, n_sample)
             fits = await asyncio.gather(*[
-                evaluate(g, gen_opps, i, len(isl.population))
+                evaluate(g, gen_opps, i, len(isl.population), save_filter=save_filter, save_callback=save_callback)
                 for i, g in enumerate(isl.population)
             ])
             isl.fitness = list(fits)

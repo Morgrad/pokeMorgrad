@@ -83,7 +83,7 @@ def save_callback(battle_history, genome_species, fitness, outcome):
             outcome=outcome,
             our_team=genome_species,
             opp_team=[], our_active=[], opp_active=[], our_hp=[], opp_hp=[],
-            field={}, legal_moves=[], chosen="", heuristic_choice="", target=""
+            field={}, legal_moves=[], chosen="", heuristic_choice="", target="", battle_history=battle_history
         )
 
 async def run_island_with_logging():
