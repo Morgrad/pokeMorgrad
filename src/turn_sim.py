@@ -33,9 +33,6 @@ Model (deliberately small, each point is a follow-up if it proves to matter):
 from __future__ import annotations
 
 import itertools
-import os
-from dataclasses import dataclass, replace
-from functools import lru_cache
 from typing import Dict, FrozenSet, List, Optional, Sequence, Set, Tuple
 
 import numpy as np
@@ -43,107 +40,50 @@ import numpy as np
 from src import damage
 from src import doubles_eval as DE
 from src import support_value as SV
-from src.battle_memory import PROTECT_FAMILY
+from src.turn_sim_lookahead import LookAhead
+from src.turn_sim_types import (
+    BLOCKING,
+    COARSE_HYPS,
+    COARSE_OUTCOME_P,
+    CONFLICT,
+    FAKE_OUT,
+    MAX_HYPS,
+    MIN_OUTCOME_P,
+    MIN_SCENARIO_P,
+    PASSIVE_COST,
+    SHORTLIST,
+    SINGLE_TARGET,
+    SWITCH,
+    SWITCH_PRIORITY,
+    TOP_K,
+    FoeAct,
+    FoeInfo,
+    Speeds,
+    _apply,
+    _flip,
+    _is_physical,
+    _is_single,
+    _pmf,
+    _prune,
+    act_priority,
+    is_protect,
+    is_support,
+    is_switch,
+    move_priority,
+)
 
-MAX_HYPS = 4
-MIN_SCENARIO_P = 1e-4
-MIN_OUTCOME_P = 0.005
-SINGLE_TARGET = ("normal", "any")
-BLOCKING = PROTECT_FAMILY - {"endure"}        # Endure survives a hit, it does not block it
-SWITCH = "switch"
-FAKE_OUT = "fakeout"
-SWITCH_PRIORITY = 8
-PASSIVE_COST = float(os.environ.get("DOUBLES_PASSIVE_COST", 0.30))
-CONFLICT = -1e9
-SHORTLIST = 3            # plain attacks kept per slot besides the baseline and the specials
-TOP_K = 6                # pairs re-scored with the full sim after the coarse screen
-COARSE_HYPS = 2
-COARSE_OUTCOME_P = 0.05
-
-Speeds = List[Tuple[float, Optional[int]]]
-
-
-@dataclass
-class FoeInfo:
-    moves: List[str]                              # known/assumed damaging moves (DB ids)
-    speeds: Speeds                                # (weight, effective Speed); Speed None = unknown (coin flip)
-    fakeout: float = 0.0                          # P(uses Fake Out this turn)
-    protect: float = 0.0                          # P(uses a Protect-family move this turn)
-    protect_ok: float = 1.0                       # P(that Protect works)
-    trickroom: float = 0.0                        # P(sets Trick Room this turn); read only when a Taunt is a candidate
-    abilities: Optional[Dict[str, float]] = None  # ability id -> P, for stat-drop blockers / punishers
-    taunt_left: int = 0                           # turns it stays Taunted (counting this one): no Protect / Trick Room
-
-
-@dataclass(frozen=True)
-class FoeAct:
-    move: str
-    targets: Tuple[str, ...]                      # world ids hit: ours ('a0', 'a1') or its foe partner
-    priority: int
-
-
-@lru_cache(maxsize=None)
-def move_priority(move: str) -> int:
-    return int((damage.DB.get_move(move) or {}).get("priority") or 0)
-
-
-def act_priority(a: DE.Action) -> int:
-    return SWITCH_PRIORITY if a.move == SWITCH else move_priority(a.move)
-
-
-def is_switch(a: DE.Action) -> bool:
-    return a.move == SWITCH
-
-
-def is_protect(a: DE.Action) -> bool:
-    return a.move in BLOCKING
-
-
-def is_support(a: DE.Action) -> bool:
-    """Pure-support action (Helping Hand, Taunt, a status stat drop): no damage, valued by its effect."""
-    return not is_switch(a) and SV.pure_kind(a.move) is not None
-
-
-@lru_cache(maxsize=None)
-def _is_physical(move: str) -> bool:
-    return (damage.DB.get_move(move) or {}).get("category") == "Physical"
-
-
-@lru_cache(maxsize=None)
-def _is_single(move: str) -> bool:
-    return (damage.DB.get_move(move) or {}).get("target") in SINGLE_TARGET
-
-
-def _prune(c: DE.Combatant, k: int) -> DE.Combatant:
-    if len(c.hyps) <= k:
-        return c
-    top = sorted(c.hyps, key=lambda h: -h.weight)[:k]
-    tot = sum(h.weight for h in top)
-    hyps = [DE.Hypothesis(h.weight / tot, h.stats, h.max_hp, h.cur_hp, h.types, h.speeds) for h in top]
-    return DE.Combatant(hyps, c.types, c.boosts, c.is_ally, c.immune_prob)
-
-
-def _pmf(h: DE.Hypothesis) -> np.ndarray:
-    v = np.zeros(h.max_hp + 1)
-    v[min(max(h.cur_hp, 0), h.max_hp)] = 1.0
-    return v
-
-
-def _apply(pmf: np.ndarray, rolls: np.ndarray, p: float) -> np.ndarray:
-    """HP distribution after a hit that lands with probability `p` for one of `rolls` equally likely damages."""
-    if p <= 0.0:
-        return pmf
-    n = len(pmf)
-    idx = np.maximum(np.arange(n)[:, None] - rolls[None, :], 0)
-    w = np.broadcast_to((pmf / len(rolls))[:, None], idx.shape)
-    return (1.0 - p) * pmf + p * np.bincount(idx.ravel(), w.ravel(), minlength=n)
-
-
-def _flip(t: str) -> str:
-    """Foe view <-> world: view 'o<i>' is our slot 'a<i>', view 'a<i>' is the foe 'o<i>'."""
-    return ("a" if t[0] == "o" else "o") + t[1:]
-
-
+__all__ = [
+    # Core API
+    "TurnSim", "LookAhead", "choose_pair_refined",
+    # Types
+    "FoeInfo", "FoeAct", "Speeds",
+    # Constants (re-exported for callers like tests/test_turn_sim.py)
+    "MAX_HYPS", "MIN_SCENARIO_P", "MIN_OUTCOME_P", "SINGLE_TARGET",
+    "BLOCKING", "SWITCH", "FAKE_OUT", "SWITCH_PRIORITY", "PASSIVE_COST",
+    "CONFLICT", "SHORTLIST", "TOP_K", "COARSE_HYPS", "COARSE_OUTCOME_P",
+    # Helpers
+    "move_priority", "act_priority", "is_switch", "is_protect", "is_support",
+]
 class TurnSim(DE.Evaluator):
     def __init__(self, attackers: Dict[int, DE.Attacker], world: Dict[str, DE.Combatant],
                  our_speed: Dict[int, int], foes: Dict[str, FoeInfo], trick_room: bool = False,
@@ -641,113 +581,6 @@ class TurnSim(DE.Evaluator):
                 cut[fid] = c
             value += w * self._run(acts, hi, foe_acts, cut, protecting, trfoes, wk * w)
         return value
-
-
-class LookAhead:
-    """Next-turn value of the STATE a turn leaves behind, as differences of a coarse one-turn sim.
-
-    The leaf `s'` is the mean-field state after our best plain attack pair (expected HP per hypothesis,
-    mons likely dead removed, Trick Room one turn older). A state delta `d` (a stat drop on a foe, a
-    Trick Room going up) is worth `V1(s' + d) - V1(s')`, where `V1` is the best attack-pair value of a
-    coarse TurnSim on that state. Both terms use the same HP, so a KO this turn is not penalised
-    (V1 counts damage still to deal); the delta only changes who wins the NEXT turn's races, which is
-    what a one-turn sim cannot see (Trick Room with nobody KO'd yet, a Snarl that keeps a foe from KOing).
-    Shared by the fine and coarse sims of a decision; every V1 is cached per delta."""
-
-    def __init__(self, sim: "TurnSim"):
-        self.sim = sim
-        self.h_drop = SV.SUPPORT_HORIZON * SV.FOE_STAY
-        self.h_tr = SV.discounted_turns(SV.TR_TURNS_AFTER_SET)
-        self._eff = sim.effects & {"foulplay"}              # leaf attacks carry no drops (that is the delta)
-        self._v1: Dict[tuple, float] = {}
-        self._dv: Dict[tuple, float] = {}
-        self._cands = {s: ([a for a in acts if a is not None and not is_switch(a) and not is_protect(a)
-                            and not is_support(a) and a.move != FAKE_OUT] or [None])
-                       for s, acts in sim._cands.items()}
-        self.world, self.foes = self._leaf()
-        tl = sim.tr_left
-        self.trick_room = sim.trick_room and (tl == 0 or tl > 1)
-        self.tr_left = max(tl - 1, 0) if self.trick_room else 0
-
-    def _sim(self, world: Dict[str, DE.Combatant], foes: Dict[str, FoeInfo], trick_room: bool,
-             tr_left: int) -> "TurnSim":
-        sim = self.sim
-        return TurnSim(sim.attackers, world, sim.our_speed, foes, trick_room, sim.weather, sim.terrain,
-                       sim.ko_bonus, sim.ally_weight, COARSE_HYPS, sim.passive_cost, COARSE_OUTCOME_P,
-                       self._eff, sim.support_cost, tr_left)
-
-    def _best(self, ts: "TurnSim", cands: Dict[int, List[Optional[DE.Action]]]) -> Tuple[float, tuple]:
-        ts.set_candidates(cands)
-        keep = {s: [acts[i] for i in ts.shortlist(acts, 2)] for s, acts in cands.items()}
-        return max(((ts.pair_value((a, b)), (a, b)) for a in keep.get(0, [None]) for b in keep.get(1, [None])),
-                   key=lambda x: x[0])
-
-    def _leaf(self) -> Tuple[Dict[str, DE.Combatant], Dict[str, FoeInfo]]:
-        sim = self.sim
-        ref = self._sim(sim.world, sim.foes, sim.trick_room, sim.tr_left)
-        _, pair = self._best(ref, self._cands)
-        acc: Dict[Tuple[str, int], List[float]] = {}
-
-        def sink(wt: float, hi: Dict[str, int], pmf: Dict[str, np.ndarray]) -> None:
-            for t, c in ref.world.items():
-                h = hi.get(t, 0)
-                a = acc.setdefault((t, h), [0.0, 0.0, 0.0])
-                a[0] += wt
-                if t in pmf:
-                    a[1] += wt * (1.0 - float(pmf[t][0]))
-                    a[2] += wt * float((pmf[t] * np.arange(len(pmf[t]))).sum())
-                else:
-                    cur = float(min(c.hyps[h].cur_hp, c.hyps[h].max_hp))
-                    a[1] += wt
-                    a[2] += wt * cur
-        ref._joint.clear()
-        ref._sink = sink
-        ref.pair_value(pair)
-        world: Dict[str, DE.Combatant] = {}
-        for t, c in sim.world.items():
-            tot = sum(acc.get((t, j), [0.0])[0] for j in range(len(c.hyps)))
-            alive = sum(acc.get((t, j), [0.0, 0.0])[1] for j in range(len(c.hyps)))
-            if tot <= 0.0 or alive / tot < 0.5:
-                continue
-            hyps = []
-            for j, h in enumerate(c.hyps):
-                a = acc.get((t, j))
-                cur = max(1, round(a[2] / a[1])) if a and a[1] > 1e-9 else h.cur_hp
-                hyps.append(DE.Hypothesis(h.weight, h.stats, h.max_hp, min(cur, h.max_hp), h.types, h.speeds))
-            world[t] = DE.Combatant(hyps, c.types, c.boosts, c.is_ally, c.immune_prob)
-        foes = {f: replace(i, taunt_left=max(i.taunt_left - 1, 0)) for f, i in sim.foes.items() if f in world}
-        return world, foes
-
-    def _cands_in(self, world: Dict[str, DE.Combatant]) -> Dict[int, List[Optional[DE.Action]]]:
-        out: Dict[int, List[Optional[DE.Action]]] = {}
-        for slot, acts in self._cands.items():
-            ok = [a for a in acts if a is not None and f"a{slot}" in world
-                  and all(t in world for t in a.targets)]
-            out[slot] = ok or [None]
-        return out
-
-    def v1(self, key: tuple = ()) -> float:
-        """Best attack-pair value next turn; `key` = () for the leaf itself or a delta."""
-        if key not in self._v1:
-            world, foes, tr, tl = self.world, self.foes, self.trick_room, self.tr_left
-            if key and key[0] == "drop":
-                _, f, da, ds = key
-                if f in world:
-                    c = world[f]
-                    world = {**world, f: DE.Combatant(c.hyps, c.types, {
-                        **c.boosts, "atk": SV.shifted(c.boosts.get("atk", 0), da),
-                        "spa": SV.shifted(c.boosts.get("spa", 0), ds)}, c.is_ally, c.immune_prob)}
-            elif key == ("tr",):
-                tr, tl = True, SV.TR_TURNS_AFTER_SET
-            self._v1[key] = self._best(self._sim(world, foes, tr, tl), self._cands_in(world))[0]
-        return self._v1[key]
-
-    def dv(self, key: tuple) -> float:
-        if key not in self._dv:
-            absent = key[0] == "drop" and key[1] not in self.world
-            self._dv[key] = 0.0 if absent else self.v1(key) - self.v1()
-        return self._dv[key]
-
 
 def choose_pair_refined(coarse: "TurnSim", fine: "TurnSim", cands_a: Sequence[Optional[DE.Action]],
                         cands_b: Sequence[Optional[DE.Action]], min_gain: float = DE.MIN_GAIN,
