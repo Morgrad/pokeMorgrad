@@ -60,8 +60,8 @@ if GA_REPLAY_LOG:
     logger = DecisionLogger(GA_REPLAY_DIR, max_rows_per_battle=GA_REPLAY_MAX_PER_GEN)
 
 SPECS = {
-    "A": {"constraints": {}, "seed_paths": [BASELINE]},
-    "B": {"constraints": {}, "seed_paths": ["data/candidates/ga_q5_island_C_62p4.txt"]},
+    "A": {"constraints": {0: "Umbreon"}, "seed_paths": [BASELINE]},
+    "B": {"constraints": {0: "Umbreon"}, "seed_paths": []},
     "C": {"constraints": {},             "seed_paths": []},
 }
 SEEDS = {"A": 42, "B": 137, "C": 999}

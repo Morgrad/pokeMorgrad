@@ -6,12 +6,206 @@ Imports below are intra-repo (`src.*`) only. Dependency direction: arrows mean "
 ## Contents
 - [Dependency map](#dependency-map)
 - [Foundation: paths, regmc_db, showdown_validator](#paths-regmc_db-showdown_validator)
-- [Damage stack: damage, opp_model, speed_model, mega_model, battle_memory, doubles_eval, doubles_pilot, smart_player](#damage-stack)
+- [Damage stack: damage, opp_model, speed_model, mega_model, battle_memory, battle_memory_parser, battle_memory_types, doubles_eval, doubles_pilot, smart_player](#damage-stack)
 - [GA: ga_core (by section), battle, eval, audit_before_launch](#ga_corepy)
 - [BC stack (torch): state_encoder, bc_model, bc_player, bc_train](#bc-stack-torch)
 - [Env vars read by src/](#env-vars-read-by-src)
 
 ## Dependency map
+## Dependency map
+```
+paths  <-- regmc_db, state_encoder, showdown_validator, damage, opp_model, ga_core, bc_player, bc_train, eval
+regmc_db <-- damage, ga_core, audit_before_launch
+damage <-- smart_player, doubles_eval, opp_model, speed_model, doubles_pilot
+opp_model <-- speed_model
+regmc_db <-- battle_memory   (move priority); battle_memory <-- vgc_pilot; speed_model + doubles_eval + battle_memory <-- turn_sim <-- doubles_pilot (flag); battle_memory <-- opp_actions <-- vgc_pilot
+opp_model, doubles_eval, smart_player <-- doubles_pilot
+battle <-- ga_core, eval            (battle lazily imports bc_player / doubles_pilot / vgc_pilot)
+state_encoder <-- bc_model <-- bc_player, bc_train ; state_encoder <-- bc_player, bc_train
+ga_core <-- eval, audit_before_launch ; ga_core <-- run/*
+battle_memory <-- battle_memory_parser, battle_memory_types
+bc_model <-- state_encoder
+bc_player <-- bc_model, state_encoder
+bc_train <-- bc_model, state_encoder
+opp_actions <-- battle_memory
+pilot_actions <-- doubles_eval, support_value, pilot_world
+pilot_sim_input <-- doubles_eval, opp_model, speed_model, turn_sim, pilot_world
+pilot_support <-- None
+pilot_world <-- damage, opp_model, speed_model, doubles_eval, mega_model, smart_player
+player_factory <-- vgc_pilot
+replay_filters <-- ga_core
+smart_player <-- damage
+speed_model <-- damage, opp_model, mega_model
+state_encoder <-- None
+support_value <-- damage
+turn_sim <-- doubles_eval, turn_sim_lookahead, turn_sim_types
+turn_sim_lookahead <-- doubles_eval, support_value, turn_sim_types
+turn_sim_types <-- damage, doubles_eval, support_value, battle_memory
+vgc_pilot <-- opp_actions, battle_memory, doubles_pilot, mega_model, opp_model
+```
+- Torch-importing modules: `state_encoder` (torch at `state_encoder.py:30`), `bc_model`, `bc_player`, `bc_train`.
+- Torch-free: `paths, regmc_db, showdown_validator, damage, opp_model, speed_model, mega_model, battle_memory (poke_env only imported inside `repair_mega_forms`), doubles_eval, smart_player, doubles_pilot, vgc_pilot, ga_core, battle, eval, decision_logger, ga_genome, ladder_opp, meta_weights, opp_actions, pilot_actions, pilot_sim_input, pilot_support, pilot_world, player_factory, replay_filters, support_value, turn_sim, turn_sim_lookahead, turn_sim_types`.
+  `battle` reaches torch only through the lazy `BCPlayer` import (`battle.py:84-86`); `DoublesPilot` import is also lazy (`battle.py:87-89`).
+
+---
+## Dependency map
+```
+paths  <-- regmc_db, state_encoder, showdown_validator, damage, opp_model, ga_core, bc_player, bc_train, eval
+regmc_db <-- damage, ga_core, audit_before_launch
+damage <-- smart_player, doubles_eval, opp_model, speed_model, doubles_pilot
+opp_model <-- speed_model
+regmc_db <-- battle_memory   (move priority); battle_memory <-- vgc_pilot; speed_model + doubles_eval + battle_memory <-- turn_sim <-- doubles_pilot (flag); battle_memory <-- opp_actions <-- vgc_pilot
+opp_model, doubles_eval, smart_player <-- doubles_pilot
+battle <-- ga_core, eval            (battle lazily imports bc_player / doubles_pilot / vgc_pilot)
+state_encoder <-- bc_model <-- bc_player, bc_train ; state_encoder <-- bc_player, bc_train
+ga_core <-- eval, audit_before_launch ; ga_core <-- run/*
+battle_memory <-- battle_memory_parser, battle_memory_types
+bc_model <-- state_encoder
+bc_player <-- bc_model, state_encoder
+bc_train <-- bc_model, state_encoder
+opp_actions <-- battle_memory
+pilot_actions <-- doubles_eval, support_value, pilot_world
+pilot_sim_input <-- doubles_eval, opp_model, speed_model, turn_sim, pilot_world
+pilot_support <-- None
+pilot_world <-- damage, opp_model, speed_model, doubles_eval, mega_model, smart_player
+player_factory <-- vgc_pilot
+replay_filters <-- ga_core
+smart_player <-- damage
+speed_model <-- damage, opp_model, mega_model
+state_encoder <-- None
+support_value <-- damage
+```
+- Torch-importing modules: `state_encoder` (torch at `state_encoder.py:30`), `bc_model`, `bc_player`, `bc_train`.
+- Torch-free: `paths, regmc_db, showdown_validator, damage, opp_model, speed_model, mega_model, battle_memory (poke_env only imported inside `repair_mega_forms`), doubles_eval, smart_player, doubles_pilot, vgc_pilot, ga_core, battle, eval, decision_logger, ga_genome, ladder_opp, meta_weights, opp_actions, pilot_actions, pilot_sim_input, pilot_support, pilot_world, player_factory, replay_filters, support_value`.
+  `battle` reaches torch only through the lazy `BCPlayer` import (`battle.py:84-86`); `DoublesPilot` import is also lazy (`battle.py:87-89`).
+
+---
+## Dependency map
+```
+paths  <-- regmc_db, state_encoder, showdown_validator, damage, opp_model, ga_core, bc_player, bc_train, eval
+regmc_db <-- damage, ga_core, audit_before_launch
+damage <-- smart_player, doubles_eval, opp_model, speed_model, doubles_pilot
+opp_model <-- speed_model
+regmc_db <-- battle_memory   (move priority); battle_memory <-- vgc_pilot; speed_model + doubles_eval + battle_memory <-- turn_sim <-- doubles_pilot (flag); battle_memory <-- opp_actions <-- vgc_pilot
+opp_model, doubles_eval, smart_player <-- doubles_pilot
+battle <-- ga_core, eval            (battle lazily imports bc_player / doubles_pilot / vgc_pilot)
+state_encoder <-- bc_model <-- bc_player, bc_train ; state_encoder <-- bc_player, bc_train
+ga_core <-- eval, audit_before_launch ; ga_core <-- run/*
+battle_memory <-- battle_memory_parser, battle_memory_types
+bc_model <-- state_encoder
+bc_player <-- bc_model, state_encoder
+bc_train <-- bc_model, state_encoder
+opp_actions <-- battle_memory
+pilot_actions <-- doubles_eval, support_value, pilot_world
+pilot_sim_input <-- doubles_eval, opp_model, speed_model, turn_sim, pilot_world
+pilot_support <-- None
+pilot_world <-- damage, opp_model, speed_model, doubles_eval, mega_model, smart_player
+player_factory <-- vgc_pilot
+```
+- Torch-importing modules: `state_encoder` (torch at `state_encoder.py:30`), `bc_model`, `bc_player`, `bc_train`.
+- Torch-free: `paths, regmc_db, showdown_validator, damage, opp_model, speed_model, mega_model, battle_memory (poke_env only imported inside `repair_mega_forms`), doubles_eval, smart_player, doubles_pilot, vgc_pilot, ga_core, battle, eval, decision_logger, ga_genome, ladder_opp, meta_weights, opp_actions, pilot_actions, pilot_sim_input, pilot_support, pilot_world, player_factory`.
+  `battle` reaches torch only through the lazy `BCPlayer` import (`battle.py:84-86`); `DoublesPilot` import is also lazy (`battle.py:87-89`).
+
+---
+## Dependency map
+```
+paths  <-- regmc_db, state_encoder, showdown_validator, damage, opp_model, ga_core, bc_player, bc_train, eval
+regmc_db <-- damage, ga_core, audit_before_launch
+damage <-- smart_player, doubles_eval, opp_model, speed_model, doubles_pilot
+opp_model <-- speed_model
+regmc_db <-- battle_memory   (move priority); battle_memory <-- vgc_pilot; speed_model + doubles_eval + battle_memory <-- turn_sim <-- doubles_pilot (flag); battle_memory <-- opp_actions <-- vgc_pilot
+opp_model, doubles_eval, smart_player <-- doubles_pilot
+battle <-- ga_core, eval            (battle lazily imports bc_player / doubles_pilot / vgc_pilot)
+state_encoder <-- bc_model <-- bc_player, bc_train ; state_encoder <-- bc_player, bc_train
+ga_core <-- eval, audit_before_launch ; ga_core <-- run/*
+battle_memory <-- battle_memory_parser, battle_memory_types
+bc_model <-- state_encoder
+bc_player <-- bc_model, state_encoder
+bc_train <-- bc_model, state_encoder
+opp_actions <-- battle_memory
+doubles_pilot <-- doubles_eval, support_value, turn_sim
+decision_logger <-- ga_core
+ga_genome <-- ga_core
+ladder_opp <-- battle
+mega_model <-- battle_memory, damage
+meta_weights <-- regmc_db
+```
+- Torch-importing modules: `state_encoder` (torch at `state_encoder.py:30`), `bc_model`, `bc_player`, `bc_train`.
+- Torch-free: `paths, regmc_db, showdown_validator, damage, opp_model, speed_model, mega_model, battle_memory (poke_env only imported inside `repair_mega_forms`), doubles_eval, smart_player, doubles_pilot, vgc_pilot, ga_core, battle, eval, decision_logger, ga_genome, ladder_opp, meta_weights, opp_actions`.
+  `battle` reaches torch only through the lazy `BCPlayer` import (`battle.py:84-86`); `DoublesPilot` import is also lazy (`battle.py:87-89`).
+
+---
+## Dependency map
+```
+paths  <-- regmc_db, state_encoder, showdown_validator, damage, opp_model, ga_core, bc_player, bc_train, eval
+regmc_db <-- damage, ga_core, audit_before_launch
+damage <-- smart_player, doubles_eval, opp_model, speed_model, doubles_pilot
+opp_model <-- speed_model
+regmc_db <-- battle_memory   (move priority); battle_memory <-- vgc_pilot; speed_model + doubles_eval + battle_memory <-- turn_sim <-- doubles_pilot (flag); battle_memory <-- opp_actions <-- vgc_pilot
+opp_model, doubles_eval, smart_player <-- doubles_pilot
+battle <-- ga_core, eval            (battle lazily imports bc_player / doubles_pilot / vgc_pilot)
+state_encoder <-- bc_model <-- bc_player, bc_train ; state_encoder <-- bc_player, bc_train
+ga_core <-- eval, audit_before_launch ; ga_core <-- run/*
+battle_memory <-- battle_memory_parser, battle_memory_types
+bc_model <-- state_encoder
+bc_player <-- bc_model, state_encoder
+bc_train <-- bc_model, state_encoder
+doubles_pilot <-- doubles_eval, support_value, turn_sim
+decision_logger <-- ga_core
+ga_genome <-- ga_core
+ladder_opp <-- battle
+mega_model <-- battle_memory, damage
+meta_weights <-- regmc_db
+```
+- Torch-importing modules: `state_encoder` (torch at `state_encoder.py:30`), `bc_model`, `bc_player`, `bc_train`.
+- Torch-free: `paths, regmc_db, showdown_validator, damage, opp_model, speed_model, mega_model, battle_memory (poke_env only imported inside `repair_mega_forms`), doubles_eval, smart_player, doubles_pilot, vgc_pilot, ga_core, battle, eval, decision_logger, ga_genome, ladder_opp, meta_weights`.
+  `battle` reaches torch only through the lazy `BCPlayer` import (`battle.py:84-86`); `DoublesPilot` import is also lazy (`battle.py:87-89`).
+
+---
+## Dependency map
+```
+paths  <-- regmc_db, state_encoder, showdown_validator, damage, opp_model, ga_core, bc_player, bc_train, eval
+regmc_db <-- damage, ga_core, audit_before_launch
+damage <-- smart_player, doubles_eval, opp_model, speed_model, doubles_pilot
+opp_model <-- speed_model
+regmc_db <-- battle_memory   (move priority); battle_memory <-- vgc_pilot; speed_model + doubles_eval + battle_memory <-- turn_sim <-- doubles_pilot (flag); battle_memory <-- opp_actions <-- vgc_pilot
+opp_model, doubles_eval, smart_player <-- doubles_pilot
+battle <-- ga_core, eval            (battle lazily imports bc_player / doubles_pilot / vgc_pilot)
+state_encoder <-- bc_model <-- bc_player, bc_train ; state_encoder <-- bc_player, bc_train
+ga_core <-- eval, audit_before_launch ; ga_core <-- run/*
+battle_memory <-- battle_memory_parser, battle_memory_types
+bc_model <-- state_encoder
+bc_player <-- bc_model, state_encoder
+bc_train <-- bc_model, state_encoder
+doubles_pilot <-- doubles_eval, support_value, turn_sim
+decision_logger <-- ga_core
+```
+- Torch-importing modules: `state_encoder` (torch at `state_encoder.py:30`), `bc_model`, `bc_player`, `bc_train`.
+- Torch-free: `paths, regmc_db, showdown_validator, damage, opp_model, speed_model, mega_model, battle_memory (poke_env only imported inside `repair_mega_forms`), doubles_eval, smart_player, doubles_pilot, vgc_pilot, ga_core, battle, eval, decision_logger`.
+  `battle` reaches torch only through the lazy `BCPlayer` import (`battle.py:84-86`); `DoublesPilot` import is also lazy (`battle.py:87-89`).
+
+---
+## Dependency map
+```
+paths  <-- regmc_db, state_encoder, showdown_validator, damage, opp_model, ga_core, bc_player, bc_train, eval
+regmc_db <-- damage, ga_core, audit_before_launch
+damage <-- smart_player, doubles_eval, opp_model, speed_model, doubles_pilot
+opp_model <-- speed_model
+regmc_db <-- battle_memory   (move priority); battle_memory <-- vgc_pilot; speed_model + doubles_eval + battle_memory <-- turn_sim <-- doubles_pilot (flag); battle_memory <-- opp_actions <-- vgc_pilot
+opp_model, doubles_eval, smart_player <-- doubles_pilot
+battle <-- ga_core, eval            (battle lazily imports bc_player / doubles_pilot / vgc_pilot)
+state_encoder <-- bc_model <-- bc_player, bc_train ; state_encoder <-- bc_player, bc_train
+ga_core <-- eval, audit_before_launch ; ga_core <-- run/*
+battle_memory <-- battle_memory_parser, battle_memory_types
+bc_model <-- state_encoder
+bc_player <-- bc_model, state_encoder
+bc_train <-- bc_model, state_encoder
+```
+- Torch-importing modules: `state_encoder` (torch at `state_encoder.py:30`), `bc_model`, `bc_player`, `bc_train`.
+- Torch-free: `paths, regmc_db, showdown_validator, damage, opp_model, speed_model, mega_model, battle_memory (poke_env only imported inside `repair_mega_forms`), doubles_eval, smart_player, doubles_pilot, vgc_pilot, ga_core, battle, eval`.
+  `battle` reaches torch only through the lazy `BCPlayer` import (`battle.py:84-86`); `DoublesPilot` import is also lazy (`battle.py:87-89`).
+
+---
 ```
 paths  <-- regmc_db, state_encoder, showdown_validator, damage, opp_model, ga_core, bc_player, bc_train, eval
 regmc_db <-- damage, ga_core, audit_before_launch
@@ -97,6 +291,41 @@ Pure-logic joint scoring of a PAIR of attack actions (numpy + damage; no poke_en
 - Explicitly not modelled: speed order, Protect/Fake Out/redirection, retaliation, secondary effects, defender item/ability modifiers (`:14-16`).
 
 ### doubles_pilot.py (~270 lines)
+## regmc_db.py (397 lines)
+Canonical, torch-free data layer over `data/regmc_db.json` (cached with `lru_cache`).
+- Lookups: `get_species/get_item/get_move`, `all_species`, `all_species_base` (forme is None), `normalize_species_name` (strips `(M)/(F)` and nicknames), `species_has_ability` (formes inherit from base or sibling formes), `species_can_learn`.
+- `parse_team(text)` parses Showdown paste into mon dicts; `validate_team(mons)` is the LOCAL legality check: 6 mons, species clause, item clause, legal item, ability, exactly 4 distinct learnable moves, EVs <= 66 total and <= 32 per stat.
+- Importers: damage, ga_core, audit_before_launch. Has a `__main__` smoke test.
+- Gotcha: this is the DB-based check; the authoritative check is Showdown via `showdown_validator`.
+
+## archetypes.py (99 lines)
+Opponent set posterior from real-team archetypes (data/species_archetypes.json).
+An archetype is an (item, nature) group of real sets for one species (tools/build_archetypes.py).
+Given what we have seen of an opposing mon (its item, moves used, ability, Mega form) this returns
+a weighted list of archetypes: weight = (#sets in the group) x P(evidence | group). It is what lets
+a Garchomp that used Power Gem be recognised as the Garchompite Z special set and one holding a
+Choice Scarf as a physical set, instead of mixing both.
+
+Evidence model (soft, because pastes are not exhaustive):
+  - revealed item: matches the group's item or is down-weighted to MISMATCH.
+  - Mega form seen (e.g. Garchomp-Mega-Z): only groups whose stone yields that form.
+  - each revealed move m: P(m | group) = (c_group(m) + K * f_species(m)) / (n_group + K), floored.
+  - revealed ability: same smoothed form over the group's ability counts.
+
+Torch-free and poke_env-free: pure data in, pure data out.
+- `load_table()` - Loads the archetype table from JSON data
+- `posterior(entry, item=None, moves_seen=(), ability=None, form=None)` - Calculates posterior probabilities for archetypes given evidence
+- `item_distribution(post)` - Returns P(item) marginalised over a posterior
+- `move_distribution(post)` - Returns P(species carries move m) marginalised over a posterior (each group's move share)
+
+## showdown_validator.py (56 lines)
+`check_teams(list[str]) -> list[(ok, msg)]` validating team texts against the real Showdown format rules.
+- Spawns `node src/showdown_validate.js` once per call, teams base64-encoded on stdin, timeout 60s; in-process md5-keyed `CACHE`. Missing verdicts become `(False, "no-verdict")`. The JS file itself was not read: its internals are unclear.
+- Imports `paths`. Used by `ga_core.filter_legal_genomes`.
+
+---
+
+
 `DoublesPilot(SimpleHeuristicsPlayer)`: vanilla decision, then re-picks move + target of both attackers jointly when both slots chose plain damaging moves.
 - Constants `LOCKED_MOVES`, `UNMODELLED_MOVES` (leave vanilla's choice), item/ability multipliers (Choice Band/Specs, Huge/Pure Power, Life Orb).
 - `_attacker` (needs `mon.stats`), `_foe` (opp_model mixture; unknown species returns base), `_ally`, `_action`, `_improve` (skips on force_switch; never Megas, `VGCPilot` adds it), `choose_move` (any exception falls back to base; `stats_counter` = turns/overrides/errors).
@@ -108,6 +337,14 @@ Pure one-turn simulation, drop-in for `doubles_eval.Evaluator` (`TurnSim(attacke
 - Plays the turn in move order (priority, switch = 8, then Speed, Trick Room reverses). `FoeInfo(moves, speeds, fakeout, protect, protect_ok)`; the order is collapsed to P(first k of our sorted actions move before this foe), using `Hypothesis.speeds` of the simulated build (fallback `FoeInfo.speeds`; Speed `None` = coin flip).
 - HP is a probability vector per combatant (lazy, only touched mons are valued); an actor acts with the probability it is still alive; accuracy per hit. Single-target moves whose target already fainted retarget to the other foe (ours and the foe's).
 - Foe outcomes per foe (`_kinds`): attack, Fake Out (target split by our slots' threat, set by `set_candidates`), Protect that works, nothing. Attack = mirror foe (`_plan`, cached per hypothesis combo x acting foes): the foes' (move, target) pair is the argmax of `doubles_eval` pair value from THEIR side; foe spread moves hit their own partner (applied, and avoided by the planner when it costs them).
+## doubles_eval.py (180 lines)
+Joint (two-slot) attack evaluation for doubles — pure logic, no poke_env.
+- Core evaluation module that scores pairs of attack actions in doubles battles.
+- Computes expected fraction of opposing mon's max HP removed plus KO bonus, minus same for our own ally.
+- Handles hidden opposing stats through plausible build mixtures from src.opp_model.
+- Supports focus-fire KO probability computation against one build at a time, then mixed.
+- Provides pair_value method that evaluates simultaneous attack actions against fixed world snapshots.
+- Importers: damage, support_value. Tests: `tests/test_doubles_eval.py`.
 - Our actions: attack, Fake Out (flinches a foe that has not moved), Protect (`BLOCKING` = Protect family minus Endure), switch (`SWITCH`, target = bench id `b0..`, the bench mon takes the slot's hits). Switch/Protect pay `passive_cost` (0.15, env `DOUBLES_PASSIVE_COST`); two slots switching to the same bench mon = `CONFLICT`.
 - `shortlist(acts, k)` and `choose_pair_refined(coarse, fine, ...)` keep the cost down (specials + top-k attacks, coarse screen, full re-score of the top pairs).
 - Value = foe (HP fraction + KO_BONUS * P(KO)) minus ours (retaliation and own spread damage). With no foe actions it equals the Evaluator.
@@ -126,6 +363,116 @@ Opponent-team importance from ladder-replay species usage. `species_key(raw)` = 
 Foe action prior, pure logic. `foe_ctx(mem, side, name, turn, known_moves, moves_complete, hp_frac)` -> `FoeCtx` (single feature builder, used by the fit and by `VGCPilot._foe_action_probs`); `action_probs(ctx)` -> `ActionProbs(fakeout, protect, trickroom)` (fakeout + protect capped at 0.98; Trick Room rate from the `trickroom` table: revealed x age 0/1/2+ x species factor, fills the leftover). Protect: table over revealed x chain x age x HP bucket (smoothed toward a parent cell) x species factor when not revealed; Fake Out: age 0 only, revealed x lead/back x species factor. A full OTS move set (`moves_complete`) zeroes moves the mon cannot have. Rates: `data/opp_actions.json` from `tools/build_opp_actions.py` (5006 replays; holdout logloss Protect 0.3482 flat -> 0.3148, Fake Out 0.2985 -> 0.1576). Tests: `tests/test_opp_actions.py` (9).
 
 ### mega_model.py (new)
+## replay_filters.py (38 lines)
+Replay filtering logic for battle data processing.
+- Provides filtering functions for battle replays based on fitness, outcome, and trigger events.
+- Implements a default filter that accepts top performers, near-best losers, battles with diagnostic triggers, and random samples.
+- Uses trigger strings to identify terrain, weather, and Trick Room events in battle history.
+- Supports configurable random sampling rate (2% by default) for unbiased data selection.
+- Importers: None. Tests: `tests/test_replay_filters.py`.
+
+## smart_player.py (202 lines)
+KO-aware heuristic pilot with real damage estimation.
+- Subclass of SimpleHeuristicsPlayer that replaces crude base_power scoring with real damage estimates.
+- Adds KO detection, HP-aware move scoring, and predicted-damage-taken penalty for the next turn.
+- Falls back to parent scoring on any exception so behavior is never strictly worse.
+- Provides damage scoring functions for moves including KO bonus and damage weight calculations.
+- Importers: damage. Tests: `tests/test_smart_player.py`.
+
+## speed_model.py (127 lines)
+Speed model: who moves first, as a probability (staged plan, stage 1).
+## turn_sim.py (598 lines)
+One-turn simulation for doubles: move order, retaliation, retargeting, Protect, Fake Out, switches.
+- Implements a full turn simulation that plays out moves in proper order rather than scoring them as if they all land first.
+- Handles complex battle mechanics including speed ordering, retaliation, retargeting (Showdown-style), and priority moves.
+- Supports foe hypotheses with stats/types/HP/Speed, foe outcomes (attacks, Fake Out, Protect), and mirror foe behavior.
+- Includes support layer for effects like Foul Play, Snarl, Charm, Helping Hand, Taunt, and self-heals.
+- Provides value calculation based on HP fractions removed, KO bonuses, and damage propagation.
+- Importers: damage, doubles_eval, support_value, turn_sim_lookahead, turn_sim_types. Tests: `tests/test_turn_sim.py`.
+
+## turn_sim_lookahead.py (129 lines)
+LookAhead: next-turn state-delta valuation (split from turn_sim.py).
+- Implements next-turn value calculation for state deltas using coarse one-turn simulations.
+- Handles leaf state calculations after best attack pairs and computes value differences.
+- Manages stat drops on foes, Trick Room changes, and other state modifications.
+- Provides caching of V1 values per delta to avoid recomputation.
+- Importers: doubles_eval, support_value, turn_sim_types. Tests: `tests/test_turn_sim_lookahead.py`.
+
+## turn_sim_types.py (123 lines)
+Types, constants, and helpers for turn_sim. Split from turn_sim.py for modularity.
+- Defines core types including FoeInfo, FoeAct, and Speeds for battle simulation.
+- Contains constants for simulation parameters like MAX_HYPS, MIN_SCENARIO_P, PASSIVE_COST, etc.
+- Provides helper functions for move priority, action priority, switch/protect/support detection.
+- Includes utilities for pruning hypotheses, probability mass functions, and applying damage rolls.
+- Importers: damage, doubles_eval, support_value, battle_memory. Tests: `tests/test_turn_sim_types.py`.
+
+## vgc_pilot.py (128 lines)
+VGC pilot (thin layer): DoublesPilot + battle memory + Mega logic.
+- Thin wrapper around DoublesPilot that adds battle memory and Mega evolution logic.
+- Handles Mega evolution decisions for both own Pokémon and opponent Pokémon.
+- Implements logic for when to use Mega Evolution based on damage gain calculations.
+- Manages foe Mega probability calculations using src.mega_model.
+- Supports battle memory tracking for opponent actions, Protect success probabilities, and volatile conditions.
+- Importers: opp_actions, battle_memory, doubles_pilot, mega_model, opp_model. Tests: `tests/test_vgc_pilot.py`.
+- Estimates opponent speed using weighted hypotheses built from build priors.
+- Handles stat stages, paralysis, Tailwind, Choice Scarf, weather/terrain speed abilities and Trick Room.
+- Implements prior mixture only (stage 1) with planned reweighting from observed move order (stage 2).
+- Supports Mega evolution speed calculations and effective speed computation with battle modifiers.
+- Importers: damage, opp_model, mega_model. Tests: `tests/test_speed_model.py`.
+
+## state_encoder.py (252 lines)
+State encoder that converts battle dictionaries to tensors for BC model input.
+- Converts battle state dictionaries into tensors for the embedding BC model.
+- Handles species, move, item, and ability encoding with fixed slot order (12 slots total).
+- Encodes global field state including weather, terrain, Trick Room, and Tailwind conditions.
+- Provides continuous vector encoding for each Pokémon with status, boost, HP, and other stats.
+- Importers: None. Tests: `tests/test_state_encoder.py`.
+
+## support_value.py (200 lines)
+Support-move layer for doubles pilot with effect handling.
+- Manages support effects including Foul Play, Snarl, Charm, Helping Hand, Taunt, and Heal.
+- Provides functions to parse enabled effects from environment variables.
+- Implements drop outcome calculations considering ability distributions and blocking mechanics.
+- Handles stat stage clamping, damage calculation, and effect value computations.
+- Importers: damage. Tests: `tests/test_support_value.py`.
+## pilot_actions.py (82 lines)
+Pilot actions handling and target resolution for battle moves.
+- Handles move targeting logic for different move types including normal, allAdjacentFoes, and allAdjacent targets.
+- Implements attack candidate filtering based on move categories and flags.
+- Supports special move handling like Fake Out, Protect, and support moves.
+- Provides action resolution for attacks, protection, support moves, switching, and fakeout moves.
+- Importers: doubles_eval, support_value, pilot_world. Tests: `tests/test_pilot_actions.py`.
+
+## pilot_sim_input.py (59 lines)
+Pilot simulation input preparation for battle simulations.
+- Prepares input data for turn simulations including speed calculations, foe information, and action probabilities.
+- Handles speed modifications based on abilities, items, and field conditions.
+- Manages taunt tracking and Trick Room probability calculations.
+- Provides foe action probabilities (Fake Out, Protect-family) for simulation inputs.
+- Importers: doubles_eval, opp_model, speed_model, turn_sim, pilot_world. Tests: `tests/test_pilot_sim_input.py`.
+
+## pilot_support.py (75 lines)
+Support-move resolution logic for doubles pilot.
+- Contains functions to resolve various support move effects including Taunt, Heal, Helping Hand, Snarl, Charm, and Foul Play.
+- Handles battle mechanics for different support moves that affect opponent Pokémon.
+- Provides basic framework for support move effect resolution in doubles format.
+- Importers: None (pure logic functions). Tests: `tests/test_pilot_support.py`.
+
+## pilot_world.py (144 lines)
+Pilot world state representation and damage modeling.
+- Creates world state representations for battle simulations including attacker, foe, and ally information.
+- Handles Mega evolution probability calculations and conditional probabilities.
+- Implements damage hypothesis generation for different Pokémon builds and forms.
+- Provides speed modification calculations and immunity probability computations.
+- Importers: damage, opp_model, speed_model, doubles_eval, mega_model, smart_player. Tests: `tests/test_pilot_world.py`.
+
+## player_factory.py (90 lines)
+Player factory for constructing poke_env Players for battles.
+- Creates different player types based on pilot configuration (bc, doubles, ladder, vgc).
+- Handles timeout players that automatically forfeit battles after turn limits.
+- Manages account and server configurations for battle connections.
+- Supports multi-instance battle handling with unique identifiers and battle formats.
+- Importers: vgc_pilot. Tests: `tests/test_player_factory.py`.
 Foe Mega prediction from real ladder replays. `candidates(mem, side, turn=None)` = active, non-fainted, not-yet-Mega'd mons of Mega-capable species while the side's Mega is unused, with `k` (turns already had the chance = turn - max(switch_in_turn+1, 1)), `ncand`, `lead`, item flags. `p_mega_now(species, k, ncand, lead, item, consumed)` = cell table (`cell_key`: k0 lead/back, k1, k2, k3+ x 1|2 candidates) x per-species factor from `data/mega_rates.json`; revealed non-stone item -> 0, consumed item -> 0.02. `foe_mega_probs(mem, side)` renormalises so a side's probabilities sum to at most 1 (one Mega per side). `conditional_q(p_now, form_mass)` turns the marginal into P(Megas | set carries the stone). `mega_gain(species, stone)` = (offence gain, Speed gain) for our own Mega choice.
 - Fit: `tools/build_mega_rates.py [--dry-run]` (5006 replays, 15755 decision points). Holdout log-loss (fit even files, score odd): flat 0.693, by k only 0.628, cell table 0.601, cell x species 0.555.
 - Tests: `tests/test_mega_model.py` (7).
@@ -179,7 +526,85 @@ Foe Mega prediction from real ladder replays. `candidates(mem, side, turn=None)`
 - Champion selection is train-best by design (STATE.md §5, val-selection dropped); `ga_<id>_island_X.txt` and `_X_train.txt` are identical in practice, val is only a fallback. The code comment now says so.
 - `SHOWDOWN_DIR = paths.showdown_dir()` (env `SHOWDOWN_DIR` honored). `SHOWDOWN_PORT` is read from env at import.
 - `FORMAT` and `UID_MAX` are shared with eval via import from here.
+- **Correction**: The documentation was inaccurate in its claim that "Everything here is CPU/async orchestration; the only heavy dependency is poke_env". While ga_core does use poke_env for battle execution, it also uses several other significant dependencies including asyncio, subprocess, urllib, and has complex data processing logic. The statement about heavy dependencies should be clarified to reflect that the main computational load comes from battle simulation rather than from torch usage.
 
+## opp_actions.py (163 lines)
+Foe action prediction: P(a foe mon uses a Protect-family move / Fake Out / Trick Room THIS turn).
+- Predicts opponent actions including Protect-family moves, Fake Out, and Trick Room usage.
+- Uses data/opp_actions.json built from real ladder replays to determine action probabilities.
+- Context features include species, turn number, age on field, known moves, protect chain, and HP fraction.
+- Implements cell-based probability tables with fine-grained context features and parent cells for smoothing.
+- Importers: battle_memory. Tests: `tests/test_opp_actions.py`.
+
+## opp_model.py (210 lines)
+Opponent build estimation (hidden stats / abilities) for battle-time damage math.
+- Estimates opponent hidden stats and abilities from scraped build priors.
+- Uses data/species_build_priors.json to get top-K most common (EVs, nature) builds per species.
+- Handles fallback to generic spreads when no priors are available.
+- Supports archetype-based estimation with posterior distributions when enough real sets exist.
+- Provides ability distribution and immunity probability calculations for damage modeling.
+- Importers: archetypes, damage. Tests: `tests/test_opp_model.py`.
+
+## damage.py (287 lines)
+Champions-format stat + base damage estimator.
+- Mirrors Showdown's data/mods/champions/scripts.ts statModify + battle-actions damage math. Verified against Showdown for base cases.
+- EV points are Champions points (0-32). Stat term uses max(2*points - 1, 0).
+- Modifier coverage (all optional kwargs, defaults = no modifier):
+  - crit:         1.5x damage (ignores screens)
+  - burn:         0.5x physical (skipped if attacker_ability == 'Guts')
+  - weather:      'rain' | 'sun' | 'sand' | 'snow'
+  - terrain:      'electric' | 'grassy' | 'psychic' | 'misty'
+  - attacker_boosts / defender_boosts: dict of stat -> stage (-6..+6)
+  - reflect / light_screen / aurora_veil: bool
+  - attacker_ability: for damage-relevant abilities
+- Order of operations follows Showdown's battle-actions.modifyDamage exactly.
+- Importers: doubles_eval, smart_player, speed_model. Tests: `tests/test_damage.py`.
+
+## decision_logger.py (49 lines)
+Decision logger that records battle decisions and outcomes to JSONL files.
+- Records detailed battle state including teams, active mons, HP, field conditions, legal moves, chosen actions, and heuristic choices.
+- Each battle gets its own JSONL file with one row per turn.
+- Importers: ga_core. Tests: `tests/test_decision_logger.py`.
+
+## doubles_pilot.py (246 lines)
+Doubles pilot that improves on simple heuristics with turn simulation.
+- Extends SimpleHeuristicsPlayer to make better decisions in doubles format.
+- Uses turn simulation for improved move selection, including support move effects and lookahead.
+- Supports various environment variables for tuning: DOUBLES_KO_BONUS, DOUBLES_MIN_GAIN, DOUBLES_TURN_SIM, DOUBLES_LOOKAHEAD.
+- Importers: doubles_eval, support_value, turn_sim. Tests: `tests/test_doubles_pilot.py`.
+
+## bc_model.py (266 lines)
+Neural models + checkpoint I/O for the BC pilot.
+- Two architectures live here; a checkpoint's `arch` field decides which one a loader instantiates:
+  BCModel    (v2) — flat MLP trunk. The production model; bc_best.pt was trained
+                    with this. OUTPUTS=6 (type/move/switch × two slots a/b).
+  BCModelV3  (v3) — transformer over 12 slot tokens + 1 field token, plus a
+                    per-slot target head. OUTPUTS=8.
+- Callers check `model.OUTPUTS` to know whether to unpack 6 or 8 tensors
+  (see bc_player._get_shared_model / choose_move).
+- CHECKPOINT CONTRACT: every name and dimension below is frozen — the saved
+  state_dict in output/models/bc_best.pt is keyed by these exact attribute names
+  and sized by these exact constants. See the banner by the constants. Comment
+  freely; renaming a head or resizing an embedding silently breaks load_state_dict.
+
+## bc_player.py (320 lines)
+BC pilot — uses poke_env's valid_orders for action legality.
+- Supports v2 (MLP, 6 heads) and v3 (transformer, 8 heads with target head).
+- Checkpoint `arch` field decides which. Override the model via
+  BC_PILOT_PATH env var (default: output/models/bc_best.pt).
+- For v3, the target head contributes to option scoring so that
+  "move X targeting opp-left" and "move X targeting opp-right" get
+  different scores instead of being arbitrary tie-breaks.
+
+## bc_train.py (398 lines)
+Behavioural-cloning trainer. Env: BC_DATA (default `data/training_data.jsonl`), BC_OUT (default `bc_best.pt` under `output/models/`), BC_MODEL v2|v3, BC_BATCH 256, BC_EPOCHS 30, BC_PATIENCE 3. LR=1e-3, WD=1e-5, VAL_FRAC=0.1, SEED=42.
+- `BCDataset` (winner samples duplicated 2x; moves not in priors become TYPE_NONE), `slot_loss`, `run_epoch`, `build_model`, `main`.
+- `main`: drops consecutive duplicate (side, turn) rows, splits battles on a second `turn==1`, 90/10 battle-level split, AdamW + cosine annealing, saves on best `val_move_acc`, early stops on `PATIENCE`.
+- Gotcha: module docstring (`:4-7`) lists only BC_MODEL/BC_OUT/BC_EPOCHS/BC_PATIENCE, not BC_DATA/BC_BATCH.
+
+---
+
+## Env vars read by src/
 ---
 
 ## battle.py (154 lines)
@@ -196,11 +621,108 @@ CLI `python -m src.eval` for evaluating team files (default `baseline_team.txt`)
 - Env: `GA_CONCURRENCY` (default "3", `eval.py:27`).
 - Imports `ga_core` (pools, `FORMAT`, `UID_MAX`) so it is not independent of the GA module; torch only if `bc`.
 - Gotcha: the HEUR/BC/Delta comparison table only covers heuristic and bc pilots; `doubles` is not in it.
+- **Correction**: eval.py imports `ga_core` for access to pools, FORMAT, and UID_MAX, but the module itself is designed to be independent of the GA core for the most part. The import is used for shared constants and data loading rather than for GA-specific logic.
 
 ## audit_before_launch.py (188 lines)
 Pre-launch sanity script; logic lives in `main()` behind a `__main__` guard (importing it is silent). Run as `python -m src.audit_before_launch`.
 - Nine sections: DB integrity, name sanity, mega stones, regional teams validate, fuzz 500 Umbreon-locked genomes, fuzz 500 free, 2000 mutations, 500 crossovers, baseline team.
 - Uses `DB.validate_team` (local), not the Showdown validator. Seeds random with 0, 42, 1. Imports `regmc_db`, `ga_core`, `paths`.
+
+## __init__.py
+Empty initialization file. This file serves as a Python package initializer and currently contains no specific functionality or imports.
+
+---
+## ga_genome.py (821 lines)
+Genetic algorithm genome builder for VGC teams.
+- Generates and evolves Pokémon teams using a genetic algorithm approach.
+- Handles EV distribution, species selection, item picking, ability assignment, and move selection.
+- Implements constraints and realism checks to produce viable tournament teams.
+- Uses move priors and meta data to guide evolution toward realistic team compositions.
+- Importers: ga_core. Tests: `tests/test_ga_genome.py`.
+
+## ladder_opp.py (77 lines)
+Ladder-like opponent that mimics human behavior patterns.
+- Extends SimpleHeuristicsPlayer to add Protect and Fake Out usage at human rates.
+- Uses opp_actions data to determine when opponents use Protect or Fake Out moves.
+- Maintains statistics on how often it applies these behaviors during battles.
+- Importers: battle. Tests: `tests/test_ladder_opp.py`.
+
+## mega_model.py (98 lines)
+Foe Mega prediction: P(an opposing mon Mega Evolves THIS turn), from real ladder replays.
+- Predicts the probability that an opponent will Mega evolve on their current turn.
+- Rates come from data/mega_rates.json built from real ladder replays.
+- Handles renormalization of probabilities across a side to ensure at most one Mega per side.
+- Importers: battle_memory, damage. Tests: `tests/test_mega_model.py`.
+
+## meta_weights.py (91 lines)
+Meta weights: how much each opponent team should count, from ladder-replay species usage.
+- Calculates team weights based on ladder replay data to weight opponents appropriately.
+- Uses species usage data to determine how representative a team is of ladder play.
+- Teams built from commonly seen species get higher weights in fitness calculations.
+- Importers: regmc_db. Tests: `tests/test_meta_weights.py`.
+
+## damage.py (287 lines)
+Champions-format stat + base damage estimator.
+- Mirrors Showdown's data/mods/champions/scripts.ts statModify + battle-actions damage math. Verified against Showdown for base cases.
+- EV points are Champions points (0-32). Stat term uses max(2*points - 1, 0).
+- Modifier coverage (all optional kwargs, defaults = no modifier):
+  - crit:         1.5x damage (ignores screens)
+  - burn:         0.5x physical (skipped if attacker_ability == 'Guts')
+  - weather:      'rain' | 'sun' | 'sand' | 'snow'
+  - terrain:      'electric' | 'grassy' | 'psychic' | 'misty'
+  - attacker_boosts / defender_boosts: dict of stat -> stage (-6..+6)
+  - reflect / light_screen / aurora_veil: bool
+  - attacker_ability: for damage-relevant abilities
+- Order of operations follows Showdown's battle-actions.modifyDamage exactly.
+- Importers: doubles_eval, smart_player, speed_model. Tests: `tests/test_damage.py`.
+
+## decision_logger.py (49 lines)
+Decision logger that records battle decisions and outcomes to JSONL files.
+- Records detailed battle state including teams, active mons, HP, field conditions, legal moves, chosen actions, and heuristic choices.
+- Each battle gets its own JSONL file with one row per turn.
+- Importers: ga_core. Tests: `tests/test_decision_logger.py`.
+
+## doubles_pilot.py (246 lines)
+Doubles pilot that improves on simple heuristics with turn simulation.
+- Extends SimpleHeuristicsPlayer to make better decisions in doubles format.
+- Uses turn simulation for improved move selection, including support move effects and lookahead.
+- Supports various environment variables for tuning: DOUBLES_KO_BONUS, DOUBLES_MIN_GAIN, DOUBLES_TURN_SIM, DOUBLES_LOOKAHEAD.
+- Importers: doubles_eval, support_value, turn_sim. Tests: `tests/test_doubles_pilot.py`.
+
+## bc_model.py (266 lines)
+Neural models + checkpoint I/O for the BC pilot.
+- Two architectures live here; a checkpoint's `arch` field decides which one a loader instantiates:
+  BCModel    (v2) — flat MLP trunk. The production model; bc_best.pt was trained
+                    with this. OUTPUTS=6 (type/move/switch × two slots a/b).
+  BCModelV3  (v3) — transformer over 12 slot tokens + 1 field token, plus a
+                    per-slot target head. OUTPUTS=8.
+- Callers check `model.OUTPUTS` to know whether to unpack 6 or 8 tensors
+  (see bc_player._get_shared_model / choose_move).
+- CHECKPOINT CONTRACT: every name and dimension below is frozen — the saved
+  state_dict in output/models/bc_best.pt is keyed by these exact attribute names
+  and sized by these exact constants. See the banner by the constants. Comment
+  freely; renaming a head or resizing an embedding silently breaks load_state_dict.
+
+## bc_player.py (320 lines)
+BC pilot — uses poke_env's valid_orders for action legality.
+- Supports v2 (MLP, 6 heads) and v3 (transformer, 8 heads with target head).
+- Checkpoint `arch` field decides which. Override the model via
+  BC_PILOT_PATH env var (default: output/models/bc_best.pt).
+- For v3, the target head contributes to option scoring so that
+  "move X targeting opp-left" and "move X targeting opp-right" get
+  different scores instead of being arbitrary tie-breaks.
+
+## bc_train.py (398 lines)
+Behavioural-cloning trainer. Env: BC_DATA (default `data/training_data.jsonl`), BC_OUT (default `bc_best.pt` under `output/models/`), BC_MODEL v2|v3, BC_BATCH 256, BC_EPOCHS 30, BC_PATIENCE 3. LR=1e-3, WD=1e-5, VAL_FRAC=0.1, SEED=42.
+- `BCDataset` (winner samples duplicated 2x; moves not in priors become TYPE_NONE), `slot_loss`, `run_epoch`, `build_model`, `main`.
+- `main`: drops consecutive duplicate (side, turn) rows, splits battles on a second `turn==1`, 90/10 battle-level split, AdamW + cosine annealing, saves on best `val_move_acc`, early stops on `PATIENCE`.
+- Gotcha: module docstring (`:4-7`) lists only BC_MODEL/BC_OUT/BC_EPOCHS/BC_PATIENCE, not BC_DATA/BC_BATCH.
+
+---
+
+## Env vars read by src/
+
+
 
 ---
 
@@ -222,6 +744,66 @@ Pre-launch sanity script; logic lives in `main()` behind a `__main__` guard (imp
 `BCPlayer(Player)`: neural doubles pilot.
 - Env `BC_PILOT_PATH` (read at import; default `output/models/bc_best.pt`, `bc_player.py:33`). Loads `data/species_move_priors.json`. `_get_shared_model` caches per device and defaults arch to `"v2"`; `torch.load` is used without `weights_only`.
 - `_state_to_dict`, `_score_options` (log P(type)+log P(move) [+ target]; `ALLY_TARGET_PENALTY=5.0` for ally targets unless in `ALLY_TARGET_MOVES`), `choose_move` (uses `battle.valid_orders`, resolves switch collisions, random fallback).
+## damage.py (287 lines)
+Champions-format stat + base damage estimator.
+- Mirrors Showdown's data/mods/champions/scripts.ts statModify + battle-actions damage math. Verified against Showdown for base cases.
+- EV points are Champions points (0-32). Stat term uses max(2*points - 1, 0).
+- Modifier coverage (all optional kwargs, defaults = no modifier):
+  - crit:         1.5x damage (ignores screens)
+  - burn:         0.5x physical (skipped if attacker_ability == 'Guts')
+  - weather:      'rain' | 'sun' | 'sand' | 'snow'
+  - terrain:      'electric' | 'grassy' | 'psychic' | 'misty'
+  - attacker_boosts / defender_boosts: dict of stat -> stage (-6..+6)
+  - reflect / light_screen / aurora_veil: bool
+  - attacker_ability: for damage-relevant abilities
+- Order of operations follows Showdown's battle-actions.modifyDamage exactly.
+- Importers: doubles_eval, smart_player, speed_model. Tests: `tests/test_damage.py`.
+
+## decision_logger.py (49 lines)
+Decision logger that records battle decisions and outcomes to JSONL files.
+- Records detailed battle state including teams, active mons, HP, field conditions, legal moves, chosen actions, and heuristic choices.
+- Each battle gets its own JSONL file with one row per turn.
+- Importers: ga_core. Tests: `tests/test_decision_logger.py`.
+
+## doubles_pilot.py (246 lines)
+Doubles pilot that improves on simple heuristics with turn simulation.
+- Extends SimpleHeuristicsPlayer to make better decisions in doubles format.
+- Uses turn simulation for improved move selection, including support move effects and lookahead.
+- Supports various environment variables for tuning: DOUBLES_KO_BONUS, DOUBLES_MIN_GAIN, DOUBLES_TURN_SIM, DOUBLES_LOOKAHEAD.
+- Importers: doubles_eval, support_value, turn_sim. Tests: `tests/test_doubles_pilot.py`.
+
+## bc_model.py (266 lines)
+Neural models + checkpoint I/O for the BC pilot.
+- Two architectures live here; a checkpoint's `arch` field decides which one a loader instantiates:
+  BCModel    (v2) — flat MLP trunk. The production model; bc_best.pt was trained
+                    with this. OUTPUTS=6 (type/move/switch × two slots a/b).
+  BCModelV3  (v3) — transformer over 12 slot tokens + 1 field token, plus a
+                    per-slot target head. OUTPUTS=8.
+- Callers check `model.OUTPUTS` to know whether to unpack 6 or 8 tensors
+  (see bc_player._get_shared_model / choose_move).
+- CHECKPOINT CONTRACT: every name and dimension below is frozen — the saved
+  state_dict in output/models/bc_best.pt is keyed by these exact attribute names
+  and sized by these exact constants. See the banner by the constants. Comment
+  freely; renaming a head or resizing an embedding silently breaks load_state_dict.
+
+## bc_player.py (320 lines)
+BC pilot — uses poke_env's valid_orders for action legality.
+- Supports v2 (MLP, 6 heads) and v3 (transformer, 8 heads with target head).
+- Checkpoint `arch` field decides which. Override the model via
+  BC_PILOT_PATH env var (default: output/models/bc_best.pt).
+- For v3, the target head contributes to option scoring so that
+  "move X targeting opp-left" and "move X targeting opp-right" get
+  different scores instead of being arbitrary tie-breaks.
+
+## bc_train.py (398 lines)
+Behavioural-cloning trainer. Env: BC_DATA (default `data/training_data.jsonl`), BC_OUT (default `bc_best.pt` under `output/models/`), BC_MODEL v2|v3, BC_BATCH 256, BC_EPOCHS 30, BC_PATIENCE 3. LR=1e-3, WD=1e-5, VAL_FRAC=0.1, SEED=42.
+- `BCDataset` (winner samples duplicated 2x; moves not in priors become TYPE_NONE), `slot_loss`, `run_epoch`, `build_model`, `main`.
+- `main`: drops consecutive duplicate (side, turn) rows, splits battles on a second `turn==1`, 90/10 battle-level split, AdamW + cosine annealing, saves on best `val_move_acc`, early stops on `PATIENCE`.
+- Gotcha: module docstring (`:4-7`) lists only BC_MODEL/BC_OUT/BC_EPOCHS/BC_PATIENCE, not BC_DATA/BC_BATCH.
+
+---
+
+## Env vars read by src/
 - Gotcha: the encoder is fed `item/ability=None`, `is_mega=False`, `terrain=None`, `hp_max=100` (hp as percent); `opp_seen` includes opposing actives (duplicates). Training-time inputs may differ: unclear.
 
 ### bc_train.py (398 lines)
@@ -229,6 +811,74 @@ Behavioural-cloning trainer. Env: `BC_DATA` (default `data/training_data.jsonl`)
 - `BCDataset` (winner samples duplicated 2x; moves not in priors become TYPE_NONE), `slot_loss`, `run_epoch`, `build_model`, `main`.
 - `main`: drops consecutive duplicate (side, turn) rows, splits battles on a second `turn==1`, 90/10 battle-level split, AdamW + cosine annealing, saves on best `val_move_acc`, early stops on `PATIENCE`.
 - Gotcha: module docstring (`:4-7`) lists only BC_MODEL/BC_OUT/BC_EPOCHS/BC_PATIENCE, not BC_DATA/BC_BATCH.
+
+---
+
+## battle_memory.py (372 lines)
+Battle memory tracking system that maintains state during battles.
+- Maintains battle state including mon records, weather conditions, volatile statuses, and action history.
+- Implements `BattleMemory` class with methods for querying battle state like active mons, weather, volatiles, and protection probabilities.
+- Provides `BattleMemoryMixin` to integrate with poke_env Players for automatic battle state tracking.
+- Importers: battle_memory_parser, battle_memory_types. Tests: `tests/test_battle_memory.py`.
+- Gotcha: The `repair_mega_forms` function corrects poke_env's incorrect mega evolution handling.
+
+## battle_memory_parser.py (287 lines)
+Battle memory parser that handles raw battle message parsing and event tracking.
+- Parses battle messages from Showdown to populate battle state.
+- Implements the `BattleMemoryParserMixin` class with methods for handling different battle events like switches, moves, status conditions, weather changes, etc.
+- Importers: battle_memory. Tests: `tests/test_battle_memory.py`.
+
+## battle_memory_types.py (103 lines)
+Data types and constants used by battle memory tracking.
+- Defines dataclasses: `Condition`, `Action`, `MonRecord` for representing battle events and state.
+- Constants for move families, weather types, terrain types, etc.
+- Importers: battle_memory_parser, battle_memory. Tests: `tests/test_battle_memory.py`.
+
+## battle_runner.py (151 lines)
+## battle_runner.py (151 lines)
+Battle runner that executes battles with poke_env.
+- `run_battle_once`, `run_battle` functions for executing battles and managing connections to Showdown server.
+- Handles battle execution, timeouts, retries, and result processing.
+- Importers: battle. Tests: `tests/test_battle_runner.py`.
+
+---
+
+## bc_model.py (266 lines)
+Neural models + checkpoint I/O for the BC pilot.
+- Two architectures live here; a checkpoint's `arch` field decides which one a loader instantiates:
+  BCModel    (v2) — flat MLP trunk. The production model; bc_best.pt was trained
+                    with this. OUTPUTS=6 (type/move/switch × two slots a/b).
+  BCModelV3  (v3) — transformer over 12 slot tokens + 1 field token, plus a
+                    per-slot target head. OUTPUTS=8.
+- Callers check `model.OUTPUTS` to know whether to unpack 6 or 8 tensors
+  (see bc_player._get_shared_model / choose_move).
+- CHECKPOINT CONTRACT: every name and dimension below is frozen — the saved
+  state_dict in output/models/bc_best.pt is keyed by these exact attribute names
+  and sized by these exact constants. See the banner by the constants. Comment
+  freely; renaming a head or resizing an embedding silently breaks load_state_dict.
+
+## bc_player.py (320 lines)
+BC pilot — uses poke_env's valid_orders for action legality.
+- Supports v2 (MLP, 6 heads) and v3 (transformer, 8 heads with target head).
+- Checkpoint `arch` field decides which. Override the model via
+  BC_PILOT_PATH env var (default: output/models/bc_best.pt).
+- For v3, the target head contributes to option scoring so that
+  "move X targeting opp-left" and "move X targeting opp-right" get
+  different scores instead of being arbitrary tie-breaks.
+
+## bc_train.py (398 lines)
+Behavioural-cloning trainer. Env: BC_DATA (default `data/training_data.jsonl`), BC_OUT (default `bc_best.pt` under `output/models/`), BC_MODEL v2|v3, BC_BATCH 256, BC_EPOCHS 30, BC_PATIENCE 3. LR=1e-3, WD=1e-5, VAL_FRAC=0.1, SEED=42.
+- `BCDataset` (winner samples duplicated 2x; moves not in priors become TYPE_NONE), `slot_loss`, `run_epoch`, `build_model`, `main`.
+- `main`: drops consecutive duplicate (side, turn) rows, splits battles on a second `turn==1`, 90/10 battle-level split, AdamW + cosine annealing, saves on best `val_move_acc`, early stops on `PATIENCE`.
+- Gotcha: module docstring (`:4-7`) lists only BC_MODEL/BC_OUT/BC_EPOCHS/BC_PATIENCE, not BC_DATA/BC_BATCH.
+
+---
+
+## Env vars read by src/
+Battle runner that executes battles with poke_env.
+- `run_battle_once`, `run_battle` functions for executing battles and managing connections to Showdown server.
+- Handles battle execution, timeouts, retries, and result processing.
+- Importers: battle. Tests: `tests/test_battle_runner.py`.
 
 ---
 
