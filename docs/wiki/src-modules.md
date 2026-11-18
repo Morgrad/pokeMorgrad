@@ -7,7 +7,7 @@ Imports below are intra-repo (`src.*`) only. Dependency direction: arrows mean "
 - [Dependency map](#dependency-map)
 - [Foundation: paths, regmc_db, showdown_validator](#paths-regmc_db-showdown_validator)
 - [Damage stack: damage, opp_model, speed_model, mega_model, battle_memory, battle_memory_parser, battle_memory_types, doubles_eval, doubles_pilot, smart_player](#damage-stack)
-- [GA: ga_core (by section), battle, eval, audit_before_launch](#ga_corepy)
+- [GA: src/ga/ package + ga_core facade, battle, eval, audit_before_launch](#ga-engine-srcga-package--ga_corepy-facade)
 - [BC stack (torch): state_encoder, bc_model, bc_player, bc_train](#bc-stack-torch)
 - [Env vars read by src/](#env-vars-read-by-src)
 
@@ -44,7 +44,7 @@ turn_sim_types <-- damage, doubles_eval, support_value, battle_memory
 vgc_pilot <-- opp_actions, battle_memory, doubles_pilot, mega_model, opp_model
 ```
 - Torch-importing modules: `state_encoder` (torch at `state_encoder.py:30`), `bc_model`, `bc_player`, `bc_train`.
-- Torch-free: `paths, regmc_db, showdown_validator, damage, opp_model, speed_model, mega_model, battle_memory (poke_env only imported inside `repair_mega_forms`), doubles_eval, smart_player, doubles_pilot, vgc_pilot, ga_core, battle, eval, decision_logger, ga_genome, ladder_opp, meta_weights, opp_actions, pilot_actions, pilot_sim_input, pilot_support, pilot_world, player_factory, replay_filters, support_value, turn_sim, turn_sim_lookahead, turn_sim_types`.
+- Torch-free: `paths, regmc_db, showdown_validator, damage, opp_model, speed_model, mega_model, battle_memory (poke_env only imported inside `repair_mega_forms`), doubles_eval, smart_player, doubles_pilot, vgc_pilot, ga_core, battle, eval, decision_logger, ga/* (config, genome, fitness, evaluator, population, checkpoint, engine), showdown_server, ladder_opp, meta_weights, opp_actions, pilot_actions, pilot_sim_input, pilot_support, pilot_world, player_factory, replay_filters, support_value, turn_sim, turn_sim_lookahead, turn_sim_types`.
   `battle` reaches torch only through the lazy `BCPlayer` import (`battle.py:84-86`); `DoublesPilot` import is also lazy (`battle.py:87-89`).
 
 ---
@@ -76,7 +76,7 @@ state_encoder <-- None
 support_value <-- damage
 ```
 - Torch-importing modules: `state_encoder` (torch at `state_encoder.py:30`), `bc_model`, `bc_player`, `bc_train`.
-- Torch-free: `paths, regmc_db, showdown_validator, damage, opp_model, speed_model, mega_model, battle_memory (poke_env only imported inside `repair_mega_forms`), doubles_eval, smart_player, doubles_pilot, vgc_pilot, ga_core, battle, eval, decision_logger, ga_genome, ladder_opp, meta_weights, opp_actions, pilot_actions, pilot_sim_input, pilot_support, pilot_world, player_factory, replay_filters, support_value`.
+- Torch-free: `paths, regmc_db, showdown_validator, damage, opp_model, speed_model, mega_model, battle_memory (poke_env only imported inside `repair_mega_forms`), doubles_eval, smart_player, doubles_pilot, vgc_pilot, ga_core, battle, eval, decision_logger, ga/* (config, genome, fitness, evaluator, population, checkpoint, engine), showdown_server, ladder_opp, meta_weights, opp_actions, pilot_actions, pilot_sim_input, pilot_support, pilot_world, player_factory, replay_filters, support_value`.
   `battle` reaches torch only through the lazy `BCPlayer` import (`battle.py:84-86`); `DoublesPilot` import is also lazy (`battle.py:87-89`).
 
 ---
@@ -103,7 +103,7 @@ pilot_world <-- damage, opp_model, speed_model, doubles_eval, mega_model, smart_
 player_factory <-- vgc_pilot
 ```
 - Torch-importing modules: `state_encoder` (torch at `state_encoder.py:30`), `bc_model`, `bc_player`, `bc_train`.
-- Torch-free: `paths, regmc_db, showdown_validator, damage, opp_model, speed_model, mega_model, battle_memory (poke_env only imported inside `repair_mega_forms`), doubles_eval, smart_player, doubles_pilot, vgc_pilot, ga_core, battle, eval, decision_logger, ga_genome, ladder_opp, meta_weights, opp_actions, pilot_actions, pilot_sim_input, pilot_support, pilot_world, player_factory`.
+- Torch-free: `paths, regmc_db, showdown_validator, damage, opp_model, speed_model, mega_model, battle_memory (poke_env only imported inside `repair_mega_forms`), doubles_eval, smart_player, doubles_pilot, vgc_pilot, ga_core, battle, eval, decision_logger, ga/* (config, genome, fitness, evaluator, population, checkpoint, engine), showdown_server, ladder_opp, meta_weights, opp_actions, pilot_actions, pilot_sim_input, pilot_support, pilot_world, player_factory`.
   `battle` reaches torch only through the lazy `BCPlayer` import (`battle.py:84-86`); `DoublesPilot` import is also lazy (`battle.py:87-89`).
 
 ---
@@ -125,13 +125,13 @@ bc_train <-- bc_model, state_encoder
 opp_actions <-- battle_memory
 doubles_pilot <-- doubles_eval, support_value, turn_sim
 decision_logger <-- ga_core
-ga_genome <-- ga_core
+ga.genome <-- ga.population, ga.evaluator, ga.engine, ga.checkpoint, ga_core
 ladder_opp <-- battle
 mega_model <-- battle_memory, damage
 meta_weights <-- regmc_db
 ```
 - Torch-importing modules: `state_encoder` (torch at `state_encoder.py:30`), `bc_model`, `bc_player`, `bc_train`.
-- Torch-free: `paths, regmc_db, showdown_validator, damage, opp_model, speed_model, mega_model, battle_memory (poke_env only imported inside `repair_mega_forms`), doubles_eval, smart_player, doubles_pilot, vgc_pilot, ga_core, battle, eval, decision_logger, ga_genome, ladder_opp, meta_weights, opp_actions`.
+- Torch-free: `paths, regmc_db, showdown_validator, damage, opp_model, speed_model, mega_model, battle_memory (poke_env only imported inside `repair_mega_forms`), doubles_eval, smart_player, doubles_pilot, vgc_pilot, ga_core, battle, eval, decision_logger, ga/* (config, genome, fitness, evaluator, population, checkpoint, engine), showdown_server, ladder_opp, meta_weights, opp_actions`.
   `battle` reaches torch only through the lazy `BCPlayer` import (`battle.py:84-86`); `DoublesPilot` import is also lazy (`battle.py:87-89`).
 
 ---
@@ -152,13 +152,13 @@ bc_player <-- bc_model, state_encoder
 bc_train <-- bc_model, state_encoder
 doubles_pilot <-- doubles_eval, support_value, turn_sim
 decision_logger <-- ga_core
-ga_genome <-- ga_core
+ga.genome <-- ga.population, ga.evaluator, ga.engine, ga.checkpoint, ga_core
 ladder_opp <-- battle
 mega_model <-- battle_memory, damage
 meta_weights <-- regmc_db
 ```
 - Torch-importing modules: `state_encoder` (torch at `state_encoder.py:30`), `bc_model`, `bc_player`, `bc_train`.
-- Torch-free: `paths, regmc_db, showdown_validator, damage, opp_model, speed_model, mega_model, battle_memory (poke_env only imported inside `repair_mega_forms`), doubles_eval, smart_player, doubles_pilot, vgc_pilot, ga_core, battle, eval, decision_logger, ga_genome, ladder_opp, meta_weights`.
+- Torch-free: `paths, regmc_db, showdown_validator, damage, opp_model, speed_model, mega_model, battle_memory (poke_env only imported inside `repair_mega_forms`), doubles_eval, smart_player, doubles_pilot, vgc_pilot, ga_core, battle, eval, decision_logger, ga/* (config, genome, fitness, evaluator, population, checkpoint, engine), showdown_server, ladder_opp, meta_weights`.
   `battle` reaches torch only through the lazy `BCPlayer` import (`battle.py:84-86`); `DoublesPilot` import is also lazy (`battle.py:87-89`).
 
 ---
@@ -493,40 +493,40 @@ Foe Mega prediction from real ladder replays. `candidates(mem, side, turn=None)`
 
 ---
 
-## ga_core.py
-1556 lines, torch-free. Imports `regmc_db`, `showdown_validator`, `battle`, `paths`. Organised in banner sections:
+## GA engine: `src/ga/` package + `ga_core.py` facade
+Split out of the former single `ga_core.py` on 2026-11-18 (behavior unchanged except
+the fitness-ordering fix, see STATE.md). Torch-free. Pinned by `tests/test_ga_golden.py`
+(stdout, checkpoint JSON, champion files, RNG consumption of a seeded fake run).
 
-| Lines | Section | Content |
-|---|---|---|
-| 1-109 | Header + constants | `FORMAT="gen9championsvgc2026regmc"`, `UID_MAX`, `EV_BUDGET=66`, `EV_STAT_CAP=32`, `MAX_REBUILD_TRIES=20`, `BATTLE_TIMEOUT=20`, `MIN_TURNS=3`, `VAL_POOL_SIZE=30`, `TRAIN_SAMPLE_SIZE` (env `GA_TRAIN_SAMPLE`, 250, `:75`), `VAL_SPLIT_SEED=42`, early-stop (`EARLY_STOP_MIN_BATTLES=50`, `EARLY_STOP_WIN_RATE=0.15`), `CANONICAL_ITEMS`, `PROTECT_MOVES`, `FAKEOUT_MOVES` |
-| 110-229 | Cached roster + data loaders | `_BASE_SPECIES`, `move_priors_for` (`data/species_move_priors.json`, top 8), `meta_items_for` (`data/meta_items.json`), `_load_teams` (resolves by basename in `data/regional_teams`; raises if a non-empty list loads zero), `regional_pool` (pool_split.json "train", else glob), `_split_train_val` (deterministic shuffle), `heldout_pool` ("holdout") |
-| 230-530 | Set generation | `_legal_items_for` (lru_cache; mega stone / itemUser filtering), `_species_role` (physical/special/support), `_random_mon` (priors-first, role-matched; EVs/nature follow role; excludes "randomNormal" target moves), `_pick_item_for` (mega stone -> meta-weighted -> canonical -> any legal), `build_random_genome(constraints)` |
-| 532-560 | Serialization | `genome_to_text` (Level 50, always writes `EVs:`), `text_to_genome` (None unless exactly 6 mons) |
-| 562-628 | Realism constraints | `_force_move_on_slot`, `_enforce_composition` (soft: Protect and Fake Out/redirection coverage) |
-| 630-701 | Legality filter | `filter_legal_genomes` (`:633`): batched `SV.check_teams`, rebuild failed slots up to 20 tries, then composition pass. Output may be SHORTER than input |
-| 703-890 | Operators | `mutate_species/item/ability/nature/evs/move`, `mutate(mons, constraints, n=1-4)` on a deepcopy over free slots; `crossover` (per-slot parent pick; locked slots take the parent holding the species; species/item clause repair) |
-| 892-969 | Fitness | `async evaluate(mons, opponents, idx, total)` (`:910`) |
-| 967-1462 | Island model | `Island`, `ring_migrate`, `restart_showdown`, checkpoints, `breed`, `_eval_on_subset`, `run_islands` |
+| Module | Content |
+|---|---|
+| `src/ga_core.py` | Facade only: re-exports every historical name (`run_islands`, `FORMAT`, `UID_MAX`, `CHAMPION_DIR`, genome helpers, `_fitness`, `Island`, `restart_showdown`, ...). Existing callers (`run/`, `tools/`, `src/eval.py`, `src/audit_before_launch.py`, tests) import from here |
+| `src/ga/config.py` | `FORMAT`, `UID_MAX`, `CHECKPOINT_DIR`, `CHAMPION_DIR`; frozen `GAConfig` (battle_timeout 20, min_turns 3, fitness_pilot/opp, meta_weights, train_sample_size 250, early_stop 50 / 0.15, showdown port/dir); `DEFAULT = GAConfig.from_env()` read once at import |
+| `src/ga/genome.py` | Genome encoding, random genomes, mutation, crossover, legality filter, opponent pools (see below) |
+| `src/ga/fitness.py` | `weighted_fitness(outcomes, opponents, meta_weights)` -> `(fit, wins, valid_n)`; `opp_weight` (cached `MW.team_weight`). Outcomes pair with opponents BY INDEX |
+| `src/ga/evaluator.py` | `Evaluator(config, concurrency)`: owns the semaphore; `evaluate` (early stop), `eval_on_subset` (validation slice) |
+| `src/ga/population.py` | `Island` (population + bookkeeping methods, checkpoint shape `to_dict/from_dict`), `ring_migrate`, `_strip_species` |
+| `src/ga/checkpoint.py` | `save_checkpoint`, `load_latest_checkpoint`, `load_islands`, `write_champions` |
+| `src/ga/engine.py` | `run_islands` + `_startup_checks`, `_resume_or_init`, `_evolve_island` |
+| `src/showdown_server.py` | `is_up(port)`, `restart(port, dir, wait_s=60, tries=2)`, `ensure(port, dir)` (not GA-specific) |
 
-### Key behaviours (ga_core)
+### Key behaviours (GA engine)
 - Genome = list of 6 dicts `{species, item, ability, nature, evs, moves}`; constraints = `{slot: species}` (locked slots). Island constraint keys are stringified for JSON.
-- `evaluate`: invalid genomes (local `DB.validate_team`) score 0.0; plays 50 "head" battles first and aborts if head fitness < 0.15, else plays the tail; `None` battle results are dropped from the denominator. Fitness is the meta-weighted win rate (`_fitness`, `META_WEIGHTS`, `src/meta_weights.py`; head, tail and `_eval_on_subset` all weighted). Pilot = `FITNESS_PILOT` (default `vgc`, flag `use_turn_sim` on) vs `FITNESS_OPP` (default `ladder`), via `battle.run_battle`, `min_turns=3`; `GA_PILOT=heuristic GA_OPP=heuristic` restores the old environment.
-- Train/val: training pool is split with seed 42 into train / `VAL_POOL_SIZE=30` val; heldout pool is for final eval only. Per-generation opponent sample = `min(battles_per_genome, TRAIN_SAMPLE_SIZE, len(train_pool))`.
-- `_SEM` is a module-global semaphore set by `run_islands`.
-- `Island` (`:997`): name, constraints, population, fitness, `best_ever`, `best_val_ever`, stagnation, history, `seed_paths`; `to_dict/from_dict`.
-- `inject_immigrants(island, n)` replaces the worst n; `ring_migrate(n=2)`: island i receives from i-1, replaces worst, strips foreign locked species (`_strip_species`).
-- `restart_showdown` (`:1275`): `pkill -9 -f "pokemon-showdown start {port}"`, relaunch `node pokemon-showdown start {port} --no-security`, polls up to `wait_s`=60 s, retries the kill+launch once (`tries=2`), returns bool. `ensure_showdown()` (called at the start of `run_islands`) starts the server if it is down; `run_islands` raises `RuntimeError` if a mid-run restart fails, so the island exits non-zero and `ga_parallel.sh` respawns it from the last checkpoint. `run_islands` also loads the meta-weight usage file at startup and fails with a hint if it is missing.
-- `save_checkpoint` writes `output/checkpoints/v6/<run_id>/gen_NNNN.json`, keeping newest plus multiples of 5; `load_latest_checkpoint` resumes.
-- `breed`: elites `max(2, n//3)`, immigration rate 0.20, `filter_legal_genomes`, top up to pop size.
-- `run_islands` defaults (`:1393-1400`): pop 10, gens 999, battles 800, `concurrency=int(env GA_CONCURRENCY, "3")` (evaluated at def time), immigration 0.20, stagnation_limit 5, diversity_floor 15 unique species, migration_every 5, showdown_restart_every 10. Per gen: evaluate islands sequentially (genomes within an island concurrently) -> val-evaluate the train-best -> diversity rescue (3 immigrants) -> stagnation restart (replace worst half) -> ring migration -> checkpoint every gen.
-- Outputs at end (`ga_core.py:1540-1556`): `output/champions/ga_<run_id>_island_<name>.txt` and `..._train.txt`.
+- `Evaluator.evaluate`: invalid genomes (local `DB.validate_team`) score 0.0; with more than 50 opponents it plays 50 "head" battles first and aborts if head fitness < 0.15, else plays the tail; `None` battle results are dropped from the denominator. Results are gathered in opponent order (`asyncio.gather`). Fitness is the meta-weighted win rate (`src/ga/fitness.py`, `src/meta_weights.py`; head, tail and the validation slice all weighted). Pilot = `fitness_pilot` (default `vgc`) vs `fitness_opp` (default `ladder`), via `battle.run_battle` (looked up on the module at call time), `min_turns=3`; `GA_PILOT=heuristic GA_OPP=heuristic` restores the old environment.
+- Train/val: training pool is split with seed 42 into train / `VAL_POOL_SIZE=30` val; heldout pool is for final eval only. Per-generation opponent sample = `min(battles_per_genome, train_sample_size, len(train_pool))`. `run/ga_island.py` uses 50 battles/genome, so it never takes the early-stop path.
+- `Island`: name, constraints, population, fitness, `best_ever`, `best_val_ever`, stagnation, history, `seed_paths`. Methods: `init_population`, `breed` (elites `max(2, n//3)`, immigration 0.20, legality gate, top-up), `replace_worst(n)` (diversity rescue = 3, stagnation restart = worst half via `restart_stagnant`), `unique_species`, `record_fitness`, `record_validation`, `append_history`.
+- `ring_migrate(n=2)`: island i receives from i-1, replaces worst, strips species locked on the source but not here (`_strip_species`).
+- All randomness uses the global `random` module in a fixed order; the seeded launchers rely on it and the golden test pins it.
+- `showdown_server.restart`: `pkill -9 -f "pokemon-showdown start {port}"`, relaunch `node pokemon-showdown start {port} --no-security` in `SHOWDOWN_DIR`, polls up to `wait_s`=60 s, retries once (`tries=2`), returns bool. `run_islands` calls `ensure` at startup and raises `RuntimeError` if a mid-run restart fails, so the island exits non-zero and `ga_parallel.sh` respawns it from the last checkpoint. It also loads the meta-weight usage file at startup and fails with a hint if it is missing.
+- `save_checkpoint` writes `output/checkpoints/v6/<run_id>/gen_NNNN.json`, keeping newest plus multiples of 5; `load_latest_checkpoint` + `load_islands` resume.
+- `run_islands` defaults: pop 10, gens 999, battles 800, `concurrency=int(env GA_CONCURRENCY, "3")` (evaluated at import), immigration 0.20, stagnation_limit 5, diversity_floor 15 unique species, migration_every 5, showdown_restart_every 10. Per gen: evaluate islands sequentially (genomes within an island concurrently) -> val-evaluate the train-best -> diversity rescue -> stagnation restart -> breed -> ring migration -> checkpoint every gen.
+- Outputs at end (`checkpoint.write_champions`): `output/champions/ga_<run_id>_island_<name>.txt` and `..._train.txt`.
 
-### Gotchas (ga_core)
-- `META_ITEM_BIAS` was an unused constant and has been removed. Item choice uses meta items via `_pick_item_for`.
-- Champion selection is train-best by design (STATE.md §5, val-selection dropped); `ga_<id>_island_X.txt` and `_X_train.txt` are identical in practice, val is only a fallback. The code comment now says so.
-- `SHOWDOWN_DIR = paths.showdown_dir()` (env `SHOWDOWN_DIR` honored). `SHOWDOWN_PORT` is read from env at import.
-- `FORMAT` and `UID_MAX` are shared with eval via import from here.
-- **Correction**: The documentation was inaccurate in its claim that "Everything here is CPU/async orchestration; the only heavy dependency is poke_env". While ga_core does use poke_env for battle execution, it also uses several other significant dependencies including asyncio, subprocess, urllib, and has complex data processing logic. The statement about heavy dependencies should be clarified to reflect that the main computational load comes from battle simulation rather than from torch usage.
+### Gotchas (GA engine)
+- Champion selection is train-best by design (STATE.md §5, val-selection dropped); `ga_<id>_island_X.txt` and `_X_train.txt` are identical in practice, val is only a fallback.
+- `GAConfig.DEFAULT` and the `ga_core` uppercase aliases are read from the environment at import; set env vars before the process starts. `SHOWDOWN_PORT` is also read separately by `battle_runner.py` and `player_factory.py`.
+- `FORMAT` and `UID_MAX` are shared with eval via import from `ga_core` (defined in `src/ga/config.py`).
+- Changing GA output on purpose (log lines, checkpoint shape, operators) requires regenerating `tests/golden/ga_golden.json` (`PYTHONHASHSEED=0 python tests/golden/ga_harness.py --write`) and saying so in the commit.
 
 ## opp_actions.py (163 lines)
 Foe action prediction: P(a foe mon uses a Protect-family move / Fake Out / Trick Room THIS turn).
@@ -632,13 +632,13 @@ Pre-launch sanity script; logic lives in `main()` behind a `__main__` guard (imp
 Empty initialization file. This file serves as a Python package initializer and currently contains no specific functionality or imports.
 
 ---
-## ga_genome.py (821 lines)
-Genetic algorithm genome builder for VGC teams.
+## ga/genome.py (821 lines)
+Genetic algorithm genome builder for VGC teams (moved from `src/ga_genome.py` on 2026-11-18).
 - Generates and evolves Pokémon teams using a genetic algorithm approach.
 - Handles EV distribution, species selection, item picking, ability assignment, and move selection.
 - Implements constraints and realism checks to produce viable tournament teams.
 - Uses move priors and meta data to guide evolution toward realistic team compositions.
-- Importers: ga_core. Tests: `tests/test_ga_genome.py`.
+- Importers: `src/ga/*` (population, evaluator, engine, checkpoint), re-exported by `ga_core`. Tests: `tests/test_ga_golden.py` (population operators).
 
 ## ladder_opp.py (77 lines)
 Ladder-like opponent that mimics human behavior patterns.
@@ -886,10 +886,11 @@ Battle runner that executes battles with poke_env.
 | Var | Where | Default |
 |---|---|---|
 | `POKEMORGRAD_ROOT` | paths.py:15 | repo parent of src/ |
-| `SHOWDOWN_DIR` | paths.py:43 | `~/pokemon-showdown` (not used by ga_core) |
-| `SHOWDOWN_PORT` | battle.py:59, ga_core.py:1072 | 8000 |
-| `GA_CONCURRENCY` | ga_core.py:1398, eval.py:27 | "3" |
-| `GA_TRAIN_SAMPLE` | ga_core.py:75 | 250 |
+| `SHOWDOWN_DIR` | paths.py:43, ga/config.py | `~/pokemon-showdown` (where the GA restarts Showdown) |
+| `SHOWDOWN_PORT` | battle.py:59, ga/config.py | 8000 |
+| `GA_CONCURRENCY` | ga/engine.py (`run_islands` default), eval.py:27 | "3" |
+| `GA_TRAIN_SAMPLE` | ga/config.py | 250 |
+| `GA_PILOT` / `GA_OPP` / `GA_META_WEIGHTS` | ga/config.py | `vgc` / `ladder` / `1` |
 | `BC_PILOT_PATH` | bc_player.py:33 | output/models/bc_best.pt |
 | `BC_DATA/OUT/MODEL/BATCH/EPOCHS/PATIENCE` | bc_train.py | see above |
 | `DOUBLES_KO_BONUS`, `DOUBLES_MIN_GAIN` | doubles_pilot.py:70-73 | 1.0 / 0.01 |

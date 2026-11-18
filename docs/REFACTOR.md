@@ -179,6 +179,24 @@ Do not start this until:
 2. That harness passes on the current code (establishing a baseline)
 3. After the change, the same harness passes
 
+### Status 2026-11-18 — `ga_core.py` split into `src/ga/`
+Done in one change, behavior pinned by `tests/test_ga_golden.py` (see STATE.md):
+`ga_core.py` is a re-export facade over `src/ga/{config,genome,fitness,evaluator,
+population,checkpoint,engine}.py` + `src/showdown_server.py`. B4 is done
+(`population._top_up`, `Island.replace_worst`). B3 is partly done: both paths share
+`Evaluator._start_battle` and `weighted_fitness`; they stay two methods on purpose
+(one logs and early-stops, the other does neither). B2 and B5 live in
+`src/ga/genome.py` and are still open.
+
+Known debt left on purpose:
+- `src/ga/genome.py` (821 lines) is the next split candidate.
+- `SHOWDOWN_PORT` is read separately by `battle_runner.py` and `player_factory.py`;
+  `GAConfig` is not their source of truth.
+- `tools/paired_eval.py` / `tools/paired_run.sh` restart Showdown on their own
+  instead of using `src/showdown_server.py`.
+- `GAConfig.from_env` does not validate values (e.g. a typo in `GA_PILOT` fails late).
+- Tools and `src/eval.py` still import through the `ga_core` facade.
+
 ### B3 — collapse `evaluate` and `_eval_on_subset`
 `ga_core.py:898` (`evaluate`, with early-stop) and `1364`
 (`_eval_on_subset`, no early-stop) share the same

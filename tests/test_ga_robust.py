@@ -11,10 +11,11 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from src import eval as E  # noqa: E402
 from src import ga_core as G  # noqa: E402
 from src import meta_weights as MW  # noqa: E402
+from src import showdown_server as S  # noqa: E402
 
 
 class _Fake:
-    """Replaces ga_core's subprocess / sleep / server probe; the server 'answers' from probe N on."""
+    """Replaces showdown_server's subprocess / sleep / server probe; the server 'answers' from probe N on."""
 
     def __init__(self, up_from_probe):
         self.up_from, self.probes, self.launches = up_from_probe, 0, 0
@@ -25,18 +26,18 @@ class _Fake:
     def popen(self, *a, **k):
         self.launches += 1
 
-    def up(self):
+    def up(self, *a):
         self.probes += 1
         return self.up_from is not None and self.probes >= self.up_from
 
 
 def _patched(fake, fn):
-    saved = (G.subprocess.run, G.subprocess.Popen, G.time.sleep, G._showdown_up)
-    G.subprocess.run, G.subprocess.Popen, G.time.sleep, G._showdown_up = fake.run, fake.popen, (lambda s: None), fake.up
+    saved = (S.subprocess.run, S.subprocess.Popen, S.time.sleep, S.is_up)
+    S.subprocess.run, S.subprocess.Popen, S.time.sleep, S.is_up = fake.run, fake.popen, (lambda s: None), fake.up
     try:
         return fn()
     finally:
-        G.subprocess.run, G.subprocess.Popen, G.time.sleep, G._showdown_up = saved
+        S.subprocess.run, S.subprocess.Popen, S.time.sleep, S.is_up = saved
 
 
 def test_restart_waits_past_15s():

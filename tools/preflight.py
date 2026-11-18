@@ -64,12 +64,12 @@ def main():
     all_ok &= check("src/ and run/ committed", r.returncode == 0,
                     "clean" if r.returncode == 0 else "uncommitted changes — commit or stash")
 
-    # 5. Constraint code present in ga_core (silent regression check)
-    gc = (ROOT / "src" / "ga_core.py").read_text()
+    # 5. Constraint / early-stop code present in the GA package (silent regression check)
+    ga_src = "".join(p.read_text() for p in sorted((ROOT / "src" / "ga").glob("*.py")))
     for name in ["_species_role", "_preferred_pool", "_enforce_composition",
                  "move_priors_for", "CANONICAL_ITEMS", "VAL_POOL_SIZE",
-                 "EARLY_STOP_MIN_BATTLES"]:
-        all_ok &= check(f"ga_core.{name}", name in gc)
+                 "early_stop_min_battles"]:
+        all_ok &= check(f"src/ga: {name}", name in ga_src)
 
     # 6. Island spec configured with at least one constrained island
     gr = (ROOT / "run" / "ga_run.py").read_text()

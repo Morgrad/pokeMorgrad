@@ -11,6 +11,9 @@
 
 ---
 
+**GA package split + fitness-ordering fix (2026-11-18).** `src/ga_core.py` was split into the `src/ga/` package (`config`, `genome` (was `src/ga_genome.py`), `fitness`, `evaluator`, `population`, `checkpoint`, `engine`) plus `src/showdown_server.py`; `ga_core.py` is now a re-export facade, so every existing import still works and `run_islands`' signature, stdout, checkpoint JSON and champion files are byte-identical (pinned by the new golden-master test `tests/test_ga_golden.py`). Settings are a frozen `GAConfig` (`src/ga/config.py`), still read from the same env vars once at import. Removed from `ga_core`: `evaluate` / `_eval_on_subset` / `_SEM` (no callers; replaced by `src.ga.evaluator.Evaluator`). **Bug fixed (only behavior change):** with more than 50 opponents per genome, `evaluate` collected results in completion order (`asyncio.wait` sets, `as_completed`) but weighted them by opponents in submission order, so the meta-weighted fitness was noise around the true value (about 4 points off in the regression test, and different run to run). Affected: `run/ga_run.py` (150 opponents/genome). NOT affected: `run/ga_island.py` / `ga_parallel.sh` (50 opponents/genome, single-batch path), `src/eval.py`, the validation slice. Old `ga_run.py` scores are not comparable with post-fix scores. Tests added: `test_ga_golden`, `test_ga_eval_order`, `test_ga_config`; `test_island_wiring` now checks the intended specs (A seeded with the baseline, B Umbreon lock + 5 free slots, C free). `tools/preflight.py` check 5 now looks in `src/ga/` (it had been failing since the genome code left `ga_core.py`).
+
+
 ## HANDOFF (2026-10-16, end of day) - read this first to continue
 
 **Goal.** A sim that adapts to the meta from the teams and replays fed to it, to find the best team for Umbreon (the only constraint in islands A and B). Umbreon builds vary (Toxic, Moonlight, Wish, Taunt...), so support moves must be valued from move data, not per species.

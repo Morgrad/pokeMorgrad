@@ -52,13 +52,13 @@ Contents
 
 **`species_move_priors.json`** - `{species: [{"move": str, "count": int}, ...]}` (top 30 per species from ladder replays, or top 20 from tournament teams). Example: `"Gholdengo": [{"move":"Shadow Ball","count":867},...]`. Counts of 867 etc. show this on-disk version is replay/ladder-derived (identical to `.ladder.bak.json`); the tournament regeneration is pending. Read by `src/bc_train.py:28` and `src/bc_player.py:34` (BC legality mask). `tools/preflight.py:55` checks it exists.
 
-**`meta_items.json`** - `{species: [{"item": str, "count": int, "pct": float}, ...]}`. Example: `"Excadrill": [{"item":"Focus Sash","count":21,"pct":91.3}, ...]`. Read lazily by `src/ga_core.py:142-153` (`meta_items_for`, weights item draws). Generator unclear: no script writes it.
+**`meta_items.json`** - `{species: [{"item": str, "count": int, "pct": float}, ...]}`. Example: `"Excadrill": [{"item":"Focus Sash","count":21,"pct":91.3}, ...]`. Read lazily by `src/ga/genome.py` (`meta_items_for`, weights item draws). Generator unclear: no script writes it.
 
 ## Team pools and splits
 
-**`regional_teams/`** - Showdown-format team text files, one team each. 350 `.txt` by prefix: `vgc_*` 150 (VGCPastes, current train), `real_ev_*` 100 (current holdout), `baltimore_*` 22, `frankfurt_*` 34, `louisville_*` 26, `brisbane_*` 9, `recife_*` 9 (100 Limitless tournament teams on disk). Subdirs: `_archive_2026-10-15/` (445 old train files moved by `swap_pool.py`), `_rejected/` (currently empty; `normalize_tournament.py` moves unfixable files here). The 100 tournament-prefixed files are NOT in `pool_split.json` yet (they need `extend_train_pool.py <prefix>` per prefix). Note `src/ga_core.py:119` globs this directory; split entries are resolved by basename against this directory (ga_core.py:160).
+**`regional_teams/`** - Showdown-format team text files, one team each. 350 `.txt` by prefix: `vgc_*` 150 (VGCPastes, current train), `real_ev_*` 100 (current holdout), `baltimore_*` 22, `frankfurt_*` 34, `louisville_*` 26, `brisbane_*` 9, `recife_*` 9 (100 Limitless tournament teams on disk). Subdirs: `_archive_2026-10-15/` (445 old train files moved by `swap_pool.py`), `_rejected/` (currently empty; `normalize_tournament.py` moves unfixable files here). The 100 tournament-prefixed files are NOT in `pool_split.json` yet (they need `extend_train_pool.py <prefix>` per prefix). Note `src/ga/genome.py` globs this directory; split entries are resolved by basename against this directory.
 
-**`pool_split.json`** - `{"train": ["vgc_MC210.txt", ...], "holdout": ["real_ev_000.txt", ...]}`. 150 train, 100 holdout (lines 3-152 and 155-254). Read by `ga_core.regional_pool()` (line 187) and `heldout_pool()` (line 217), hence by eval, GA, pilot tools. In the GA the train pool is further cut into train and a 30-team validation slice (`VAL_POOL_SIZE`, seed 42; ga_core.py:70,202,1449).
+**`pool_split.json`** - `{"train": ["vgc_MC210.txt", ...], "holdout": ["real_ev_000.txt", ...]}`. 150 train, 100 holdout (lines 3-152 and 155-254). Read by `regional_pool()` and `heldout_pool()` (`src/ga/genome.py`, re-exported by `ga_core`), hence by eval, GA, pilot tools. In the GA the train pool is further cut into train and a 30-team validation slice (`VAL_POOL_SIZE`, seed 42; `src/ga/genome.py`).
 
 **`pool_split_golden.json`** - the original frozen holdout (550 lines; uses a longer path format). `extend_train_pool.py` compares the current holdout against it. Note the current `pool_split.json` holdout (`real_ev_*`) is NOT the golden holdout, so that script's golden check will warn.
 
@@ -83,12 +83,12 @@ Contents
 | Path | Contents |
 |---|---|
 | `output/champions/` | Champion team texts. Names: `ga_<run>_island_<X>.txt` and `ga_<run>_island_<X>_train.txt` (e.g. `ga_p4_island_A.txt`, `ga_p4_island_A_train.txt`); older `ga_run1/run2_island_*`, `CHAMPION_2026-10-12.txt`; subdirs `_legacy_20261011/`, `_smoke_archive/`, `archive/`. Leftover un-renamed `ga_p4_A_island_A_train.txt` (and B, C) exist because `ga_parallel.sh:108-116` renames only the non-`_train` files. No `ga_p2_*` files on disk |
-| `output/checkpoints/v6/` | `<run_id>[_<X>]/gen_NNNN.json` every 5 generations: `p1_{A,B,C}` ... `p4_{A,B,C}` (parallel runs), `run1` (serial). Written by `ga_core.save_checkpoint` (CHECKPOINT_DIR, ga_core.py:1069); resumed automatically for the same run_id |
+| `output/checkpoints/v6/` | `<run_id>[_<X>]/gen_NNNN.json` every 5 generations: `p1_{A,B,C}` ... `p4_{A,B,C}` (parallel runs), `run1` (serial). Written by `save_checkpoint` (`src/ga/checkpoint.py`, `CHECKPOINT_DIR` in `src/ga/config.py`); resumed automatically for the same run_id |
 | `output/models/` | BC weights: `bc_best.pt` (default for `BC_PILOT_PATH`, `src/bc_player.py:32`), `bc_heuristic*.pt`, `bc_v4_best.pt`, `bc_v5_*.pt`, `bc_v6a.pt` |
 | `output/archive/2026-10-11-10h-run/` | Archived outputs of an early 10-hour run |
 | Logs | GA/server logs are NOT in output/: they go to `/tmp/ga_<run>_<X>.log`, `/tmp/ga_<run>_<X>_watchdog.log`, `/tmp/showdown_<port>.log`, `/tmp/showdown.log` (`run/ga_parallel.sh:31,62,66`, `ops/start_server.sh:6`) and are lost on WSL restart. `output/replays/pilot_probe.jsonl` is the default probe output |
 
-Champion semantics, per code (`src/ga_core.py:1542-1556`): the un-suffixed file is written from `best_ever` (training-best) whenever it exists, falling back to `best_val_ever`; the `_train` file is always `best_ever`. So the two are normally identical, although comments and OPERATIONS.md call the un-suffixed one "val-selected". Verify before relying on it.
+Champion semantics, per code (`src/ga/checkpoint.py`, `write_champions`): the un-suffixed file is written from `best_ever` (training-best) whenever it exists, falling back to `best_val_ever`; the `_train` file is always `best_ever`. So the two are normally identical, although comments and OPERATIONS.md call the un-suffixed one "val-selected". Verify before relying on it.
 
 ## archive/
 

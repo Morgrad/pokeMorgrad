@@ -22,7 +22,7 @@ dev = ["ruff", "pytest"]
 scrape = ["beautifulsoup4", "openpyxl"]
 
 [tool.setuptools]
-packages = ["src"]
+packages = ["src", "src.ga"]
 
 [tool.ruff]
 line-length = 100

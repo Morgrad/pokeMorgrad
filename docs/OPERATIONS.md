@@ -88,7 +88,7 @@ Runs \~16 checks in about two seconds:
 
  4. src/ and run/ have no uncommitted changes
 
- 5. Constraint functions present in ga_core (silent-removal guard)
+ 5. Constraint / early-stop code present in src/ga/ (silent-removal guard)
 
  6. Island spec configured in run/ga_run.py (serial path; parallel specs
     live in run/ga_island.py and are not checked here)

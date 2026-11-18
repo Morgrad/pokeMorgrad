@@ -7,7 +7,7 @@ Contents
 - [Showdown servers](#showdown-servers)
 - [Environment variables](#environment-variables)
 - [CLI arguments and defaults](#cli-arguments-and-defaults)
-- [GA tunables (src/ga_core.py)](#ga-tunables-srcga_corepy)
+- [GA tunables (src/ga/config.py, src/ga/genome.py)](#ga-tunables-srcgaconfigpy-srcgagenomepy)
 - [GA run parameters (run/)](#ga-run-parameters-run)
 - [Pilot and evaluation tunables](#pilot-and-evaluation-tunables)
 - [BC training constants](#bc-training-constants)
@@ -16,7 +16,7 @@ Contents
 ## Python environment and pyproject
 
 - Venv: `~/venv-pokemorgad` on this host. Activate with `source ~/venv-pokemorgad/bin/activate`. `run/ga_parallel.sh:16` and `tools/verify.sh:4` hard-code this. README setup says `.venv` (stale for this host).
-- `pyproject.toml`: project `pokemorgrad` 0.1.0, `requires-python >=3.10`, setuptools build, `packages = ["src"]` only (`run/` and `tools/` are not packaged; run `python -m run.ga_island`, `python -m src.eval` from the repo root). Dependencies: `torch>=2.0`, `numpy`, `poke-env>=0.8`. Optional `dev`: `ruff`, `pytest`. Ruff: line-length 100, target py310, select `E,F,W,I`, ignore `E501,E701,E702`, per-file E402 ignore for `tools/*`, `run/*`, `src/battle.py`. No pytest config section. `bs4` and `openpyxl` (used by tools/scrape_*) are not declared.
+- `pyproject.toml`: project `pokemorgrad` 0.1.0, `requires-python >=3.10`, setuptools build, `packages = ["src", "src.ga"]` only (`run/` and `tools/` are not packaged; run `python -m run.ga_island`, `python -m src.eval` from the repo root). Dependencies: `torch>=2.0`, `numpy`, `poke-env>=0.8`. Optional `dev`: `ruff`, `pytest`. Ruff: line-length 100, target py310, select `E,F,W,I`, ignore `E501,E701,E702`, per-file E402 ignore for `tools/*`, `run/*`, `src/battle.py`. No pytest config section. `bs4` and `openpyxl` (used by tools/scrape_*) are not declared.
 - Tests: `tests/test_damage.py`, `tests/test_doubles_eval.py`, `tests/test_speed_model.py`, `tests/test_blend_priors.py`, `tests/test_archetypes.py`, `tests/test_mega_z_lines.py`, `tests/test_battle_memory.py` (plain scripts, pytest also works).
 - Showdown/Node: Showdown checkout at `~/pokemon-showdown` (run with `node pokemon-showdown ...`).
 
@@ -36,13 +36,13 @@ Each island process runs with `GA_CONCURRENCY=8` and its own `SHOWDOWN_PORT` (`g
 
 | Variable | Default | Read at | Effect |
 |---|---|---|---|
-| `SHOWDOWN_PORT` | `8000` | `src/battle.py:59`; `src/ga_core.py:1072`; `run/ga_island.py:37`; `tools/pilot_probe.py:23` | Port poke_env players connect to (`ws://localhost:<port>/showdown/websocket`) and the port the GA restarts every `showdown_restart_every` gens (`ga_core.py:1283-1294`). Set per island by ga_parallel.sh. Read at import time, so it must be set before the process starts. `src/eval.py` has no port flag, only this variable |
-| `GA_CONCURRENCY` | `3` (src/eval.py:27, ga_core.py:1398, run/ga_run.py:60); `8` in `run/ga_island.py:38`; `8` forced by ga_parallel.sh:60 | same files | Simultaneous battles per server. Serial GA/eval default 3; parallel island default 8. Also the default for `eval --concurrency` |
+| `SHOWDOWN_PORT` | `8000` | `src/battle.py:59`; `src/ga/config.py` (`GAConfig.showdown_port`); `run/ga_island.py:37`; `tools/pilot_probe.py:23` | Port poke_env players connect to (`ws://localhost:<port>/showdown/websocket`) and the port the GA restarts every `showdown_restart_every` gens (`src/ga/engine.py`, `src/showdown_server.py`). Set per island by ga_parallel.sh. Read at import time, so it must be set before the process starts. `src/eval.py` has no port flag, only this variable |
+| `GA_CONCURRENCY` | `3` (src/eval.py:27, src/ga/engine.py `run_islands` default, run/ga_run.py:60); `8` in `run/ga_island.py:38`; `8` forced by ga_parallel.sh:60 | same files | Simultaneous battles per server. Serial GA/eval default 3; parallel island default 8. Also the default for `eval --concurrency` |
 | `ISLAND_NAME` | `A` | `run/ga_island.py:36` | Island selector, uppercased; must be A, B or C (else exit 1, lines 51-53). Selects constraints, seed paths, RNG seed (below) |
-| `GA_TRAIN_SAMPLE` | `250` | `src/ga_core.py:75` | Opponents sampled per generation from the train pool when it is larger. Current train pool is 150, so no sampling occurs |
-| `GA_PILOT` | `vgc` | `src/ga_core.py` (`FITNESS_PILOT`) | Our pilot in GA fitness battles (`heuristic`, `vgc`, `doubles`, `bc`). `heuristic` + `GA_OPP=heuristic` = the pre-2026-10-16 environment; scores are not comparable across settings |
-| `GA_OPP` | `ladder` | `src/ga_core.py` (`FITNESS_OPP`) | Opponent pilot in GA fitness battles (`ladder` = heuristic + Protect/Fake Out at replay rates, or `heuristic`) |
-| `GA_META_WEIGHTS` | `1` | `src/ga_core.py` (`META_WEIGHTS`) | `1` = fitness is the win rate weighted by ladder usage of each opponent team (`data/species_ladder_usage.json`); `0` = plain win rate |
+| `GA_TRAIN_SAMPLE` | `250` | `src/ga/config.py` (`train_sample_size`) | Opponents sampled per generation from the train pool when it is larger. Current train pool is 150, so no sampling occurs |
+| `GA_PILOT` | `vgc` | `src/ga/config.py` (`fitness_pilot`; alias `ga_core.FITNESS_PILOT`) | Our pilot in GA fitness battles (`heuristic`, `vgc`, `doubles`, `bc`). `heuristic` + `GA_OPP=heuristic` = the pre-2026-10-16 environment; scores are not comparable across settings |
+| `GA_OPP` | `ladder` | `src/ga/config.py` (`fitness_opp`; alias `ga_core.FITNESS_OPP`) | Opponent pilot in GA fitness battles (`ladder` = heuristic + Protect/Fake Out at replay rates, or `heuristic`) |
+| `GA_META_WEIGHTS` | `1` | `src/ga/config.py` (`meta_weights`; alias `ga_core.META_WEIGHTS`) | `1` = fitness is the win rate weighted by ladder usage of each opponent team (`data/species_ladder_usage.json`); `0` = plain win rate |
 | `GA_GENERATIONS` | `999` | `run/ga_island.py` | Generation cap for one island process (2 for a smoke test) |
 | `DOUBLES_KO_BONUS` | `1.0` (falls back to `doubles_eval.KO_BONUS`) | `src/doubles_pilot.py:70-71` | KO term weight in DoublesPilot's pair score. Sweep 0-4 on 2026-10-16 found a plateau from 1.0 up, 0 about 4 points worse (comment `doubles_eval.py:27`). Overridden by the `ko_bonus=` constructor arg |
 | `DOUBLES_MIN_GAIN` | `0.01` (falls back to `doubles_eval.MIN_GAIN`) | `src/doubles_pilot.py:72-73` | Minimum improvement over vanilla's pair before DoublesPilot deviates |
@@ -82,9 +82,9 @@ Only `src/eval.py` uses argparse (lines 150-159). `run/` scripts use positional 
 | `bash run/ga_overnight.sh` | none | n/a | Serial run1 then run2 at 2.5h each (lines 52,57), deletes `output/checkpoints/v6/run1` and `run2` first (line 33) |
 | `tools/*` | see `tools.md` | | |
 
-## GA tunables (src/ga_core.py)
+## GA tunables (src/ga/config.py, src/ga/genome.py)
 
-Defined at `ga_core.py:39-107`; changing them changes GA behavior.
+Fitness-environment knobs are fields of the frozen `GAConfig` in `src/ga/config.py` (`DEFAULT = GAConfig.from_env()`, read once at import; `ga_core` keeps the uppercase names as aliases). Genome-building constants live in `src/ga/genome.py`. Changing them changes GA behavior.
 
 | Name | Default | Effect |
 |---|---|---|
@@ -94,17 +94,17 @@ Defined at `ga_core.py:39-107`; changing them changes GA behavior.
 | `MAX_REBUILD_TRIES` | `20` | Attempts to rebuild an illegal genome before dropping it |
 | `BATTLE_TIMEOUT` | `20` s | Hung battle becomes `None`, not a loss |
 | `MIN_TURNS` | `3` | GA discards battles shorter than this (desync/forfeit) |
-| `VAL_POOL_SIZE` / `VAL_SPLIT_SEED` | `30` / `42` | Validation slice carved from train pool (ga_core.py:202,1449) |
+| `VAL_POOL_SIZE` / `VAL_SPLIT_SEED` | `30` / `42` | Validation slice carved from train pool (`src/ga/genome.py`) |
 | `TRAIN_SAMPLE_SIZE` | `250` (`GA_TRAIN_SAMPLE`) | Per-generation opponent sample |
 | `EARLY_STOP_MIN_BATTLES` / `EARLY_STOP_WIN_RATE` | `50` / `0.15` | A genome scoring below 15% after 50 battles skips the remaining battles |
 | `CANONICAL_ITEMS` | 8 items (Leftovers, Sitrus Berry, Focus Sash, Life Orb, Choice Scarf, Choice Specs, Assault Vest, Rocky Helmet) | Fallback item set for species without a `meta_items.json` entry |
-| `PROTECT_MOVES` / `FAKEOUT_MOVES` | tuples, ga_core.py:100-106 | Team-realism constraint pools (forced Protect and a Fake Out/Follow Me/Rage Powder slot) |
-| `CHECKPOINT_DIR` / `CHAMPION_DIR` | `output/checkpoints/v6` / `output/champions` | ga_core.py:1069-1070 |
+| `PROTECT_MOVES` / `FAKEOUT_MOVES` | tuples, `src/ga/genome.py` | Team-realism constraint pools (forced Protect and a Fake Out/Follow Me/Rage Powder slot) |
+| `CHECKPOINT_DIR` / `CHAMPION_DIR` | `output/checkpoints/v6` / `output/champions` | `src/ga/config.py` |
 | `battle.RETRY_STRIDE` | `999_983` | uid offset on a retry (`src/battle.py:68`); `retries=1` default in `run_battle` |
 
 ## GA run parameters (run/)
 
-Passed to `run_islands` (`ga_core.py:1393-1406`); the same values appear in `run/ga_run.py:55-67` and `run/ga_island.py:61-78`.
+Passed to `run_islands` (`src/ga/engine.py`, re-exported by `src/ga_core.py`); the same values appear in `run/ga_run.py:55-67` and `run/ga_island.py:61-78`.
 
 | Parameter | Library default | ga_run.py | ga_island.py | Effect |
 |---|---|---|---|---|

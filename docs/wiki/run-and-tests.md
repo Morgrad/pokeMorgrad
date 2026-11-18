@@ -33,16 +33,16 @@ Single island by hand: `SHOWDOWN_PORT=8000 ISLAND_NAME=A python -m run.ga_island
 
 (`run/ga_island.py` SPECS and seeds; run_id passed to `run_islands` is `f"{RUN_ID}_{NAME}"`.)
 - Parallel mode has NO cross-process migration: `migration_every=999` in `ga_island.py`, one island per process.
-- Port is routed through `SHOWDOWN_PORT`, read at import by `src/battle.py:59` (battle sockets) and `src/ga_core.py:1072` (`restart_showdown`). `ga_island.py:37` reads it only to print it.
+- Port is routed through `SHOWDOWN_PORT`, read at import by `src/battle.py:59` (battle sockets) and `src/ga/config.py` (`GAConfig.showdown_port`, used by `src/showdown_server.py` restarts). `ga_island.py:37` reads it only to print it.
 
 | Env var | Set by | Read by | Value |
 |---|---|---|---|
-| `SHOWDOWN_PORT` | ga_parallel.sh (per island) | battle.py, ga_core.py, ga_island.py | 8000/8001/8002 |
+| `SHOWDOWN_PORT` | ga_parallel.sh (per island) | battle.py, ga/config.py, ga_island.py | 8000/8001/8002 |
 | `ISLAND_NAME` | ga_parallel.sh | ga_island.py:36 | A/B/C (default A) |
-| `GA_CONCURRENCY` | ga_parallel.sh sets 8 | ga_island.py:38 (default 8), ga_run.py:60 (default "3"), ga_core.py:1398, eval.py:27 (default "3") | simultaneous battles per process |
+| `GA_CONCURRENCY` | ga_parallel.sh sets 8 | ga_island.py:38 (default 8), ga_run.py:60 (default "3"), ga/engine.py (`run_islands` default), eval.py:27 (default "3") | simultaneous battles per process |
 | `PYTHONUNBUFFERED` | ga_parallel.sh | python | 1 |
 | `SHOWDOWN_DIR` | optional | ga_overnight.sh, ops/*.sh (default `$HOME/pokemon-showdown`) | note: ga_core ignores it |
-| `GA_TRAIN_SAMPLE` | optional | ga_core.py:75 | default 250 |
+| `GA_TRAIN_SAMPLE` | optional | ga/config.py | default 250 |
 
 ## run/ scripts
 ### run/ga_island.py (78 lines)
@@ -102,7 +102,8 @@ Covers `effective_speed` modifiers, ability/weather/terrain conditions, `p_faste
 10 tests over `src/opp_model.py` and `src/doubles_eval.py`, using helper builders `attacker/foe/ally/one_hit_rolls`. They read the real `data/species_build_priors.json` and `data/regmc_db.json`.
 - opp_model: `test_opp_builds_weights_and_stats`, `test_opp_mega_form_resolves_and_falls_back_to_generic`, `test_immunity_prob`.
 - Evaluator/choose_pair: `test_focus_fire_beats_split_when_only_the_pair_kills`, `test_overkill_redirects_second_attacker`, `test_choose_pair_prefers_baseline_on_tie_and_finds_focus_fire`, `test_spread_move_hurts_fragile_ally`, `test_ally_immune_to_spread_is_not_penalised`, `test_ability_immunity_zeroes_value`, `test_status_and_none_actions_are_free`.
-- Not covered by either file: ga_core, battle, eval, bc_*, DoublesPilot (poke_env integration). `tools/test_pilots.py` and `tools/pilot_probe.py` exist but were not read (unclear what they cover).
+- GA engine: `tests/test_ga_golden.py` (golden master of a seeded fake run), `tests/test_ga_eval_order.py`, `tests/test_ga_config.py`, `tests/test_ga_robust.py`, `tests/test_island_wiring.py`.
+- Not covered by either file: battle, eval, bc_*, DoublesPilot (poke_env integration). `tools/test_pilots.py` and `tools/pilot_probe.py` exist but were not read (unclear what they cover).
 
 ## ops/
 Four shell helpers for the Showdown server (none run here).

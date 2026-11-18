@@ -138,7 +138,10 @@ their worst half.
     │   ├── bc_model.py                neural net + checkpoint I/O
     │   ├── bc_train.py                BC training loop
     │   ├── bc_player.py               poke_env Player wrapping BC model
-    │   ├── ga_core.py                 genomes, mutation, crossover, islands
+    │   ├── ga_core.py                 GA public facade (re-exports src/ga/)
+    │   ├── ga/                        GA engine: config, genome, fitness, evaluator,
+    │   │                              population (islands), checkpoint, engine
+    │   ├── showdown_server.py         probe / restart the local Showdown server
     │   ├── battle.py                  shared battle runner
     │   ├── eval.py                    unified evaluation CLI
     │   └── audit_before_launch.py     pre-flight data-integrity checks
