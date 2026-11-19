@@ -6,8 +6,9 @@ changes (the agent workflow in `../.clinerules/00-core-rules.md` asks for it aft
 
 Last updated: 2026-11-18
 Last verified against code: 2026-11-18
-Branch: `main` (GitHub `Morgrad/pokeMorgrad`). Last pushed commit: `8d7f2e9`. Local, not pushed:
-`16d0bb3` (GA package split + fitness-ordering fix) plus the uncommitted fixes below.
+Branch: `main` (GitHub `Morgrad/pokeMorgrad`). Last pushed commit: `8d7f2e9`. Committed locally,
+not pushed yet: `16d0bb3` (GA package split + fitness-ordering fix) and `0572ca9` (everything
+listed under "Changes on 2026-11-18" below).
 
 ## Goal
 Find the strongest team for Reg M-C (`gen9championsvgc2026regmc`, doubles, Mega legal, no Tera)
@@ -42,7 +43,7 @@ population, checkpoint, engine) + `src/showdown_server.py`; byte-identical excep
 fitness weighting with more than 50 opponents per genome (results were paired with opponents
 in completion order). Affects `run/ga_run.py` (118 opponents/genome); not `ga_island.py`.
 
-Uncommitted, all tested (gate ALL PASS):
+Committed in `0572ca9`, all tested (gate ALL PASS):
 1. `tools/verify.sh` printed ALL PASS after a failing test file (skipped the rest); now stops at
    the first failure and runs every test file (32 now). Audit exits 1 on hard failures. Replay test skips
    without replay data.
@@ -107,9 +108,9 @@ Uncommitted, all tested (gate ALL PASS):
     `~/pokeMorgrad`, `src/bc_train.py::main` 154 lines (wait for the BC decision).
 
 ## Next steps (each needs the user's go-ahead)
-1. Commit the 2026-11-18 fixes, refactors and docs; push `main` (plus tag
-   `ga-refactor-base` and branch `wip/ga-refactor` if wanted). Not done yet: everything
-   after `16d0bb3` is uncommitted on the secondary checkout.
+1. Push `main` (commits `16d0bb3`, `0572ca9` and the STATE update after them; plus tag
+   `ga-refactor-base` and branch `wip/ga-refactor` if wanted). The secondary checkout has no
+   GitHub credentials; push from a terminal that is logged in.
 2. On the workstation: `bash tools/verify.sh`, then a smoke GA
    (`GA_GENERATIONS=2 bash run/ga_parallel.sh 1 smoke1`), then decide on a long run
    (`bash run/ga_parallel.sh <hours> <run_id>`).
