@@ -62,6 +62,8 @@ SHOWDOWN_PORT=8000 ISLAND_NAME=C GA_GENERATIONS=2 python -m run.ga_island smoke1
 ```
 
 Per-island cost: 10 genomes x 50 opponents + 30 validation battles = 530 battles/gen.
+Measured 2026-11-18 on the workstation, one island alone on port 8000 at `GA_CONCURRENCY=8`:
+about 4.7 minutes per generation (smoke run `test1`).
 
 ## 2. Serial run (3 islands in one process, ring migration)
 

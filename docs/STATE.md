@@ -25,7 +25,7 @@ reusable for the next regulation.
 | Pools | `data/pool_split.json`: 148 train (118 fitness + 30 validation slice) / 100 holdout. Disjoint; `heldout_pool()` refuses to fall back to train. |
 | Held-out results | Heuristic baseline 53.6% (2026-11-15). Run q5 (2026-11-15): island C champion 62.4%; Umbreon islands A/B overfit (train ~85%, held-out 49.2% / 47.0%). |
 | BC pilot | Parked. Crash on every decision fixed 2026-11-18, but existing checkpoints may not load against the current DB vocabulary (392 species since 2026-10-16) - untested, no `.pt` files on this machine. Best old result ~30% held-out on the pre-swap holdout. |
-| Replay logging (`GA_REPLAY_LOG`) | Redesigned 2026-11-18 (`src/replay_log.py`): full battle logs, real fitness / outcome / generation, deterministic capped sample per island and generation, never changes GA results. Not yet run against a live server. |
+| Replay logging (`GA_REPLAY_LOG`) | Redesigned 2026-11-18 (`src/replay_log.py`): full battle logs, real fitness / outcome / generation, deterministic capped sample per island and generation, never changes GA results. Verified live on the workstation 2026-11-18 (test run `test1`: 50 non-empty battle logs saved per generation). |
 | Gate | `bash tools/verify.sh`: ruff, imports, pools, 32 test files (219 PASS), audit -> `ALL PASS`. |
 | Local-LLM readiness | Code split for a small context (largest `src/` file 434 lines; `turn_sim.py`), `.clineignore` keeps big / generated files out of Cline, docs router `docs/README.md`. |
 
@@ -88,8 +88,8 @@ Committed in `0572ca9`, all tested (gate ALL PASS):
    Structural fitness (`design/structural-fitness.md`) is not implemented.
 2. No paired validation of the current pilot defaults (`PASSIVE_COST` 0.30, support `all`):
    the +4.7 / +4.5 pt results were measured with 0.15 and support off.
-3. Replay logging depends on poke_env's private `battle._replay_data`: check that the first
-   live run with `GA_REPLAY_LOG=1` writes non-empty logs.
+3. Replay logging depends on poke_env's private `battle._replay_data`: works with the
+   workstation's poke_env (live test 2026-11-18); re-check after a poke_env upgrade.
 4. BC checkpoints vs current DB vocabulary: verify on the workstation; retrain or drop BC
    (`design/refactor-roadmap.md` Tier 2).
 5. Realism gaps in genomes: no offensive type coverage, no synergy, natures/EVs from 3 fixed
@@ -109,11 +109,13 @@ Committed in `0572ca9`, all tested (gate ALL PASS):
     `~/pokeMorgrad`, `src/bc_train.py::main` 154 lines (wait for the BC decision).
 
 ## Next steps (each needs the user's go-ahead)
-1. On the workstation: `git pull`, `bash tools/verify.sh` (expect `ALL PASS`, 219 PASS), then
-   the short test run of `runbooks/quickstart.md` Part 3 (or
-   `GA_GENERATIONS=2 bash run/ga_parallel.sh 1 smoke1`).
+1. Done 2026-11-18 on the workstation: `git pull`, `verify.sh` ALL PASS (the real-replay
+   battle-memory tests ran there too), live test run `test1` (island C, 2 generations,
+   `GA_REPLAY_LOG=1`): about 5 min per generation at `GA_CONCURRENCY=8`, champion written,
+   replay logs saved. Seen: poke_env `KeyError: 'round'` tracebacks (known, harmless).
 2. Decide on a long run (`bash run/ga_parallel.sh <hours> <run_id>`; quickstart Part 4).
-3. During the smoke run, also try `GA_REPLAY_LOG=1` and check `output/replay_log/`.
+3. Optional: stop the `KeyError: 'round'` noise (poke_env fails to parse a Round that
+   follows its partner's Round; the battle hangs until its timeout and is replayed).
 4. Paired check of `PASSIVE_COST` 0.30 vs 0.15 and support `all` vs off.
 5. Decide on structural fitness and wiring the priors into the genome.
 6. Decide keep / drop BC. If dropped: move `src/bc_*.py`, `src/state_encoder.py`,

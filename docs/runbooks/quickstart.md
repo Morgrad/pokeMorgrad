@@ -91,7 +91,8 @@ SHOWDOWN_PORT=8000 ISLAND_NAME=C GA_GENERATIONS=2 python -m run.ga_island test1 
 What you should see: `=== island C | run_id=test1_C | port=8000 ...`, then
 `Fitness environment: our pilot=vgc  opponent pilot=ladder ...`, then a line like
 `[14:02:11] === GEN 1/2  (0.0 min) ===` followed by one line per team, `>> checkpoint: gen_0001.json`, and finally
-`=== DONE ===`. Two generations are about 1000 battles, so expect tens of minutes. The result
+`=== DONE ===`. Two generations are about 1000 battles: about 10 minutes on the GPU
+workstation (measured 2026-11-18), longer on a slower machine. The result
 is `output/champions/ga_test1_C_island_C.txt`. If every team scores 0% or the battles keep
 timing out, stop here and see Part 8.
 
@@ -204,6 +205,7 @@ noise. Always pass `--pilot vgc` (the default also loads the experimental BC pil
 | `ModuleNotFoundError: No module named 'poke_env'` (or `torch`, `numpy`) | the venv is not active in this terminal: run the `source` line of Part 2 |
 | `Showdown on :8000 is not answering` | `bash ops/start_server.sh 8000`; check that `~/pokemon-showdown` exists and was built |
 | every battle times out, all scores 0% | the server is down or overloaded: restart it, or use `GA_CONCURRENCY=4` |
+| tracebacks ending in `KeyError: 'round'` and `Task exception was never retrieved` | a known poke_env bug with the move Round; that battle times out and is replayed. Harmless, ignore |
 | many `battle error #N` lines | a program error inside battles; the first 3 of each kind show the details; send them to the maintainer |
 | run starts at generation 1 although you meant to resume | wrong run_id; `ls output/checkpoints/v6/` shows the existing ones |
 | `RuntimeError ... meta-weight usage file` | `python tools/build_meta_weights.py` |
