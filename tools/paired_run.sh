@@ -10,7 +10,8 @@ OPP=${1:-ladder}; TARGET=${2:-5500}; CHUNK=${CHUNK:-1000}; STALL_S=${STALL_S:-30
 TAG=${TAG:-}; MODE=${MODE:-turnsim}; SUPPORT=${SUPPORT:-all}; TEAMS=${TEAMS:-}
 NAME=${OPP}${TAG:+_$TAG}
 cd "$(dirname "$0")/.."
-PY=${PY:-$HOME/venv-pokemorgad/bin/python}
+if [ -x .venv/bin/python ]; then _DEFPY=.venv/bin/python; else _DEFPY=$HOME/venv-pokemorgad/bin/python; fi
+PY=${PY:-$_DEFPY}
 SD=${SHOWDOWN_DIR:-$HOME/pokemon-showdown}
 mkdir -p data/paired_eval
 

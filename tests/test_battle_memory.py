@@ -306,6 +306,8 @@ def test_real_replays_protect_fails_two_thirds_on_second_consecutive_use():
 
 
 def test_real_replays_ots_item_matches_the_stone_that_later_megas():
+    if not _replays(1):
+        return
     seen = ok = 0
     for f in _replays(5006):
         text = open(f).read()

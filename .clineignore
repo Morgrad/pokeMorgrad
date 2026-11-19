@@ -1,0 +1,50 @@
+# Files Cline must not read, search or auto-load (gitignore syntax).
+# Goal: keep the small context of a local model (Qwen3-Coder-30B) for code. Everything
+# listed here is either generated, huge, frozen or history. If a task really needs one of
+# these files, pull the piece you need from the terminal (grep -n, python -c, head), as
+# AGENTS.md ("Saving context") explains.
+
+# Environments, caches, VCS
+.venv/
+venv/
+__pycache__/
+*.pyc
+.ruff_cache/
+.pytest_cache/
+.git/
+node_modules/
+
+# Frozen code and old pools (never imported)
+archive/
+
+# Generated output: checkpoints, champions, models, logs, replay logs
+output/
+*.pt
+*.pth
+*.jsonl
+*.log
+run/*.out
+run/*.pid
+
+# Big data files (generated; query them, do not open them)
+data/regmc_db.json
+data/regional_teams/
+data/showdown_replays_meta/
+data/species_build_priors.json
+data/species_build_priors.corpus.json
+data/species_archetypes.json
+data/species_move_usage.json
+data/species_item_priors.json
+data/species_move_priors.json
+data/replays/
+data/*.bak
+
+# Golden-master fixture (450 KB of JSON; compared by tests/test_ga_golden.py)
+tests/golden/ga_golden.json
+
+# Dated project history (read only when asked about the past)
+docs/history/
+
+# Backups
+*.bak
+*.bak*

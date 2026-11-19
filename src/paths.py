@@ -44,3 +44,15 @@ def showdown_dir() -> str:
         "SHOWDOWN_DIR",
         os.path.expanduser("~/pokemon-showdown"),
     )
+
+
+def showdown_port(env=None) -> int:
+    """Port of the local Showdown server: env SHOWDOWN_PORT, default 8000.
+
+    The single place SHOWDOWN_PORT is parsed. Read once at import by
+    src/player_factory.py (battle sockets), src/ga/config.py (GAConfig.showdown_port:
+    the port the GA probes and restarts) and run/ga_island.py (log header), so set it
+    before Python starts. `env` is a mapping for tests (os.environ by default).
+    """
+    env = os.environ if env is None else env
+    return int(env.get("SHOWDOWN_PORT", "8000"))

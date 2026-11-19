@@ -22,12 +22,10 @@ from src.ga.genome import (
     _SPECIES_BY_NAME,
     _fresh_mon,
     build_random_genome,
-    crossover,
-    enforce_constraints,
-    filter_legal_genomes,
-    mutate,
     text_to_genome,
 )
+from src.ga.legality import enforce_constraints, filter_legal_genomes
+from src.ga.operators import _used_bases, _used_items, crossover, mutate
 
 
 def _top_up(population, size, constraints):
@@ -40,6 +38,11 @@ def _top_up(population, size, constraints):
 
 def _empty_best():
     return {"fit": -1, "genome": None, "gen": None}
+
+
+def _n_elites(n):
+    """How many top genomes breed() keeps unchanged: the top third, at least 2."""
+    return max(2, n // 3)
 
 
 class Island:
@@ -101,7 +104,7 @@ class Island:
         if n < 4:
             return
         ranked = sorted(range(n), key=lambda i: -self.fitness[i])
-        n_elites = max(2, n // 3)
+        n_elites = _n_elites(n)
         elites = [enforce_constraints(copy.deepcopy(self.population[i]), self.constraints)
                   for i in ranked[:n_elites]]
         new_pop = list(elites)
@@ -137,11 +140,31 @@ class Island:
                 replaced += 1
         return replaced
 
+    def inject_fresh(self, n):
+        """Replace up to `n` bred children with fresh random genomes. Returns the count.
+
+        Call right after breed(): breed() puts the elites first and the children after
+        them, so the tail is replaced and the elites are never touched. (Injecting BEFORE
+        breed() does not work: the fresh genomes have fitness 0 and breed() keeps only the
+        top third by fitness, so they were always discarded - the bug fixed 2026-11-18.)
+        """
+        size = len(self.population)
+        n = max(0, min(n, size - _n_elites(size)))
+        replaced = 0
+        for idx in range(size - n, size):
+            fresh = build_random_genome(self.constraints)
+            if fresh:
+                self.population[idx] = fresh
+                if idx < len(self.fitness):
+                    self.fitness[idx] = 0.0
+                replaced += 1
+        return replaced
+
     def restart_stagnant(self):
-        """Escape a local optimum: replace the worst half and reset the stagnation counter."""
-        n_restart = len(self.population) // 2
-        self.replace_worst(n_restart)
-        print(f"  [{self.name}] STAGNATION: restarted {n_restart}")
+        """Escape a local optimum, right after breed(): replace half the population with
+        fresh random genomes (children only, the elites stay) and reset the stagnation counter."""
+        replaced = self.inject_fresh(len(self.population) // 2)
+        print(f"  [{self.name}] STAGNATION: restarted {replaced}")
         self.stagnation = 0
 
     def unique_species(self):
@@ -234,25 +257,13 @@ def _strip_species(genome, species_set, constraints):
         return genome
     stripped = copy.deepcopy(genome)
 
-    # Build the set of base species we must avoid duplicating (excluding
-    # the slots we're about to replace).
-    def _bases(exclude_slots=()):
-        s = set()
-        for i, m in enumerate(stripped):
-            if i in exclude_slots or m is None:
-                continue
-            sp = _SPECIES_BY_NAME.get(m.get("species"))
-            if sp:
-                s.add(DB.norm(sp["baseSpecies"]))
-        return s
-
     for slot, mon in enumerate(stripped):
         if slot in constraints:
             continue
         if mon and mon.get("species") in species_set:
-            used_items = {m["item"] for m in stripped
-                          if m and m.get("item") and m is not mon}
-            used_bases = _bases(exclude_slots=(slot,))
+            # species / items of the OTHER slots (shared helpers in src/ga/operators.py)
+            used_items = _used_items(stripped, exclude_slot=slot)
+            used_bases = _used_bases(stripped, exclude_slot=slot)
             cands = [s["name"] for s in _BASE_SPECIES
                      if s["name"] not in species_set
                      and DB.norm(s["baseSpecies"]) not in used_bases
@@ -273,6 +284,12 @@ def ring_migrate(islands, n=2):
     genomes are constraint-enforced for the destination, and any species that is
     locked on the SOURCE but not here is stripped — see the inline note below for
     the diversity-collapse bug that motivated it.
+
+    Ties: the engine migrates right after breed(), when every fitness is 0.0. Then
+    the "top n" are the first n slots (the elites) and the "worst n" are the last n
+    slots (bred children), so elites are never overwritten. Before 2026-11-18 the
+    destination slots were picked from the wrong end of the ranking (best instead
+    of worst), which only went unnoticed because of that all-zero tie.
     """
     tops = []
     for isl in islands:
@@ -285,7 +302,8 @@ def ring_migrate(islands, n=2):
         incoming = tops[(i - 1) % len(islands)]
         if not incoming:
             continue
-        ranked = sorted(range(len(isl.population)), key=lambda j: isl.fitness[j])
+        # worst first; equal fitness -> later slot first (bred children before elites)
+        ranked = sorted(range(len(isl.population)), key=lambda j: (isl.fitness[j], -j))
         for j, genome in enumerate(incoming):
             if j >= len(ranked):
                 break
@@ -297,5 +315,5 @@ def ring_migrate(islands, n=2):
             foreign_locks = set(src_constraints.values()) - set(isl.constraints.values())
             if foreign_locks:
                 fixed = _strip_species(fixed, foreign_locks, isl.constraints)
-            isl.population[ranked[-1 - j]] = fixed
-            isl.fitness[ranked[-1 - j]] = 0.0
+            isl.population[ranked[j]] = fixed
+            isl.fitness[ranked[j]] = 0.0

@@ -13,7 +13,7 @@ Usage:
   python -m src.eval --pilot doubles                # experimental joint-attack pilot
   python -m src.eval --pilot vgc --opp ladder       # the GA's fitness environment (also prints the
                                                     # meta-weighted rate the GA optimises)
-  python -m src.eval --opponents all                # use all 300 training teams
+  python -m src.eval --opponents all                # use the whole training pool (148 teams)
   python -m src.eval --seeds 100 200 300 400 500    # more seeds
 """
 import argparse
@@ -22,13 +22,15 @@ import os
 import random
 
 from src import battle as B
-from src import ga_core as G
+from src.ga import config as C
+from src.ga import fitness as F
+from src.ga.pools import heldout_pool, regional_pool
 from src.paths import data_path
 
-FORMAT = G.FORMAT          # canonical format registry (defined in ga_core)
+FORMAT = C.FORMAT          # canonical format registry (src/ga/config.py)
 CONCURRENCY = int(os.environ.get("GA_CONCURRENCY", "3"))   # simultaneous battles per server
 TIMEOUT = 20              # seconds before a battle is abandoned as hung (→ None)
-UID_MAX = G.UID_MAX      # upper bound of the random per-battle account id space
+UID_MAX = C.UID_MAX      # upper bound of the random per-battle account id space
 DEFAULT_SEEDS = [100, 200, 300]
 
 
@@ -54,7 +56,7 @@ def wilson_ci(wins: int, games: int, z: float = 1.96) -> tuple[float, float]:
 async def evaluate_team(pilot, team_str, opponents, seeds, concurrency, opp_pilot="heuristic"):
     """Return (total_wins, total_games, weighted_rate) for a team across all seeds × opponents.
 
-    weighted_rate is the GA's fitness (ga_core._fitness: meta-weighted win rate, or the plain
+    weighted_rate is the GA's fitness (src/ga/fitness.py::weighted_fitness: meta-weighted win rate, or the plain
     rate when GA_META_WEIGHTS=0), so a holdout score is comparable with the GA's numbers.
 
     Each seed re-seeds the RNG so account ids / any sampling are reproducible per
@@ -78,7 +80,7 @@ async def evaluate_team(pilot, team_str, opponents, seeds, concurrency, opp_pilo
         ]
         outcomes += await asyncio.gather(*tasks)
         opp_texts += opponents
-    weighted, wins, games = G._fitness(outcomes, opp_texts)
+    weighted, wins, games = F.weighted_fitness(outcomes, opp_texts, C.DEFAULT.meta_weights)
     return wins, games, weighted
 
 
@@ -91,10 +93,10 @@ async def main_async(args):
     teams = args.teams or [data_path("baseline_team.txt")]
 
     if args.opponents == "all":
-        opponents = G.regional_pool()
+        opponents = regional_pool()
         opp_label = f"training pool ({len(opponents)})"
     else:
-        opponents = G.heldout_pool()
+        opponents = heldout_pool()
         opp_label = f"held-out ({len(opponents)})"
 
     pilots = ["heuristic", "bc"] if args.pilot == "both" else [args.pilot]
@@ -156,7 +158,7 @@ def main():
     parser.add_argument("teams", nargs="*",
                         help="Team .txt paths. Defaults to data/baseline_team.txt.")
     parser.add_argument("--opponents", choices=["heldout", "all"], default="heldout",
-                        help="heldout = 100 eval teams, all = 300 training teams")
+                        help="heldout = 100 eval teams, all = the training pool (148 teams)")
     parser.add_argument("--seeds", type=int, nargs="+", default=DEFAULT_SEEDS)
     parser.add_argument("--pilot", choices=["heuristic", "bc", "doubles", "vgc", "both"], default="both")
     parser.add_argument("--opp", choices=["heuristic", "ladder"], default="heuristic",

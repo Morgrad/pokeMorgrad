@@ -23,6 +23,7 @@ import json
 import os
 import random
 import re
+import shutil
 import sys
 import tempfile
 import threading
@@ -78,36 +79,36 @@ def _install_fakes(log):
     SV.check_teams = fake_check_teams
 
 
-def _population_part(G):
+def _population_part(P):
     """Population operators on fixed fitness lists (deterministic given the seed)."""
     out = {}
     buf = io.StringIO()
     with contextlib.redirect_stdout(buf):
         random.seed(7)
-        a = G.Island("U", {0: "Umbreon"})
+        a = P.Island("U", {0: "Umbreon"})
         a.init_population(6)
-        b = G.Island("F")
+        b = P.Island("F")
         b.init_population(6)
         out["init_U"] = a.population
         out["init_F"] = b.population
         a.fitness = [0.05 * i for i in range(len(a.population))]
         b.fitness = [0.5 - 0.05 * i for i in range(len(b.population))]
-        G.breed(a, immigration_rate=0.2)
-        G.breed(b, immigration_rate=0.5)
+        a.breed(0.2)
+        b.breed(0.5)
         out["bred_U"] = a.population
         out["bred_F"] = b.population
         a.fitness = [0.1, 0.4, 0.2, 0.6, 0.3, 0.5]
         b.fitness = [0.3, 0.1, 0.6, 0.2, 0.5, 0.4]
-        out["injected"] = G.inject_immigrants(a, 2)
+        out["injected"] = a.replace_worst(2)
         out["after_inject_U"] = a.population
         a.fitness = [0.1, 0.4, 0.2, 0.6, 0.3, 0.5]
-        G.ring_migrate([a, b], n=2)
+        P.ring_migrate([a, b], n=2)
         out["migrated_U"] = a.population
         out["migrated_F"] = b.population
-        out["uniq"] = [G.count_unique_species(a), G.count_unique_species(b)]
+        out["uniq"] = [a.unique_species(), b.unique_species()]
         a.best_ever = {"fit": 0.5, "genome": a.population[0], "gen": 3}
         d = json.loads(json.dumps(a.to_dict()))
-        out["roundtrip_equal"] = G.Island.from_dict(d).to_dict() == d
+        out["roundtrip_equal"] = P.Island.from_dict(d).to_dict() == d
         out["to_dict_U"] = d
         out["rng_after"] = random.random()
     out["stdout"] = buf.getvalue()
@@ -137,7 +138,7 @@ def _snapshot_outputs(root):
     return files
 
 
-def _e2e_part(G, root, log):
+def _e2e_part(E, root, log):
     """Two run_islands calls: fresh run (small-pool path), then resume (early-stop path)."""
     from src.paths import data_path
 
@@ -163,7 +164,7 @@ def _e2e_part(G, root, log):
         log.uids.clear()
         random.seed(r["seed"])
         with contextlib.redirect_stdout(buf):
-            asyncio.run(G.run_islands(
+            asyncio.run(E.run_islands(
                 specs, pop_per_island=6, generations=r["generations"],
                 battles_per_genome=r["battles_per_genome"], concurrency=4,
                 immigration_rate=0.2, stagnation_limit=r["stagnation_limit"],
@@ -191,10 +192,14 @@ def run_all():
 
     log = _BattleLog()
     _install_fakes(log)
-    from src import ga_core as G
+    from src.ga import engine as E
+    from src.ga import population as P
 
-    snap = {"population": _population_part(G), "e2e": _e2e_part(G, tmp.resolve(), log)}
-    return json.loads(json.dumps(snap))   # normalize tuples -> lists
+    try:
+        snap = {"population": _population_part(P), "e2e": _e2e_part(E, tmp.resolve(), log)}
+        return json.loads(json.dumps(snap))   # normalize tuples -> lists
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)   # the temp root holds checkpoints / champions
 
 
 def main():

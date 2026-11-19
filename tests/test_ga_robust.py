@@ -9,9 +9,12 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from src import eval as E  # noqa: E402
-from src import ga_core as G  # noqa: E402
 from src import meta_weights as MW  # noqa: E402
 from src import showdown_server as S  # noqa: E402
+from src.ga import fitness as F  # noqa: E402
+from src.ga.config import DEFAULT  # noqa: E402
+from src.ga.engine import run_islands  # noqa: E402
+from src.ga.pools import regional_pool  # noqa: E402
 
 
 class _Fake:
@@ -42,31 +45,31 @@ def _patched(fake, fn):
 
 def test_restart_waits_past_15s():
     f = _Fake(up_from_probe=40)
-    assert _patched(f, lambda: G.restart_showdown(wait_s=60, tries=2)) is True
+    assert _patched(f, lambda: S.restart(DEFAULT.showdown_port, DEFAULT.showdown_dir, wait_s=60, tries=2)) is True
     assert f.launches == 1
 
 
 def test_restart_retries_once_then_gives_up():
     f = _Fake(up_from_probe=None)
-    assert _patched(f, lambda: G.restart_showdown(wait_s=5, tries=2)) is False
+    assert _patched(f, lambda: S.restart(DEFAULT.showdown_port, DEFAULT.showdown_dir, wait_s=5, tries=2)) is False
     assert f.launches == 2 and f.probes == 10
 
 
 def test_restart_second_attempt_can_succeed():
     f = _Fake(up_from_probe=7)
-    assert _patched(f, lambda: G.restart_showdown(wait_s=5, tries=2)) is True
+    assert _patched(f, lambda: S.restart(DEFAULT.showdown_port, DEFAULT.showdown_dir, wait_s=5, tries=2)) is True
     assert f.launches == 2
 
 
 def test_ensure_showdown_raises_when_dead_and_skips_restart_when_up():
     dead = _Fake(up_from_probe=None)
     try:
-        _patched(dead, lambda: G.ensure_showdown())
+        _patched(dead, lambda: S.ensure(DEFAULT.showdown_port, DEFAULT.showdown_dir))
         raise AssertionError("expected RuntimeError")
     except RuntimeError:
         pass
     up = _Fake(up_from_probe=1)
-    _patched(up, lambda: G.ensure_showdown())
+    _patched(up, lambda: S.ensure(DEFAULT.showdown_port, DEFAULT.showdown_dir))
     assert up.launches == 0
 
 
@@ -76,7 +79,7 @@ def test_run_islands_fails_fast_without_usage_file():
         raise FileNotFoundError("missing")
     MW.load_usage = boom
     try:
-        asyncio.run(G.run_islands([{"name": "A"}], max_hours=0.01, run_id="_test_no_such_run"))
+        asyncio.run(run_islands([{"name": "A"}], max_hours=0.01, run_id="_test_no_such_run"))
         raise AssertionError("expected RuntimeError")
     except RuntimeError as e:
         assert "build_meta_weights" in str(e)
@@ -85,7 +88,7 @@ def test_run_islands_fails_fast_without_usage_file():
 
 
 def test_eval_reports_the_ga_fitness():
-    pool = G.regional_pool()[:3]
+    pool = regional_pool()[:3]
     calls = []
 
     async def fake_battle(team, opp, uid, sem, fmt, **kw):
@@ -99,7 +102,7 @@ def test_eval_reports_the_ga_fitness():
     finally:
         E.B.run_battle = saved
     assert (w, g) == (2, 6) and set(calls) == {"ladder"}
-    assert abs(fit - G._fitness([1, 0, 0, 1, 0, 0], pool + pool)[0]) < 1e-12
+    assert abs(fit - F.weighted_fitness([1, 0, 0, 1, 0, 0], pool + pool, DEFAULT.meta_weights)[0]) < 1e-12
 
 
 if __name__ == "__main__":

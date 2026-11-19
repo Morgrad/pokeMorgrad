@@ -21,7 +21,7 @@ sys.path.insert(0, str(REPO))
 from poke_env import AccountConfiguration, ServerConfiguration
 from poke_env.player import SimpleHeuristicsPlayer
 
-from src.ga_core import heldout_pool
+from src.ga.pools import heldout_pool
 from src.smart_player import SmartPlayer
 
 PORT = 8001

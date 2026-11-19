@@ -68,7 +68,7 @@ def load_islands(path):
 def write_champions(islands, run_id):
     """Write each island's champion files and print one line per file written.
 
-    Primary champion = train best (val-selection was dropped, see STATE.md); fall
+    Primary champion = train best (val-selection was dropped 2026-10-15, see docs/design/decisions.md); fall
     back to the val best only if no train genome exists.
     """
     os.makedirs(C.CHAMPION_DIR, exist_ok=True)

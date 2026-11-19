@@ -1,7 +1,16 @@
 # Cline Workspace Rules: pokeMorgrad
 
+## 0. Orientation
+- Read `AGENTS.md` (project map, hard rules, commands), then `docs/README.md` (task -> docs router).
+  Load only the 1-3 docs the task needs; current status lives in `docs/STATE.md`.
+- `.clineignore` hides big / generated files (`data/` DB and team pools, `output/`, `archive/`,
+  `docs/history/`, `tests/golden/ga_golden.json`). Do not try to open them; query them from the
+  terminal (`grep -n`, `python -c`, `head`).
+- Import GA names from the module that defines them (`src.ga.genome`, `src.ga.pools`,
+  `src.ga.legality`, `src.ga.operators`, `src.ga.engine`, ...). `src/ga_core.py` no longer exists.
+
 ## 1. Environment & Directory Structure
-- **ALWAYS activate the venv** before running any command: `source ~/venv-pokemorgad/bin/activate && <command>`
+- **ALWAYS activate the venv** before running any command: `source ~/venv-pokemorgad/bin/activate && <command>` (on a machine with a repo-local venv: `source .venv/bin/activate`; `tools/verify.sh` prefers `.venv` and falls back to `~/venv-pokemorgad`)
 - **NEVER use `pytest`**. It is not installed. All tests run via `bash tools/verify.sh`.
 - **Strict Structure:** Core logic in `src/`, tests in `tests/`, scripts in `tools/`, launchers in `run/`. Never create `.py` files in the repo root. Temp files go in `/tmp/` or `output/`.
 - **Dependencies:** If you `pip install` a package, add it to `pyproject.toml`.

@@ -15,14 +15,16 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from src import battle as B  # noqa: E402
-from src import ga_core as G  # noqa: E402
+from src.ga import fitness as F  # noqa: E402
 from src.ga.config import DEFAULT, GAConfig  # noqa: E402
 from src.ga.evaluator import Evaluator  # noqa: E402
+from src.ga.genome import text_to_genome  # noqa: E402
+from src.ga.pools import regional_pool  # noqa: E402
 from src.paths import data_path  # noqa: E402
 
 
 def _evaluate_with(outcome_for, n_opps, config=DEFAULT, out=None):
-    pool = G.regional_pool()[:n_opps]
+    pool = regional_pool()[:n_opps]
     assert len(pool) == n_opps
     order = {t: i for i, t in enumerate(pool)}
 
@@ -31,7 +33,7 @@ def _evaluate_with(outcome_for, n_opps, config=DEFAULT, out=None):
         await asyncio.sleep(0.0005 * (n_opps - i))   # later opponents finish first
         return outcome_for(i)
 
-    genome = G.text_to_genome(open(data_path("baseline_team.txt")).read())
+    genome = text_to_genome(open(data_path("baseline_team.txt")).read())
 
     async def run():
         return await Evaluator(config, concurrency=8).evaluate(genome, pool, 0, 1)
@@ -50,18 +52,18 @@ def test_full_run_weights_follow_opponents():
     def outcome(i):
         return None if i % 11 == 0 else (1 if i % 3 else 0)
     fit, pool = _evaluate_with(outcome, 70)
-    want = G._fitness([outcome(i) for i in range(70)], pool)[0]
+    want = F.weighted_fitness([outcome(i) for i in range(70)], pool, DEFAULT.meta_weights)[0]
     assert abs(fit - want) < 1e-12, (fit, want)
 
 
 def test_early_abort_weights_follow_opponents():
-    head = G.EARLY_STOP_MIN_BATTLES
+    head = DEFAULT.early_stop_min_battles
 
     def outcome(i):
         return 1 if i % 10 == 0 else 0   # ~10% in the head -> early abort
     fit, pool = _evaluate_with(outcome, head + 20)
-    want = G._fitness([outcome(i) for i in range(head)], pool[:head])[0]
-    assert want < G.EARLY_STOP_WIN_RATE
+    want = F.weighted_fitness([outcome(i) for i in range(head)], pool[:head], DEFAULT.meta_weights)[0]
+    assert want < DEFAULT.early_stop_win_rate
     assert abs(fit - want) < 1e-12, (fit, want)
 
 

@@ -3,13 +3,13 @@ player_factory.py — construct poke_env Players for battle.
 """
 
 import logging as _logging
-import os
 import uuid
 
 from poke_env import AccountConfiguration, ServerConfiguration
 from poke_env.player import SimpleHeuristicsPlayer
 from poke_env.player.battle_order import DoubleBattleOrder, ForfeitBattleOrder
 
+from src.paths import showdown_port
 from src.vgc_pilot import VGCPilot
 
 
@@ -34,7 +34,7 @@ for _name in ("poke_env", "poke_env.ps_client", "poke_env.player"):
 
 
 # --- Multi-instance support -------------------------------------------------
-_SHOWDOWN_PORT = os.environ.get("SHOWDOWN_PORT", "8000")
+_SHOWDOWN_PORT = showdown_port()          # src/paths.py: the one SHOWDOWN_PORT parser
 DEFAULT_SERVER = ServerConfiguration(
     f"ws://localhost:{_SHOWDOWN_PORT}/showdown/websocket",
     f"http://localhost:{_SHOWDOWN_PORT}/action.php?",
@@ -58,9 +58,18 @@ class TimeoutPlayer(VGCPilot):
 
 RETRY_STRIDE = 999_983
 
+# Every pilot name make_player accepts (src/ga/config.py::PILOT_NAMES mirrors it).
+PILOTS = ("heuristic", "bc", "doubles", "ladder", "vgc")
+
 
 def make_player(pilot, team_str, uid, prefix, battle_format):
-    """Construct one poke_env Player for `pilot` on `team_str`."""
+    """Construct one poke_env Player for `pilot` on `team_str`.
+
+    Raises ValueError for an unknown pilot name (it used to fall back silently to
+    SimpleHeuristicsPlayer, so a typo in GA_PILOT changed the experiment unnoticed).
+    """
+    if pilot not in PILOTS:
+        raise ValueError(f"unknown pilot {pilot!r}; expected one of {PILOTS}")
     if pilot == "bc":
         from src.bc_player import BCPlayer
         cls = BCPlayer
@@ -76,7 +85,7 @@ def make_player(pilot, team_str, uid, prefix, battle_format):
             cls = TimeoutPlayer
         else:
             cls = VGCPilot
-    else:
+    else:   # "heuristic"
         cls = SimpleHeuristicsPlayer
 
     return cls(

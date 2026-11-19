@@ -2,7 +2,9 @@
 
 Env vars:
   BC_MODEL=v2|v3    architecture (default v2)
-  BC_OUT=name.pt    output filename under output/models/
+  BC_OUT=name.pt    output filename under output/models/ (default bc_candidate.pt; the
+                    production model bc_best.pt is only replaced by hand, after a
+                    5-seed eval shows +3 pts -- see docs/design/policy.md)
   BC_EPOCHS=N       max epochs (default 30)
   BC_PATIENCE=N     early stop after N flat epochs (default 3)
 """
@@ -32,7 +34,7 @@ from src.state_encoder import StateEncoder
 DATA = os.environ.get("BC_DATA", data_path("training_data.jsonl"))   # override for heuristic-imitation runs
 PRIORS_PATH = data_path("species_move_priors.json")
 MODEL_DIR = output_path("models")
-BEST_MODEL_PATH = os.path.join(MODEL_DIR, os.environ.get("BC_OUT", "bc_best.pt"))
+BEST_MODEL_PATH = os.path.join(MODEL_DIR, os.environ.get("BC_OUT", "bc_candidate.pt"))
 MODEL_ARCH = os.environ.get("BC_MODEL", "v2")
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"

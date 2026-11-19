@@ -75,15 +75,17 @@ def main():
     gr = (ROOT / "run" / "ga_run.py").read_text()
     all_ok &= check("islands configured", "ISLANDS" in gr)
 
-    # 7. GPU visible
+    # 7. GPU visible -- informational only: the GA (vgc / ladder / heuristic pilots)
+    # never uses torch; only the BC pilot and BC training do.
     try:
-        r = subprocess.run(["python3", "-c",
+        r = subprocess.run([sys.executable, "-c",
                             "import torch; print(torch.cuda.is_available())"],
                            capture_output=True, text=True, timeout=15)
         gpu_ok = "True" in r.stdout
-        all_ok &= check("torch CUDA available", gpu_ok, r.stdout.strip()[:40])
+        print(f"  [{'OK  ' if gpu_ok else 'INFO'}] torch GPU available: "
+              f"{r.stdout.strip()[:40] or r.stderr.strip()[-60:]} (not needed by the GA)")
     except Exception as e:
-        all_ok &= check("torch CUDA available", False, str(e)[:60])
+        print(f"  [INFO] torch GPU check failed: {str(e)[:60]} (not needed by the GA)")
 
     # 8. Champion dir writable + has room
     ch = ROOT / "output" / "champions"

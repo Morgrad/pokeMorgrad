@@ -39,15 +39,21 @@ class Evaluator:
     def _fitness(self, outcomes, opponents):
         return weighted_fitness(outcomes, opponents, self.config.meta_weights)
 
-    def _start_battle(self, text, opp, **save):
+    def _start_battle(self, text, opp, **extra):
         """Coroutine for one battle (the per-battle account id is drawn now)."""
         c = self.config
         return B.run_battle(text, opp, random.randint(1, C.UID_MAX), self.sem, C.FORMAT,
                             pilot=c.fitness_pilot, timeout=c.battle_timeout,
-                            min_turns=c.min_turns, opp_pilot=c.fitness_opp, **save)
+                            min_turns=c.min_turns, opp_pilot=c.fitness_opp, **extra)
 
-    async def evaluate(self, mons, opponents, idx, total, save_filter=None, save_callback=None):
+    async def evaluate(self, mons, opponents, idx, total, on_battles=None):
         """Fitness = win rate of one genome across all `opponents`, run concurrently.
+
+        on_battles: optional callable(genome, fitness, outcomes, logs), called once after
+        the genome is scored, with the outcomes and protocol logs of the battles actually
+        played (head only on an early abort), in opponent order. Used by replay logging
+        (src/replay_log.py). Without it nothing extra is passed to run_battle, so the
+        GA's behavior and random stream are the same with logging on or off.
 
         Two-phase: play early_stop_min_battles first; if that head score is below
         early_stop_win_rate, skip the tail and return the partial score. Partial (not
@@ -66,40 +72,56 @@ class Evaluator:
             print(f"  [{idx+1}/{total}] INVALID: {errs[:2]}")
             return 0.0
 
-        async def _battle(opp):
-            return await self._start_battle(text, opp, save_filter=save_filter,
-                                            save_callback=save_callback)
+        logs = [[] for _ in opponents] if on_battles is not None else None
+
+        async def _battle(i, opp):
+            if logs is None:
+                return await self._start_battle(text, opp)
+
+            def sink(result, lines):
+                logs[i] = lines
+            return await self._start_battle(text, opp, log_sink=sink)
+
+        def _done(fit, outcomes):
+            if on_battles is not None:
+                n = len(outcomes)
+                try:
+                    on_battles(mons, fit, list(outcomes), logs[:n])
+                except Exception as e:
+                    print(f"  [{idx+1}/{total}] replay logging failed: {e!r}")
+            return fit
 
         head_size = self.config.early_stop_min_battles
 
         # Small pools: no early-stop possible, one batch.
         if len(opponents) <= head_size:
-            outcomes = await asyncio.gather(*[_battle(o) for o in opponents])
+            outcomes = await asyncio.gather(*[_battle(i, o) for i, o in enumerate(opponents)])
             fit, wins, valid_n = self._fitness(outcomes, opponents)
             if not valid_n:
-                return 0.0
+                return _done(0.0, outcomes)
             _log_score(idx, total, fit, wins, valid_n, mons)
             print()  # New line at end
-            return fit
+            return _done(fit, outcomes)
 
         # Phase 1 — head batch; abort if it scores below early_stop_win_rate.
         head, tail = opponents[:head_size], opponents[head_size:]
-        head_results = await asyncio.gather(*[_battle(o) for o in head])
+        head_results = await asyncio.gather(*[_battle(i, o) for i, o in enumerate(head)])
         head_fit, head_wins, head_n = self._fitness(head_results, head)
         if head_n and head_fit < self.config.early_stop_win_rate:
             _log_score(idx, total, head_fit, head_wins, head_n, mons, tag="early-abort")
             print()
-            return head_fit
+            return _done(head_fit, head_results)
 
         # Phase 2 — tail batch.
-        tail_results = await asyncio.gather(*[_battle(o) for o in tail])
+        tail_results = await asyncio.gather(*[_battle(head_size + i, o)
+                                              for i, o in enumerate(tail)])
         all_results = list(head_results) + list(tail_results)
         fit, wins, valid_n = self._fitness(all_results, opponents)
         if not valid_n:
-            return 0.0
+            return _done(0.0, all_results)
         _log_score(idx, total, fit, wins, valid_n, mons)
         print()  # New line at end
-        return fit
+        return _done(fit, all_results)
 
     async def eval_on_subset(self, genome, opponents):
         """One-shot fitness on a specific opponent list. No early-stop, no retry, no logging."""

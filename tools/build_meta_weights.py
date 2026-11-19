@@ -9,8 +9,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from src import ga_core as G  # noqa: E402
 from src import meta_weights as MW  # noqa: E402
+from src.ga.pools import heldout_pool, regional_pool  # noqa: E402
 from src.paths import data_path  # noqa: E402
 
 
@@ -25,7 +25,7 @@ def main():
     top = sorted(usage.items(), key=lambda kv: -kv[1])[:12]
     print(f"{sides} team sides, {len(usage)} species -> {MW.USAGE_PATH}")
     print("top:", ", ".join(f"{k} {v:.3f}" for k, v in top))
-    for label, pool in (("train", G.regional_pool()), ("holdout", G.heldout_pool())):
+    for label, pool in (("train", regional_pool()), ("holdout", heldout_pool())):
         w = sorted(MW.team_weight(t, usage) for t in pool)
         print(f"{label}: {len(pool)} teams, weight min {w[0]:.3f} median {w[len(w) // 2]:.3f} max {w[-1]:.3f}, "
               f"effective n {MW.effective_n(w):.0f}/{len(w)}")

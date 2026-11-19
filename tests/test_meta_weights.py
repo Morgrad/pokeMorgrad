@@ -1,4 +1,4 @@
-"""Tests for src/meta_weights.py and the weighted fitness in ga_core (no server).
+"""Tests for src/meta_weights.py and the GA weighted fitness (src/ga/fitness.py) (no server).
 
 Run: pytest tests/test_meta_weights.py   (or: python tests/test_meta_weights.py)
 """
@@ -7,8 +7,10 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from src import ga_core as G  # noqa: E402
 from src import meta_weights as MW  # noqa: E402
+from src.ga import fitness as F  # noqa: E402
+from src.ga.config import DEFAULT  # noqa: E402
+from src.ga.pools import regional_pool  # noqa: E402
 
 
 def test_species_key_ignores_nicknames_gender_and_mega():
@@ -41,20 +43,20 @@ def test_weighted_rate_drops_none_and_weights():
 
 
 def test_pool_weights_positive_and_deterministic():
-    pool = G.regional_pool()
+    pool = regional_pool()
     w1 = [MW.team_weight(t) for t in pool]
     w2 = [MW.team_weight(t) for t in pool]
     assert w1 == w2 and min(w1) > 0
 
 
 def test_ga_fitness_matches_weighted_rate():
-    pool = G.regional_pool()[:4]
+    pool = regional_pool()[:4]
     outs = [1, 0, None, 1]
-    fit, wins, n = G._fitness(outs, pool)
-    ws = [G._opp_weight(t) for t in pool]
+    fit, wins, n = F.weighted_fitness(outs, pool, DEFAULT.meta_weights)
+    ws = [F.opp_weight(t, DEFAULT.meta_weights) for t in pool]
     assert (wins, n) == (2, 3)
     assert abs(fit - MW.weighted_rate(outs, ws)) < 1e-12
-    assert G._fitness([None, None], pool[:2]) == (0.0, 0, 0)
+    assert F.weighted_fitness([None, None], pool[:2], DEFAULT.meta_weights) == (0.0, 0, 0)
 
 
 if __name__ == "__main__":

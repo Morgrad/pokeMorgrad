@@ -95,7 +95,7 @@ class BCPlayer(Player):
 
     The model proposes; poke_env's `valid_orders` disposes — we only ever score
     and pick among orders poke_env already certified legal, so the pilot cannot
-    emit an illegal command (the old loop bug; see STATE.md §5.1). Any time the
+    emit an illegal command (the old loop bug; see docs/subsystems/bc.md). Any time the
     state looks unexpected we fall back to choose_random_move rather than risk a
     reject/retry loop. The shared model/encoder/mask come from the module cache;
     the per-instance dicts below translate between Showdown ids and our vocab.
@@ -150,8 +150,8 @@ class BCPlayer(Player):
         my_active = [mon_view(m) for m in battle.active_pokemon]
         my_bench = [mon_view(m) for m in battle.team.values()
                     if m not in battle.active_pokemon and not m.fainted]
-        opp_active = [mon_view(m, True) for m in battle.opponent_active_pokemon]
-        opp_seen = [mon_view(m, True) for m in battle.opponent_team.values()]
+        opp_active = [mon_view(m) for m in battle.opponent_active_pokemon]
+        opp_seen = [mon_view(m) for m in battle.opponent_team.values()]
 
         weather = None
         if battle.weather:
@@ -178,7 +178,7 @@ class BCPlayer(Player):
 
     # Moves that legitimately target an ally in VGC doubles.
     # Everything else targeting -1/-2 is almost always a misclick and
-    # we strongly discourage it. See docs/STATE.md §BC pilot notes.
+    # we strongly discourage it. See docs/subsystems/bc.md.
     ALLY_TARGET_MOVES = {
         "helpinghand", "decorate", "coaching", "healpulse", "floralhealing",
         "lifedew", "junglehealing", "pollenpuff", "followme", "ragepowder",

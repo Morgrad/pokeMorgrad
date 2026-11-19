@@ -28,10 +28,12 @@ from poke_env.battle.pokemon import Pokemon
 from poke_env.player import SimpleHeuristicsPlayer
 from poke_env.player.battle_order import DoubleBattleOrder
 
-from src import ga_core as G
+from src.ga.config import FORMAT
+from src.ga.genome import build_random_genome, genome_to_text
+from src.ga.legality import filter_legal_genomes
+from src.ga.pools import regional_pool
 from src.state_encoder import StateEncoder
 
-FORMAT = G.FORMAT
 TIMEOUT = 30
 
 # poke_env SingleBattleOrder.move_target -> training-time target_idx
@@ -132,8 +134,8 @@ def state_from_battle(battle, encoder):
     my_active = [_mon_view(m, encoder) for m in battle.active_pokemon]
     my_bench = [_mon_view(m, encoder) for m in battle.team.values()
                 if m not in battle.active_pokemon and not m.fainted]
-    opp_active = [_mon_view(m, encoder, True) for m in battle.opponent_active_pokemon]
-    opp_seen = [_mon_view(m, encoder, True) for m in battle.opponent_team.values()]
+    opp_active = [_mon_view(m, encoder) for m in battle.opponent_active_pokemon]
+    opp_seen = [_mon_view(m, encoder) for m in battle.opponent_team.values()]
     weather = None
     if battle.weather:
         weather = list(battle.weather.keys())[0].name
@@ -269,7 +271,7 @@ async def run_one_battle(team_a, team_b, uid, sem):
 async def main_async(args):
     random.seed(args.seed)
     sem = asyncio.Semaphore(args.concurrency)
-    opponents = G.regional_pool()
+    opponents = regional_pool()
     if not opponents:
         print("ERROR: no regional teams loaded")
         return
@@ -280,18 +282,18 @@ async def main_async(args):
     # Build battle list: fresh random genome vs random regional team.
     pairs = []
     for i in range(args.battles):
-        bot_genome = G.build_random_genome({})
+        bot_genome = build_random_genome({})
         if bot_genome is None:
             continue
         # Route through the same Showdown legality gate the GA uses.
         # Without this, ~1% of random genomes contain format-illegal forms
         # (Greninja-Bond) or transfer-only moves, and their battles fail at
         # team validation before they start.
-        legal = G.filter_legal_genomes([bot_genome], {})
+        legal = filter_legal_genomes([bot_genome], {})
         if not legal:
             continue    # couldn't legalize in 20 rebuilds; skip this battle
         bot_genome = legal[0]
-        bot_team = G.genome_to_text(bot_genome)
+        bot_team = genome_to_text(bot_genome)
         opp_team = random.choice(opponents)
         pairs.append((bot_team, opp_team, i))
 

@@ -1,7 +1,10 @@
-"""Append a dated milestone entry to docs/STATE_history.md.
+"""Append a dated milestone entry to docs/history/milestones.md (created if missing).
 
 Usage:
     python3 tools/log_milestone.py "Title" "One-line summary"
+
+Also commits that one file (git add + commit), so only run it when a commit is wanted.
+(Before 2026-11-18 it appended to docs/STATE_history.md, now split into docs/history/.)
 """
 import subprocess
 import sys
@@ -15,8 +18,11 @@ if len(sys.argv) < 3:
 TITLE = sys.argv[1]
 SUMMARY = sys.argv[2]
 
-REPO = Path.home() / "pokeMorgrad"
-h = REPO / "docs" / "STATE_history.md"
+REPO = Path(__file__).resolve().parent.parent
+h = REPO / "docs" / "history" / "milestones.md"
+if not h.exists():
+    h.write_text("# Milestones\n\nDated entries appended by tools/log_milestone.py "
+                 "(newest last). Index: README.md in this folder.\n")
 commit = subprocess.run(
     ["git", "log", "-1", "--oneline"],
     capture_output=True, text=True, cwd=str(REPO),
@@ -24,7 +30,7 @@ commit = subprocess.run(
 
 entry = f"""
 
-### {datetime.now().strftime('%Y-%m-%d %H:%M')} — {TITLE}
+### {datetime.now().strftime('%Y-%m-%d %H:%M')} - {TITLE}
 
 {SUMMARY}
 
@@ -37,5 +43,5 @@ print(f"  commit: {commit}")
 
 # Auto-commit the doc change so it doesn't linger unstaged
 subprocess.run(["git", "add", str(h)], cwd=str(REPO), check=True)
-subprocess.run(["git", "commit", "-m", f"docs: log milestone — {TITLE}"],
+subprocess.run(["git", "commit", "-m", f"docs: log milestone - {TITLE}"],
                cwd=str(REPO), check=True)

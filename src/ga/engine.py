@@ -2,9 +2,11 @@
 GA driver: run_islands evolves N islands with migration, restarts and checkpoints.
 
 Per generation, per island: sample opponents, evaluate every genome, update the
-all-time / validation bests, rescue diversity or restart a stagnant island, then
-breed. Every `migration_every` gens the ring migrates; every
-`showdown_restart_every` gens the Showdown server is bounced. Each generation is
+all-time / validation bests, then (except on the last generation) breed and, right
+after breeding, either restart a stagnant island or rescue a low-diversity one by
+injecting fresh genomes into the bred children's slots (Island.inject_fresh).
+Every `migration_every` gens the ring migrates; every `showdown_restart_every` gens
+the Showdown server is bounced. Each generation is
 checkpointed, so a multi-hour run survives a crash and resumes where it stopped.
 
 run_islands' signature, stdout and output files are an interface: the launchers
@@ -22,7 +24,7 @@ from src import showdown_server
 from src.ga import config as C
 from src.ga.checkpoint import load_islands, load_latest_checkpoint, save_checkpoint, write_champions
 from src.ga.evaluator import Evaluator
-from src.ga.genome import _split_train_val, regional_pool
+from src.ga.pools import _split_train_val, regional_pool
 from src.ga.population import Island, ring_migrate
 
 
@@ -35,8 +37,7 @@ class _Generation:
     immigration_rate: float
     stagnation_limit: int
     diversity_floor: int
-    save_filter: object
-    save_callback: object
+    replay_logger: object    # src.replay_log.ReplayLogger or None
 
 
 def _startup_checks(cfg):
@@ -83,31 +84,39 @@ async def _evolve_island(isl, g, evaluator, train_pool, val_pool):
     """One generation of one island: evaluate, track bests, rescue, breed."""
     n_sample = min(g.battles_per_genome, evaluator.config.train_sample_size, len(train_pool))
     gen_opps = random.sample(train_pool, n_sample)
+    rl, gen_no = g.replay_logger, g.number + 1
+    if rl is not None:
+        rl.start_generation(isl.name, gen_no)
     fits = await asyncio.gather(*[
         evaluator.evaluate(genome, gen_opps, i, len(isl.population),
-                           save_filter=g.save_filter, save_callback=g.save_callback)
+                           on_battles=rl.for_genome(isl.name, gen_no, i) if rl else None)
         for i, genome in enumerate(isl.population)
     ])
+    if rl is not None:
+        saved = rl.end_generation(isl.name, gen_no)
+        print(f"  [{isl.name}] replay log: {saved} battles saved")
     best_idx, gen_best = isl.record_fitness(fits, g.number + 1)
 
-    # Champion selection: evaluate this generation's training-best on
-    # the held-back validation slice. Champions come from
-    # best_val_ever, not best_ever — Island B (2026-10-13) showed
-    # the training best overfits by ~10 points on held-out.
+    # Validation slice: score this generation's training-best on the 30 held-back
+    # teams and keep best_val_ever. The primary champion file is the TRAIN best
+    # (best_ever); best_val_ever is the fallback (see checkpoint.write_champions).
     val_fit = await evaluator.eval_on_subset(isl.population[best_idx], val_pool)
     isl.record_validation(val_fit, isl.population[best_idx], g.number + 1, gen_best)
     isl.append_history(g.number + 1, gen_best, fits)
 
     uniq = isl.unique_species()
-    if uniq < g.diversity_floor:
-        added = isl.replace_worst(3)
-        print(f"  [{isl.name}] diversity low ({uniq}): injected {added}")
-
-    if isl.stagnation >= g.stagnation_limit:
-        isl.restart_stagnant()
+    stagnant = isl.stagnation >= g.stagnation_limit
 
     if g.number < g.last - 1:
         isl.breed(immigration_rate=g.immigration_rate)
+        # Fresh genomes go in AFTER breeding, into the children's slots, so they are
+        # evaluated next generation. (Before 2026-11-18 they were injected before
+        # breed(), which keeps only the top third by fitness, so they never survived.)
+        if stagnant:
+            isl.restart_stagnant()
+        elif uniq < g.diversity_floor:
+            added = isl.inject_fresh(3)
+            print(f"  [{isl.name}] diversity low ({uniq}): injected {added}")
 
     print(f"  [{isl.name}] gen {g.number+1}: best={gen_best*100:5.1f}%  "
           f"all-time={isl.best_ever['fit']*100:5.1f}%  stag={isl.stagnation}  "
@@ -127,17 +136,21 @@ async def run_islands(
     showdown_restart_every=10,
     max_hours=None,
     run_id="run1",
-    save_filter=None,
-    save_callback=None,
+    replay_logger=None,
 ):
     """Production GA driver: evolve N islands with migration, restart, checkpoints.
 
     Resumes from the latest checkpoint for `run_id` if one exists, else builds
     islands from island_specs. Each generation, per island: evaluate fitness,
-    track the all-time best, rescue diversity (replace_worst) or escape local
-    optima (stagnation restart), then breed. Every `migration_every` gens the ring
+    track the all-time best, breed, then escape a local optimum (stagnation restart)
+    or rescue diversity (inject_fresh) in the children's slots. Every `migration_every` gens the ring
     migrates; every `showdown_restart_every` gens the server is bounced. Stops at
     `generations` or when `max_hours` elapses. Writes a champion file per island.
+
+    replay_logger: optional src.replay_log.ReplayLogger; when given, a capped sample of
+    full battle logs is written per island and generation (run/ga_island.py,
+    GA_REPLAY_LOG=1). It never touches the GA's random stream. (Replaced the
+    save_filter / save_callback arguments on 2026-11-18; those never worked.)
     """
     cfg = C.DEFAULT
     evaluator = Evaluator(cfg, concurrency)
@@ -169,7 +182,7 @@ async def run_islands(
               f"({(time.time()-t0)/60:.1f} min) ===")
 
         g = _Generation(gen, generations, battles_per_genome, immigration_rate,
-                        stagnation_limit, diversity_floor, save_filter, save_callback)
+                        stagnation_limit, diversity_floor, replay_logger)
         for isl in islands:
             await _evolve_island(isl, g, evaluator, train_pool, val_pool)
 

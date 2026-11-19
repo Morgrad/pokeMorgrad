@@ -20,7 +20,8 @@ from poke_env import AccountConfiguration
 from poke_env.player import SimpleHeuristicsPlayer
 
 from src.bc_player import BCPlayer
-from src.ga_core import FORMAT, regional_pool
+from src.ga.config import FORMAT
+from src.ga.pools import regional_pool
 
 
 class DiagnosticBC(BCPlayer):

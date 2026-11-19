@@ -18,13 +18,17 @@ from __future__ import annotations
 import os
 from dataclasses import dataclass, field
 
-from src.paths import output_path, showdown_dir
+from src.paths import output_path, showdown_dir, showdown_port
 
 FORMAT = "gen9championsvgc2026regmc"   # canonical format registry; battle.py callers pass this in
 UID_MAX = 10**9   # upper bound of the random per-battle account id space
 
 CHECKPOINT_DIR = output_path("checkpoints", "v6")
 CHAMPION_DIR = output_path("champions")
+
+# Pilot names src/player_factory.py::make_player accepts (kept here so importing the
+# config does not import poke_env; tests/test_ga_config.py checks the two match).
+PILOT_NAMES = ("heuristic", "bc", "doubles", "ladder", "vgc")
 
 
 @dataclass(frozen=True)
@@ -68,6 +72,20 @@ class GAConfig:
     showdown_port: int = 8000                              # env SHOWDOWN_PORT
     showdown_dir: str = field(default_factory=showdown_dir)  # env SHOWDOWN_DIR
 
+    def __post_init__(self):
+        # Fail at import / construction, not hours into a run: battle errors are
+        # swallowed per battle (None), so a typo in GA_PILOT would score every genome 0.
+        for name, value in (("fitness_pilot (GA_PILOT)", self.fitness_pilot),
+                            ("fitness_opp (GA_OPP)", self.fitness_opp)):
+            if value not in PILOT_NAMES:
+                raise ValueError(f"GAConfig.{name}={value!r}; expected one of {PILOT_NAMES}")
+        if self.train_sample_size < 1:
+            raise ValueError(f"GAConfig.train_sample_size (GA_TRAIN_SAMPLE) must be >= 1, "
+                             f"got {self.train_sample_size}")
+        if not 0 <= self.early_stop_win_rate <= 1:
+            raise ValueError(f"GAConfig.early_stop_win_rate must be in [0, 1], "
+                             f"got {self.early_stop_win_rate}")
+
     @classmethod
     def from_env(cls, env=None) -> GAConfig:
         """Build a config from environment variables (os.environ by default)."""
@@ -77,7 +95,7 @@ class GAConfig:
             fitness_opp=env.get("GA_OPP", "ladder"),
             meta_weights=env.get("GA_META_WEIGHTS", "1") == "1",
             train_sample_size=int(env.get("GA_TRAIN_SAMPLE", "250")),
-            showdown_port=int(env.get("SHOWDOWN_PORT", "8000")),
+            showdown_port=showdown_port(env),
             showdown_dir=env.get("SHOWDOWN_DIR") or showdown_dir(),
         )
 

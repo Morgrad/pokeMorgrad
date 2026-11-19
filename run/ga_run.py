@@ -14,7 +14,7 @@ import os
 import random
 import sys
 
-from src.ga_core import run_islands
+from src.ga.engine import run_islands
 from src.paths import data_path, output_path
 
 BASELINE = data_path("baseline_team.txt")

@@ -9,12 +9,11 @@ STAMP=$(date +%Y%m%d_%H%M%S)
 echo "===== $(date) OVERNIGHT CHAIN START ====="
 
 cd "$REPO_ROOT"
-source ~/venv-pokemorgad/bin/activate
+if [ -f .venv/bin/activate ]; then source .venv/bin/activate; else source ~/venv-pokemorgad/bin/activate; fi
 export PYTHONUNBUFFERED=1
 
 # Kill stale GA processes
 pkill -9 -f "ga_run.py" 2>/dev/null
-pkill -9 -f "ga_core" 2>/dev/null
 sleep 2
 
 # Ensure Showdown up

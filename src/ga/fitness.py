@@ -1,7 +1,7 @@
 """
 The GA's fitness number: meta-weighted win rate over the battles that returned a result.
 
-Shared by the GA and src/eval.py (via ga_core._fitness) so a holdout score is
+Shared by the GA (src/ga/evaluator.py) and src/eval.py so a holdout score is
 comparable with GA scores.
 
 Outcomes are paired with opponents BY INDEX: outcomes[i] must be the battle against

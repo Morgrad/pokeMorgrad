@@ -29,6 +29,10 @@ Model (deliberately small, each point is a follow-up if it proves to matter):
     Fake Out's flinch) or items.
   - Value = sum over foes of (HP fraction removed + KO_BONUS * P(KO)) minus the same for our mons
     (foe retaliation and our own spread damage), so the unit matches the Evaluator.
+
+Layout: this file enumerates the scenarios (foe hypotheses x foe outcomes x speed-order cuts,
+`pair_value` -> `_outcome` -> `_run`) and models the foes (`_plan`, `_foe_rolls`, `_order_dist`);
+one scenario is played out by src/turn_sim_resolve.py::Resolution (split out 2026-11-18).
 """
 from __future__ import annotations
 
@@ -41,6 +45,7 @@ from src import damage
 from src import doubles_eval as DE
 from src import support_value as SV
 from src.turn_sim_lookahead import LookAhead
+from src.turn_sim_resolve import Resolution
 from src.turn_sim_types import (
     BLOCKING,
     COARSE_HYPS,
@@ -59,11 +64,8 @@ from src.turn_sim_types import (
     FoeAct,
     FoeInfo,
     Speeds,
-    _apply,
     _flip,
     _is_physical,
-    _is_single,
-    _pmf,
     _prune,
     act_priority,
     is_protect,
@@ -352,176 +354,10 @@ class TurnSim(DE.Evaluator):
     def _run(self, ours: List[DE.Action], hi: Dict[str, int], foe_acts: Dict[str, FoeAct],
              cut: Dict[str, int], protecting: Set[str], trfoes: FrozenSet[str] = frozenset(),
              wt: float = 0.0) -> float:
-        pmf: Dict[str, np.ndarray] = {}
-        start: Dict[str, float] = {}
-        occ = {"a0": "a0", "a1": "a1"}            # our slot -> id of the mon standing in it
-        blocked: Set[str] = set(protecting)       # ids whose incoming hits are blocked
-        fskip: Dict[str, float] = {}              # foe -> P(flinched before acting)
-        oskip: Dict[int, float] = {}              # our slot -> P(flinched before acting)
-        fdrop: Dict[str, Dict[Tuple[int, int], float]] = {}   # foe -> {(d_atk, d_spa) stages: P}
-        helped: Dict[int, float] = {}             # our slot -> P(its next attack gets Helping Hand)
-        taunted: Dict[str, float] = {}            # foe -> P(a Taunt landed on it)
-        extra = [0.0]                             # persistence value of landed stat drops
-
-        def get(t: str) -> np.ndarray:
-            if t not in pmf:
-                h = self.world[t].hyps[hi.get(t, 0)]
-                pmf[t] = _pmf(h)
-                start[t] = float(min(h.cur_hp, h.max_hp))
-            return pmf[t]
-
-        def alive(t: str) -> float:
-            return 1.0 - get(t)[0] if t in self.world else 1.0
-
-        def hit_pmf(t: str, r: np.ndarray, p: float, ph: float = 0.0) -> np.ndarray:
-            if ph <= 0.0:
-                return _apply(get(t), r, p)
-            boosted = (r * SV.HELPING_HAND_MULT).astype(np.int64)
-            return (1.0 - ph) * _apply(get(t), r, p) + ph * _apply(get(t), boosted, p)
-
-        def heal_pmf(t: str, frac: float, p: float) -> np.ndarray:
-            """HP distribution after a self-heal of `frac` of max HP that goes off with probability `p`."""
-            old = get(t)
-            n = len(old)
-            up = np.zeros(n)
-            up[0] = old[0]
-            amount = int(frac * (n - 1))
-            np.add.at(up, np.minimum(np.arange(1, n) + amount, n - 1), old[1:])
-            return (1.0 - p) * old + p * up
-
-        def foe_mix(fid: str, move: str, tid: str, n: int) -> List[Tuple[float, np.ndarray]]:
-            """Rolls of a foe hit, mixed over the Atk / Sp. Atk stage drops it carries this turn."""
-            dist = fdrop.get(fid)
-            hf, ht = hi.get(fid, 0), hi.get(tid, 0)
-            if not dist:
-                return [(1.0, self._foe_rolls(fid, hf, move, tid, ht, n))]
-            i = 0 if _is_physical(move) else 1
-            marg: Dict[int, float] = {}
-            for sh, q in dist.items():
-                marg[sh[i]] = marg.get(sh[i], 0.0) + q
-            return [(q, self._foe_rolls(fid, hf, move, tid, ht, n, d)) for d, q in marg.items()]
-
-        def apply_mix(t: str, mix: List[Tuple[float, np.ndarray]], p: float) -> np.ndarray:
-            if len(mix) == 1:
-                return _apply(get(t), mix[0][1], p)
-            return sum(q * _apply(get(t), r, p) for q, r in mix)
-
-        def land(tid: str, p: float, drop: SV.Drop) -> None:
-            """A stat drop hits foe `tid` with probability `p`: in-turn stage distribution + persistence."""
-            if p <= 0.0 or tid not in self.foes:
-                return
-            outs = self._drop_outcomes(drop, tid)
-            new: Dict[Tuple[int, int], float] = {}
-            for sh, q in (fdrop.get(tid) or {(0, 0): 1.0}).items():
-                new[sh] = new.get(sh, 0.0) + (1.0 - p) * q
-                for pr, da, ds in outs:
-                    k2 = (SV.shifted(sh[0], da), SV.shifted(sh[1], ds))
-                    new[k2] = new.get(k2, 0.0) + p * q * pr
-            fdrop[tid] = new
-            if self.la is None:
-                extra[0] += (self.ally_weight * SV.SUPPORT_HORIZON * SV.FOE_STAY * p * alive(tid)
-                             * self._drop_gain(drop, tid, hi))
-
-        snarl = "snarl" in self.effects
-
-        def our_hit(k: int, a: DE.Action) -> None:
-            if is_switch(a):
-                occ[f"a{a.attacker}"] = a.targets[0]
-                return
-            me = occ[f"a{a.attacker}"]
-            if is_protect(a):
-                blocked.add(me)
-                return
-            pa = alive(me) * (1.0 - oskip.get(a.attacker, 0.0))
-            pk = SV.pure_kind(a.move)
-            if pk == "helpinghand":
-                ps = 1 - a.attacker
-                helped[ps] = 1.0 - (1.0 - helped.get(ps, 0.0)) * (1.0 - pa)
-                return
-            if pk == "heal":
-                pmf[me] = heal_pmf(me, SV.heal_fraction(a.move, self.weather), pa)
-                return
-            if pk:
-                for t in a.targets:
-                    tid = occ.get(t, t)
-                    if tid not in self.foes:
-                        continue
-                    p = pa * DE._accuracy(a.move) * (tid not in blocked)   # status moves ignore type immunity
-                    if pk == "taunt":
-                        taunted[tid] = 1.0 - (1.0 - taunted.get(tid, 0.0)) * (1.0 - p)
-                    else:
-                        land(tid, p, SV.foe_drop(a.move))
-                return
-            ph = helped.pop(a.attacker, 0.0)
-            drop = SV.foe_drop(a.move) if snarl else None
-            if drop is not None and drop.kind != "secondary":
-                drop = None
-            single = _is_single(a.move) and len(a.targets) == 1
-            for t in a.targets:
-                tid = occ.get(t, t)
-                p = pa * self._p_hit_id(a.move, tid) * (tid not in blocked)
-                p_dead = get(tid)[0]
-                r = self.rolls(a, tid, hi.get(tid, 0))
-                pmf[tid] = hit_pmf(tid, r, p, ph)
-                if a.move == FAKE_OUT and tid in cut and cut[tid] > k:
-                    pfl = p * float((r > 0).mean())
-                    fskip[tid] = 1.0 - (1.0 - fskip.get(tid, 0.0)) * (1.0 - pfl)
-                if drop is not None and t.startswith("o"):
-                    land(tid, p, drop)
-                if single and t.startswith("o") and p_dead > 1e-9:
-                    other = "o1" if t == "o0" else "o0"
-                    if other in self.world and other not in blocked:
-                        ra = DE.Action(a.attacker, a.move, (other,))
-                        pmf[other] = hit_pmf(other, self.rolls(ra, other, hi.get(other, 0)),
-                                             pa * self._p_hit_id(a.move, other) * p_dead, ph)
-
-        def foe_hit(fid: str, fa: FoeAct) -> None:
-            pf = alive(fid) * (1.0 - fskip.get(fid, 0.0))
-            single = _is_single(fa.move) and len(fa.targets) == 1
-            n = len(fa.targets)
-            for t in fa.targets:
-                tid = occ.get(t, t)
-                p = pf * self._p_hit_id(fa.move, tid) * (tid not in blocked)
-                p_dead = get(tid)[0]
-                mix = foe_mix(fid, fa.move, tid, n)
-                pmf[tid] = apply_mix(tid, mix, p)
-                if fa.move == FAKE_OUT and t in occ:
-                    s = int(t[1])
-                    oskip[s] = 1.0 - (1.0 - oskip.get(s, 0.0)) * (1.0 - p * float((mix[0][1] > 0).mean()))
-                if single and t in occ and p_dead > 1e-9:
-                    o = occ["a1" if t == "a0" else "a0"]
-                    if o in self.world and o not in blocked:
-                        pmf[o] = apply_mix(o, foe_mix(fid, fa.move, o, 1), pf * self._p_hit_id(fa.move, o) * p_dead)
-
-        slots: List[List[str]] = [[] for _ in range(len(ours) + 1)]
-        for f in foe_acts:
-            slots[cut[f]].append(f)
-        for k in range(len(ours) + 1):
-            for f in slots[k]:
-                foe_hit(f, foe_acts[f])
-            if k < len(ours):
-                our_hit(k, ours[k])
-
-        total = extra[0]
-        if self.la is not None:
-            for f, dist in fdrop.items():
-                for sh, q in dist.items():
-                    if sh != (0, 0):
-                        total += q * alive(f) * self.la.h_drop * self.la.dv(("drop", f, sh[0], sh[1]))
-            for f in trfoes:
-                total += self.la.h_tr * self.la.dv(("tr",)) * (1.0 - taunted.get(f, 0.0)) * alive(f)
-        else:
-            for f in trfoes:                   # Taunt (+0) lands before Trick Room (-7), so it fails
-                total += self._tr_cost() * (1.0 - taunted.get(f, 0.0))
-        if self._sink is not None:
-            self._sink(wt, hi, pmf)
-        for t, dist in pmf.items():
-            c = self.world[t]
-            h = c.hyps[hi.get(t, 0)]
-            e_hp = float((dist * np.arange(len(dist))).sum())
-            v = (start[t] - e_hp) / h.max_hp + self.ko_bonus * float(dist[0])
-            total += (-self.ally_weight * v) if c.is_ally else v
-        return total
+        """Value of one scenario: hypotheses `hi`, foe actions, speed-order `cut` (foe -> how many of
+        our sorted actions move before it), foes that Protect / set Trick Room. Played out in move
+        order by src/turn_sim_resolve.py::Resolution; `wt` is the scenario weight for the leaf sink."""
+        return Resolution(self, hi, cut, protecting).run(ours, foe_acts, trfoes, wt)
 
     def pair_value(self, actions: Sequence[Optional[DE.Action]]) -> float:
         acts = self._sort_ours([a for a in actions if a is not None])

@@ -44,8 +44,8 @@ RETRY_STRIDE = 999_983
 
 
 def matchups(n=100000):
-    from src import ga_core as G
-    pool = G.heldout_pool()
+    from src.ga.pools import heldout_pool
+    pool = heldout_pool()
     rng = random.Random(SEED)
     out = []
     for _ in range(n):

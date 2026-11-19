@@ -12,8 +12,8 @@ set -u
 HOURS=${1:-4.0}
 RUN_ID=${2:-p1}
 
-cd ~/pokeMorgrad
-source ~/venv-pokemorgad/bin/activate
+cd "$(dirname "${BASH_SOURCE[0]}")/.." && cd "$(pwd -P)"   # repo root, wherever it is checked out
+if [ -f .venv/bin/activate ]; then source .venv/bin/activate; else source ~/venv-pokemorgad/bin/activate; fi
 export PYTHONUNBUFFERED=1
 
 echo "=== parallel GA: ${HOURS}h x 3 islands, run_id=${RUN_ID} ==="
@@ -102,7 +102,7 @@ run_island() {
   done
 }
 
-REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+REPO_ROOT="$(pwd)"   # the script cd-ed to the repo root at the top
 
 for name in A B C; do
   case $name in

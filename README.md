@@ -1,289 +1,105 @@
 # pokeMorgrad
 
-Finding a competitive Pokémon VGC Regulation M-C team using a genetic
-search against a pilot that plays the games. Built and validated for local
-tournament use, not theoretical perfection.
+Finding a competitive Pokemon VGC Regulation M-C team with a genetic search whose fitness
+comes from real games on a local Pokemon Showdown server. Built for local tournament use,
+not theoretical perfection. License: MIT.
 
-Status: `docs/STATE.md`.
-Operations: `docs/OPERATIONS.md`.
-Dev log: `docs/STATE_history.md`.
-Terms: `docs/GLOSSARY.md`.
-License: MIT.
-
----
+- Want to run the GA? Follow `docs/runbooks/quickstart.md`: setup from zero, a test run,
+  one or three servers, results. No Python knowledge needed.
+- Agents and contributors start at `AGENTS.md`, then `docs/README.md` (which doc to read for
+  which task).
+- Current status, open issues, next steps: `docs/STATE.md`.
+- How it fits together: `docs/reference/architecture.md`.
 
 ## What this is
-
 Two goals, stacked:
+1. Find a Reg M-C team (`gen9championsvgc2026regmc`: doubles, Mega Evolution legal,
+   Terastallization not legal) that performs well against the current tournament meta,
+   built around Umbreon.
+2. Keep the machinery reusable for the next regulation: swap the team/replay sources and
+   rebuild the canonical format DB from Showdown.
 
-1. Find a Reg M-C team that performs well against the current tournament meta.
-2. Build the machinery to do this for any regulation in roughly two weeks by
-   swapping the data source and rebuilding the canonical DB.
-
-The current output is a set of six-mon teams saved as
-`output/champions/*.txt`, scored against a held-out pool of real regional
-top-cut teams. The team the project is trying to beat is the human baseline
-in `data/baseline_team.txt`, which took third place at a local tournament.
-
-Runs on Windows 11 with WSL2 and an AMD 7900 XTX (ROCm).
-
----
+Output: six-mon teams in `output/champions/*.txt`, scored against a held-out pool of 100 real
+tournament teams the search never saw. The reference to beat is the human team in
+`data/baseline_team.txt` (third place at a local tournament).
 
 ## Pipeline
-
-Two parallel tracks share the same data source. Only the GA track produces
-usable teams today.
-
-    ┌─────────────────┐    pulls ~5000 human replays from
-    │  Replay scraper │    replay.pokemonshowdown.com
-    └────────┬────────┘
-             ▼
-    ┌─────────────────┐    parses each battle into per-turn
-    │  Replay tracker │    decision rows (state + action)
-    └────────┬────────┘
-             │
-             │  training_data.jsonl (~44 MB, gitignored)
-             │
-             ├──────────────────────────────────┐
-             │                                  │
-             ▼                                  ▼
-
-    GA track (produces teams)          BC track (produces a pilot)
-
-    ┌─────────────────┐                ┌─────────────────┐
-    │  Training pool  │                │   BC trainer    │
-    │   270 teams     │                │  imitates human │
-    └────────┬────────┘                │  decisions      │
-             ▼                         └────────┬────────┘
-    ┌─────────────────┐                         ▼
-    │    GA search    │                ┌─────────────────┐
-    │                 │                │   BC pilot      │
-    │  evolves teams  │                │  ~32% live vs   │
-    │  under realism  │                │  the held-out   │
-    │  constraints    │                │  pool           │
-    └────────┬────────┘                └─────────────────┘
-             ▼                                  │
-    ┌─────────────────┐                         │
-    │ Validation      │                         │
-    │ slice, 30 teams │                         │
-    │ selects         │                         │
-    │ champions       │                         │
-    └────────┬────────┘                         │
-             ▼                                  │
-    ┌─────────────────┐                         │
-    │  Held-out eval  │◄────────────────────────┘
-    │  100 unseen     │   (BC can be swapped in as pilot
-    │  regional teams │    for the eval, but wins fewer
-    └─────────────────┘    games than the heuristic bot)
-
-The GA's fitness signal is `SimpleHeuristicsPlayer`, poke_env's built-in
-rule-based bot, which wins around 53.6 percent against the held-out pool (measured 2026-11-15, 500 battles × 5 seeds). The
-BC pilot is not currently used as the GA's evaluator because it plays worse
-than the heuristic.
-
----
+```
+ real tournament teams (data/regional_teams/)      human replays (Showdown replay API)
+              |                                              |
+   data/pool_split.json                          tools/replay_tracker.py
+   148 train / 100 holdout                                   |
+              |                                    data/training_data.jsonl
+   train: 118 fitness + 30 validation                        |
+              v                                              v
+   GA islands A / B / C  (src/ga/)              behavior-cloning pilot (src/bc_*.py)
+   each team plays real battles:                parked: weaker than the rule-based
+   VGCPilot (ours) vs LadderOpponent,           pilot; kept as a base for future
+   meta-weighted win rate                       search / RL
+              |
+   champions: output/champions/ga_<run>_island_<X>.txt
+              |
+   held-out eval: src/eval.py on the 100 holdout teams (never used for fitness)
+```
 
 ## GA island model
+| Island | Constraint | Seed |
+|---|---|---|
+| A | Umbreon locked in slot 0 | `data/baseline_team.txt` |
+| B | Umbreon locked in slot 0 (5 slots free) | none |
+| C | none | none |
 
-The GA runs three islands in parallel. Each island is an independent
-population with its own constraints and its own champion. Top genomes
-migrate around a ring every five generations; stagnant islands restart
-their worst half.
-
-    ┌──────────────┐          ┌──────────────┐          ┌──────────────┐
-    │  Island A    │          │  Island B    │          │  Island C    │
-    │              │          │              │          │              │
-    │ Umbreon lock │          │ Umbreon lock │          │  no locks    │
-    │ + baseline   │          │ no seed      │          │  no seed     │
-    │   seed       │          │              │          │              │
-    └──────┬───────┘          └──────┬───────┘          └──────┬───────┘
-           │                         │                         │
-           │  top 2 genomes          │                         │
-           └────────►───────►────────┴────────►───────►────────┘
-                    (ring migration every 5 generations)
-
-    Per generation, per island:
-      1. Evaluate fitness      800 battles vs sampled 270-team pool
-      2. Update all-time best  tracking per island
-      3. Evaluate val slice    best genome vs 30 held-back teams
-      4. Diversity rescue      if unique species < 15, inject 3 randoms
-      5. Stagnation restart    if flat for 5 gens, restart worst half
-      6. Breed                 elites + crossovers + immigrants
-      7. Legality gate         rebuild illegal genomes, apply constraints
-
-    Champion per island is chosen by validation slice score, not training
-    fitness. See `docs/STATE.md` section 5.14.
-
----
-
-## Repository layout
-
-    ~/pokeMorgrad/
-    ├── data/          inputs
-    │   ├── regmc_db.json              canonical format data
-    │   ├── baseline_team.txt          reference team, seeds GA island A
-    │   ├── pool_split.json            445 train / 100 holdout
-    │   ├── meta_items.json            item frequency per species
-    │   ├── species_move_priors.json   move frequency per species
-    │   ├── regional_teams/            150 VGCPastes teams (real EVs, 2026-10-15 swap)
-    │   ├── showdown_replays/          raw replays (gitignored, regenerable)
-    │   └── training_data.jsonl        parsed decisions (gitignored)
-    │
-    ├── src/           Python package
-    │   ├── paths.py                   repo-relative path resolution
-    │   ├── regmc_db.py                canonical data + team validator
-    │   ├── showdown_validator.py      Node bridge to Showdown validator
-    │   ├── showdown_validate.js       Node side of the bridge
-    │   ├── state_encoder.py           battle state to tensors
-    │   ├── bc_model.py                neural net + checkpoint I/O
-    │   ├── bc_train.py                BC training loop
-    │   ├── bc_player.py               poke_env Player wrapping BC model
-    │   ├── ga_core.py                 GA public facade (re-exports src/ga/)
-    │   ├── ga/                        GA engine: config, genome, fitness, evaluator,
-    │   │                              population (islands), checkpoint, engine
-    │   ├── showdown_server.py         probe / restart the local Showdown server
-    │   ├── battle.py                  shared battle runner
-    │   ├── eval.py                    unified evaluation CLI
-    │   └── audit_before_launch.py     pre-flight data-integrity checks
-    │
-    ├── run/           entry points
-    │   ├── ga_run.py                  5.5-hour island GA launcher
-    │   └── ga_overnight.sh            11-hour chain: run1 + run2 + eval
-    │
-    ├── tools/         data pipeline and diagnostics
-    │   ├── build_regmc_db.js          rebuild canonical DB from Showdown
-    │   ├── scrape_replays.py          replay scraper
-    │   ├── replay_tracker.py          replay parser
-    │   ├── build_training_data.py     replays -> training_data.jsonl
-    │   ├── generate_heuristic_dataset.py  heuristic imitation dataset
-    │   ├── build_species_priors.py    species_move_priors.json
-    │   ├── preflight.py               pre-launch sanity checks
-    │   ├── bc_diagnostic.py           BC vs heuristic comparison
-    │   └── encode_snapshot.py         bit-exact encoder verification
-    │
-    ├── ops/           Showdown server management scripts
-    ├── output/        champions, checkpoints, trained models (gitignored)
-    ├── docs/          STATE, OPERATIONS, GLOSSARY, history, replay evidence
-    └── archive/       frozen history, old scripts, old pools
-
-Never modify `~/pokemon-showdown/`. It is a separate git repository used as
-the simulator backend.
-
----
-
-## Setup
-
-Requires Python 3.10 or newer, Node.js (for Showdown), and a Showdown server
-on port 8000.
-
-    git clone https://github.com/Morgrad/pokeMorgrad.git
-    cd pokeMorgrad
-    python3 -m venv .venv
-    source .venv/bin/activate
-    pip install -e ".[dev]"
-
-Two data files are not committed and must be regenerated before the BC or GA
-pipelines can run end-to-end:
-
-    python3 tools/scrape_replays.py             # data/showdown_replays/  (~60 MB)
-    python3 tools/build_training_data.py        # data/training_data.jsonl (~44 MB)
-
-Everything else (canonical DB, pools, priors, regional teams, showdown
-replay metadata) is committed. The GA runs without re-scraping.
-
----
-
-## Key commands
-
-| Task | Command |
-|---|---|
-| Pre-flight data audit | `python3 -m src.audit_before_launch` |
-| Pre-launch checks | `python3 tools/preflight.py` |
-| Launch overnight GA | `GA_CONCURRENCY=8 python3 tools/preflight.py --launch` |
-| Launch 5.5h GA only | `python3 run/ga_run.py run1 5.5` |
-| Evaluate a team | `python3 -m src.eval <team.txt> --seeds 100 200 300` |
-| Evaluate with BC pilot | `BC_PILOT_PATH=output/models/bc_heuristic_v1c.pt python3 -m src.eval --pilot bc <team.txt>` |
-| Compare pilots side by side | `python3 -m src.eval --pilot both <team.txt>` |
-| Train BC | `python3 -m src.bc_train` |
-| Rebuild canonical DB | `node tools/build_regmc_db.js` |
-| Scrape replays | `python3 tools/scrape_replays.py` |
-
-Full command reference and failure modes: `docs/OPERATIONS.md`.
-
----
-
-## Current status (2026-10-14)
-
-Authoritative numbers live in `docs/STATE.md`. Orientation only:
-
-- **Heuristic pilot baseline**: around 53.6 percent against the held-out pool (measured 2026-11-15, 500 battles × 5 seeds).
-  Every champion is measured against this.
-- **Best held-out champion so far**: **71.6 percent** (p1 island C, 2026-10-14). p3 (2026-10-15) hit 66.4%
-  on the same holdout with a 445-team pool — larger pool correlated with
-  worse champions. p4 (2026-10-15) tests a 150-team real-EV pool, with the constraint
-  stack active. Prior pre-constraint best was 66 to 71 percent. Those teams are structurally unrealistic. Dead items
-  (Binding Band on a mon with no binding moves), missing Protect coverage,
-  off-role moves. The five-part constraint stack landed 2026-10-14 fixes
-  those. Expected effect: champion scores drop to the 58 to 64 percent range,
-  but the number becomes meaningful.
-- **BC pilot**: functional but weak. Best checkpoint
-  (`bc_heuristic_v1c.pt`) wins around 32 percent against the held-out pool.
-  Imitation accuracy does not predict live win rate, and BC cannot exceed
-  the reference it imitates. See `docs/STATE.md` sections 5.12, 5.15, 5.16.
-
----
+Per generation, per island: sample opponents from the training pool, play every team
+(50-battle head; teams under 15% stop early), track the all-time and validation bests, breed
+(top third kept, children by crossover + mutation, 20% fresh immigrants), then restart half
+the children after 5 flat generations or inject 3 fresh teams when species diversity is low.
+Every team passes Showdown's own validator. The parallel launcher runs the 3 islands as 3
+processes on 3 Showdown servers (ports 8000-8002) with no migration; the serial launcher
+migrates the top 2 around a ring every 5 generations. Details: `docs/subsystems/ga.md`.
 
 ## Team realism constraints
+A pilot-based fitness happily rewards teams no human would bring, so genomes are constrained:
+tournament-usage items with a canonical fallback, at least one Protect-family move, at least
+one Fake Out / Follow Me / Rage Powder, role-committed movesets (physical / special / support
+from base stats; EVs and nature follow the role), move sampling from usage priors.
+Details: `docs/subsystems/ga-genome-operators.md`.
 
-The GA optimizes against a rule-based pilot that is blind to items, Protect
-timing, and Fake Out priority. Left unconstrained, it produces teams that
-score well but would lose to any human. Five constraints prevent the
-artifacts:
+## Setup
+Python 3.10+ (3.12 / 3.13 used), Node.js, and a built Pokemon Showdown checkout
+(`~/pokemon-showdown`, or set `SHOWDOWN_DIR`).
+```
+git clone https://github.com/Morgrad/pokeMorgrad.git && cd pokeMorgrad
+python3 -m venv .venv && source .venv/bin/activate
+pip install -e ".[dev]"
+bash tools/verify.sh          # must end with ALL PASS
+```
+Canonical DB, pools, priors and regional teams are committed, so the GA runs without
+scraping. Replays and the BC training data are not committed; see
+`docs/runbooks/data-pipeline.md`. Host details (WSL2, ROCm on an AMD 7900 XTX):
+`docs/runbooks/environment.md`.
 
-| Constraint | What it enforces |
+## Key commands
+| Task | Command |
 |---|---|
-| Items from meta | Tournament-usage items only, with canonical fallback |
-| Protect coverage | At least one Protect-family move on the team |
-| Fake Out / redirection | At least one of Fake Out, Follow Me, Rage Powder |
-| Role-committed movesets | Physical/special/support determined by base stats; EVs and nature follow |
-| Priors-first move sampling | Top-8 tournament moves by usage; role filter; random fallback |
-
-Full design in `docs/STATE.md` section 5.14.
-
----
+| Full gate (lint, tests, audit) | `bash tools/verify.sh` |
+| Pre-launch checks | `python tools/preflight.py` |
+| Parallel GA, 3 islands | `bash run/ga_parallel.sh <hours> <run_id>` |
+| Serial GA with migration | `python -m run.ga_run <run_id> <hours>` |
+| Evaluate a team on the holdout | `python -m src.eval <team.txt> --pilot vgc --opp ladder` |
+| Paired pilot comparison | `bash tools/paired_run.sh <heuristic or ladder> <matchups>` |
+| Rebuild the format DB | `node tools/build_regmc_db.js` |
+More: `docs/runbooks/` (one file per procedure).
 
 ## Core principles
-
-1. **Showdown is the source of truth.** Format facts come from Showdown's
-   dex, extracted by `tools/build_regmc_db.js`. Never hand-edit
-   `regmc_db.json`.
-
-2. **Every team passes the legality gate.** `showdown_validator` checks
-   every genome before it enters a population. Illegal genomes are rebuilt
-   up to twenty times, then dropped.
-
-3. **Held-out eval is sacred.** Fitness uses the training slice; final
-   scoring uses teams the GA has never seen. Never mix them.
-
-4. **Team realism is enforced, not hoped for.** Items come from tournament
-   usage, Protect and Fake Out coverage are required, moves are
-   role-appropriate and sampled from priors.
-
-5. **The pilot limits the search.** A team optimized for a weak pilot is
-   not a strong team. The current heuristic pilot is the ceiling; improving
-   it is a separate project.
-
-6. **Measure with confidence intervals.** Single-seed results vary by five
-   percentage points. Every decision needs at least five seeds; every claim
-   needs non-overlapping Wilson intervals. See `docs/STATE.md` section 5.8.
-
----
+1. Showdown is the source of truth: format data comes from Showdown's dex
+   (`tools/build_regmc_db.js`); never hand-edit `data/regmc_db.json`.
+2. Every team passes the legality gate (Showdown's validator) before it is evaluated.
+3. Held-out eval is sacred: fitness never sees the 100 holdout teams.
+4. Team realism is enforced, not hoped for.
+5. The pilot limits the search: a team optimized for a weak pilot is not a strong team.
+6. Measure with confidence intervals and paired comparisons; single runs vary by ~5 points.
 
 ## What this is not
-
-- Not a team that will win a Regional. It is aimed at local tournament play,
-  where execution and matchup knowledge matter more than a theoretical edge.
-- Not a replacement for playing the game. It generates candidate teams to
-  bring to a tournament; you pilot them.
-- Not finished. The pipeline works end to end, but the search is still
-  bounded by the quality of the pilot used for fitness.
+- Not a team that will win a Regional; it is aimed at local tournaments.
+- Not a replacement for playing: it proposes candidate teams; you pilot them.
+- Not finished: the search is bounded by the pilot used for fitness (see `docs/STATE.md`).

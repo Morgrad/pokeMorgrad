@@ -11,7 +11,7 @@ species_{build,ability}_priors.json files that src/opp_model.py reads)
 
 Item-keyed entries are stored only when they have >= MIN_ITEM_COUNT teams.
 Species-only entries aggregate across all items and serve as fallback.
-Sampling logic (in ga_core._random_mon) should prefer item-keyed, fall
+Sampling logic (in src/ga/genome.py::_random_mon) should prefer item-keyed, fall
 back to species-only.
 
 Format per entry (list, most-common-first):

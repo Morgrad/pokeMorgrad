@@ -1,4 +1,5 @@
-"""GAConfig.from_env: same variable names, defaults and parsing as the old ga_core globals.
+"""GAConfig.from_env: same variable names, defaults and parsing as the old ga_core globals
+(the src/ga_core.py facade itself was removed on 2026-11-18).
 
 Run: pytest tests/test_ga_config.py   (or: python tests/test_ga_config.py)
 """
@@ -8,7 +9,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from src import ga_core as G  # noqa: E402
+from src import eval as EV  # noqa: E402
+from src.ga import config as C  # noqa: E402
 from src.ga.config import DEFAULT, GAConfig  # noqa: E402
 
 
@@ -32,16 +34,56 @@ def test_env_overrides():
     assert GAConfig.from_env({"GA_META_WEIGHTS": "true"}).meta_weights is False
 
 
-def test_ga_core_aliases_follow_default():
+def test_default_follows_env_and_eval_uses_the_ga_constants():
     assert DEFAULT == GAConfig.from_env(os.environ)
-    assert (G.FITNESS_PILOT, G.FITNESS_OPP, G.META_WEIGHTS, G.TRAIN_SAMPLE_SIZE) == \
-        (DEFAULT.fitness_pilot, DEFAULT.fitness_opp, DEFAULT.meta_weights, DEFAULT.train_sample_size)
-    assert (G.BATTLE_TIMEOUT, G.MIN_TURNS, G.SHOWDOWN_PORT, G.SHOWDOWN_DIR) == \
-        (DEFAULT.battle_timeout, DEFAULT.min_turns, DEFAULT.showdown_port, DEFAULT.showdown_dir)
+    assert (EV.FORMAT, EV.UID_MAX) == (C.FORMAT, C.UID_MAX) == ("gen9championsvgc2026regmc", 10**9)
+
+
+def _raises(fn):
+    try:
+        fn()
+    except ValueError:
+        return True
+    return False
+
+
+def test_invalid_values_fail_fast():
+    # a typo used to fall back silently to the heuristic pilot
+    assert _raises(lambda: GAConfig.from_env({"GA_PILOT": "vcg"}))
+    assert _raises(lambda: GAConfig.from_env({"GA_OPP": "Ladder"}))
+    assert _raises(lambda: GAConfig.from_env({"GA_TRAIN_SAMPLE": "0"}))
+    assert _raises(lambda: GAConfig(early_stop_win_rate=1.5))
+    for pilot in ("heuristic", "bc", "doubles", "ladder", "vgc"):
+        assert GAConfig.from_env({"GA_PILOT": pilot, "GA_OPP": pilot}).fitness_pilot == pilot
+
+
+def test_showdown_port_has_one_parser():
+    # src/paths.py::showdown_port is the only SHOWDOWN_PORT parser (refactor item D2)
+    from src import paths
+    from src import player_factory as PF
+    for env in ({}, {"SHOWDOWN_PORT": "8002"}):
+        assert GAConfig.from_env(env).showdown_port == paths.showdown_port(env)
+    assert paths.showdown_port({}) == 8000
+    port = paths.showdown_port()
+    assert PF.DEFAULT_SERVER.websocket_url == f"ws://localhost:{port}/showdown/websocket"
+    assert DEFAULT.showdown_port == port
+
+
+def test_pilot_names_match_player_factory():
+    from src.ga.config import PILOT_NAMES
+    from src.player_factory import PILOTS, make_player
+    assert tuple(PILOT_NAMES) == tuple(PILOTS)
+    assert _raises(lambda: make_player("nope", "", 1, "B", "gen9championsvgc2026regmc"))
 
 
 if __name__ == "__main__":
+    failed = 0
     for name, fn in list(globals().items()):
-        if name.startswith("test_"):
-            fn()
-            print(f"PASS {name}")
+        if name.startswith("test_") and callable(fn):
+            try:
+                fn()
+                print(f"PASS {name}")
+            except AssertionError as e:
+                failed += 1
+                print(f"FAIL {name}: {e!r}")
+    sys.exit(1 if failed else 0)
