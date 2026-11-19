@@ -70,10 +70,12 @@ that Linux terminal.
 
 ```
 cd ~/pokeMorgrad
-source .venv/bin/activate
+source .venv/bin/activate              # on the original GPU workstation: source ~/venv-pokemorgad/bin/activate
 ```
 
-Your prompt now starts with `(.venv)`. Every command in this guide expects that.
+Your prompt now starts with `(.venv)` (or `(venv-pokemorgad)`). Every command in this guide
+expects that. `bash tools/verify.sh` activates it by itself, so it can pass while your own
+terminal still has no venv; `which python` must point inside the venv.
 Servers do not survive closing WSL or rebooting Windows; the launchers below start them for
 you when needed.
 
@@ -199,6 +201,7 @@ noise. Always pass `--pilot vgc` (the default also loads the experimental BC pil
 | what you see | what to do |
 |---|---|
 | `verify.sh` does not end with `ALL PASS` | the setup is incomplete; read the first `FAILED:` or error line |
+| `ModuleNotFoundError: No module named 'poke_env'` (or `torch`, `numpy`) | the venv is not active in this terminal: run the `source` line of Part 2 |
 | `Showdown on :8000 is not answering` | `bash ops/start_server.sh 8000`; check that `~/pokemon-showdown` exists and was built |
 | every battle times out, all scores 0% | the server is down or overloaded: restart it, or use `GA_CONCURRENCY=4` |
 | many `battle error #N` lines | a program error inside battles; the first 3 of each kind show the details; send them to the maintainer |
