@@ -180,7 +180,7 @@ file itself. Skip for docs-only or formatting commits.
 | starts at gen 1 although checkpoints exist | wrong run_id (parallel uses `<run_id>_<X>` dirs) | check `output/checkpoints/v6/` |
 | many `INVALID` lines | genomes failing `DB.validate_team` (often after migration into a locked island) | expected occasionally; many = check validator / node |
 | all battles time out | Showdown overloaded | lower `GA_CONCURRENCY` (try 4) |
-| `KeyError: 'round'` warnings | poke_env bug with overridden moves | harmless, battle retried / None |
+| `KeyError: 'round'` tracebacks | poke_env bug with a Round after its partner's Round | fixed 2026-11-18 by `src/poke_env_fixes.py`; seeing it means an old checkout |
 | WSL killed by Windows reboot | host update | resume (section 5); WSL sleep targets were masked 2026-10-15 |
 
 ## Related docs

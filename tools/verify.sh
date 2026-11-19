@@ -17,7 +17,7 @@ TESTS=(
   test_damage test_doubles_eval test_speed_model test_blend_priors test_archetypes
   test_mega_z_lines test_battle_memory test_vgc_pilot test_mega_model test_turn_sim test_turn_sim_paths
   test_support test_opp_actions test_ladder_opp test_meta_weights
-  test_battle_hook test_battle_runner test_player_factory test_pilot_support
+  test_battle_hook test_battle_runner test_poke_env_fixes test_player_factory test_pilot_support
   test_replay_filters test_replay_log
   test_bc_state
   test_showdown_validator

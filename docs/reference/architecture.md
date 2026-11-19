@@ -109,7 +109,8 @@ need the user's approval.
   `checkpoint` (checkpoint/champion files), `engine` (`run_islands`); `showdown_server`
   (probe/restart). No facade: import from the defining module.
 - Battle harness: `battle` (re-export), `battle_runner` (run one battle), `player_factory`
-  (`make_player`, `TimeoutPlayer`), `replay_log` + `replay_filters` (GA replay logging).
+  (`make_player`, `TimeoutPlayer`), `poke_env_fixes` (patches a poke_env parser bug),
+  `replay_log` + `replay_filters` (GA replay logging).
 - Damage and opponent knowledge: `damage`, `opp_model`, `speed_model`, `mega_model`,
   `opp_actions`.
 - Battle memory: `battle_memory`, `battle_memory_parser`, `battle_memory_types`.
@@ -154,7 +155,8 @@ pilot_sim_input      --> doubles_eval, opp_model, pilot_world, speed_model, turn
 pilot_support        --> -        (used by tests/test_pilot_support.py only)
 doubles_pilot        --> doubles_eval, pilot_actions, pilot_sim_input, pilot_world, smart_player, support_value, turn_sim
 vgc_pilot            --> battle_memory, doubles_pilot, mega_model, opp_actions, opp_model
-player_factory       --> paths, vgc_pilot ; (lazy) bc_player, doubles_pilot, ladder_opp
+poke_env_fixes       --> -
+player_factory       --> paths, poke_env_fixes, vgc_pilot ; (lazy) bc_player, doubles_pilot, ladder_opp
 battle_runner        --> player_factory
 battle               --> battle_runner, player_factory
 showdown_server      --> -

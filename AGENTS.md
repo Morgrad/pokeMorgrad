@@ -52,7 +52,7 @@ a local LLM holds the VRAM (`docs/runbooks/environment.md`).
 | Path | What | Doc |
 |---|---|---|
 | `src/ga/` | GA engine package: config, genome, pools, legality, operators, fitness, evaluator, population, checkpoint, engine. Import each name from its defining module (no facade). | `docs/subsystems/ga.md`, `ga-genome.md`, `ga-genome-operators.md` |
-| `src/battle*.py`, `player_factory.py`, `showdown_*.py` | Running one battle on Showdown, Showdown server control, legality validator | `docs/subsystems/battle-harness.md` |
+| `src/battle*.py`, `player_factory.py`, `poke_env_fixes.py`, `showdown_*.py` | Running one battle on Showdown (plus a poke_env bug fix), Showdown server control, legality validator | `docs/subsystems/battle-harness.md` |
 | `src/*pilot*.py`, `smart_player.py`, `doubles_eval.py`, `support_value.py`, `ladder_opp.py` | Pilots that choose moves | `docs/subsystems/pilots.md` |
 | `src/turn_sim*.py` | One-turn simulator (`turn_sim`: scenarios + foe model; `turn_sim_resolve`: one scenario in move order) + lookahead | `docs/subsystems/turn-sim.md` |
 | `src/damage.py`, `speed_model.py`, `opp_model.py`, `mega_model.py` | Damage / speed / opponent-set models | `docs/subsystems/damage.md` |

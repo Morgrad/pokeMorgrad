@@ -205,7 +205,7 @@ noise. Always pass `--pilot vgc` (the default also loads the experimental BC pil
 | `ModuleNotFoundError: No module named 'poke_env'` (or `torch`, `numpy`) | the venv is not active in this terminal: run the `source` line of Part 2 |
 | `Showdown on :8000 is not answering` | `bash ops/start_server.sh 8000`; check that `~/pokemon-showdown` exists and was built |
 | every battle times out, all scores 0% | the server is down or overloaded: restart it, or use `GA_CONCURRENCY=4` |
-| tracebacks ending in `KeyError: 'round'` and `Task exception was never retrieved` | a known poke_env bug with the move Round; that battle times out and is replayed. Harmless, ignore |
+| tracebacks ending in `KeyError: 'round'` and `Task exception was never retrieved` | a poke_env bug with the move Round, fixed in this project on 2026-11-18; you have an old copy: `git pull` |
 | many `battle error #N` lines | a program error inside battles; the first 3 of each kind show the details; send them to the maintainer |
 | run starts at generation 1 although you meant to resume | wrong run_id; `ls output/checkpoints/v6/` shows the existing ones |
 | `RuntimeError ... meta-weight usage file` | `python tools/build_meta_weights.py` |

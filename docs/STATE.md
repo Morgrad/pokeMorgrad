@@ -26,7 +26,7 @@ reusable for the next regulation.
 | Held-out results | Heuristic baseline 53.6% (2026-11-15). Run q5 (2026-11-15): island C champion 62.4%; Umbreon islands A/B overfit (train ~85%, held-out 49.2% / 47.0%). |
 | BC pilot | Parked. Crash on every decision fixed 2026-11-18, but existing checkpoints may not load against the current DB vocabulary (392 species since 2026-10-16) - untested, no `.pt` files on this machine. Best old result ~30% held-out on the pre-swap holdout. |
 | Replay logging (`GA_REPLAY_LOG`) | Redesigned 2026-11-18 (`src/replay_log.py`): full battle logs, real fitness / outcome / generation, deterministic capped sample per island and generation, never changes GA results. Verified live on the workstation 2026-11-18 (test run `test1`: 50 non-empty battle logs saved per generation). |
-| Gate | `bash tools/verify.sh`: ruff, imports, pools, 32 test files (219 PASS), audit -> `ALL PASS`. |
+| Gate | `bash tools/verify.sh`: ruff, imports, pools, 33 test files (223 PASS), audit -> `ALL PASS`. |
 | Local-LLM readiness | Code split for a small context (largest `src/` file 434 lines; `turn_sim.py`), `.clineignore` keeps big / generated files out of Cline, docs router `docs/README.md`. |
 
 ## Machines
@@ -46,7 +46,7 @@ in completion order). Affects `run/ga_run.py` (118 opponents/genome); not `ga_is
 
 Committed in `0572ca9`, all tested (gate ALL PASS):
 1. `tools/verify.sh` printed ALL PASS after a failing test file (skipped the rest); now stops at
-   the first failure and runs every test file (32 now). Audit exits 1 on hard failures. Replay test skips
+   the first failure and runs every test file (33 now). Audit exits 1 on hard failures. Replay test skips
    without replay data.
 2. GA: stagnation restart and diversity rescue inject fresh genomes after breeding (were
    discarded); `ring_migrate` targets the worst slots. Golden master regenerated on purpose.
@@ -82,6 +82,10 @@ Committed in `0572ca9`, all tested (gate ALL PASS):
    (`tests/test_genome_clauses.py`, failed on the old code) then one shared
    `operators.repair_clauses`, which also fixes `enforce_constraints` leaving the locked
    species twice in migrants. Golden master unchanged, audit byte-identical.
+10. poke_env `KeyError: 'round'` fixed (`src/poke_env_fixes.py`, installed by
+   `player_factory`): a Round after its partner's Round is parsed as an ordinary Round instead
+   of crashing the player's message handler (the battle used to hang until its timeout and be
+   replayed). Found in the workstation smoke run; `tests/test_poke_env_fixes.py`.
 
 ## Open issues (most important first)
 1. GA overfits the pilot: train scores far above held-out, worst on the Umbreon islands.
@@ -112,10 +116,9 @@ Committed in `0572ca9`, all tested (gate ALL PASS):
 1. Done 2026-11-18 on the workstation: `git pull`, `verify.sh` ALL PASS (the real-replay
    battle-memory tests ran there too), live test run `test1` (island C, 2 generations,
    `GA_REPLAY_LOG=1`): about 5 min per generation at `GA_CONCURRENCY=8`, champion written,
-   replay logs saved. Seen: poke_env `KeyError: 'round'` tracebacks (known, harmless).
+   replay logs saved. Seen: poke_env `KeyError: 'round'` tracebacks, fixed the same day (item 10).
 2. Decide on a long run (`bash run/ga_parallel.sh <hours> <run_id>`; quickstart Part 4).
-3. Optional: stop the `KeyError: 'round'` noise (poke_env fails to parse a Round that
-   follows its partner's Round; the battle hangs until its timeout and is replayed).
+3. After `git pull` on the workstation: confirm no `KeyError: 'round'` in the next run's logs.
 4. Paired check of `PASSIVE_COST` 0.30 vs 0.15 and support `all` vs off.
 5. Decide on structural fitness and wiring the priors into the genome.
 6. Decide keep / drop BC. If dropped: move `src/bc_*.py`, `src/state_encoder.py`,

@@ -9,8 +9,11 @@ from poke_env import AccountConfiguration, ServerConfiguration
 from poke_env.player import SimpleHeuristicsPlayer
 from poke_env.player.battle_order import DoubleBattleOrder, ForfeitBattleOrder
 
+from src import poke_env_fixes
 from src.paths import showdown_port
 from src.vgc_pilot import VGCPilot
+
+poke_env_fixes.install()     # poke_env bug fixes (KeyError: 'round'), for every player built here
 
 
 # --- Suppress benign poke_env protocol noise --------------------------------

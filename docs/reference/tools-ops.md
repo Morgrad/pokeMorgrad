@@ -91,7 +91,7 @@ champions dir writable, disk > 5 GB, `GA_CONCURRENCY` set to non-default);
 
 **verify.sh** (LIVE, the gate) - `bash tools/verify.sh`: ruff on src/run/tools/tests, import smoke
 tests (including `src.eval`, `src.bc_*`, `src.state_encoder`, `src.audit_before_launch`), pool
-sizes, 32 test files run one by one (stops at the first failing file), `python -m
+sizes, 33 test files run one by one (stops at the first failing file), `python -m
 src.audit_before_launch` (exits 1 on hard failures); must end with `ALL PASS`. It does `cd
 ~/pokeMorgrad` and activates `.venv` if present, else `~/venv-pokemorgad`. Details:
 `docs/runbooks/health-check.md`.

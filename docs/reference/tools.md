@@ -52,7 +52,7 @@ script any more (`apply_stratify.py` and `tools/pilot_probe.py` were deleted 202
 | scrape_vgcpastes.py | 287 | LIVE | VGCPastes sheet + pokepastes -> `data/scraped/vgcpastes/` | tools-data.md |
 | swap_pool.py | 189 | ONE-OFF (done 2026-10-15) | replace train pool with validated VGCPastes teams | tools-data.md |
 | test_pilots.py | 131 | ONE-OFF (2026-10-15) | SmartPlayer vs vanilla heuristic, same team, port 8001 | tools-ops.md |
-| verify.sh | 37 | LIVE (the gate) | ruff + imports + 32 test files (stops at first failure) + audit, ends `ALL PASS` | runbooks/health-check.md |
+| verify.sh | 37 | LIVE (the gate) | ruff + imports + 33 test files (stops at first failure) + audit, ends `ALL PASS` | runbooks/health-check.md |
 | watch_islands.py | 48 | LIVE | per-island stall watchdog used by `run/ga_parallel.sh` | tools-ops.md |
 
 ## Data-flow map

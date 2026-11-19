@@ -117,15 +117,15 @@ ruff check --fix <changed files>
 bash tools/verify.sh
 ```
 
-Steps: ruff on `src run tools tests`, import checks, path and pool checks, 32 test files run
+Steps: ruff on `src run tools tests`, import checks, path and pool checks, 33 test files run
 one by one (the script exits 1 with `FAILED: tests/<file>.py` at the first failing file), then
 the audit (exits 1 with `AUDIT FAILED` on any hard failure). Full step table in
-`docs/reference/tests.md`. Expected on 2026-11-18: 219 `PASS` lines, 0 `FAIL`, last line
+`docs/reference/tests.md`. Expected on 2026-11-18: 223 `PASS` lines, 0 `FAIL`, last line
 `ALL PASS`.
 
 ```
 bash tools/verify.sh 2>&1 | tee /tmp/verify.log | tail -1
-grep -c "^PASS" /tmp/verify.log    # 219 on 2026-11-18
+grep -c "^PASS" /tmp/verify.log    # 223 on 2026-11-18
 ```
 
 Fixed 2026-11-18: the tests used to run as one `a && b && ...` chain under `set -e`, so a

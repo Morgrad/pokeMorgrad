@@ -27,7 +27,7 @@ and an active venv.
 | Many dropped battles (low `valid_n`), no obvious cause | A pilot or player raises on some decision; the battle returns None | Since 2026-11-18 logged: `grep -c "battle error" /tmp/ga_<run>_<X>.log`, the first 3 per exception type carry a traceback (`src/battle_runner.py::_report_battle_error`). Timeouts are not logged |
 | `[Invalid choice] Can't switch: ... can only switch in once` | BC pilot sent both slots to the same bench mon | Fixed: switch-collision handling in `src/bc_player.py::BCPlayer.choose_move` |
 | `Greninja (Greninja-Bond) does not exist in Gen 9` | Illegal form in a genome | Fixed: legality gate (`filter_legal_genomes`) |
-| `KeyError: 'round'` in poke_env `parse_message` | poke_env does not parse the Round chain message | Harmless noise: 6 times in one smoke island (2026-10-16); the battle is retried. Not fixed. Unverified on poke_env 0.17.0 |
+| `KeyError: 'round'` in poke_env `parse_message` | poke_env does not parse the Round chain message | fixed 2026-11-18 by `src/poke_env_fixes.py` (the battle used to hang until its timeout and be replayed). Still seeing it means an old checkout: `git pull` |
 | poke_env CRITICAL "cannot reject open team sheets" / "already made your decision about agreeing to open team sheets" | Benign protocol noise | Filtered by `_DropVGCNoise` in `src/player_factory.py` (and a copy in `src/battle_runner.py`) |
 | Battles of 60+ turns, GA generation takes about 1 hour | Pilot overused Protect / switch | Fixed in commit `7f72853`: `PASSIVE_COST` 0.15 -> 0.30 and our `vgc` pilot forfeits after turn 50 (`src/player_factory.py::TimeoutPlayer`, counts as a loss) |
 

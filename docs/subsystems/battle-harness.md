@@ -26,7 +26,8 @@ poke_env `battle_against` -> Showdown on `localhost:$SHOWDOWN_PORT`.
 |---|---|---|
 | src/battle.py | 15 | facade: re-exports `run_battle`, `run_battle_once`, `make_player`, `TimeoutPlayer`, `RETRY_STRIDE`, `DEFAULT_SERVER` |
 | src/battle_runner.py | 170 | `battle_log_lines`, `run_battle_once`, `run_battle` (retry loop, `log_sink` hook) |
-| src/player_factory.py | 99 | `PILOTS`, pilot name -> Player class, `TimeoutPlayer`, `RETRY_STRIDE`, `DEFAULT_SERVER` (reads `SHOWDOWN_PORT`), `_DropVGCNoise` log filter |
+| src/player_factory.py | 102 | `PILOTS`, pilot name -> Player class, `TimeoutPlayer`, `RETRY_STRIDE`, `DEFAULT_SERVER` (reads `SHOWDOWN_PORT`), `_DropVGCNoise` log filter; installs `poke_env_fixes` at import |
+| src/poke_env_fixes.py | 50 | `install()`: patches poke_env's `AbstractBattle.parse_message` (Round after its partner's Round, `KeyError: 'round'`); `is_partner_round` |
 | src/showdown_server.py | 53 | `is_up` / `restart` / `ensure` for the local server |
 | src/showdown_validator.py | 79 | `check_teams`: batch Showdown TeamValidator via Node, md5 cache; `ValidatorError` |
 | src/showdown_validate.js | 30 | Node side of the validator (format hard-coded) |
@@ -228,9 +229,17 @@ No test runs a real battle; live behaviour (timeouts, forfeits, retries) is unte
   flag; set the variable on the command line. Fixed 2026-11-18: `src/battle_runner.py` had
   its own unused `DEFAULT_SERVER` / `_SHOWDOWN_PORT` and a duplicate `_DropVGCNoise` filter;
   both removed, `player_factory.py` is the single place.
-- poke_env `KeyError: 'round'` (overridden move such as Round missing from the mon's move
-  dict, inside poke_env's `parse_message`): logged as a warning, battle -> None -> retried.
-  Seen 6 times in one smoke island (2026-10-16). Not fixed.
+- poke_env `KeyError: 'round'`: Fixed 2026-11-18 (`src/poke_env_fixes.py`). When both mons
+  of a side use Round, Showdown tags the second `|move|X|Round|Y|[from] move: Round`; poke_env
+  treats the tag as "called by another move", does not reveal Round and looks it up in the
+  user's known moves -> KeyError for a foe that had not shown Round. It happened inside the
+  player's message handler task (not in `run_battle_once`), so the player stopped deciding
+  and the battle hung until the timeout, then was replayed (seen 2026-10-16 and in the
+  2026-11-18 workstation smoke run). The patch parses that one message as the ordinary Round
+  it is (revealed, one PP, like the partner) and keeps `_replay_data` verbatim; installed by
+  `src/player_factory.py` for every player. `tests/test_poke_env_fixes.py` also asserts the
+  unpatched poke_env still raises, so a poke_env upgrade that fixes it is noticed. The
+  `KeyError 'round'` branch in `run_battle_once` stays as a harmless fallback.
 - The Node server leaks / slows over thousands of battles (2026-10-16: throughput halved
   after ~15 min on 7-8 h old servers); GA bounces it every 10 gens, paired runs every
   1000 matchups. A server a few hours old has taken > 30 s to answer, hence `wait_s=60`.

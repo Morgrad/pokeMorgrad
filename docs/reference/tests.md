@@ -55,11 +55,11 @@ It runs `set -euo pipefail`, does `cd ~/pokeMorgrad` (hard-coded), activates `.v
 | `imports2` | `import src.paths, src.regmc_db, src.state_encoder, src.audit_before_launch` | Same. |
 | `paths` | prints `data_path('regmc_db.json')` | Path layer resolves. |
 | `pools` | prints `len(regional_pool()), len(heldout_pool())` (from `src.ga.pools`) | Prints `148 100` on 2026-11-18. Fails if `data/pool_split.json` is missing / broken (`heldout_pool` raises). Sizes are asserted by `tests/test_pools.py`. |
-| `tests` | loop over the `TESTS=( ... )` array, 32 files, one at a time (list below) | Unit tests. The first failing file prints `FAILED: tests/<file>.py` and the script exits 1. Each file is preceded by a `--- tests/<file>.py` line. |
+| `tests` | loop over the `TESTS=( ... )` array, 33 files, one at a time (list below) | Unit tests. The first failing file prints `FAILED: tests/<file>.py` and the script exits 1. Each file is preceded by a `--- tests/<file>.py` line. |
 | `audit` | `python -m src.audit_before_launch` | DB integrity, name sanity, Mega stones, regional teams, 500+500 genome fuzz, 2000 mutations, 500 crossovers, Umbreon lock, baseline validity. Exits 1 with `AUDIT FAILED: N problem(s)` plus `FAIL <msg>` lines on any hard failure, else prints `AUDIT COMPLETE`. Takes about 27 s. |
 
-then prints `ALL PASS`. On 2026-11-18: 32 test files, 219 `PASS` lines, `ALL PASS`
-(`pytest -q tests` also reports 219 passed, but pytest is not the gate). Total about
+then prints `ALL PASS`. On 2026-11-18: 33 test files, 223 `PASS` lines, `ALL PASS`
+(`pytest -q tests` also reports 223 passed, but pytest is not the gate). Total about
 1.5-2 minutes on the 2026-11-18 laptop checkout.
 
 Fixed 2026-11-18: the `tests` step used to be one `a && b && c ...` chain under `set -e`;
@@ -70,7 +70,7 @@ Quick count check:
 
 ```
 bash tools/verify.sh 2>&1 | tee /tmp/verify.log | tail -1     # ALL PASS
-grep -c "^PASS" /tmp/verify.log                               # 219 on 2026-11-18
+grep -c "^PASS" /tmp/verify.log                               # 223 on 2026-11-18
 ```
 
 On a host without `data/showdown_replays/` (gitignored, for example the 2026-11-18 laptop
@@ -81,10 +81,10 @@ failed, which (with the old `&&` chain) skipped 12 later files.
 
 ## Test files
 
-Times measured 2026-11-18 on the laptop checkout (8 cores, CPU torch), wall clock per file. All 32 files are run by `tools/verify.sh`, in this order: damage,
+Times measured 2026-11-18 on the laptop checkout (8 cores, CPU torch), wall clock per file. All 33 files are run by `tools/verify.sh`, in this order: damage,
 doubles_eval, speed_model, blend_priors, archetypes, mega_z_lines, battle_memory,
 vgc_pilot, mega_model, turn_sim, turn_sim_paths, support, opp_actions, ladder_opp, meta_weights,
-battle_hook, battle_runner, player_factory, pilot_support, replay_filters,
+battle_hook, battle_runner, poke_env_fixes, player_factory, pilot_support, replay_filters,
 replay_log, bc_state, showdown_validator, pools, genome_clauses, extract_champions, ga_robust,
 ga_config, ga_eval_order, ga_injection, island_wiring, ga_golden.
 
@@ -118,6 +118,7 @@ ga_config, ga_eval_order, ga_injection, island_wiring, ga_golden.
 | `test_extract_champions.py` | 1 | yes | 0.2 s | canonical | `tools/extract_champions.py::extract` on a temp checkpoint: primary file = train best, `_train` = train best, `_val` = `best_val_ever`. Writes only to a temp dir. |
 | `test_battle_hook.py` | 4 | yes | 1.1 s | canonical | `run_battle(log_sink=None)` signature (no `save_filter` / `save_callback`); `battle_log_lines` joins poke_env `_replay_data` into protocol lines; `log_sink` gets the last attempt's result and log; sink errors are swallowed. |
 | `test_battle_runner.py` | 5 | yes | 1.8 s | list order | Imports from `src.battle_runner` and `src.battle`; with fake players: a pilot exception returns `(None, [])`, is logged (ERROR + traceback) and counted (`battle_error_counts`); only the first 3 per type get a traceback, then every 100th; a timeout is not an error; `KeyError: 'round'` warns, other `KeyError`s propagate. |
+| `test_poke_env_fixes.py` | 4 | yes | 1.5 s | list order | `src/poke_env_fixes.py` on a bare poke_env `DoubleBattle`: a Round after its partner's Round no longer raises `KeyError: 'round'`, is revealed and costs one PP like the partner's, and `_replay_data` keeps the original message; the unpatched poke_env still raises (flags a poke_env upgrade that fixes it); only that message shape is touched; `player_factory` installs the patch once (checked in a fresh process). |
 | `test_replay_log.py` | 4 | yes | 1.5 s | canonical | `src/replay_log.py::ReplayLogger`: rows carry real fitness / outcome / gen, cap per (island, gen) in (genome, opponent) order, private deterministic RNG (global stream untouched); `Evaluator.evaluate(on_battles=...)` reports aligned outcomes / logs (head only on early abort) with identical fitness; engine wiring gives the same population and RNG state with logging on or off. |
 | `test_pilot_support.py` | 1 | yes | 1.5 s | single call | Import smoke for `src/pilot_support.py::_resolve_support_move`. |
 | `test_player_factory.py` | 1 | yes | 2.1 s | single call | `make_player("heuristic", ...)` returns an object (no server needed). Unknown names are covered by `test_ga_config.py`. |
@@ -128,7 +129,7 @@ try/except; "no catch" = no try/except, so the first failure is a traceback and 
 not run; "single call" / "returns bool" = calls one function. Over 5 s on this laptop:
 `test_turn_sim.py`, `test_support.py`, `test_ga_golden.py` (rule is under 5 s).
 
-Every `tests/test_*.py` file is in `verify.sh` (32 files on 2026-11-18). To run all of them
+Every `tests/test_*.py` file is in `verify.sh` (33 files on 2026-11-18). To run all of them
 without stopping at the first failure:
 
 ```
