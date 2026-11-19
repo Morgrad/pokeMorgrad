@@ -11,7 +11,8 @@
 
 ## 1. Environment & Directory Structure
 - **ALWAYS activate the venv** before running any command: `source ~/venv-pokemorgad/bin/activate && <command>` (on a machine with a repo-local venv: `source .venv/bin/activate`; `tools/verify.sh` prefers `.venv` and falls back to `~/venv-pokemorgad`)
-- **NEVER use `pytest`**. It is not installed. All tests run via `bash tools/verify.sh`.
+- **`pytest` is not the gate.** It is installed (dev extra) and `pytest -q tests` works, but only
+  `bash tools/verify.sh` (ruff + imports + every test file + audit) decides `ALL PASS`.
 - **Strict Structure:** Core logic in `src/`, tests in `tests/`, scripts in `tools/`, launchers in `run/`. Never create `.py` files in the repo root. Temp files go in `/tmp/` or `output/`.
 - **Dependencies:** If you `pip install` a package, add it to `pyproject.toml`.
 

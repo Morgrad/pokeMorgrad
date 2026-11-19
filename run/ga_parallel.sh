@@ -2,8 +2,9 @@
 # Parallel GA launcher: three islands, three processes, three Showdown
 # instances (8000/8001/8002). Each island evolves independently.
 #
-# Does NOT kill anything or run eval. Caller is responsible for killing
-# the serial GA before invoking this.
+# Kills every running `run.ga_island` process first (so never start two parallel
+# runs at once); does not touch a serial `run.ga_run` and does not run eval.
+# Plain-language guide: docs/runbooks/quickstart.md.
 #
 # Usage: bash run/ga_parallel.sh [hours] [run_id]
 

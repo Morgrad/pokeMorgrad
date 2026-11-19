@@ -82,6 +82,9 @@ behavior in 2026-11-12..11-18 and are not described in any period file:
   (`player_factory`, `battle_runner`, `pilot_support`, `ga_genome`, `turn_sim_types` /
   `turn_sim_lookahead`, `pilot_*` mixins, `battle_memory_types` / `battle_memory_parser`).
 - 2026-11-18 16d0bb3: `src/ga/` package split (see the last period file).
+- 2026-11-18 0572ca9: GA fixes, replay logging rebuild, local-LLM refactors (genome split,
+  facade removed, turn_sim scenario class), clause repair, docs rewrite; summarized in
+  `../STATE.md` ("Changes on 2026-11-18").
 
 ## Related docs
 

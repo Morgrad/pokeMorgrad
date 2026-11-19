@@ -23,9 +23,9 @@ pilot blind spots (dead items, no Protect, nonsense natures). Format facts it en
 | path | lines | role |
 |---|---|---|
 | `src/ga/genome.py` | 398 | roster caches, `CANONICAL_ITEMS`, priors, `_legal_items_for`, `_species_role`, `_random_mon`, `_pick_item_for`, `_fresh_mon`, `build_random_genome`, `genome_to_text`, `text_to_genome` (sections 3-7) |
-| `src/ga/pools.py` | 110 | `VAL_POOL_SIZE`, `VAL_SPLIT_SEED`, `_REGIONAL_DIR`, `_load_teams`, `regional_pool`, `_split_train_val`, `heldout_pool` (section 8) |
-| `src/ga/legality.py` | 182 | legality gate, composition, locks (`ga-genome-operators.md`) |
-| `src/ga/operators.py` | 205 | mutation and crossover (`ga-genome-operators.md`) |
+| `src/ga/pools.py` | 112 | `VAL_POOL_SIZE`, `VAL_SPLIT_SEED`, `_REGIONAL_DIR`, `_load_teams`, `regional_pool`, `_split_train_val`, `heldout_pool` (section 8) |
+| `src/ga/legality.py` | 192 | legality gate, composition, locks (`ga-genome-operators.md`) |
+| `src/ga/operators.py` | 220 | mutation and crossover (`ga-genome-operators.md`) |
 | `src/regmc_db.py` | (see foundation.md) | species/items/moves/natures DB, `parse_team`, `validate_team`, `norm` |
 | `src/showdown_validator.py` | 79 | `check_teams(texts)` -> `[(ok, msg)]` via `node src/showdown_validate.js`, md5 cache; raises `ValidatorError` if node fails as a whole |
 | `data/species_move_priors.json` | - | move usage per species (191 species) |

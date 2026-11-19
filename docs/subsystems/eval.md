@@ -23,8 +23,8 @@ Last verified against code: 2026-11-18
 
 | path | lines | role |
 |---|---|---|
-| src/eval.py | 170 | CLI `python -m src.eval`; `evaluate_team`, `wilson_ci`, `main_async` |
-| src/audit_before_launch.py | 226 | `main()`: 9 printed audit sections, returns the list of hard failures; the module exits 1 if any |
+| src/eval.py | 172 | CLI `python -m src.eval`; `evaluate_team`, `wilson_ci`, `main_async` |
+| src/audit_before_launch.py | 253 | `main()`: 9 printed audit sections, returns the list of hard failures; the module exits 1 if any |
 | tools/paired_eval.py | 301 | `run` / `status` / `report` subcommands; JSONL logs in `data/paired_eval/` |
 | tools/paired_run.sh | 62 | 3-shard launcher on ports 8000-8002 with server restarts and resume |
 

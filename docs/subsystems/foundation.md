@@ -27,7 +27,7 @@ Last verified against code: 2026-11-18
 
 | path | lines | role |
 |---|---|---|
-| src/paths.py | 46 | REPO_ROOT + data/output/src path helpers, Showdown dir |
+| src/paths.py | 58 | REPO_ROOT + data/output/src path helpers, Showdown dir |
 | src/regmc_db.py | 354 | DB load + indexes, lookups, `normalize_species_name`, `parse_team`, `validate_team` |
 | src/meta_weights.py | 91 | species usage from replays, team weight, weighted win rate |
 | src/archetypes.py | 99 | archetype posterior + item/move marginals |

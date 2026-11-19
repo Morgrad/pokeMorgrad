@@ -25,12 +25,12 @@ poke_env `battle_against` -> Showdown on `localhost:$SHOWDOWN_PORT`.
 | path | lines | role |
 |---|---|---|
 | src/battle.py | 15 | facade: re-exports `run_battle`, `run_battle_once`, `make_player`, `TimeoutPlayer`, `RETRY_STRIDE`, `DEFAULT_SERVER` |
-| src/battle_runner.py | 139 | `battle_log_lines`, `run_battle_once`, `run_battle` (retry loop, `log_sink` hook) |
+| src/battle_runner.py | 170 | `battle_log_lines`, `run_battle_once`, `run_battle` (retry loop, `log_sink` hook) |
 | src/player_factory.py | 99 | `PILOTS`, pilot name -> Player class, `TimeoutPlayer`, `RETRY_STRIDE`, `DEFAULT_SERVER` (reads `SHOWDOWN_PORT`), `_DropVGCNoise` log filter |
 | src/showdown_server.py | 53 | `is_up` / `restart` / `ensure` for the local server |
 | src/showdown_validator.py | 79 | `check_teams`: batch Showdown TeamValidator via Node, md5 cache; `ValidatorError` |
 | src/showdown_validate.js | 30 | Node side of the validator (format hard-coded) |
-| src/replay_log.py | 97 | `ReplayLogger`: GA replay logging (deterministic, capped sample per generation) |
+| src/replay_log.py | 94 | `ReplayLogger`: GA replay logging (deterministic, capped sample per generation) |
 | src/replay_filters.py | 38 | `default_ga_filter`, `has_trigger`: which battles get logged |
 
 ## 3. Key concepts

@@ -37,13 +37,13 @@ refactors (golden fixture unchanged): `genome.py` split into `genome` / `pools` 
 | `src/ga/config.py` | 103 | `FORMAT`, `UID_MAX`, `CHECKPOINT_DIR`, `CHAMPION_DIR`, `PILOT_NAMES`; frozen, validated `GAConfig`; `DEFAULT` read from env at import |
 | `src/ga/fitness.py` | 32 | meta-weighted win rate, shared with `src/eval.py` |
 | `src/ga/evaluator.py` | 133 | `Evaluator`: plays one genome vs opponents, early stop, validation slice, `on_battles` replay hook |
-| `src/ga/population.py` | 331 | `Island` (population + bookkeeping + checkpoint shape), `ring_migrate`, `_strip_species`, `_n_elites` |
+| `src/ga/population.py` | 319 | `Island` (population + bookkeeping + checkpoint shape), `ring_migrate`, `_strip_species`, `_n_elites` |
 | `src/ga/checkpoint.py` | 90 | checkpoint save / prune / load, champion files |
-| `src/ga/engine.py` | 196 | `run_islands` driver + `_startup_checks`, `_resume_or_init`, `_evolve_island` |
+| `src/ga/engine.py` | 198 | `run_islands` driver + `_startup_checks`, `_resume_or_init`, `_evolve_island` |
 | `src/ga/genome.py` | 398 | genome encoding, roster, move / item priors, random set and team build, text <-> genome (doc: `ga-genome.md`) |
-| `src/ga/pools.py` | 110 | opponent pools: `regional_pool`, `heldout_pool`, `_split_train_val`, `VAL_POOL_SIZE` (doc: `ga-genome.md` section 8) |
-| `src/ga/legality.py` | 182 | `filter_legal_genomes` (Showdown gate), `_enforce_composition`, `enforce_constraints` (doc: `ga-genome-operators.md`) |
-| `src/ga/operators.py` | 205 | `mutate` (+ six `mutate_*` ops), `crossover`, `EV_BUDGET` (doc: `ga-genome-operators.md`) |
+| `src/ga/pools.py` | 112 | opponent pools: `regional_pool`, `heldout_pool`, `_split_train_val`, `VAL_POOL_SIZE` (doc: `ga-genome.md` section 8) |
+| `src/ga/legality.py` | 192 | `filter_legal_genomes` (Showdown gate), `_enforce_composition`, `enforce_constraints` (doc: `ga-genome-operators.md`) |
+| `src/ga/operators.py` | 220 | `mutate` (+ six `mutate_*` ops), `crossover`, `EV_BUDGET` (doc: `ga-genome-operators.md`) |
 | `src/showdown_server.py` | 53 | `is_up`, `restart`, `ensure` for a local Showdown port (not GA-specific) |
 | `src/meta_weights.py` | 91 | `team_weight`, `weighted_rate`, `load_usage` (used by fitness / startup check) |
 
@@ -204,7 +204,7 @@ Run from the repo root with the venv active (`python tests/<file>.py`); the gate
 | `tests/test_pools.py` | 3 tests: real `pool_split.json` train / holdout disjoint and sized; `heldout_pool` raises on a missing, empty or overlapping split |
 | `tests/test_ga_golden.py` | golden master: seeded fake run (no Showdown, fake battles, DB-only validator) of population operators + 3 `run_islands` calls (fresh, resume, resume with >50 opponents); compares stdout, checkpoints, champions, battle counts, RNG state with `tests/golden/ga_golden.json` |
 | `tests/test_ga_eval_order.py` | outcomes weighted by their own opponent when battles finish in reverse order; early-abort path; 7/50 vs 8/50 threshold |
-| `tests/test_ga_config.py` | 5 tests: `GAConfig.from_env` defaults, overrides, "1"-only meta flag, `DEFAULT == from_env(os.environ)` and `src.eval` uses `config.FORMAT` / `UID_MAX`, invalid values raise `ValueError`, `PILOT_NAMES` equals `player_factory.PILOTS` |
+| `tests/test_ga_config.py` | 6 tests: `GAConfig.from_env` defaults, overrides, "1"-only meta flag, `DEFAULT == from_env(os.environ)` and `src.eval` uses `config.FORMAT` / `UID_MAX`, invalid values raise `ValueError`, `PILOT_NAMES` equals `player_factory.PILOTS`, one `SHOWDOWN_PORT` parser (`src/paths.py::showdown_port`) |
 | `tests/test_ga_robust.py` | `showdown_server.restart` (GA port / dir from `DEFAULT`) waits / retries, `showdown_server.ensure` raises when dead, `run_islands` fails fast without usage file, `src.eval` reports the GA fitness |
 | `tests/test_island_wiring.py` | 2 tests: `run/ga_island.py::SPECS` and `run/ga_run.py::ISLANDS`: A = Umbreon slot 0 + baseline seed, B = Umbreon slot 0 no seed, C free |
 | `tests/test_extract_champions.py` | `tools/extract_champions.py::extract` writes primary = train best, `_train`, and `_val` files |

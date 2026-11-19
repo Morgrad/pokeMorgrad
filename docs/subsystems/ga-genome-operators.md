@@ -1,7 +1,7 @@
 # GA genome operators: mutate, crossover, locks, composition, legality gate (src/ga/operators.py, src/ga/legality.py)
 
 The genetic operators and repair steps: mutation ops and crossover
-(`src/ga/operators.py`, 205 lines), and in `src/ga/legality.py` (182 lines)
+(`src/ga/operators.py`, 220 lines), and in `src/ga/legality.py` (192 lines)
 `enforce_constraints` (locked slots such as Umbreon in slot 0), the Protect and Fake Out
 composition rule and `filter_legal_genomes` (the real Showdown validator gate). Read this
 before changing how teams are bred or repaired. Representation, priors, random builds
@@ -10,7 +10,7 @@ of `src/ga/genome.py` until 2026-11-18 (moved verbatim).
 
 | module | names |
 |---|---|
-| `src/ga/operators.py` | `EV_BUDGET`, `EV_STAT_CAP`, `_used_bases`, `_used_items`, `mutate_species`, `mutate_item`, `mutate_ability`, `mutate_nature`, `mutate_evs`, `mutate_move`, `mutate`, `crossover` |
+| `src/ga/operators.py` | `EV_BUDGET`, `EV_STAT_CAP`, `_used_bases`, `_used_items`, `repair_clauses`, `mutate_species`, `mutate_item`, `mutate_ability`, `mutate_nature`, `mutate_evs`, `mutate_move`, `mutate`, `crossover` |
 | `src/ga/legality.py` | `MAX_REBUILD_TRIES`, `PROTECT_MOVES`, `FAKEOUT_MOVES`, `_force_move_on_slot`, `_enforce_composition`, `filter_legal_genomes`, `enforce_constraints` |
 
 Both import their building blocks (`_fresh_mon`, `_random_mon`, `_pick_item_for`,

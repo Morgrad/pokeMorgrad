@@ -65,7 +65,7 @@ and an active venv.
 
 | Symptom | Cause | Fix |
 |---|---|---|
-| `ModuleNotFoundError: No module named 'src'` | Not in the repo root, or running a tool without a `sys.path` bootstrap; the package is not pip-installed | `cd ~/pokeMorgrad`; use `python -m ...`, or `PYTHONPATH=. python tools/<tool>.py` |
+| `ModuleNotFoundError: No module named 'src'` | Not in the repo root, or running a tool without a `sys.path` bootstrap; the project is not pip-installed in this venv | `cd ~/pokeMorgrad`; use `python -m ...`, or `PYTHONPATH=. python tools/<tool>.py`, or once `pip install -e .` |
 | `ModuleNotFoundError: poke_env` / `torch` | venv not active | `source .venv/bin/activate` (or `~/venv-pokemorgad/bin/activate`) |
 | `ModuleNotFoundError: bs4` / `openpyxl` | Scrape extra not installed | `pip install beautifulsoup4 openpyxl` (declared as extra `scrape`) |
 | `bash: python: command not found` | Outside the venv | Activate the venv or use `python3` |

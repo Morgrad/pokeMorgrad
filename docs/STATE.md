@@ -6,9 +6,9 @@ changes (the agent workflow in `../.clinerules/00-core-rules.md` asks for it aft
 
 Last updated: 2026-11-18
 Last verified against code: 2026-11-18
-Branch: `main` (GitHub `Morgrad/pokeMorgrad`). Last pushed commit: `8d7f2e9`. Committed locally,
-not pushed yet: `16d0bb3` (GA package split + fitness-ordering fix) and `0572ca9` (everything
-listed under "Changes on 2026-11-18" below).
+Branch: `main` (GitHub `Morgrad/pokeMorgrad`). The 2026-11-18 work was pushed that day:
+`16d0bb3` (GA package split + fitness-ordering fix), `0572ca9` (everything under "Changes on
+2026-11-18" below), then docs follow-ups. `git log origin/main..main` lists anything unpushed.
 
 ## Goal
 Find the strongest team for Reg M-C (`gen9championsvgc2026regmc`, doubles, Mega legal, no Tera)
@@ -35,7 +35,8 @@ reusable for the next regulation.
   is moving the coding agent to a local Qwen3-Coder-30B on this GPU (see `runbooks/environment.md`).
 - Secondary checkout (where the 2026-11-18 work was done): repo `.venv` (Python 3.13, poke-env
   0.17.0, CPU torch), no Showdown, no models, no replays, no checkpoints. Unit tests, ruff and
-  the audit run here; battles, evals, GA runs and BC training do not.
+  the audit run here; battles, evals, GA runs and BC training do not. GitHub CLI (`gh`)
+  login set up in WSL on 2026-11-18, so `git push` works from here.
 
 ## Changes on 2026-11-18
 Committed (`16d0bb3`): `ga_core.py` split into `src/ga/` (config, genome, fitness, evaluator,
@@ -108,12 +109,10 @@ Committed in `0572ca9`, all tested (gate ALL PASS):
     `~/pokeMorgrad`, `src/bc_train.py::main` 154 lines (wait for the BC decision).
 
 ## Next steps (each needs the user's go-ahead)
-1. Push `main` (commits `16d0bb3`, `0572ca9` and the STATE update after them; plus tag
-   `ga-refactor-base` and branch `wip/ga-refactor` if wanted). The secondary checkout has no
-   GitHub credentials; push from a terminal that is logged in.
-2. On the workstation: `bash tools/verify.sh`, then a smoke GA
-   (`GA_GENERATIONS=2 bash run/ga_parallel.sh 1 smoke1`), then decide on a long run
-   (`bash run/ga_parallel.sh <hours> <run_id>`).
+1. On the workstation: `git pull`, `bash tools/verify.sh` (expect `ALL PASS`, 219 PASS), then
+   the short test run of `runbooks/quickstart.md` Part 3 (or
+   `GA_GENERATIONS=2 bash run/ga_parallel.sh 1 smoke1`).
+2. Decide on a long run (`bash run/ga_parallel.sh <hours> <run_id>`; quickstart Part 4).
 3. During the smoke run, also try `GA_REPLAY_LOG=1` and check `output/replay_log/`.
 4. Paired check of `PASSIVE_COST` 0.30 vs 0.15 and support `all` vs off.
 5. Decide on structural fitness and wiring the priors into the genome.

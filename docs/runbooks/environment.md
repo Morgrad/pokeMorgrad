@@ -63,7 +63,10 @@ EOF
   command (written for the workstation). On a checkout that only has `.venv`, activate
   `source .venv/bin/activate` instead; the rule's point is "always run inside the venv".
 - `python` may not exist outside the venv; use `python3` or activate first.
-- The project is not pip-installed; run from the repo root (`python -m src.eval`).
+- `pip install -e ".[dev]"` (README, `quickstart.md`) installs the dependencies and makes
+  `src` importable from any folder (checked 2026-11-18 in a scratch venv). The 2026-11-18
+  `.venv` was set up without it, so there commands run from the repo root
+  (`python -m src.eval`).
 
 ## Dependencies
 
