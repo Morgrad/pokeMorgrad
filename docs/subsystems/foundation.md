@@ -27,7 +27,7 @@ Last verified against code: 2026-11-18
 
 | path | lines | role |
 |---|---|---|
-| src/paths.py | 58 | REPO_ROOT + data/output/src path helpers, Showdown dir |
+| src/paths.py | 58 | REPO_ROOT + data/output/src path helpers, Showdown dir and port |
 | src/regmc_db.py | 354 | DB load + indexes, lookups, `normalize_species_name`, `parse_team`, `validate_team` |
 | src/meta_weights.py | 91 | species usage from replays, team weight, weighted win rate |
 | src/archetypes.py | 99 | archetype posterior + item/move marginals |
@@ -87,6 +87,8 @@ paths (`src/paths.py`):
 - `data_path(*parts) -> str`, `output_path(*parts) -> str`, `src_path(*parts) -> str` - absolute
   path strings under `data/`, `output/`, `src/`.
 - `showdown_dir() -> str` - `$SHOWDOWN_DIR` or `~/pokemon-showdown`.
+- `showdown_port(env=None) -> int` - `int($SHOWDOWN_PORT)`, default 8000; the only parser of
+  that variable (used by `src/player_factory.py`, `src/ga/config.py`, `run/ga_island.py`).
 
 regmc_db (`src/regmc_db.py`; usually imported `from src import regmc_db as DB`):
 - `DB_PATH` - `data/regmc_db.json`. `norm(s) -> str` - Showdown id (`[^a-z0-9]` stripped).
@@ -168,6 +170,7 @@ Z mass 0.4-0.8; Scarf/Life Orb revealed -> Z mass < 5%; Power Gem/Draco/Earth Po
 |---|---|---|
 | `POKEMORGRAD_ROOT` | unset (use src/..) | `src/paths.py::_resolve_repo_root` at import |
 | `SHOWDOWN_DIR` | `~/pokemon-showdown` | `src/paths.py::showdown_dir`; also `src/ga/config.py` |
+| `SHOWDOWN_PORT` | `8000` | `src/paths.py::showdown_port` (import time, via `player_factory` and `GAConfig`) |
 | `GA_META_WEIGHTS` | `1` (on) | `src/ga/config.py` -> `GAConfig.meta_weights` |
 | `meta_weights.FLOOR` | 0.02 | weight of a species unseen on the ladder |
 | `archetypes.MISMATCH / K / MIN_SETS` | 0.02 / 2.0 / 5 | posterior + opp_model fallback threshold |

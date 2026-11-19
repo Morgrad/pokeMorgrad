@@ -38,7 +38,7 @@ script any more (`apply_stratify.py` and `tools/pilot_probe.py` were deleted 202
 | encode_snapshot.py | 126 | LIVE | bit-identity gate for `src/state_encoder.py` refactors | tools-ops.md |
 | extend_train_pool.py | 69 | LIVE | append `<prefix>_*.txt` to `pool_split.json["train"]` | tools-data.md |
 | extract_champions.py | 72 | LIVE | rebuild champion files from parallel-run checkpoints (same rule as the GA, plus `_val`) | tools-ops.md |
-| generate_heuristic_dataset.py | 332 | STALE | record heuristic decisions as BC rows (0-row bug fixed 2026-11-18, not re-run) | tools-data.md |
+| generate_heuristic_dataset.py | 334 | STALE | record heuristic decisions as BC rows (0-row bug fixed 2026-11-18, not re-run) | tools-data.md |
 | log_milestone.py | 47 | LIVE | append to `docs/history/milestones.md` AND git commit | tools-ops.md |
 | normalize_tournament.py | 164 | LIVE | fix species names/items in scraped `<prefix>_*.txt` | tools-data.md |
 | paired_eval.py | 301 | LIVE | paired off/on pilot comparison, McNemar | tools-ops.md, subsystems/eval.md |

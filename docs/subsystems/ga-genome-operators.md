@@ -15,7 +15,8 @@ of `src/ga/genome.py` until 2026-11-18 (moved verbatim).
 
 Both import their building blocks (`_fresh_mon`, `_random_mon`, `_pick_item_for`,
 `_legal_items_for`, `build_random_genome`, `genome_to_text`, roster caches) from
-`src/ga/genome.py`.
+`src/ga/genome.py`; `legality.py` also imports `operators.repair_clauses` (no cycle:
+`operators` never imports `legality`).
 
 Last verified against code: 2026-11-18
 

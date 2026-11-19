@@ -154,14 +154,14 @@ pilot_sim_input      --> doubles_eval, opp_model, pilot_world, speed_model, turn
 pilot_support        --> -        (used by tests/test_pilot_support.py only)
 doubles_pilot        --> doubles_eval, pilot_actions, pilot_sim_input, pilot_world, smart_player, support_value, turn_sim
 vgc_pilot            --> battle_memory, doubles_pilot, mega_model, opp_actions, opp_model
-player_factory       --> vgc_pilot ; (lazy) bc_player, doubles_pilot, ladder_opp
+player_factory       --> paths, vgc_pilot ; (lazy) bc_player, doubles_pilot, ladder_opp
 battle_runner        --> player_factory
 battle               --> battle_runner, player_factory
 showdown_server      --> -
 ga.config            --> paths
 ga.genome            --> paths, regmc_db
 ga.pools             --> paths
-ga.legality          --> ga.genome, showdown_validator
+ga.legality          --> ga.genome, ga.operators, showdown_validator
 ga.operators         --> ga.genome, regmc_db
 ga.fitness           --> meta_weights
 ga.population        --> ga.genome, ga.legality, ga.operators, regmc_db

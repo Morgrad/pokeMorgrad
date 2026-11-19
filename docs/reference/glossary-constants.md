@@ -71,6 +71,7 @@ Opponents per genome per generation = `min(battles_per_genome, train_sample_size
 | `MIN_SETS` / `K` / `MISMATCH` | `archetypes.py` | 5 / 2.0 / 0.02 | - |
 | turn limit | `player_factory.py::TimeoutPlayer`, `battle_runner.py::run_battle_once` | forfeit / drop after turn 50 | - |
 | `RETRY_STRIDE` | `player_factory.py` | 999983 | - |
+| `TRACEBACKS_PER_TYPE` | `battle_runner.py` | 3 | full tracebacks logged per exception type of a battle-killing error (then every 100th, one line) |
 | SmartPlayer `KO_BONUS` / `DAMAGE_WEIGHT` | `smart_player.py` | 8.0 / 3.0 | - |
 
 ## 3. BC model constants (frozen by the checkpoint contract)

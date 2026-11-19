@@ -49,7 +49,8 @@ refactors (golden fixture unchanged): `genome.py` split into `genome` / `pools` 
 
 Imports (torch-free, no cycles; full map in `../reference/architecture.md` section 5):
 `engine` -> checkpoint, evaluator, population, pools, config; `population` -> genome,
-legality, operators; `legality`, `operators` -> genome; `pools` -> `src.paths` only.
+legality, operators; `legality` -> genome, operators (`repair_clauses`); `operators` ->
+genome; `pools` -> `src.paths` only.
 Outside callers import the defining module directly (no package-level re-export):
 `run/ga_*.py` (`engine`), `src/eval.py` (`config`, `fitness`, `pools`),
 `src/audit_before_launch.py` (`genome`, `operators`, `pools`), several tools, tests.

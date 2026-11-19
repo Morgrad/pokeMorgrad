@@ -35,7 +35,8 @@ pilot blind spots (dead items, no Protect, nonsense natures). Format facts it en
 
 Until 2026-11-18 all four were one file, `src/ga/genome.py` (834 lines); the split moved
 the code verbatim (golden master and a seeded snapshot of every function unchanged).
-Dependencies: `legality` and `operators` import from `genome`; `pools` imports only
+Dependencies: `legality` and `operators` import from `genome`, and `legality` also imports
+`operators.repair_clauses`; `pools` imports only
 `src.paths`; nothing imports back (no cycles). Importers: `genome` <- `population`,
 `evaluator`, `checkpoint`, `legality`, `operators`, `src/audit_before_launch.py`, tools;
 `pools` <- `engine`, `src/eval.py`, `src/audit_before_launch.py`, tools; `legality` /
